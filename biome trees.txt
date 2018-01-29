@@ -1,0 +1,117 @@
+Rainforest: large_oak
+Rainforest: birch
+Rainforest: oak
+Rainforest: jungle
+Snowy Forest: dying_tree
+Snowy Forest: oak
+Temperate Rainforest: oak_bush
+Temperate Rainforest: cedar
+Temperate Rainforest: willow
+Temperate Rainforest: small_cedar
+Lush Swamp: swamp
+Tundra: tundra_tree
+Lavender Fields: oak
+Lavender Fields: jacaranda
+Mountain: pine
+Mountain: oak
+Overgrown Cliffs: oak_bush
+Overgrown Cliffs: mahogany
+Overgrown Cliffs: jungle_twiglet
+AlpsFoothills: fir
+Meadow: spruce_bush
+Meadow: spruce
+Cherry Blossom Grove: large_white_cherry
+Cherry Blossom Grove: white_cherry
+Cherry Blossom Grove: large_pink_cherry
+Cherry Blossom Grove: pink_cherry
+Wetland: willow
+Wetland: spruce
+Snowy Coniferous Forest: fir
+Snowy Coniferous Forest: mega_fir
+Mangrove: mangrove
+Chaparral: twiglet
+Chaparral: small_bush
+Xeric Shrubland: brush_bush
+Xeric Shrubland: oak_bush
+Xeric Shrubland: brush_twiglet
+Tropical Rainforest: mahogany
+Tropical Rainforest: jungle
+Undergarden: twiglet
+Bog: birch_twiglet
+Bog: dark_oak_twiglet
+Orchard: oak_large
+Orchard: oak
+Dead Swamp: dying_tree
+Dead Swamp: dead_tree
+Prairie: prairie_tree
+Redwood Forest: redwood
+Redwood Forest: redwood_thin
+Coniferous Forest: fir
+Coniferous Forest: mega_fir
+Mystic Grove: magic
+Mystic Grove: oak_large
+Mystic Grove: flowering_vine
+Mystic Grove: jacaranda
+Boreal Forest: oak_bush
+Boreal Forest: yellow_autumn
+Boreal Forest: small_oak
+Boreal Forest: oak
+Boreal Forest: spruce
+Flower Island: oak_bush
+Flower Island: red_big_flowers
+Flower Island: yellow_big_flowers
+Eucalyptus Forest: oak_bush
+Eucalyptus Forest: tall_eucalyptus
+Outback: acacia_bush
+Outback: acacia_twiglet
+Wasteland: dying_tree
+Wasteland: dead_tree
+Bayou: willow
+Bayou: willow_large
+Shrubland: shrubland_tree
+Bamboo Forest: bamboo
+Bamboo Forest: bamboo_thin
+Woodland: oak
+Maple Woods: maple
+Maple Woods: spruce
+Tropical Island: palm
+Tropical Island: jungle_twiglet
+Brushland: brush
+Brushland: brush_bush
+Brushland: brush_twiglet
+Brushland: decaying_tree
+Brushland: jungle_twiglet
+Grove: poplar
+Grove: dark_poplar
+Grove: bush
+Dead Forest: dying_tree
+Dead Forest: oak
+Dead Forest: dead_tree
+Dead Forest: spruce
+Fen: dying
+Fen: dark_oak_taiga
+Fen: dead
+Shield: oak_bush
+Shield: pine
+Shield: spruce
+Seasonal Forest: yellow_autumn
+Seasonal Forest: large_oak
+Seasonal Forest: dying_tree
+Seasonal Forest: maple
+Seasonal Forest: orange_autumn
+MountainFoothills: pine
+MountainFoothills: oak
+Origin Island: origin_island_tree
+Lush Desert: twiglet
+Lush Desert: decaying_tree
+Lush Desert: dead_tree
+Oasis: palm
+Oasis: jungle_twiglet
+Ominous Woods: dying_tree
+Ominous Woods: mega_umbran
+Ominous Woods: dead_tree
+Ominous Woods: umbran_moss
+Ominous Woods: umbran_spruce
+Land of Lakes: birch
+Land of Lakes: oak
+Land of Lakes: spruce

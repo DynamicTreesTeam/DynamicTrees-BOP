@@ -1,0 +1,77 @@
+buildscript {
+	repositories {
+		jcenter()
+		maven { url = "http://files.minecraftforge.net/maven" }
+	}
+	dependencies {
+		classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
+	}
+}
+apply plugin: 'net.minecraftforge.gradle.forge'
+//Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
+
+repositories {
+	maven {
+		name "CurseForge"
+		url "https://minecraft.curseforge.com/api/maven/"
+	}
+}
+
+
+configurations {
+	provided
+	shade
+	compile.extendsFrom shade
+}
+
+idea {
+	module {
+		scopes.PROVIDED.plus += [configurations.provided]
+	}
+}
+
+jar {
+	configurations.shade.each { dep ->
+		from(project.zipTree(dep)) {
+			exclude 'META-INF', 'META-INF/**'
+		}
+	}
+
+	from sourceSets.api.output
+}
+
+apply from: 'dependencies.gradle'
+
+version = "1.0"
+group = "com.mangoose.dtcompat" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = "dtcompat"
+
+sourceCompatibility = targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
+compileJava {
+	sourceCompatibility = targetCompatibility = '1.8'
+}
+
+minecraft {
+	version = "1.12.2-14.23.1.2603"
+	runDir = "run"
+    
+	mappings = "snapshot_20171003"
+}
+
+dependencies {
+	
+}
+
+processResources {
+	inputs.property "version", project.version
+	inputs.property "mcversion", project.minecraft.version
+
+	from(sourceSets.main.resources.srcDirs) {
+		include 'mcmod.info'
+		expand 'version':project.version, 'mcversion':project.minecraft.version
+	}
+
+	from(sourceSets.main.resources.srcDirs) {
+		exclude 'mcmod.info'
+	}
+}

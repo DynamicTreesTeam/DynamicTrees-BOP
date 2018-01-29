@@ -1,0 +1,16 @@
+[
+	{
+		"modid": "dtcompat",
+		"name": "Dynamic Trees Compat",
+		"description": "Adding compatability for Dynamic Trees",
+		"version": "${version}",
+		"mcversion": "${mcversion}",
+		"url": "",
+		"updateUrl": "",
+		"authorList": ["mangoose"],
+		"credits": "ferreusveritas",
+		"logoFile": "",
+		"screenshots": [],
+		"dependencies": []
+	}
+]
