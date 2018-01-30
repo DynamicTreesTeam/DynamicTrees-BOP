@@ -1,4 +1,4 @@
-package dtcompat.proxy;
+package dynamictreesbop.proxy;
 
 import com.google.common.base.Optional;
 

@@ -1,4 +1,4 @@
-package dtcompat.proxy;
+package dynamictreesbop.proxy;
 
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
 import com.ferreusveritas.dynamictrees.api.client.ModelHelper;
@@ -9,8 +9,8 @@ import com.ferreusveritas.dynamictrees.trees.DynamicTree;
 import biomesoplenty.api.enums.BOPTrees;
 import biomesoplenty.common.block.BlockBOPLeaves;
 import biomesoplenty.common.block.BlockColoring;
-import dtcompat.DynamicTreesCompat;
-import dtcompat.ModContent;
+import dynamictreesbop.DynamicTreesBOP;
+import dynamictreesbop.ModContent;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.color.IBlockColor;
@@ -40,7 +40,10 @@ public class ClientProxy extends CommonProxy {
 	}
 
 	public void registerColorHandlers() {	
-		for(BlockDynamicLeaves leaves: TreeHelper.getLeavesMapForModId(DynamicTreesCompat.MODID).values()) {
+		
+		final int magenta = 0x00FF00FF;//for errors.. because magenta sucks.
+		
+		for(BlockDynamicLeaves leaves: TreeHelper.getLeavesMapForModId(DynamicTreesBOP.MODID).values()) {
 			
 			ModelHelper.regColorHandler(leaves, new IBlockColor() {
 				@Override
@@ -48,18 +51,30 @@ public class ClientProxy extends CommonProxy {
 					boolean inWorld = worldIn != null && pos != null;
 					
 					IBlockState primLeaves = leaves.getTree(state).getPrimitiveLeaves();
+					Block block = state.getBlock();
 					
 					if (primLeaves.getBlock() instanceof BlockBOPLeaves) {
 		            	switch (BlockBOPLeaves.getColoringType((BOPTrees) primLeaves.getValue(((BlockBOPLeaves) primLeaves.getBlock()).variantProperty))) {
 		            		case TINTED:
-		            			return inWorld ? BiomeColorHelper.getFoliageColorAtPos(worldIn, pos) : ColorizerFoliage.getFoliageColorBasic();
+								if(TreeHelper.isLeaves(block)) {
+									return ((BlockDynamicLeaves) block).getTree(state).foliageColorMultiplier(state, worldIn, pos);
+								}
+								return magenta;
 		            		case OVERLAY:
-		            			if (tintIndex == 0) return inWorld ? BiomeColorHelper.getFoliageColorAtPos(worldIn, pos) : ColorizerFoliage.getFoliageColorBasic();
+		            			if (tintIndex == 0) {
+		    						if(TreeHelper.isLeaves(block)) {
+		    							return ((BlockDynamicLeaves) block).getTree(state).foliageColorMultiplier(state, worldIn, pos);
+		    						}
+		    						return magenta;
+		            			}
 		            		default:
 		            			return 0xffffff;
 		            	}
 					} else {
-						return inWorld ? BiomeColorHelper.getFoliageColorAtPos(worldIn, pos) : ColorizerFoliage.getFoliageColorBasic();
+						if(TreeHelper.isLeaves(block)) {
+							return ((BlockDynamicLeaves) block).getTree(state).foliageColorMultiplier(state, worldIn, pos);
+						}
+						return magenta;
 					}
 				}
 			});

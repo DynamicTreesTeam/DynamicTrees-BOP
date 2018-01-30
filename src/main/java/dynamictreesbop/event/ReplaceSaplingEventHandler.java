@@ -1,5 +1,6 @@
-package dtcompat.event;
+package dynamictreesbop.event;
 
+import com.ferreusveritas.dynamictrees.ModItems;
 import com.ferreusveritas.dynamictrees.api.TreeRegistry;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.util.CompatHelper;
@@ -7,16 +8,18 @@ import com.ferreusveritas.dynamictrees.util.CompatHelper;
 import biomesoplenty.api.block.BOPBlocks;
 import biomesoplenty.api.enums.BOPTrees;
 import biomesoplenty.common.block.BlockBOPSapling;
-import dtcompat.DynamicTreesCompat;
-import dtcompat.ModContent;
+import dynamictreesbop.DynamicTreesBOP;
+import dynamictreesbop.ModContent;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent.PlaceEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-@Mod.EventBusSubscriber(modid = DynamicTreesCompat.MODID)
+@Mod.EventBusSubscriber(modid = DynamicTreesBOP.MODID)
 public class ReplaceSaplingEventHandler {
 	
 	@SubscribeEvent
@@ -29,7 +32,7 @@ public class ReplaceSaplingEventHandler {
 
 			switch (tree) {
 			case 0:
-				species = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesCompat.MODID, "yellowautumn"));
+				species = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "yellowautumn"));
 				break;
 			default:
 				break;

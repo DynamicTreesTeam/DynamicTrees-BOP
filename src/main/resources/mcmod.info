@@ -1,8 +1,8 @@
 [
 	{
-		"modid": "dtcompat",
-		"name": "Dynamic Trees Compat",
-		"description": "Adding compatability for Dynamic Trees",
+		"modid": "dynamictreesbop",
+		"name": "Dynamic Trees BOP",
+		"description": "Adding Dynamic Trees compatability for Biomes O' Plenty",
 		"version": "${version}",
 		"mcversion": "${mcversion}",
 		"url": "",

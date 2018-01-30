@@ -1,4 +1,4 @@
-package dtcompat.worldgen;
+package dynamictreesbop.worldgen;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -9,7 +9,7 @@ import com.ferreusveritas.dynamictrees.api.worldgen.IBiomeSpeciesSelector;
 import com.ferreusveritas.dynamictrees.trees.Species;
 
 import biomesoplenty.api.biome.BOPBiomes;
-import dtcompat.DynamicTreesCompat;
+import dynamictreesbop.DynamicTreesBOP;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -22,7 +22,7 @@ public class BiomeSpeciesSelector implements IBiomeSpeciesSelector {
 	
 	@Override
 	public String getName() {
-		return DynamicTreesCompat.MODID + ":" + "default";
+		return DynamicTreesBOP.MODID + ":" + "default";
 	}
 
 	@Override
@@ -61,11 +61,11 @@ public class BiomeSpeciesSelector implements IBiomeSpeciesSelector {
 
 	@Override
 	public void init() {
-		swamp = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesCompat.MODID, "oakswamp"));
+		swamp = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "oakswamp"));
 		jungle = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "jungle"));
-		spruce = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesCompat.MODID, "spruce"));
-		birch = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesCompat.MODID, "birch"));
-		yellowAutumn = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesCompat.MODID, "yellowautumn"));
+		spruce = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "spruce"));
+		birch = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "birch"));
+		yellowAutumn = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "yellowautumn"));
 	}
 	
 	private interface ITreeSelector {

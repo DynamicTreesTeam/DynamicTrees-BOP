@@ -43,8 +43,8 @@ jar {
 apply from: 'dependencies.gradle'
 
 version = "1.0"
-group = "com.mangoose.dtcompat" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "dtcompat"
+group = "com.mangoose.dynamictreesbop" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = "dynamictreesbop"
 
 sourceCompatibility = targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
 compileJava {

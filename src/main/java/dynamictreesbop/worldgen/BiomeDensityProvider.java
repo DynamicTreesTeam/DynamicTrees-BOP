@@ -1,4 +1,4 @@
-package dtcompat.worldgen;
+package dynamictreesbop.worldgen;
 
 import java.util.Random;
 
@@ -8,7 +8,7 @@ import com.ferreusveritas.dynamictrees.util.CompatHelper;
 import com.ferreusveritas.dynamictrees.util.MathHelper;
 
 import biomesoplenty.api.biome.BOPBiomes;
-import dtcompat.DynamicTreesCompat;
+import dynamictreesbop.DynamicTreesBOP;
 import net.minecraft.world.biome.Biome;
 
 public class BiomeDensityProvider implements IBiomeDensityProvider {
@@ -39,7 +39,7 @@ public class BiomeDensityProvider implements IBiomeDensityProvider {
 
 	@Override
 	public String getName() {
-		return DynamicTreesCompat.MODID + ":default";
+		return DynamicTreesBOP.MODID + ":default";
 	}
 
 	@Override
