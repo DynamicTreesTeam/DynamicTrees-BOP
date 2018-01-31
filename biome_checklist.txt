@@ -1,2 +1,4 @@
 lush_swamp
 meadow
+woodland
+land_of_lakes

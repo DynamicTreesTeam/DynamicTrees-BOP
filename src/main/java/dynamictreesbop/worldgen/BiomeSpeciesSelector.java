@@ -48,6 +48,8 @@ public class BiomeSpeciesSelector implements IBiomeSpeciesSelector {
 		
 		if (biome == BOPBiomes.boreal_forest.get()) return new RandomDecision(rand).addSpecies(yellowAutumn, 4).addSpecies(spruce, 4).getDecision();
 		
+		if (biome == BOPBiomes.woodland.get()) return new Decision(oak);
+		
 		if (biome == BOPBiomes.maple_woods.get()) return new RandomDecision(rand).addSpecies(spruce, 1).getDecision();
 		
 		if (biome == BOPBiomes.dead_forest.get()) return new RandomDecision(rand).addSpecies(spruce, 3).getDecision();
@@ -56,7 +58,7 @@ public class BiomeSpeciesSelector implements IBiomeSpeciesSelector {
 		
 		if (biome == BOPBiomes.seasonal_forest.get()) return new RandomDecision(rand).addSpecies(yellowAutumn, 4).addSpecies(orangeAutumn, 5).addSpecies(oakLarge, 1).getDecision();
 		
-		if (biome == BOPBiomes.land_of_lakes.get()) return new RandomDecision(rand).addSpecies(spruce, 3).addSpecies(birch, 1).getDecision();
+		if (biome == BOPBiomes.land_of_lakes.get()) return new RandomDecision(rand).addSpecies(spruce, 3).addSpecies(birch, 1).addSpecies(oak, 5).getDecision();
 		
 		return new Decision();
 	}
