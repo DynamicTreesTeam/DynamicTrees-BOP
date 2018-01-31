@@ -43,6 +43,19 @@ public class ClientProxy extends CommonProxy {
 		
 		final int magenta = 0x00FF00FF;//for errors.. because magenta sucks.
 		
+		ModelHelper.regColorHandler(ModContent.leaves_flowering, new IBlockColor() {
+			@Override
+			public int colorMultiplier(IBlockState state, IBlockAccess worldIn, BlockPos pos, int tintIndex) {
+				boolean inWorld = worldIn != null && pos != null;
+				Block block = state.getBlock();
+				
+    			if (tintIndex == 0 && TreeHelper.isLeaves(block)) {
+					return ((BlockDynamicLeaves) block).getTree(state).foliageColorMultiplier(state, worldIn, pos);
+    			}
+    			return 0xffffff;
+			}
+		});
+		
 		for(BlockDynamicLeaves leaves: TreeHelper.getLeavesMapForModId(DynamicTreesBOP.MODID).values()) {
 			
 			ModelHelper.regColorHandler(leaves, new IBlockColor() {
@@ -94,7 +107,17 @@ public class ClientProxy extends CommonProxy {
 		}
 
 		for(DynamicTree tree: ModContent.trees) {
-			ModelHelper.regDynamicSaplingColorHandler((BlockDynamicSapling) tree.getCommonSpecies().getDynamicSapling().getBlock());
+			BlockDynamicSapling sapling = (BlockDynamicSapling) tree.getCommonSpecies().getDynamicSapling().getBlock();
+			if (tree.getName().getResourceDomain().equals("floweringoak")) {
+				ModelHelper.regColorHandler(sapling, new IBlockColor() {
+					@Override
+					public int colorMultiplier(IBlockState state, IBlockAccess access, BlockPos pos, int tintIndex) {
+						return access == null || pos == null ? -1 : sapling.getSpecies(access, pos, state).getTree().foliageColorMultiplier(state, access, pos);
+					}
+				});
+			} else {
+				ModelHelper.regDynamicSaplingColorHandler(sapling);
+			}
 		}
 
 	}

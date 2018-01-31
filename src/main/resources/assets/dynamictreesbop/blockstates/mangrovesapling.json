@@ -1,0 +1,15 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"model": "dynamictrees:sapling",
+		"textures": {
+			"log": "biomesoplenty:blocks/mangrove_log",
+			"leaves": "biomesoplenty:blocks/leaves_mangrove"
+		}
+	},
+	"variants": {
+		"normal": [{
+
+		}]
+	}
+}

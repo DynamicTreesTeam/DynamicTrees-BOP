@@ -18,7 +18,7 @@ import net.minecraft.world.biome.Biome;
 
 public class BiomeSpeciesSelector implements IBiomeSpeciesSelector {
 
-	Species swamp, jungle, spruce, birch, yellowAutumn;
+	Species swamp, jungle, spruce, birch, oak, oakLarge, yellowAutumn, orangeAutumn;
 	
 	@Override
 	public String getName() {
@@ -34,7 +34,9 @@ public class BiomeSpeciesSelector implements IBiomeSpeciesSelector {
 	public Decision getSpecies(World world, Biome biome, BlockPos pos, IBlockState state, Random rand) {
 		if (biome == null) return new Decision();
 		
-		if (biome == BOPBiomes.rainforest.get()) return new RandomDecision(rand).addSpecies(jungle, 1).addSpecies(birch, 4).getDecision();
+		if (biome == BOPBiomes.rainforest.get()) return new RandomDecision(rand).addSpecies(jungle, 1).addSpecies(birch, 4).addSpecies(oakLarge, 4).getDecision();
+		
+		if (biome == BOPBiomes.snowy_forest.get()) return new RandomDecision(rand).addSpecies(oak, 3).getDecision();
 		
 		if (biome == BOPBiomes.lush_swamp.get()) return new Decision(swamp);
 		
@@ -52,7 +54,7 @@ public class BiomeSpeciesSelector implements IBiomeSpeciesSelector {
 		
 		if (biome == BOPBiomes.shield.get()) return new RandomDecision(rand).addSpecies(spruce, 4).getDecision();
 		
-		if (biome == BOPBiomes.seasonal_forest.get()) return new RandomDecision(rand).addSpecies(yellowAutumn, 4).getDecision();
+		if (biome == BOPBiomes.seasonal_forest.get()) return new RandomDecision(rand).addSpecies(yellowAutumn, 4).addSpecies(orangeAutumn, 5).addSpecies(oakLarge, 1).getDecision();
 		
 		if (biome == BOPBiomes.land_of_lakes.get()) return new RandomDecision(rand).addSpecies(spruce, 3).addSpecies(birch, 1).getDecision();
 		
@@ -65,7 +67,10 @@ public class BiomeSpeciesSelector implements IBiomeSpeciesSelector {
 		jungle = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "jungle"));
 		spruce = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "spruce"));
 		birch = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "birch"));
+		oak = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "oak"));
+		oakLarge = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "oaklarge"));
 		yellowAutumn = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "yellowautumn"));
+		orangeAutumn = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "orangeautumn"));
 	}
 	
 	private interface ITreeSelector {

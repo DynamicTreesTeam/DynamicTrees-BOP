@@ -12,6 +12,8 @@ import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSaplingRare;
 import com.ferreusveritas.dynamictrees.trees.DynamicTree;
 import com.ferreusveritas.dynamictrees.trees.Species;
 
+import dynamictreesbop.trees.TreeMagic;
+import dynamictreesbop.trees.TreeOrangeAutumn;
 import dynamictreesbop.trees.TreeYellowAutumn;
 import dynamictreesbop.trees.species.SpeciesBirch;
 import dynamictreesbop.trees.species.SpeciesOak;
@@ -34,12 +36,31 @@ import net.minecraftforge.registries.IForgeRegistry;
 @ObjectHolder(DynamicTreesBOP.MODID)
 public class ModContent {
 	
-	//public static final Block oak_sapling_species = null;
+	public static final Block leaves_flowering = null;
 	
 	public static ArrayList<DynamicTree> trees = new ArrayList<DynamicTree>();
 	
 	public enum Tree {
-		YELLOW_AUTUMN;
+		YELLOW_AUTUMN,
+		ORANGE_AUTUMN,
+		MAGIC,
+		UMBRAN_DECIDUOUS,
+		UMBRAN_CONIFER,
+		DYING,
+		FIR,
+		PINK_CHERRY,
+		WHITE_CHERRY,
+		MAPLE,
+		HELLBARK,
+		FLOWERING_OAK,
+		JACARANDA,
+		MANGROVE,
+		REDWOOD,
+		WILLOW,
+		PINE,
+		MAHOGANY,
+		EBONY,
+		EUCALYPTUS;
 		
 		public int getSeq() {
 			return ordinal();
@@ -50,6 +71,10 @@ public class ModContent {
 	public static void registerBlocks(final RegistryEvent.Register<Block> event) {
 		IForgeRegistry<Block> registry = event.getRegistry();
 		
+		BlockDynamicLeaves leavesFlowering = new BlockDynamicLeaves();
+		leavesFlowering.setRegistryName(DynamicTreesBOP.MODID, "leaves_flowering").setUnlocalizedName("leaves_flowering");
+		registry.register(leavesFlowering);
+		
 		DynamicTree spruceTree = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "spruce")).getTree();
 		DynamicTree birchTree = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "birch")).getTree();
 		DynamicTree oakTree = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "oak")).getTree();
@@ -58,9 +83,12 @@ public class ModContent {
 		Species.REGISTRY.register(new SpeciesBirch(birchTree));
 		Species.REGISTRY.register(new SpeciesOak(oakTree));
 		Species.REGISTRY.register(new SpeciesOakLarge(oakTree));
-		DynamicTree yellowAutumnTree = new TreeYellowAutumn(Tree.YELLOW_AUTUMN.getSeq());
 		
-		Collections.addAll(trees, yellowAutumnTree);
+		DynamicTree yellowAutumnTree = new TreeYellowAutumn(Tree.YELLOW_AUTUMN.getSeq());
+		DynamicTree orangeAutumnTree = new TreeOrangeAutumn(Tree.ORANGE_AUTUMN.getSeq());
+		DynamicTree magicTree = new TreeMagic(Tree.MAGIC.getSeq());
+		
+		Collections.addAll(trees, yellowAutumnTree, orangeAutumnTree, magicTree);
 		trees.forEach(tree -> tree.registerSpecies(Species.REGISTRY));
 						
 		ArrayList<Block> treeBlocks = new ArrayList<>();
@@ -72,6 +100,8 @@ public class ModContent {
 	@SubscribeEvent
 	public static void registerItems(RegistryEvent.Register<Item> event) {
 		IForgeRegistry<Item> registry = event.getRegistry();
+		
+		registerItemBlock(registry, leaves_flowering);
 		
 		ArrayList<Item> treeItems = new ArrayList<>();
 		trees.forEach(tree -> tree.getRegisterableItems(treeItems));

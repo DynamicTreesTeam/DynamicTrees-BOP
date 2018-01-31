@@ -1,0 +1,25 @@
+{
+	"forge_marker": 1,
+	"variants": {
+		"tree": {
+			"0": {
+				"model": "biomesoplenty:flowering_leaves"
+			},
+			"1": {
+				"model": "biomesoplenty:flowering_leaves"
+			},
+			"2": {
+				"model": "biomesoplenty:flowering_leaves"
+			},
+			"3": {
+				"model": "biomesoplenty:flowering_leaves"
+			}
+		},
+		"hydro": {
+			"1": {},
+			"2": {},
+			"3": {},
+			"4": {}
+		}
+	}
+}

@@ -13,8 +13,10 @@ import com.ferreusveritas.dynamictrees.trees.Species;
 import biomesoplenty.api.biome.BOPBiomes;
 import biomesoplenty.api.block.BOPBlocks;
 import biomesoplenty.api.enums.BOPTrees;
+import biomesoplenty.api.item.BOPItems;
 import biomesoplenty.common.block.BlockBOPLeaves;
 import dynamictreesbop.DynamicTreesBOP;
+import dynamictreesbop.dropcreators.DropCreatorFruit;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockOldLog;
 import net.minecraft.block.BlockPlanks;
@@ -38,16 +40,15 @@ public class TreeYellowAutumn extends DynamicTree {
 		SpeciesYellowAutumn(DynamicTree treeFamily) {
 			super(treeFamily.getName(), treeFamily);
 			
-			//Birch are tall, skinny, fast growing trees
 			setBasicGrowingParameters(0.1f, 14.0f, 4, 4, 1.25f);
 			
 			setDynamicSapling(new BlockDynamicSapling("yellowautumnsapling").getDefaultState());
 			
-			envFactor(Type.COLD, 0.75f);
 			envFactor(Type.HOT, 0.50f);
 			envFactor(Type.DRY, 0.50f);
 			envFactor(Type.FOREST, 1.05f);
 			
+			addDropCreator(new DropCreatorFruit(BOPItems.persimmon));
 			setupStandardSeedDropping();
 		}
 		

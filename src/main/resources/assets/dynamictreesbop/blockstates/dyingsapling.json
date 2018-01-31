@@ -1,0 +1,15 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"model": "dynamictrees:sapling",
+		"textures": {
+			"log": "blocks/log_oak",
+			"leaves": "biomesoplenty:blocks/leaves_dead"
+		}
+	},
+	"variants": {
+		"normal": [{
+
+		}]
+	}
+}

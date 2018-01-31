@@ -6,13 +6,13 @@
 				"model": "biomesoplenty:yellow_autumn_leaves"
 			},
 			"1": {
-				"model": "oak_leaves"
+				"model": "biomesoplenty:orange_autumn_leaves"
 			},
 			"2": {
-				"model": "oak_leaves"
+				"model": "biomesoplenty:magic_leaves"
 			},
 			"3": {
-				"model": "oak_leaves"
+				"model": "biomesoplenty:umbran_leaves"
 			}
 		},
 		"hydro": {

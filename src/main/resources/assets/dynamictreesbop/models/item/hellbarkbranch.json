@@ -1,0 +1,7 @@
+{
+	"parent": "dynamictrees:item/branch",
+	"textures": {
+		"bark": "biomesoplenty:blocks/hellbark_log",
+		"rings": "biomesoplenty:blocks/hellbark_log_top"
+	}
+}

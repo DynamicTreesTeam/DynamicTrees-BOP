@@ -26,27 +26,45 @@ public class ReplaceSaplingEventHandler {
 	public static void onPlaceSapling(PlaceEvent event) {
 		IBlockState state = event.getPlacedBlock();
 		
-		if (state.getBlock() instanceof BlockBOPSapling) {
+		Species species = null;
+		
+		if (state.getBlock() == BOPBlocks.sapling_0) {
 			int tree = ((BOPTrees) state.getValue(((BlockBOPSapling) state.getBlock()).variantProperty)).ordinal();
-			Species species = null;
 
 			switch (tree) {
 			case 0:
 				species = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "yellowautumn"));
 				break;
+			case 1:
+				species = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "orangeautumn"));
+				break;
 			default:
 				break;
 			}
-			
-			if (species != null) {
-				event.getWorld().setBlockToAir(event.getPos());
-				if(!species.plantSapling(event.getWorld(), event.getPos())) {
-					double x = event.getPos().getX() + 0.5;
-					double y = event.getPos().getY() + 0.5;
-					double z = event.getPos().getZ() + 0.5;
-					EntityItem itemEntity = new EntityItem(event.getWorld(), x, y, z, species.getSeedStack(1));
-					CompatHelper.spawnEntity(event.getWorld(), itemEntity);
-				}
+		} else if (state.getBlock() == BOPBlocks.sapling_1) {
+			int tree = ((BOPTrees) state.getValue(((BlockBOPSapling) state.getBlock()).variantProperty)).ordinal();
+
+			switch (tree) {
+			default:
+				break;
+			}
+		} else if (state.getBlock() == BOPBlocks.sapling_2) {
+			int tree = ((BOPTrees) state.getValue(((BlockBOPSapling) state.getBlock()).variantProperty)).ordinal();
+
+			switch (tree) {
+			default:
+				break;
+			}
+		}
+		
+		if (species != null) {
+			event.getWorld().setBlockToAir(event.getPos());
+			if(!species.plantSapling(event.getWorld(), event.getPos())) {
+				double x = event.getPos().getX() + 0.5;
+				double y = event.getPos().getY() + 0.5;
+				double z = event.getPos().getZ() + 0.5;
+				EntityItem itemEntity = new EntityItem(event.getWorld(), x, y, z, species.getSeedStack(1));
+				CompatHelper.spawnEntity(event.getWorld(), itemEntity);
 			}
 		}
 	}

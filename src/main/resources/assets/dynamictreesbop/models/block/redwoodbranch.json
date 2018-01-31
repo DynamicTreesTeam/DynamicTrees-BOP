@@ -1,0 +1,7 @@
+{
+	"parent": "dynamictrees:block/smartmodel/branch",
+	"textures": {
+		"bark": "biomesoplenty:blocks/redwood_log",
+    "rings": "biomesoplenty:blocks/redwood_log_top"
+	}
+}

@@ -1,0 +1,25 @@
+{
+	"forge_marker": 1,
+	"variants": {
+		"tree": {
+			"0": {
+				"model": "biomesoplenty:pine_leaves"
+			},
+			"1": {
+				"model": "biomesoplenty:mahogany_leaves"
+			},
+			"2": {
+				"model": "biomesoplenty:ebony_leaves"
+			},
+			"3": {
+				"model": "biomesoplenty:eucalyptus_leaves"
+			}
+		},
+		"hydro": {
+			"1": {},
+			"2": {},
+			"3": {},
+			"4": {}
+		}
+	}
+}
