@@ -28,13 +28,29 @@ public class BiomeDensityProvider implements IBiomeDensityProvider {
 		double naturalDensity = MathHelper.clamp((CompatHelper.getBiomeTreesPerChunk(biome)) / 10.0f, 0.0f, 1.0f);
 		double base = naturalDensity * noiseDensity;
 		
-		if (biome == BOPBiomes.woodland.get()) return noiseDensity;
+		if (biome == BOPBiomes.boreal_forest.get()) return noiseDensity;
 		
-		if (biome == BOPBiomes.tropical_rainforest.get()) return noiseDensity;
+		if (biome == BOPBiomes.lavender_fields.get()) return noiseDensity * 0.1;
 		
 		if (biome == BOPBiomes.lush_swamp.get()) return noiseDensity * 0.9;
 		
+		if (biome == BOPBiomes.maple_woods.get()) return noiseDensity;
+		
+		if (biome == BOPBiomes.mountain.get()) return noiseDensity * 0.3;
+		
+		if (biome == BOPBiomes.mountain_foothills.get()) return noiseDensity * 0.3;
+		
+		if (biome == BOPBiomes.mystic_grove.get()) return noiseDensity;
+		
+		if (biome == BOPBiomes.orchard.get()) return noiseDensity * 0.5;
+		
 		if (biome == BOPBiomes.rainforest.get()) return noiseDensity;
+		
+		if (biome == BOPBiomes.seasonal_forest.get()) return noiseDensity;
+		
+		if (biome == BOPBiomes.tropical_rainforest.get()) return noiseDensity;
+		
+		if (biome == BOPBiomes.woodland.get()) return noiseDensity;
 		
 		return -1;
 	}

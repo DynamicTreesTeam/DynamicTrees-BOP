@@ -14,6 +14,7 @@ import biomesoplenty.api.biome.BOPBiomes;
 import biomesoplenty.api.block.BOPBlocks;
 import biomesoplenty.api.enums.BOPTrees;
 import biomesoplenty.api.item.BOPItems;
+import biomesoplenty.common.block.BlockBOPLeaves;
 import dynamictreesbop.DynamicTreesBOP;
 import dynamictreesbop.dropcreators.DropCreatorFruit;
 import dynamictreesbop.trees.TreeYellowAutumn.SpeciesYellowAutumn;
@@ -67,10 +68,10 @@ public class TreeOrangeAutumn extends DynamicTree {
 		super(new ResourceLocation(DynamicTreesBOP.MODID, "orangeautumn"), seq);
 		
 		IBlockState primLog = Blocks.LOG.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.OAK);		
-		setPrimitiveLog(primLog, new ItemStack(Blocks.LOG, 1, 2));
+		setPrimitiveLog(primLog, new ItemStack(Blocks.LOG, 1, BlockPlanks.EnumType.OAK.ordinal() & 3));
 		
-		IBlockState primLeaves = BOPBlocks.leaves_0.getStateFromMeta(BOPTrees.ORANGE_AUTUMN.ordinal() & 3);
-		setPrimitiveLeaves(primLeaves, new ItemStack(primLeaves.getBlock(), 1, (BOPTrees.ORANGE_AUTUMN.ordinal() & 3) | 8));
+		IBlockState primLeaves = BlockBOPLeaves.paging.getVariantState(BOPTrees.ORANGE_AUTUMN);
+		setPrimitiveLeaves(primLeaves, BlockBOPLeaves.paging.getVariantItem(BOPTrees.ORANGE_AUTUMN));
 	}
 	
 	@Override

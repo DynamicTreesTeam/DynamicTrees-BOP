@@ -12,7 +12,7 @@
 				"model": "biomesoplenty:hellbark_leaves"
 			},
 			"3": {
-				"model": "oak_leaves"
+				"model": "biomesoplenty:dead_leaves"
 			}
 		},
 		"hydro": {

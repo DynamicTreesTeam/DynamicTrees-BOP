@@ -30,7 +30,6 @@ public class ReplaceSaplingEventHandler {
 		
 		if (state.getBlock() == BOPBlocks.sapling_0) {
 			int tree = ((BOPTrees) state.getValue(((BlockBOPSapling) state.getBlock()).variantProperty)).ordinal();
-
 			switch (tree) {
 			case 0:
 				species = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "yellowautumn"));
@@ -38,19 +37,24 @@ public class ReplaceSaplingEventHandler {
 			case 1:
 				species = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "orangeautumn"));
 				break;
+			case 3:
+				species = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "magic"));
+				break;
 			default:
 				break;
 			}
 		} else if (state.getBlock() == BOPBlocks.sapling_1) {
 			int tree = ((BOPTrees) state.getValue(((BlockBOPSapling) state.getBlock()).variantProperty)).ordinal();
-
 			switch (tree) {
+			case 13:
+				
+				species = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "floweringoak"));
+				break;
 			default:
 				break;
 			}
 		} else if (state.getBlock() == BOPBlocks.sapling_2) {
 			int tree = ((BOPTrees) state.getValue(((BlockBOPSapling) state.getBlock()).variantProperty)).ordinal();
-
 			switch (tree) {
 			default:
 				break;

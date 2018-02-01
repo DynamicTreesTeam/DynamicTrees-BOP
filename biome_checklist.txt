@@ -1,4 +1,7 @@
+boreal forest
+land_of_lakes
 lush_swamp
 meadow
+orchard
+rainforest
 woodland
-land_of_lakes

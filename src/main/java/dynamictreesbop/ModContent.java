@@ -12,11 +12,13 @@ import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSaplingRare;
 import com.ferreusveritas.dynamictrees.trees.DynamicTree;
 import com.ferreusveritas.dynamictrees.trees.Species;
 
+import dynamictreesbop.trees.TreeFloweringOak;
 import dynamictreesbop.trees.TreeMagic;
 import dynamictreesbop.trees.TreeOrangeAutumn;
 import dynamictreesbop.trees.TreeYellowAutumn;
 import dynamictreesbop.trees.species.SpeciesBirch;
 import dynamictreesbop.trees.species.SpeciesOak;
+import dynamictreesbop.trees.species.SpeciesOakFloweringVine;
 import dynamictreesbop.trees.species.SpeciesOakLarge;
 import dynamictreesbop.trees.species.SpeciesSpruce;
 import net.minecraft.block.Block;
@@ -52,7 +54,7 @@ public class ModContent {
 		WHITE_CHERRY,
 		MAPLE,
 		HELLBARK,
-		FLOWERING_OAK,
+		DEAD,
 		JACARANDA,
 		MANGROVE,
 		REDWOOD,
@@ -71,24 +73,28 @@ public class ModContent {
 	public static void registerBlocks(final RegistryEvent.Register<Block> event) {
 		IForgeRegistry<Block> registry = event.getRegistry();
 		
-		BlockDynamicLeaves leavesFlowering = new BlockDynamicLeaves();
-		leavesFlowering.setRegistryName(DynamicTreesBOP.MODID, "leaves_flowering").setUnlocalizedName("leaves_flowering");
-		registry.register(leavesFlowering);
-		
+		// Get tree types from base mod so they can be given new species
 		DynamicTree spruceTree = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "spruce")).getTree();
 		DynamicTree birchTree = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "birch")).getTree();
 		DynamicTree oakTree = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "oak")).getTree();
 		
+		// Register new species of trees from the base mod
 		Species.REGISTRY.register(new SpeciesSpruce(spruceTree));
 		Species.REGISTRY.register(new SpeciesBirch(birchTree));
 		Species.REGISTRY.register(new SpeciesOak(oakTree));
 		Species.REGISTRY.register(new SpeciesOakLarge(oakTree));
+		Species.REGISTRY.register(new SpeciesOakFloweringVine(oakTree));
 		
+		// Register new tree types
 		DynamicTree yellowAutumnTree = new TreeYellowAutumn(Tree.YELLOW_AUTUMN.getSeq());
 		DynamicTree orangeAutumnTree = new TreeOrangeAutumn(Tree.ORANGE_AUTUMN.getSeq());
 		DynamicTree magicTree = new TreeMagic(Tree.MAGIC.getSeq());
 		
+		// Register new tree types that don't get auto-generated leaves
+		DynamicTree floweringOakTree = new TreeFloweringOak();
+		
 		Collections.addAll(trees, yellowAutumnTree, orangeAutumnTree, magicTree);
+		Collections.addAll(trees, floweringOakTree);
 		trees.forEach(tree -> tree.registerSpecies(Species.REGISTRY));
 						
 		ArrayList<Block> treeBlocks = new ArrayList<>();
@@ -100,8 +106,6 @@ public class ModContent {
 	@SubscribeEvent
 	public static void registerItems(RegistryEvent.Register<Item> event) {
 		IForgeRegistry<Item> registry = event.getRegistry();
-		
-		registerItemBlock(registry, leaves_flowering);
 		
 		ArrayList<Item> treeItems = new ArrayList<>();
 		trees.forEach(tree -> tree.getRegisterableItems(treeItems));
@@ -118,10 +122,11 @@ public class ModContent {
 			ModelHelper.regModel(tree);
 		}
 		
-		for(BlockDynamicLeaves leaves : TreeHelper.getLeavesMapForModId(DynamicTreesBOP.MODID).values()) {
+		for (BlockDynamicLeaves leaves : TreeHelper.getLeavesMapForModId(DynamicTreesBOP.MODID).values()) {
 			Item item = Item.getItemFromBlock(leaves);
 			ModelHelper.regModel(item);
 		}
+		ModelHelper.regModel(Item.getItemFromBlock(leaves_flowering));
 	}
 	
 	private static void registerItemBlock(IForgeRegistry<Item> registry, Block block) {

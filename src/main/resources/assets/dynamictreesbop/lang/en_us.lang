@@ -9,7 +9,6 @@ item.pinkcherryseed.name=Pink Cherry Stone
 item.whitecherryseed.name=White Cherry Stone
 item.mapleseed.name=Maple Samara
 item.hellbarkseed.name=Hellish Acorn
-item.floweringoakseed.name=Flowering Oak Acorn
 item.jacarandaseed.name=Jacaranda Pod
 item.mangroveseed.name=Mangrove Seedling
 item.redwoodseed.name=Redwood Cone
@@ -19,4 +18,37 @@ item.mahoganyseed.name=Mahogany Pod
 item.ebonyseed.name=Ebony Pod
 item.eucalyptusseed.name=Eucalyptus Capsule
 
+item.floweringoakseed.name=Flowering Oak Acorn
 item.palmseed.name=Palm Seed
+
+
+tile.leaves0.name=Dynamic Leaves
+tile.leaves1.name=Dynamic Leaves
+tile.leaves2.name=Dynamic Leaves
+tile.leaves3.name=Dynamic Leaves
+
+tile.leaves_flowering.name=Dynamic Leaves
+
+tile.dynamictreesbop:yellowautumnbranch.name=Dynamic Yellow Autumn Tree
+tile.dynamictreesbop:orangeautumnbranch.name=Dynamic Orange Autumn Tree
+tile.dynamictreesbop:magicbranch.name=Dynamic Magic Tree
+tile.dynamictreesbop:umbranbranch.name=Dynamic Umbran Tree
+tile.dynamictreesbop:umbranconiferbranch.name=Dynamic Umbran Tree
+tile.dynamictreesbop:dyingbranch.name=Dynamic Dying Tree
+tile.dynamictreesbop:firbranch.name=Dynamic Fir Tree
+tile.dynamictreesbop:pinkcherrybranch.name=Dynamic Cherry Tree
+tile.dynamictreesbop:whitecherrybranch.name=Dynamic Cherry Tree
+tile.dynamictreesbop:maplebranch.name=Dynamic Maple Tree
+tile.dynamictreesbop:hellbarkbranch.name=Dynamic Hellbark Tree
+tile.dynamictreesbop:deadbranch.name=Dynamic Dead Tree
+tile.dynamictreesbop:jacarandabranch.name=Dynamic Jacaranda Tree
+tile.dynamictreesbop:mangrovebranch.name=Dynamic Mangrove Tree
+tile.dynamictreesbop:redwoodbranch.name=Dynamic Redwood Tree
+tile.dynamictreesbop:willowbranch.name=Dynamic Willow Tree
+tile.dynamictreesbop:pinebranch.name=Dynamic Pine Tree
+tile.dynamictreesbop:mahoganybranch.name=Dynamic Mahogany Tree
+tile.dynamictreesbop:ebonybranch.name=Dynamic Ebony Tree
+tile.dynamictreesbop:eucalyptusbranch.name=Dynamic Eucalyptus Tree
+
+tile.dynamictreesbop:floweringoakbranch.name=Dynamic Flowering Oak Tree
+tile.dynamictreesbop:palmbranch.name=Dynamic Palm Tree

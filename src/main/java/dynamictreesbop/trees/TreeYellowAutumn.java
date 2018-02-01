@@ -69,11 +69,10 @@ public class TreeYellowAutumn extends DynamicTree {
 		super(new ResourceLocation(DynamicTreesBOP.MODID, "yellowautumn"), seq);
 		
 		IBlockState primLog = Blocks.LOG.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.BIRCH);		
-		setPrimitiveLog(primLog, new ItemStack(Blocks.LOG, 1, 2));
+		setPrimitiveLog(primLog, new ItemStack(Blocks.LOG, 1, BlockPlanks.EnumType.BIRCH.ordinal() & 3));
 		
-		//System.out.println(BOPBlocks.leaves_0.getStateFromMeta(BOPTrees.YELLOW_AUTUMN.ordinal() & 3));
-		IBlockState primLeaves = BOPBlocks.leaves_0.getStateFromMeta(BOPTrees.YELLOW_AUTUMN.ordinal() & 3);
-		setPrimitiveLeaves(primLeaves, new ItemStack(primLeaves.getBlock(), 1, (BOPTrees.YELLOW_AUTUMN.ordinal() & 3) | 8));
+		IBlockState primLeaves = BlockBOPLeaves.paging.getVariantState(BOPTrees.YELLOW_AUTUMN);
+		setPrimitiveLeaves(primLeaves, BlockBOPLeaves.paging.getVariantItem(BOPTrees.YELLOW_AUTUMN));
 	}
 	
 	@Override

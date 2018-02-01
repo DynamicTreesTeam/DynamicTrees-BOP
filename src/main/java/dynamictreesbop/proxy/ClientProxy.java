@@ -55,6 +55,13 @@ public class ClientProxy extends CommonProxy {
     			return 0xffffff;
 			}
 		});
+		ModelHelper.regColorHandler(Item.getItemFromBlock(ModContent.leaves_flowering), new IItemColor() {
+			@Override
+			public int colorMultiplier(ItemStack stack, int tintIndex) {
+    			if (tintIndex == 0) return ColorizerFoliage.getFoliageColorBasic();
+    			return 0xffffff;
+			}
+		});
 		
 		for(BlockDynamicLeaves leaves: TreeHelper.getLeavesMapForModId(DynamicTreesBOP.MODID).values()) {
 			
@@ -95,12 +102,6 @@ public class ClientProxy extends CommonProxy {
 			ModelHelper.regColorHandler(Item.getItemFromBlock(leaves), new IItemColor() {
 				@Override
 				public int colorMultiplier(ItemStack stack, int tintIndex) {
-					Block block = leaves.getTree(leaves.getStateFromMeta(stack.getMetadata())).getPrimitiveLeaves().getBlock();
-					
-					if (block instanceof BlockBOPLeaves) {
-						return BlockColoring.BLOCK_ITEM_COLORING.colorMultiplier(new ItemStack(block, (stack.getMetadata() & 3) | 8), tintIndex);
-					}
-					
 					return ColorizerFoliage.getFoliageColorBasic();
 				}
 			});
@@ -108,11 +109,11 @@ public class ClientProxy extends CommonProxy {
 
 		for(DynamicTree tree: ModContent.trees) {
 			BlockDynamicSapling sapling = (BlockDynamicSapling) tree.getCommonSpecies().getDynamicSapling().getBlock();
-			if (tree.getName().getResourceDomain().equals("floweringoak")) {
+			if (tree.getName().getResourcePath().equals("floweringoak")) {
 				ModelHelper.regColorHandler(sapling, new IBlockColor() {
 					@Override
 					public int colorMultiplier(IBlockState state, IBlockAccess access, BlockPos pos, int tintIndex) {
-						return access == null || pos == null ? -1 : sapling.getSpecies(access, pos, state).getTree().foliageColorMultiplier(state, access, pos);
+						return access == null || pos == null ? -1 : tintIndex != 0 ? 0xffffff : sapling.getSpecies(access, pos, state).getTree().foliageColorMultiplier(state, access, pos);
 					}
 				});
 			} else {
