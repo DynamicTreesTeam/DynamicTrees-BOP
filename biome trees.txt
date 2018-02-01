@@ -74,7 +74,4 @@ Lush Desert: dead_tree (dead logs, no leaves)
 Oasis: palm
 Oasis: jungle_twiglet
 Ominous Woods: dying_tree (dead logs, no leaves)
-Ominous Woods: mega_umbran
 Ominous Woods: dead_tree (dead logs, dead leaves)
-Ominous Woods: umbran_moss
-Ominous Woods: umbran_spruce

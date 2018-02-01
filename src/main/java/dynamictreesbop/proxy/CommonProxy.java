@@ -33,6 +33,7 @@ public class CommonProxy {
 		removeTreeGen(BOPBiomes.mountain, "oak"); // still has pine
 		removeTreeGen(BOPBiomes.mountain_foothills, "oak"); // still has pine
 		removeTreeGen(BOPBiomes.mystic_grove, "magic", "flowering_vine", "oak_large"); // still has jacaranda
+		removeTreeGen(BOPBiomes.ominous_woods, "umbran_moss", "umbran_spruce", "mega_umbran"); // still has dying_tree, dead_tree
 		removeTreeGen(BOPBiomes.orchard);
 		removeTreeGen(BOPBiomes.rainforest);
 		removeTreeGen(BOPBiomes.seasonal_forest, "yellow_autumn", "orange_autumn", "large_oak"); // still has dying_tree, maple

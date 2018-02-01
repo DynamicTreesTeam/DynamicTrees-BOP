@@ -33,17 +33,16 @@ public class DropCreatorFruit extends DropCreator {
 	
 	@Override
 	public List<ItemStack> getLeavesDrop(IBlockAccess access, Species species, BlockPos breakPos, Random random, List<ItemStack> dropList, int fortune) {
-		return getLeafDrops(access, species, breakPos, random, dropList, fortune);
+		return getLeafDrops(access, species, breakPos, random, dropList, fortune, 200);
 	}
 	
 	@Override
 	public List<ItemStack> getHarvestDrop(World world, Species species, BlockPos leafPos, Random random, List<ItemStack> dropList, int soilLife, int fortune) {
-		return getLeafDrops(world, species, leafPos, random, dropList, fortune);
+		return getLeafDrops(world, species, leafPos, random, dropList, fortune, 400);
 	}
 	
-	protected List<ItemStack> getLeafDrops(IBlockAccess access, Species species, BlockPos leafPos, Random random, List<ItemStack> dropList, int fortune) {
-		//More fortune contrivances here.  Vanilla compatible returns.
-		int chance = 200; //1 in 200 chance of returning a fruit
+	protected List<ItemStack> getLeafDrops(IBlockAccess access, Species species, BlockPos leafPos, Random random, List<ItemStack> dropList, int fortune, int baseChance) {
+		int chance = baseChance;
 		if (fortune > 0) {
 			chance -= 10 << fortune;
 			if (chance < 40) {

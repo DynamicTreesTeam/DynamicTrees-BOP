@@ -42,6 +42,8 @@ public class BiomeDensityProvider implements IBiomeDensityProvider {
 		
 		if (biome == BOPBiomes.mystic_grove.get()) return noiseDensity;
 		
+		if (biome == BOPBiomes.ominous_woods.get()) return noiseDensity;
+		
 		if (biome == BOPBiomes.orchard.get()) return noiseDensity * 0.5;
 		
 		if (biome == BOPBiomes.rainforest.get()) return noiseDensity;
