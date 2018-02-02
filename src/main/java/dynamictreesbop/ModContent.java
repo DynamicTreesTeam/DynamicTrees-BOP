@@ -12,6 +12,7 @@ import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSaplingRare;
 import com.ferreusveritas.dynamictrees.trees.DynamicTree;
 import com.ferreusveritas.dynamictrees.trees.Species;
 
+import dynamictreesbop.trees.TreeDecayed;
 import dynamictreesbop.trees.TreeFloweringOak;
 import dynamictreesbop.trees.TreeMagic;
 import dynamictreesbop.trees.TreeOrangeAutumn;
@@ -96,9 +97,10 @@ public class ModContent {
 		
 		// Register new tree types that don't get auto-generated leaves
 		DynamicTree floweringOakTree = new TreeFloweringOak();
+		DynamicTree decayedTree = new TreeDecayed();
 		
 		Collections.addAll(trees, yellowAutumnTree, orangeAutumnTree, magicTree, umbranTree, umbranConiferTree);
-		Collections.addAll(trees, floweringOakTree);
+		Collections.addAll(trees, floweringOakTree, decayedTree);
 		trees.forEach(tree -> tree.registerSpecies(Species.REGISTRY));
 						
 		ArrayList<Block> treeBlocks = new ArrayList<>();

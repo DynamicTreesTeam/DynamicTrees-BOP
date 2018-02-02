@@ -9,13 +9,14 @@ import biomesoplenty.api.generation.IGenerator;
 import biomesoplenty.common.biome.BOPBiome;
 import biomesoplenty.common.world.generator.GeneratorWeighted;
 import biomesoplenty.common.world.generator.tree.GeneratorBush;
+import dynamictreesbop.cells.CellKits;
 import net.minecraft.block.BlockPlanks;
 import net.minecraft.world.biome.Biome;
 
 public class CommonProxy {
 	
 	public void preInit() {
-		
+		CellKits.init();
 	}
 
 	public void init() {
@@ -24,22 +25,26 @@ public class CommonProxy {
 	
 	public void postInit() {
 		removeTreeGen(BOPBiomes.boreal_forest);
-		removeTreeGen(BOPBiomes.dead_forest, "spruce"); // still has dying_tree, dead_tree, oak (dead)
+		removeTreeGen(BOPBiomes.dead_forest, "spruce", "dead_tree"); // still has dying_tree, oak (dead)
+		removeTreeGen(BOPBiomes.dead_swamp, "dead_tree"); // still has dying_tree
+		removeTreeGen(BOPBiomes.fen, "dead"); // still has dying, dark_oak_taiga
 		removeTreeGen(BOPBiomes.land_of_lakes);
 		removeTreeGen(BOPBiomes.lavender_fields, "oak"); // still has jacaranda
+		removeTreeGen(BOPBiomes.lush_desert, "dead_tree"); // still has twiglet, decaying_tree
 		removeTreeGen(BOPBiomes.lush_swamp);
 		removeTreeGen(BOPBiomes.maple_woods, "spruce"); // still has maple
 		removeTreeGen(BOPBiomes.meadow);
 		removeTreeGen(BOPBiomes.mountain, "oak"); // still has pine
 		removeTreeGen(BOPBiomes.mountain_foothills, "oak"); // still has pine
 		removeTreeGen(BOPBiomes.mystic_grove, "magic", "flowering_vine", "oak_large"); // still has jacaranda
-		removeTreeGen(BOPBiomes.ominous_woods, "umbran_moss", "umbran_spruce", "mega_umbran"); // still has dying_tree, dead_tree
+		removeTreeGen(BOPBiomes.ominous_woods, "umbran_moss", "umbran_spruce", "mega_umbran", "dead_tree"); // still has dying_tree
 		removeTreeGen(BOPBiomes.orchard);
 		removeTreeGen(BOPBiomes.rainforest);
 		removeTreeGen(BOPBiomes.seasonal_forest, "yellow_autumn", "orange_autumn", "large_oak"); // still has dying_tree, maple
 		removeTreeGen(BOPBiomes.shield, "spruce"); // still has oak_bush, pine
 		removeTreeGen(BOPBiomes.snowy_forest, "oak"); // still has dying_tree
 		removeTreeGen(BOPBiomes.tropical_rainforest, "jungle"); // still has mahogany
+		removeTreeGen(BOPBiomes.wasteland, "dead_tree"); // still has dying_tree
 		removeTreeGen(BOPBiomes.wetland, "spruce"); // still has willow
 		removeTreeGen(BOPBiomes.woodland);
 		

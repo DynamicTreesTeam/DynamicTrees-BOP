@@ -14,11 +14,13 @@ import net.minecraft.world.biome.Biome;
 public class BiomeDensityProvider implements IBiomeDensityProvider {
 
 	@Override
-	public EnumChance chance(Biome biome, Species species, int arg2, Random rand) {
+	public EnumChance chance(Biome biome, Species species, int radius, Random rand) {
+		if (biome == BOPBiomes.dead_swamp.get()) return rand.nextFloat() < 0.6f ? EnumChance.OK : EnumChance.CANCEL;
 		if (biome == BOPBiomes.rainforest.get()) return EnumChance.OK;
 		if (biome == BOPBiomes.tropical_rainforest.get()) return EnumChance.OK;
 		if (biome == BOPBiomes.lush_swamp.get()) return EnumChance.OK;
 		if (biome == BOPBiomes.meadow.get()) return rand.nextFloat() < 0.3f ? EnumChance.OK : EnumChance.CANCEL;
+		if (biome == BOPBiomes.wasteland.get()) return rand.nextFloat() < 0.3f ? EnumChance.OK : EnumChance.CANCEL;
 		
 		return EnumChance.UNHANDLED;
 	}
@@ -30,7 +32,15 @@ public class BiomeDensityProvider implements IBiomeDensityProvider {
 		
 		if (biome == BOPBiomes.boreal_forest.get()) return noiseDensity;
 		
+		if (biome == BOPBiomes.dead_forest.get()) return noiseDensity * 0.3;
+		
+		if (biome == BOPBiomes.dead_swamp.get()) return noiseDensity * 0.06; // technically should be 0.06
+		
+		if (biome == BOPBiomes.fen.get()) return noiseDensity * 0.9;
+		
 		if (biome == BOPBiomes.lavender_fields.get()) return noiseDensity * 0.1;
+		
+		if (biome == BOPBiomes.lush_desert.get()) return noiseDensity * 0.4;
 		
 		if (biome == BOPBiomes.lush_swamp.get()) return noiseDensity * 0.9;
 		
@@ -51,6 +61,10 @@ public class BiomeDensityProvider implements IBiomeDensityProvider {
 		if (biome == BOPBiomes.seasonal_forest.get()) return noiseDensity;
 		
 		if (biome == BOPBiomes.tropical_rainforest.get()) return noiseDensity;
+		
+		if (biome == BOPBiomes.wasteland.get()) return noiseDensity * 0.03; // technically should be 0.03
+		
+		if (biome == BOPBiomes.wetland.get()) return noiseDensity;
 		
 		if (biome == BOPBiomes.woodland.get()) return noiseDensity;
 		

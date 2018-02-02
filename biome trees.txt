@@ -1,9 +1,9 @@
-Snowy Forest: dying_tree
+Snowy Forest: dying_tree (oak logs, dead leaves)
 Temperate Rainforest: oak_bush
 Temperate Rainforest: cedar
 Temperate Rainforest: willow
 Temperate Rainforest: small_cedar
-Tundra: tundra_tree
+Tundra: tundra_tree (oak bush)
 Lavender Fields: jacaranda
 Mountain: pine
 Overgrown Cliffs: oak_bush
@@ -28,7 +28,6 @@ Undergarden: twiglet (tiny hellbark)
 Bog: birch_twiglet (tall)
 Bog: dark_oak_twiglet (tall)
 Dead Swamp: dying_tree (dead logs, dead leaves)
-Dead Swamp: dead_tree (dead logs, no leaves)
 Prairie: prairie_tree (oak conifer)
 Redwood Forest: redwood
 Redwood Forest: redwood_thin
@@ -40,7 +39,6 @@ Eucalyptus Forest: tall_eucalyptus
 Outback: acacia_bush
 Outback: acacia_twiglet (tiny)
 Wasteland: dying_tree (dead logs, dead leaves)
-Wasteland: dead_tree (dead logs, no leaves)
 Bayou: willow
 Bayou: willow_large
 Shrubland: shrubland_tree (bush)
@@ -59,10 +57,8 @@ Grove: dark_poplar
 Grove: bush
 Dead Forest: dying_tree (oak log, dead leaves)
 Dead Forest: oak (oak log, dead leaves)
-Dead Forest: dead_tree (dead log, no leaves)
 Fen: dying (dark oak logs, dead leaves)
 Fen: dark_oak_taiga (dark oak conifer)
-Fen: dead (dead logs, no leaves)
 Shield: oak_bush
 Shield: pine
 Seasonal Forest: dying_tree (oak logs, dead leaves)
@@ -70,8 +66,6 @@ Seasonal Forest: maple
 MountainFoothills: pine
 Lush Desert: twiglet (tiny oak)
 Lush Desert: decaying_tree (acacia logs, acacia leaves)
-Lush Desert: dead_tree (dead logs, no leaves)
 Oasis: palm
 Oasis: jungle_twiglet
-Ominous Woods: dying_tree (dead logs, no leaves)
-Ominous Woods: dead_tree (dead logs, dead leaves)
+Ominous Woods: dying_tree (dead logs, dead leaves)
