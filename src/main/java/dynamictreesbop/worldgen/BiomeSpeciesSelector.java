@@ -20,7 +20,7 @@ import net.minecraft.world.biome.Biome;
 
 public class BiomeSpeciesSelector implements IBiomeSpeciesSelector {
 
-	Species swamp, apple, jungle, spruce, birch, oak, oakLarge, oakFloweringVine, yellowAutumn, orangeAutumn, magic, floweringOak, floweringOakLarge, umbran, umbranConifer, decayed;
+	Species swamp, apple, jungle, spruce, birch, oak, oakLarge, oakFloweringVine, yellowAutumn, orangeAutumn, magic, floweringOak, floweringOakLarge, umbran, umbranConifer, dying, decayed;
 	
 	HashMap<Integer, ITreeSelector> fastTreeLookup = new HashMap<Integer, ITreeSelector>();
 	
@@ -46,7 +46,7 @@ public class BiomeSpeciesSelector implements IBiomeSpeciesSelector {
 		} else {
 			if (biome == BOPBiomes.boreal_forest.get()) select = new RandomDecision(rand).addSpecies(yellowAutumn, 4).addSpecies(spruce, 4).addSpecies(oak, 3).addSpecies(oakLarge, 2);
 			
-			else if (biome == BOPBiomes.dead_forest.get()) select = new RandomDecision(rand).addSpecies(spruce, 3).addSpecies(decayed, 1);
+			else if (biome == BOPBiomes.dead_forest.get()) select = new RandomDecision(rand).addSpecies(spruce, 3).addSpecies(decayed, 1).addSpecies(dying, 8);
 			
 			else if (biome == BOPBiomes.dead_swamp.get()) select = new RandomDecision(rand).addSpecies(decayed, 1);
 			
@@ -76,11 +76,11 @@ public class BiomeSpeciesSelector implements IBiomeSpeciesSelector {
 			
 			else if (biome == BOPBiomes.rainforest.get()) select = new RandomDecision(rand).addSpecies(jungle, 1).addSpecies(birch, 4).addSpecies(oakLarge, 4).addSpecies(floweringOak, 7);
 			
-			else if (biome == BOPBiomes.seasonal_forest.get()) select = new RandomDecision(rand).addSpecies(yellowAutumn, 4).addSpecies(orangeAutumn, 5).addSpecies(oakLarge, 1);
+			else if (biome == BOPBiomes.seasonal_forest.get()) select = new RandomDecision(rand).addSpecies(yellowAutumn, 4).addSpecies(orangeAutumn, 5).addSpecies(oakLarge, 1).addSpecies(dying, 2);
 			
 			else if (biome == BOPBiomes.shield.get()) select = new RandomDecision(rand).addSpecies(spruce, 4);
 			
-			else if (biome == BOPBiomes.snowy_forest.get()) select = new RandomDecision(rand).addSpecies(oak, 3);
+			else if (biome == BOPBiomes.snowy_forest.get()) select = new RandomDecision(rand).addSpecies(oak, 3).addSpecies(dying, 1);
 			
 			else if (biome == BOPBiomes.tropical_rainforest.get()) select = new RandomDecision(rand).addSpecies(jungle, 2);
 			
@@ -118,6 +118,7 @@ public class BiomeSpeciesSelector implements IBiomeSpeciesSelector {
 		magic = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "magic"));
 		umbran = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "umbran"));
 		umbranConifer = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "umbranconifer"));
+		dying = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "dying"));
 		
 		floweringOak = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "floweringoak"));
 		floweringOakLarge = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "floweringoaklarge"));

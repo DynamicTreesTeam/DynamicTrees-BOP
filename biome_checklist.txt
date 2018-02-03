@@ -5,3 +5,5 @@ meadow
 orchard
 rainforest
 woodland
+snowy_forest
+dead_forest

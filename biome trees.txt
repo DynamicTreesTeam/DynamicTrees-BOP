@@ -1,4 +1,3 @@
-Snowy Forest: dying_tree (oak logs, dead leaves)
 Temperate Rainforest: oak_bush
 Temperate Rainforest: cedar
 Temperate Rainforest: willow
@@ -55,13 +54,10 @@ Brushland: jungle_twiglet
 Grove: poplar
 Grove: dark_poplar
 Grove: bush
-Dead Forest: dying_tree (oak log, dead leaves)
-Dead Forest: oak (oak log, dead leaves)
 Fen: dying (dark oak logs, dead leaves)
 Fen: dark_oak_taiga (dark oak conifer)
 Shield: oak_bush
 Shield: pine
-Seasonal Forest: dying_tree (oak logs, dead leaves)
 Seasonal Forest: maple
 MountainFoothills: pine
 Lush Desert: twiglet (tiny oak)

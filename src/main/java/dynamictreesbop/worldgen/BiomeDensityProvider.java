@@ -60,6 +60,8 @@ public class BiomeDensityProvider implements IBiomeDensityProvider {
 		
 		if (biome == BOPBiomes.seasonal_forest.get()) return noiseDensity;
 		
+		if (biome == BOPBiomes.snowy_forest.get()) return noiseDensity * 0.3;
+		
 		if (biome == BOPBiomes.tropical_rainforest.get()) return noiseDensity;
 		
 		if (biome == BOPBiomes.wasteland.get()) return noiseDensity * 0.03; // technically should be 0.03

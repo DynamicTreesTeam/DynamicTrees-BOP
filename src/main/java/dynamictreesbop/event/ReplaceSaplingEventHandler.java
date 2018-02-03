@@ -43,6 +43,9 @@ public class ReplaceSaplingEventHandler {
 			case 4:
 				species = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, event.getPlayer().getRNG().nextInt(3) == 0 ? "umbran" : "umbranconifer"));
 				break;
+			case 5:
+				species = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "dying"));
+				break;
 			default:
 				break;
 			}

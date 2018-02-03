@@ -13,6 +13,7 @@ import com.ferreusveritas.dynamictrees.trees.DynamicTree;
 import com.ferreusveritas.dynamictrees.trees.Species;
 
 import dynamictreesbop.trees.TreeDecayed;
+import dynamictreesbop.trees.TreeDying;
 import dynamictreesbop.trees.TreeFloweringOak;
 import dynamictreesbop.trees.TreeMagic;
 import dynamictreesbop.trees.TreeOrangeAutumn;
@@ -94,12 +95,13 @@ public class ModContent {
 		DynamicTree magicTree = new TreeMagic(Tree.MAGIC.getSeq());
 		DynamicTree umbranTree = new TreeUmbran(Tree.UMBRAN.getSeq());
 		DynamicTree umbranConiferTree = new TreeUmbranConifer(Tree.UMBRAN_CONIFER.getSeq());
+		DynamicTree dyingTree = new TreeDying(Tree.DYING.getSeq());
 		
 		// Register new tree types that don't get auto-generated leaves
 		DynamicTree floweringOakTree = new TreeFloweringOak();
 		DynamicTree decayedTree = new TreeDecayed();
 		
-		Collections.addAll(trees, yellowAutumnTree, orangeAutumnTree, magicTree, umbranTree, umbranConiferTree);
+		Collections.addAll(trees, yellowAutumnTree, orangeAutumnTree, magicTree, umbranTree, umbranConiferTree, dyingTree);
 		Collections.addAll(trees, floweringOakTree, decayedTree);
 		trees.forEach(tree -> tree.registerSpecies(Species.REGISTRY));
 						
