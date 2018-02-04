@@ -7,3 +7,9 @@ rainforest
 woodland
 snowy_forest
 dead_forest
+coniferous_forest
+alps_foothills
+snowy_coniferous_forest
+cherry_blossom_grove
+maple_woods
+seasonal_forest

@@ -15,8 +15,15 @@ public class BiomeDensityProvider implements IBiomeDensityProvider {
 
 	@Override
 	public EnumChance chance(Biome biome, Species species, int radius, Random rand) {
+		if (biome == BOPBiomes.alps_foothills.get()) return rand.nextFloat() < 0.5f ? EnumChance.OK : EnumChance.CANCEL;
 		if (biome == BOPBiomes.dead_swamp.get()) return rand.nextFloat() < 0.6f ? EnumChance.OK : EnumChance.CANCEL;
 		if (biome == BOPBiomes.rainforest.get()) return EnumChance.OK;
+		/*if (biome == BOPBiomes.seasonal_forest.get()) {
+			if(radius > 3) {//Start dropping tree spawn opportunities when the radius gets bigger than 3
+				float chance = 2.0f / radius;
+				return rand.nextFloat() < Math.sqrt(chance) ? EnumChance.OK : EnumChance.CANCEL;
+			}
+		}*/
 		if (biome == BOPBiomes.tropical_rainforest.get()) return EnumChance.OK;
 		if (biome == BOPBiomes.lush_swamp.get()) return EnumChance.OK;
 		if (biome == BOPBiomes.meadow.get()) return rand.nextFloat() < 0.3f ? EnumChance.OK : EnumChance.CANCEL;
@@ -29,8 +36,13 @@ public class BiomeDensityProvider implements IBiomeDensityProvider {
 	public double getDensity(Biome biome, double noiseDensity, Random rand) {
 		double naturalDensity = MathHelper.clamp((CompatHelper.getBiomeTreesPerChunk(biome)) / 10.0f, 0.0f, 1.0f);
 		double base = naturalDensity * noiseDensity;
+		if (biome == BOPBiomes.alps_foothills.get()) return noiseDensity * 0.05;
 		
 		if (biome == BOPBiomes.boreal_forest.get()) return noiseDensity;
+		
+		if (biome == BOPBiomes.cherry_blossom_grove.get()) return noiseDensity * 0.3;
+		
+		if (biome == BOPBiomes.coniferous_forest.get()) return noiseDensity * 0.8;
 		
 		if (biome == BOPBiomes.dead_forest.get()) return noiseDensity * 0.3;
 		
@@ -58,7 +70,9 @@ public class BiomeDensityProvider implements IBiomeDensityProvider {
 		
 		if (biome == BOPBiomes.rainforest.get()) return noiseDensity;
 		
-		if (biome == BOPBiomes.seasonal_forest.get()) return noiseDensity;
+		if (biome == BOPBiomes.seasonal_forest.get()) return noiseDensity * 0.9;
+		
+		if (biome == BOPBiomes.snowy_coniferous_forest.get()) return noiseDensity * 0.8;
 		
 		if (biome == BOPBiomes.snowy_forest.get()) return noiseDensity * 0.3;
 		

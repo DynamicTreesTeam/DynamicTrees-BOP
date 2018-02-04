@@ -10,10 +10,16 @@ import biomesoplenty.api.enums.BOPTrees;
 import biomesoplenty.common.block.BlockBOPSapling;
 import dynamictreesbop.DynamicTreesBOP;
 import dynamictreesbop.ModContent;
+import net.minecraft.block.BlockStainedGlass;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.EnumDyeColor;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent.PlaceEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -46,14 +52,25 @@ public class ReplaceSaplingEventHandler {
 			case 5:
 				species = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "dying"));
 				break;
+			case 6:
+				species = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "fir"));
+				break;
 			default:
 				break;
 			}
 		} else if (state.getBlock() == BOPBlocks.sapling_1) {
 			int tree = ((BOPTrees) state.getValue(((BlockBOPSapling) state.getBlock()).variantProperty)).ordinal();
 			switch (tree) {
-			case 13:
-				
+			case 9:
+				species = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "pinkcherry"));
+				break;
+			case 10:
+				species = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "whitecherry"));
+				break;
+			case 11:
+				species = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "maple"));
+				break;
+			case 13:	
 				species = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "floweringoak"));
 				break;
 			default:

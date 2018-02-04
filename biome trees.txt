@@ -8,14 +8,7 @@ Mountain: pine
 Overgrown Cliffs: oak_bush
 Overgrown Cliffs: mahogany
 Overgrown Cliffs: jungle_twiglet
-AlpsFoothills: fir
-Cherry Blossom Grove: large_white_cherry
-Cherry Blossom Grove: white_cherry
-Cherry Blossom Grove: large_pink_cherry
-Cherry Blossom Grove: pink_cherry
 Wetland: willow
-Snowy Coniferous Forest: fir
-Snowy Coniferous Forest: mega_fir
 Mangrove: mangrove
 Chaparral: twiglet (tiny oak)
 Chaparral: small_bush
@@ -30,8 +23,6 @@ Dead Swamp: dying_tree (dead logs, dead leaves)
 Prairie: prairie_tree (oak conifer)
 Redwood Forest: redwood
 Redwood Forest: redwood_thin
-Coniferous Forest: fir
-Coniferous Forest: mega_fir
 Mystic Grove: jacaranda
 Eucalyptus Forest: oak_bush
 Eucalyptus Forest: tall_eucalyptus
@@ -43,7 +34,6 @@ Bayou: willow_large
 Shrubland: shrubland_tree (bush)
 Bamboo Forest: bamboo
 Bamboo Forest: bamboo_thin
-Maple Woods: maple
 Tropical Island: palm
 Tropical Island: jungle_twiglet
 Brushland: brush
@@ -58,7 +48,6 @@ Fen: dying (dark oak logs, dead leaves)
 Fen: dark_oak_taiga (dark oak conifer)
 Shield: oak_bush
 Shield: pine
-Seasonal Forest: maple
 MountainFoothills: pine
 Lush Desert: twiglet (tiny oak)
 Lush Desert: decaying_tree (acacia logs, acacia leaves)

@@ -24,7 +24,10 @@ public class CommonProxy {
 	}
 	
 	public void postInit() {
+		removeTreeGen(BOPBiomes.alps_foothills);
 		removeTreeGen(BOPBiomes.boreal_forest);
+		removeTreeGen(BOPBiomes.cherry_blossom_grove);
+		removeTreeGen(BOPBiomes.coniferous_forest);
 		removeTreeGen(BOPBiomes.dead_forest);
 		removeTreeGen(BOPBiomes.dead_swamp, "dead_tree"); // still has dying_tree
 		removeTreeGen(BOPBiomes.fen, "dead"); // still has dying, dark_oak_taiga
@@ -32,7 +35,7 @@ public class CommonProxy {
 		removeTreeGen(BOPBiomes.lavender_fields, "oak"); // still has jacaranda
 		removeTreeGen(BOPBiomes.lush_desert, "dead_tree"); // still has twiglet, decaying_tree
 		removeTreeGen(BOPBiomes.lush_swamp);
-		removeTreeGen(BOPBiomes.maple_woods, "spruce"); // still has maple
+		removeTreeGen(BOPBiomes.maple_woods);
 		removeTreeGen(BOPBiomes.meadow);
 		removeTreeGen(BOPBiomes.mountain, "oak"); // still has pine
 		removeTreeGen(BOPBiomes.mountain_foothills, "oak"); // still has pine
@@ -40,8 +43,9 @@ public class CommonProxy {
 		removeTreeGen(BOPBiomes.ominous_woods, "umbran_moss", "umbran_spruce", "mega_umbran", "dead_tree"); // still has dying_tree
 		removeTreeGen(BOPBiomes.orchard);
 		removeTreeGen(BOPBiomes.rainforest);
-		removeTreeGen(BOPBiomes.seasonal_forest, "yellow_autumn", "orange_autumn", "large_oak",  "dying_tree"); // still has maple
+		removeTreeGen(BOPBiomes.seasonal_forest);
 		removeTreeGen(BOPBiomes.shield, "spruce"); // still has oak_bush, pine
+		removeTreeGen(BOPBiomes.snowy_coniferous_forest);
 		removeTreeGen(BOPBiomes.snowy_forest);
 		removeTreeGen(BOPBiomes.tropical_rainforest, "jungle"); // still has mahogany
 		removeTreeGen(BOPBiomes.wasteland, "dead_tree"); // still has dying_tree
