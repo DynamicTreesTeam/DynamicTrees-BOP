@@ -16,3 +16,5 @@ seasonal_forest
 dead_swamp
 wasteland
 ominous_woods
+lavender_fields
+mystic_grove

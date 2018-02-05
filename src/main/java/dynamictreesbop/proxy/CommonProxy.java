@@ -32,14 +32,14 @@ public class CommonProxy {
 		removeTreeGen(BOPBiomes.dead_swamp);
 		removeTreeGen(BOPBiomes.fen, "dead"); // still has dying, dark_oak_taiga
 		removeTreeGen(BOPBiomes.land_of_lakes);
-		removeTreeGen(BOPBiomes.lavender_fields, "oak"); // still has jacaranda
+		removeTreeGen(BOPBiomes.lavender_fields);
 		removeTreeGen(BOPBiomes.lush_desert, "dead_tree"); // still has twiglet, decaying_tree
 		removeTreeGen(BOPBiomes.lush_swamp);
 		removeTreeGen(BOPBiomes.maple_woods);
 		removeTreeGen(BOPBiomes.meadow);
 		removeTreeGen(BOPBiomes.mountain, "oak"); // still has pine
 		removeTreeGen(BOPBiomes.mountain_foothills, "oak"); // still has pine
-		removeTreeGen(BOPBiomes.mystic_grove, "magic", "flowering_vine", "oak_large"); // still has jacaranda
+		removeTreeGen(BOPBiomes.mystic_grove);
 		removeTreeGen(BOPBiomes.ominous_woods);
 		removeTreeGen(BOPBiomes.orchard);
 		removeTreeGen(BOPBiomes.rainforest);
@@ -54,6 +54,8 @@ public class CommonProxy {
 		
 		removeTreeGen(BOPBiomes.forest_extension);
 		removeTreeGen(BOPBiomes.forest_hills_extension);
+		removeTreeGen(BOPBiomes.extreme_hills_extension);
+		removeTreeGen(BOPBiomes.extreme_hills_plus_extension);
 		
 		if (BOPBiomes.boreal_forest.get() != null) ((BOPBiome) BOPBiomes.boreal_forest.get()).addGenerator("bush", GeneratorStage.TREE, (new GeneratorBush.Builder()).amountPerChunk(3).maxHeight(2).create());
 		if (BOPBiomes.meadow.get() != null) ((BOPBiome) BOPBiomes.meadow.get()).addGenerator("bush", GeneratorStage.TREE, (new GeneratorBush.Builder()).amountPerChunk(1).maxHeight(2).log(BlockPlanks.EnumType.SPRUCE).leaves(BlockPlanks.EnumType.SPRUCE).create());

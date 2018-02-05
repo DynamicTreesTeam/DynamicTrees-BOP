@@ -3,7 +3,6 @@ Temperate Rainforest: cedar
 Temperate Rainforest: willow
 Temperate Rainforest: small_cedar
 Tundra: tundra_tree (oak bush)
-Lavender Fields: jacaranda
 Mountain: pine
 Overgrown Cliffs: oak_bush
 Overgrown Cliffs: mahogany
@@ -22,7 +21,6 @@ Bog: dark_oak_twiglet (tall)
 Prairie: prairie_tree (oak conifer)
 Redwood Forest: redwood
 Redwood Forest: redwood_thin
-Mystic Grove: jacaranda
 Eucalyptus Forest: oak_bush
 Eucalyptus Forest: tall_eucalyptus
 Outback: acacia_bush
