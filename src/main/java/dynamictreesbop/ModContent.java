@@ -13,6 +13,7 @@ import com.ferreusveritas.dynamictrees.trees.DynamicTree;
 import com.ferreusveritas.dynamictrees.trees.Species;
 
 import biomesoplenty.api.block.BOPBlocks;
+import dynamictreesbop.trees.TreeDead;
 import dynamictreesbop.trees.TreeDecayed;
 import dynamictreesbop.trees.TreeDying;
 import dynamictreesbop.trees.TreeFir;
@@ -107,12 +108,13 @@ public class ModContent {
 		DynamicTree pinkCherryTree = new TreePinkCherry(Tree.PINK_CHERRY.getSeq());
 		DynamicTree whiteCherryTree = new TreeWhiteCherry(Tree.WHITE_CHERRY.getSeq());
 		DynamicTree mapleTree = new TreeMaple(Tree.MAPLE.getSeq());
+		DynamicTree deadTree = new TreeDead(Tree.DEAD.getSeq());
 		
 		// Register new tree types that don't get auto-generated leaves
 		DynamicTree floweringOakTree = new TreeFloweringOak();
 		DynamicTree decayedTree = new TreeDecayed();
 		
-		Collections.addAll(trees, yellowAutumnTree, orangeAutumnTree, magicTree, umbranTree, umbranConiferTree, dyingTree, firTree, pinkCherryTree, whiteCherryTree, mapleTree);
+		Collections.addAll(trees, yellowAutumnTree, orangeAutumnTree, magicTree, umbranTree, umbranConiferTree, dyingTree, firTree, pinkCherryTree, whiteCherryTree, mapleTree, deadTree);
 		Collections.addAll(trees, floweringOakTree, decayedTree);
 		trees.forEach(tree -> tree.registerSpecies(Species.REGISTRY));
 						

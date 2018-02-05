@@ -10,6 +10,7 @@ import com.ferreusveritas.dynamictrees.api.cells.ICell;
 import com.ferreusveritas.dynamictrees.blocks.BlockBranch;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSapling;
 import com.ferreusveritas.dynamictrees.blocks.BlockRootyDirt;
+import com.ferreusveritas.dynamictrees.items.Seed;
 import com.ferreusveritas.dynamictrees.systems.GrowSignal;
 import com.ferreusveritas.dynamictrees.trees.DynamicTree;
 import com.ferreusveritas.dynamictrees.trees.Species;
@@ -22,10 +23,12 @@ import biomesoplenty.common.block.BlockBOPDirt;
 import biomesoplenty.common.block.BlockBOPLeaves;
 import biomesoplenty.common.block.BlockBOPLog;
 import dynamictreesbop.DynamicTreesBOP;
+import dynamictreesbop.blocks.BlockBranchDTBOP;
 import dynamictreesbop.trees.TreeUmbran.SpeciesUmbran;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -34,6 +37,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary.Type;
+import net.minecraftforge.registries.IForgeRegistry;
 
 public class TreeUmbranConifer extends DynamicTree {
 
@@ -95,7 +99,7 @@ public class TreeUmbranConifer extends DynamicTree {
 			long day = world.getTotalWorldTime() / 24000L;
 			int month = (int)day / 30;//Change the hashs every in-game month
 			
-			return super.getEnergy(world, pos) * biomeSuitability(world, pos) + (coordHashCode(pos.up(month)) % 11);//Vary the height energy by a psuedorandom hash function
+			return super.getEnergy(world, pos) * biomeSuitability(world, pos) + (coordHashCode(pos.up(month)) % 5);//Vary the height energy by a psuedorandom hash function
 		}
 		
 		public int coordHashCode(BlockPos pos) {
@@ -114,6 +118,93 @@ public class TreeUmbranConifer extends DynamicTree {
 		
 	}
 	
+	public class SpeciesMegaUmbranConifer extends Species {
+		
+		SpeciesMegaUmbranConifer(DynamicTree treeFamily) {
+			super(new ResourceLocation(treeFamily.getName().getResourceDomain(), treeFamily.getName().getResourcePath() + "mega"), treeFamily);
+			
+			setBasicGrowingParameters(0.3f, 32.0f, 7, 7, 1.0f);
+			
+			envFactor(Type.COLD, 0.75f);
+			envFactor(Type.HOT, 0.50f);
+			envFactor(Type.DRY, 0.50f);
+			envFactor(Type.FOREST, 1.05f);
+			envFactor(Type.SPOOKY, 1.1f);
+			envFactor(Type.DEAD, 1.1f);
+			envFactor(Type.MAGICAL, 1.1f);
+			
+			addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
+			
+			setupStandardSeedDropping();
+		}
+		
+		@Override
+		public boolean isBiomePerfect(Biome biome) {
+			return isOneOfBiomes(biome, BOPBiomes.ominous_woods.get());
+		}
+		
+		@Override
+		protected int[] customDirectionManipulation(World world, BlockPos pos, int radius, GrowSignal signal, int probMap[]) {
+			EnumFacing originDir = signal.dir.getOpposite();
+			
+			//Alter probability map for direction change
+			probMap[0] = 0;//Down is always disallowed for spruce
+			probMap[1] = signal.isInTrunk() ? getUpProbability(): 0;
+			probMap[2] = probMap[3] = probMap[4] = probMap[5] = //Only allow turns when we aren't in the trunk(or the branch is not a twig and step is odd)
+					!signal.isInTrunk() || (signal.isInTrunk() && signal.numSteps % 2 == 1 && radius > 1) ? 2 : 0;
+			probMap[originDir.ordinal()] = 0;//Disable the direction we came from
+			probMap[signal.dir.ordinal()] += signal.isInTrunk() ? 0 : signal.numTurns == 1 ? 2 : 1;//Favor current travel direction 
+			
+			return probMap;
+		}
+		
+		@Override
+		protected EnumFacing newDirectionSelected(EnumFacing newDir, GrowSignal signal) {
+			if (signal.isInTrunk() && newDir != EnumFacing.UP) {//Turned out of trunk
+				signal.energy /= 3.0f;
+			}
+			return newDir;
+		}
+		
+		//Conifer trees are so similar that it makes sense to randomize their height for a little variation
+		//but we don't want the trees to always be the same height all the time when planted in the same location
+		//so we feed the hash function the in-game month
+		@Override
+		public float getEnergy(World world, BlockPos pos) {
+			long day = world.getTotalWorldTime() / 24000L;
+			int month = (int)day / 30;//Change the hashs every in-game month
+			
+			return super.getEnergy(world, pos) * biomeSuitability(world, pos) + (coordHashCode(pos.up(month)) % 8);//Vary the height energy by a psuedorandom hash function
+		}
+		
+		public int coordHashCode(BlockPos pos) {
+			int hash = (pos.getX() * 9973 ^ pos.getY() * 8287 ^ pos.getZ() * 9721) >> 1;
+			return hash & 0xFFFF;
+		}
+		
+		@Override
+		public void postGeneration(World world, BlockPos rootPos, Biome biome, int radius, List<BlockPos> endPoints, boolean worldGen) {
+			//Manually place the highest few blocks of the conifer since the leafCluster voxmap won't handle it
+			BlockPos highest = Collections.max(endPoints, (a, b) -> a.getY() - b.getY());
+			world.setBlockState(highest.up(1), getDynamicLeavesState(4));
+			world.setBlockState(highest.up(2), getDynamicLeavesState(3));
+			world.setBlockState(highest.up(3), getDynamicLeavesState(1));
+		}
+		
+		@Override
+		public ItemStack getSeedStack(int qty) {
+			return getCommonSpecies().getSeedStack(qty);
+		}
+		
+		@Override
+		public Seed getSeed() {
+			return getCommonSpecies().getSeed();
+		}
+		
+	}
+	
+	public Species megaSpecies;
+	
 	public TreeUmbranConifer(int seq) {
 		super(new ResourceLocation(DynamicTreesBOP.MODID, "umbranconifer"), seq);
 		
@@ -123,13 +214,28 @@ public class TreeUmbranConifer extends DynamicTree {
 		IBlockState primLeaves = BlockBOPLeaves.paging.getVariantState(BOPTrees.UMBRAN);
 		setPrimitiveLeaves(primLeaves, BlockBOPLeaves.paging.getVariantItem(BOPTrees.UMBRAN));
 		
+		setDynamicBranch(new BlockBranchDTBOP("umbranconifer" + "branch"));
+		
 		setCellKit("conifer");
 		setSmotherLeavesMax(3);
 	}
 	
 	@Override
+	protected DynamicTree setDynamicLeaves(String modid, int seq) {
+		return setDynamicLeaves(DynamicTreesBOP.getLeavesBlockForSequence(modid, seq), seq & 3);
+	}
+	
+	@Override
 	public void createSpecies() {
 		setCommonSpecies(new SpeciesUmbranConifer(this));
+		megaSpecies = new SpeciesMegaUmbranConifer(this);
+	}
+	
+	@Override
+	public void registerSpecies(IForgeRegistry<Species> speciesRegistry) {
+		super.registerSpecies(speciesRegistry);
+		speciesRegistry.register(megaSpecies);
+		
 		getCommonSpecies().generateSeed();
 	}
 	

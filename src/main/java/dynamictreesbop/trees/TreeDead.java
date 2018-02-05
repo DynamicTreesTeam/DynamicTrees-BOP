@@ -3,21 +3,24 @@ package dynamictreesbop.trees;
 import java.util.List;
 import java.util.Random;
 
+import com.ferreusveritas.dynamictrees.DynamicTrees;
 import com.ferreusveritas.dynamictrees.ModBlocks;
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
+import com.ferreusveritas.dynamictrees.blocks.BlockDynamicLeaves;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSapling;
-import com.ferreusveritas.dynamictrees.blocks.BlockRootyDirt;
 import com.ferreusveritas.dynamictrees.trees.DynamicTree;
 import com.ferreusveritas.dynamictrees.trees.Species;
 
-import biomesoplenty.api.biome.BOPBiomes;
 import biomesoplenty.api.block.BOPBlocks;
 import biomesoplenty.api.enums.BOPTrees;
+import biomesoplenty.api.enums.BOPWoods;
 import biomesoplenty.api.item.BOPItems;
 import biomesoplenty.common.block.BlockBOPLeaves;
+import biomesoplenty.common.block.BlockBOPLog;
 import dynamictreesbop.DynamicTreesBOP;
+import dynamictreesbop.blocks.BlockBranchDTBOP;
 import dynamictreesbop.dropcreators.DropCreatorFruit;
-import dynamictreesbop.trees.TreeYellowAutumn.SpeciesYellowAutumn;
+import dynamictreesbop.trees.TreeDying.SpeciesDying;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockOldLog;
 import net.minecraft.block.BlockPlanks;
@@ -30,44 +33,47 @@ import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
+import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
 
-public class TreeOrangeAutumn extends DynamicTree {
+public class TreeDead extends DynamicTree {
 	
-	public class SpeciesOrangeAutumn extends Species {
+	public class SpeciesDead extends Species {
 		
-		SpeciesOrangeAutumn(DynamicTree treeFamily) {
+		SpeciesDead(DynamicTree treeFamily) {
 			super(treeFamily.getName(), treeFamily);
 			
-			setBasicGrowingParameters(0.3f, 12.0f, upProbability, lowestBranchHeight, 0.8f);
+			setBasicGrowingParameters(0.3f, 12.0f, upProbability, lowestBranchHeight, 0.5f);
 			
-			setDynamicSapling(new BlockDynamicSapling("orangeautumnsapling").getDefaultState());
+			envFactor(Type.LUSH, 0.75f);
+			envFactor(Type.SPOOKY, 1.05f);
+			envFactor(Type.DEAD, 1.05f);
 			
-			envFactor(Type.HOT, 0.50f);
-			envFactor(Type.DRY, 0.50f);
-			envFactor(Type.FOREST, 1.05f);
-			
-			addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
+			addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt, BOPBlocks.dried_sand);
 			
 			addDropCreator(new DropCreatorFruit(BOPItems.persimmon));
-			setupStandardSeedDropping();
 		}
 		
 		@Override
 		public boolean isBiomePerfect(Biome biome) {
-			return isOneOfBiomes(biome, BOPBiomes.seasonal_forest.get());
+			return BiomeDictionary.hasType(biome, Type.DEAD);
 		}
 		
 	}
 	
-	public TreeOrangeAutumn(int seq) {
-		super(new ResourceLocation(DynamicTreesBOP.MODID, "orangeautumn"), seq);
+	public TreeDead(int seq) {
+		super(new ResourceLocation(DynamicTreesBOP.MODID, "dead"), seq);
 		
-		IBlockState primLog = Blocks.LOG.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.OAK);		
-		setPrimitiveLog(primLog, new ItemStack(Blocks.LOG, 1, BlockPlanks.EnumType.OAK.ordinal() & 3));
+		IBlockState primLog = BlockBOPLog.paging.getVariantState(BOPWoods.DEAD);
+		setPrimitiveLog(primLog, BlockBOPLog.paging.getVariantItem(BOPWoods.DEAD));
 		
-		IBlockState primLeaves = BlockBOPLeaves.paging.getVariantState(BOPTrees.ORANGE_AUTUMN);
-		setPrimitiveLeaves(primLeaves, BlockBOPLeaves.paging.getVariantItem(BOPTrees.ORANGE_AUTUMN));
+		IBlockState primLeaves = BlockBOPLeaves.paging.getVariantState(BOPTrees.DEAD);
+		setPrimitiveLeaves(primLeaves, BlockBOPLeaves.paging.getVariantItem(BOPTrees.DEAD));
+		
+		setDynamicBranch(new BlockBranchDTBOP("dead" + "branch"));
+		
+		setCellKit(new ResourceLocation(DynamicTreesBOP.MODID, "sparse"));
+		setSmotherLeavesMax(1);
 	}
 	
 	@Override
@@ -77,14 +83,7 @@ public class TreeOrangeAutumn extends DynamicTree {
 	
 	@Override
 	public void createSpecies() {
-		setCommonSpecies(new SpeciesOrangeAutumn(this));
-		getCommonSpecies().generateSeed();
-	}
-	
-	@Override
-	public List<Block> getRegisterableBlocks(List<Block> blockList) {
-		blockList.add(getCommonSpecies().getDynamicSapling().getBlock());
-		return super.getRegisterableBlocks(blockList);
+		setCommonSpecies(new SpeciesDead(this));
 	}
 	
 	@Override
@@ -92,7 +91,6 @@ public class TreeOrangeAutumn extends DynamicTree {
 		if(super.rot(world, pos, neighborCount, radius, random)) {
 			if(radius > 4 && TreeHelper.isRootyDirt(world, pos.down()) && world.getLightFor(EnumSkyBlock.SKY, pos) < 4) {
 				world.setBlockState(pos, random.nextInt(3) == 0 ? ModBlocks.blockStates.redMushroom : ModBlocks.blockStates.brownMushroom);//Change branch to a mushroom
-				world.setBlockState(pos.down(), ModBlocks.blockStates.podzol);//Change rooty dirt to Podzol
 			}
 			return true;
 		}

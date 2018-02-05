@@ -72,6 +72,11 @@ public class TreeYellowAutumn extends DynamicTree {
 	}
 	
 	@Override
+	protected DynamicTree setDynamicLeaves(String modid, int seq) {
+		return setDynamicLeaves(DynamicTreesBOP.getLeavesBlockForSequence(modid, seq), seq & 3);
+	}
+	
+	@Override
 	public void createSpecies() {
 		setCommonSpecies(new SpeciesYellowAutumn(this));
 		getCommonSpecies().generateSeed();

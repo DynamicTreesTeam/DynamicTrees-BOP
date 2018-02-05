@@ -20,6 +20,7 @@ import biomesoplenty.common.block.BlockBOPFlower;
 import biomesoplenty.common.block.BlockBOPLeaves;
 import biomesoplenty.common.block.BlockBOPLog;
 import dynamictreesbop.DynamicTreesBOP;
+import dynamictreesbop.blocks.BlockBranchDTBOP;
 import dynamictreesbop.featuregen.FeatureGenVine;
 import dynamictreesbop.trees.TreeMagic.SpeciesMagic;
 import net.minecraft.block.Block;
@@ -85,6 +86,13 @@ public class TreeUmbran extends DynamicTree {
 		
 		IBlockState primLeaves = BlockBOPLeaves.paging.getVariantState(BOPTrees.UMBRAN);
 		setPrimitiveLeaves(primLeaves, BlockBOPLeaves.paging.getVariantItem(BOPTrees.UMBRAN));
+		
+		setDynamicBranch(new BlockBranchDTBOP("umbran" + "branch"));
+	}
+	
+	@Override
+	protected DynamicTree setDynamicLeaves(String modid, int seq) {
+		return setDynamicLeaves(DynamicTreesBOP.getLeavesBlockForSequence(modid, seq), seq & 3);
 	}
 	
 	@Override

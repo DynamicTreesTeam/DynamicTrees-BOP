@@ -20,6 +20,7 @@ import biomesoplenty.api.enums.BOPTrees;
 import biomesoplenty.api.item.BOPItems;
 import biomesoplenty.common.block.BlockBOPLeaves;
 import dynamictreesbop.DynamicTreesBOP;
+import dynamictreesbop.blocks.BlockBranchDTBOP;
 import dynamictreesbop.dropcreators.DropCreatorFruit;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockOldLeaf;
@@ -191,6 +192,16 @@ public class TreeFloweringOak extends DynamicTree {
 			setDefaultState(this.blockState.getBaseState().withProperty(HYDRO, 4).withProperty(FLOWERING, false).withProperty(CAN_FLOWER, false));
 			setRegistryName(DynamicTreesBOP.MODID, "leaves_flowering");
 			setUnlocalizedName("leaves_flowering");
+		}
+		
+		@Override
+		public int getFlammability(IBlockAccess world, BlockPos pos, EnumFacing face) {
+			return 60;
+		}
+		
+		@Override
+		public int getFireSpreadSpeed(IBlockAccess world, BlockPos pos, EnumFacing face) {
+			return 30;
 		}
 		
 		@Override

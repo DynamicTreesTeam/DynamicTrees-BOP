@@ -109,6 +109,7 @@ public class ClientProxy extends CommonProxy {
 
 		for(DynamicTree tree: ModContent.trees) {
 			if (tree.getName().getResourcePath().equals("decayed")) continue;
+			if (tree.getName().getResourcePath().equals("dead")) continue;
 			BlockDynamicSapling sapling = (BlockDynamicSapling) tree.getCommonSpecies().getDynamicSapling().getBlock();
 			if (tree.getName().getResourcePath().equals("floweringoak")) {
 				ModelHelper.regColorHandler(sapling, new IBlockColor() {

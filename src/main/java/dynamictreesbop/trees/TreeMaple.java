@@ -71,6 +71,11 @@ public class TreeMaple extends DynamicTree {
 	}
 	
 	@Override
+	protected DynamicTree setDynamicLeaves(String modid, int seq) {
+		return setDynamicLeaves(DynamicTreesBOP.getLeavesBlockForSequence(modid, seq), seq & 3);
+	}
+	
+	@Override
 	public void createSpecies() {
 		setCommonSpecies(new SpeciesMaple(this));
 		getCommonSpecies().generateSeed();

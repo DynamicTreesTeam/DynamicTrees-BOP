@@ -32,6 +32,7 @@ import biomesoplenty.api.enums.BOPWoods;
 import biomesoplenty.common.block.BlockBOPLeaves;
 import biomesoplenty.common.block.BlockBOPLog;
 import dynamictreesbop.DynamicTreesBOP;
+import dynamictreesbop.blocks.BlockBranchDTBOP;
 import dynamictreesbop.trees.TreeMagic.SpeciesMagic;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -95,6 +96,8 @@ public class TreeDecayed extends DynamicTree {
 		
 		IBlockState primLeaves = BlockBOPLeaves.paging.getVariantState(BOPTrees.DEAD);
 		setPrimitiveLeaves(primLeaves, BlockBOPLeaves.paging.getVariantItem(BOPTrees.DEAD));
+		
+		setDynamicBranch(new BlockBranchDTBOP("decayed" + "branch"));
 		
 		setCellKit(new ResourceLocation(DynamicTreesBOP.MODID, "bare"));
 	}

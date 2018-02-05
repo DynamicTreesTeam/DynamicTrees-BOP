@@ -18,6 +18,7 @@ import biomesoplenty.common.block.BlockBOPLeaves;
 import biomesoplenty.common.block.BlockBOPLog;
 import biomesoplenty.common.block.BlockBOPMushroom;
 import dynamictreesbop.DynamicTreesBOP;
+import dynamictreesbop.blocks.BlockBranchDTBOP;
 import dynamictreesbop.trees.TreePinkCherry.SpeciesPinkCherry;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -66,6 +67,13 @@ public class TreeWhiteCherry extends DynamicTree {
 		
 		IBlockState primLeaves = BlockBOPLeaves.paging.getVariantState(BOPTrees.WHITE_CHERRY);
 		setPrimitiveLeaves(primLeaves, BlockBOPLeaves.paging.getVariantItem(BOPTrees.WHITE_CHERRY));
+		
+		setDynamicBranch(new BlockBranchDTBOP("whitecherry" + "branch"));
+	}
+	
+	@Override
+	protected DynamicTree setDynamicLeaves(String modid, int seq) {
+		return setDynamicLeaves(DynamicTreesBOP.getLeavesBlockForSequence(modid, seq), seq & 3);
 	}
 	
 	@Override

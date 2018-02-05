@@ -20,6 +20,7 @@ import biomesoplenty.common.block.BlockBOPLog;
 import biomesoplenty.common.block.BlockBOPMushroom;
 import biomesoplenty.common.block.BlockBOPPlant;
 import dynamictreesbop.DynamicTreesBOP;
+import dynamictreesbop.blocks.BlockBranchDTBOP;
 import dynamictreesbop.dropcreators.DropCreatorFruit;
 import dynamictreesbop.trees.TreeOrangeAutumn.SpeciesOrangeAutumn;
 import net.minecraft.block.Block;
@@ -72,6 +73,13 @@ public class TreeMagic extends DynamicTree {
 		
 		IBlockState primLeaves = BlockBOPLeaves.paging.getVariantState(BOPTrees.MAGIC);
 		setPrimitiveLeaves(primLeaves, BlockBOPLeaves.paging.getVariantItem(BOPTrees.MAGIC));
+		
+		setDynamicBranch(new BlockBranchDTBOP("magic" + "branch"));
+	}
+	
+	@Override
+	protected DynamicTree setDynamicLeaves(String modid, int seq) {
+		return setDynamicLeaves(DynamicTreesBOP.getLeavesBlockForSequence(modid, seq), seq & 3);
 	}
 	
 	@Override

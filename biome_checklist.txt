@@ -13,3 +13,6 @@ snowy_coniferous_forest
 cherry_blossom_grove
 maple_woods
 seasonal_forest
+dead_swamp
+wasteland
+ominous_woods

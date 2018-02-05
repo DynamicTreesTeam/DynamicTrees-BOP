@@ -19,7 +19,6 @@ Tropical Rainforest: mahogany
 Undergarden: twiglet (tiny hellbark)
 Bog: birch_twiglet (tall)
 Bog: dark_oak_twiglet (tall)
-Dead Swamp: dying_tree (dead logs, dead leaves)
 Prairie: prairie_tree (oak conifer)
 Redwood Forest: redwood
 Redwood Forest: redwood_thin
@@ -28,7 +27,6 @@ Eucalyptus Forest: oak_bush
 Eucalyptus Forest: tall_eucalyptus
 Outback: acacia_bush
 Outback: acacia_twiglet (tiny)
-Wasteland: dying_tree (dead logs, dead leaves)
 Bayou: willow
 Bayou: willow_large
 Shrubland: shrubland_tree (bush)
@@ -53,4 +51,3 @@ Lush Desert: twiglet (tiny oak)
 Lush Desert: decaying_tree (acacia logs, acacia leaves)
 Oasis: palm
 Oasis: jungle_twiglet
-Ominous Woods: dying_tree (dead logs, dead leaves)

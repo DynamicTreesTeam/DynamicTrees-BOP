@@ -23,6 +23,7 @@ import biomesoplenty.common.block.BlockBOPLeaves;
 import biomesoplenty.common.block.BlockBOPLog;
 import biomesoplenty.common.block.BlockBOPMushroom;
 import dynamictreesbop.DynamicTreesBOP;
+import dynamictreesbop.blocks.BlockBranchDTBOP;
 import dynamictreesbop.trees.TreeMagic.SpeciesMagic;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -209,8 +210,15 @@ public class TreeFir extends DynamicTree {
 		IBlockState primLeaves = BlockBOPLeaves.paging.getVariantState(BOPTrees.FIR);
 		setPrimitiveLeaves(primLeaves, BlockBOPLeaves.paging.getVariantItem(BOPTrees.FIR));
 		
+		setDynamicBranch(new BlockBranchDTBOP("fir" + "branch"));
+		
 		setCellKit("conifer");
 		setSmotherLeavesMax(3);
+	}
+	
+	@Override
+	protected DynamicTree setDynamicLeaves(String modid, int seq) {
+		return setDynamicLeaves(DynamicTreesBOP.getLeavesBlockForSequence(modid, seq), seq & 3);
 	}
 	
 	@Override
