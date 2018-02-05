@@ -46,13 +46,9 @@ public class TreePinkCherry extends DynamicTree {
 			envFactor(Type.DRY, 0.50f);
 			envFactor(Type.FOREST, 1.05f);
 			
+			addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
+			
 			setupStandardSeedDropping();
-		}
-		
-		@Override
-		public boolean isAcceptableSoil(World world, BlockPos pos, IBlockState soilBlockState) {
-			Block soilBlock = soilBlockState.getBlock();
-			return soilBlock == Blocks.DIRT || soilBlock == Blocks.GRASS || soilBlock == Blocks.MYCELIUM || soilBlock instanceof BlockRootyDirt || soilBlock == BOPBlocks.grass || soilBlock == BOPBlocks.dirt;
 		}
 		
 		@Override

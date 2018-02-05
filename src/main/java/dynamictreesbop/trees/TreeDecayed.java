@@ -52,12 +52,8 @@ public class TreeDecayed extends DynamicTree {
 			super(treeFamily.getName(), treeFamily);
 			
 			setBasicGrowingParameters(0.3f, 12.0f, upProbability, lowestBranchHeight, 1.0f);
-		}
-		
-		@Override
-		public boolean isAcceptableSoil(World world, BlockPos pos, IBlockState soilBlockState) {
-			Block soilBlock = soilBlockState.getBlock();
-			return soilBlock == Blocks.DIRT || soilBlock == Blocks.GRASS || soilBlock == Blocks.MYCELIUM || soilBlock instanceof BlockRootyDirt || soilBlock == BOPBlocks.grass || soilBlock == BOPBlocks.dirt || soilBlock == BOPBlocks.dried_sand;
+			
+			addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt, BOPBlocks.dried_sand, Blocks.SAND, Blocks.HARDENED_CLAY, Blocks.STAINED_HARDENED_CLAY);
 		}
 		
 		@Override

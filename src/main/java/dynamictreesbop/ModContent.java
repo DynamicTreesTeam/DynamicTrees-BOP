@@ -12,6 +12,7 @@ import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSaplingRare;
 import com.ferreusveritas.dynamictrees.trees.DynamicTree;
 import com.ferreusveritas.dynamictrees.trees.Species;
 
+import biomesoplenty.api.block.BOPBlocks;
 import dynamictreesbop.trees.TreeDecayed;
 import dynamictreesbop.trees.TreeDying;
 import dynamictreesbop.trees.TreeFir;
@@ -24,11 +25,8 @@ import dynamictreesbop.trees.TreeUmbran;
 import dynamictreesbop.trees.TreeUmbranConifer;
 import dynamictreesbop.trees.TreeWhiteCherry;
 import dynamictreesbop.trees.TreeYellowAutumn;
-import dynamictreesbop.trees.species.SpeciesBirch;
-import dynamictreesbop.trees.species.SpeciesOak;
 import dynamictreesbop.trees.species.SpeciesOakFloweringVine;
 import dynamictreesbop.trees.species.SpeciesOakLarge;
-import dynamictreesbop.trees.species.SpeciesSpruce;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -82,16 +80,21 @@ public class ModContent {
 		IForgeRegistry<Block> registry = event.getRegistry();
 		
 		// Get tree types from base mod so they can be given new species
-		DynamicTree spruceTree = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "spruce")).getTree();
-		DynamicTree birchTree = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "birch")).getTree();
 		DynamicTree oakTree = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "oak")).getTree();
 		
 		// Register new species of trees from the base mod
-		Species.REGISTRY.register(new SpeciesSpruce(spruceTree));
-		Species.REGISTRY.register(new SpeciesBirch(birchTree));
-		Species.REGISTRY.register(new SpeciesOak(oakTree));
 		Species.REGISTRY.register(new SpeciesOakLarge(oakTree));
 		Species.REGISTRY.register(new SpeciesOakFloweringVine(oakTree));
+		
+		// Add BOP dirt and grass as acceptable soils to species from base Dynamic Trees
+		TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "oak")).addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
+		TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "oakswamp")).addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
+		TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "apple")).addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
+		TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "spruce")).addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
+		TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "birch")).addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
+		TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "jungle")).addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
+		TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "acacia")).addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
+		TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "darkoak")).addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
 		
 		// Register new tree types
 		DynamicTree yellowAutumnTree = new TreeYellowAutumn(Tree.YELLOW_AUTUMN.getSeq());

@@ -55,18 +55,14 @@ public class TreeFir extends DynamicTree {
 			envFactor(Type.DRY, 0.25f);
 			envFactor(Type.WET, 0.75f);
 			
+			addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
+			
 			setupStandardSeedDropping();
 		}
 		
 		@Override
 		public boolean isBiomePerfect(Biome biome) {
 			return CompatHelper.biomeHasType(biome, Type.CONIFEROUS);
-		}
-		
-		@Override
-		public boolean isAcceptableSoil(World world, BlockPos pos, IBlockState soilBlockState) {
-			Block soilBlock = soilBlockState.getBlock();
-			return soilBlock == Blocks.DIRT || soilBlock == Blocks.GRASS || soilBlock == Blocks.MYCELIUM || soilBlock instanceof BlockRootyDirt || soilBlock == BOPBlocks.grass || soilBlock == BOPBlocks.dirt;
 		}
 		
 		@Override
@@ -131,18 +127,14 @@ public class TreeFir extends DynamicTree {
 			envFactor(Type.DRY, 0.25f);
 			envFactor(Type.WET, 0.75f);
 			
+			addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
+			
 			setupStandardSeedDropping();
 		}
 		
 		@Override
 		public boolean isBiomePerfect(Biome biome) {
 			return CompatHelper.biomeHasType(biome, Type.CONIFEROUS);
-		}
-		
-		@Override
-		public boolean isAcceptableSoil(World world, BlockPos pos, IBlockState soilBlockState) {
-			Block soilBlock = soilBlockState.getBlock();
-			return soilBlock == Blocks.DIRT || soilBlock == Blocks.GRASS || soilBlock == Blocks.MYCELIUM || soilBlock instanceof BlockRootyDirt || soilBlock == BOPBlocks.grass || soilBlock == BOPBlocks.dirt;
 		}
 		
 		@Override

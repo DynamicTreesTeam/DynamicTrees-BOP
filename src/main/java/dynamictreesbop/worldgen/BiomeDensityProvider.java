@@ -9,6 +9,7 @@ import com.ferreusveritas.dynamictrees.util.MathHelper;
 
 import biomesoplenty.api.biome.BOPBiomes;
 import dynamictreesbop.DynamicTreesBOP;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 
 public class BiomeDensityProvider implements IBiomeDensityProvider {
@@ -88,8 +89,8 @@ public class BiomeDensityProvider implements IBiomeDensityProvider {
 	}
 
 	@Override
-	public String getName() {
-		return DynamicTreesBOP.MODID + ":default";
+	public ResourceLocation getName() {
+		return new ResourceLocation(DynamicTreesBOP.MODID, "default");
 	}
 
 	@Override

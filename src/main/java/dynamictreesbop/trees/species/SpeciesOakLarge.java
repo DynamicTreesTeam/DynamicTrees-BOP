@@ -37,6 +37,8 @@ public class SpeciesOakLarge extends Species {
 		envFactor(Type.COLD, 0.50f);
 		envFactor(Type.DRY, 0.50f);
 		
+		addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
+		
 		setupStandardSeedDropping();
 	}
 	

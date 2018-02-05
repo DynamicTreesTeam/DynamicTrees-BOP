@@ -25,8 +25,8 @@ public class BiomeSpeciesSelector implements IBiomeSpeciesSelector {
 	HashMap<Integer, ITreeSelector> fastTreeLookup = new HashMap<Integer, ITreeSelector>();
 	
 	@Override
-	public String getName() {
-		return DynamicTreesBOP.MODID + ":" + "default";
+	public ResourceLocation getName() {
+		return new ResourceLocation(DynamicTreesBOP.MODID, "default");
 	}
 
 	@Override
@@ -115,9 +115,9 @@ public class BiomeSpeciesSelector implements IBiomeSpeciesSelector {
 		swamp = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "oakswamp"));
 		apple = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "oakapple"));
 		jungle = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "jungle"));
-		spruce = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "spruce"));
-		birch = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "birch"));
-		oak = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "oak"));
+		spruce = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "spruce"));
+		birch = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "birch"));
+		oak = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "oak"));
 		oakLarge = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "oaklarge"));
 		oakFloweringVine = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "oakfloweringvine"));
 		

@@ -54,13 +54,9 @@ public class TreeUmbranConifer extends DynamicTree {
 			envFactor(Type.DEAD, 1.1f);
 			envFactor(Type.MAGICAL, 1.1f);
 			
+			addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
+			
 			setupStandardSeedDropping();
-		}
-		
-		@Override
-		public boolean isAcceptableSoil(World world, BlockPos pos, IBlockState soilBlockState) {
-			Block soilBlock = soilBlockState.getBlock();
-			return soilBlock == Blocks.DIRT || soilBlock == Blocks.GRASS || soilBlock == Blocks.MYCELIUM || soilBlock instanceof BlockRootyDirt || soilBlock == BOPBlocks.grass || soilBlock == BOPBlocks.dirt;
 		}
 		
 		@Override

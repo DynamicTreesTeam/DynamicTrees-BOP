@@ -51,14 +51,10 @@ public class TreeDying extends DynamicTree {
 			envFactor(Type.SPOOKY, 1.05f);
 			envFactor(Type.DEAD, 1.05f);
 			
+			addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
+			
 			addDropCreator(new DropCreatorFruit(BOPItems.persimmon));
 			setupStandardSeedDropping();
-		}
-		
-		@Override
-		public boolean isAcceptableSoil(World world, BlockPos pos, IBlockState soilBlockState) {
-			Block soilBlock = soilBlockState.getBlock();
-			return soilBlock == Blocks.DIRT || soilBlock == Blocks.GRASS || soilBlock == Blocks.MYCELIUM || soilBlock instanceof BlockRootyDirt || soilBlock == BOPBlocks.grass || soilBlock == BOPBlocks.dirt || soilBlock == BOPBlocks.dried_sand;
 		}
 		
 		@Override
