@@ -18,3 +18,8 @@ wasteland
 ominous_woods
 lavender_fields
 mystic_grove
+
+forest
+forest_hills
+extreme_hills
+extreme_hills_trees

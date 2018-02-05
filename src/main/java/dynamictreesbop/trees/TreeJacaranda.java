@@ -13,11 +13,13 @@ import biomesoplenty.api.biome.BOPBiomes;
 import biomesoplenty.api.block.BOPBlocks;
 import biomesoplenty.api.enums.BOPTrees;
 import biomesoplenty.api.enums.BOPWoods;
+import biomesoplenty.api.item.BOPItems;
 import biomesoplenty.common.block.BlockBOPLeaves;
 import biomesoplenty.common.block.BlockBOPLog;
 import biomesoplenty.common.block.BlockBOPMushroom;
 import dynamictreesbop.DynamicTreesBOP;
 import dynamictreesbop.blocks.BlockBranchDTBOP;
+import dynamictreesbop.dropcreators.DropCreatorFruit;
 import dynamictreesbop.trees.TreeMagic.SpeciesMagic;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -46,6 +48,7 @@ public class TreeJacaranda extends DynamicTree {
 			
 			addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
 			
+			addDropCreator(new DropCreatorFruit(BOPItems.peach));
 			setupStandardSeedDropping();
 		}
 		
