@@ -18,6 +18,10 @@ public class BiomeDensityProvider implements IBiomeDensityProvider {
 	public EnumChance chance(Biome biome, Species species, int radius, Random rand) {
 		if (biome == BOPBiomes.alps_foothills.get()) return rand.nextFloat() < 0.5f ? EnumChance.OK : EnumChance.CANCEL;
 		if (biome == BOPBiomes.dead_swamp.get()) return rand.nextFloat() < 0.6f ? EnumChance.OK : EnumChance.CANCEL;
+		if (biome == BOPBiomes.lavender_fields.get()) return rand.nextFloat() < 0.3f ? EnumChance.OK : EnumChance.CANCEL;
+		if (biome == BOPBiomes.lush_desert.get()) return rand.nextFloat() < 0.4f ? EnumChance.OK : EnumChance.CANCEL;
+		if (biome == BOPBiomes.lush_swamp.get()) return EnumChance.OK;
+		if (biome == BOPBiomes.meadow.get()) return rand.nextFloat() < 0.3f ? EnumChance.OK : EnumChance.CANCEL;
 		if (biome == BOPBiomes.rainforest.get()) return EnumChance.OK;
 		/*if (biome == BOPBiomes.seasonal_forest.get()) {
 			if(radius > 3) {//Start dropping tree spawn opportunities when the radius gets bigger than 3
@@ -26,8 +30,6 @@ public class BiomeDensityProvider implements IBiomeDensityProvider {
 			}
 		}*/
 		if (biome == BOPBiomes.tropical_rainforest.get()) return EnumChance.OK;
-		if (biome == BOPBiomes.lush_swamp.get()) return EnumChance.OK;
-		if (biome == BOPBiomes.meadow.get()) return rand.nextFloat() < 0.3f ? EnumChance.OK : EnumChance.CANCEL;
 		if (biome == BOPBiomes.wasteland.get()) return rand.nextFloat() < 0.3f ? EnumChance.OK : EnumChance.CANCEL;
 		
 		return EnumChance.UNHANDLED;

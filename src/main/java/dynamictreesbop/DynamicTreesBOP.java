@@ -22,7 +22,6 @@ import biomesoplenty.common.biome.vanilla.ExtendedBiomeWrapper;
 import biomesoplenty.common.init.ModBiomes;
 import biomesoplenty.common.world.generator.GeneratorWeighted;
 import biomesoplenty.common.world.generator.tree.GeneratorTreeBase;
-import dynamictreesbop.blocks.BlockDynamicLeavesDTBOP;
 import dynamictreesbop.proxy.CommonProxy;
 import dynamictreesbop.worldgen.BiomeDensityProvider;
 import dynamictreesbop.worldgen.BiomeSpeciesSelector;
@@ -98,25 +97,6 @@ public class DynamicTreesBOP {
 			biomeSpeciesSelector.init();
 		}
 		
-	}
-	
-	public static BlockDynamicLeaves getLeavesBlockForSequence(String modid, int seq) {
-		int key = seq / 4;
-		String regname = "leaves" + key;
-		
-		BlockDynamicLeaves leaves = null;
-		
-		try {
-			Method getLeavesMapForModId = TreeHelper.class.getDeclaredMethod("getLeavesMapForModId", String.class);
-			getLeavesMapForModId.setAccessible(true);
-			HashMap<Integer, BlockDynamicLeaves> modLeaves = (HashMap<Integer, BlockDynamicLeaves>) getLeavesMapForModId.invoke(null, modid);
-			leaves = modLeaves.computeIfAbsent(key, k -> (BlockDynamicLeaves)new BlockDynamicLeavesDTBOP().setRegistryName(modid, regname).setUnlocalizedName(regname));
-		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
-			e.printStackTrace();
-		}
-		
-		return leaves;
-		//return getLeavesMapForModId(modid).computeIfAbsent(key, k -> (BlockDynamicLeaves)new BlockDynamicLeaves().setRegistryName(modid, regname).setUnlocalizedName(regname));
 	}
 	
 }

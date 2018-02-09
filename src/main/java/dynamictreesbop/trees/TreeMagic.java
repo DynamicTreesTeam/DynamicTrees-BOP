@@ -20,9 +20,8 @@ import biomesoplenty.common.block.BlockBOPLog;
 import biomesoplenty.common.block.BlockBOPMushroom;
 import biomesoplenty.common.block.BlockBOPPlant;
 import dynamictreesbop.DynamicTreesBOP;
-import dynamictreesbop.blocks.BlockBranchDTBOP;
+import dynamictreesbop.ModContent;
 import dynamictreesbop.dropcreators.DropCreatorFruit;
-import dynamictreesbop.trees.TreeOrangeAutumn.SpeciesOrangeAutumn;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockOldLog;
 import net.minecraft.block.BlockPlanks;
@@ -42,7 +41,7 @@ public class TreeMagic extends DynamicTree {
 	public class SpeciesMagic extends Species {
 		
 		SpeciesMagic(DynamicTree treeFamily) {
-			super(treeFamily.getName(), treeFamily);
+			super(treeFamily.getName(), treeFamily, ModContent.magicLeavesProperties);
 			
 			setBasicGrowingParameters(0.3f, 12.0f, upProbability, lowestBranchHeight, 1.0f);
 			
@@ -55,6 +54,8 @@ public class TreeMagic extends DynamicTree {
 			
 			addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
 			
+			generateSeed();
+			
 			setupStandardSeedDropping();
 		}
 		
@@ -63,48 +64,39 @@ public class TreeMagic extends DynamicTree {
 			return isOneOfBiomes(biome, BOPBiomes.mystic_grove.get());
 		}
 		
+		@Override
+		public boolean rot(World world, BlockPos pos, int neighborCount, int radius, Random random) {
+			if(super.rot(world, pos, neighborCount, radius, random)) {
+				if(radius > 4 && TreeHelper.isRooty(world, pos.down()) && world.getLightFor(EnumSkyBlock.SKY, pos) < 4) {
+					world.setBlockState(pos, random.nextInt(3) == 0 ? ModBlocks.blockStates.redMushroom : BOPBlocks.mushroom.getDefaultState().withProperty(BlockBOPMushroom.VARIANT, BlockBOPMushroom.MushroomType.BLUE_MILK_CAP));//Change branch to a mushroom
+					world.setBlockState(pos.down(), ModBlocks.blockStates.podzol);//Change rooty dirt to Podzol
+				}
+				return true;
+			}
+			
+			return false;
+		}
+		
 	}
 	
-	public TreeMagic(int seq) {
-		super(new ResourceLocation(DynamicTreesBOP.MODID, "magic"), seq);
+	public TreeMagic() {
+		super(new ResourceLocation(DynamicTreesBOP.MODID, "magic"));
 		
 		IBlockState primLog = BlockBOPLog.paging.getVariantState(BOPWoods.MAGIC);
 		setPrimitiveLog(primLog, BlockBOPLog.paging.getVariantItem(BOPWoods.MAGIC));
 		
-		IBlockState primLeaves = BlockBOPLeaves.paging.getVariantState(BOPTrees.MAGIC);
-		setPrimitiveLeaves(primLeaves, BlockBOPLeaves.paging.getVariantItem(BOPTrees.MAGIC));
-		
-		setDynamicBranch(new BlockBranchDTBOP("magic" + "branch"));
-	}
-	
-	@Override
-	protected DynamicTree setDynamicLeaves(String modid, int seq) {
-		return setDynamicLeaves(DynamicTreesBOP.getLeavesBlockForSequence(modid, seq), seq & 3);
+		ModContent.magicLeavesProperties.setTree(this);
 	}
 	
 	@Override
 	public void createSpecies() {
 		setCommonSpecies(new SpeciesMagic(this));
-		getCommonSpecies().generateSeed();
 	}
 	
 	@Override
 	public List<Block> getRegisterableBlocks(List<Block> blockList) {
 		blockList.add(getCommonSpecies().getDynamicSapling().getBlock());
 		return super.getRegisterableBlocks(blockList);
-	}
-	
-	@Override
-	public boolean rot(World world, BlockPos pos, int neighborCount, int radius, Random random) {
-		if(super.rot(world, pos, neighborCount, radius, random)) {
-			if(radius > 4 && TreeHelper.isRootyDirt(world, pos.down()) && world.getLightFor(EnumSkyBlock.SKY, pos) < 4) {
-				world.setBlockState(pos, random.nextInt(3) == 0 ? ModBlocks.blockStates.redMushroom : BOPBlocks.mushroom.getDefaultState().withProperty(BlockBOPMushroom.VARIANT, BlockBOPMushroom.MushroomType.BLUE_MILK_CAP));//Change branch to a mushroom
-				world.setBlockState(pos.down(), ModBlocks.blockStates.podzol);//Change rooty dirt to Podzol
-			}
-			return true;
-		}
-		
-		return false;
 	}
 	
 	@Override

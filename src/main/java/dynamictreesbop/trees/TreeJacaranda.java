@@ -18,7 +18,7 @@ import biomesoplenty.common.block.BlockBOPLeaves;
 import biomesoplenty.common.block.BlockBOPLog;
 import biomesoplenty.common.block.BlockBOPMushroom;
 import dynamictreesbop.DynamicTreesBOP;
-import dynamictreesbop.blocks.BlockBranchDTBOP;
+import dynamictreesbop.ModContent;
 import dynamictreesbop.dropcreators.DropCreatorFruit;
 import dynamictreesbop.trees.TreeMagic.SpeciesMagic;
 import net.minecraft.block.Block;
@@ -37,7 +37,7 @@ public class TreeJacaranda extends DynamicTree {
 	public class SpeciesJacaranda extends Species {
 		
 		SpeciesJacaranda(DynamicTree treeFamily) {
-			super(treeFamily.getName(), treeFamily);
+			super(treeFamily.getName(), treeFamily, ModContent.jacarandaLeavesProperties);
 			
 			setBasicGrowingParameters(0.3f, 12.0f, upProbability, lowestBranchHeight, 0.9f);
 			
@@ -47,6 +47,8 @@ public class TreeJacaranda extends DynamicTree {
 			envFactor(Type.DRY, 0.50f);
 			
 			addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
+			
+			generateSeed();
 			
 			addDropCreator(new DropCreatorFruit(BOPItems.peach));
 			setupStandardSeedDropping();
@@ -59,27 +61,18 @@ public class TreeJacaranda extends DynamicTree {
 		
 	}
 	
-	public TreeJacaranda(int seq) {
-		super(new ResourceLocation(DynamicTreesBOP.MODID, "jacaranda"), seq);
+	public TreeJacaranda() {
+		super(new ResourceLocation(DynamicTreesBOP.MODID, "jacaranda"));
 		
 		IBlockState primLog = BlockBOPLog.paging.getVariantState(BOPWoods.JACARANDA);
 		setPrimitiveLog(primLog, BlockBOPLog.paging.getVariantItem(BOPWoods.JACARANDA));
 		
-		IBlockState primLeaves = BlockBOPLeaves.paging.getVariantState(BOPTrees.JACARANDA);
-		setPrimitiveLeaves(primLeaves, BlockBOPLeaves.paging.getVariantItem(BOPTrees.JACARANDA));
-		
-		setDynamicBranch(new BlockBranchDTBOP("jacaranda" + "branch"));
-	}
-	
-	@Override
-	protected DynamicTree setDynamicLeaves(String modid, int seq) {
-		return setDynamicLeaves(DynamicTreesBOP.getLeavesBlockForSequence(modid, seq), seq & 3);
+		ModContent.jacarandaLeavesProperties.setTree(this);
 	}
 	
 	@Override
 	public void createSpecies() {
 		setCommonSpecies(new SpeciesJacaranda(this));
-		getCommonSpecies().generateSeed();
 	}
 	
 	@Override

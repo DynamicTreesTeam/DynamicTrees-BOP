@@ -70,7 +70,7 @@ public class ClientProxy extends CommonProxy {
 				public int colorMultiplier(IBlockState state, IBlockAccess worldIn, BlockPos pos, int tintIndex) {
 					boolean inWorld = worldIn != null && pos != null;
 					
-					IBlockState primLeaves = leaves.getTree(state).getPrimitiveLeaves();
+					IBlockState primLeaves = leaves.getProperties(state).getPrimitiveLeaves();
 					Block block = state.getBlock();
 					
 					if (primLeaves.getBlock() instanceof BlockBOPLeaves) {

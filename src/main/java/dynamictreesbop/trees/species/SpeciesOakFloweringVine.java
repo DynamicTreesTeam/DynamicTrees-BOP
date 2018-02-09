@@ -2,6 +2,7 @@ package dynamictreesbop.trees.species;
 
 import java.util.List;
 
+import com.ferreusveritas.dynamictrees.ModBlocks;
 import com.ferreusveritas.dynamictrees.ModConfigs;
 import com.ferreusveritas.dynamictrees.ModConstants;
 import com.ferreusveritas.dynamictrees.api.TreeRegistry;
@@ -32,7 +33,7 @@ public class SpeciesOakFloweringVine extends Species {
 	FeatureGenVine vineGen;
 	
 	public SpeciesOakFloweringVine(DynamicTree treeFamily) {
-		super(new ResourceLocation(DynamicTreesBOP.MODID, "oakfloweringvine"), treeFamily);
+		super(new ResourceLocation(DynamicTreesBOP.MODID, "oakfloweringvine"), treeFamily, ModBlocks.oakLeavesProperties);
 		
 		baseSpecies = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "oak"));
 		

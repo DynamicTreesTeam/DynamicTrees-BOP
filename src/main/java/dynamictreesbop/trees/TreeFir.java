@@ -23,7 +23,7 @@ import biomesoplenty.common.block.BlockBOPLeaves;
 import biomesoplenty.common.block.BlockBOPLog;
 import biomesoplenty.common.block.BlockBOPMushroom;
 import dynamictreesbop.DynamicTreesBOP;
-import dynamictreesbop.blocks.BlockBranchDTBOP;
+import dynamictreesbop.ModContent;
 import dynamictreesbop.trees.TreeMagic.SpeciesMagic;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -44,7 +44,7 @@ public class TreeFir extends DynamicTree {
 	public class SpeciesMegaFir extends Species {
 		
 		SpeciesMegaFir(DynamicTree treeFamily) {
-			super(treeFamily.getName(), treeFamily);
+			super(treeFamily.getName(), treeFamily, ModContent.firLeavesProperties);
 			
 			setBasicGrowingParameters(0.3f, 32.0f, 7, 7, 1.0f);
 			
@@ -57,6 +57,8 @@ public class TreeFir extends DynamicTree {
 			envFactor(Type.WET, 0.75f);
 			
 			addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
+			
+			generateSeed();
 			
 			setupStandardSeedDropping();
 		}
@@ -110,9 +112,9 @@ public class TreeFir extends DynamicTree {
 		public void postGeneration(World world, BlockPos rootPos, Biome biome, int radius, List<BlockPos> endPoints, boolean worldGen) {
 			//Manually place the highest few blocks of the conifer since the leafCluster voxmap won't handle it
 			BlockPos highest = Collections.max(endPoints, (a, b) -> a.getY() - b.getY());
-			world.setBlockState(highest.up(1), getDynamicLeavesState(4));
-			world.setBlockState(highest.up(2), getDynamicLeavesState(3));
-			world.setBlockState(highest.up(3), getDynamicLeavesState(1));
+			world.setBlockState(highest.up(1), leavesProperties.getDynamicLeavesState(4));
+			world.setBlockState(highest.up(2), leavesProperties.getDynamicLeavesState(3));
+			world.setBlockState(highest.up(3), leavesProperties.getDynamicLeavesState(1));
 		}
 		
 	}
@@ -120,7 +122,7 @@ public class TreeFir extends DynamicTree {
 	public class SpeciesFir extends Species {
 		
 		SpeciesFir(DynamicTree treeFamily) {
-			super(new ResourceLocation(treeFamily.getName().getResourceDomain(), treeFamily.getName().getResourcePath() + "small"), treeFamily);
+			super(new ResourceLocation(treeFamily.getName().getResourceDomain(), treeFamily.getName().getResourcePath() + "small"), treeFamily, ModContent.firLeavesProperties);
 			
 			setBasicGrowingParameters(0.3f, 16.0f, 3, 3, 0.9f);
 			
@@ -182,9 +184,9 @@ public class TreeFir extends DynamicTree {
 		public void postGeneration(World world, BlockPos rootPos, Biome biome, int radius, List<BlockPos> endPoints, boolean worldGen) {
 			//Manually place the highest few blocks of the conifer since the leafCluster voxmap won't handle it
 			BlockPos highest = Collections.max(endPoints, (a, b) -> a.getY() - b.getY());
-			world.setBlockState(highest.up(1), getDynamicLeavesState(4));
-			world.setBlockState(highest.up(2), getDynamicLeavesState(3));
-			world.setBlockState(highest.up(3), getDynamicLeavesState(1));
+			world.setBlockState(highest.up(1), leavesProperties.getDynamicLeavesState(4));
+			world.setBlockState(highest.up(2), leavesProperties.getDynamicLeavesState(3));
+			world.setBlockState(highest.up(3), leavesProperties.getDynamicLeavesState(1));
 		}
 		
 		@Override
@@ -201,24 +203,13 @@ public class TreeFir extends DynamicTree {
 	
 	Species smallSpecies;
 	
-	public TreeFir(int seq) {
-		super(new ResourceLocation(DynamicTreesBOP.MODID, "fir"), seq);
+	public TreeFir() {
+		super(new ResourceLocation(DynamicTreesBOP.MODID, "fir"));
 		
 		IBlockState primLog = BlockBOPLog.paging.getVariantState(BOPWoods.FIR);
 		setPrimitiveLog(primLog, BlockBOPLog.paging.getVariantItem(BOPWoods.FIR));
 		
-		IBlockState primLeaves = BlockBOPLeaves.paging.getVariantState(BOPTrees.FIR);
-		setPrimitiveLeaves(primLeaves, BlockBOPLeaves.paging.getVariantItem(BOPTrees.FIR));
-		
-		setDynamicBranch(new BlockBranchDTBOP("fir" + "branch"));
-		
-		setCellKit("conifer");
-		setSmotherLeavesMax(3);
-	}
-	
-	@Override
-	protected DynamicTree setDynamicLeaves(String modid, int seq) {
-		return setDynamicLeaves(DynamicTreesBOP.getLeavesBlockForSequence(modid, seq), seq & 3);
+		ModContent.firLeavesProperties.setTree(this);
 	}
 	
 	@Override
@@ -231,19 +222,17 @@ public class TreeFir extends DynamicTree {
 	public void registerSpecies(IForgeRegistry<Species> speciesRegistry) {
 		super.registerSpecies(speciesRegistry);
 		speciesRegistry.register(smallSpecies);
-		
-		getCommonSpecies().generateSeed();
 	}
 	
 	@Override
-	public ICell getCellForBranch(IBlockAccess blockAccess, BlockPos pos, IBlockState blockState, EnumFacing dir, BlockBranch branch) {
+	public int getRadiusForCellKit(IBlockAccess blockAccess, BlockPos pos, IBlockState blockState, EnumFacing dir, BlockBranch branch) {
 		int radius = branch.getRadius(blockState);
 		if(radius == 1) {
 			if(blockAccess.getBlockState(pos.down()).getBlock() == branch) {
-				radius = 128;
+				return 128;
 			}
 		}
-		return getCellKit().getCellForBranch(radius);
+		return radius;
 	}
 	
 	@Override

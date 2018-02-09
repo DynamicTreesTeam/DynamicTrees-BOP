@@ -6,8 +6,10 @@ import java.util.Random;
 import com.ferreusveritas.dynamictrees.DynamicTrees;
 import com.ferreusveritas.dynamictrees.ModBlocks;
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
+import com.ferreusveritas.dynamictrees.api.treedata.ITreePart;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicLeaves;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSapling;
+import com.ferreusveritas.dynamictrees.blocks.BlockRooty;
 import com.ferreusveritas.dynamictrees.trees.DynamicTree;
 import com.ferreusveritas.dynamictrees.trees.Species;
 
@@ -18,9 +20,8 @@ import biomesoplenty.api.item.BOPItems;
 import biomesoplenty.common.block.BlockBOPLeaves;
 import biomesoplenty.common.block.BlockBOPLog;
 import dynamictreesbop.DynamicTreesBOP;
-import dynamictreesbop.blocks.BlockBranchDTBOP;
+import dynamictreesbop.ModContent;
 import dynamictreesbop.dropcreators.DropCreatorFruit;
-import dynamictreesbop.trees.TreeDying.SpeciesDying;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockOldLog;
 import net.minecraft.block.BlockPlanks;
@@ -35,13 +36,14 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
+import net.minecraftforge.registries.IForgeRegistry;
 
 public class TreeDead extends DynamicTree {
 	
 	public class SpeciesDead extends Species {
 		
 		SpeciesDead(DynamicTree treeFamily) {
-			super(treeFamily.getName(), treeFamily);
+			super(treeFamily.getName(), treeFamily, ModContent.deadLeavesProperties);
 			
 			setBasicGrowingParameters(0.3f, 12.0f, upProbability, lowestBranchHeight, 0.5f);
 			
@@ -55,47 +57,86 @@ public class TreeDead extends DynamicTree {
 		}
 		
 		@Override
-		public boolean isBiomePerfect(Biome biome) {
-			return BiomeDictionary.hasType(biome, Type.DEAD);
+		public boolean grow(World world, BlockRooty rootyDirt, BlockPos rootPos, int soilLife, ITreePart treeBase, BlockPos treePos, Random random, boolean rapid) {
+			return false;
+		}
+		
+		@Override
+		public boolean canGrowWithBoneMeal(World world, BlockPos pos) {
+			return false;
+		}
+		
+		@Override
+		public boolean canUseBoneMealNow(World world, Random rand, BlockPos pos) {
+			return false;
+		}
+		
+		@Override
+		public boolean rot(World world, BlockPos pos, int neighborCount, int radius, Random random) {
+			return false;
 		}
 		
 	}
 	
-	public TreeDead(int seq) {
-		super(new ResourceLocation(DynamicTreesBOP.MODID, "dead"), seq);
+	public class SpeciesDecayed extends Species {
+		
+		SpeciesDecayed(DynamicTree treeFamily) {
+			super(new ResourceLocation(treeFamily.getName().getResourceDomain(), "decayed"), treeFamily, ModContent.decayedLeavesProperties);
+			
+			setBasicGrowingParameters(0.3f, 12.0f, upProbability, lowestBranchHeight, 1.0f);
+			
+			addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt, BOPBlocks.dried_sand, Blocks.SAND, Blocks.HARDENED_CLAY, Blocks.STAINED_HARDENED_CLAY);
+		}
+		
+		@Override
+		public boolean grow(World world, BlockRooty rootyDirt, BlockPos rootPos, int soilLife, ITreePart treeBase, BlockPos treePos, Random random, boolean rapid) {
+			return false;
+		}
+		
+		@Override
+		public boolean canGrowWithBoneMeal(World world, BlockPos pos) {
+			return false;
+		}
+		
+		@Override
+		public boolean canUseBoneMealNow(World world, Random rand, BlockPos pos) {
+			return false;
+		}
+		
+		@Override
+		public boolean rot(World world, BlockPos pos, int neighborCount, int radius, Random random) {
+			return false;
+		}
+		
+	}
+
+	Species decayedSpecies;
+	
+	public TreeDead() {
+		super(new ResourceLocation(DynamicTreesBOP.MODID, "dead"));
 		
 		IBlockState primLog = BlockBOPLog.paging.getVariantState(BOPWoods.DEAD);
 		setPrimitiveLog(primLog, BlockBOPLog.paging.getVariantItem(BOPWoods.DEAD));
 		
-		IBlockState primLeaves = BlockBOPLeaves.paging.getVariantState(BOPTrees.DEAD);
-		setPrimitiveLeaves(primLeaves, BlockBOPLeaves.paging.getVariantItem(BOPTrees.DEAD));
-		
-		setDynamicBranch(new BlockBranchDTBOP("dead" + "branch"));
-		
-		setCellKit(new ResourceLocation(DynamicTreesBOP.MODID, "sparse"));
-		setSmotherLeavesMax(1);
-	}
-	
-	@Override
-	protected DynamicTree setDynamicLeaves(String modid, int seq) {
-		return setDynamicLeaves(DynamicTreesBOP.getLeavesBlockForSequence(modid, seq), seq & 3);
+		ModContent.deadLeavesProperties.setTree(this);
+		ModContent.decayedLeavesProperties.setTree(this);
 	}
 	
 	@Override
 	public void createSpecies() {
 		setCommonSpecies(new SpeciesDead(this));
+		decayedSpecies = new SpeciesDecayed(this);
 	}
 	
 	@Override
-	public boolean rot(World world, BlockPos pos, int neighborCount, int radius, Random random) {
-		if(super.rot(world, pos, neighborCount, radius, random)) {
-			if(radius > 4 && TreeHelper.isRootyDirt(world, pos.down()) && world.getLightFor(EnumSkyBlock.SKY, pos) < 4) {
-				world.setBlockState(pos, random.nextInt(3) == 0 ? ModBlocks.blockStates.redMushroom : ModBlocks.blockStates.brownMushroom);//Change branch to a mushroom
-			}
-			return true;
-		}
-		
-		return false;
+	public void registerSpecies(IForgeRegistry<Species> speciesRegistry) {
+		super.registerSpecies(speciesRegistry);
+		speciesRegistry.register(decayedSpecies);
+	}
+	
+	@Override
+	public IBlockState getPrimitiveSaplingBlockState() {
+		return null;
 	}
 	
 	@Override
