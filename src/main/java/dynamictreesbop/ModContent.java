@@ -29,6 +29,7 @@ import dynamictreesbop.trees.TreeWillow;
 import dynamictreesbop.blocks.BlockDynamicLeavesFlowering;
 import dynamictreesbop.trees.species.SpeciesDarkOakConifer;
 import dynamictreesbop.trees.species.SpeciesDarkOakDyingConifer;
+import dynamictreesbop.trees.species.SpeciesDyingOak;
 import dynamictreesbop.trees.species.SpeciesFloweringOak;
 import dynamictreesbop.trees.species.SpeciesMaple;
 import dynamictreesbop.trees.species.SpeciesMegaOakConifer;
@@ -303,6 +304,7 @@ public class ModContent {
 		Species.REGISTRY.register(new SpeciesFloweringOak(oakTree));
 		Species.REGISTRY.register(new SpeciesYellowAutumn(birchTree));
 		Species.REGISTRY.register(new SpeciesOrangeAutumn(oakTree));
+		Species.REGISTRY.register(new SpeciesDyingOak(oakTree));
 		Species.REGISTRY.register(new SpeciesMaple(oakTree));
 		Species.REGISTRY.register(new SpeciesOakConifer(oakTree));
 		Species.REGISTRY.register(new SpeciesMegaOakConifer(oakTree));
@@ -374,6 +376,7 @@ public class ModContent {
 		ModelHelper.regModel(TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "floweringoak")).getSeed());
 		ModelHelper.regModel(TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "yellowautumn")).getSeed());
 		ModelHelper.regModel(TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "orangeautumn")).getSeed());
+		ModelHelper.regModel(TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "oakdying")).getSeed());
 		ModelHelper.regModel(TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "maple")).getSeed());
 		ModelHelper.regModel(TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "floweringoak")).getSeed());
 		ModelHelper.regModel(TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "umbranconifer")).getSeed());
