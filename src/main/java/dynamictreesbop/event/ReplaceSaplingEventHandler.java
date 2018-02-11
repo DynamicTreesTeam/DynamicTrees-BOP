@@ -70,6 +70,9 @@ public class ReplaceSaplingEventHandler {
 			case 11:
 				species = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "maple"));
 				break;
+			case 12:
+				species = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "hellbark"));
+				break;
 			case 13:	
 				species = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "floweringoak"));
 				break;
@@ -82,6 +85,12 @@ public class ReplaceSaplingEventHandler {
 		} else if (state.getBlock() == BOPBlocks.sapling_2) {
 			int tree = ((BOPTrees) state.getValue(((BlockBOPSapling) state.getBlock()).variantProperty)).ordinal();
 			switch (tree) {
+			case 19:	
+				species = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "willow"));
+				break;
+			case 20:	
+				species = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "pine"));
+				break;
 			default:
 				break;
 			}

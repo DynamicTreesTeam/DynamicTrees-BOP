@@ -5,19 +5,25 @@ coniferous_forest
 dead_forest
 dead_swamp
 fen
+grove
 land_of_lakes
 lavender_fields
 lush_swamp
 maple_woods
 meadow
+mountain
+mountain_foothills
 mystic_grove
 ominous_woods
 orchard
 prairie
 rainforest
 seasonal_forest
+shield
 snowy_coniferous_forest
 snowy_forest
+temperate_rainforest
+wetland
 wasteland
 woodland
 
@@ -25,3 +31,4 @@ extreme_hills
 extreme_hills_trees
 forest
 forest_hills
+swampland

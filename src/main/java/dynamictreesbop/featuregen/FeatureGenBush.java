@@ -24,6 +24,7 @@ public class FeatureGenBush implements IGenFeature {
 	private int radius = 2;
 	private IBlockState logState = Blocks.LOG.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.OAK);
 	private IBlockState leavesState = Blocks.LEAVES.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.OAK).withProperty(BlockOldLeaf.CHECK_DECAY, false);
+	private IBlockState secondaryLeavesState = null;
 	
 	public FeatureGenBush(Species species) {
 		this.species = species;
@@ -39,6 +40,10 @@ public class FeatureGenBush implements IGenFeature {
 	}
 	public FeatureGenBush setLeavesState(IBlockState leavesState) {
 		this.leavesState = leavesState;
+		return this;
+	}
+	public FeatureGenBush setSecondaryLeavesState(IBlockState secondaryLeavesState) {
+		this.secondaryLeavesState = secondaryLeavesState;
 		return this;
 	}
 	
@@ -62,7 +67,7 @@ public class FeatureGenBush implements IGenFeature {
 				for(BlockPos dPos : leafMap.getAllNonZero()) {
 					BlockPos leafPos = pos.add(dPos);
 					if((coordHashCode(leafPos) % 5) != 0 && world.getBlockState(leafPos).getBlock().isReplaceable(world, leafPos)) {
-						world.setBlockState(leafPos, leavesState);
+						world.setBlockState(leafPos, (secondaryLeavesState == null || world.rand.nextInt(4) != 0) ? leavesState : secondaryLeavesState);
 					}
 				}
 			}
