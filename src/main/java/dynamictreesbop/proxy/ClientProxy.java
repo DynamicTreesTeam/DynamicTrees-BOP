@@ -50,7 +50,7 @@ public class ClientProxy extends CommonProxy {
 				Block block = state.getBlock();
 				
     			if (tintIndex == 0 && TreeHelper.isLeaves(block)) {
-					return ((BlockDynamicLeaves) block).getTree(state).foliageColorMultiplier(state, worldIn, pos);
+					return ((BlockDynamicLeaves) block).getProperties(state).foliageColorMultiplier(state, worldIn, pos);
     			}
     			return 0xffffff;
 			}
@@ -77,13 +77,13 @@ public class ClientProxy extends CommonProxy {
 		            	switch (BlockBOPLeaves.getColoringType((BOPTrees) primLeaves.getValue(((BlockBOPLeaves) primLeaves.getBlock()).variantProperty))) {
 		            		case TINTED:
 								if(TreeHelper.isLeaves(block)) {
-									return ((BlockDynamicLeaves) block).getTree(state).foliageColorMultiplier(state, worldIn, pos);
+									return ((BlockDynamicLeaves) block).getProperties(state).foliageColorMultiplier(state, worldIn, pos);
 								}
 								return magenta;
 		            		case OVERLAY:
 		            			if (tintIndex == 0) {
 		    						if(TreeHelper.isLeaves(block)) {
-		    							return ((BlockDynamicLeaves) block).getTree(state).foliageColorMultiplier(state, worldIn, pos);
+		    							return ((BlockDynamicLeaves) block).getProperties(state).foliageColorMultiplier(state, worldIn, pos);
 		    						}
 		    						return magenta;
 		            			}
@@ -92,7 +92,7 @@ public class ClientProxy extends CommonProxy {
 		            	}
 					} else {
 						if(TreeHelper.isLeaves(block)) {
-							return ((BlockDynamicLeaves) block).getTree(state).foliageColorMultiplier(state, worldIn, pos);
+							return ((BlockDynamicLeaves) block).getProperties(state).foliageColorMultiplier(state, worldIn, pos);
 						}
 						return magenta;
 					}
@@ -115,7 +115,7 @@ public class ClientProxy extends CommonProxy {
 				ModelHelper.regColorHandler(sapling, new IBlockColor() {
 					@Override
 					public int colorMultiplier(IBlockState state, IBlockAccess access, BlockPos pos, int tintIndex) {
-						return access == null || pos == null ? -1 : tintIndex != 0 ? 0xffffff : sapling.getSpecies(access, pos, state).getTree().foliageColorMultiplier(state, access, pos);
+						return access == null || pos == null ? -1 : tintIndex != 0 ? 0xffffff : sapling.getSpecies(access, pos, state).getLeavesProperties().foliageColorMultiplier(state, access, pos);
 					}
 				});
 			} else {

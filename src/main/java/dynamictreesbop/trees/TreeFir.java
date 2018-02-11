@@ -251,9 +251,4 @@ public class TreeFir extends DynamicTree {
 		return super.getRegisterableBlocks(blockList);
 	}
 	
-	@Override
-	public int foliageColorMultiplier(IBlockState state, IBlockAccess world, BlockPos pos) {
-		return 0xffffff;
-	}
-	
 }

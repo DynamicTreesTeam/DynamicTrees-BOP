@@ -43,11 +43,14 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockNewLeaf;
 import net.minecraft.block.BlockOldLeaf;
 import net.minecraft.block.BlockPlanks;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -120,19 +123,39 @@ public class ModContent {
 		yellowAutumnLeavesProperties = new LeavesProperties(
 				BlockBOPLeaves.paging.getVariantState(BOPTrees.YELLOW_AUTUMN),
 				BlockBOPLeaves.paging.getVariantItem(BOPTrees.YELLOW_AUTUMN),
-				TreeRegistry.findCellKit("deciduous"));
+				TreeRegistry.findCellKit("deciduous")) {
+					@Override
+					public int foliageColorMultiplier(IBlockState state, IBlockAccess world, BlockPos pos) {
+						return 0xffffff;
+					}
+				};
 		orangeAutumnLeavesProperties = new LeavesProperties(
 				BlockBOPLeaves.paging.getVariantState(BOPTrees.ORANGE_AUTUMN),
 				BlockBOPLeaves.paging.getVariantItem(BOPTrees.ORANGE_AUTUMN),
-				TreeRegistry.findCellKit("deciduous"));
+				TreeRegistry.findCellKit("deciduous")) {
+					@Override
+					public int foliageColorMultiplier(IBlockState state, IBlockAccess world, BlockPos pos) {
+						return 0xffffff;
+					}
+				};
 		magicLeavesProperties = new LeavesProperties(
 				BlockBOPLeaves.paging.getVariantState(BOPTrees.MAGIC),
 				BlockBOPLeaves.paging.getVariantItem(BOPTrees.MAGIC),
-				TreeRegistry.findCellKit("deciduous"));
+				TreeRegistry.findCellKit("deciduous")) {
+					@Override
+					public int foliageColorMultiplier(IBlockState state, IBlockAccess world, BlockPos pos) {
+						return 0xffffff;
+					}
+				};
 		umbranLeavesProperties = new LeavesProperties(
 				BlockBOPLeaves.paging.getVariantState(BOPTrees.UMBRAN),
 				BlockBOPLeaves.paging.getVariantItem(BOPTrees.UMBRAN),
-				TreeRegistry.findCellKit("deciduous"));
+				TreeRegistry.findCellKit("deciduous")) {
+					@Override
+					public int foliageColorMultiplier(IBlockState state, IBlockAccess world, BlockPos pos) {
+						return 0xffffff;
+					}
+				};
 		umbranConiferLeavesProperties = new LeavesProperties(
 				BlockBOPLeaves.paging.getVariantState(BOPTrees.UMBRAN),
 				BlockBOPLeaves.paging.getVariantItem(BOPTrees.UMBRAN),
@@ -140,6 +163,10 @@ public class ModContent {
 					@Override
 					public int getSmotherLeavesMax() {
 						return 3;
+					}
+					@Override
+					public int foliageColorMultiplier(IBlockState state, IBlockAccess world, BlockPos pos) {
+						return 0xffffff;
 					}
 				};
 		dyingOakLeavesProperties = new LeavesProperties(
@@ -150,6 +177,10 @@ public class ModContent {
 					public int getSmotherLeavesMax() {
 						return 1;
 					}
+					@Override
+					public int foliageColorMultiplier(IBlockState state, IBlockAccess world, BlockPos pos) {
+						return 0xffffff;
+					}
 				};
 		firLeavesProperties = new LeavesProperties(
 				BlockBOPLeaves.paging.getVariantState(BOPTrees.FIR),
@@ -159,19 +190,38 @@ public class ModContent {
 					public int getSmotherLeavesMax() {
 						return 3;
 					}
+					@Override
+					public int foliageColorMultiplier(IBlockState state, IBlockAccess world, BlockPos pos) {
+						return 0xffffff;
+					}
 				};
 		pinkCherryLeavesProperties = new LeavesProperties(
 				BlockBOPLeaves.paging.getVariantState(BOPTrees.PINK_CHERRY),
 				BlockBOPLeaves.paging.getVariantItem(BOPTrees.PINK_CHERRY),
-				TreeRegistry.findCellKit("deciduous"));
+				TreeRegistry.findCellKit("deciduous")) {
+					@Override
+					public int foliageColorMultiplier(IBlockState state, IBlockAccess world, BlockPos pos) {
+						return 0xffffff;
+					}
+				};
 		whiteCherryLeavesProperties = new LeavesProperties(
 				BlockBOPLeaves.paging.getVariantState(BOPTrees.WHITE_CHERRY),
 				BlockBOPLeaves.paging.getVariantItem(BOPTrees.WHITE_CHERRY),
-				TreeRegistry.findCellKit("deciduous"));
+				TreeRegistry.findCellKit("deciduous")) {
+					@Override
+					public int foliageColorMultiplier(IBlockState state, IBlockAccess world, BlockPos pos) {
+						return 0xffffff;
+					}
+				};
 		mapleLeavesProperties = new LeavesProperties(
 				BlockBOPLeaves.paging.getVariantState(BOPTrees.MAPLE),
 				BlockBOPLeaves.paging.getVariantItem(BOPTrees.MAPLE),
-				TreeRegistry.findCellKit("deciduous"));
+				TreeRegistry.findCellKit("deciduous")) {
+					@Override
+					public int foliageColorMultiplier(IBlockState state, IBlockAccess world, BlockPos pos) {
+						return 0xffffff;
+					}
+				};
 		deadLeavesProperties = new LeavesProperties(
 				BlockBOPLeaves.paging.getVariantState(BOPTrees.DEAD),
 				BlockBOPLeaves.paging.getVariantItem(BOPTrees.DEAD),
@@ -180,11 +230,20 @@ public class ModContent {
 					public int getSmotherLeavesMax() {
 						return 1;
 					}
+					@Override
+					public int foliageColorMultiplier(IBlockState state, IBlockAccess world, BlockPos pos) {
+						return 0xffffff;
+					}
 				};
 		jacarandaLeavesProperties = new LeavesProperties(
 				BlockBOPLeaves.paging.getVariantState(BOPTrees.JACARANDA),
 				BlockBOPLeaves.paging.getVariantItem(BOPTrees.JACARANDA),
-				TreeRegistry.findCellKit("deciduous"));
+				TreeRegistry.findCellKit("deciduous")) {
+					@Override
+					public int foliageColorMultiplier(IBlockState state, IBlockAccess world, BlockPos pos) {
+						return 0xffffff;
+					}
+				};
 		willowLeavesProperties = new LeavesProperties(
 				BlockBOPLeaves.paging.getVariantState(BOPTrees.WILLOW),
 				BlockBOPLeaves.paging.getVariantItem(BOPTrees.WILLOW),
@@ -192,7 +251,12 @@ public class ModContent {
 		hellbarkLeavesProperties = new LeavesProperties(
 				BlockBOPLeaves.paging.getVariantState(BOPTrees.HELLBARK),
 				BlockBOPLeaves.paging.getVariantItem(BOPTrees.HELLBARK),
-				TreeRegistry.findCellKit(new ResourceLocation(DynamicTreesBOP.MODID, "sparse")));
+				TreeRegistry.findCellKit(new ResourceLocation(DynamicTreesBOP.MODID, "sparse"))) {
+					@Override
+					public int foliageColorMultiplier(IBlockState state, IBlockAccess world, BlockPos pos) {
+						return 0xffffff;
+					}
+				};
 		pineLeavesProperties = new LeavesProperties(
 				BlockBOPLeaves.paging.getVariantState(BOPTrees.PINE),
 				BlockBOPLeaves.paging.getVariantItem(BOPTrees.PINE),

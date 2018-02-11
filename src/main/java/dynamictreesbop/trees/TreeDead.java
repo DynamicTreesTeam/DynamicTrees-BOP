@@ -138,10 +138,5 @@ public class TreeDead extends DynamicTree {
 	public IBlockState getPrimitiveSaplingBlockState() {
 		return null;
 	}
-	
-	@Override
-	public int foliageColorMultiplier(IBlockState state, IBlockAccess world, BlockPos pos) {
-		return 0xffffff;
-	}
 
 }

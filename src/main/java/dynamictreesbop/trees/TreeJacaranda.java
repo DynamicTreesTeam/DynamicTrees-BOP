@@ -80,10 +80,5 @@ public class TreeJacaranda extends DynamicTree {
 		blockList.add(getCommonSpecies().getDynamicSapling().getBlock());
 		return super.getRegisterableBlocks(blockList);
 	}
-	
-	@Override
-	public int foliageColorMultiplier(IBlockState state, IBlockAccess world, BlockPos pos) {
-		return 0xffffff;
-	}
 
 }

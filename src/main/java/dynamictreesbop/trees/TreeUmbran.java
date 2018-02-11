@@ -340,10 +340,5 @@ public class SpeciesUmbranConifer extends Species {
 		}
 		return radius;
 	}
-	
-	@Override
-	public int foliageColorMultiplier(IBlockState state, IBlockAccess world, BlockPos pos) {
-		return 0xffffff;
-	}
 
 }

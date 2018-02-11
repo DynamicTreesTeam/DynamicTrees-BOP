@@ -154,9 +154,4 @@ public class TreeCherry extends DynamicTree {
 		return super.getRegisterableItems(itemList);
 	}
 	
-	@Override
-	public int foliageColorMultiplier(IBlockState state, IBlockAccess world, BlockPos pos) {
-		return 0xffffff;
-	}
-	
 }
