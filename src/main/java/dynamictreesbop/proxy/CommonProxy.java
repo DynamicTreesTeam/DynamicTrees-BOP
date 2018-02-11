@@ -25,15 +25,16 @@ public class CommonProxy {
 	
 	public void postInit() {
 		removeTreeGen(BOPBiomes.alps_foothills);
+		removeTreeGen(BOPBiomes.bayou, "willow"); // still has willow_large
 		removeTreeGen(BOPBiomes.boreal_forest);
 		removeTreeGen(BOPBiomes.cherry_blossom_grove);
 		removeTreeGen(BOPBiomes.coniferous_forest);
 		removeTreeGen(BOPBiomes.dead_forest);
 		removeTreeGen(BOPBiomes.dead_swamp);
-		removeTreeGen(BOPBiomes.fen, "dead"); // still has dying, dark_oak_taiga
+		removeTreeGen(BOPBiomes.fen);
 		removeTreeGen(BOPBiomes.land_of_lakes);
 		removeTreeGen(BOPBiomes.lavender_fields);
-		removeTreeGen(BOPBiomes.lush_desert, "dead_tree"); // still has twiglet, decaying_tree
+		removeTreeGen(BOPBiomes.lush_desert, "dead_tree"); // still has twiglet, decaying_tree (deciduous acacia)
 		removeTreeGen(BOPBiomes.lush_swamp);
 		removeTreeGen(BOPBiomes.maple_woods);
 		removeTreeGen(BOPBiomes.meadow);
@@ -42,22 +43,24 @@ public class CommonProxy {
 		removeTreeGen(BOPBiomes.mystic_grove);
 		removeTreeGen(BOPBiomes.ominous_woods);
 		removeTreeGen(BOPBiomes.orchard);
+		removeTreeGen(BOPBiomes.prairie);
 		removeTreeGen(BOPBiomes.rainforest);
 		removeTreeGen(BOPBiomes.seasonal_forest);
 		removeTreeGen(BOPBiomes.shield, "spruce"); // still has oak_bush, pine
 		removeTreeGen(BOPBiomes.snowy_coniferous_forest);
 		removeTreeGen(BOPBiomes.snowy_forest);
+		removeTreeGen(BOPBiomes.temperate_rainforest);
 		removeTreeGen(BOPBiomes.tropical_rainforest, "jungle"); // still has mahogany
 		removeTreeGen(BOPBiomes.wasteland);
-		removeTreeGen(BOPBiomes.wetland, "spruce"); // still has willow
+		removeTreeGen(BOPBiomes.wetland);
 		removeTreeGen(BOPBiomes.woodland);
 		
 		removeTreeGen(BOPBiomes.forest_extension);
 		removeTreeGen(BOPBiomes.forest_hills_extension);
 		removeTreeGen(BOPBiomes.extreme_hills_extension);
 		removeTreeGen(BOPBiomes.extreme_hills_plus_extension);
+		removeTreeGen(BOPBiomes.swampland_extension);
 		
-		if (BOPBiomes.boreal_forest.get() != null) ((BOPBiome) BOPBiomes.boreal_forest.get()).addGenerator("bush", GeneratorStage.TREE, (new GeneratorBush.Builder()).amountPerChunk(3).maxHeight(2).create());
 		if (BOPBiomes.meadow.get() != null) ((BOPBiome) BOPBiomes.meadow.get()).addGenerator("bush", GeneratorStage.TREE, (new GeneratorBush.Builder()).amountPerChunk(1).maxHeight(2).log(BlockPlanks.EnumType.SPRUCE).leaves(BlockPlanks.EnumType.SPRUCE).create());
 	}
 	

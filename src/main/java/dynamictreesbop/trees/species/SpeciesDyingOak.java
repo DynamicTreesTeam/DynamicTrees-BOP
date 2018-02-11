@@ -41,7 +41,7 @@ public class SpeciesDyingOak extends Species {
 		addDropCreator(new DropCreatorFruit(BOPItems.persimmon));
 		setupStandardSeedDropping();
 		
-		ModContent.dyingOakLeavesProperties.setTree(treeFamily);
+		leavesProperties.setTree(treeFamily);
 	}
 	
 	@Override

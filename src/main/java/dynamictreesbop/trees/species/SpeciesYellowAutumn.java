@@ -41,7 +41,7 @@ public class SpeciesYellowAutumn extends Species {
 		addDropCreator(new DropCreatorFruit(BOPItems.persimmon));
 		setupStandardSeedDropping();
 		
-		ModContent.yellowAutumnLeavesProperties.setTree(treeFamily);
+		leavesProperties.setTree(treeFamily);
 	}
 	
 	@Override

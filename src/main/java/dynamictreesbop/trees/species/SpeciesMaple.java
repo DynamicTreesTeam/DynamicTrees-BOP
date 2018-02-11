@@ -41,7 +41,7 @@ public class SpeciesMaple extends Species {
 		addDropCreator(new DropCreatorFruit(BOPItems.persimmon));
 		setupStandardSeedDropping();
 		
-		ModContent.mapleLeavesProperties.setTree(treeFamily);
+		leavesProperties.setTree(treeFamily);
 	}
 	
 	@Override

@@ -1,25 +1,27 @@
-boreal forest
-land_of_lakes
-lush_swamp
-meadow
-orchard
-rainforest
-woodland
-snowy_forest
-dead_forest
-coniferous_forest
 alps_foothills
-snowy_coniferous_forest
+boreal forest
 cherry_blossom_grove
-maple_woods
-seasonal_forest
+coniferous_forest
+dead_forest
 dead_swamp
-wasteland
-ominous_woods
+fen
+land_of_lakes
 lavender_fields
+lush_swamp
+maple_woods
+meadow
 mystic_grove
+ominous_woods
+orchard
+prairie
+rainforest
+seasonal_forest
+snowy_coniferous_forest
+snowy_forest
+wasteland
+woodland
 
-forest
-forest_hills
 extreme_hills
 extreme_hills_trees
+forest
+forest_hills

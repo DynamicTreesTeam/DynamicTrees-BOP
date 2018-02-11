@@ -24,6 +24,7 @@ import biomesoplenty.common.block.BlockBOPLog;
 import biomesoplenty.common.block.BlockBOPMushroom;
 import dynamictreesbop.DynamicTreesBOP;
 import dynamictreesbop.ModContent;
+import dynamictreesbop.featuregen.FeatureGenBush;
 import dynamictreesbop.trees.TreeMagic.SpeciesMagic;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -43,6 +44,8 @@ public class TreeFir extends DynamicTree {
 	
 	public class SpeciesMegaFir extends Species {
 		
+		FeatureGenBush bushGen;
+		
 		SpeciesMegaFir(DynamicTree treeFamily) {
 			super(treeFamily.getName(), treeFamily, ModContent.firLeavesProperties);
 			
@@ -61,6 +64,8 @@ public class TreeFir extends DynamicTree {
 			generateSeed();
 			
 			setupStandardSeedDropping();
+			
+			bushGen = new FeatureGenBush(this);
 		}
 		
 		@Override
@@ -115,6 +120,11 @@ public class TreeFir extends DynamicTree {
 			world.setBlockState(highest.up(1), leavesProperties.getDynamicLeavesState(4));
 			world.setBlockState(highest.up(2), leavesProperties.getDynamicLeavesState(3));
 			world.setBlockState(highest.up(3), leavesProperties.getDynamicLeavesState(1));
+			
+			if(worldGen) {
+				//Generate undergrowth
+				bushGen.setRadius(radius).gen(world, rootPos.up(), endPoints);
+			}
 		}
 		
 	}

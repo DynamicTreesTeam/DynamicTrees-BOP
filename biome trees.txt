@@ -1,13 +1,8 @@
-Temperate Rainforest: oak_bush
-Temperate Rainforest: cedar
-Temperate Rainforest: willow
-Temperate Rainforest: small_cedar
 Tundra: tundra_tree (oak bush)
 Mountain: pine
 Overgrown Cliffs: oak_bush
 Overgrown Cliffs: mahogany
 Overgrown Cliffs: jungle_twiglet
-Wetland: willow
 Mangrove: mangrove
 Chaparral: twiglet (tiny oak)
 Chaparral: small_bush
@@ -25,7 +20,6 @@ Eucalyptus Forest: oak_bush
 Eucalyptus Forest: tall_eucalyptus
 Outback: acacia_bush
 Outback: acacia_twiglet (tiny)
-Bayou: willow
 Bayou: willow_large
 Shrubland: shrubland_tree (bush)
 Bamboo Forest: bamboo
@@ -40,8 +34,6 @@ Brushland: jungle_twiglet
 Grove: poplar
 Grove: dark_poplar
 Grove: bush
-Fen: dying (dark oak logs, dead leaves)
-Fen: dark_oak_taiga (dark oak conifer)
 Shield: oak_bush
 Shield: pine
 MountainFoothills: pine

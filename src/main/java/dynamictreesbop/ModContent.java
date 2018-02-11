@@ -23,13 +23,19 @@ import dynamictreesbop.trees.TreeJacaranda;
 import dynamictreesbop.trees.TreeMagic;
 import dynamictreesbop.trees.TreeCherry;
 import dynamictreesbop.trees.TreeUmbran;
+import dynamictreesbop.trees.TreeWillow;
 import dynamictreesbop.blocks.BlockDynamicLeavesFlowering;
+import dynamictreesbop.trees.species.SpeciesDarkOakConifer;
+import dynamictreesbop.trees.species.SpeciesDarkOakDyingConifer;
 import dynamictreesbop.trees.species.SpeciesFloweringOak;
 import dynamictreesbop.trees.species.SpeciesMaple;
+import dynamictreesbop.trees.species.SpeciesMegaOakConifer;
+import dynamictreesbop.trees.species.SpeciesOakConifer;
 import dynamictreesbop.trees.species.SpeciesOakFloweringVine;
 import dynamictreesbop.trees.species.SpeciesOrangeAutumn;
 import dynamictreesbop.trees.species.SpeciesYellowAutumn;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockNewLeaf;
 import net.minecraft.block.BlockOldLeaf;
 import net.minecraft.block.BlockPlanks;
 import net.minecraft.init.Blocks;
@@ -52,38 +58,21 @@ public class ModContent {
 	
 	public static final Block leaves_flowering = null;
 	
+	// leaves properties for leaves without auto-generated leaves
 	public static ILeavesProperties floweringOakLeavesProperties, decayedLeavesProperties;
+	// leaves properties for leaves with auto-generated leaves
 	public static ILeavesProperties yellowAutumnLeavesProperties, orangeAutumnLeavesProperties,
 			magicLeavesProperties, umbranLeavesProperties, umbranConiferLeavesProperties,
 			dyingOakLeavesProperties, firLeavesProperties, pinkCherryLeavesProperties,
 			whiteCherryLeavesProperties, mapleLeavesProperties, deadLeavesProperties,
-			jacarandaLeavesProperties;
+			jacarandaLeavesProperties, willowLeavesProperties,
+			oakConiferLeavesProperties, darkOakConiferLeavesProperties, darkOakDyingConiferLeavesProperties;
 	
+	// array of leaves properties with auto-generated leaves
 	public static ILeavesProperties[] basicLeavesProperties;
 	
+	// trees added by this mod
 	public static ArrayList<DynamicTree> trees = new ArrayList<DynamicTree>();
-	
-	public enum Tree {
-		MAGIC,
-		UMBRAN,
-		FIR,
-		CHERRY,
-		MAPLE,
-		HELLBARK,
-		DEAD,
-		JACARANDA,
-		MANGROVE,
-		REDWOOD,
-		WILLOW,
-		PINE,
-		MAHOGANY,
-		EBONY,
-		EUCALYPTUS;
-		
-		public int getSeq() {
-			return ordinal();
-		}
-	}
 	
 	@SubscribeEvent
 	public static void registerBlocks(final RegistryEvent.Register<Block> event) {
@@ -133,7 +122,7 @@ public class ModContent {
 		umbranLeavesProperties = new LeavesProperties(
 				BlockBOPLeaves.paging.getVariantState(BOPTrees.UMBRAN),
 				BlockBOPLeaves.paging.getVariantItem(BOPTrees.UMBRAN),
-				TreeRegistry.findCellKit(new ResourceLocation(DynamicTreesBOP.MODID, "deciduous")));
+				TreeRegistry.findCellKit("deciduous"));
 		umbranConiferLeavesProperties = new LeavesProperties(
 				BlockBOPLeaves.paging.getVariantState(BOPTrees.UMBRAN),
 				BlockBOPLeaves.paging.getVariantItem(BOPTrees.UMBRAN),
@@ -186,6 +175,37 @@ public class ModContent {
 				BlockBOPLeaves.paging.getVariantState(BOPTrees.JACARANDA),
 				BlockBOPLeaves.paging.getVariantItem(BOPTrees.JACARANDA),
 				TreeRegistry.findCellKit("deciduous"));
+		willowLeavesProperties = new LeavesProperties(
+				BlockBOPLeaves.paging.getVariantState(BOPTrees.WILLOW),
+				BlockBOPLeaves.paging.getVariantItem(BOPTrees.WILLOW),
+				TreeRegistry.findCellKit("deciduous"));
+		oakConiferLeavesProperties = new LeavesProperties(
+				Blocks.LEAVES.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.OAK),
+				new ItemStack(Blocks.LEAVES, 1, BlockPlanks.EnumType.OAK.getMetadata()),
+				TreeRegistry.findCellKit("conifer")){
+					@Override
+					public int getSmotherLeavesMax() {
+						return 3;
+					}
+				};
+		darkOakConiferLeavesProperties = new LeavesProperties(
+				Blocks.LEAVES2.getDefaultState().withProperty(BlockNewLeaf.VARIANT, BlockPlanks.EnumType.DARK_OAK),
+				new ItemStack(Blocks.LEAVES2, 1, BlockPlanks.EnumType.DARK_OAK.getMetadata()),
+				TreeRegistry.findCellKit("conifer")){
+					@Override
+					public int getSmotherLeavesMax() {
+						return 3;
+					}
+				};
+		darkOakDyingConiferLeavesProperties = new LeavesProperties(
+				BlockBOPLeaves.paging.getVariantState(BOPTrees.DEAD),
+				BlockBOPLeaves.paging.getVariantItem(BOPTrees.DEAD),
+				TreeRegistry.findCellKit("conifer")){
+					@Override
+					public int getSmotherLeavesMax() {
+						return 3;
+					}
+				};
 		
 		// Add leaves properties that need leaves to be generated to an array
 		basicLeavesProperties = new ILeavesProperties[] {
@@ -204,11 +224,14 @@ public class ModContent {
 				jacarandaLeavesProperties,
 				LeavesProperties.NULLPROPERTIES, // placeholder for mangrove
 				LeavesProperties.NULLPROPERTIES, // placeholder for redwood
-				LeavesProperties.NULLPROPERTIES, // placeholder for willow
+				willowLeavesProperties,
 				LeavesProperties.NULLPROPERTIES, // placeholder for pine
 				LeavesProperties.NULLPROPERTIES, // placeholder for mahogany
 				LeavesProperties.NULLPROPERTIES, // placeholder for ebony
 				LeavesProperties.NULLPROPERTIES, // placeholder for eucalyptus
+				oakConiferLeavesProperties,
+				darkOakConiferLeavesProperties,
+				darkOakDyingConiferLeavesProperties,
 		};
 		
 		// Generate leaves for leaves properties
@@ -225,6 +248,10 @@ public class ModContent {
 		Species.REGISTRY.register(new SpeciesYellowAutumn(birchTree));
 		Species.REGISTRY.register(new SpeciesOrangeAutumn(oakTree));
 		Species.REGISTRY.register(new SpeciesMaple(oakTree));
+		Species.REGISTRY.register(new SpeciesOakConifer(oakTree));
+		Species.REGISTRY.register(new SpeciesMegaOakConifer(oakTree));
+		Species.REGISTRY.register(new SpeciesDarkOakConifer(darkOakTree));
+		Species.REGISTRY.register(new SpeciesDarkOakDyingConifer(darkOakTree));
 		
 		// Register new tree types
 		DynamicTree magicTree = new TreeMagic();
@@ -233,8 +260,9 @@ public class ModContent {
 		DynamicTree cherryTree = new TreeCherry();
 		DynamicTree deadTree = new TreeDead();
 		DynamicTree jacarandaTree = new TreeJacaranda();
+		DynamicTree willowTree = new TreeWillow();
 		
-		Collections.addAll(trees, magicTree, umbranTree, firTree, cherryTree, deadTree, jacarandaTree);
+		Collections.addAll(trees, magicTree, umbranTree, firTree, cherryTree, deadTree, jacarandaTree, willowTree);
 		trees.forEach(tree -> tree.registerSpecies(Species.REGISTRY));
 		
 		// Register saplings
