@@ -8,11 +8,13 @@ import com.ferreusveritas.dynamictrees.ModBlocks;
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
 import com.ferreusveritas.dynamictrees.blocks.BlockBranch;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSapling;
+import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSaplingRare;
 import com.ferreusveritas.dynamictrees.blocks.BlockRootyDirt;
 import com.ferreusveritas.dynamictrees.items.Seed;
 import com.ferreusveritas.dynamictrees.systems.GrowSignal;
 import com.ferreusveritas.dynamictrees.trees.DynamicTree;
 import com.ferreusveritas.dynamictrees.trees.Species;
+import com.ferreusveritas.dynamictrees.trees.SpeciesRare;
 
 import biomesoplenty.api.biome.BOPBiomes;
 import biomesoplenty.api.block.BOPBlocks;
@@ -100,14 +102,14 @@ public class TreeUmbran extends DynamicTree {
 		
 	}
 	
-public class SpeciesUmbranConifer extends Species {
+	public class SpeciesUmbranConifer extends SpeciesRare {
 		
 		SpeciesUmbranConifer(DynamicTree treeFamily) {
 			super(new ResourceLocation(treeFamily.getName().getResourceDomain(), "umbranconifer"), treeFamily, ModContent.umbranConiferLeavesProperties);
 			
 			setBasicGrowingParameters(0.25f, 16.0f, 3, 3, 0.8f);
 			
-			setDynamicSapling(new BlockDynamicSapling("umbranconifersapling").getDefaultState());
+			setDynamicSapling(new BlockDynamicSaplingRare("umbranconifersapling").getDefaultState());
 			
 			envFactor(Type.COLD, 0.75f);
 			envFactor(Type.HOT, 0.50f);

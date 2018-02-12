@@ -4,8 +4,10 @@ import java.util.Random;
 
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSapling;
+import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSaplingRare;
 import com.ferreusveritas.dynamictrees.trees.DynamicTree;
 import com.ferreusveritas.dynamictrees.trees.Species;
+import com.ferreusveritas.dynamictrees.trees.SpeciesRare;
 
 import biomesoplenty.api.biome.BOPBiomes;
 import biomesoplenty.api.block.BOPBlocks;
@@ -21,14 +23,14 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary.Type;
 
-public class SpeciesYellowAutumn extends Species {
+public class SpeciesYellowAutumn extends SpeciesRare {
 	
 	public SpeciesYellowAutumn(DynamicTree treeFamily) {
 		super(new ResourceLocation(DynamicTreesBOP.MODID, "yellowautumn"), treeFamily, ModContent.yellowAutumnLeavesProperties);
 		
 		setBasicGrowingParameters(0.1f, 14.0f, 4, 4, 1.25f);
 		
-		setDynamicSapling(new BlockDynamicSapling("yellowautumnsapling").getDefaultState());
+		setDynamicSapling(new BlockDynamicSaplingRare("yellowautumnsapling").getDefaultState());
 		
 		envFactor(Type.HOT, 0.50f);
 		envFactor(Type.DRY, 0.50f);

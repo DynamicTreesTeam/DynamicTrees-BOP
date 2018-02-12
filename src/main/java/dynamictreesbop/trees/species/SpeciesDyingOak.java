@@ -5,8 +5,10 @@ import java.util.Random;
 import com.ferreusveritas.dynamictrees.ModBlocks;
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSapling;
+import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSaplingRare;
 import com.ferreusveritas.dynamictrees.trees.DynamicTree;
 import com.ferreusveritas.dynamictrees.trees.Species;
+import com.ferreusveritas.dynamictrees.trees.SpeciesRare;
 
 import biomesoplenty.api.block.BOPBlocks;
 import biomesoplenty.api.item.BOPItems;
@@ -21,14 +23,14 @@ import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
 
-public class SpeciesDyingOak extends Species {
+public class SpeciesDyingOak extends SpeciesRare {
 	
 	public SpeciesDyingOak(DynamicTree treeFamily) {
 		super(new ResourceLocation(DynamicTreesBOP.MODID, "oakdying"), treeFamily, ModContent.dyingOakLeavesProperties);
 		
 		setBasicGrowingParameters(0.3f, 12.0f, upProbability, lowestBranchHeight, 0.65f);
 		
-		setDynamicSapling(new BlockDynamicSapling("oakdyingsapling").getDefaultState());
+		setDynamicSapling(new BlockDynamicSaplingRare("oakdyingsapling").getDefaultState());
 		
 		envFactor(Type.LUSH, 0.75f);
 		envFactor(Type.SPOOKY, 1.05f);

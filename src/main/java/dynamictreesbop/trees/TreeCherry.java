@@ -6,9 +6,11 @@ import java.util.Random;
 import com.ferreusveritas.dynamictrees.ModBlocks;
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSapling;
+import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSaplingRare;
 import com.ferreusveritas.dynamictrees.blocks.BlockRootyDirt;
 import com.ferreusveritas.dynamictrees.trees.DynamicTree;
 import com.ferreusveritas.dynamictrees.trees.Species;
+import com.ferreusveritas.dynamictrees.trees.SpeciesRare;
 
 import biomesoplenty.api.biome.BOPBiomes;
 import biomesoplenty.api.block.BOPBlocks;
@@ -76,14 +78,14 @@ public class TreeCherry extends DynamicTree {
 		
 	}
 	
-	public class SpeciesWhiteCherry extends Species {
+	public class SpeciesWhiteCherry extends SpeciesRare {
 		
 		SpeciesWhiteCherry(DynamicTree treeFamily) {
 			super(new ResourceLocation(treeFamily.getName().getResourceDomain(), "whitecherry"), treeFamily, ModContent.whiteCherryLeavesProperties);
 			
 			setBasicGrowingParameters(0.3f, 12.0f, upProbability, lowestBranchHeight, 0.8f);
 			
-			setDynamicSapling(new BlockDynamicSapling("whitecherrysapling").getDefaultState());
+			setDynamicSapling(new BlockDynamicSaplingRare("whitecherrysapling").getDefaultState());
 			
 			envFactor(Type.COLD, 0.75f);
 			envFactor(Type.HOT, 0.50f);
