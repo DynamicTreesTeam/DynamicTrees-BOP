@@ -18,7 +18,6 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -50,8 +49,8 @@ public class RenderMapleSeed extends Render<ItemMapleSeed.EntityItemMapleSeed> {
             GlStateManager.translate((float) x, (float) y + 0.03125f, (float) z);
 
             if (flag || this.renderManager.options != null) {
-            	float spinSpeed = itemIn.onGround ? 0 : ((float) itemIn.getAge() + partialTicks) / 2.5F;
-                float yaw = (spinSpeed + itemIn.hoverStart) * (180F / (float) Math.PI);
+            	float spinOrient = itemIn.onGround ? 0 : ((float) itemIn.getAge() + partialTicks) / 0.5F;//The angular orientation in degrees at this given animation frame
+                float yaw = (spinOrient + itemIn.hoverStart) * (180F / (float) Math.PI);
                 GlStateManager.rotate(yaw, 0.0F, 1.0F, 0.0F);
             }
 
@@ -90,7 +89,11 @@ public class RenderMapleSeed extends Render<ItemMapleSeed.EntityItemMapleSeed> {
         }
         
         if (entity.onGround) GlStateManager.rotate((float) 90f, 1f, 0f, 0f);
-        else if (entity.motionY < 0) GlStateManager.rotate((float) 30f, 1f, 0f, -0.35f);
+        else if (entity.motionY < 0) {
+        	GlStateManager.translate(-0.15, 0, -0.0);//move the center of rotation to the center of gravity for the seed
+        	GlStateManager.rotate((float) -15f, 0, 1, 0);//twist the wing slightly to give it the right cut angle
+        	GlStateManager.rotate((float) 62f, 1f, 0, -0.35f);//Rotate into the wing plane.  62 degrees is real life angle of a flying samara 
+        }
 
         for (int k = 0; k < j; ++k) {
             if (flag1) {
