@@ -11,6 +11,8 @@ import biomesoplenty.common.block.BlockBOPLeaves;
 import biomesoplenty.common.block.BlockColoring;
 import dynamictreesbop.DynamicTreesBOP;
 import dynamictreesbop.ModContent;
+import dynamictreesbop.items.ItemMapleSeed;
+import dynamictreesbop.renderers.RenderMapleSeed;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.color.IBlockColor;
@@ -21,12 +23,14 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.biome.BiomeColorHelper;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
 
 public class ClientProxy extends CommonProxy {
 	
 	@Override
 	public void preInit() {
 		super.preInit();
+		registerEntityRenderers();
 	}
 	
 	@Override
@@ -122,7 +126,10 @@ public class ClientProxy extends CommonProxy {
 				ModelHelper.regDynamicSaplingColorHandler(sapling);
 			}
 		}
-
+	}
+	
+	public void registerEntityRenderers() {
+		RenderingRegistry.registerEntityRenderingHandler(ItemMapleSeed.EntityItemMapleSeed.class, new RenderMapleSeed.Factory());
 	}
 	
 }

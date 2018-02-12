@@ -6,6 +6,7 @@ import com.ferreusveritas.dynamictrees.ModBlocks;
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSapling;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSaplingRare;
+import com.ferreusveritas.dynamictrees.items.Seed;
 import com.ferreusveritas.dynamictrees.trees.DynamicTree;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.trees.SpeciesRare;
@@ -16,6 +17,8 @@ import biomesoplenty.api.item.BOPItems;
 import dynamictreesbop.DynamicTreesBOP;
 import dynamictreesbop.ModContent;
 import dynamictreesbop.dropcreators.DropCreatorFruit;
+import dynamictreesbop.items.ItemMapleSeed;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.EnumSkyBlock;
@@ -38,7 +41,8 @@ public class SpeciesMaple extends SpeciesRare {
 		
 		addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
 		
-		generateSeed();
+		Seed seed = new ItemMapleSeed(getRegistryName().getResourcePath() + "seed");
+		setSeedStack(new ItemStack(seed));
 		
 		addDropCreator(new DropCreatorFruit(BOPItems.persimmon));
 		setupStandardSeedDropping();

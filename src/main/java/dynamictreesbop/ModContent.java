@@ -27,6 +27,7 @@ import dynamictreesbop.trees.TreeCherry;
 import dynamictreesbop.trees.TreeUmbran;
 import dynamictreesbop.trees.TreeWillow;
 import dynamictreesbop.blocks.BlockDynamicLeavesFlowering;
+import dynamictreesbop.items.ItemMapleSeed;
 import dynamictreesbop.trees.species.SpeciesDarkOakConifer;
 import dynamictreesbop.trees.species.SpeciesDarkOakDyingConifer;
 import dynamictreesbop.trees.species.SpeciesDyingOak;
@@ -53,8 +54,11 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.registry.EntityEntry;
+import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -427,6 +431,13 @@ public class ModContent {
 		trees.forEach(tree -> tree.getRegisterableItems(treeItems));
 		TreeHelper.getLeavesMapForModId(DynamicTreesBOP.MODID).forEach((key, block) -> registerItemBlock(registry, block));
 		registry.registerAll(treeItems.toArray(new Item[treeItems.size()]));
+	}
+	
+	@SubscribeEvent
+	public static void registerEntities(RegistryEvent.Register<EntityEntry> event) {
+		int id = 0;
+		
+		EntityRegistry.registerModEntity(new ResourceLocation(DynamicTreesBOP.MODID, "maple_seed"), ItemMapleSeed.EntityItemMapleSeed.class, "maple_seed", id++, DynamicTreesBOP.MODID, 32, 1, true);
 	}
 	
 	@SideOnly(Side.CLIENT)
