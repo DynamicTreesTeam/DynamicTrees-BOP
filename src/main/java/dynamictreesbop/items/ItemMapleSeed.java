@@ -4,14 +4,9 @@ import javax.annotation.Nullable;
 
 import com.ferreusveritas.dynamictrees.items.Seed;
 
-import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.MoverType;
 import net.minecraft.entity.item.EntityItem;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
 public class ItemMapleSeed extends Seed {
@@ -47,11 +42,15 @@ public class ItemMapleSeed extends Seed {
 		
 		@Override
 		public void onUpdate() {
-			if (motionY < -0.025f) motionY = -0.025f;
+			
+			//Counteract the air friction that will be applied in super.onUpdate() this results in a 0.99 factor instead of 0.98
+			motionX *= 1.01f;
+			motionZ *= 1.01f;
+			
+			//Add lift to counteract the gravity that will be applied in super.onUpdate()
+			motionY += 0.03;
 			
 			super.onUpdate();
-			
-			if (motionY < -0.025f) motionY = -0.025f;
 		}
 		
 		@Override
