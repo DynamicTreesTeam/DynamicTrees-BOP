@@ -23,7 +23,14 @@ public class ItemMapleSeed extends Seed {
 	@Override
 	@Nullable
     public Entity createEntity(World world, Entity location, ItemStack itemstack) {
-        return new EntityItemMapleSeed(world, location.posX, location.posY, location.posZ, itemstack);
+		EntityItemMapleSeed mapleSeedEntity = new EntityItemMapleSeed(world, location.posX, location.posY, location.posZ, itemstack);
+		
+		//We need to also copy the motion of the replaced entity or it acts funny when the item spawns.
+		mapleSeedEntity.motionX = location.motionX;
+		mapleSeedEntity.motionY = location.motionY;
+		mapleSeedEntity.motionZ = location.motionZ;
+		
+        return mapleSeedEntity;
     }
 	
 	public static class EntityItemMapleSeed extends EntityItem {
@@ -34,9 +41,11 @@ public class ItemMapleSeed extends Seed {
 		
 		public EntityItemMapleSeed(World worldIn, double x, double y, double z, ItemStack stack) {
 			super(worldIn, x, y, z, stack);
-			if (Math.abs(motionX) + Math.abs(motionZ) < 0.1) {
+			//Sorry Mate.  setVelocity is client side only(don't ask me why).  This will crash a server.  What was this for anyway?
+			//Velocity should be set by whatever routine is spawning the object.
+			/*if (Math.abs(motionX) + Math.abs(motionZ) < 0.1) {
 				this.setVelocity((worldIn.rand.nextDouble() - 0.5) / 5d, 0, (worldIn.rand.nextDouble() - 0.5) / 5d);
-			}
+			}*/
 			this.setDefaultPickupDelay();
 		}
 		
