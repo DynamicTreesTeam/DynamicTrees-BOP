@@ -80,7 +80,7 @@ public class BiomeSpeciesSelector implements IBiomeSpeciesSelector {
 			else if (biome == Biomes.EXTREME_HILLS || biome == Biomes.EXTREME_HILLS_WITH_TREES) select = new RandomDecision(world.rand).addSpecies(spruce, 3).addSpecies(jacaranda, 1);
 			else if (biome == Biomes.SWAMPLAND) select = new RandomDecision(world.rand).addSpecies(swamp, 5).addSpecies(willow, 1);
 			
-			else return new Decision();
+			else select = new StaticDecision(new Decision());
 			
 			fastTreeLookup.put(biomeId, select); //Cache decision for future use
 		}
