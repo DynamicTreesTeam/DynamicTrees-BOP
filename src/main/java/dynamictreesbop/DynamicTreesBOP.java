@@ -1,24 +1,12 @@
 package dynamictreesbop;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
 
-import com.ferreusveritas.dynamictrees.api.TreeHelper;
 import com.ferreusveritas.dynamictrees.api.WorldGenRegistry;
 import com.ferreusveritas.dynamictrees.api.worldgen.IBiomeSpeciesSelector;
-import com.ferreusveritas.dynamictrees.blocks.BlockDynamicLeaves;
 
-import biomesoplenty.api.biome.BOPBiomes;
-import biomesoplenty.api.biome.IExtendedBiome;
-import biomesoplenty.api.generation.BOPGeneratorBase;
 import biomesoplenty.api.generation.IGenerator;
 import biomesoplenty.common.biome.BOPBiome;
-import biomesoplenty.common.biome.vanilla.ExtendedBiomeWrapper;
 import biomesoplenty.common.init.ModBiomes;
 import biomesoplenty.common.world.generator.GeneratorWeighted;
 import biomesoplenty.common.world.generator.tree.GeneratorTreeBase;
@@ -77,8 +65,7 @@ public class DynamicTreesBOP {
 				//((HashMap<String, IGenerator>) genField.get(gen)).forEach((name, generator) -> {System.out.println(biome.getBiomeName() + ": " + name);});
 				//((HashMap<String, IGenerator>) genField.get(gen)).forEach((name, generator) -> {trees.add(name);});
 			} else if (treeGen != null && treeGen instanceof GeneratorTreeBase) {
-				String name = biome.getBiomeName().toLowerCase().replace(' ', '_') + "_" + "tree";
-				
+				//String name = biome.getBiomeName().toLowerCase().replace(' ', '_') + "_" + "tree";
 				//System.out.println(biome.getBiomeName() + ": " + name);
 				//trees.add(name);
 			}

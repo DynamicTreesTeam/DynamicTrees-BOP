@@ -41,11 +41,6 @@ public class ItemMapleSeed extends Seed {
 		
 		public EntityItemMapleSeed(World worldIn, double x, double y, double z, ItemStack stack) {
 			super(worldIn, x, y, z, stack);
-			//Sorry Mate.  setVelocity is client side only(don't ask me why).  This will crash a server.  What was this for anyway?
-			//Velocity should be set by whatever routine is spawning the object.
-			/*if (Math.abs(motionX) + Math.abs(motionZ) < 0.1) {
-				this.setVelocity((worldIn.rand.nextDouble() - 0.5) / 5d, 0, (worldIn.rand.nextDouble() - 0.5) / 5d);
-			}*/
 			this.setDefaultPickupDelay();
 		}
 		

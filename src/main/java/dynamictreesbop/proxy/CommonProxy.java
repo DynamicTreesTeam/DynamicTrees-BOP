@@ -94,6 +94,7 @@ public class CommonProxy {
 		if (biome != null && biome instanceof BOPBiome) ((BOPBiome) biome).removeGenerator("trees");
 	}
 	
+	@SuppressWarnings("unused")
 	private void removeTreeGen(IExtendedBiome extendedBiome, String... trees) {
 		IGenerator gen = extendedBiome.getGenerationManager().getGenerator("trees");
 		if (gen instanceof GeneratorWeighted) {

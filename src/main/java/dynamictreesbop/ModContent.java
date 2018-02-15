@@ -9,7 +9,6 @@ import com.ferreusveritas.dynamictrees.api.TreeRegistry;
 import com.ferreusveritas.dynamictrees.api.client.ModelHelper;
 import com.ferreusveritas.dynamictrees.api.treedata.ILeavesProperties;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicLeaves;
-import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSaplingRare;
 import com.ferreusveritas.dynamictrees.blocks.LeavesProperties;
 import com.ferreusveritas.dynamictrees.trees.DynamicTree;
 import com.ferreusveritas.dynamictrees.trees.Species;
@@ -17,17 +16,17 @@ import com.ferreusveritas.dynamictrees.trees.Species;
 import biomesoplenty.api.block.BOPBlocks;
 import biomesoplenty.api.enums.BOPTrees;
 import biomesoplenty.common.block.BlockBOPLeaves;
+import dynamictreesbop.blocks.BlockDynamicLeavesFlowering;
+import dynamictreesbop.items.ItemMapleSeed;
+import dynamictreesbop.trees.TreeCherry;
 import dynamictreesbop.trees.TreeDead;
 import dynamictreesbop.trees.TreeFir;
 import dynamictreesbop.trees.TreeHellbark;
 import dynamictreesbop.trees.TreeJacaranda;
 import dynamictreesbop.trees.TreeMagic;
 import dynamictreesbop.trees.TreePine;
-import dynamictreesbop.trees.TreeCherry;
 import dynamictreesbop.trees.TreeUmbran;
 import dynamictreesbop.trees.TreeWillow;
-import dynamictreesbop.blocks.BlockDynamicLeavesFlowering;
-import dynamictreesbop.items.ItemMapleSeed;
 import dynamictreesbop.trees.species.SpeciesDarkOakConifer;
 import dynamictreesbop.trees.species.SpeciesDarkOakDyingConifer;
 import dynamictreesbop.trees.species.SpeciesDyingOak;
@@ -54,7 +53,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.EntityEntry;
@@ -101,10 +99,10 @@ public class ModContent {
 		
 		// Get tree types from base mod so they can be given new species
 		DynamicTree oakTree = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "oak")).getTree();
-		DynamicTree spruceTree = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "spruce")).getTree();
+		//DynamicTree spruceTree = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "spruce")).getTree();
 		DynamicTree birchTree = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "birch")).getTree();
-		DynamicTree jungleTree = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "jungle")).getTree();
-		DynamicTree acaciaTree = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "acacia")).getTree();
+		//DynamicTree jungleTree = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "jungle")).getTree();
+		//DynamicTree acaciaTree = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "acacia")).getTree();
 		DynamicTree darkOakTree = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "darkoak")).getTree();
 		
 		// Add BOP dirt and grass as acceptable soils to species from base Dynamic Trees

@@ -8,7 +8,6 @@ import com.ferreusveritas.dynamictrees.trees.DynamicTree;
 
 import biomesoplenty.api.enums.BOPTrees;
 import biomesoplenty.common.block.BlockBOPLeaves;
-import biomesoplenty.common.block.BlockColoring;
 import dynamictreesbop.DynamicTreesBOP;
 import dynamictreesbop.ModContent;
 import dynamictreesbop.items.ItemMapleSeed;
@@ -22,7 +21,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.IBlockAccess;
-import net.minecraft.world.biome.BiomeColorHelper;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 
 public class ClientProxy extends CommonProxy {
@@ -53,7 +51,7 @@ public class ClientProxy extends CommonProxy {
 				boolean inWorld = worldIn != null && pos != null;
 				Block block = state.getBlock();
 				
-    			if (tintIndex == 0 && TreeHelper.isLeaves(block)) {
+    			if (inWorld && tintIndex == 0 && TreeHelper.isLeaves(block)) {
 					return ((BlockDynamicLeaves) block).getProperties(state).foliageColorMultiplier(state, worldIn, pos);
     			}
     			return 0xffffff;
@@ -80,12 +78,12 @@ public class ClientProxy extends CommonProxy {
 					if (primLeaves.getBlock() instanceof BlockBOPLeaves) {
 		            	switch (BlockBOPLeaves.getColoringType((BOPTrees) primLeaves.getValue(((BlockBOPLeaves) primLeaves.getBlock()).variantProperty))) {
 		            		case TINTED:
-								if(TreeHelper.isLeaves(block)) {
+								if(inWorld && TreeHelper.isLeaves(block)) {
 									return ((BlockDynamicLeaves) block).getProperties(state).foliageColorMultiplier(state, worldIn, pos);
 								}
 								return magenta;
 		            		case OVERLAY:
-		            			if (tintIndex == 0) {
+		            			if (inWorld && tintIndex == 0) {
 		    						if(TreeHelper.isLeaves(block)) {
 		    							return ((BlockDynamicLeaves) block).getProperties(state).foliageColorMultiplier(state, worldIn, pos);
 		    						}

@@ -3,12 +3,10 @@ package dynamictreesbop.blocks;
 import java.util.ArrayList;
 import java.util.Random;
 
-import com.ferreusveritas.dynamictrees.api.TreeHelper;
 import com.ferreusveritas.dynamictrees.api.treedata.ILeavesProperties;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicLeaves;
 import com.ferreusveritas.dynamictrees.blocks.LeavesProperties;
 import com.ferreusveritas.dynamictrees.trees.DynamicTree;
-import com.ferreusveritas.dynamictrees.util.MathHelper;
 
 import biomesoplenty.api.enums.BOPTrees;
 import biomesoplenty.common.block.BlockBOPLeaves;
@@ -112,8 +110,6 @@ public class BlockDynamicLeavesFlowering extends BlockDynamicLeaves {
 	
 	@Override
 	public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand) {
-		BlockPos deltaPos = pos.offset(facing.getOpposite());
-		DynamicTree tree = TreeHelper.getTreePart(world, deltaPos).getTree(world, deltaPos);
 		
 		if (properties.getDynamicLeavesState().getBlock() == this) {//The tree being clicked on is a flowering oak, add a chance for the placed leaves to be flowering
 			boolean flowers = world.rand.nextInt(3) == 0;

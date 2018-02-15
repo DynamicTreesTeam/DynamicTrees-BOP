@@ -1,6 +1,5 @@
 package dynamictreesbop.trees.species;
 
-import java.util.Collections;
 import java.util.List;
 
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
@@ -26,7 +25,6 @@ import biomesoplenty.api.block.BOPBlocks;
 import biomesoplenty.api.enums.BOPTrees;
 import biomesoplenty.common.block.BlockBOPLeaves;
 import dynamictreesbop.DynamicTreesBOP;
-import dynamictreesbop.ModContent;
 import dynamictreesbop.cells.DTBOPLeafClusters;
 import dynamictreesbop.featuregen.FeatureGenBush;
 import net.minecraft.block.Block;

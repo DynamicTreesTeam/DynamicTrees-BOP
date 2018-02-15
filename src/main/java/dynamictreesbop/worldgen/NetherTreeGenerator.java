@@ -2,14 +2,12 @@ package dynamictreesbop.worldgen;
 
 import java.util.Random;
 
-import biomesoplenty.api.biome.BOPBiomes;
 import biomesoplenty.api.block.BOPBlocks;
 import biomesoplenty.common.block.BlockBOPGrass;
 import dynamictreesbop.ModContent;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.fml.common.IWorldGenerator;
@@ -30,6 +28,7 @@ public class NetherTreeGenerator implements IWorldGenerator {
 		}
 	}
 	
+	@SuppressWarnings("unused")
 	private void generateNether(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
 		for (int i = 0; i < 15; i++) { 
 			int x = chunkX + random.nextInt(14) + 1;

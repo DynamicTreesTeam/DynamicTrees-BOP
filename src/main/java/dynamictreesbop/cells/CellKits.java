@@ -5,9 +5,7 @@ import com.ferreusveritas.dynamictrees.api.cells.CellNull;
 import com.ferreusveritas.dynamictrees.api.cells.ICell;
 import com.ferreusveritas.dynamictrees.api.cells.ICellKit;
 import com.ferreusveritas.dynamictrees.api.cells.ICellSolver;
-import com.ferreusveritas.dynamictrees.cells.CellKits.BasicSolver;
 import com.ferreusveritas.dynamictrees.cells.CellNormal;
-import com.ferreusveritas.dynamictrees.cells.LeafClusters;
 import com.ferreusveritas.dynamictrees.util.SimpleVoxmap;
 
 import dynamictreesbop.DynamicTreesBOP;
