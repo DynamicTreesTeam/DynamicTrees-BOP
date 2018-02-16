@@ -15,6 +15,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.relauncher.Side;
@@ -37,14 +38,18 @@ public class RenderMagicSeed extends Render<ItemMagicSeed.EntityItemMagicSeed> {
     @Override
     public void doRender(EntityItemMagicSeed entity, double x, double y, double z, float entityYaw, float partialTicks) {
         
-    	if(entity.onGround) {
-    		vanillaEntityItemRenderer.doRender(entity, x, y, z, entityYaw, partialTicks);
-    		return;
-    	}
-    	
     	ItemStack itemstack = entity.getItem();
         boolean textureMipmap = false;
-
+        
+        int itemMeta = itemstack.getMetadata(); // save the stack's metadata value
+       	if (entity.animFrame != itemstack.getMetadata()) itemstack.setItemDamage(entity.animFrame); // change the stack's metadata for animation
+        
+        if (entity.onGround) {
+    		vanillaEntityItemRenderer.doRender(entity, x, y, z, entityYaw, partialTicks);
+    		itemstack.setItemDamage(itemMeta); // restore the stack's metadata value
+    		return;
+    	}
+        
         if (this.bindEntityTexture(entity)) {
             this.renderManager.renderEngine.getTexture(this.getEntityTexture(entity)).setBlurMipmap(false, false);
             textureMipmap = true;
@@ -61,14 +66,13 @@ public class RenderMagicSeed extends Render<ItemMagicSeed.EntityItemMagicSeed> {
         GlStateManager.translate((float) x, (float) y + 0.03125f, (float) z);//Move the item up off the ground a bit
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);//Make sure the operating multiplier is white for all colors
         
-        float spinOrient = entity.onGround ? 0 : ((float) entity.getAge() + partialTicks) / 25F;//The angular orientation in radians at this given animation frame
+        float spinOrient = entity.onGround ? 0 : ((float) entity.getAge() + partialTicks) / 45F;//The angular orientation in radians at this given animation frame
         float yaw = (spinOrient + entity.hoverStart) * (180F / (float) Math.PI);//Convert from radians to degrees and add the starting hover position for individuality
         GlStateManager.rotate(yaw, 0.0F, 1.0F, 0.0F);//the actual spinning rotation component of the animation
        	GlStateManager.rotate((float) -45f, 0, 0, 1);//twist the wing slightly to give it the right cut angle
         
-        //This piece will do the actual Minecraft style extruded pixel rendering
-        IBakedModel transformedModel = net.minecraftforge.client.ForgeHooksClient.handleCameraTransforms(ibakedmodel, ItemCameraTransforms.TransformType.GROUND, false);
-        this.itemRenderer.renderItem(itemstack, transformedModel);
+       	IBakedModel transformedModel = net.minecraftforge.client.ForgeHooksClient.handleCameraTransforms(ibakedmodel, ItemCameraTransforms.TransformType.GROUND, false);
+        this.itemRenderer.renderItem(itemstack, transformedModel); // This piece will do the actual Minecraft style extruded pixel rendering
         
         if (!ibakedmodel.isGui3d()) {//Don't know why we need this.. but whatever
             GlStateManager.translate(0.0F, 0.0F, 0.09375F);
@@ -84,6 +88,8 @@ public class RenderMagicSeed extends Render<ItemMagicSeed.EntityItemMagicSeed> {
         }
 
         super.doRender(entity, x, y, z, entityYaw, partialTicks);
+        
+        itemstack.setItemDamage(itemMeta); // restore the stack's metadata value
     }
 
 	@Override

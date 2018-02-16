@@ -1,6 +1,26 @@
 {
 	"parent":"dynamictrees:item/standardseed",
 	"textures": {
-		"layer0":"dynamictreesbop:items/magicseed"
-	}
+		"layer0": "dynamictreesbop:items/magicseed"
+	},
+	"overrides": [
+		{
+			"predicate": {
+				"puff": 1
+			},
+			"model": "dynamictreesbop:item/magicseed_puff1"
+		},
+		{
+			"predicate": {
+				"puff": 2
+			},
+			"model": "dynamictreesbop:item/magicseed_puff2"
+		},
+		{
+			"predicate": {
+				"puff": 3
+			},
+			"model": "dynamictreesbop:item/magicseed_puff3"
+		}
+	]
 }
