@@ -10,7 +10,9 @@ import biomesoplenty.api.enums.BOPTrees;
 import biomesoplenty.common.block.BlockBOPLeaves;
 import dynamictreesbop.DynamicTreesBOP;
 import dynamictreesbop.ModContent;
+import dynamictreesbop.items.ItemMagicSeed;
 import dynamictreesbop.items.ItemMapleSeed;
+import dynamictreesbop.renderers.RenderMagicSeed;
 import dynamictreesbop.renderers.RenderMapleSeed;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -128,6 +130,8 @@ public class ClientProxy extends CommonProxy {
 	
 	public void registerEntityRenderers() {
 		RenderingRegistry.registerEntityRenderingHandler(ItemMapleSeed.EntityItemMapleSeed.class, new RenderMapleSeed.Factory());
+		RenderingRegistry.registerEntityRenderingHandler(ItemMagicSeed.EntityItemMagicSeed.class, new RenderMagicSeed.Factory());
+
 	}
 	
 }

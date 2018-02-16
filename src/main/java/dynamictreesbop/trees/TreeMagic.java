@@ -6,6 +6,7 @@ import java.util.Random;
 import com.ferreusveritas.dynamictrees.ModBlocks;
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSapling;
+import com.ferreusveritas.dynamictrees.items.Seed;
 import com.ferreusveritas.dynamictrees.trees.DynamicTree;
 import com.ferreusveritas.dynamictrees.trees.Species;
 
@@ -16,8 +17,10 @@ import biomesoplenty.common.block.BlockBOPLog;
 import biomesoplenty.common.block.BlockBOPMushroom;
 import dynamictreesbop.DynamicTreesBOP;
 import dynamictreesbop.ModContent;
+import dynamictreesbop.items.ItemMagicSeed;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.EnumSkyBlock;
@@ -43,7 +46,8 @@ public class TreeMagic extends DynamicTree {
 			
 			addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
 			
-			generateSeed();
+			Seed seed = new ItemMagicSeed(getRegistryName().getResourcePath() + "seed");
+			setSeedStack(new ItemStack(seed));
 			
 			setupStandardSeedDropping();
 		}

@@ -17,6 +17,7 @@ import biomesoplenty.api.block.BOPBlocks;
 import biomesoplenty.api.enums.BOPTrees;
 import biomesoplenty.common.block.BlockBOPLeaves;
 import dynamictreesbop.blocks.BlockDynamicLeavesFlowering;
+import dynamictreesbop.items.ItemMagicSeed;
 import dynamictreesbop.items.ItemMapleSeed;
 import dynamictreesbop.trees.TreeCherry;
 import dynamictreesbop.trees.TreeDead;
@@ -436,6 +437,7 @@ public class ModContent {
 		int id = 0;
 		
 		EntityRegistry.registerModEntity(new ResourceLocation(DynamicTreesBOP.MODID, "maple_seed"), ItemMapleSeed.EntityItemMapleSeed.class, "maple_seed", id++, DynamicTreesBOP.MODID, 32, 1, true);
+		EntityRegistry.registerModEntity(new ResourceLocation(DynamicTreesBOP.MODID, "magic_seed"), ItemMagicSeed.EntityItemMagicSeed.class, "magic_seed", id++, DynamicTreesBOP.MODID, 32, 1, true);
 	}
 	
 	@SideOnly(Side.CLIENT)
