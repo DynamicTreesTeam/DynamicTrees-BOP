@@ -60,7 +60,10 @@ public class RenderMagicSeed extends Render<ItemMagicSeed.EntityItemMagicSeed> {
         
         GlStateManager.translate((float) x, (float) y + 0.03125f, (float) z);//Move the item up off the ground a bit
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);//Make sure the operating multiplier is white for all colors
-
+        
+        float spinOrient = entity.onGround ? 0 : ((float) entity.getAge() + partialTicks) / 25F;//The angular orientation in radians at this given animation frame
+        float yaw = (spinOrient + entity.hoverStart) * (180F / (float) Math.PI);//Convert from radians to degrees and add the starting hover position for individuality
+        GlStateManager.rotate(yaw, 0.0F, 1.0F, 0.0F);//the actual spinning rotation component of the animation
        	GlStateManager.rotate((float) -45f, 0, 0, 1);//twist the wing slightly to give it the right cut angle
         
         //This piece will do the actual Minecraft style extruded pixel rendering

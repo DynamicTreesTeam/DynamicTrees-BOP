@@ -48,18 +48,20 @@ public class ItemMagicSeed extends Seed {
 		public void onUpdate() {
 			
 			//Add an impulse now and again as long as we're moving
-			if(Math.abs(motionX) + Math.abs(motionZ) > 0.01f) {
-				if(getAge() / 3 % 15 == 14) {
-					motionY += 0.03;
+			if (!this.onGround && Math.abs(motionX) + Math.abs(motionZ) > 0.01f) {
+				if(getAge() / 4 % 15 == 14) {
+					motionY += 0.025;
+					motionX += (this.rand.nextDouble() - 0.5) * 0.05;
+					motionZ += (this.rand.nextDouble() - 0.5) * 0.05;
 				}
 			}
 			
 			//Add lift to counteract the gravity that will be applied in super.onUpdate()
-			motionY += 0.038;
+			motionY += 0.0385;
 			
 			//Counteract the air friction that will be applied in super.onUpdate() this results in a 0.99 factor instead of 0.98
-			motionX *= 1.01f;
-			motionZ *= 1.01f;
+			motionX *= 1.00f;
+			motionZ *= 1.00f;
 			
 			
 			super.onUpdate();
