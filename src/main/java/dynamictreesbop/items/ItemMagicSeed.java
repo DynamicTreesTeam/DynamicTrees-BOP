@@ -11,6 +11,7 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Items;
 import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -57,6 +58,7 @@ public class ItemMagicSeed extends Seed {
 	public static class EntityItemMagicSeed extends EntityItem {
 		
 		public int animFrame = 0;
+		public boolean puffing = false;
 		
 		public EntityItemMagicSeed(World worldIn) {
 			super(worldIn);
@@ -72,21 +74,25 @@ public class ItemMagicSeed extends Seed {
 		public void onUpdate() {
 			
 			//Add an impulse now and again as long as we're moving
+			int interval = 15;
+			int t = getAge() / 5 % interval;
 			double horizontalSpeed = Math.abs(motionX) + Math.abs(motionZ);
-			if ((!this.onGround && horizontalSpeed > 0.01f) || animFrame > 0) {
-				int interval = 15;
-				int t = getAge() / 5 % interval;
+			if ((!this.onGround && horizontalSpeed > 0.012f) || puffing || animFrame > 0) {
+				puffing = false;
 				if (t == interval - 1) {
-					motionY += 0.036;
-					if (horizontalSpeed > 0.01f) motionX += (this.rand.nextDouble() - 0.5) * 0.05;
-					if (horizontalSpeed > 0.01f) motionZ += (this.rand.nextDouble() - 0.5) * 0.05;
+					motionY += 0.035;
+					if (horizontalSpeed > 0.012f) motionX += (this.rand.nextGaussian()) * 0.035;
+					if (horizontalSpeed > 0.012f) motionZ += (this.rand.nextGaussian()) * 0.035;
 					
-					animFrame = 1;
-				} else if (t >= interval - 3) {
+					// if (rand.nextInt(3) == 0) world.spawnParticle(EnumParticleTypes.CLOUD, posX, posY, posZ, this.rand.nextGaussian() * 0.05, -0.05, this.rand.nextGaussian() * 0.05);
+					
+					puffing = true;
+					animFrame = animFrame == 1 ? 0 : 1;
+				} else if (t >= interval - 2) {
 					animFrame = 3;
-				} else if (t >= interval - 5) {
+				} else if (t >= interval - 3) {
 					animFrame = 2;
-				} else if (t >= interval - 7) {
+				} else if (t >= interval - 4) {
 					animFrame = 1;
 				} else {
 					animFrame = 0;
