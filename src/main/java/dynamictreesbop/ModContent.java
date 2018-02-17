@@ -17,6 +17,7 @@ import biomesoplenty.api.block.BOPBlocks;
 import biomesoplenty.api.enums.BOPTrees;
 import biomesoplenty.common.block.BlockBOPLeaves;
 import dynamictreesbop.blocks.BlockDynamicLeavesFlowering;
+import dynamictreesbop.blocks.BlockDynamicLeavesPalm;
 import dynamictreesbop.items.ItemMagicSeed;
 import dynamictreesbop.items.ItemMapleSeed;
 import dynamictreesbop.trees.TreeCherry;
@@ -25,6 +26,7 @@ import dynamictreesbop.trees.TreeFir;
 import dynamictreesbop.trees.TreeHellbark;
 import dynamictreesbop.trees.TreeJacaranda;
 import dynamictreesbop.trees.TreeMagic;
+import dynamictreesbop.trees.TreePalm;
 import dynamictreesbop.trees.TreePine;
 import dynamictreesbop.trees.TreeUmbran;
 import dynamictreesbop.trees.TreeWillow;
@@ -70,7 +72,7 @@ public class ModContent {
 	public static final Block leaves_flowering = null;
 	
 	// leaves properties for leaves without auto-generated leaves
-	public static ILeavesProperties floweringOakLeavesProperties, decayedLeavesProperties;
+	public static ILeavesProperties floweringOakLeavesProperties, decayedLeavesProperties, palmLeavesProperties;
 	// leaves properties for leaves with auto-generated leaves
 	public static ILeavesProperties yellowAutumnLeavesProperties, orangeAutumnLeavesProperties,
 			magicLeavesProperties, umbranLeavesProperties, umbranConiferLeavesProperties,
@@ -98,6 +100,9 @@ public class ModContent {
 		BlockDynamicLeavesFlowering floweringOakLeaves = new BlockDynamicLeavesFlowering();
 		registry.register(floweringOakLeaves);
 		
+		BlockDynamicLeavesPalm palmFrondLeaves = new BlockDynamicLeavesPalm();
+		registry.register(palmFrondLeaves);
+		
 		// Get tree types from base mod so they can be given new species
 		DynamicTree oakTree = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "oak")).getTree();
 		//DynamicTree spruceTree = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "spruce")).getTree();
@@ -122,6 +127,11 @@ public class ModContent {
 				new ItemStack(Blocks.LEAVES, 1, BlockPlanks.EnumType.OAK.getMetadata()),
 				TreeRegistry.findCellKit("deciduous"));
 		decayedLeavesProperties = new LeavesProperties(null, ItemStack.EMPTY, TreeRegistry.findCellKit("bare"));
+		
+		palmLeavesProperties = new LeavesProperties(
+				BlockBOPLeaves.paging.getVariantState(BOPTrees.PALM),
+				BlockBOPLeaves.paging.getVariantItem(BOPTrees.PALM),
+				TreeRegistry.findCellKit("palm"));
 		
 		yellowAutumnLeavesProperties = new LeavesProperties(
 				BlockBOPLeaves.paging.getVariantState(BOPTrees.YELLOW_AUTUMN),
@@ -365,7 +375,10 @@ public class ModContent {
 		}
 		floweringOakLeavesProperties.setDynamicLeavesState(floweringOakLeaves.getDefaultState());
 		floweringOakLeaves.setProperties(0, floweringOakLeavesProperties);
-			
+		
+		palmLeavesProperties.setDynamicLeavesState(palmFrondLeaves.getDefaultState());
+		palmFrondLeaves.setProperties(0, palmLeavesProperties);
+		
 		// Register new species of trees from the base mod
 		Species.REGISTRY.register(new SpeciesOakFloweringVine(oakTree));
 		Species.REGISTRY.register(new SpeciesFloweringOak(oakTree));
@@ -391,8 +404,9 @@ public class ModContent {
 		DynamicTree willowTree = new TreeWillow();
 		hellbarkTree = new TreeHellbark();
 		DynamicTree pineTree = new TreePine();
+		DynamicTree palmTree = new TreePalm();
 		
-		Collections.addAll(trees, magicTree, umbranTree, firTree, cherryTree, deadTree, jacarandaTree, willowTree, hellbarkTree, pineTree);
+		Collections.addAll(trees, magicTree, umbranTree, firTree, cherryTree, deadTree, jacarandaTree, willowTree, hellbarkTree, pineTree, palmTree);
 		trees.forEach(tree -> tree.registerSpecies(Species.REGISTRY));
 		
 		// Register saplings
