@@ -10,6 +10,7 @@ import biomesoplenty.api.enums.BOPTrees;
 import biomesoplenty.common.block.BlockBOPLeaves;
 import dynamictreesbop.DynamicTreesBOP;
 import dynamictreesbop.ModContent;
+import dynamictreesbop.event.ModelBakeEventListener;
 import dynamictreesbop.items.ItemMagicSeed;
 import dynamictreesbop.items.ItemMapleSeed;
 import dynamictreesbop.renderers.RenderMagicSeed;
@@ -23,6 +24,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.IBlockAccess;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 
 public class ClientProxy extends CommonProxy {
@@ -30,6 +32,7 @@ public class ClientProxy extends CommonProxy {
 	@Override
 	public void preInit() {
 		super.preInit();
+		registerClientEventHandlers();
 		registerEntityRenderers();
 	}
 	
@@ -125,6 +128,10 @@ public class ClientProxy extends CommonProxy {
 				ModelHelper.regDynamicSaplingColorHandler(sapling);
 			}
 		}
+	}
+	
+	public void registerClientEventHandlers() {
+		MinecraftForge.EVENT_BUS.register(new ModelBakeEventListener());
 	}
 	
 	public void registerEntityRenderers() {

@@ -20,23 +20,25 @@ import net.minecraftforge.common.property.Properties;
 public class BlockDynamicLeavesPalm extends BlockDynamicLeaves {
 
 	public enum Surround {
-		N ("n" , new Vec3i( 0, 0,-1)),
-		NE("ne", new Vec3i( 1, 0,-1)),
-		E ("e" , new Vec3i( 1, 0, 0)),
-		SE("se", new Vec3i( 1, 0, 1)),
-		S ("s" , new Vec3i( 0, 0, 1)),
-		SW("sw", new Vec3i(-1, 0, 1)),
-		W ("w" , new Vec3i(-1, 0, 0)),
-		NW("nw", new Vec3i(-1, 0,-1));
+		N ("n" , EnumFacing.NORTH),
+		NE("ne", EnumFacing.NORTH, EnumFacing.EAST),
+		E ("e" , EnumFacing.EAST),
+		SE("se", EnumFacing.SOUTH, EnumFacing.WEST),
+		S ("s" , EnumFacing.SOUTH),
+		SW("sw", EnumFacing.SOUTH, EnumFacing.WEST),
+		W ("w" , EnumFacing.WEST),
+		NW("nw", EnumFacing.NORTH, EnumFacing.WEST);
 		
 		final private String name;
 		final private Vec3i offset;
-		final int checkMask;
 		
-		private Surround(String name, Vec3i offset) {
+		private Surround(String name, EnumFacing ... dirs) {
 			this.name = name;
-			this.offset = offset;
-			this.checkMask = 0b1000 | ((offset.getX() != 0) && (offset.getZ() != 0) ? 0b0010 : 0b0100);
+			BlockPos pos = BlockPos.ORIGIN;
+			for(EnumFacing d : dirs) {
+				pos = pos.add(d.getDirectionVec());
+			}
+			this.offset = pos;
 		}
 		
 		public String getName() {
@@ -46,19 +48,24 @@ public class BlockDynamicLeavesPalm extends BlockDynamicLeaves {
 		public Vec3i getOffset() {
 			return offset;
 		}
-		
-		public boolean shouldCheck(int hydro) {
-			return (checkMask & (1 << hydro)) != 0;
-		}
 	}
 	
-	public static final IUnlistedProperty CONNECTIONS[];
+	public static final Surround hydroSurroundMap[][]  = new Surround[][] {
+		{}, //Hydro 0
+		{Surround.NE, Surround.SE, Surround.SW, Surround.NW}, //Hydro 1
+		{Surround.N, Surround.E, Surround.S, Surround.W}, //Hydro 2
+		{}, //Hydro 3
+		{} //Hydro 4
+	};
 	
-	static {
+	public static final IUnlistedProperty<Boolean> CONNECTIONS[];
+	
+	static {		
 		CONNECTIONS = new Properties.PropertyAdapter[Surround.values().length];
 		
 		for(Surround surr : Surround.values()) {
 			CONNECTIONS[surr.ordinal()] = new Properties.PropertyAdapter<Boolean>(PropertyBool.create("conn_" + surr.getName()));
+			System.out.println(CONNECTIONS[surr.ordinal()]);
 		}
 	}
 	
@@ -75,23 +82,19 @@ public class BlockDynamicLeavesPalm extends BlockDynamicLeaves {
 
 	@Override
 	public IBlockState getExtendedState(IBlockState state, IBlockAccess access, BlockPos pos) {
+		
 		if (state instanceof IExtendedBlockState) {
-			IExtendedBlockState retval = (IExtendedBlockState) state;
-			int hydro = state.getValue(BlockDynamicLeaves.HYDRO);
-			
-			for( Surround surr : Surround.values()) {
-				if(surr.shouldCheck(hydro)) {
-					IBlockState readState = access.getBlockState(pos.add(surr.getOffset()));
-					if(readState.getBlock() == this) {
-						int readHydro = readState.getValue(BlockDynamicLeaves.HYDRO);
-						if( (0b00000110_00001000_00001000_00000000 & (1 << ((hydro << 3) | readHydro))) != 0) {//Binary connection map lookup table
-							retval = retval.withProperty(CONNECTIONS[surr.ordinal()], true);
-						}
+			IExtendedBlockState extState = (IExtendedBlockState) state;
+			for(Surround surr : hydroSurroundMap[state.getValue(BlockDynamicLeaves.HYDRO)]) {
+				IBlockState scanState = access.getBlockState(pos.add(surr.getOffset()));
+				if(scanState.getBlock() == this) {
+					if( scanState.getValue(BlockDynamicLeaves.HYDRO) == 3 ) {
+						extState = extState.withProperty(CONNECTIONS[surr.ordinal()], true);
 					}
 				}
 			}
 			
-			return retval;
+			return extState;
 		}
 		
 		return state;

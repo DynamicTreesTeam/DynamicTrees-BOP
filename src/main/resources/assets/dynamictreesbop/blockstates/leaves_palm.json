@@ -2,16 +2,10 @@
 	"forge_marker": 1,
 	"variants": {
 		"hydro": {
-			"1": {},
-			"2": {},
-			"3": {},
-			"4": {}
-		},
-		"tree": {
-			"0": {"model": "biomesoplenty:palm_leaves"},
-			"1": {},
-			"2": {},
-			"3": {}
+			"1": {"model": "dynamictreesbop:palmfrond"},
+			"2": {"model": "dynamictreesbop:palmfrond"},
+			"3": {"model": "dynamictrees:apple_age2"},
+			"4": {"model": "dynamictrees:apple_age3"}
 		}
 	}
 }
