@@ -36,7 +36,7 @@ public class BlockDynamicLeavesPalm extends BlockDynamicLeaves {
 			this.name = name;
 			BlockPos pos = BlockPos.ORIGIN;
 			for(EnumFacing d : dirs) {
-				pos.add(d.getDirectionVec());
+				pos = pos.add(d.getDirectionVec());
 			}
 			this.offset = pos;
 		}
@@ -54,17 +54,18 @@ public class BlockDynamicLeavesPalm extends BlockDynamicLeaves {
 		{}, //Hydro 0
 		{Surround.NE, Surround.SE, Surround.SW, Surround.NW}, //Hydro 1
 		{Surround.N, Surround.E, Surround.S, Surround.W}, //Hydro 2
-		Surround.values(), //Hydro 3
+		{}, //Hydro 3
 		{} //Hydro 4
 	};
 	
-	public static final IUnlistedProperty CONNECTIONS[];
+	public static final IUnlistedProperty<Boolean> CONNECTIONS[];
 	
-	static {
+	static {		
 		CONNECTIONS = new Properties.PropertyAdapter[Surround.values().length];
 		
 		for(Surround surr : Surround.values()) {
 			CONNECTIONS[surr.ordinal()] = new Properties.PropertyAdapter<Boolean>(PropertyBool.create("conn_" + surr.getName()));
+			System.out.println(CONNECTIONS[surr.ordinal()]);
 		}
 	}
 	
@@ -81,21 +82,19 @@ public class BlockDynamicLeavesPalm extends BlockDynamicLeaves {
 
 	@Override
 	public IBlockState getExtendedState(IBlockState state, IBlockAccess access, BlockPos pos) {
+		
 		if (state instanceof IExtendedBlockState) {
-			IExtendedBlockState retval = (IExtendedBlockState) state;
-			int hydro = state.getValue(BlockDynamicLeaves.HYDRO);
-			
-			for(Surround surr : hydroSurroundMap[hydro]) {
-				IBlockState readState = access.getBlockState(pos.add(surr.getOffset()));
-				if(readState.getBlock() == this) {
-					int readHydro = readState.getValue(BlockDynamicLeaves.HYDRO);
-					if( (0b00000110_00001000_00001000_00000000 & (1 << ((hydro << 3) | readHydro))) != 0) {//Binary connection map lookup table
-						retval = retval.withProperty(CONNECTIONS[surr.ordinal()], true);
+			IExtendedBlockState extState = (IExtendedBlockState) state;
+			for(Surround surr : hydroSurroundMap[state.getValue(BlockDynamicLeaves.HYDRO)]) {
+				IBlockState scanState = access.getBlockState(pos.add(surr.getOffset()));
+				if(scanState.getBlock() == this) {
+					if( scanState.getValue(BlockDynamicLeaves.HYDRO) == 3 ) {
+						extState = extState.withProperty(CONNECTIONS[surr.ordinal()], true);
 					}
 				}
 			}
 			
-			return retval;
+			return extState;
 		}
 		
 		return state;

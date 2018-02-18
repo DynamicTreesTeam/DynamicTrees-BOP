@@ -1,0 +1,21 @@
+{
+ "__comment": "Model generated using MrCrayfish's Model Creator (http://mrcrayfish.com/modelcreator/)",
+ "textures": {
+  "crop": "blocks/wool_colored_green"
+ },
+ "elements": [
+ 
+         {   "from": [ 8, 0, -8 ],
+            "to": [ 8, 16, 24 ],
+            "rotation": { "origin": [ 8, 8, -8 ], "axis": "y", "angle": 0, "rescale": false },
+            "shade": false,
+            "faces": {
+                "west": { "uv": [ 0, 0, 16, 16 ], "texture": "#crop" },
+                "east": { "uv": [ 0, 0, 16, 16 ], "texture": "#crop" }
+            }
+        }
+ 
+ 
+ 
+ ]
+}

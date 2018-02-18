@@ -47,6 +47,7 @@ import net.minecraft.block.BlockNewLeaf;
 import net.minecraft.block.BlockOldLeaf;
 import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -55,6 +56,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -478,6 +480,10 @@ public class ModContent {
 			ModelHelper.regModel(item);
 		}
 		ModelHelper.regModel(Item.getItemFromBlock(leaves_flowering));
+		
+		
+		ModelLoader.setCustomStateMapper(ModContent.palmLeavesProperties.getDynamicLeavesState().getBlock(), new StateMap.Builder().ignore(BlockDynamicLeaves.TREE).build());
+		
 	}
 	
 	private static void registerItemBlock(IForgeRegistry<Item> registry, Block block) {
