@@ -59,10 +59,16 @@ public class ClientProxy extends CommonProxy {
     			return 0xffffff;
 			}
 		});
-		ModelHelper.regColorHandler(Item.getItemFromBlock(ModContent.leaves_flowering), new IItemColor() {
+		
+		ModelHelper.regColorHandler(ModContent.leaves_palm, new IBlockColor() {
 			@Override
-			public int colorMultiplier(ItemStack stack, int tintIndex) {
-    			if (tintIndex == 0) return ColorizerFoliage.getFoliageColorBasic();
+			public int colorMultiplier(IBlockState state, IBlockAccess worldIn, BlockPos pos, int tintIndex) {
+				boolean inWorld = worldIn != null && pos != null;
+				Block block = state.getBlock();
+				
+    			if (inWorld && tintIndex == 0 && TreeHelper.isLeaves(block)) {
+					return ((BlockDynamicLeaves) block).getProperties(state).foliageColorMultiplier(state, worldIn, pos);
+    			}
     			return 0xffffff;
 			}
 		});
@@ -102,13 +108,6 @@ public class ClientProxy extends CommonProxy {
 					}
 				}
 			});
-				
-			ModelHelper.regColorHandler(Item.getItemFromBlock(leaves), new IItemColor() {
-				@Override
-				public int colorMultiplier(ItemStack stack, int tintIndex) {
-					return ColorizerFoliage.getFoliageColorBasic();
-				}
-			});
 		}
 
 		for(DynamicTree tree: ModContent.trees) {
@@ -131,7 +130,6 @@ public class ClientProxy extends CommonProxy {
 	public void registerEntityRenderers() {
 		RenderingRegistry.registerEntityRenderingHandler(ItemMapleSeed.EntityItemMapleSeed.class, new RenderMapleSeed.Factory());
 		RenderingRegistry.registerEntityRenderingHandler(ItemMagicSeed.EntityItemMagicSeed.class, new RenderMagicSeed.Factory());
-
 	}
 	
 }

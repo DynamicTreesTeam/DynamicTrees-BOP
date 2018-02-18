@@ -69,7 +69,7 @@ import net.minecraftforge.registries.IForgeRegistry;
 @ObjectHolder(DynamicTreesBOP.MODID)
 public class ModContent {
 	
-	public static final Block leaves_flowering = null;
+	public static final Block leaves_flowering = null, leaves_palm = null;
 	
 	// leaves properties for leaves without auto-generated leaves
 	public static ILeavesProperties floweringOakLeavesProperties, decayedLeavesProperties, palmLeavesProperties;
@@ -99,7 +99,6 @@ public class ModContent {
 		// Register Special Leaf Blocks
 		BlockDynamicLeavesFlowering floweringOakLeaves = new BlockDynamicLeavesFlowering();
 		registry.register(floweringOakLeaves);
-		
 		BlockDynamicLeavesPalm palmFrondLeaves = new BlockDynamicLeavesPalm();
 		registry.register(palmFrondLeaves);
 		
@@ -127,7 +126,6 @@ public class ModContent {
 				new ItemStack(Blocks.LEAVES, 1, BlockPlanks.EnumType.OAK.getMetadata()),
 				TreeRegistry.findCellKit("deciduous"));
 		decayedLeavesProperties = new LeavesProperties(null, ItemStack.EMPTY, TreeRegistry.findCellKit("bare"));
-		
 		palmLeavesProperties = new LeavesProperties(
 				BlockBOPLeaves.paging.getVariantState(BOPTrees.PALM),
 				BlockBOPLeaves.paging.getVariantItem(BOPTrees.PALM),
@@ -428,9 +426,6 @@ public class ModContent {
 	public static void registerItems(RegistryEvent.Register<Item> event) {
 		IForgeRegistry<Item> registry = event.getRegistry();
 		
-		// register ItemBlocks
-		registerItemBlock(registry, leaves_flowering);
-		
 		// register seeds
 		registry.registerAll(
 				TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "floweringoak")).getSeed(),
@@ -472,12 +467,6 @@ public class ModContent {
 		ModelHelper.regModel(TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "whitecherry")).getSeed());
 		// register models for custom magic seed animation
 		for (int i = 1; i <= 3; i++) ModelHelper.regModel(TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "magic")).getSeed(), i);
-		
-		for (BlockDynamicLeaves leaves : TreeHelper.getLeavesMapForModId(DynamicTreesBOP.MODID).values()) {
-			Item item = Item.getItemFromBlock(leaves);
-			ModelHelper.regModel(item);
-		}
-		ModelHelper.regModel(Item.getItemFromBlock(leaves_flowering));
 	}
 	
 	private static void registerItemBlock(IForgeRegistry<Item> registry, Block block) {

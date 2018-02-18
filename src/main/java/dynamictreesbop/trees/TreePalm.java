@@ -36,7 +36,7 @@ public class TreePalm extends DynamicTree {
 			
 			envFactor(Type.COLD, 0.25f);
 			
-			addAcceptableSoil(Blocks.SAND, BOPBlocks.grass, BOPBlocks.dirt);
+			addAcceptableSoil(Blocks.SAND, BOPBlocks.grass, BOPBlocks.dirt, BOPBlocks.white_sand);
 			
 			generateSeed();
 			
