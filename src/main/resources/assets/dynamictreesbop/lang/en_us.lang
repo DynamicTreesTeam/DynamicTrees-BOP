@@ -26,6 +26,9 @@ tile.leaves0.name=Dynamic Leaves
 tile.leaves1.name=Dynamic Leaves
 tile.leaves2.name=Dynamic Leaves
 tile.leaves3.name=Dynamic Leaves
+tile.leaves4.name=Dynamic Leaves
+tile.leaves5.name=Dynamic Leaves
+tile.leaves6.name=Dynamic Leaves
 
 tile.leaves_flowering.name=Dynamic Leaves
 

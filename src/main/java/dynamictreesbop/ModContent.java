@@ -26,6 +26,7 @@ import dynamictreesbop.trees.TreeFir;
 import dynamictreesbop.trees.TreeHellbark;
 import dynamictreesbop.trees.TreeJacaranda;
 import dynamictreesbop.trees.TreeMagic;
+import dynamictreesbop.trees.TreeMahogany;
 import dynamictreesbop.trees.TreePalm;
 import dynamictreesbop.trees.TreePine;
 import dynamictreesbop.trees.TreeUmbran;
@@ -54,6 +55,7 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
@@ -81,7 +83,7 @@ public class ModContent {
 			dyingOakLeavesProperties, firLeavesProperties, pinkCherryLeavesProperties,
 			whiteCherryLeavesProperties, mapleLeavesProperties, deadLeavesProperties,
 			jacarandaLeavesProperties, willowLeavesProperties, hellbarkLeavesProperties,
-			pineLeavesProperties,
+			pineLeavesProperties, mahoganyLeavesProperties,
 			oakConiferLeavesProperties, darkOakConiferLeavesProperties, darkOakDyingConiferLeavesProperties,
 			oakTwigletLeavesProperties, poplarLeavesProperties, darkPoplarLeavesProperties;
 	
@@ -119,7 +121,7 @@ public class ModContent {
 		TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "spruce")).addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
 		TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "birch")).addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
 		TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "jungle")).addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
-		TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "acacia")).addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
+		TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "acacia")).addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt, Blocks.HARDENED_CLAY);
 		TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "darkoak")).addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
 		
 		// Initialize Leaves Properties
@@ -269,6 +271,14 @@ public class ModContent {
 					public int foliageColorMultiplier(IBlockState state, IBlockAccess world, BlockPos pos) {
 						return 0xffffff;
 					}
+					@Override
+					public int getFlammability() {
+						return 0;
+					}
+					@Override
+					public int getFireSpreadSpeed() {
+						return 0;
+					}
 				};
 		pineLeavesProperties = new LeavesProperties(
 				BlockBOPLeaves.paging.getVariantState(BOPTrees.PINE),
@@ -277,6 +287,15 @@ public class ModContent {
 					@Override
 					public int getSmotherLeavesMax() {
 						return 13; // because pines are so thin and made mostly of leaves, this has to be very high
+					}
+				};
+		mahoganyLeavesProperties = new LeavesProperties(
+				BlockBOPLeaves.paging.getVariantState(BOPTrees.MAHOGANY),
+				BlockBOPLeaves.paging.getVariantItem(BOPTrees.MAHOGANY),
+				TreeRegistry.findCellKit(new ResourceLocation(DynamicTreesBOP.MODID, "mahogany"))){
+					@Override
+					public int getSmotherLeavesMax() {
+						return 2;
 					}
 				};
 		
@@ -323,6 +342,11 @@ public class ModContent {
 					public int getLightRequirement() {
 						return 13; // allow leaves to grow under the branches to make the tree more rounded
 					}
+					@Override
+					@SideOnly(Side.CLIENT)
+					public int foliageColorMultiplier(IBlockState state, IBlockAccess world, BlockPos pos) {
+						return ColorizerFoliage.getFoliageColorBirch();
+					}
 				};
 		darkPoplarLeavesProperties = new LeavesProperties(
 				Blocks.LEAVES2.getDefaultState().withProperty(BlockNewLeaf.VARIANT, BlockPlanks.EnumType.DARK_OAK),
@@ -357,7 +381,7 @@ public class ModContent {
 				LeavesProperties.NULLPROPERTIES, // placeholder for redwood
 				willowLeavesProperties,
 				pineLeavesProperties,
-				LeavesProperties.NULLPROPERTIES, // placeholder for mahogany
+				mahoganyLeavesProperties,
 				LeavesProperties.NULLPROPERTIES, // placeholder for ebony
 				LeavesProperties.NULLPROPERTIES, // placeholder for eucalyptus
 				oakConiferLeavesProperties,
@@ -405,11 +429,12 @@ public class ModContent {
 		hellbarkTree = new TreeHellbark();
 		DynamicTree pineTree = new TreePine();
 		DynamicTree palmTree = new TreePalm();
+		DynamicTree mahoganyTree = new TreeMahogany();
 		
-		Collections.addAll(trees, magicTree, umbranTree, firTree, cherryTree, deadTree, jacarandaTree, willowTree, hellbarkTree, pineTree, palmTree);
+		Collections.addAll(trees, magicTree, umbranTree, firTree, cherryTree, deadTree, jacarandaTree, willowTree, hellbarkTree, pineTree, palmTree, mahoganyTree);
 		trees.forEach(tree -> tree.registerSpecies(Species.REGISTRY));
 		
-		// Register saplings
+		// Register extra saplings
 		registry.registerAll(
 				TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "floweringoak")).getDynamicSapling().getBlock(),
 				TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "yellowautumn")).getDynamicSapling().getBlock(),

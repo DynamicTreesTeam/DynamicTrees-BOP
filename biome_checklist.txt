@@ -1,5 +1,7 @@
 alps_foothills
+bayou
 boreal forest
+chaparral
 cherry_blossom_grove
 coniferous_forest
 dead_forest
@@ -8,6 +10,7 @@ fen
 grove
 land_of_lakes
 lavender_fields
+lush_desert
 lush_swamp
 maple_woods
 meadow

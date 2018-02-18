@@ -9,6 +9,7 @@ import com.ferreusveritas.dynamictrees.util.CoordUtils;
 import com.ferreusveritas.dynamictrees.util.MathHelper;
 import com.ferreusveritas.dynamictrees.util.SimpleVoxmap;
 
+import dynamictreesbop.cells.DTBOPLeafClusters;
 import net.minecraft.block.BlockOldLeaf;
 import net.minecraft.block.BlockOldLog;
 import net.minecraft.block.BlockPlanks;
@@ -59,14 +60,16 @@ public class FeatureGenBush implements IGenFeature {
 
 			BlockPos pos = CoordUtils.findGround(world, new BlockPos(v));
 			IBlockState soilBlockState = world.getBlockState(pos);
-
-			if(species.isAcceptableSoil(world, pos, soilBlockState)) {
+			
+			pos = pos.up();
+			
+			if (species.isAcceptableSoil(world, pos, soilBlockState)) {
 				world.setBlockState(pos, logState);
 				
-				SimpleVoxmap leafMap = LeafClusters.deciduous;
+				SimpleVoxmap leafMap = DTBOPLeafClusters.bush;
 				for(BlockPos dPos : leafMap.getAllNonZero()) {
 					BlockPos leafPos = pos.add(dPos);
-					if((coordHashCode(leafPos) % 5) != 0 && world.getBlockState(leafPos).getBlock().isReplaceable(world, leafPos)) {
+					if ((coordHashCode(leafPos) % 5) != 0 && world.getBlockState(leafPos).getBlock().isReplaceable(world, leafPos)) {
 						world.setBlockState(leafPos, (secondaryLeavesState == null || world.rand.nextInt(4) != 0) ? leavesState : secondaryLeavesState);
 					}
 				}

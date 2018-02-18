@@ -1,13 +1,12 @@
 Tundra: tundra_tree (oak bush)
 Overgrown Cliffs: oak_bush
-Overgrown Cliffs: mahogany
-Overgrown Cliffs: jungle_twiglet
+Overgrown Cliffs: mahogany (short)
+Overgrown Cliffs: jungle_twiglet (tiny)
 Mangrove: mangrove
-Chaparral: twiglet (tiny oak)
-Chaparral: small_bush
-Xeric Shrubland: brush_bush
+Xeric Shrubland: brush_bush (acacia leaf block)
 Xeric Shrubland: oak_bush
-Xeric Shrubland: brush_twiglet
+Xeric Shrubland: brush_twiglet (tiny acacia)
+Xeric Shrubland: cactus
 Tropical Rainforest: mahogany
 Undergarden: twiglet (tiny hellbark)
 Bog: birch_twiglet (tall)
@@ -18,18 +17,17 @@ Eucalyptus Forest: oak_bush
 Eucalyptus Forest: tall_eucalyptus
 Outback: acacia_bush
 Outback: acacia_twiglet (tiny)
-Bayou: willow_large
+Outback: cactus
 Shrubland: shrubland_tree (oak bush)
 Bamboo Forest: bamboo
 Bamboo Forest: bamboo_thin
 Tropical Island: palm
 Tropical Island: jungle_twiglet
-Brushland: brush
+Brushland: brush (short deciduous acacia)
 Brushland: brush_bush
-Brushland: brush_twiglet
-Brushland: decaying_tree
-Brushland: jungle_twiglet
-Lush Desert: twiglet (tiny oak)
-Lush Desert: decaying_tree (acacia logs, acacia leaves)
+Brushland: brush_twiglet (tiny ebony)
+Brushland: decaying_tree (ebony)
+Brushland: jungle_twiglet (tiny)
 Oasis: palm
-Oasis: jungle_twiglet
+Oasis: jungle_twiglet (tiny)
+Oasis: cactus

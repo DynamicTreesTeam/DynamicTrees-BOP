@@ -15,7 +15,7 @@ public class BiomeDensityProvider implements IBiomeDensityProvider {
 	@Override
 	public EnumChance chance(Biome biome, Species species, int radius, Random rand) {
 		if (biome == BOPBiomes.alps_foothills.get()) return rand.nextFloat() < 0.5f ? EnumChance.OK : EnumChance.CANCEL;
-		//if (biome == BOPBiomes.chaparral.get()) return rand.nextFloat() < 0.7f ? EnumChance.OK : EnumChance.CANCEL;
+		if (biome == BOPBiomes.chaparral.get()) return rand.nextFloat() < 0.7f ? EnumChance.OK : EnumChance.CANCEL;
 		if (biome == BOPBiomes.dead_swamp.get()) return rand.nextFloat() < 0.6f ? EnumChance.OK : EnumChance.CANCEL;
 		if (biome == BOPBiomes.lavender_fields.get()) return rand.nextFloat() < 0.3f ? EnumChance.OK : EnumChance.CANCEL;
 		if (biome == BOPBiomes.lush_desert.get()) return rand.nextFloat() < 0.4f ? EnumChance.OK : EnumChance.CANCEL;
@@ -46,7 +46,7 @@ public class BiomeDensityProvider implements IBiomeDensityProvider {
 		
 		if (biome == BOPBiomes.boreal_forest.get()) return noiseDensity;
 		
-		//if (biome == BOPBiomes.chaparral.get()) return noiseDensity * 0.7;
+		if (biome == BOPBiomes.chaparral.get()) return noiseDensity * 0.7;
 		
 		if (biome == BOPBiomes.cherry_blossom_grove.get()) return noiseDensity * 0.3;
 		

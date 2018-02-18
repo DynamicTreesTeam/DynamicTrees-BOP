@@ -20,6 +20,7 @@ public class CellKits {
 	public CellKits() {
 		TreeRegistry.registerCellKit(new ResourceLocation(DynamicTreesBOP.MODID, "sparse"), sparse);
 		TreeRegistry.registerCellKit(new ResourceLocation(DynamicTreesBOP.MODID, "poplar"), poplar);
+		TreeRegistry.registerCellKit(new ResourceLocation(DynamicTreesBOP.MODID, "mahogany"), mahogany);
 	}
 	
 	private final ICellKit sparse = new ICellKit() {
@@ -100,6 +101,50 @@ public class CellKits {
 		@Override
 		public int getDefaultHydration() {
 			return 4;
+		}
+		
+	};
+	
+	private final ICellKit mahogany = new ICellKit() {
+		
+		private final ICell mahoganyBranch = new CellMahoganyBranch();
+		
+		private final ICell mahoganyLeafCells[] = {
+				CellNull.NULLCELL,
+				new CellMahoganyLeaf(1),
+				new CellMahoganyLeaf(2),
+				new CellMahoganyLeaf(3),
+				new CellMahoganyLeaf(4)
+		}; 
+		
+		private final ICellSolver solver = new com.ferreusveritas.dynamictrees.cells.CellKits.BasicSolver(new short[] {
+				0x0513, 0x0413, 0x0322, 0x0311, 0x0211
+		});
+		
+		@Override
+		public ICell getCellForLeaves(int hydro) {
+			return mahoganyLeafCells[hydro];
+		}
+		
+		@Override
+		public ICell getCellForBranch(int radius) {
+			if (radius == 1 || radius == 128) return mahoganyBranch;
+			return CellNull.NULLCELL;
+		}
+		
+		@Override
+		public SimpleVoxmap getLeafCluster() {
+			return DTBOPLeafClusters.mahogany;
+		}
+		
+		@Override
+		public ICellSolver getCellSolver() {
+			return solver;
+		}
+		
+		@Override
+		public int getDefaultHydration() {
+			return 3;
 		}
 		
 	};

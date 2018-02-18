@@ -1,5 +1,6 @@
 package dynamictreesbop.trees.species;
 
+import java.util.List;
 import java.util.Random;
 
 import com.ferreusveritas.dynamictrees.ModBlocks;
@@ -9,12 +10,17 @@ import com.ferreusveritas.dynamictrees.items.Seed;
 import com.ferreusveritas.dynamictrees.trees.DynamicTree;
 import com.ferreusveritas.dynamictrees.trees.Species;
 
+import biomesoplenty.api.biome.BOPBiomes;
 import biomesoplenty.api.block.BOPBlocks;
+import biomesoplenty.api.enums.BOPTrees;
 import biomesoplenty.api.item.BOPItems;
+import biomesoplenty.common.block.BlockBOPLeaves;
 import dynamictreesbop.DynamicTreesBOP;
 import dynamictreesbop.ModContent;
 import dynamictreesbop.dropcreators.DropCreatorFruit;
 import dynamictreesbop.dropcreators.DropCreatorTwigletLogs;
+import dynamictreesbop.featuregen.FeatureGenBush;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -26,27 +32,31 @@ import net.minecraftforge.common.BiomeDictionary.Type;
 
 public class SpeciesOakTwiglet extends Species {
 	
+	FeatureGenBush bushGen;
+	
 	public SpeciesOakTwiglet(DynamicTree treeFamily) {
-		super(new ResourceLocation(DynamicTreesBOP.MODID, treeFamily.getName().getResourcePath()+ "twiglet"), treeFamily, ModContent.oakTwigletLeavesProperties);
+		super(new ResourceLocation(DynamicTreesBOP.MODID, treeFamily.getName().getResourcePath() + "twiglet"), treeFamily, ModContent.oakTwigletLeavesProperties);
 		
 		setBasicGrowingParameters(0.3f, 2.5f, 1, 2, 1.0f);
 		
-		envFactor(Type.DRY, 0.50f);
+		envFactor(Type.SNOWY, 0.25f);
+		envFactor(Type.DRY, 0.75f);
 		envFactor(Type.PLAINS, 1.05f);
 		
-		addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
+		addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt, Blocks.HARDENED_CLAY);
 		
-		addDropCreator(new DropCreatorFruit(BOPItems.persimmon));
 		setupStandardSeedDropping();
 		remDropCreator(new ResourceLocation(ModConstants.MODID, "logs"));
 		addDropCreator(new DropCreatorTwigletLogs());
+		
+		bushGen = new FeatureGenBush(this);
 		
 		leavesProperties.setTree(treeFamily);
 	}
 	
 	@Override
 	public boolean isBiomePerfect(Biome biome) {
-		return BiomeDictionary.hasType(biome, Type.PLAINS);
+		return isOneOfBiomes(biome, BOPBiomes.chaparral.get(), BOPBiomes.lush_desert.get());
 	}
 	
 	@Override
@@ -57,6 +67,14 @@ public class SpeciesOakTwiglet extends Species {
 	@Override
 	public Seed getSeed() {
 		return getTree().getCommonSpecies().getSeed();
+	}
+	
+	@Override
+	public void postGeneration(World world, BlockPos rootPos, Biome biome, int radius, List<BlockPos> endPoints, boolean worldGen) {
+		if (worldGen && biome == BOPBiomes.chaparral.get() && world.rand.nextInt(3) > 0) {
+			//Generate undergrowth
+			bushGen.setRadius(radius).gen(world, rootPos.up(), endPoints);
+		}
 	}
 	
 	@Override

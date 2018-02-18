@@ -1,6 +1,9 @@
 package dynamictreesbop.proxy;
 
+import com.ferreusveritas.dynamictrees.ModConstants;
+import com.ferreusveritas.dynamictrees.api.TreeRegistry;
 import com.ferreusveritas.dynamictrees.api.WorldGenRegistry;
+import com.ferreusveritas.dynamictrees.trees.Species;
 import com.google.common.base.Optional;
 
 import biomesoplenty.api.biome.BOPBiomes;
@@ -13,6 +16,7 @@ import biomesoplenty.common.world.generator.tree.GeneratorBush;
 import dynamictreesbop.cells.CellKits;
 import dynamictreesbop.worldgen.NetherTreeGenerator;
 import net.minecraft.block.BlockPlanks;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
@@ -27,14 +31,43 @@ public class CommonProxy {
 	}
 
 	public void init() {
+		Species oakConifer = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "oakconifer"));
+		Species megaOakConifer = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "megaoakconifer"));
+		Species darkOakConifer = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "darkoakconifer"));
+		Species poplar = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "poplar"));
+		Species darkPoplar = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "darkpoplar"));
 		
+		TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "oak")).getTree().addSpeciesLocationOverride((access, trunkPos) -> {
+			Biome biome = access.getBiome(trunkPos);
+			
+			if (biome == BOPBiomes.prairie.get()) return oakConifer;
+			if (biome == BOPBiomes.temperate_rainforest.get()) return access.rand.nextInt(3) == 0 ? megaOakConifer : oakConifer; 
+			
+			return Species.NULLSPECIES;
+		});
+		TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "birch")).getTree().addSpeciesLocationOverride((access, trunkPos) -> {
+			Biome biome = access.getBiome(trunkPos);
+			
+			if (biome == BOPBiomes.grove.get()) return poplar;
+			
+			return Species.NULLSPECIES;
+		});
+		TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "darkoak")).getTree().addSpeciesLocationOverride((access, trunkPos) -> {
+			Biome biome = access.getBiome(trunkPos);
+			
+			if (biome == BOPBiomes.grove.get()) return darkPoplar;
+			if (biome == BOPBiomes.fen.get()) return darkOakConifer; 
+			
+			return Species.NULLSPECIES;
+		});
 	}
 	
 	public void postInit() {
 		if(WorldGenRegistry.isWorldGenEnabled()) {
 			removeTreeGen(BOPBiomes.alps_foothills);
-			removeTreeGen(BOPBiomes.bayou, "willow"); // still has willow_large
+			removeTreeGen(BOPBiomes.bayou);
 			removeTreeGen(BOPBiomes.boreal_forest);
+			removeTreeGen(BOPBiomes.chaparral);
 			removeTreeGen(BOPBiomes.cherry_blossom_grove);
 			removeTreeGen(BOPBiomes.coniferous_forest);
 			removeTreeGen(BOPBiomes.dead_forest);
@@ -43,7 +76,7 @@ public class CommonProxy {
 			removeTreeGen(BOPBiomes.grove);
 			removeTreeGen(BOPBiomes.land_of_lakes);
 			removeTreeGen(BOPBiomes.lavender_fields);
-			removeTreeGen(BOPBiomes.lush_desert, "dead_tree"); // still has twiglet, decaying_tree (deciduous acacia)
+			removeTreeGen(BOPBiomes.lush_desert);
 			removeTreeGen(BOPBiomes.lush_swamp);
 			removeTreeGen(BOPBiomes.maple_woods);
 			removeTreeGen(BOPBiomes.meadow);
