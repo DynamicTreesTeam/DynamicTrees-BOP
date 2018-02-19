@@ -73,7 +73,8 @@ import net.minecraftforge.registries.IForgeRegistry;
 @ObjectHolder(DynamicTreesBOP.MODID)
 public class ModContent {
 	
-	public static final Block leaves_flowering = null, leaves_palm = null;
+	public static BlockDynamicLeavesFlowering floweringOakLeaves;
+	public static BlockDynamicLeavesPalm palmFrondLeaves;
 	
 	// leaves properties for leaves without auto-generated leaves
 	public static ILeavesProperties floweringOakLeavesProperties, decayedLeavesProperties, palmLeavesProperties;
@@ -101,9 +102,9 @@ public class ModContent {
 		IForgeRegistry<Block> registry = event.getRegistry();
 		
 		// Register Special Leaf Blocks
-		BlockDynamicLeavesFlowering floweringOakLeaves = new BlockDynamicLeavesFlowering();
+		floweringOakLeaves = new BlockDynamicLeavesFlowering();
 		registry.register(floweringOakLeaves);
-		BlockDynamicLeavesPalm palmFrondLeaves = new BlockDynamicLeavesPalm();
+		palmFrondLeaves = new BlockDynamicLeavesPalm();
 		registry.register(palmFrondLeaves);
 		
 		// Get tree types from base mod so they can be given new species

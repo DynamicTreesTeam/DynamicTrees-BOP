@@ -46,7 +46,7 @@ public class ClientProxy extends CommonProxy {
 		
 		final int magenta = 0x00FF00FF;//for errors.. because magenta sucks.
 		
-		ModelHelper.regColorHandler(ModContent.leaves_flowering, new IBlockColor() {
+		ModelHelper.regColorHandler(ModContent.floweringOakLeaves, new IBlockColor() {
 			@Override
 			public int colorMultiplier(IBlockState state, IBlockAccess worldIn, BlockPos pos, int tintIndex) {
 				boolean inWorld = worldIn != null && pos != null;
@@ -59,7 +59,7 @@ public class ClientProxy extends CommonProxy {
 			}
 		});
 		
-		ModelHelper.regColorHandler(ModContent.leaves_palm, new IBlockColor() {
+		ModelHelper.regColorHandler(ModContent.palmFrondLeaves, new IBlockColor() {
 			@Override
 			public int colorMultiplier(IBlockState state, IBlockAccess worldIn, BlockPos pos, int tintIndex) {
 				boolean inWorld = worldIn != null && pos != null;
