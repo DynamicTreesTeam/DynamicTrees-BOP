@@ -133,7 +133,12 @@ public class ModContent {
 		palmLeavesProperties = new LeavesProperties(
 				BlockBOPLeaves.paging.getVariantState(BOPTrees.PALM),
 				BlockBOPLeaves.paging.getVariantItem(BOPTrees.PALM),
-				TreeRegistry.findCellKit("palm"));
+				TreeRegistry.findCellKit("palm") ) {
+			@Override
+			public boolean appearanceChangesWithHydro() {
+				return true;
+			}
+		};
 		
 		yellowAutumnLeavesProperties = new LeavesProperties(
 				BlockBOPLeaves.paging.getVariantState(BOPTrees.YELLOW_AUTUMN),

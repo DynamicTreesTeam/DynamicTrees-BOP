@@ -4,8 +4,8 @@
 		"hydro": {
 			"1": {"model": "dynamictreesbop:palmfrond"},
 			"2": {"model": "dynamictreesbop:palmfrond"},
-			"3": {"model": "dynamictrees:apple_age2"},
-			"4": {"model": "dynamictrees:apple_age3"}
+			"3": {"model": "dynamictreesbop:palmcoretop"},
+			"4": {"model": "dynamictreesbop:palmcorebottom"}
 		}
 	}
 }

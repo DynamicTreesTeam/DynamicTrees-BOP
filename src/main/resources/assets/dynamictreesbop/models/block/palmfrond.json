@@ -1,17 +1,22 @@
 {
-	"textures": {
-		"crop": "biomesoplenty:blocks/leaves_palm"
-	},
-	"elements": [
-		{
-			"from": [ 8, 0, -8 ],
-			"to": [ 8, 16, 24 ],
-			"rotation": { "origin": [ 8, 8, -8 ], "axis": "y", "angle": 0, "rescale": false },
-			"shade": false,
-			"faces": {
-				"west": { "uv": [ 0, 0, 16, 16 ], "texture": "#crop" },
-				"east": { "uv": [ 0, 0, 16, 16 ], "texture": "#crop" }
-			}
-		}
-	]
+ "textures": {
+ "particle": "dynamictreesbop:blocks/frond",
+  "frond": "dynamictreesbop:blocks/frond"
+ },
+ "ambientocclusion": false,
+ "elements": [
+ 
+         {   "from": [ 0, 0, 0 ],
+            "to": [ 0, 16, 32 ],
+            "rotation": { "origin": [ 0, 0, 0 ], "axis": "y", "angle": 0, "rescale": false },
+            "shade": false,
+            "faces": {
+                "west": { "uv": [ 0, 0, 16, 8 ], "texture": "#frond" },
+                "east": { "uv": [ 16, 0, 0, 8 ], "texture": "#frond" }
+            }
+        }
+ 
+ 
+ 
+ ]
 }

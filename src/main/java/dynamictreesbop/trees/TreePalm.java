@@ -2,8 +2,12 @@ package dynamictreesbop.trees;
 
 import java.util.List;
 
+import com.ferreusveritas.dynamictrees.api.TreeHelper;
+import com.ferreusveritas.dynamictrees.api.network.MapSignal;
+import com.ferreusveritas.dynamictrees.blocks.BlockBranch;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSapling;
 import com.ferreusveritas.dynamictrees.systems.GrowSignal;
+import com.ferreusveritas.dynamictrees.systems.nodemappers.NodeFindEnds;
 import com.ferreusveritas.dynamictrees.trees.DynamicTree;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.util.CompatHelper;
@@ -30,7 +34,7 @@ public class TreePalm extends DynamicTree {
 		SpeciesPalm(DynamicTree treeFamily) {
 			super(treeFamily.getName(), treeFamily, ModContent.palmLeavesProperties);
 			
-			setBasicGrowingParameters(0.2f, 8.0f, 4, 4, 0.9f);
+			setBasicGrowingParameters(0.2f, 6.0f, 4, 4, 0.9f);
 			
 			setDynamicSapling(new BlockDynamicSapling("palmsapling").getDefaultState());
 			
@@ -79,12 +83,28 @@ public class TreePalm extends DynamicTree {
 			long day = world.getTotalWorldTime() / 24000L;
 			int month = (int)day / 30;//Change the hashs every in-game month
 			
-			return super.getEnergy(world, pos) * biomeSuitability(world, pos) + (coordHashCode(pos.up(month)) % 6);//Vary the height energy by a psuedorandom hash function
+			return super.getEnergy(world, pos) * biomeSuitability(world, pos) + (coordHashCode(pos.up(month)) % 3);//Vary the height energy by a psuedorandom hash function
 		}
 		
 		public int coordHashCode(BlockPos pos) {
 			int hash = (pos.getX() * 9973 ^ pos.getY() * 8287 ^ pos.getZ() * 9721) >> 1;
 			return hash & 0xFFFF;
+		}
+		
+		@Override
+		public boolean postGrow(World world, BlockPos rootPos, BlockPos treePos, int soilLife, boolean rapid) {
+		
+			BlockBranch branch = TreeHelper.getBranch(world, treePos);
+			NodeFindEnds endFinder = new NodeFindEnds();
+			MapSignal signal = new MapSignal(endFinder);
+			branch.analyse(world, treePos, EnumFacing.DOWN, signal);
+			List<BlockPos> endPoints = endFinder.getEnds();
+			
+			for(BlockPos endPoint: endPoints) {
+				TreeHelper.ageVolume(world, endPoint, 1, 2, null, 3);
+			}
+			
+			return super.postGrow(world, rootPos, treePos, soilLife, rapid);
 		}
 		
 		@Override
@@ -122,5 +142,6 @@ public class TreePalm extends DynamicTree {
 		blockList.add(getCommonSpecies().getDynamicSapling().getBlock());
 		return super.getRegisterableBlocks(blockList);
 	}
-
+	
+	
 }

@@ -3,70 +3,110 @@ package dynamictreesbop.models;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.common.primitives.Ints;
+
+import dynamictreesbop.ModContent;
 import dynamictreesbop.blocks.BlockDynamicLeavesPalm;
-import net.minecraft.block.BlockColored;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.BlockModelShapes;
-import net.minecraft.client.renderer.BlockRendererDispatcher;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.block.model.IBakedModel;
-import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.block.model.ItemOverrideList;
-import net.minecraft.client.renderer.block.model.ModelBlock;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.EnumDyeColor;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.property.IExtendedBlockState;
 
 public class PalmLeavesCompositeModel implements IBakedModel {
 	
-	protected IBakedModel rootsModel;
+	protected IBakedModel baseModel;
+	
+	protected List<BakedQuad> cachedFrondQuads[] = new List[8];//8 = Number of surrounding blocks
 	
 	public PalmLeavesCompositeModel(IBakedModel rootsModel) {
-		this.rootsModel = rootsModel;
+		this.baseModel = rootsModel;
+		bakeFronds();
 	}
 	
+	private void bakeFronds() {
+		IBlockState state = ModContent.palmLeavesProperties.getDynamicLeavesState(1);
+		
+		for(BlockDynamicLeavesPalm.Surround surr: BlockDynamicLeavesPalm.Surround.values()) {
+				
+				List<BakedQuad> quadsForSurr = cachedFrondQuads[surr.ordinal()] = new ArrayList<BakedQuad>(0);
+				List<BakedQuad> baseQuads = baseModel.getQuads(state, null, 0);
+				
+				for(BakedQuad bq : baseQuads) {					
+					BlockVertexData vertexData[] = new BlockVertexData[4];
+					
+					for(int v = 0; v < 4; v++) {
+						vertexData[v] = new BlockVertexData(bq, v);
+						
+						//Nab the vertex;
+						float x = vertexData[v].x;
+						float z = vertexData[v].z;
+						float y = vertexData[v].y;
+						
+						//Rotate the vertex around x0,z0
+						double len = Math.sqrt(x * x + z * z);
+						double angle = Math.atan2(x, z);
+						angle += Math.PI * 0.25 * surr.ordinal();
+						x = (float)(Math.sin(angle) * len);
+						z = (float)(Math.cos(angle) * len);
+						
+						//Move to center of block
+						x += 0.5f;
+						z += 0.5f;
+						y -= 0.25f;
+						
+						//Move to center of palm crown
+						x += surr.getOffset().getX();
+						z += surr.getOffset().getZ();
+												
+						vertexData[v].x = x;
+						vertexData[v].z = z;
+						vertexData[v].y = y;
+					}
+					
+					BakedQuad movedQuad = new BakedQuad(
+							Ints.concat(vertexData[0].toInts(), vertexData[1].toInts(), vertexData[2].toInts(), vertexData[3].toInts()),
+							bq.getTintIndex(),
+							bq.getFace(),
+							bq.getSprite(),
+							bq.shouldApplyDiffuseLighting(),
+							bq.getFormat()
+							);
+					
+					quadsForSurr.add(movedQuad);
+				}
+			}
+
+	}
+
 	@Override
 	public List<BakedQuad> getQuads(IBlockState state, EnumFacing side, long rand) {		
-		
-		boolean connections[] = new boolean[8];
-		
-		if (state != null && state.getBlock() instanceof BlockDynamicLeavesPalm && state instanceof IExtendedBlockState) {			
-			IExtendedBlockState extendedBlockState = (IExtendedBlockState)state;
-
-			for(int i = 0; i < 8; i++) {
-				Boolean b = extendedBlockState.getValue(BlockDynamicLeavesPalm.CONNECTIONS[i]);
-				connections[i] = b != null ? b.booleanValue() : false;
-			}
-			
-		} else {
-			return new ArrayList<BakedQuad>();
-		}
-			
-		Minecraft mc = Minecraft.getMinecraft();
-		BlockRendererDispatcher blockRendererDispatcher = mc.getBlockRendererDispatcher();
-		BlockModelShapes blockModelShapes = blockRendererDispatcher.getBlockModelShapes();
-		
 		List<BakedQuad> quads = new ArrayList<BakedQuad>();
-		
-		ModelBlock modelBlock = new ModelBlock(null, null, null, false, false, ItemCameraTransforms.DEFAULT, null);
 
-		
-		int i = 0;
-		for(boolean conn : connections) {
-			//IBlockState mimicState = Blocks.WOOL.getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.values()[i]);
-			//IBakedModel mimicModel = blockModelShapes.getModelForState(mimicState);
-			//quads.addAll(mimicModel.getQuads(mimicState, side, rand));
-			
-			//SimpleBakedModel.Builder builder = new SimpleBakedModel.Builder(modelBlock, ItemOverrideList.NONE).setTexture(bark);
+		if(side == null) {
+			boolean connections[] = new boolean[BlockDynamicLeavesPalm.Surround.values().length];
 
-			
-			i++;
+			if (state != null && state.getBlock() instanceof BlockDynamicLeavesPalm && state instanceof IExtendedBlockState) {			
+				IExtendedBlockState extendedBlockState = (IExtendedBlockState)state;
+
+				for(int i = 0; i < BlockDynamicLeavesPalm.Surround.values().length; i++) {
+					Boolean b = extendedBlockState.getValue(BlockDynamicLeavesPalm.CONNECTIONS[i]);
+					connections[i] = b != null ? b.booleanValue() : false;
+				}
+
+			} else {
+				return new ArrayList<BakedQuad>();
+			}
+
+			for(BlockDynamicLeavesPalm.Surround surr: BlockDynamicLeavesPalm.Surround.values()) {
+				if( connections[surr.ordinal()] ) {
+					quads.addAll(cachedFrondQuads[surr.ordinal()]);
+				}
+			}
 		}
-		
-		quads.addAll(rootsModel.getQuads(state, side, rand));
+
 		return quads;
 	}
 
@@ -87,7 +127,7 @@ public class PalmLeavesCompositeModel implements IBakedModel {
 
 	@Override
 	public TextureAtlasSprite getParticleTexture() {
-		return rootsModel.getParticleTexture();
+		return baseModel.getParticleTexture();
 	}
 
 	@Override
@@ -95,4 +135,49 @@ public class PalmLeavesCompositeModel implements IBakedModel {
 		return null;
 	}
 
+	
+	public class BlockVertexData {
+		
+		public float x;
+		public float y;
+		public float z;
+		public int color;
+		public float u;
+		public float v;
+		
+		/*
+		 * Default format of the data in IBakedModel
+         * DEFAULT_BAKED_FORMAT.addElement(new VertexFormatElement(0, EnumType.FLOAT, EnumUsage.POSITION, 3));
+         * DEFAULT_BAKED_FORMAT.addElement(new VertexFormatElement(0, EnumType.UBYTE, EnumUsage.COLOR,    4));
+         * DEFAULT_BAKED_FORMAT.addElement(new VertexFormatElement(0, EnumType.FLOAT, EnumUsage.UV,       2));
+         * DEFAULT_BAKED_FORMAT.addElement(new VertexFormatElement(0, EnumType.BYTE,  EnumUsage.PADDING,  4));
+        */
+
+		public BlockVertexData(BakedQuad quad, int vIndex) {
+			this(quad.getVertexData(), vIndex);
+		}
+		
+		public BlockVertexData(int data[], int vIndex) {
+			vIndex *= 7;
+			x = Float.intBitsToFloat(data[vIndex++]);
+			y = Float.intBitsToFloat(data[vIndex++]);
+			z = Float.intBitsToFloat(data[vIndex++]);
+			color = data[vIndex++];
+			u = Float.intBitsToFloat(data[vIndex++]);
+			v = Float.intBitsToFloat(data[vIndex++]);
+		}
+		
+		public int[] toInts() {
+			return new int[] {
+				Float.floatToRawIntBits(x),
+				Float.floatToRawIntBits(y),
+				Float.floatToRawIntBits(z),
+				color,
+				Float.floatToRawIntBits(u),
+				Float.floatToRawIntBits(v),
+				0,
+			};
+		}
+		
+	}
 }

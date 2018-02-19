@@ -21,13 +21,14 @@ public class BlockDynamicLeavesPalm extends BlockDynamicLeaves {
 
 	public enum Surround {
 		N ("n" , EnumFacing.NORTH),
-		NE("ne", EnumFacing.NORTH, EnumFacing.EAST),
-		E ("e" , EnumFacing.EAST),
-		SE("se", EnumFacing.SOUTH, EnumFacing.WEST),
-		S ("s" , EnumFacing.SOUTH),
-		SW("sw", EnumFacing.SOUTH, EnumFacing.WEST),
+		NW("nw", EnumFacing.NORTH, EnumFacing.WEST),
 		W ("w" , EnumFacing.WEST),
-		NW("nw", EnumFacing.NORTH, EnumFacing.WEST);
+		SW("sw", EnumFacing.SOUTH, EnumFacing.WEST),
+		S ("s" , EnumFacing.SOUTH),
+		SE("se", EnumFacing.SOUTH, EnumFacing.EAST),
+		E ("e" , EnumFacing.EAST),		
+		NE("ne", EnumFacing.NORTH, EnumFacing.EAST);
+
 		
 		final private String name;
 		final private Vec3i offset;
