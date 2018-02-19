@@ -19,7 +19,7 @@ import net.minecraft.world.biome.Biome;
 
 public class BiomeSpeciesSelector implements IBiomeSpeciesSelector {
 
-	Species swamp, apple, jungle, spruce, birch, oak, acacia, oakFloweringVine, oakConifer, megaOakConifer, darkOakConifer, darkOakDyingConifer, oakTwiglet, poplar, darkPoplar, yellowAutumn, orangeAutumn, magic, floweringOak, umbran, umbranConifer, umbranConiferMega, oakDying, decayed, fir, firSmall, pinkCherry, whiteCherry, maple, dead, jacaranda, willow, pine;
+	Species swamp, apple, jungle, spruce, birch, oak, acacia, oakFloweringVine, oakConifer, megaOakConifer, darkOakConifer, darkOakDyingConifer, oakTwiglet, poplar, darkPoplar, yellowAutumn, orangeAutumn, magic, floweringOak, umbran, umbranConifer, umbranConiferMega, oakDying, decayed, fir, firSmall, pinkCherry, whiteCherry, maple, dead, jacaranda, willow, pine, palm;
 	
 	HashMap<Integer, DecisionProvider> fastTreeLookup = new HashMap<Integer, DecisionProvider>();
 	
@@ -76,6 +76,7 @@ public class BiomeSpeciesSelector implements IBiomeSpeciesSelector {
 			else if (biome == BOPBiomes.wetland.get()) select = new RandomDecision(rand).addSpecies(spruce, 5).addSpecies(willow, 3);
 			else if (biome == BOPBiomes.woodland.get()) select = new StaticDecision(new Decision(oak));
 			
+			else if (biome == Biomes.BEACH) select = new StaticDecision(new Decision(palm));
 			else if (biome == Biomes.FOREST || biome == Biomes.FOREST_HILLS) select = new RandomDecision(world.rand).addSpecies(oak, 8).addSpecies(birch, 2).addSpecies(floweringOak, 1);
 			else if (biome == Biomes.EXTREME_HILLS || biome == Biomes.EXTREME_HILLS_WITH_TREES) select = new RandomDecision(world.rand).addSpecies(spruce, 3).addSpecies(jacaranda, 1);
 			else if (biome == Biomes.SWAMPLAND) select = new RandomDecision(world.rand).addSpecies(swamp, 5).addSpecies(willow, 1);
@@ -125,6 +126,8 @@ public class BiomeSpeciesSelector implements IBiomeSpeciesSelector {
 		
 		floweringOak = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "floweringoak"));
 		decayed = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "decayed"));
+		
+		palm = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "palm"));
 	}
 	
 }
