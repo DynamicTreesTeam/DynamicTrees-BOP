@@ -12,12 +12,8 @@ import com.ferreusveritas.dynamictrees.trees.Species;
 
 import biomesoplenty.api.biome.BOPBiomes;
 import biomesoplenty.api.block.BOPBlocks;
-import biomesoplenty.api.enums.BOPTrees;
-import biomesoplenty.api.item.BOPItems;
-import biomesoplenty.common.block.BlockBOPLeaves;
 import dynamictreesbop.DynamicTreesBOP;
 import dynamictreesbop.ModContent;
-import dynamictreesbop.dropcreators.DropCreatorFruit;
 import dynamictreesbop.dropcreators.DropCreatorTwigletLogs;
 import dynamictreesbop.featuregen.FeatureGenBush;
 import net.minecraft.init.Blocks;
@@ -27,7 +23,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
-import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
 
 public class SpeciesOakTwiglet extends Species {

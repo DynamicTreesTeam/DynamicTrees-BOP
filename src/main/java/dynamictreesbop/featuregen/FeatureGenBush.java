@@ -3,7 +3,6 @@ package dynamictreesbop.featuregen;
 import java.util.List;
 
 import com.ferreusveritas.dynamictrees.api.IGenFeature;
-import com.ferreusveritas.dynamictrees.cells.LeafClusters;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.util.CoordUtils;
 import com.ferreusveritas.dynamictrees.util.MathHelper;
