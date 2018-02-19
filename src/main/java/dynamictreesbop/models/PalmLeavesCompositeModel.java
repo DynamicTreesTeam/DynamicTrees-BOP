@@ -37,52 +37,69 @@ public class PalmLeavesCompositeModel implements IBakedModel {
 				for(BakedQuad bq : baseQuads) {					
 					BlockVertexData vertexData[] = new BlockVertexData[4];
 					
-					for(int v = 0; v < 4; v++) {
-						vertexData[v] = new BlockVertexData(bq, v);
-						
-						//Nab the vertex;
-						float x = vertexData[v].x;
-						float z = vertexData[v].z;
-						float y = vertexData[v].y;
-						
-						//Rotate the vertex around x0,z0
-						double len = Math.sqrt(x * x + z * z);
-						double angle = Math.atan2(x, z);
-						angle += Math.PI * 0.25 * surr.ordinal();
-						x = (float)(Math.sin(angle) * len);
-						z = (float)(Math.cos(angle) * len);
-						
-						//Move to center of block
-						x += 0.5f;
-						z += 0.5f;
-						y -= 0.25f;
-						
-						//Move to center of palm crown
-						x += surr.getOffset().getX();
-						z += surr.getOffset().getZ();
-												
-						vertexData[v].x = x;
-						vertexData[v].z = z;
-						vertexData[v].y = y;
+					for(int pass = 0; pass < 2; pass++) {
+						for(int v = 0; v < 4; v++) {
+							vertexData[v] = new BlockVertexData(bq, v);
+
+							//Nab the vertex;
+							float x = vertexData[v].x;
+							float z = vertexData[v].z;
+							float y = vertexData[v].y;
+
+							double len;
+							double angle;
+
+
+							//Rotate the vertex around x0,z0
+							len = Math.sqrt(y * y + z * z);
+							angle = Math.atan2(y, z);
+							angle += Math.PI * (pass == 1 ? 0.15 : -0.125);
+							y = (float)(Math.sin(angle) * len);
+							z = (float)(Math.cos(angle) * len);
+
+
+							//Rotate the vertex around x0,z0
+							len = Math.sqrt(x * x + z * z);
+							angle = Math.atan2(x, z);
+							angle += Math.PI * 0.25 * surr.ordinal() + (Math.PI * (pass == 1 ? 0.125 : 0.005));
+							x = (float)(Math.sin(angle) * len);
+							z = (float)(Math.cos(angle) * len);
+
+							//Move to center of block
+							x += 0.5f;
+							z += 0.5f;
+							y -= 0.25f;
+
+							//Move to center of palm crown
+							x += surr.getOffset().getX();
+							z += surr.getOffset().getZ();
+
+							vertexData[v].x = x;
+							vertexData[v].z = z;
+							vertexData[v].y = y;
+						}
+
+
+						BakedQuad movedQuad = new BakedQuad(
+								Ints.concat(vertexData[0].toInts(), vertexData[1].toInts(), vertexData[2].toInts(), vertexData[3].toInts()),
+								bq.getTintIndex(),
+								bq.getFace(),
+								bq.getSprite(),
+								bq.shouldApplyDiffuseLighting(),
+								bq.getFormat()
+								);
+
+						quadsForSurr.add(movedQuad);
 					}
-					
-					BakedQuad movedQuad = new BakedQuad(
-							Ints.concat(vertexData[0].toInts(), vertexData[1].toInts(), vertexData[2].toInts(), vertexData[3].toInts()),
-							bq.getTintIndex(),
-							bq.getFace(),
-							bq.getSprite(),
-							bq.shouldApplyDiffuseLighting(),
-							bq.getFormat()
-							);
-					
-					quadsForSurr.add(movedQuad);
 				}
 			}
 
 	}
 
 	@Override
-	public List<BakedQuad> getQuads(IBlockState state, EnumFacing side, long rand) {		
+	public List<BakedQuad> getQuads(IBlockState state, EnumFacing side, long rand) {
+		bakeFronds();
+		
 		List<BakedQuad> quads = new ArrayList<BakedQuad>();
 
 		if(side == null) {
