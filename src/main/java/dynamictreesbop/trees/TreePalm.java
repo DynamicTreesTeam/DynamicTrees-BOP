@@ -4,10 +4,12 @@ import java.util.List;
 import java.util.Random;
 
 import com.ferreusveritas.dynamictrees.ModConstants;
+import com.ferreusveritas.dynamictrees.ModBlocks;
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
 import com.ferreusveritas.dynamictrees.api.network.MapSignal;
 import com.ferreusveritas.dynamictrees.blocks.BlockBranch;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSapling;
+import com.ferreusveritas.dynamictrees.blocks.BlockRooty;
 import com.ferreusveritas.dynamictrees.systems.GrowSignal;
 import com.ferreusveritas.dynamictrees.systems.dropcreators.DropCreatorLogs;
 import com.ferreusveritas.dynamictrees.systems.nodemappers.NodeFindEnds;
@@ -21,6 +23,7 @@ import biomesoplenty.common.block.BlockBOPLog;
 import dynamictreesbop.DynamicTreesBOP;
 import dynamictreesbop.ModContent;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockDirt;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -38,13 +41,14 @@ public class TreePalm extends DynamicTree {
 		SpeciesPalm(DynamicTree treeFamily) {
 			super(treeFamily.getName(), treeFamily, ModContent.palmLeavesProperties);
 			
-			setBasicGrowingParameters(0.2f, 6.0f, 4, 4, 0.9f);
+			setBasicGrowingParameters(0.4f, 7.0f, 4, 4, 0.9f);
 			
 			setDynamicSapling(new BlockDynamicSapling("palmsapling").getDefaultState());
 			
 			envFactor(Type.COLD, 0.25f);
 			
-			addAcceptableSoil(Blocks.SAND, BOPBlocks.grass, BOPBlocks.dirt, BOPBlocks.white_sand);
+			clearAcceptableSoils();
+			addAcceptableSoil(Blocks.SAND, BOPBlocks.white_sand);
 			
 			generateSeed();
 			
@@ -53,11 +57,22 @@ public class TreePalm extends DynamicTree {
 			addDropCreator(new DropCreatorLogs() {
 				@Override
 				public List<ItemStack> getLogsDrop(World world, Species species, BlockPos breakPos, Random random, List<ItemStack> dropList, int volume) {
-					dropList.add(species.getTree().getPrimitiveLogItemStack(volume / 512)); // A log contains 4096 voxels of wood material(16x16x16 pixels) Drop vanilla logs or whatever
-					dropList.add(species.getTree().getStick((volume % 512) / 64)); // A stick contains 512 voxels of wood (1/8th log) (1 log = 4 planks, 2 planks = 4 sticks) Give him the stick!
+					dropList.add(species.getTree().getPrimitiveLogItemStack(volume / 768)); // A log contains 4096 voxels of wood material(16x16x16 pixels) Drop vanilla logs or whatever
+					dropList.add(species.getTree().getStick((volume % 768) / 96)); // A stick contains 512 voxels of wood (1/8th log) (1 log = 4 planks, 2 planks = 4 sticks) Give him the stick!
 					return dropList;
 				}
 			});
+		}
+		
+		@Override
+		public BlockRooty getRootyBlock() {
+			return ModBlocks.blockRootySand;
+		}
+
+		//Let the worldgen plant on dirt blocks.
+		@Override
+		public boolean isAcceptableSoilForWorldgen(World world, BlockPos pos, IBlockState soilBlockState) {
+			return soilBlockState.getBlock() instanceof BlockDirt ? true : super.isAcceptableSoilForWorldgen(world, pos, soilBlockState);
 		}
 		
 		@Override
@@ -105,7 +120,8 @@ public class TreePalm extends DynamicTree {
 		
 		@Override
 		public boolean postGrow(World world, BlockPos rootPos, BlockPos treePos, int soilLife, boolean rapid) {
-			BlockBranch branch = TreeHelper.getBranch(world, treePos);
+			IBlockState trunkBlockState = world.getBlockState(treePos); 
+			BlockBranch branch = TreeHelper.getBranch(trunkBlockState);
 			NodeFindEnds endFinder = new NodeFindEnds();
 			MapSignal signal = new MapSignal(endFinder);
 			branch.analyse(world, treePos, EnumFacing.DOWN, signal);
@@ -113,6 +129,12 @@ public class TreePalm extends DynamicTree {
 			
 			for (BlockPos endPoint: endPoints) {
 				TreeHelper.ageVolume(world, endPoint, 1, 2, null, 3);
+			}
+			
+			// Make sure the botton block is always just a little thicker that the block above it.
+			int radius = branch.getRadius(world, treePos.up());
+			if (radius != 0) {
+				branch.setRadius(world, treePos, radius + 1);
 			}
 			
 			return super.postGrow(world, rootPos, treePos, soilLife, rapid);
