@@ -35,7 +35,7 @@ public class PalmLeavesCompositeModel implements IBakedModel {
 			for (BakedQuad bq : baseQuads) {
 				BlockVertexData vertexData[] = new BlockVertexData[4];
 
-				for (int pass = 0; pass < 2; pass++) {
+				for (int pass = 0; pass < 3; pass++) {
 					for (int half = 0; half < 2; half++) {
 						for (int v = 0; v < 4; v++) {
 							vertexData[v] = new BlockVertexData(bq, v);
@@ -50,7 +50,6 @@ public class PalmLeavesCompositeModel implements IBakedModel {
 							
 							// Rotate the vertex around x0,y=0.75
 							// Rotate on z axis
-							//len = Math.sqrt(x * x + (0.75 - y) * (0.75 - y));
 							len = 0.75 - y;
 							angle = Math.atan2(x, y);
 							angle += Math.PI * (half == 1 ? 0.8 : -0.8);
@@ -61,7 +60,7 @@ public class PalmLeavesCompositeModel implements IBakedModel {
 							// Rotate on x axis
 							len = Math.sqrt(y * y + z * z);
 							angle = Math.atan2(y, z);
-							angle += Math.PI * (pass == 1 ? 0.10 : -0.125);
+							angle += Math.PI * (pass == 2 ? 0.15 : pass == 1 ? -0.05 : -0.25);
 							y = (float) (Math.sin(angle) * len);
 							z = (float) (Math.cos(angle) * len);
 	
@@ -69,7 +68,7 @@ public class PalmLeavesCompositeModel implements IBakedModel {
 							// Rotate on y axis
 							len = Math.sqrt(x * x + z * z);
 							angle = Math.atan2(x, z);
-							angle += Math.PI * 0.25 * surr.ordinal() + (Math.PI * (pass == 1 ? 0.125 : 0.005));
+							angle += Math.PI * 0.25 * surr.ordinal() + (Math.PI * (pass == 1 ? 0.125 : pass == 2 ? 0.08 : 0.005));
 							x = (float) (Math.sin(angle) * len);
 							z = (float) (Math.cos(angle) * len);
 	

@@ -29,10 +29,7 @@ public class DecorateEventHandler {
 					&& biome != BOPBiomes.bamboo_forest.get()
 					&& biome != BOPBiomes.mangrove.get()
 					&& biome != BOPBiomes.redwood_forest.get()
-					&& biome != BOPBiomes.overgrown_cliffs.get()
 					&& biome != BOPBiomes.undergarden.get()
-					&& biome != BOPBiomes.tropical_rainforest.get()
-					&& biome != BOPBiomes.brushland.get()
 			) {
 				event.setResult(Result.DENY);
 			}
