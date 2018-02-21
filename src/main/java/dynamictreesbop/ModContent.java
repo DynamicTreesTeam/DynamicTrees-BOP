@@ -42,6 +42,7 @@ import dynamictreesbop.trees.species.SpeciesFloweringOak;
 import dynamictreesbop.trees.species.SpeciesJungleTwiglet;
 import dynamictreesbop.trees.species.SpeciesMaple;
 import dynamictreesbop.trees.species.SpeciesMegaOakConifer;
+import dynamictreesbop.trees.species.SpeciesOakBush;
 import dynamictreesbop.trees.species.SpeciesOakConifer;
 import dynamictreesbop.trees.species.SpeciesOakFloweringVine;
 import dynamictreesbop.trees.species.SpeciesOakTwiglet;
@@ -460,6 +461,7 @@ public class ModContent {
 		
 		// Register bush dummies
 		Species.REGISTRY.register(new SpeciesAcaciaBush());
+		Species.REGISTRY.register(new SpeciesOakBush());
 		
 		// Register new tree types
 		DynamicTree magicTree = new TreeMagic();

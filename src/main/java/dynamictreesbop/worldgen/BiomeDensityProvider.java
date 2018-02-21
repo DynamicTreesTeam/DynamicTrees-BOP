@@ -22,8 +22,14 @@ public class BiomeDensityProvider implements IBiomeDensityProvider {
 		if (biome == BOPBiomes.lush_desert.get()) return rand.nextFloat() < 0.4f ? EnumChance.OK : EnumChance.CANCEL;
 		if (biome == BOPBiomes.lush_swamp.get()) return EnumChance.OK;
 		if (biome == BOPBiomes.meadow.get()) return rand.nextFloat() < 0.3f ? EnumChance.OK : EnumChance.CANCEL;
-		if (biome == BOPBiomes.oasis.get()) return EnumChance.OK;
+		if (biome == BOPBiomes.oasis.get()) {
+			if (species.getRegistryName().getResourcePath().equals("palm")) {
+				return rand.nextFloat() < 0.5f ? EnumChance.OK : EnumChance.CANCEL;
+			}
+			return EnumChance.OK;
+		}
 		if (biome == BOPBiomes.outback.get()) return EnumChance.OK;
+		if (biome == BOPBiomes.overgrown_cliffs.get()) return EnumChance.OK;
 		if (biome == BOPBiomes.prairie.get()) return rand.nextFloat() < 0.2f ? EnumChance.OK : EnumChance.CANCEL;
 		if (biome == BOPBiomes.rainforest.get()) return EnumChance.OK;
 		if (biome == BOPBiomes.tropical_island.get()) return EnumChance.OK;
@@ -91,6 +97,8 @@ public class BiomeDensityProvider implements IBiomeDensityProvider {
 		
 		if (biome == BOPBiomes.outback.get()) return noiseDensity * 0.45;
 		
+		if (biome == BOPBiomes.overgrown_cliffs.get()) return (noiseDensity * 0.75) + 0.25;
+		
 		if (biome == BOPBiomes.prairie.get()) return noiseDensity * 0.1;
 		
 		if (biome == BOPBiomes.rainforest.get()) return noiseDensity;
@@ -107,7 +115,7 @@ public class BiomeDensityProvider implements IBiomeDensityProvider {
 		
 		if (biome == BOPBiomes.tropical_island.get()) return (noiseDensity * 0.75) + 0.25;
 		
-		if (biome == BOPBiomes.tropical_rainforest.get()) return noiseDensity;
+		if (biome == BOPBiomes.tropical_rainforest.get()) return (noiseDensity * 0.5) + 0.5;
 		
 		if (biome == BOPBiomes.wasteland.get()) return noiseDensity * 0.03;
 		

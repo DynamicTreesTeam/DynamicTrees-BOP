@@ -41,10 +41,6 @@ public class SpeciesAcaciaBrush extends Species {
 		
 		addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
 		
-		setSeedStack(treeFamily.getCommonSpecies().getSeedStack(1));
-		setDynamicSapling(treeFamily.getCommonSpecies().getDynamicSapling());
-		treeFamily.setCommonSpecies(this);
-		
 		setupStandardSeedDropping();
 		remDropCreator(new ResourceLocation(ModConstants.MODID, "logs"));
 		addDropCreator(new DropCreatorLogs() {
@@ -75,6 +71,16 @@ public class SpeciesAcaciaBrush extends Species {
 			signal.energy *= 0.5f;
 		}
 		return newDir;
+	}
+	
+	@Override
+	public ItemStack getSeedStack(int qty) {
+		return getTree().getCommonSpecies().getSeedStack(qty);
+	}
+	
+	@Override
+	public Seed getSeed() {
+		return getTree().getCommonSpecies().getSeed();
 	}
 
 }

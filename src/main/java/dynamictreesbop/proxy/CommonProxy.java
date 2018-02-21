@@ -90,6 +90,7 @@ public class CommonProxy {
 			removeTreeGen(BOPBiomes.ominous_woods);
 			removeTreeGen(BOPBiomes.orchard);
 			removeTreeGen(BOPBiomes.outback);
+			removeTreeGen(BOPBiomes.overgrown_cliffs);
 			removeTreeGen(BOPBiomes.prairie);
 			removeTreeGen(BOPBiomes.rainforest);
 			removeTreeGen(BOPBiomes.seasonal_forest);
@@ -98,7 +99,7 @@ public class CommonProxy {
 			removeTreeGen(BOPBiomes.snowy_forest);
 			removeTreeGen(BOPBiomes.temperate_rainforest);
 			removeTreeGen(BOPBiomes.tropical_island);
-			removeTreeGen(BOPBiomes.tropical_rainforest, "jungle"); // still has mahogany
+			removeTreeGen(BOPBiomes.tropical_rainforest);
 			//removeTreeGen(BOPBiomes.undergarden);
 			removeTreeGen(BOPBiomes.wasteland);
 			removeTreeGen(BOPBiomes.wetland);

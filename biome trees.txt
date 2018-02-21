@@ -1,9 +1,5 @@
 Eucalyptus Forest: oak_bush
 Eucalyptus Forest: tall_eucalyptus
-Tropical Rainforest: mahogany
-Overgrown Cliffs: oak_bush
-Overgrown Cliffs: mahogany
-Overgrown Cliffs: jungle_twiglet (tiny)
 Mangrove: mangrove
 Redwood Forest: redwood
 Redwood Forest: redwood_thin

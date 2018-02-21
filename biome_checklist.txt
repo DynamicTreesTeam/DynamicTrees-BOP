@@ -23,6 +23,7 @@ oasis
 ominous_woods
 orchard
 outback
+overgrown_cliffs
 prairie
 rainforest
 seasonal_forest
@@ -31,6 +32,7 @@ snowy_coniferous_forest
 snowy_forest
 temperate_rainforest
 tropical_island
+tropical_rainforest
 wetland
 wasteland
 woodland
