@@ -1,22 +1,19 @@
 {
- "textures": {
- "particle": "dynamictreesbop:blocks/frond",
-  "frond": "dynamictreesbop:blocks/frond"
+	"textures": {
+		"particle": "dynamictreesbop:blocks/frond",
+		"frond": "dynamictreesbop:blocks/frond"
  },
  "ambientocclusion": false,
  "elements": [
- 
-         {   "from": [ 0, 0, 0 ],
-            "to": [ 0, 16, 32 ],
-            "rotation": { "origin": [ 0, 0, 0 ], "axis": "y", "angle": 0, "rescale": false },
-            "shade": false,
-            "faces": {
-                "west": { "uv": [ 0, 0, 16, 8 ], "texture": "#frond", "tintindex": 0 },
-                "east": { "uv": [ 16, 0, 0, 8 ], "texture": "#frond", "tintindex": 0 }
-            }
-        }
- 
- 
- 
- ]
+		{
+			"from": [ 0, 0, 0 ],
+			"to": [ 0, 16, 32 ],
+			"rotation": { "origin": [ 0, 0, 0 ], "axis": "y", "angle": 0, "rescale": false },
+			"shade": false,
+			"faces": {
+				"west": { "uv": [ 0, 0, 16, 8 ], "texture": "#frond", "tintindex": 0 },
+				"east": { "uv": [ 16, 0, 0, 8 ], "texture": "#frond", "tintindex": 0 }
+			}
+		}
+	]
 }

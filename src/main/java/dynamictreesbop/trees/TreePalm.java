@@ -1,12 +1,15 @@
 package dynamictreesbop.trees;
 
 import java.util.List;
+import java.util.Random;
 
+import com.ferreusveritas.dynamictrees.ModConstants;
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
 import com.ferreusveritas.dynamictrees.api.network.MapSignal;
 import com.ferreusveritas.dynamictrees.blocks.BlockBranch;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSapling;
 import com.ferreusveritas.dynamictrees.systems.GrowSignal;
+import com.ferreusveritas.dynamictrees.systems.dropcreators.DropCreatorLogs;
 import com.ferreusveritas.dynamictrees.systems.nodemappers.NodeFindEnds;
 import com.ferreusveritas.dynamictrees.trees.DynamicTree;
 import com.ferreusveritas.dynamictrees.trees.Species;
@@ -20,6 +23,7 @@ import dynamictreesbop.ModContent;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -45,7 +49,15 @@ public class TreePalm extends DynamicTree {
 			generateSeed();
 			
 			setupStandardSeedDropping();
-			
+			remDropCreator(new ResourceLocation(ModConstants.MODID, "logs"));
+			addDropCreator(new DropCreatorLogs() {
+				@Override
+				public List<ItemStack> getLogsDrop(World world, Species species, BlockPos breakPos, Random random, List<ItemStack> dropList, int volume) {
+					dropList.add(species.getTree().getPrimitiveLogItemStack(volume / 512)); // A log contains 4096 voxels of wood material(16x16x16 pixels) Drop vanilla logs or whatever
+					dropList.add(species.getTree().getStick((volume % 512) / 64)); // A stick contains 512 voxels of wood (1/8th log) (1 log = 4 planks, 2 planks = 4 sticks) Give him the stick!
+					return dropList;
+				}
+			});
 		}
 		
 		@Override
@@ -57,11 +69,11 @@ public class TreePalm extends DynamicTree {
 		protected int[] customDirectionManipulation(World world, BlockPos pos, int radius, GrowSignal signal, int probMap[]) {
 			EnumFacing originDir = signal.dir.getOpposite();
 			
-			//Alter probability map for direction change
-			probMap[0] = 0;//Down is always disallowed for palm
+			// Alter probability map for direction change
+			probMap[0] = 0; // Down is always disallowed for palm
 			probMap[1] = 10;
-			probMap[2] = probMap[3] = probMap[4] = probMap[5] =  0;
-			probMap[originDir.ordinal()] = 0;//Disable the direction we came from
+			probMap[2] = probMap[3] = probMap[4] = probMap[5] =  0;	
+			probMap[originDir.ordinal()] = 0; // Disable the direction we came from
 			
 			return probMap;
 		}
@@ -75,15 +87,15 @@ public class TreePalm extends DynamicTree {
 			return newDir;
 		}
 		
-		//Palm trees are so similar that it makes sense to randomize their height for a little variation
-		//but we don't want the trees to always be the same height all the time when planted in the same location
-		//so we feed the hash function the in-game month
+		// Palm trees are so similar that it makes sense to randomize their height for a little variation
+		// but we don't want the trees to always be the same height all the time when planted in the same location
+		// so we feed the hash function the in-game month
 		@Override
 		public float getEnergy(World world, BlockPos pos) {
 			long day = world.getTotalWorldTime() / 24000L;
-			int month = (int)day / 30;//Change the hashs every in-game month
+			int month = (int) day / 30; // Change the hashs every in-game month
 			
-			return super.getEnergy(world, pos) * biomeSuitability(world, pos) + (coordHashCode(pos.up(month)) % 3);//Vary the height energy by a psuedorandom hash function
+			return super.getEnergy(world, pos) * biomeSuitability(world, pos) + (coordHashCode(pos.up(month)) % 3); // Vary the height energy by a psuedorandom hash function
 		}
 		
 		public int coordHashCode(BlockPos pos) {
@@ -93,14 +105,13 @@ public class TreePalm extends DynamicTree {
 		
 		@Override
 		public boolean postGrow(World world, BlockPos rootPos, BlockPos treePos, int soilLife, boolean rapid) {
-		
 			BlockBranch branch = TreeHelper.getBranch(world, treePos);
 			NodeFindEnds endFinder = new NodeFindEnds();
 			MapSignal signal = new MapSignal(endFinder);
 			branch.analyse(world, treePos, EnumFacing.DOWN, signal);
 			List<BlockPos> endPoints = endFinder.getEnds();
 			
-			for(BlockPos endPoint: endPoints) {
+			for (BlockPos endPoint: endPoints) {
 				TreeHelper.ageVolume(world, endPoint, 1, 2, null, 3);
 			}
 			
