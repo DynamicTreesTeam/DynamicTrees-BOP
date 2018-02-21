@@ -22,6 +22,7 @@ import dynamictreesbop.items.ItemMagicSeed;
 import dynamictreesbop.items.ItemMapleSeed;
 import dynamictreesbop.trees.TreeCherry;
 import dynamictreesbop.trees.TreeDead;
+import dynamictreesbop.trees.TreeEbony;
 import dynamictreesbop.trees.TreeFir;
 import dynamictreesbop.trees.TreeHellbark;
 import dynamictreesbop.trees.TreeJacaranda;
@@ -31,10 +32,14 @@ import dynamictreesbop.trees.TreePalm;
 import dynamictreesbop.trees.TreePine;
 import dynamictreesbop.trees.TreeUmbran;
 import dynamictreesbop.trees.TreeWillow;
+import dynamictreesbop.trees.species.SpeciesAcaciaBrush;
+import dynamictreesbop.trees.species.SpeciesAcaciaBush;
+import dynamictreesbop.trees.species.SpeciesAcaciaTwiglet;
 import dynamictreesbop.trees.species.SpeciesDarkOakConifer;
 import dynamictreesbop.trees.species.SpeciesDarkOakDyingConifer;
 import dynamictreesbop.trees.species.SpeciesDyingOak;
 import dynamictreesbop.trees.species.SpeciesFloweringOak;
+import dynamictreesbop.trees.species.SpeciesJungleTwiglet;
 import dynamictreesbop.trees.species.SpeciesMaple;
 import dynamictreesbop.trees.species.SpeciesMegaOakConifer;
 import dynamictreesbop.trees.species.SpeciesOakConifer;
@@ -84,9 +89,10 @@ public class ModContent {
 			dyingOakLeavesProperties, firLeavesProperties, pinkCherryLeavesProperties,
 			whiteCherryLeavesProperties, mapleLeavesProperties, deadLeavesProperties,
 			jacarandaLeavesProperties, willowLeavesProperties, hellbarkLeavesProperties,
-			pineLeavesProperties, mahoganyLeavesProperties,
+			pineLeavesProperties, mahoganyLeavesProperties, ebonyLeavesProperties,
 			oakConiferLeavesProperties, darkOakConiferLeavesProperties, darkOakDyingConiferLeavesProperties,
-			oakTwigletLeavesProperties, poplarLeavesProperties, darkPoplarLeavesProperties;
+			oakTwigletLeavesProperties, poplarLeavesProperties, darkPoplarLeavesProperties,
+			jungleTwigletLeavesProperties, acaciaTwigletLeavesProperties, acaciaBrushLeavesProperties;
 	
 	// array of leaves properties with auto-generated leaves
 	public static ILeavesProperties[] basicLeavesProperties;
@@ -111,8 +117,8 @@ public class ModContent {
 		DynamicTree oakTree = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "oak")).getTree();
 		//DynamicTree spruceTree = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "spruce")).getTree();
 		DynamicTree birchTree = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "birch")).getTree();
-		//DynamicTree jungleTree = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "jungle")).getTree();
-		//DynamicTree acaciaTree = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "acacia")).getTree();
+		DynamicTree jungleTree = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "jungle")).getTree();
+		DynamicTree acaciaTree = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "acacia")).getTree();
 		DynamicTree darkOakTree = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "darkoak")).getTree();
 		
 		// Add BOP dirt and grass as acceptable soils to species from base Dynamic Trees
@@ -124,6 +130,7 @@ public class ModContent {
 		TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "jungle")).addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
 		TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "acacia")).addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt, Blocks.HARDENED_CLAY);
 		TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "darkoak")).addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
+		TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "cactus")).addAcceptableSoil(BOPBlocks.white_sand);
 		
 		// Initialize Leaves Properties
 		floweringOakLeavesProperties = new LeavesProperties(
@@ -304,6 +311,15 @@ public class ModContent {
 						return 2;
 					}
 				};
+		ebonyLeavesProperties = new LeavesProperties(
+				BlockBOPLeaves.paging.getVariantState(BOPTrees.EBONY),
+				BlockBOPLeaves.paging.getVariantItem(BOPTrees.EBONY),
+				TreeRegistry.findCellKit(new ResourceLocation(DynamicTreesBOP.MODID, "sparse"))){
+					@Override
+					public int getSmotherLeavesMax() {
+						return 1;
+					}
+				};
 		
 		oakConiferLeavesProperties = new LeavesProperties(
 				Blocks.LEAVES.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.OAK),
@@ -339,7 +355,7 @@ public class ModContent {
 		poplarLeavesProperties = new LeavesProperties(
 				Blocks.LEAVES.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.BIRCH),
 				new ItemStack(Blocks.LEAVES, 1, BlockPlanks.EnumType.BIRCH.getMetadata()),
-				TreeRegistry.findCellKit(new ResourceLocation(DynamicTreesBOP.MODID, "poplar"))){
+				TreeRegistry.findCellKit(new ResourceLocation(DynamicTreesBOP.MODID, "poplar"))) {
 					@Override
 					public int getSmotherLeavesMax() {
 						return 9; // because poplars are so thin and made mostly of leaves, this has to be very high
@@ -357,7 +373,7 @@ public class ModContent {
 		darkPoplarLeavesProperties = new LeavesProperties(
 				Blocks.LEAVES2.getDefaultState().withProperty(BlockNewLeaf.VARIANT, BlockPlanks.EnumType.DARK_OAK),
 				new ItemStack(Blocks.LEAVES2, 1, BlockPlanks.EnumType.DARK_OAK.getMetadata()),
-				TreeRegistry.findCellKit(new ResourceLocation(DynamicTreesBOP.MODID, "poplar"))){
+				TreeRegistry.findCellKit(new ResourceLocation(DynamicTreesBOP.MODID, "poplar"))) {
 					@Override
 					public int getSmotherLeavesMax() {
 						return 9; // because poplars are so thin and made mostly of leaves, this has to be very high
@@ -367,6 +383,18 @@ public class ModContent {
 						return 13; // allow leaves to grow under the branches to make the tree more rounded
 					}
 				};
+		jungleTwigletLeavesProperties = new LeavesProperties(
+				Blocks.LEAVES.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.JUNGLE),
+				new ItemStack(Blocks.LEAVES, 1, BlockPlanks.EnumType.JUNGLE.getMetadata()),
+				TreeRegistry.findCellKit(new ResourceLocation(DynamicTreesBOP.MODID, "sparse")));
+		acaciaTwigletLeavesProperties = new LeavesProperties(
+				Blocks.LEAVES2.getDefaultState().withProperty(BlockNewLeaf.VARIANT, BlockPlanks.EnumType.ACACIA),
+				new ItemStack(Blocks.LEAVES2, 1, BlockPlanks.EnumType.ACACIA.getMetadata()),
+				TreeRegistry.findCellKit(new ResourceLocation(DynamicTreesBOP.MODID, "sparse")));
+		acaciaBrushLeavesProperties = new LeavesProperties(
+				Blocks.LEAVES2.getDefaultState().withProperty(BlockNewLeaf.VARIANT, BlockPlanks.EnumType.ACACIA),
+				new ItemStack(Blocks.LEAVES2, 1, BlockPlanks.EnumType.ACACIA.getMetadata()),
+				TreeRegistry.findCellKit(new ResourceLocation(DynamicTreesBOP.MODID, "brush")));
 		
 		// Add leaves properties that need leaves to be generated to an array
 		basicLeavesProperties = new ILeavesProperties[] {
@@ -388,7 +416,7 @@ public class ModContent {
 				willowLeavesProperties,
 				pineLeavesProperties,
 				mahoganyLeavesProperties,
-				LeavesProperties.NULLPROPERTIES, // placeholder for ebony
+				ebonyLeavesProperties,
 				LeavesProperties.NULLPROPERTIES, // placeholder for eucalyptus
 				oakConiferLeavesProperties,
 				darkOakConiferLeavesProperties,
@@ -396,6 +424,9 @@ public class ModContent {
 				oakTwigletLeavesProperties,
 				poplarLeavesProperties,
 				darkPoplarLeavesProperties,
+				jungleTwigletLeavesProperties,
+				acaciaTwigletLeavesProperties,
+				acaciaBrushLeavesProperties,
 		};
 		
 		// Generate leaves for leaves properties
@@ -423,6 +454,12 @@ public class ModContent {
 		Species.REGISTRY.register(new SpeciesOakTwiglet(oakTree));
 		Species.REGISTRY.register(new SpeciesPoplar(birchTree, "poplar", poplarLeavesProperties));
 		Species.REGISTRY.register(new SpeciesPoplar(darkOakTree, "darkpoplar", darkPoplarLeavesProperties));
+		Species.REGISTRY.register(new SpeciesJungleTwiglet(jungleTree));
+		Species.REGISTRY.register(new SpeciesAcaciaTwiglet(acaciaTree));
+		Species.REGISTRY.register(new SpeciesAcaciaBrush(acaciaTree));
+		
+		// Register bush dummies
+		Species.REGISTRY.register(new SpeciesAcaciaBush());
 		
 		// Register new tree types
 		DynamicTree magicTree = new TreeMagic();
@@ -436,8 +473,9 @@ public class ModContent {
 		DynamicTree pineTree = new TreePine();
 		DynamicTree palmTree = new TreePalm();
 		DynamicTree mahoganyTree = new TreeMahogany();
+		DynamicTree ebonyTree = new TreeEbony();
 		
-		Collections.addAll(trees, magicTree, umbranTree, firTree, cherryTree, deadTree, jacarandaTree, willowTree, hellbarkTree, pineTree, palmTree, mahoganyTree);
+		Collections.addAll(trees, magicTree, umbranTree, firTree, cherryTree, deadTree, jacarandaTree, willowTree, hellbarkTree, pineTree, palmTree, mahoganyTree, ebonyTree);
 		trees.forEach(tree -> tree.registerSpecies(Species.REGISTRY));
 		
 		// Register extra saplings
@@ -470,7 +508,7 @@ public class ModContent {
 		
 		ArrayList<Item> treeItems = new ArrayList<>();
 		trees.forEach(tree -> tree.getRegisterableItems(treeItems));
-		TreeHelper.getLeavesMapForModId(DynamicTreesBOP.MODID).forEach((key, block) -> registerItemBlock(registry, block));
+		//TreeHelper.getLeavesMapForModId(DynamicTreesBOP.MODID).forEach((key, block) -> registerItemBlock(registry, block));
 		registry.registerAll(treeItems.toArray(new Item[treeItems.size()]));
 	}
 	

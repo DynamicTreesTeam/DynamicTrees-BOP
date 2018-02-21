@@ -1,5 +1,6 @@
 package dynamictreesbop.proxy;
 
+import com.ferreusveritas.dynamictrees.ModConfigs;
 import com.ferreusveritas.dynamictrees.ModConstants;
 import com.ferreusveritas.dynamictrees.api.TreeRegistry;
 import com.ferreusveritas.dynamictrees.api.WorldGenRegistry;
@@ -63,10 +64,12 @@ public class CommonProxy {
 	}
 	
 	public void postInit() {
-		if(WorldGenRegistry.isWorldGenEnabled()) {
+		if (WorldGenRegistry.isWorldGenEnabled()) {
 			removeTreeGen(BOPBiomes.alps_foothills);
 			removeTreeGen(BOPBiomes.bayou);
+			removeTreeGen(BOPBiomes.bog);
 			removeTreeGen(BOPBiomes.boreal_forest);
+			removeTreeGen(BOPBiomes.brushland);
 			removeTreeGen(BOPBiomes.chaparral);
 			removeTreeGen(BOPBiomes.cherry_blossom_grove);
 			removeTreeGen(BOPBiomes.coniferous_forest);
@@ -83,8 +86,10 @@ public class CommonProxy {
 			removeTreeGen(BOPBiomes.mountain);
 			removeTreeGen(BOPBiomes.mountain_foothills);
 			removeTreeGen(BOPBiomes.mystic_grove);
+			removeTreeGen(BOPBiomes.oasis);
 			removeTreeGen(BOPBiomes.ominous_woods);
 			removeTreeGen(BOPBiomes.orchard);
+			removeTreeGen(BOPBiomes.outback);
 			removeTreeGen(BOPBiomes.prairie);
 			removeTreeGen(BOPBiomes.rainforest);
 			removeTreeGen(BOPBiomes.seasonal_forest);
@@ -92,10 +97,13 @@ public class CommonProxy {
 			removeTreeGen(BOPBiomes.snowy_coniferous_forest);
 			removeTreeGen(BOPBiomes.snowy_forest);
 			removeTreeGen(BOPBiomes.temperate_rainforest);
+			removeTreeGen(BOPBiomes.tropical_island);
 			removeTreeGen(BOPBiomes.tropical_rainforest, "jungle"); // still has mahogany
+			//removeTreeGen(BOPBiomes.undergarden);
 			removeTreeGen(BOPBiomes.wasteland);
 			removeTreeGen(BOPBiomes.wetland);
 			removeTreeGen(BOPBiomes.woodland);
+			removeTreeGen(BOPBiomes.xeric_shrubland);
 			
 			removeTreeGen(BOPBiomes.undergarden);
 			
@@ -104,6 +112,12 @@ public class CommonProxy {
 			removeTreeGen(BOPBiomes.extreme_hills_extension);
 			removeTreeGen(BOPBiomes.extreme_hills_plus_extension);
 			removeTreeGen(BOPBiomes.swampland_extension);
+			
+			if (!ModConfigs.vanillaCactusWorldGen) {
+				removeCactusGen(BOPBiomes.oasis);
+				removeCactusGen(BOPBiomes.outback);
+				removeCactusGen(BOPBiomes.xeric_shrubland);
+			}
 			
 			if (BOPBiomes.meadow.get() != null) ((BOPBiome) BOPBiomes.meadow.get()).addGenerator("bush", GeneratorStage.TREE, (new GeneratorBush.Builder()).amountPerChunk(1).maxHeight(2).log(BlockPlanks.EnumType.SPRUCE).leaves(BlockPlanks.EnumType.SPRUCE).create());
 		}
@@ -125,6 +139,11 @@ public class CommonProxy {
 	private void removeTreeGen(Optional<Biome> optionalBiome) {
 		Biome biome = optionalBiome.get();
 		if (biome != null && biome instanceof BOPBiome) ((BOPBiome) biome).removeGenerator("trees");
+	}
+	
+	private void removeCactusGen(Optional<Biome> optionalBiome) {
+		Biome biome = optionalBiome.get();
+		if (biome != null && biome instanceof BOPBiome) ((BOPBiome) biome).removeGenerator("cacti");
 	}
 	
 	@SuppressWarnings("unused")

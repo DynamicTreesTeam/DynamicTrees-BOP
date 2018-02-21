@@ -29,8 +29,10 @@ tile.leaves3.name=Dynamic Leaves
 tile.leaves4.name=Dynamic Leaves
 tile.leaves5.name=Dynamic Leaves
 tile.leaves6.name=Dynamic Leaves
+tile.leaves7.name=Dynamic Leaves
 
 tile.leaves_flowering.name=Dynamic Leaves
+tile.leaves_palm.name=Dynamic Leaves
 
 tile.dynamictreesbop:yellowautumnbranch.name=Dynamic Yellow Autumn Tree
 tile.dynamictreesbop:orangeautumnbranch.name=Dynamic Orange Autumn Tree

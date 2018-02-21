@@ -24,7 +24,6 @@ public class DecorateEventHandler {
 					&& biome != BOPBiomes.origin_island.get()
 					&& biome != BOPBiomes.shrubland.get()
 					&& biome != BOPBiomes.tundra.get()
-					&& biome != BOPBiomes.xeric_shrubland.get()
 					&& biome != BOPBiomes.meadow.get()
 					&& biome != BOPBiomes.eucalyptus_forest.get()
 					&& biome != BOPBiomes.bamboo_forest.get()
@@ -33,11 +32,7 @@ public class DecorateEventHandler {
 					&& biome != BOPBiomes.overgrown_cliffs.get()
 					&& biome != BOPBiomes.undergarden.get()
 					&& biome != BOPBiomes.tropical_rainforest.get()
-					&& biome != BOPBiomes.bog.get()
-					&& biome != BOPBiomes.outback.get()
-					&& biome != BOPBiomes.tropical_island.get()
 					&& biome != BOPBiomes.brushland.get()
-					&& biome != BOPBiomes.oasis.get()
 			) {
 				event.setResult(Result.DENY);
 			}

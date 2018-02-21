@@ -6,6 +6,7 @@ import java.util.Random;
 import com.ferreusveritas.dynamictrees.ModConstants;
 import com.ferreusveritas.dynamictrees.ModBlocks;
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
+import com.ferreusveritas.dynamictrees.api.TreeRegistry;
 import com.ferreusveritas.dynamictrees.api.network.MapSignal;
 import com.ferreusveritas.dynamictrees.blocks.BlockBranch;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSapling;
@@ -17,6 +18,7 @@ import com.ferreusveritas.dynamictrees.trees.DynamicTree;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.util.CompatHelper;
 
+import biomesoplenty.api.biome.BOPBiomes;
 import biomesoplenty.api.block.BOPBlocks;
 import biomesoplenty.api.enums.BOPWoods;
 import biomesoplenty.common.block.BlockBOPLog;
@@ -24,6 +26,7 @@ import dynamictreesbop.DynamicTreesBOP;
 import dynamictreesbop.ModContent;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirt;
+import net.minecraft.block.BlockGrass;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -72,7 +75,7 @@ public class TreePalm extends DynamicTree {
 		//Let the worldgen plant on dirt blocks.
 		@Override
 		public boolean isAcceptableSoilForWorldgen(World world, BlockPos pos, IBlockState soilBlockState) {
-			return soilBlockState.getBlock() instanceof BlockDirt ? true : super.isAcceptableSoilForWorldgen(world, pos, soilBlockState);
+			return soilBlockState.getBlock() instanceof BlockGrass ? true : super.isAcceptableSoilForWorldgen(world, pos, soilBlockState);
 		}
 		
 		@Override
@@ -119,6 +122,11 @@ public class TreePalm extends DynamicTree {
 		}
 		
 		@Override
+		public boolean generate(World world, BlockPos pos, Biome biome, Random random, int radius) {
+			return super.generate(world, pos, biome, random, radius);
+		}
+		
+		@Override
 		public boolean postGrow(World world, BlockPos rootPos, BlockPos treePos, int soilLife, boolean rapid) {
 			IBlockState trunkBlockState = world.getBlockState(treePos); 
 			BlockBranch branch = TreeHelper.getBranch(trunkBlockState);
@@ -142,6 +150,9 @@ public class TreePalm extends DynamicTree {
 		
 		@Override
 		public void postGeneration(World world, BlockPos rootPos, Biome biome, int radius, List<BlockPos> endPoints, boolean worldGen) {
+			for (BlockPos endPoint: endPoints) {
+				TreeHelper.ageVolume(world, endPoint, 1, 2, null, 3);
+			}
 		}
 
 		@Override

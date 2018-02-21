@@ -87,6 +87,9 @@ public class ReplaceSaplingEventHandler {
 			case 21:	
 				species = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "mahogany"));
 				break;
+			case 22:	
+				species = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "ebony"));
+				break;
 			default:
 				break;
 			}

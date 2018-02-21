@@ -15,22 +15,27 @@ public class BiomeDensityProvider implements IBiomeDensityProvider {
 	@Override
 	public EnumChance chance(Biome biome, Species species, int radius, Random rand) {
 		if (biome == BOPBiomes.alps_foothills.get()) return rand.nextFloat() < 0.5f ? EnumChance.OK : EnumChance.CANCEL;
+		if (biome == BOPBiomes.brushland.get()) return EnumChance.OK;
 		if (biome == BOPBiomes.chaparral.get()) return rand.nextFloat() < 0.7f ? EnumChance.OK : EnumChance.CANCEL;
 		if (biome == BOPBiomes.dead_swamp.get()) return rand.nextFloat() < 0.6f ? EnumChance.OK : EnumChance.CANCEL;
 		if (biome == BOPBiomes.lavender_fields.get()) return rand.nextFloat() < 0.3f ? EnumChance.OK : EnumChance.CANCEL;
 		if (biome == BOPBiomes.lush_desert.get()) return rand.nextFloat() < 0.4f ? EnumChance.OK : EnumChance.CANCEL;
 		if (biome == BOPBiomes.lush_swamp.get()) return EnumChance.OK;
 		if (biome == BOPBiomes.meadow.get()) return rand.nextFloat() < 0.3f ? EnumChance.OK : EnumChance.CANCEL;
+		if (biome == BOPBiomes.oasis.get()) return EnumChance.OK;
+		if (biome == BOPBiomes.outback.get()) return EnumChance.OK;
 		if (biome == BOPBiomes.prairie.get()) return rand.nextFloat() < 0.2f ? EnumChance.OK : EnumChance.CANCEL;
 		if (biome == BOPBiomes.rainforest.get()) return EnumChance.OK;
-		/*if (biome == BOPBiomes.seasonal_forest.get()) {
-			if(radius > 3) {//Start dropping tree spawn opportunities when the radius gets bigger than 3
+		if (biome == BOPBiomes.tropical_island.get()) return EnumChance.OK;
+		if (biome == BOPBiomes.tropical_rainforest.get()) return EnumChance.OK;
+		if (biome == BOPBiomes.wasteland.get()) return rand.nextFloat() < 0.3f ? EnumChance.OK : EnumChance.CANCEL;
+		if (biome == BOPBiomes.xeric_shrubland.get()) return rand.nextFloat() < 0.7f ? EnumChance.OK : EnumChance.CANCEL;
+		/*if (biome == BOPBiomes.brushland.get()) {
+			if (radius > 3) { // Start dropping tree spawn opportunities when the radius gets bigger than 3
 				float chance = 2.0f / radius;
 				return rand.nextFloat() < Math.sqrt(chance) ? EnumChance.OK : EnumChance.CANCEL;
 			}
 		}*/
-		if (biome == BOPBiomes.tropical_rainforest.get()) return EnumChance.OK;
-		if (biome == BOPBiomes.wasteland.get()) return rand.nextFloat() < 0.3f ? EnumChance.OK : EnumChance.CANCEL;
 		
 		return EnumChance.UNHANDLED;
 	}
@@ -44,7 +49,11 @@ public class BiomeDensityProvider implements IBiomeDensityProvider {
 		
 		if (biome == BOPBiomes.bayou.get()) return noiseDensity * 0.8;
 		
+		if (biome == BOPBiomes.bog.get()) return noiseDensity * 0.5;
+		
 		if (biome == BOPBiomes.boreal_forest.get()) return noiseDensity;
+		
+		if (biome == BOPBiomes.brushland.get()) return ((noiseDensity * 0.75) + 0.25) * 0.4;
 		
 		if (biome == BOPBiomes.chaparral.get()) return noiseDensity * 0.7;
 		
@@ -74,9 +83,13 @@ public class BiomeDensityProvider implements IBiomeDensityProvider {
 		
 		if (biome == BOPBiomes.mystic_grove.get()) return noiseDensity;
 		
+		if (biome == BOPBiomes.oasis.get()) return ((noiseDensity * 0.25) + 0.75) * 0.7;
+		
 		if (biome == BOPBiomes.ominous_woods.get()) return noiseDensity;
 		
 		if (biome == BOPBiomes.orchard.get()) return noiseDensity * 0.5;
+		
+		if (biome == BOPBiomes.outback.get()) return noiseDensity * 0.45;
 		
 		if (biome == BOPBiomes.prairie.get()) return noiseDensity * 0.1;
 		
@@ -92,13 +105,17 @@ public class BiomeDensityProvider implements IBiomeDensityProvider {
 		
 		if (biome == BOPBiomes.temperate_rainforest.get()) return noiseDensity;
 		
+		if (biome == BOPBiomes.tropical_island.get()) return (noiseDensity * 0.75) + 0.25;
+		
 		if (biome == BOPBiomes.tropical_rainforest.get()) return noiseDensity;
 		
-		if (biome == BOPBiomes.wasteland.get()) return noiseDensity * 0.03; // technically should be 0.03
+		if (biome == BOPBiomes.wasteland.get()) return noiseDensity * 0.03;
 		
 		if (biome == BOPBiomes.wetland.get()) return noiseDensity;
 		
 		if (biome == BOPBiomes.woodland.get()) return noiseDensity;
+		
+		if (biome == BOPBiomes.xeric_shrubland.get()) return noiseDensity * 0.4;
 		
 		return -1;
 	}

@@ -9,6 +9,7 @@ import com.ferreusveritas.dynamictrees.cells.CellNormal;
 import com.ferreusveritas.dynamictrees.util.SimpleVoxmap;
 
 import dynamictreesbop.DynamicTreesBOP;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 
 public class CellKits {
@@ -21,6 +22,7 @@ public class CellKits {
 		TreeRegistry.registerCellKit(new ResourceLocation(DynamicTreesBOP.MODID, "sparse"), sparse);
 		TreeRegistry.registerCellKit(new ResourceLocation(DynamicTreesBOP.MODID, "poplar"), poplar);
 		TreeRegistry.registerCellKit(new ResourceLocation(DynamicTreesBOP.MODID, "mahogany"), mahogany);
+		TreeRegistry.registerCellKit(new ResourceLocation(DynamicTreesBOP.MODID, "brush"), brush);
 	}
 	
 	private final ICellKit sparse = new ICellKit() {
@@ -135,6 +137,62 @@ public class CellKits {
 		@Override
 		public SimpleVoxmap getLeafCluster() {
 			return DTBOPLeafClusters.mahogany;
+		}
+		
+		@Override
+		public ICellSolver getCellSolver() {
+			return solver;
+		}
+		
+		@Override
+		public int getDefaultHydration() {
+			return 3;
+		}
+		
+	};
+	
+	private final ICellKit brush = new ICellKit() {
+		
+		private final ICell branch = new ICell() {
+			@Override
+			public int getValue() {
+				return 5;
+			}
+			
+			final int map[] = {3, 3, 5, 5, 5, 5};
+			
+			@Override
+			public int getValueFromSide(EnumFacing side) {
+				return map[side.ordinal()];
+			}
+		};
+		
+		private final ICell normalCells[] = {
+				CellNull.NULLCELL,
+				new CellNormal(1),
+				new CellNormal(2),
+				new CellNormal(3),
+				new CellNormal(4),
+		};
+		
+		private final ICellSolver solver = new com.ferreusveritas.dynamictrees.cells.CellKits.BasicSolver(new short[] {
+				0x0513, 0x0412, 0x0322, 0x0311, 0x0211,
+		});
+		
+		@Override
+		public ICell getCellForLeaves(int hydro) {
+			return normalCells[hydro];
+		}
+		
+		@Override
+		public ICell getCellForBranch(int radius) {
+			if (radius == 1 || radius == 128) return branch;
+			return CellNull.NULLCELL;
+		}
+		
+		@Override
+		public SimpleVoxmap getLeafCluster() {
+			return DTBOPLeafClusters.brush;
 		}
 		
 		@Override

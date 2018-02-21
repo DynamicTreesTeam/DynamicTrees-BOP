@@ -61,7 +61,7 @@ public class SpeciesPoplar extends Species {
 	
 	@Override
 	public boolean isBiomePerfect(Biome biome) {
-		return biome == BOPBiomes.grove.get();
+		return biome == BOPBiomes.grove.get() || biome == BOPBiomes.bog.get();
 	}
 	
 	@Override
@@ -155,7 +155,7 @@ public class SpeciesPoplar extends Species {
 			if (branch != null) { // If a branch exists then the growth was successful
 				ILeavesProperties leavesProperties = species.getLeavesProperties();
 				SimpleVoxmap leafMap = new SimpleVoxmap(radius * 2 + 1, 32, radius * 2 + 1).setMapAndCenter(treePos, new BlockPos(radius, 0, radius));
-				NodeInflator inflator = new NodeInflator(species, leafMap); // This is responsible for thickening the branches
+				NodeInflatorPoplar inflator = new NodeInflatorPoplar(species, leafMap); // This is responsible for thickening the branches
 				NodeFindEnds endFinder = new NodeFindEnds(); // This is responsible for gathering a list of branch end points
 				MapSignal signal = new MapSignal(inflator, endFinder); // The inflator signal will "paint" a temporary voxmap of all of the leaves and branches.
 				branch.analyse(world, treePos, EnumFacing.DOWN, signal);
@@ -237,7 +237,7 @@ public class SpeciesPoplar extends Species {
 				boolean isTwig = true;
 				boolean isTop = true;
 				
-				for(EnumFacing dir: EnumFacing.VALUES) {
+				for (EnumFacing dir: EnumFacing.VALUES) {
 					if(!dir.equals(fromDir)) { // Don't count where the signal originated from
 						
 						BlockPos dPos = pos.offset(dir);
@@ -248,10 +248,10 @@ public class SpeciesPoplar extends Species {
 							continue;
 						}
 						
-						if (dir.getAxis() != EnumFacing.Axis.Y) isTwig = false;
+						if (dir.getAxis() != EnumFacing.Axis.Y) isTop = false;
 						
 						ITreePart treepart = TreeHelper.getTreePart(world, dPos);
-						if(branch.isSameWood(treepart)) {
+						if (branch.isSameWood(treepart)) {
 							int branchRadius = treepart.getRadius(world, dPos);
 							areaAccum += branchRadius * branchRadius;
 						}

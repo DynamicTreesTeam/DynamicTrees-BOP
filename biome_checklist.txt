@@ -1,6 +1,8 @@
 alps_foothills
 bayou
+bog
 boreal forest
+brushland
 chaparral
 cherry_blossom_grove
 coniferous_forest
@@ -17,8 +19,10 @@ meadow
 mountain
 mountain_foothills
 mystic_grove
+oasis
 ominous_woods
 orchard
+outback
 prairie
 rainforest
 seasonal_forest
@@ -26,9 +30,11 @@ shield
 snowy_coniferous_forest
 snowy_forest
 temperate_rainforest
+tropical_island
 wetland
 wasteland
 woodland
+xeric_shrubland
 
 extreme_hills
 extreme_hills_trees

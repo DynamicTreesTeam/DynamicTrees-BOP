@@ -10,6 +10,8 @@ import com.ferreusveritas.dynamictrees.trees.Species;
 
 import biomesoplenty.api.biome.BOPBiomes;
 import dynamictreesbop.DynamicTreesBOP;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockSand;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Biomes;
 import net.minecraft.util.ResourceLocation;
@@ -19,7 +21,9 @@ import net.minecraft.world.biome.Biome;
 
 public class BiomeSpeciesSelector implements IBiomeSpeciesSelector {
 
-	Species swamp, apple, jungle, spruce, birch, oak, acacia, oakFloweringVine, oakConifer, megaOakConifer, darkOakConifer, darkOakDyingConifer, oakTwiglet, poplar, darkPoplar, yellowAutumn, orangeAutumn, magic, floweringOak, umbran, umbranConifer, umbranConiferMega, oakDying, decayed, fir, firSmall, pinkCherry, whiteCherry, maple, dead, jacaranda, willow, pine, palm;
+	Species swamp, apple, jungle, spruce, birch, oak, acacia, acaciaBrush, oakFloweringVine, oakConifer, megaOakConifer, darkOakConifer, darkOakDyingConifer, oakTwiglet, poplar, darkPoplar, jungleTwiglet, acaciaTwiglet, yellowAutumn, orangeAutumn, magic, floweringOak, umbran, umbranConifer, umbranConiferMega, oakDying, decayed, fir, firSmall, pinkCherry, whiteCherry, maple, dead, jacaranda, willow, pine, palm, ebony, ebonyTwiglet;
+	Species acaciaBush;
+	Species cactus;
 	
 	HashMap<Integer, DecisionProvider> fastTreeLookup = new HashMap<Integer, DecisionProvider>();
 	
@@ -45,7 +49,9 @@ public class BiomeSpeciesSelector implements IBiomeSpeciesSelector {
 		} else {
 			if (biome == BOPBiomes.alps_foothills.get()) select = new StaticDecision(new Decision(firSmall));
 			else if (biome == BOPBiomes.bayou.get()) select = new RandomDecision(rand).addSpecies(willow, 4);
+			else if (biome == BOPBiomes.bog.get()) select = new RandomDecision(rand).addSpecies(poplar, 3).addSpecies(darkPoplar, 1);
 			else if (biome == BOPBiomes.boreal_forest.get()) select = new RandomDecision(rand).addSpecies(yellowAutumn, 4).addSpecies(spruce, 4).addSpecies(oak, 5);
+			else if (biome == BOPBiomes.brushland.get()) select = new RandomDecision(rand).addSpecies(ebony, 2).addSpecies(ebonyTwiglet, 2).addSpecies(jungleTwiglet, 1).addSpecies(acaciaBrush, 1);
 			else if (biome == BOPBiomes.chaparral.get()) select = new RandomDecision(rand).addSpecies(oakTwiglet, 3);
 			else if (biome == BOPBiomes.cherry_blossom_grove.get()) select = new RandomDecision(rand).addSpecies(pinkCherry, 6).addSpecies(whiteCherry, 4);
 			else if (biome == BOPBiomes.coniferous_forest.get()) select = new RandomDecision(rand).addSpecies(fir, 3).addSpecies(firSmall, 5);
@@ -62,8 +68,10 @@ public class BiomeSpeciesSelector implements IBiomeSpeciesSelector {
 			else if (biome == BOPBiomes.mountain.get()) select = new RandomDecision(rand).addSpecies(oak, 1).addSpecies(pine, 2);
 			else if (biome == BOPBiomes.mountain_foothills.get()) select = new RandomDecision(rand).addSpecies(oak, 1).addSpecies(pine, 2);
 			else if (biome == BOPBiomes.mystic_grove.get()) select = new RandomDecision(rand).addSpecies(magic, 17).addSpecies(oakFloweringVine, 10).addSpecies(floweringOak, 8).addSpecies(jacaranda, 9);
+			else if (biome == BOPBiomes.oasis.get()) select = new RandomDecision(rand).addSpecies(palm, 4).addSpecies(jungleTwiglet, 2);
 			else if (biome == BOPBiomes.ominous_woods.get()) select = new RandomDecision(rand).addSpecies(umbran, 4).addSpecies(umbranConifer, 5).addSpecies(umbranConiferMega, 4).addSpecies(decayed, 3).addSpecies(dead, 1);
 			else if (biome == BOPBiomes.orchard.get()) select = new RandomDecision(rand).addSpecies(floweringOak, 6).addSpecies(apple, 1);
+			else if (biome == BOPBiomes.outback.get()) select = new RandomDecision(rand).addSpecies(acaciaTwiglet, 3).addSpecies(acaciaBush, 3).addSpecies(cactus, 4);
 			else if (biome == BOPBiomes.prairie.get()) select = new StaticDecision(new Decision(oakConifer));
 			else if (biome == BOPBiomes.rainforest.get()) select = new RandomDecision(rand).addSpecies(jungle, 1).addSpecies(birch, 4).addSpecies(oak, 4).addSpecies(floweringOak, 7);
 			else if (biome == BOPBiomes.seasonal_forest.get()) select = new RandomDecision(rand).addSpecies(yellowAutumn, 4).addSpecies(orangeAutumn, 5).addSpecies(oak, 1).addSpecies(oakDying, 2).addSpecies(maple, 4);
@@ -71,10 +79,12 @@ public class BiomeSpeciesSelector implements IBiomeSpeciesSelector {
 			else if (biome == BOPBiomes.snowy_coniferous_forest.get()) select = new RandomDecision(rand).addSpecies(fir, 2).addSpecies(firSmall, 4);
 			else if (biome == BOPBiomes.snowy_forest.get()) select = new RandomDecision(rand).addSpecies(oak, 3).addSpecies(oakDying, 1);
 			else if (biome == BOPBiomes.temperate_rainforest.get()) select = new RandomDecision(rand).addSpecies(oakConifer, 3).addSpecies(megaOakConifer, 5).addSpecies(willow, 1);
+			else if (biome == BOPBiomes.tropical_island.get()) select = new RandomDecision(rand).addSpecies(palm, 4).addSpecies(jungleTwiglet, 2);
 			else if (biome == BOPBiomes.tropical_rainforest.get()) select = new RandomDecision(rand).addSpecies(jungle, 2);
 			else if (biome == BOPBiomes.wasteland.get()) select = new RandomDecision(rand).addSpecies(decayed, 3).addSpecies(dead, 1);
 			else if (biome == BOPBiomes.wetland.get()) select = new RandomDecision(rand).addSpecies(spruce, 5).addSpecies(willow, 3);
 			else if (biome == BOPBiomes.woodland.get()) select = new StaticDecision(new Decision(oak));
+			else if (biome == BOPBiomes.xeric_shrubland.get()) select = new RandomDecision(rand).addSpecies(acaciaTwiglet, 1).addSpecies(cactus, 1);
 			
 			else if (biome == Biomes.BEACH) select = new StaticDecision(new Decision(palm));
 			else if (biome == Biomes.FOREST || biome == Biomes.FOREST_HILLS) select = new RandomDecision(world.rand).addSpecies(oak, 8).addSpecies(birch, 2).addSpecies(floweringOak, 1);
@@ -91,6 +101,10 @@ public class BiomeSpeciesSelector implements IBiomeSpeciesSelector {
 
 	@Override
 	public void init() {
+		cactus = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "cactus"));
+		
+		acaciaBush = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "acaciabush"));
+		
 		apple = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "oakapple"));
 		jungle = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "jungle"));
 		spruce = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "spruce"));
@@ -103,9 +117,12 @@ public class BiomeSpeciesSelector implements IBiomeSpeciesSelector {
 		megaOakConifer = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "megaoakconifer"));
 		darkOakConifer = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "darkoakconifer"));
 		darkOakDyingConifer = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "darkoakdyingconifer"));
-		oakTwiglet = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "oakTwiglet"));
+		oakTwiglet = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "oaktwiglet"));
 		poplar = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "poplar"));
 		darkPoplar = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "darkpoplar"));
+		jungleTwiglet = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "jungletwiglet"));
+		acaciaTwiglet = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "acaciatwiglet"));
+		acaciaBrush = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "acaciabrush"));
 		
 		yellowAutumn = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "yellowautumn"));
 		orangeAutumn = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "orangeautumn"));
@@ -123,10 +140,11 @@ public class BiomeSpeciesSelector implements IBiomeSpeciesSelector {
 		jacaranda = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "jacaranda"));
 		willow = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "willow"));
 		pine = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "pine"));
+		ebony = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "ebony"));
+		ebonyTwiglet = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "ebonytwiglet"));
 		
 		floweringOak = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "floweringoak"));
 		decayed = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "decayed"));
-		
 		palm = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "palm"));
 	}
 	

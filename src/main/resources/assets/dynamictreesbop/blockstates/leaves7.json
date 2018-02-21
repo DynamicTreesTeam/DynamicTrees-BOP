@@ -3,16 +3,16 @@
 	"variants": {
 		"tree": {
 			"0": {
-				"model": "birch_leaves"
+				"model": "acacia_leaves"
 			},
 			"1": {
-				"model": "dark_oak_leaves"
+				"model": "oak_leaves"
 			},
 			"2": {
-				"model": "jungle_leaves"
+				"model": "oak_leaves"
 			},
 			"3": {
-				"model": "acacia_leaves"
+				"model": "oak_leaves"
 			}
 		},
 		"hydro": {
