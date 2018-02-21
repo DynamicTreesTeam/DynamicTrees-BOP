@@ -103,29 +103,13 @@ public class PalmLeavesCompositeModel implements IBakedModel {
 
 	@Override
 	public List<BakedQuad> getQuads(IBlockState state, EnumFacing side, long rand) {
-		bakeFronds();
-
 		List<BakedQuad> quads = new ArrayList<BakedQuad>();
 
-		if (side == null) {
-			boolean connections[] = new boolean[BlockDynamicLeavesPalm.Surround.values().length];
-
-			if (state != null && state.getBlock() instanceof BlockDynamicLeavesPalm
-					&& state instanceof IExtendedBlockState) {
-				IExtendedBlockState extendedBlockState = (IExtendedBlockState) state;
-
-				for (int i = 0; i < BlockDynamicLeavesPalm.Surround.values().length; i++) {
-					Boolean b = extendedBlockState.getValue(BlockDynamicLeavesPalm.CONNECTIONS[i]);
-					connections[i] = b != null ? b.booleanValue() : false;
-				}
-
-			} else {
-				return new ArrayList<BakedQuad>();
-			}
-
-			for (BlockDynamicLeavesPalm.Surround surr : BlockDynamicLeavesPalm.Surround.values()) {
-				if (connections[surr.ordinal()]) {
-					quads.addAll(cachedFrondQuads[surr.ordinal()]);
+		if (side == null && state != null && state.getBlock() instanceof BlockDynamicLeavesPalm && state instanceof IExtendedBlockState) {
+			for (int i = 0; i < 8; i++) {
+				Boolean b = ((IExtendedBlockState) state).getValue(BlockDynamicLeavesPalm.CONNECTIONS[i]);
+				if(b != null && b.booleanValue()) {
+					quads.addAll(cachedFrondQuads[i]);
 				}
 			}
 		}
