@@ -11,7 +11,6 @@ import com.ferreusveritas.dynamictrees.blocks.BlockBranch;
 import com.ferreusveritas.dynamictrees.items.Seed;
 import com.ferreusveritas.dynamictrees.systems.GrowSignal;
 import com.ferreusveritas.dynamictrees.systems.nodemappers.NodeFindEnds;
-import com.ferreusveritas.dynamictrees.systems.nodemappers.NodeInflator;
 import com.ferreusveritas.dynamictrees.trees.DynamicTree;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.util.MathHelper;
@@ -250,9 +249,10 @@ public class SpeciesPoplar extends Species {
 						
 						if (dir.getAxis() != EnumFacing.Axis.Y) isTop = false;
 						
-						ITreePart treepart = TreeHelper.getTreePart(world, dPos);
+						IBlockState deltaBlockState = world.getBlockState(dPos);
+						ITreePart treepart = TreeHelper.getTreePart(deltaBlockState);
 						if (branch.isSameWood(treepart)) {
-							int branchRadius = treepart.getRadius(world, dPos);
+							int branchRadius = treepart.getRadius(deltaBlockState, world, dPos);
 							areaAccum += branchRadius * branchRadius;
 						}
 					}

@@ -1,11 +1,9 @@
 package dynamictreesbop.trees.species;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 import com.ferreusveritas.dynamictrees.ModConstants;
-import com.ferreusveritas.dynamictrees.api.TreeRegistry;
 import com.ferreusveritas.dynamictrees.items.Seed;
 import com.ferreusveritas.dynamictrees.trees.DynamicTree;
 import com.ferreusveritas.dynamictrees.trees.Species;
@@ -17,8 +15,6 @@ import dynamictreesbop.ModContent;
 import dynamictreesbop.dropcreators.DropCreatorTwigletLogs;
 import dynamictreesbop.featuregen.FeatureGenBush;
 import net.minecraft.block.BlockGrass;
-import net.minecraft.block.BlockNewLeaf;
-import net.minecraft.block.BlockPlanks;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;

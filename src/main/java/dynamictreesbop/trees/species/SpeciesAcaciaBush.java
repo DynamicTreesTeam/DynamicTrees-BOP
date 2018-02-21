@@ -1,14 +1,10 @@
 package dynamictreesbop.trees.species;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
-import com.ferreusveritas.dynamictrees.ModConstants;
-import com.ferreusveritas.dynamictrees.api.TreeRegistry;
 import com.ferreusveritas.dynamictrees.trees.Species;
 
-import biomesoplenty.api.biome.BOPBiomes;
 import dynamictreesbop.DynamicTreesBOP;
 import dynamictreesbop.featuregen.FeatureGenBush;
 import net.minecraft.block.BlockNewLeaf;

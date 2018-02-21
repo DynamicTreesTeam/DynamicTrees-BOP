@@ -327,7 +327,7 @@ public class TreeUmbran extends DynamicTree {
 	
 	@Override
 	public int getRadiusForCellKit(IBlockAccess blockAccess, BlockPos pos, IBlockState blockState, EnumFacing dir, BlockBranch branch) {
-		int radius = branch.getRadius(blockState);
+		int radius = branch.getRadius(blockState, blockAccess, pos);
 		if(radius == 1) {
 			if(blockAccess.getBlockState(pos.down()).getBlock() == branch) {
 				return 128;
