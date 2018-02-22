@@ -83,7 +83,7 @@ public class TreeUmbran extends DynamicTree {
 		@Override
 		public boolean rot(World world, BlockPos pos, int neighborCount, int radius, Random random) {
 			if(super.rot(world, pos, neighborCount, radius, random)) {
-				if(radius > 4 && TreeHelper.isRooty(world, pos.down()) && world.getLightFor(EnumSkyBlock.SKY, pos) < 4) {
+				if(radius > 4 && TreeHelper.isRooty(world.getBlockState(pos.down())) && world.getLightFor(EnumSkyBlock.SKY, pos) < 4) {
 					world.setBlockState(pos, random.nextInt(3) == 0 ? ModBlocks.blockStates.redMushroom : ModBlocks.blockStates.brownMushroom);//Change branch to a mushroom
 					world.setBlockState(pos.down(), BOPBlocks.dirt.getDefaultState().withProperty(BlockBOPDirt.VARIANT, BlockBOPDirt.BOPDirtType.LOAMY));//Change rooty dirt to loam
 				}
@@ -175,7 +175,7 @@ public class TreeUmbran extends DynamicTree {
 		@Override
 		public boolean rot(World world, BlockPos pos, int neighborCount, int radius, Random random) {
 			if(super.rot(world, pos, neighborCount, radius, random)) {
-				if(radius > 4 && TreeHelper.isRooty(world, pos.down()) && world.getLightFor(EnumSkyBlock.SKY, pos) < 4) {
+				if(radius > 4 && TreeHelper.isRooty(world.getBlockState(pos.down())) && world.getLightFor(EnumSkyBlock.SKY, pos) < 4) {
 					world.setBlockState(pos, random.nextInt(3) == 0 ? ModBlocks.blockStates.redMushroom : ModBlocks.blockStates.brownMushroom);//Change branch to a mushroom
 					world.setBlockState(pos.down(), BOPBlocks.dirt.getDefaultState().withProperty(BlockBOPDirt.VARIANT, BlockBOPDirt.BOPDirtType.LOAMY));//Change rooty dirt to loam
 				}
@@ -263,7 +263,7 @@ public class TreeUmbran extends DynamicTree {
 		@Override
 		public boolean rot(World world, BlockPos pos, int neighborCount, int radius, Random random) {
 			if(super.rot(world, pos, neighborCount, radius, random)) {
-				if(radius > 4 && TreeHelper.isRooty(world, pos.down()) && world.getLightFor(EnumSkyBlock.SKY, pos) < 4) {
+				if(radius > 4 && TreeHelper.isRooty(world.getBlockState(pos.down())) && world.getLightFor(EnumSkyBlock.SKY, pos) < 4) {
 					world.setBlockState(pos, random.nextInt(3) == 0 ? ModBlocks.blockStates.redMushroom : ModBlocks.blockStates.brownMushroom);//Change branch to a mushroom
 					world.setBlockState(pos.down(), BOPBlocks.dirt.getDefaultState().withProperty(BlockBOPDirt.VARIANT, BlockBOPDirt.BOPDirtType.LOAMY));//Change rooty dirt to loam
 				}

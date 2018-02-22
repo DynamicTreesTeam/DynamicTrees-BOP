@@ -67,7 +67,7 @@ public class BlockDynamicLeavesFlowering extends BlockDynamicLeaves {
 		
 		//Check hydration level.  Dry leaves are dead leaves.
 		int newHydro = getHydrationLevelFromNeighbors(world, pos, leavesProperties);
-		if(newHydro == 0 || (!rapid && !hasAdequateLight(world, leavesProperties, pos))) { //Light doesn't work right during worldgen so we'll just disable it during worldgen for now.
+		if(newHydro == 0 || (!rapid && !hasAdequateLight(state, world, leavesProperties, pos))) { //Light doesn't work right during worldgen so we'll just disable it during worldgen for now.
 			world.setBlockToAir(pos);//No water, no light .. no leaves
 			return true;//Leaves were destroyed
 		} else { 
