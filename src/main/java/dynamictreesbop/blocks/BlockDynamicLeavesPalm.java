@@ -108,7 +108,7 @@ public class BlockDynamicLeavesPalm extends BlockDynamicLeaves {
 	
 	@Override
 	public int branchSupport(IBlockState blockState, IBlockAccess blockAccess, BlockBranch branch, BlockPos pos, EnumFacing dir, int radius) {
-		return branch.getTree() == getTree(blockState) ? BlockBranch.setSupport(0, 1) : 0;
+		return branch.getTree() == getTree(blockState, blockAccess, pos) ? BlockBranch.setSupport(0, 1) : 0;
 	}
 	
 	

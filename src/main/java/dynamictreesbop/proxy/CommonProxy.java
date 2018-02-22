@@ -124,6 +124,7 @@ public class CommonProxy {
 		}
 	}
 	
+	@SuppressWarnings("unused")
 	private void removeTreeGen(Optional<Biome> optionalBiome, String... trees) {
 		Biome biome = optionalBiome.get();
 		if (biome != null && biome instanceof BOPBiome) {

@@ -150,7 +150,7 @@ public class SpeciesPoplar extends Species {
 			generateFork(world, species, 0, rootPos, false);
 
 			// Fix branch thicknesses and map out leaf locations
-			BlockBranch branch = TreeHelper.getBranch(world, treePos);
+			BlockBranch branch = TreeHelper.getBranch(world.getBlockState(treePos));
 			if (branch != null) { // If a branch exists then the growth was successful
 				ILeavesProperties leavesProperties = species.getLeavesProperties();
 				SimpleVoxmap leafMap = new SimpleVoxmap(radius * 2 + 1, 32, radius * 2 + 1).setMapAndCenter(treePos, new BlockPos(radius, 0, radius));

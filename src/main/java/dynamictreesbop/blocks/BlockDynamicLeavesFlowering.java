@@ -6,7 +6,6 @@ import java.util.Random;
 import com.ferreusveritas.dynamictrees.api.treedata.ILeavesProperties;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicLeaves;
 import com.ferreusveritas.dynamictrees.blocks.LeavesProperties;
-import com.ferreusveritas.dynamictrees.trees.DynamicTree;
 
 import biomesoplenty.api.enums.BOPTrees;
 import biomesoplenty.common.block.BlockBOPLeaves;
@@ -59,11 +58,6 @@ public class BlockDynamicLeavesFlowering extends BlockDynamicLeaves {
 	@Override
 	public ILeavesProperties getProperties(IBlockState blockState) {
 		return properties;
-	}
-	
-	@Override
-	public DynamicTree getTree(IBlockState blockState) {
-		return getProperties(blockState).getTree();
 	}
 	
 	@Override
