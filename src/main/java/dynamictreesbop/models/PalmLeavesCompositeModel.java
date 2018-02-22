@@ -20,8 +20,8 @@ public class PalmLeavesCompositeModel implements IBakedModel {
 	protected IBakedModel baseModel;
 	protected List<BakedQuad>[] cachedFrondQuads = new List[8]; // 8 = Number of surrounding blocks
 
-	public PalmLeavesCompositeModel(IBakedModel rootsModel) {
-		this.baseModel = rootsModel;
+	public PalmLeavesCompositeModel(IBakedModel baseModel) {
+		this.baseModel = baseModel;
 		bakeFronds();
 	}
 
@@ -118,7 +118,7 @@ public class PalmLeavesCompositeModel implements IBakedModel {
 
 	@Override
 	public boolean isAmbientOcclusion() {
-		return true;
+		return baseModel.isAmbientOcclusion();
 	}
 
 	@Override
