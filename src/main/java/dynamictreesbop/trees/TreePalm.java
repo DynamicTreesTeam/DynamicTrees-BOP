@@ -139,7 +139,7 @@ public class TreePalm extends DynamicTree {
 			// Make sure the botton block is always just a little thicker that the block above it.
 			int radius = branch.getRadius(world.getBlockState(treePos.up()), world, treePos.up());
 			if (radius != 0) {
-				branch.setRadius(world, treePos, radius + 1);
+				branch.setRadius(world, treePos, radius + 1, null);
 			}
 			
 			return super.postGrow(world, rootPos, treePos, soilLife, rapid);
