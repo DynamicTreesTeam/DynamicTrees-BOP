@@ -11,7 +11,7 @@ import com.ferreusveritas.dynamictrees.blocks.BlockBranch;
 import com.ferreusveritas.dynamictrees.items.Seed;
 import com.ferreusveritas.dynamictrees.systems.GrowSignal;
 import com.ferreusveritas.dynamictrees.systems.nodemappers.NodeFindEnds;
-import com.ferreusveritas.dynamictrees.trees.DynamicTree;
+import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.util.MathHelper;
 import com.ferreusveritas.dynamictrees.util.SafeChunkBounds;
@@ -40,7 +40,7 @@ public class SpeciesPoplar extends Species {
 	
 	FeatureGenBush bushGen;
 	
-	public SpeciesPoplar(DynamicTree treeFamily, String name, ILeavesProperties leavesProps) {
+	public SpeciesPoplar(TreeFamily treeFamily, String name, ILeavesProperties leavesProps) {
 		super(new ResourceLocation(DynamicTreesBOP.MODID, name), treeFamily, leavesProps);
 		
 		setBasicGrowingParameters(0.25f, 11.0f, 5, 4, 1.0f);
@@ -122,12 +122,12 @@ public class SpeciesPoplar extends Species {
 	
 	@Override
 	public ItemStack getSeedStack(int qty) {
-		return getTree().getCommonSpecies().getSeedStack(qty);
+		return getFamily().getCommonSpecies().getSeedStack(qty);
 	}
 	
 	@Override
 	public Seed getSeed() {
-		return getTree().getCommonSpecies().getSeed();
+		return getFamily().getCommonSpecies().getSeed();
 	}
 	
 	public class JoCodePoplar extends JoCode {

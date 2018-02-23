@@ -7,7 +7,7 @@ import com.ferreusveritas.dynamictrees.ModBlocks;
 import com.ferreusveritas.dynamictrees.ModConstants;
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSapling;
-import com.ferreusveritas.dynamictrees.trees.DynamicTree;
+import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 import com.ferreusveritas.dynamictrees.trees.Species;
 
 import biomesoplenty.api.biome.BOPBiomes;
@@ -26,11 +26,11 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary.Type;
 
-public class TreeHellbark extends DynamicTree {
+public class TreeHellbark extends TreeFamily {
 	
 	public class SpeciesHellbark extends Species {
 		
-		SpeciesHellbark(DynamicTree treeFamily) {
+		SpeciesHellbark(TreeFamily treeFamily) {
 			super(treeFamily.getName(), treeFamily, ModContent.hellbarkLeavesProperties);
 			
 			setBasicGrowingParameters(0.3f, 2.5f, 1, 2, 1.0f);

@@ -13,7 +13,7 @@ import com.ferreusveritas.dynamictrees.blocks.BlockRooty;
 import com.ferreusveritas.dynamictrees.systems.GrowSignal;
 import com.ferreusveritas.dynamictrees.systems.dropcreators.DropCreatorLogs;
 import com.ferreusveritas.dynamictrees.systems.nodemappers.NodeFindEnds;
-import com.ferreusveritas.dynamictrees.trees.DynamicTree;
+import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.util.CompatHelper;
 
@@ -34,11 +34,11 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary.Type;
 
-public class TreePalm extends DynamicTree {
+public class TreePalm extends TreeFamily {
 	
 	public class SpeciesPalm extends Species {
 				
-		SpeciesPalm(DynamicTree treeFamily) {
+		SpeciesPalm(TreeFamily treeFamily) {
 			super(treeFamily.getName(), treeFamily, ModContent.palmLeavesProperties);
 			
 			setBasicGrowingParameters(0.4f, 7.0f, 4, 4, 0.9f);
@@ -57,8 +57,8 @@ public class TreePalm extends DynamicTree {
 			addDropCreator(new DropCreatorLogs() {
 				@Override
 				public List<ItemStack> getLogsDrop(World world, Species species, BlockPos breakPos, Random random, List<ItemStack> dropList, int volume) {
-					dropList.add(species.getTree().getPrimitiveLogItemStack(volume / 768)); // A log contains 4096 voxels of wood material(16x16x16 pixels) Drop vanilla logs or whatever
-					dropList.add(species.getTree().getStick((volume % 768) / 96)); // A stick contains 512 voxels of wood (1/8th log) (1 log = 4 planks, 2 planks = 4 sticks) Give him the stick!
+					dropList.add(species.getFamily().getPrimitiveLogItemStack(volume / 768)); // A log contains 4096 voxels of wood material(16x16x16 pixels) Drop vanilla logs or whatever
+					dropList.add(species.getFamily().getStick((volume % 768) / 96)); // A stick contains 512 voxels of wood (1/8th log) (1 log = 4 planks, 2 planks = 4 sticks) Give him the stick!
 					return dropList;
 				}
 			});

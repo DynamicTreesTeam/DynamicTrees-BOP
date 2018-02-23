@@ -6,7 +6,7 @@ import com.ferreusveritas.dynamictrees.ModBlocks;
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSaplingRare;
 import com.ferreusveritas.dynamictrees.items.Seed;
-import com.ferreusveritas.dynamictrees.trees.DynamicTree;
+import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 import com.ferreusveritas.dynamictrees.trees.SpeciesRare;
 
 import biomesoplenty.api.biome.BOPBiomes;
@@ -26,7 +26,7 @@ import net.minecraftforge.common.BiomeDictionary.Type;
 
 public class SpeciesMaple extends SpeciesRare {
 	
-	public SpeciesMaple(DynamicTree treeFamily) {
+	public SpeciesMaple(TreeFamily treeFamily) {
 		super(new ResourceLocation(DynamicTreesBOP.MODID, "maple"), treeFamily, ModContent.mapleLeavesProperties);
 		
 		setBasicGrowingParameters(0.15f, 14.0f, 4, 4, 1.05f);

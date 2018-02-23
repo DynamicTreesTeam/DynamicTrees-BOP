@@ -7,7 +7,7 @@ import com.ferreusveritas.dynamictrees.ModBlocks;
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSapling;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSaplingRare;
-import com.ferreusveritas.dynamictrees.trees.DynamicTree;
+import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.trees.SpeciesRare;
 
@@ -29,11 +29,11 @@ import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.registries.IForgeRegistry;
 
-public class TreeCherry extends DynamicTree {
+public class TreeCherry extends TreeFamily {
 	
 	public class SpeciesPinkCherry extends Species {
 		
-		SpeciesPinkCherry(DynamicTree treeFamily) {
+		SpeciesPinkCherry(TreeFamily treeFamily) {
 			super(new ResourceLocation(treeFamily.getName().getResourceDomain(), "pinkcherry"), treeFamily, ModContent.pinkCherryLeavesProperties);
 			
 			setBasicGrowingParameters(0.3f, 12.0f, upProbability, lowestBranchHeight, 0.8f);
@@ -74,7 +74,7 @@ public class TreeCherry extends DynamicTree {
 	
 	public class SpeciesWhiteCherry extends SpeciesRare {
 		
-		SpeciesWhiteCherry(DynamicTree treeFamily) {
+		SpeciesWhiteCherry(TreeFamily treeFamily) {
 			super(new ResourceLocation(treeFamily.getName().getResourceDomain(), "whitecherry"), treeFamily, ModContent.whiteCherryLeavesProperties);
 			
 			setBasicGrowingParameters(0.3f, 12.0f, upProbability, lowestBranchHeight, 0.8f);

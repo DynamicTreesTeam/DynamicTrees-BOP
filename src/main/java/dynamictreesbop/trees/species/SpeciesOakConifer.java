@@ -8,7 +8,7 @@ import com.ferreusveritas.dynamictrees.ModBlocks;
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
 import com.ferreusveritas.dynamictrees.items.Seed;
 import com.ferreusveritas.dynamictrees.systems.GrowSignal;
-import com.ferreusveritas.dynamictrees.trees.DynamicTree;
+import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 import com.ferreusveritas.dynamictrees.trees.Species;
 
 import biomesoplenty.api.biome.BOPBiomes;
@@ -27,7 +27,7 @@ import net.minecraftforge.common.BiomeDictionary.Type;
 
 public class SpeciesOakConifer extends Species {
 	
-	public SpeciesOakConifer(DynamicTree treeFamily) {
+	public SpeciesOakConifer(TreeFamily treeFamily) {
 		super(new ResourceLocation(DynamicTreesBOP.MODID, "oakconifer"), treeFamily, ModContent.oakConiferLeavesProperties);
 		
 		setBasicGrowingParameters(0.3f, 16.0f, 3, 3, 0.9f);
@@ -96,12 +96,12 @@ public class SpeciesOakConifer extends Species {
 	
 	@Override
 	public ItemStack getSeedStack(int qty) {
-		return getTree().getCommonSpecies().getSeedStack(qty);
+		return getFamily().getCommonSpecies().getSeedStack(qty);
 	}
 	
 	@Override
 	public Seed getSeed() {
-		return getTree().getCommonSpecies().getSeed();
+		return getFamily().getCommonSpecies().getSeed();
 	}
 	
 	@Override

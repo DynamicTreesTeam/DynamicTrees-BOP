@@ -7,7 +7,7 @@ import java.util.Random;
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
 import com.ferreusveritas.dynamictrees.items.Seed;
 import com.ferreusveritas.dynamictrees.systems.GrowSignal;
-import com.ferreusveritas.dynamictrees.trees.DynamicTree;
+import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 import com.ferreusveritas.dynamictrees.trees.Species;
 
 import biomesoplenty.api.biome.BOPBiomes;
@@ -26,7 +26,7 @@ import net.minecraftforge.common.BiomeDictionary.Type;
 
 public class SpeciesDarkOakDyingConifer extends Species {
 	
-	public SpeciesDarkOakDyingConifer(DynamicTree treeFamily) {
+	public SpeciesDarkOakDyingConifer(TreeFamily treeFamily) {
 		super(new ResourceLocation(DynamicTreesBOP.MODID, "darkoakdyingconifer"), treeFamily, ModContent.darkOakDyingConiferLeavesProperties);
 		
 		setBasicGrowingParameters(0.3f, 16.0f, 3, 3, 0.9f);
@@ -94,12 +94,12 @@ public class SpeciesDarkOakDyingConifer extends Species {
 	
 	@Override
 	public ItemStack getSeedStack(int qty) {
-		return getTree().getCommonSpecies().getSeedStack(qty);
+		return getFamily().getCommonSpecies().getSeedStack(qty);
 	}
 	
 	@Override
 	public Seed getSeed() {
-		return getTree().getCommonSpecies().getSeed();
+		return getFamily().getCommonSpecies().getSeed();
 	}
 	
 	@Override

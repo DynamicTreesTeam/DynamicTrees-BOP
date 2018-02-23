@@ -6,7 +6,7 @@ import java.util.Random;
 import com.ferreusveritas.dynamictrees.ModBlocks;
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSapling;
-import com.ferreusveritas.dynamictrees.trees.DynamicTree;
+import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.util.CompatHelper;
 
@@ -28,13 +28,13 @@ import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
 
-public class TreeWillow extends DynamicTree {
+public class TreeWillow extends TreeFamily {
 	
 	public class SpeciesWillow extends Species {
 		
 		FeatureGenVine vineGen;
 		
-		SpeciesWillow(DynamicTree treeFamily) {
+		SpeciesWillow(TreeFamily treeFamily) {
 			super(treeFamily.getName(), treeFamily, ModContent.willowLeavesProperties);
 			
 			setBasicGrowingParameters(0.3f, 12.0f, upProbability, lowestBranchHeight, 0.8f);

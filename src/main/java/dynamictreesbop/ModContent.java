@@ -10,7 +10,7 @@ import com.ferreusveritas.dynamictrees.api.client.ModelHelper;
 import com.ferreusveritas.dynamictrees.api.treedata.ILeavesProperties;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicLeaves;
 import com.ferreusveritas.dynamictrees.blocks.LeavesProperties;
-import com.ferreusveritas.dynamictrees.trees.DynamicTree;
+import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 import com.ferreusveritas.dynamictrees.trees.Species;
 
 import biomesoplenty.api.block.BOPBlocks;
@@ -98,10 +98,10 @@ public class ModContent {
 	public static ILeavesProperties[] basicLeavesProperties;
 	
 	// trees added by this mod
-	public static ArrayList<DynamicTree> trees = new ArrayList<DynamicTree>();
+	public static ArrayList<TreeFamily> trees = new ArrayList<TreeFamily>();
 	
 	// store hellbark out here so it can be quickly accessed for world gen
-	public static DynamicTree hellbarkTree;
+	public static TreeFamily hellbarkTree;
 	
 	@SubscribeEvent
 	public static void registerBlocks(final RegistryEvent.Register<Block> event) {
@@ -114,12 +114,12 @@ public class ModContent {
 		registry.register(palmFrondLeaves);
 		
 		// Get tree types from base mod so they can be given new species
-		DynamicTree oakTree = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "oak")).getTree();
+		TreeFamily oakTree = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "oak")).getFamily();
 		//DynamicTree spruceTree = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "spruce")).getTree();
-		DynamicTree birchTree = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "birch")).getTree();
-		DynamicTree jungleTree = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "jungle")).getTree();
-		DynamicTree acaciaTree = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "acacia")).getTree();
-		DynamicTree darkOakTree = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "darkoak")).getTree();
+		TreeFamily birchTree = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "birch")).getFamily();
+		TreeFamily jungleTree = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "jungle")).getFamily();
+		TreeFamily acaciaTree = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "acacia")).getFamily();
+		TreeFamily darkOakTree = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "darkoak")).getFamily();
 		
 		// Add BOP dirt and grass as acceptable soils to species from base Dynamic Trees
 		TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "oak")).addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
@@ -463,18 +463,18 @@ public class ModContent {
 		Species.REGISTRY.register(new SpeciesOakBush());
 		
 		// Register new tree types
-		DynamicTree magicTree = new TreeMagic();
-		DynamicTree umbranTree = new TreeUmbran();
-		DynamicTree firTree = new TreeFir();
-		DynamicTree cherryTree = new TreeCherry();
-		DynamicTree deadTree = new TreeDead();
-		DynamicTree jacarandaTree = new TreeJacaranda();
-		DynamicTree willowTree = new TreeWillow();
+		TreeFamily magicTree = new TreeMagic();
+		TreeFamily umbranTree = new TreeUmbran();
+		TreeFamily firTree = new TreeFir();
+		TreeFamily cherryTree = new TreeCherry();
+		TreeFamily deadTree = new TreeDead();
+		TreeFamily jacarandaTree = new TreeJacaranda();
+		TreeFamily willowTree = new TreeWillow();
 		hellbarkTree = new TreeHellbark();
-		DynamicTree pineTree = new TreePine();
-		DynamicTree palmTree = new TreePalm();
-		DynamicTree mahoganyTree = new TreeMahogany();
-		DynamicTree ebonyTree = new TreeEbony();
+		TreeFamily pineTree = new TreePine();
+		TreeFamily palmTree = new TreePalm();
+		TreeFamily mahoganyTree = new TreeMahogany();
+		TreeFamily ebonyTree = new TreeEbony();
 		
 		Collections.addAll(trees, magicTree, umbranTree, firTree, cherryTree, deadTree, jacarandaTree, willowTree, hellbarkTree, pineTree, palmTree, mahoganyTree, ebonyTree);
 		trees.forEach(tree -> tree.registerSpecies(Species.REGISTRY));
@@ -524,7 +524,7 @@ public class ModContent {
 	@SideOnly(Side.CLIENT)
 	@SubscribeEvent
 	public static void registerModels(ModelRegistryEvent event) {
-		for(DynamicTree tree : ModContent.trees) {
+		for(TreeFamily tree : ModContent.trees) {
 			ModelHelper.regModel(tree.getDynamicBranch());
 			ModelHelper.regModel(tree.getCommonSpecies().getSeed());
 			ModelHelper.regModel(tree);

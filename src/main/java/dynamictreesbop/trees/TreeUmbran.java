@@ -11,7 +11,7 @@ import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSapling;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSaplingRare;
 import com.ferreusveritas.dynamictrees.items.Seed;
 import com.ferreusveritas.dynamictrees.systems.GrowSignal;
-import com.ferreusveritas.dynamictrees.trees.DynamicTree;
+import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.trees.SpeciesRare;
 
@@ -37,13 +37,13 @@ import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.registries.IForgeRegistry;
 
-public class TreeUmbran extends DynamicTree {
+public class TreeUmbran extends TreeFamily {
 	
 	public class SpeciesUmbran extends Species {
 		
 		FeatureGenVine vineGen;
 		
-		SpeciesUmbran(DynamicTree treeFamily) {
+		SpeciesUmbran(TreeFamily treeFamily) {
 			super(treeFamily.getName(), treeFamily, ModContent.umbranLeavesProperties);
 			
 			setBasicGrowingParameters(0.3f, 12.0f, upProbability, lowestBranchHeight, 0.7f);
@@ -97,7 +97,7 @@ public class TreeUmbran extends DynamicTree {
 	
 	public class SpeciesUmbranConifer extends SpeciesRare {
 		
-		SpeciesUmbranConifer(DynamicTree treeFamily) {
+		SpeciesUmbranConifer(TreeFamily treeFamily) {
 			super(new ResourceLocation(treeFamily.getName().getResourceDomain(), "umbranconifer"), treeFamily, ModContent.umbranConiferLeavesProperties);
 			
 			setBasicGrowingParameters(0.25f, 16.0f, 3, 3, 0.8f);
@@ -189,7 +189,7 @@ public class TreeUmbran extends DynamicTree {
 	
 	public class SpeciesMegaUmbranConifer extends Species {
 		
-		SpeciesMegaUmbranConifer(DynamicTree treeFamily) {
+		SpeciesMegaUmbranConifer(TreeFamily treeFamily) {
 			super(new ResourceLocation(treeFamily.getName().getResourceDomain(), "umbranconifermega"), treeFamily, ModContent.umbranConiferLeavesProperties);
 			
 			setBasicGrowingParameters(0.3f, 32.0f, 7, 7, 1.0f);

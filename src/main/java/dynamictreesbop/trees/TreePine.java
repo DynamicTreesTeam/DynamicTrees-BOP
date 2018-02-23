@@ -6,7 +6,7 @@ import java.util.List;
 import com.ferreusveritas.dynamictrees.blocks.BlockBranch;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSapling;
 import com.ferreusveritas.dynamictrees.systems.GrowSignal;
-import com.ferreusveritas.dynamictrees.trees.DynamicTree;
+import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.util.CompatHelper;
 
@@ -27,13 +27,13 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary.Type;
 
-public class TreePine extends DynamicTree {
+public class TreePine extends TreeFamily {
 	
 	public class SpeciesPine extends Species {
 		
 		FeatureGenBush bushGen;
 		
-		SpeciesPine(DynamicTree treeFamily) {
+		SpeciesPine(TreeFamily treeFamily) {
 			super(treeFamily.getName(), treeFamily, ModContent.pineLeavesProperties);
 			
 			setBasicGrowingParameters(0.3f, 16.0f, 4, 4, 0.9f);

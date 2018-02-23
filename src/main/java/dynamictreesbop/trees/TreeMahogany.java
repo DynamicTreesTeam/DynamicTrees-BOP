@@ -9,7 +9,7 @@ import com.ferreusveritas.dynamictrees.blocks.BlockBranch;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSapling;
 import com.ferreusveritas.dynamictrees.systems.GrowSignal;
 import com.ferreusveritas.dynamictrees.systems.nodemappers.NodeFruitCocoa;
-import com.ferreusveritas.dynamictrees.trees.DynamicTree;
+import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.util.CompatHelper;
 
@@ -33,11 +33,11 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary.Type;
 
-public class TreeMahogany extends DynamicTree {
+public class TreeMahogany extends TreeFamily {
 	
 	public class SpeciesMahogany extends Species {
 		
-		public SpeciesMahogany(DynamicTree treeFamily) {
+		public SpeciesMahogany(TreeFamily treeFamily) {
 			super(treeFamily.getName(), treeFamily, ModContent.mahoganyLeavesProperties);
 			
 			setBasicGrowingParameters(0.15f, 16.0f, 2, 7, 10.9f);

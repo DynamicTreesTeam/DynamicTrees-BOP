@@ -4,7 +4,7 @@ import com.ferreusveritas.dynamictrees.api.TreeHelper;
 import com.ferreusveritas.dynamictrees.api.client.ModelHelper;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicLeaves;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSapling;
-import com.ferreusveritas.dynamictrees.trees.DynamicTree;
+import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 
 import biomesoplenty.api.enums.BOPTrees;
 import biomesoplenty.common.block.BlockBOPLeaves;
@@ -109,7 +109,7 @@ public class ClientProxy extends CommonProxy {
 			});
 		}
 
-		for(DynamicTree tree: ModContent.trees) {
+		for(TreeFamily tree: ModContent.trees) {
 			if (tree.getName().getResourcePath().equals("decayed")) continue;
 			if (tree.getName().getResourcePath().equals("dead")) continue;
 			BlockDynamicSapling sapling = (BlockDynamicSapling) tree.getCommonSpecies().getDynamicSapling().getBlock();

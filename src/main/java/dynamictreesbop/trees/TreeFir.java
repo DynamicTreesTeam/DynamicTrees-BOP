@@ -7,7 +7,7 @@ import com.ferreusveritas.dynamictrees.blocks.BlockBranch;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSapling;
 import com.ferreusveritas.dynamictrees.items.Seed;
 import com.ferreusveritas.dynamictrees.systems.GrowSignal;
-import com.ferreusveritas.dynamictrees.trees.DynamicTree;
+import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.util.CompatHelper;
 
@@ -29,13 +29,13 @@ import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.registries.IForgeRegistry;
 
-public class TreeFir extends DynamicTree {
+public class TreeFir extends TreeFamily {
 	
 	public class SpeciesMegaFir extends Species {
 		
 		FeatureGenBush bushGen;
 		
-		SpeciesMegaFir(DynamicTree treeFamily) {
+		SpeciesMegaFir(TreeFamily treeFamily) {
 			super(treeFamily.getName(), treeFamily, ModContent.firLeavesProperties);
 			
 			setBasicGrowingParameters(0.3f, 32.0f, 7, 7, 1.0f);
@@ -120,7 +120,7 @@ public class TreeFir extends DynamicTree {
 	
 	public class SpeciesFir extends Species {
 		
-		SpeciesFir(DynamicTree treeFamily) {
+		SpeciesFir(TreeFamily treeFamily) {
 			super(new ResourceLocation(treeFamily.getName().getResourceDomain(), treeFamily.getName().getResourcePath() + "small"), treeFamily, ModContent.firLeavesProperties);
 			
 			setBasicGrowingParameters(0.3f, 16.0f, 3, 3, 0.9f);

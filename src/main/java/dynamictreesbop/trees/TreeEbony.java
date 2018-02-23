@@ -5,7 +5,7 @@ import java.util.List;
 import com.ferreusveritas.dynamictrees.ModConstants;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSapling;
 import com.ferreusveritas.dynamictrees.items.Seed;
-import com.ferreusveritas.dynamictrees.trees.DynamicTree;
+import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 import com.ferreusveritas.dynamictrees.trees.Species;
 
 import biomesoplenty.api.biome.BOPBiomes;
@@ -23,11 +23,11 @@ import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.registries.IForgeRegistry;
 
-public class TreeEbony extends DynamicTree {
+public class TreeEbony extends TreeFamily {
 
 	public class SpeciesEbony extends Species {
 		
-		public SpeciesEbony(DynamicTree treeFamily) {
+		public SpeciesEbony(TreeFamily treeFamily) {
 			super(treeFamily.getName(), treeFamily, ModContent.ebonyLeavesProperties);
 			
 			setBasicGrowingParameters(0.3f, 12.0f, upProbability, lowestBranchHeight, 1.0f);
@@ -54,7 +54,7 @@ public class TreeEbony extends DynamicTree {
 	
 	public class SpeciesEbonyTwiglet extends Species {
 		
-		public SpeciesEbonyTwiglet(DynamicTree treeFamily) {
+		public SpeciesEbonyTwiglet(TreeFamily treeFamily) {
 			super(new ResourceLocation(DynamicTreesBOP.MODID, treeFamily.getName().getResourcePath() + "twiglet"), treeFamily, ModContent.ebonyLeavesProperties);
 			
 			setBasicGrowingParameters(0.3f, 2.5f, 1, 2, 1.0f);
@@ -77,12 +77,12 @@ public class TreeEbony extends DynamicTree {
 		
 		@Override
 		public ItemStack getSeedStack(int qty) {
-			return getTree().getCommonSpecies().getSeedStack(qty);
+			return getFamily().getCommonSpecies().getSeedStack(qty);
 		}
 		
 		@Override
 		public Seed getSeed() {
-			return getTree().getCommonSpecies().getSeed();
+			return getFamily().getCommonSpecies().getSeed();
 		}
 		
 	}

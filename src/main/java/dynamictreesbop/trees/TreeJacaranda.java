@@ -3,7 +3,7 @@ package dynamictreesbop.trees;
 import java.util.List;
 
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSapling;
-import com.ferreusveritas.dynamictrees.trees.DynamicTree;
+import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 import com.ferreusveritas.dynamictrees.trees.Species;
 
 import biomesoplenty.api.biome.BOPBiomes;
@@ -21,11 +21,11 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary.Type;
 
-public class TreeJacaranda extends DynamicTree {
+public class TreeJacaranda extends TreeFamily {
 	
 	public class SpeciesJacaranda extends Species {
 		
-		SpeciesJacaranda(DynamicTree treeFamily) {
+		SpeciesJacaranda(TreeFamily treeFamily) {
 			super(treeFamily.getName(), treeFamily, ModContent.jacarandaLeavesProperties);
 			
 			setBasicGrowingParameters(0.3f, 12.0f, upProbability, lowestBranchHeight, 0.9f);

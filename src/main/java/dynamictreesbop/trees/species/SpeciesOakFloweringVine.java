@@ -8,7 +8,7 @@ import com.ferreusveritas.dynamictrees.ModConstants;
 import com.ferreusveritas.dynamictrees.api.TreeRegistry;
 import com.ferreusveritas.dynamictrees.items.Seed;
 import com.ferreusveritas.dynamictrees.systems.dropcreators.DropCreatorApple;
-import com.ferreusveritas.dynamictrees.trees.DynamicTree;
+import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 import com.ferreusveritas.dynamictrees.trees.Species;
 
 import biomesoplenty.api.biome.BOPBiomes;
@@ -27,7 +27,7 @@ public class SpeciesOakFloweringVine extends Species {
 	Species baseSpecies;
 	FeatureGenVine vineGen;
 	
-	public SpeciesOakFloweringVine(DynamicTree treeFamily) {
+	public SpeciesOakFloweringVine(TreeFamily treeFamily) {
 		super(new ResourceLocation(DynamicTreesBOP.MODID, "oakfloweringvine"), treeFamily, ModBlocks.oakLeavesProperties);
 		
 		baseSpecies = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "oak"));

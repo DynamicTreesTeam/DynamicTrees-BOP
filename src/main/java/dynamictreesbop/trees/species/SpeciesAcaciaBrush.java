@@ -7,7 +7,7 @@ import com.ferreusveritas.dynamictrees.ModConstants;
 import com.ferreusveritas.dynamictrees.items.Seed;
 import com.ferreusveritas.dynamictrees.systems.GrowSignal;
 import com.ferreusveritas.dynamictrees.systems.dropcreators.DropCreatorLogs;
-import com.ferreusveritas.dynamictrees.trees.DynamicTree;
+import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 import com.ferreusveritas.dynamictrees.trees.Species;
 
 import biomesoplenty.api.biome.BOPBiomes;
@@ -24,7 +24,7 @@ import net.minecraftforge.common.BiomeDictionary.Type;
 
 public class SpeciesAcaciaBrush extends Species {
 	
-	public SpeciesAcaciaBrush(DynamicTree treeFamily) {
+	public SpeciesAcaciaBrush(TreeFamily treeFamily) {
 		super(new ResourceLocation(DynamicTreesBOP.MODID, "acaciabrush"), treeFamily, ModContent.acaciaBrushLeavesProperties);
 		
 		setBasicGrowingParameters(0.25f, 6.0f, 3, 4, 0.7f);
@@ -42,8 +42,8 @@ public class SpeciesAcaciaBrush extends Species {
 		addDropCreator(new DropCreatorLogs() {
 			@Override
 			public List<ItemStack> getLogsDrop(World world, Species species, BlockPos breakPos, Random random, List<ItemStack> dropList, int volume) {
-				dropList.add(species.getTree().getPrimitiveLogItemStack(volume / 1024)); // A log contains 4096 voxels of wood material(16x16x16 pixels) Drop vanilla logs or whatever
-				dropList.add(species.getTree().getStick((volume % 1024) / 128)); // A stick contains 512 voxels of wood (1/8th log) (1 log = 4 planks, 2 planks = 4 sticks) Give him the stick!
+				dropList.add(species.getFamily().getPrimitiveLogItemStack(volume / 1024)); // A log contains 4096 voxels of wood material(16x16x16 pixels) Drop vanilla logs or whatever
+				dropList.add(species.getFamily().getStick((volume % 1024) / 128)); // A stick contains 512 voxels of wood (1/8th log) (1 log = 4 planks, 2 planks = 4 sticks) Give him the stick!
 				return dropList;
 			}
 		});
@@ -71,12 +71,12 @@ public class SpeciesAcaciaBrush extends Species {
 	
 	@Override
 	public ItemStack getSeedStack(int qty) {
-		return getTree().getCommonSpecies().getSeedStack(qty);
+		return getFamily().getCommonSpecies().getSeedStack(qty);
 	}
 	
 	@Override
 	public Seed getSeed() {
-		return getTree().getCommonSpecies().getSeed();
+		return getFamily().getCommonSpecies().getSeed();
 	}
 
 }

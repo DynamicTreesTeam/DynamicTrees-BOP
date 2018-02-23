@@ -5,7 +5,7 @@ import java.util.Random;
 import com.ferreusveritas.dynamictrees.ModConstants;
 import com.ferreusveritas.dynamictrees.api.TreeRegistry;
 import com.ferreusveritas.dynamictrees.items.Seed;
-import com.ferreusveritas.dynamictrees.trees.DynamicTree;
+import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 import com.ferreusveritas.dynamictrees.trees.Species;
 
 import biomesoplenty.api.biome.BOPBiomes;
@@ -23,7 +23,7 @@ import net.minecraftforge.common.BiomeDictionary.Type;
 
 public class SpeciesJungleTwiglet extends Species {
 	
-	public SpeciesJungleTwiglet(DynamicTree treeFamily) {
+	public SpeciesJungleTwiglet(TreeFamily treeFamily) {
 		super(new ResourceLocation(DynamicTreesBOP.MODID, treeFamily.getName().getResourcePath() + "twiglet"), treeFamily, ModContent.jungleTwigletLeavesProperties);
 		
 		setBasicGrowingParameters(0.3f, 2.5f, 1, 2, 1.0f);
@@ -49,12 +49,12 @@ public class SpeciesJungleTwiglet extends Species {
 	
 	@Override
 	public ItemStack getSeedStack(int qty) {
-		return getTree().getCommonSpecies().getSeedStack(qty);
+		return getFamily().getCommonSpecies().getSeedStack(qty);
 	}
 	
 	@Override
 	public Seed getSeed() {
-		return getTree().getCommonSpecies().getSeed();
+		return getFamily().getCommonSpecies().getSeed();
 	}
 	
 	@Override

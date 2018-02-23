@@ -4,7 +4,7 @@ import java.util.Random;
 
 import com.ferreusveritas.dynamictrees.api.treedata.ITreePart;
 import com.ferreusveritas.dynamictrees.blocks.BlockRooty;
-import com.ferreusveritas.dynamictrees.trees.DynamicTree;
+import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 import com.ferreusveritas.dynamictrees.trees.Species;
 
 import biomesoplenty.api.block.BOPBlocks;
@@ -22,11 +22,11 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.registries.IForgeRegistry;
 
-public class TreeDead extends DynamicTree {
+public class TreeDead extends TreeFamily {
 	
 	public class SpeciesDead extends Species {
 		
-		SpeciesDead(DynamicTree treeFamily) {
+		SpeciesDead(TreeFamily treeFamily) {
 			super(treeFamily.getName(), treeFamily, ModContent.deadLeavesProperties);
 			
 			setBasicGrowingParameters(0.3f, 12.0f, upProbability, lowestBranchHeight, 0.5f);
@@ -64,7 +64,7 @@ public class TreeDead extends DynamicTree {
 	
 	public class SpeciesDecayed extends Species {
 		
-		SpeciesDecayed(DynamicTree treeFamily) {
+		SpeciesDecayed(TreeFamily treeFamily) {
 			super(new ResourceLocation(treeFamily.getName().getResourceDomain(), "decayed"), treeFamily, ModContent.decayedLeavesProperties);
 			
 			setBasicGrowingParameters(0.3f, 12.0f, upProbability, lowestBranchHeight, 1.0f);

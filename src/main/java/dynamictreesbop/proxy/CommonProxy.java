@@ -38,7 +38,7 @@ public class CommonProxy {
 		Species poplar = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "poplar"));
 		Species darkPoplar = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "darkpoplar"));
 		
-		TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "oak")).getTree().addSpeciesLocationOverride((access, trunkPos) -> {
+		TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "oak")).getFamily().addSpeciesLocationOverride((access, trunkPos) -> {
 			Biome biome = access.getBiome(trunkPos);
 			
 			if (biome == BOPBiomes.prairie.get()) return oakConifer;
@@ -46,14 +46,14 @@ public class CommonProxy {
 			
 			return Species.NULLSPECIES;
 		});
-		TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "birch")).getTree().addSpeciesLocationOverride((access, trunkPos) -> {
+		TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "birch")).getFamily().addSpeciesLocationOverride((access, trunkPos) -> {
 			Biome biome = access.getBiome(trunkPos);
 			
 			if (biome == BOPBiomes.grove.get()) return poplar;
 			
 			return Species.NULLSPECIES;
 		});
-		TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "darkoak")).getTree().addSpeciesLocationOverride((access, trunkPos) -> {
+		TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "darkoak")).getFamily().addSpeciesLocationOverride((access, trunkPos) -> {
 			Biome biome = access.getBiome(trunkPos);
 			
 			if (biome == BOPBiomes.grove.get()) return darkPoplar;
