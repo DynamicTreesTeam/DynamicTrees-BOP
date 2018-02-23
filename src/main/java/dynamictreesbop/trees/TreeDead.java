@@ -6,6 +6,7 @@ import com.ferreusveritas.dynamictrees.api.treedata.ITreePart;
 import com.ferreusveritas.dynamictrees.blocks.BlockRooty;
 import com.ferreusveritas.dynamictrees.trees.DynamicTree;
 import com.ferreusveritas.dynamictrees.trees.Species;
+import com.ferreusveritas.dynamictrees.util.CompatHelper;
 
 import biomesoplenty.api.block.BOPBlocks;
 import biomesoplenty.api.enums.BOPWoods;
@@ -16,6 +17,7 @@ import dynamictreesbop.ModContent;
 import dynamictreesbop.dropcreators.DropCreatorFruit;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -118,9 +120,9 @@ public class TreeDead extends DynamicTree {
 		speciesRegistry.register(decayedSpecies);
 	}
 	
+	// This prevents a crash when recipes are generated to convert seeds to saplings and vice versa	
 	@Override
-	public IBlockState getPrimitiveSaplingBlockState() {
-		return null;
+	public ItemStack getPrimitiveSaplingItemStack() {
+		return CompatHelper.emptyStack();
 	}
-
 }
