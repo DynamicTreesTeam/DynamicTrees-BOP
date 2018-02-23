@@ -129,14 +129,14 @@ public class TreePalm extends DynamicTree {
 			BlockBranch branch = TreeHelper.getBranch(trunkBlockState);
 			NodeFindEnds endFinder = new NodeFindEnds();
 			MapSignal signal = new MapSignal(endFinder);
-			branch.analyse(world, treePos, EnumFacing.DOWN, signal);
+			branch.analyse(trunkBlockState, world, treePos, EnumFacing.DOWN, signal);
 			List<BlockPos> endPoints = endFinder.getEnds();
 			
 			for (BlockPos endPoint: endPoints) {
 				TreeHelper.ageVolume(world, endPoint, 1, 2, null, 3);
 			}
 			
-			// Make sure the botton block is always just a little thicker that the block above it.
+			// Make sure the bottom block is always just a little thicker that the block above it.
 			int radius = branch.getRadius(world.getBlockState(treePos.up()), world, treePos.up());
 			if (radius != 0) {
 				branch.setRadius(world, treePos, radius + 1, null);

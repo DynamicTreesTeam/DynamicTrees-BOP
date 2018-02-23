@@ -150,14 +150,15 @@ public class SpeciesPoplar extends Species {
 			generateFork(world, species, 0, rootPos, false);
 
 			// Fix branch thicknesses and map out leaf locations
-			BlockBranch branch = TreeHelper.getBranch(world.getBlockState(treePos));
+			IBlockState branchState = world.getBlockState(treePos);
+			BlockBranch branch = TreeHelper.getBranch(branchState);
 			if (branch != null) { // If a branch exists then the growth was successful
 				ILeavesProperties leavesProperties = species.getLeavesProperties();
 				SimpleVoxmap leafMap = new SimpleVoxmap(radius * 2 + 1, 32, radius * 2 + 1).setMapAndCenter(treePos, new BlockPos(radius, 0, radius));
 				NodeInflatorPoplar inflator = new NodeInflatorPoplar(species, leafMap); // This is responsible for thickening the branches
 				NodeFindEnds endFinder = new NodeFindEnds(); // This is responsible for gathering a list of branch end points
 				MapSignal signal = new MapSignal(inflator, endFinder); // The inflator signal will "paint" a temporary voxmap of all of the leaves and branches.
-				branch.analyse(world, treePos, EnumFacing.DOWN, signal);
+				branch.analyse(branchState, world, treePos, EnumFacing.DOWN, signal);
 				List<BlockPos> endPoints = endFinder.getEnds();
 				
 				// Establish a zone where we can place leaves without hitting ungenerated chunks.
@@ -217,8 +218,8 @@ public class SpeciesPoplar extends Species {
 		}
 		
 		@Override
-		public boolean run(World world, Block block, BlockPos pos, EnumFacing fromDir) {
-			BlockBranch branch = TreeHelper.getBranch(block);
+		public boolean run(IBlockState blockState, World world, BlockPos pos, EnumFacing fromDir) {
+			BlockBranch branch = TreeHelper.getBranch(blockState);
 			
 			if (branch != null) {
 				radius = 1.0f;
@@ -227,9 +228,9 @@ public class SpeciesPoplar extends Species {
 		}
 		
 		@Override
-		public boolean returnRun(World world, Block block, BlockPos pos, EnumFacing fromDir) {
+		public boolean returnRun(IBlockState blockState, World world, BlockPos pos, EnumFacing fromDir) {
 			// Calculate Branch Thickness based on neighboring branches
-			BlockBranch branch = TreeHelper.getBranch(block);
+			BlockBranch branch = TreeHelper.getBranch(blockState);
 			
 			if (branch != null) {
 				float areaAccum = radius * radius; // Start by accumulating the branch we just came from
