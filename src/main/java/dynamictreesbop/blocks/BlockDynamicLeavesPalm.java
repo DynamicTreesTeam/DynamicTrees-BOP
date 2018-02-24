@@ -103,12 +103,12 @@ public class BlockDynamicLeavesPalm extends BlockDynamicLeaves {
 	
 	@Override
 	public int getRadiusForConnection(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, BlockBranch from, EnumFacing side, int fromRadius) {
-		return side == EnumFacing.UP && from.getTree().isCompatibleDynamicLeaves(blockState, blockAccess, pos) ? fromRadius : 0;
+		return side == EnumFacing.UP && from.getFamily().isCompatibleDynamicLeaves(blockState, blockAccess, pos) ? fromRadius : 0;
 	}
 	
 	@Override
 	public int branchSupport(IBlockState blockState, IBlockAccess blockAccess, BlockBranch branch, BlockPos pos, EnumFacing dir, int radius) {
-		return branch.getTree() == getFamily(blockState, blockAccess, pos) ? BlockBranch.setSupport(0, 1) : 0;
+		return branch.getFamily() == getFamily(blockState, blockAccess, pos) ? BlockBranch.setSupport(0, 1) : 0;
 	}
 	
 	

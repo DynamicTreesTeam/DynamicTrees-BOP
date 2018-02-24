@@ -8,6 +8,7 @@ import com.ferreusveritas.dynamictrees.api.TreeHelper;
 import com.ferreusveritas.dynamictrees.api.TreeRegistry;
 import com.ferreusveritas.dynamictrees.api.client.ModelHelper;
 import com.ferreusveritas.dynamictrees.api.treedata.ILeavesProperties;
+import com.ferreusveritas.dynamictrees.blocks.BlockBranch;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicLeaves;
 import com.ferreusveritas.dynamictrees.blocks.LeavesProperties;
 import com.ferreusveritas.dynamictrees.trees.Species;
@@ -59,6 +60,7 @@ import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ColorizerFoliage;
@@ -400,11 +402,12 @@ public class ModContent {
 		bambooLeavesProperties = new LeavesProperties(
 				BlockBOPLeaves.paging.getVariantState(BOPTrees.BAMBOO),
 				BlockBOPLeaves.paging.getVariantItem(BOPTrees.BAMBOO),
-				TreeRegistry.findCellKit(new ResourceLocation(DynamicTreesBOP.MODID, "sparse"))){
+				TreeRegistry.findCellKit("deciduous")){
 					@Override
-					public int getSmotherLeavesMax() {
-						return 1;
+					public int getRadiusForConnection(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, BlockBranch from, EnumFacing side, int fromRadius) {
+						return from.getFamily().isCompatibleDynamicLeaves(blockAccess.getBlockState(pos), blockAccess, pos) ? 1 : 0;
 					}
+
 				};
 		
 		// Add leaves properties that need leaves to be generated to an array

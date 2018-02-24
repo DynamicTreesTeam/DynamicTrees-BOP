@@ -109,6 +109,7 @@ public class TreeBamboo extends TreeFamily {
 				super.setRadius(world, pos, MathHelper.clamp(radius, 1, 3), dir, flags);
 			}
 			
+
 		};
 		
 	}
