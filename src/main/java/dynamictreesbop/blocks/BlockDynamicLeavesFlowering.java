@@ -6,6 +6,7 @@ import java.util.Random;
 import com.ferreusveritas.dynamictrees.api.treedata.ILeavesProperties;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicLeaves;
 import com.ferreusveritas.dynamictrees.blocks.LeavesProperties;
+import com.ferreusveritas.dynamictrees.util.MathHelper;
 
 import biomesoplenty.api.enums.BOPTrees;
 import biomesoplenty.common.block.BlockBOPLeaves;
@@ -37,7 +38,7 @@ public class BlockDynamicLeavesFlowering extends BlockDynamicLeaves {
 	
 	@Override
 	protected BlockStateContainer createBlockState() {
-		return new BlockStateContainer(this, new IProperty[] {HYDRO, FLOWERING, CAN_FLOWER, TREE});//TREE is unused, but it has to be there to prevent a crash when the constructor of BlockDynamicLeaves sets the default state
+		return new BlockStateContainer(this, new IProperty[] {HYDRO, FLOWERING, CAN_FLOWER, TREE}); // TREE is unused, but it has to be there to prevent a crash when the constructor of BlockDynamicLeaves sets the default state
 	}
 	
 	@Override
@@ -65,15 +66,15 @@ public class BlockDynamicLeavesFlowering extends BlockDynamicLeaves {
 		ILeavesProperties leavesProperties = getProperties(state);
 		int oldHydro = state.getValue(BlockDynamicLeaves.HYDRO);
 		
-		//Check hydration level.  Dry leaves are dead leaves.
+		// Check hydration level.  Dry leaves are dead leaves.
 		int newHydro = getHydrationLevelFromNeighbors(world, pos, leavesProperties);
-		if(newHydro == 0 || (!rapid && !hasAdequateLight(state, world, leavesProperties, pos))) { //Light doesn't work right during worldgen so we'll just disable it during worldgen for now.
-			world.setBlockToAir(pos);//No water, no light .. no leaves
-			return true;//Leaves were destroyed
+		if (newHydro == 0 || (!rapid && !hasAdequateLight(state, world, leavesProperties, pos))) { // Light doesn't work right during worldgen so we'll just disable it during worldgen for now.
+			world.setBlockToAir(pos); // No water, no light .. no leaves
+			return true; // Leaves were destroyed
 		} else { 
-			//Encode new hydration level in metadata for this leaf
-			if(oldHydro != newHydro) {//A little performance gain
-				world.setBlockState(pos, leavesProperties.getDynamicLeavesState(newHydro), 4);
+			// Encode new hydration level in metadata for this leaf
+			if (oldHydro != newHydro) { // A little performance gain
+				world.setBlockState(pos, state.withProperty(HYDRO, MathHelper.clamp(newHydro, 1, 4)), 4);
 			}
 		}
 		
@@ -85,26 +86,37 @@ public class BlockDynamicLeavesFlowering extends BlockDynamicLeaves {
 			}
 		}
 		
-		//We should do this even if the hydro is only 1.  Since there could be adjacent branch blocks that could use a leaves block
-		for(EnumFacing dir: EnumFacing.VALUES) {//Go on all 6 sides of this block
-			if(newHydro > 1 || rand.nextInt(4) == 0 ) {//we'll give it a 1 in 4 chance to grow leaves if hydro is low to help performance
+		// We should do this even if the hydro is only 1.  Since there could be adjacent branch blocks that could use a leaves block
+		for (EnumFacing dir: EnumFacing.VALUES) { // Go on all 6 sides of this block
+			if (newHydro > 1 || rand.nextInt(4) == 0 ) { // we'll give it a 1 in 4 chance to grow leaves if hydro is low to help performance
 				BlockPos offpos = pos.offset(dir);
-				if(isLocationSuitableForNewLeaves(world, leavesProperties, offpos)) {//Attempt to grow new leaves
+				if (isLocationSuitableForNewLeaves(world, leavesProperties, offpos)) {//Attempt to grow new leaves
 					int hydro = getHydrationLevelFromNeighbors(world, offpos, leavesProperties);
-					if(hydro > 0) {
-						boolean canFlower = world.rand.nextInt(4) == 0;
+					if (hydro > 0) {
+						boolean canFlower = world.rand.nextInt(3) == 0;
 						world.setBlockState(pos, leavesProperties.getDynamicLeavesState().withProperty(CAN_FLOWER, canFlower).withProperty(FLOWERING, canFlower && world.getLight(pos) >= 14).withProperty(HYDRO, hydro), 2);
 					}
 				}
 			}
 		}
 		
-		return false;//Leaves were not destroyed
+		return false; // Leaves were not destroyed
+	}
+	
+	@Override
+	public boolean growLeavesIfLocationIsSuitable(World world, ILeavesProperties leavesProp, BlockPos pos, int hydro) {
+		hydro = hydro == 0 ? leavesProp.getCellKit().getDefaultHydration() : hydro;
+		if (isLocationSuitableForNewLeaves(world, leavesProp, pos)) {
+			boolean canFlower = world.rand.nextInt(3) == 0;
+			IBlockState state = leavesProp.getDynamicLeavesState(hydro).withProperty(CAN_FLOWER, canFlower).withProperty(FLOWERING, canFlower && world.getLight(pos) >= 14);
+			world.setBlockState(pos, state, 2 | (leavesProp.appearanceChangesWithHydro() ? 1 : 0)); // Removed Notify Neighbors Flag for performance
+			return true;
+		}
+		return false;
 	}
 	
 	@Override
 	public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand) {
-		
 		if (properties.getDynamicLeavesState().getBlock() == this) {//The tree being clicked on is a flowering oak, add a chance for the placed leaves to be flowering
 			boolean flowers = world.rand.nextInt(3) == 0;
 			return getDefaultState().withProperty(CAN_FLOWER, flowers).withProperty(FLOWERING, flowers);
