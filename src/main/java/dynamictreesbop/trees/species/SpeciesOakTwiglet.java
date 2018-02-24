@@ -27,8 +27,6 @@ import net.minecraftforge.common.BiomeDictionary.Type;
 
 public class SpeciesOakTwiglet extends Species {
 	
-	FeatureGenBush bushGen;
-	
 	public SpeciesOakTwiglet(TreeFamily treeFamily) {
 		super(new ResourceLocation(DynamicTreesBOP.MODID, treeFamily.getName().getResourcePath() + "twiglet"), treeFamily, ModContent.oakTwigletLeavesProperties);
 		
@@ -43,8 +41,6 @@ public class SpeciesOakTwiglet extends Species {
 		setupStandardSeedDropping();
 		remDropCreator(new ResourceLocation(ModConstants.MODID, "logs"));
 		addDropCreator(new DropCreatorTwigletLogs());
-		
-		bushGen = new FeatureGenBush(this);
 		
 		leavesProperties.setTree(treeFamily);
 	}
@@ -62,14 +58,6 @@ public class SpeciesOakTwiglet extends Species {
 	@Override
 	public Seed getSeed() {
 		return getFamily().getCommonSpecies().getSeed();
-	}
-	
-	@Override
-	public void postGeneration(World world, BlockPos rootPos, Biome biome, int radius, List<BlockPos> endPoints, boolean worldGen) {
-		if (worldGen && biome == BOPBiomes.chaparral.get() && world.rand.nextInt(3) > 0) {
-			//Generate undergrowth
-			bushGen.setRadius(radius).gen(world, rootPos.up(), endPoints);
-		}
 	}
 	
 	@Override
