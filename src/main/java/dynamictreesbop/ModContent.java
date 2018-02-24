@@ -51,6 +51,7 @@ import dynamictreesbop.trees.species.SpeciesOakFloweringVine;
 import dynamictreesbop.trees.species.SpeciesOakTwiglet;
 import dynamictreesbop.trees.species.SpeciesOrangeAutumn;
 import dynamictreesbop.trees.species.SpeciesPoplar;
+import dynamictreesbop.trees.species.SpeciesSpruceBush;
 import dynamictreesbop.trees.species.SpeciesYellowAutumn;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockNewLeaf;
@@ -489,6 +490,7 @@ public class ModContent {
 		// Register bush dummies
 		Species.REGISTRY.register(new SpeciesAcaciaBush());
 		Species.REGISTRY.register(new SpeciesOakBush());
+		Species.REGISTRY.register(new SpeciesSpruceBush());
 		
 		// Register new tree types
 		TreeFamily magicTree = new TreeMagic();

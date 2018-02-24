@@ -120,8 +120,6 @@ public class CommonProxy {
 				removeCactusGen(BOPBiomes.outback);
 				removeCactusGen(BOPBiomes.xeric_shrubland);
 			}
-			
-			if (BOPBiomes.meadow.get() != null) ((BOPBiome) BOPBiomes.meadow.get()).addGenerator("bush", GeneratorStage.TREE, (new GeneratorBush.Builder()).amountPerChunk(1).maxHeight(2).log(BlockPlanks.EnumType.SPRUCE).leaves(BlockPlanks.EnumType.SPRUCE).create());
 		}
 	}
 	

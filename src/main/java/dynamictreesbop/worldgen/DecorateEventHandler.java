@@ -24,7 +24,6 @@ public class DecorateEventHandler {
 					&& biome != BOPBiomes.origin_island.get()
 					&& biome != BOPBiomes.shrubland.get()
 					&& biome != BOPBiomes.tundra.get()
-					&& biome != BOPBiomes.meadow.get()
 					&& biome != BOPBiomes.bamboo_forest.get()
 					&& biome != BOPBiomes.mangrove.get()
 					&& biome != BOPBiomes.redwood_forest.get()

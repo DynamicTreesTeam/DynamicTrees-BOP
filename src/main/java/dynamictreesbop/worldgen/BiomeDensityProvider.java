@@ -22,7 +22,7 @@ public class BiomeDensityProvider implements IBiomeDensityProvider {
 		if (biome == BOPBiomes.lavender_fields.get()) return rand.nextFloat() < 0.3f ? EnumChance.OK : EnumChance.CANCEL;
 		if (biome == BOPBiomes.lush_desert.get()) return rand.nextFloat() < 0.4f ? EnumChance.OK : EnumChance.CANCEL;
 		if (biome == BOPBiomes.lush_swamp.get()) return EnumChance.OK;
-		if (biome == BOPBiomes.meadow.get()) return rand.nextFloat() < 0.3f ? EnumChance.OK : EnumChance.CANCEL;
+		if (biome == BOPBiomes.meadow.get()) return rand.nextFloat() < 0.6f ? EnumChance.OK : EnumChance.CANCEL;
 		if (biome == BOPBiomes.oasis.get()) {
 			if (species.getRegistryName().getResourcePath().equals("palm")) {
 				return rand.nextFloat() < 0.5f ? EnumChance.OK : EnumChance.CANCEL;
@@ -85,6 +85,8 @@ public class BiomeDensityProvider implements IBiomeDensityProvider {
 		if (biome == BOPBiomes.lush_swamp.get()) return noiseDensity * 0.9;
 		
 		if (biome == BOPBiomes.maple_woods.get()) return noiseDensity;
+		
+		if (biome == BOPBiomes.meadow.get()) return noiseDensity * 0.25;
 		
 		if (biome == BOPBiomes.mountain.get()) return noiseDensity * 0.3;
 		
