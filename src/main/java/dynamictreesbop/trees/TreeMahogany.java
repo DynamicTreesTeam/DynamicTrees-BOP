@@ -15,7 +15,9 @@ import com.ferreusveritas.dynamictrees.util.CompatHelper;
 
 import biomesoplenty.api.biome.BOPBiomes;
 import biomesoplenty.api.block.BOPBlocks;
+import biomesoplenty.api.enums.BOPTrees;
 import biomesoplenty.api.enums.BOPWoods;
+import biomesoplenty.common.block.BlockBOPLeaves;
 import biomesoplenty.common.block.BlockBOPLog;
 import dynamictreesbop.DynamicTreesBOP;
 import dynamictreesbop.ModContent;
@@ -132,6 +134,10 @@ public class TreeMahogany extends TreeFamily {
 		setPrimitiveLog(primLog, BlockBOPLog.paging.getVariantItem(BOPWoods.MAHOGANY));
 		
 		ModContent.mahoganyLeavesProperties.setTree(this);
+		
+		this.addConnectableVanillaLeaves((state) -> {
+			return state.getBlock() instanceof BlockBOPLeaves && state.getValue(((BlockBOPLeaves) state.getBlock()).variantProperty) == BOPTrees.MAHOGANY;
+		});
 		
 		canSupportCocoa = true;
 	}

@@ -9,7 +9,9 @@ import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 import com.ferreusveritas.dynamictrees.trees.SpeciesRare;
 
 import biomesoplenty.api.block.BOPBlocks;
+import biomesoplenty.api.enums.BOPTrees;
 import biomesoplenty.api.item.BOPItems;
+import biomesoplenty.common.block.BlockBOPLeaves;
 import dynamictreesbop.DynamicTreesBOP;
 import dynamictreesbop.ModContent;
 import dynamictreesbop.dropcreators.DropCreatorFruit;
@@ -43,6 +45,10 @@ public class SpeciesFloweringOak extends SpeciesRare {
 		setupStandardSeedDropping();
 		
 		ModContent.floweringOakLeavesProperties.setTree(treeFamily);
+		
+		treeFamily.addConnectableVanillaLeaves((state) -> {
+			return state.getBlock() instanceof BlockBOPLeaves && state.getValue(((BlockBOPLeaves) state.getBlock()).variantProperty) == BOPTrees.FLOWERING;
+		});
 	}
 	
 	@Override

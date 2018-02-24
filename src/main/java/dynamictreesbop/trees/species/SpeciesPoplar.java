@@ -43,7 +43,7 @@ public class SpeciesPoplar extends Species {
 	public SpeciesPoplar(TreeFamily treeFamily, String name, ILeavesProperties leavesProps) {
 		super(new ResourceLocation(DynamicTreesBOP.MODID, name), treeFamily, leavesProps);
 		
-		setBasicGrowingParameters(0.25f, 11.0f, 5, 4, 1.0f);
+		setBasicGrowingParameters(0.25f, 11.0f, 5, 4, 0.85f);
 		
 		envFactor(Type.HOT, 0.50f);
 		envFactor(Type.DRY, 0.50f);
@@ -235,7 +235,7 @@ public class SpeciesPoplar extends Species {
 			if (branch != null) {
 				float areaAccum = radius * radius; // Start by accumulating the branch we just came from
 				boolean isTwig = true;
-				boolean isTop = true;
+				boolean isTop = (world.getBlockState(pos.down()).getBlock() == branch);
 				
 				for (EnumFacing dir: EnumFacing.VALUES) {
 					if(!dir.equals(fromDir)) { // Don't count where the signal originated from
@@ -247,8 +247,6 @@ public class SpeciesPoplar extends Species {
 							isTop = false;
 							continue;
 						}
-						
-						if (dir.getAxis() != EnumFacing.Axis.Y) isTop = false;
 						
 						IBlockState deltaBlockState = world.getBlockState(dPos);
 						ITreePart treepart = TreeHelper.getTreePart(deltaBlockState);

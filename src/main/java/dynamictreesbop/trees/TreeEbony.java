@@ -10,7 +10,9 @@ import com.ferreusveritas.dynamictrees.trees.Species;
 
 import biomesoplenty.api.biome.BOPBiomes;
 import biomesoplenty.api.block.BOPBlocks;
+import biomesoplenty.api.enums.BOPTrees;
 import biomesoplenty.api.enums.BOPWoods;
+import biomesoplenty.common.block.BlockBOPLeaves;
 import biomesoplenty.common.block.BlockBOPLog;
 import dynamictreesbop.DynamicTreesBOP;
 import dynamictreesbop.ModContent;
@@ -97,6 +99,10 @@ public class TreeEbony extends TreeFamily {
 		setPrimitiveLog(primLog, BlockBOPLog.paging.getVariantItem(BOPWoods.EBONY));
 		
 		ModContent.ebonyLeavesProperties.setTree(this);
+		
+		this.addConnectableVanillaLeaves((state) -> {
+			return state.getBlock() instanceof BlockBOPLeaves && state.getValue(((BlockBOPLeaves) state.getBlock()).variantProperty) == BOPTrees.EBONY;
+		});
 	}
 	
 	@Override

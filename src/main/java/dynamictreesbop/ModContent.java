@@ -25,6 +25,7 @@ import dynamictreesbop.trees.TreeBamboo;
 import dynamictreesbop.trees.TreeCherry;
 import dynamictreesbop.trees.TreeDead;
 import dynamictreesbop.trees.TreeEbony;
+import dynamictreesbop.trees.TreeEucalyptus;
 import dynamictreesbop.trees.TreeFir;
 import dynamictreesbop.trees.TreeHellbark;
 import dynamictreesbop.trees.TreeJacaranda;
@@ -93,10 +94,10 @@ public class ModContent {
 			whiteCherryLeavesProperties, mapleLeavesProperties, deadLeavesProperties,
 			jacarandaLeavesProperties, willowLeavesProperties, hellbarkLeavesProperties,
 			pineLeavesProperties, mahoganyLeavesProperties, ebonyLeavesProperties,
+			bambooLeavesProperties, eucalyptusLeavesProperties,
 			oakConiferLeavesProperties, darkOakConiferLeavesProperties, darkOakDyingConiferLeavesProperties,
 			oakTwigletLeavesProperties, poplarLeavesProperties, darkPoplarLeavesProperties,
-			jungleTwigletLeavesProperties, acaciaTwigletLeavesProperties, acaciaBrushLeavesProperties,
-			bambooLeavesProperties;
+			jungleTwigletLeavesProperties, acaciaTwigletLeavesProperties, acaciaBrushLeavesProperties;
 	
 	// array of leaves properties with auto-generated leaves
 	public static ILeavesProperties[] basicLeavesProperties;
@@ -324,6 +325,28 @@ public class ModContent {
 						return 1;
 					}
 				};
+		bambooLeavesProperties = new LeavesProperties(
+				BlockBOPLeaves.paging.getVariantState(BOPTrees.BAMBOO),
+				BlockBOPLeaves.paging.getVariantItem(BOPTrees.BAMBOO),
+				TreeRegistry.findCellKit("deciduous")){
+					@Override
+					public int getRadiusForConnection(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, BlockBranch from, EnumFacing side, int fromRadius) {
+						return from.getFamily().isCompatibleDynamicLeaves(blockAccess.getBlockState(pos), blockAccess, pos) ? 1 : 0;
+					}
+				};
+		eucalyptusLeavesProperties = new LeavesProperties(
+				BlockBOPLeaves.paging.getVariantState(BOPTrees.EUCALYPTUS),
+				BlockBOPLeaves.paging.getVariantItem(BOPTrees.EUCALYPTUS),
+				TreeRegistry.findCellKit(new ResourceLocation(DynamicTreesBOP.MODID, "eucalyptus"))){
+					@Override
+					public int getSmotherLeavesMax() {
+						return 13;
+					}
+					@Override
+					public int getLightRequirement() {
+						return 13;
+					}
+				};
 		
 		oakConiferLeavesProperties = new LeavesProperties(
 				Blocks.LEAVES.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.OAK),
@@ -399,16 +422,6 @@ public class ModContent {
 				Blocks.LEAVES2.getDefaultState().withProperty(BlockNewLeaf.VARIANT, BlockPlanks.EnumType.ACACIA),
 				new ItemStack(Blocks.LEAVES2, 1, BlockPlanks.EnumType.ACACIA.getMetadata()),
 				TreeRegistry.findCellKit(new ResourceLocation(DynamicTreesBOP.MODID, "brush")));
-		bambooLeavesProperties = new LeavesProperties(
-				BlockBOPLeaves.paging.getVariantState(BOPTrees.BAMBOO),
-				BlockBOPLeaves.paging.getVariantItem(BOPTrees.BAMBOO),
-				TreeRegistry.findCellKit("deciduous")){
-					@Override
-					public int getRadiusForConnection(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, BlockBranch from, EnumFacing side, int fromRadius) {
-						return from.getFamily().isCompatibleDynamicLeaves(blockAccess.getBlockState(pos), blockAccess, pos) ? 1 : 0;
-					}
-
-				};
 		
 		// Add leaves properties that need leaves to be generated to an array
 		basicLeavesProperties = new ILeavesProperties[] {
@@ -431,7 +444,7 @@ public class ModContent {
 				pineLeavesProperties,
 				mahoganyLeavesProperties,
 				ebonyLeavesProperties,
-				LeavesProperties.NULLPROPERTIES, // placeholder for eucalyptus
+				eucalyptusLeavesProperties,
 				oakConiferLeavesProperties,
 				darkOakConiferLeavesProperties,
 				darkOakDyingConiferLeavesProperties,
@@ -491,8 +504,9 @@ public class ModContent {
 		TreeFamily mahoganyTree = new TreeMahogany();
 		TreeFamily ebonyTree = new TreeEbony();
 		TreeFamily bambooTree = new TreeBamboo();
+		TreeFamily eucalyptusTree = new TreeEucalyptus();
 		
-		Collections.addAll(trees, magicTree, umbranTree, firTree, cherryTree, deadTree, jacarandaTree, willowTree, hellbarkTree, pineTree, palmTree, mahoganyTree, ebonyTree, bambooTree);
+		Collections.addAll(trees, magicTree, umbranTree, firTree, cherryTree, deadTree, jacarandaTree, willowTree, hellbarkTree, pineTree, palmTree, mahoganyTree, ebonyTree, bambooTree, eucalyptusTree);
 		trees.forEach(tree -> tree.registerSpecies(Species.REGISTRY));
 		
 		// Register extra saplings

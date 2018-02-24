@@ -75,6 +75,7 @@ public class CommonProxy {
 			removeTreeGen(BOPBiomes.coniferous_forest);
 			removeTreeGen(BOPBiomes.dead_forest);
 			removeTreeGen(BOPBiomes.dead_swamp);
+			removeTreeGen(BOPBiomes.eucalyptus_forest);
 			removeTreeGen(BOPBiomes.fen);
 			removeTreeGen(BOPBiomes.grove);
 			removeTreeGen(BOPBiomes.land_of_lakes);

@@ -13,7 +13,9 @@ import com.ferreusveritas.dynamictrees.trees.SpeciesRare;
 
 import biomesoplenty.api.biome.BOPBiomes;
 import biomesoplenty.api.block.BOPBlocks;
+import biomesoplenty.api.enums.BOPTrees;
 import biomesoplenty.api.enums.BOPWoods;
+import biomesoplenty.common.block.BlockBOPLeaves;
 import biomesoplenty.common.block.BlockBOPLog;
 import biomesoplenty.common.block.BlockBOPMushroom;
 import dynamictreesbop.DynamicTreesBOP;
@@ -123,6 +125,14 @@ public class TreeCherry extends TreeFamily {
 		
 		ModContent.pinkCherryLeavesProperties.setTree(this);
 		ModContent.whiteCherryLeavesProperties.setTree(this);
+		
+		this.addConnectableVanillaLeaves((state) -> {
+			if (state.getBlock() instanceof BlockBOPLeaves) {
+				BOPTrees treeType = (BOPTrees) state.getValue(((BlockBOPLeaves) state.getBlock()).variantProperty);
+				return treeType == BOPTrees.PINK_CHERRY || treeType == BOPTrees.WHITE_CHERRY;
+			}
+			return false;
+		});
 	}
 	
 	@Override

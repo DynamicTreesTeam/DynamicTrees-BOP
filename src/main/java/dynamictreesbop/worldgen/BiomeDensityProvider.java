@@ -18,6 +18,7 @@ public class BiomeDensityProvider implements IBiomeDensityProvider {
 		if (biome == BOPBiomes.brushland.get()) return EnumChance.OK;
 		if (biome == BOPBiomes.chaparral.get()) return rand.nextFloat() < 0.7f ? EnumChance.OK : EnumChance.CANCEL;
 		if (biome == BOPBiomes.dead_swamp.get()) return rand.nextFloat() < 0.6f ? EnumChance.OK : EnumChance.CANCEL;
+		if (biome == BOPBiomes.eucalyptus_forest.get()) return EnumChance.OK;
 		if (biome == BOPBiomes.lavender_fields.get()) return rand.nextFloat() < 0.3f ? EnumChance.OK : EnumChance.CANCEL;
 		if (biome == BOPBiomes.lush_desert.get()) return rand.nextFloat() < 0.4f ? EnumChance.OK : EnumChance.CANCEL;
 		if (biome == BOPBiomes.lush_swamp.get()) return EnumChance.OK;
@@ -70,6 +71,8 @@ public class BiomeDensityProvider implements IBiomeDensityProvider {
 		if (biome == BOPBiomes.dead_forest.get()) return noiseDensity * 0.3;
 		
 		if (biome == BOPBiomes.dead_swamp.get()) return noiseDensity * 0.06;
+		
+		if (biome == BOPBiomes.eucalyptus_forest.get()) return (noiseDensity * 0.5) + 0.5;
 		
 		if (biome == BOPBiomes.fen.get()) return noiseDensity * 0.9;
 		

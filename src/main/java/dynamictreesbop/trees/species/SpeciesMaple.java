@@ -11,7 +11,9 @@ import com.ferreusveritas.dynamictrees.trees.SpeciesRare;
 
 import biomesoplenty.api.biome.BOPBiomes;
 import biomesoplenty.api.block.BOPBlocks;
+import biomesoplenty.api.enums.BOPTrees;
 import biomesoplenty.api.item.BOPItems;
+import biomesoplenty.common.block.BlockBOPLeaves;
 import dynamictreesbop.DynamicTreesBOP;
 import dynamictreesbop.ModContent;
 import dynamictreesbop.dropcreators.DropCreatorFruit;
@@ -46,6 +48,10 @@ public class SpeciesMaple extends SpeciesRare {
 		setupStandardSeedDropping();
 		
 		leavesProperties.setTree(treeFamily);
+		
+		treeFamily.addConnectableVanillaLeaves((state) -> {
+			return state.getBlock() instanceof BlockBOPLeaves && state.getValue(((BlockBOPLeaves) state.getBlock()).variantProperty) == BOPTrees.MAPLE;
+		});
 	}
 	
 	@Override

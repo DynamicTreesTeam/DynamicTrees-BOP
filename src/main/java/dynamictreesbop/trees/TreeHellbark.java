@@ -12,7 +12,9 @@ import com.ferreusveritas.dynamictrees.trees.Species;
 
 import biomesoplenty.api.biome.BOPBiomes;
 import biomesoplenty.api.block.BOPBlocks;
+import biomesoplenty.api.enums.BOPTrees;
 import biomesoplenty.api.enums.BOPWoods;
+import biomesoplenty.common.block.BlockBOPLeaves;
 import biomesoplenty.common.block.BlockBOPLog;
 import dynamictreesbop.DynamicTreesBOP;
 import dynamictreesbop.ModContent;
@@ -74,6 +76,10 @@ public class TreeHellbark extends TreeFamily {
 		setPrimitiveLog(primLog, BlockBOPLog.paging.getVariantItem(BOPWoods.HELLBARK));
 		
 		ModContent.hellbarkLeavesProperties.setTree(this);
+		
+		this.addConnectableVanillaLeaves((state) -> {
+			return state.getBlock() instanceof BlockBOPLeaves && state.getValue(((BlockBOPLeaves) state.getBlock()).variantProperty) == BOPTrees.HELLBARK;
+		});
 	}
 	
 	@Override

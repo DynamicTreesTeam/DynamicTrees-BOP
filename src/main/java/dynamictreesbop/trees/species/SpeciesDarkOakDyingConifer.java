@@ -12,6 +12,8 @@ import com.ferreusveritas.dynamictrees.trees.Species;
 
 import biomesoplenty.api.biome.BOPBiomes;
 import biomesoplenty.api.block.BOPBlocks;
+import biomesoplenty.api.enums.BOPTrees;
+import biomesoplenty.common.block.BlockBOPLeaves;
 import biomesoplenty.common.block.BlockBOPMushroom;
 import dynamictreesbop.DynamicTreesBOP;
 import dynamictreesbop.ModContent;
@@ -40,6 +42,10 @@ public class SpeciesDarkOakDyingConifer extends Species {
 		setupStandardSeedDropping();
 		
 		leavesProperties.setTree(treeFamily);
+		
+		treeFamily.addConnectableVanillaLeaves((state) -> {
+			return state.getBlock() instanceof BlockBOPLeaves && state.getValue(((BlockBOPLeaves) state.getBlock()).variantProperty) == BOPTrees.DEAD;
+		});
 	}
 	
 	@Override

@@ -17,6 +17,8 @@ import com.ferreusveritas.dynamictrees.util.MathHelper;
 
 import biomesoplenty.api.biome.BOPBiomes;
 import biomesoplenty.api.block.BOPBlocks;
+import biomesoplenty.api.enums.BOPTrees;
+import biomesoplenty.common.block.BlockBOPLeaves;
 import dynamictreesbop.DynamicTreesBOP;
 import dynamictreesbop.ModContent;
 import net.minecraft.block.Block;
@@ -94,9 +96,15 @@ public class TreeBamboo extends TreeFamily {
 	
 	public TreeBamboo() {
 		super(new ResourceLocation(DynamicTreesBOP.MODID, "bamboo"));
+		
 		setPrimitiveLog(Block.REGISTRY.getObject(new ResourceLocation("biomesoplenty", "bamboo")).getDefaultState());
 		setStick(ItemStack.EMPTY);
+		
 		ModContent.bambooLeavesProperties.setTree(this);
+		
+		this.addConnectableVanillaLeaves((state) -> {
+			return state.getBlock() instanceof BlockBOPLeaves && state.getValue(((BlockBOPLeaves) state.getBlock()).variantProperty) == BOPTrees.BAMBOO;
+		});
 	}
 	
 	@Override

@@ -8,6 +8,7 @@ cherry_blossom_grove
 coniferous_forest
 dead_forest
 dead_swamp
+eucalyptus_forest
 fen
 grove
 land_of_lakes
