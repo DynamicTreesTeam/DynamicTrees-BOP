@@ -1,0 +1,15 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"model": "dynamictrees:sapling",
+		"textures": {
+			"log": "biomesoplenty:blocks/jacaranda_log",
+			"leaves": "biomesoplenty:blocks/leaves_jacaranda"
+		}
+	},
+	"variants": {
+		"normal": [{
+
+		}]
+	}
+}

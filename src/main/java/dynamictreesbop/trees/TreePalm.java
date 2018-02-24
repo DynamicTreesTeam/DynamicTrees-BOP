@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Random;
 
 import com.ferreusveritas.dynamictrees.ModBlocks;
-import com.ferreusveritas.dynamictrees.ModConstants;
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
 import com.ferreusveritas.dynamictrees.api.network.MapSignal;
 import com.ferreusveritas.dynamictrees.blocks.BlockBranch;
@@ -13,8 +12,8 @@ import com.ferreusveritas.dynamictrees.blocks.BlockRooty;
 import com.ferreusveritas.dynamictrees.systems.GrowSignal;
 import com.ferreusveritas.dynamictrees.systems.dropcreators.DropCreatorLogs;
 import com.ferreusveritas.dynamictrees.systems.nodemappers.NodeFindEnds;
-import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 import com.ferreusveritas.dynamictrees.trees.Species;
+import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 import com.ferreusveritas.dynamictrees.util.CompatHelper;
 
 import biomesoplenty.api.block.BOPBlocks;
@@ -53,7 +52,6 @@ public class TreePalm extends TreeFamily {
 			generateSeed();
 			
 			setupStandardSeedDropping();
-			remDropCreator(new ResourceLocation(ModConstants.MODID, "logs"));
 			addDropCreator(new DropCreatorLogs() {
 				@Override
 				public List<ItemStack> getLogsDrop(World world, Species species, BlockPos breakPos, Random random, List<ItemStack> dropList, int volume) {
@@ -116,11 +114,6 @@ public class TreePalm extends TreeFamily {
 		public int coordHashCode(BlockPos pos) {
 			int hash = (pos.getX() * 9973 ^ pos.getY() * 8287 ^ pos.getZ() * 9721) >> 1;
 			return hash & 0xFFFF;
-		}
-		
-		@Override
-		public boolean generate(World world, BlockPos pos, Biome biome, Random random, int radius) {
-			return super.generate(world, pos, biome, random, radius);
 		}
 		
 		@Override

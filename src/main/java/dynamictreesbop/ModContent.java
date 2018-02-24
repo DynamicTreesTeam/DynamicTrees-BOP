@@ -10,8 +10,8 @@ import com.ferreusveritas.dynamictrees.api.client.ModelHelper;
 import com.ferreusveritas.dynamictrees.api.treedata.ILeavesProperties;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicLeaves;
 import com.ferreusveritas.dynamictrees.blocks.LeavesProperties;
-import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 import com.ferreusveritas.dynamictrees.trees.Species;
+import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 
 import biomesoplenty.api.block.BOPBlocks;
 import biomesoplenty.api.enums.BOPTrees;
@@ -20,6 +20,7 @@ import dynamictreesbop.blocks.BlockDynamicLeavesFlowering;
 import dynamictreesbop.blocks.BlockDynamicLeavesPalm;
 import dynamictreesbop.items.ItemMagicSeed;
 import dynamictreesbop.items.ItemMapleSeed;
+import dynamictreesbop.trees.TreeBamboo;
 import dynamictreesbop.trees.TreeCherry;
 import dynamictreesbop.trees.TreeDead;
 import dynamictreesbop.trees.TreeEbony;
@@ -92,7 +93,8 @@ public class ModContent {
 			pineLeavesProperties, mahoganyLeavesProperties, ebonyLeavesProperties,
 			oakConiferLeavesProperties, darkOakConiferLeavesProperties, darkOakDyingConiferLeavesProperties,
 			oakTwigletLeavesProperties, poplarLeavesProperties, darkPoplarLeavesProperties,
-			jungleTwigletLeavesProperties, acaciaTwigletLeavesProperties, acaciaBrushLeavesProperties;
+			jungleTwigletLeavesProperties, acaciaTwigletLeavesProperties, acaciaBrushLeavesProperties,
+			bambooLeavesProperties;
 	
 	// array of leaves properties with auto-generated leaves
 	public static ILeavesProperties[] basicLeavesProperties;
@@ -395,6 +397,15 @@ public class ModContent {
 				Blocks.LEAVES2.getDefaultState().withProperty(BlockNewLeaf.VARIANT, BlockPlanks.EnumType.ACACIA),
 				new ItemStack(Blocks.LEAVES2, 1, BlockPlanks.EnumType.ACACIA.getMetadata()),
 				TreeRegistry.findCellKit(new ResourceLocation(DynamicTreesBOP.MODID, "brush")));
+		bambooLeavesProperties = new LeavesProperties(
+				BlockBOPLeaves.paging.getVariantState(BOPTrees.BAMBOO),
+				BlockBOPLeaves.paging.getVariantItem(BOPTrees.BAMBOO),
+				TreeRegistry.findCellKit(new ResourceLocation(DynamicTreesBOP.MODID, "sparse"))){
+					@Override
+					public int getSmotherLeavesMax() {
+						return 1;
+					}
+				};
 		
 		// Add leaves properties that need leaves to be generated to an array
 		basicLeavesProperties = new ILeavesProperties[] {
@@ -427,6 +438,7 @@ public class ModContent {
 				jungleTwigletLeavesProperties,
 				acaciaTwigletLeavesProperties,
 				acaciaBrushLeavesProperties,
+				bambooLeavesProperties
 		};
 		
 		// Generate leaves for leaves properties
@@ -475,8 +487,9 @@ public class ModContent {
 		TreeFamily palmTree = new TreePalm();
 		TreeFamily mahoganyTree = new TreeMahogany();
 		TreeFamily ebonyTree = new TreeEbony();
+		TreeFamily bambooTree = new TreeBamboo();
 		
-		Collections.addAll(trees, magicTree, umbranTree, firTree, cherryTree, deadTree, jacarandaTree, willowTree, hellbarkTree, pineTree, palmTree, mahoganyTree, ebonyTree);
+		Collections.addAll(trees, magicTree, umbranTree, firTree, cherryTree, deadTree, jacarandaTree, willowTree, hellbarkTree, pineTree, palmTree, mahoganyTree, ebonyTree, bambooTree);
 		trees.forEach(tree -> tree.registerSpecies(Species.REGISTRY));
 		
 		// Register extra saplings
