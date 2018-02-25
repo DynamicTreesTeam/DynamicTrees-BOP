@@ -53,7 +53,7 @@ public class TreeHellbark extends TreeFamily {
 		
 		@Override
 		public boolean isBiomePerfect(Biome biome) {
-			return isOneOfBiomes(biome, BOPBiomes.undergarden.get());
+			return isOneOfBiomes(biome, BOPBiomes.undergarden.orNull());
 		}
 		
 		@Override

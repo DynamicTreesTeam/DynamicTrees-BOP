@@ -47,7 +47,7 @@ public class TreeJacaranda extends TreeFamily {
 		
 		@Override
 		public boolean isBiomePerfect(Biome biome) {
-			return isOneOfBiomes(biome, BOPBiomes.lavender_fields.get(), BOPBiomes.mystic_grove.get(), Biomes.EXTREME_HILLS, Biomes.EXTREME_HILLS_EDGE, Biomes.EXTREME_HILLS_WITH_TREES);
+			return isOneOfBiomes(biome, BOPBiomes.lavender_fields.orNull(), BOPBiomes.mystic_grove.orNull(), Biomes.EXTREME_HILLS, Biomes.EXTREME_HILLS_EDGE, Biomes.EXTREME_HILLS_WITH_TREES);
 		}
 		
 	}

@@ -49,7 +49,7 @@ public class SpeciesAcaciaTwiglet extends Species {
 	
 	@Override
 	public boolean isBiomePerfect(Biome biome) {
-		return isOneOfBiomes(biome, BOPBiomes.xeric_shrubland.get(), BOPBiomes.outback.get());
+		return isOneOfBiomes(biome, BOPBiomes.xeric_shrubland.orNull(), BOPBiomes.outback.orNull());
 	}
 	
 	@Override
@@ -64,7 +64,7 @@ public class SpeciesAcaciaTwiglet extends Species {
 	
 	@Override
 	public boolean generate(World world, BlockPos pos, Biome biome, Random random, int radius) {
-		if (biome == BOPBiomes.xeric_shrubland.get() && world.getBlockState(pos).getBlock() instanceof BlockGrass) {
+		if (biome == BOPBiomes.xeric_shrubland.orNull() && world.getBlockState(pos).getBlock() instanceof BlockGrass) {
 			bushGen.setRadius(radius).gen(world, pos, new ArrayList<BlockPos>());
 			return false;
 		}

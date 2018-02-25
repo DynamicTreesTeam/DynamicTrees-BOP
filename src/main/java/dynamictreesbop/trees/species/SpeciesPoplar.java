@@ -60,7 +60,7 @@ public class SpeciesPoplar extends Species {
 	
 	@Override
 	public boolean isBiomePerfect(Biome biome) {
-		return biome == BOPBiomes.grove.get() || biome == BOPBiomes.bog.get();
+		return biome == BOPBiomes.grove.orNull() || biome == BOPBiomes.bog.orNull();
 	}
 	
 	@Override
@@ -114,7 +114,7 @@ public class SpeciesPoplar extends Species {
 	
 	@Override
 	public void postGeneration(World world, BlockPos rootPos, Biome biome, int radius, List<BlockPos> endPoints, boolean worldGen) {
-		if (worldGen && biome == BOPBiomes.grove.get()) {
+		if (worldGen && biome == BOPBiomes.grove.orNull()) {
 			//Generate undergrowth
 			bushGen.setRadius(radius).gen(world, rootPos.up(), endPoints);
 		}

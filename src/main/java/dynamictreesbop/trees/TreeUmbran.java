@@ -71,7 +71,7 @@ public class TreeUmbran extends TreeFamily {
 		
 		@Override
 		public boolean isBiomePerfect(Biome biome) {
-			return isOneOfBiomes(biome, BOPBiomes.ominous_woods.get());
+			return isOneOfBiomes(biome, BOPBiomes.ominous_woods.orNull());
 		}
 		
 		@Override
@@ -123,7 +123,7 @@ public class TreeUmbran extends TreeFamily {
 		
 		@Override
 		public boolean isBiomePerfect(Biome biome) {
-			return isOneOfBiomes(biome, BOPBiomes.ominous_woods.get());
+			return isOneOfBiomes(biome, BOPBiomes.ominous_woods.orNull());
 		}
 		
 		@Override
@@ -211,7 +211,7 @@ public class TreeUmbran extends TreeFamily {
 		
 		@Override
 		public boolean isBiomePerfect(Biome biome) {
-			return isOneOfBiomes(biome, BOPBiomes.ominous_woods.get());
+			return isOneOfBiomes(biome, BOPBiomes.ominous_woods.orNull());
 		}
 		
 		@Override

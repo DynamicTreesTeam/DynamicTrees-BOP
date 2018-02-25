@@ -56,7 +56,7 @@ public class TreeCherry extends TreeFamily {
 		
 		@Override
 		public boolean isBiomePerfect(Biome biome) {
-			return isOneOfBiomes(biome, BOPBiomes.cherry_blossom_grove.get());
+			return isOneOfBiomes(biome, BOPBiomes.cherry_blossom_grove.orNull());
 		}
 		
 		@Override
@@ -97,7 +97,7 @@ public class TreeCherry extends TreeFamily {
 		
 		@Override
 		public boolean isBiomePerfect(Biome biome) {
-			return isOneOfBiomes(biome, BOPBiomes.cherry_blossom_grove.get());
+			return isOneOfBiomes(biome, BOPBiomes.cherry_blossom_grove.orNull());
 		}
 		
 		@Override

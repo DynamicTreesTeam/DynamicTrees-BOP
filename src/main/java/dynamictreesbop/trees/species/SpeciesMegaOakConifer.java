@@ -50,7 +50,7 @@ public class SpeciesMegaOakConifer extends Species {
 	
 	@Override
 	public boolean isBiomePerfect(Biome biome) {
-		return biome == BOPBiomes.temperate_rainforest.get();
+		return biome == BOPBiomes.temperate_rainforest.orNull();
 	}
 	
 	@Override

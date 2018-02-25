@@ -19,15 +19,15 @@ public class DecorateEventHandler {
 			Biome biome = event.getWorld().getBiome(event.getPos());
 			ResourceLocation resloc = biome.getRegistryName();
 			if (resloc.getResourceDomain().equals("biomesoplenty")
-					&& biome != BOPBiomes.flower_island.get()
-					&& biome != BOPBiomes.sacred_springs.get()
-					&& biome != BOPBiomes.origin_island.get()
-					&& biome != BOPBiomes.shrubland.get()
-					&& biome != BOPBiomes.tundra.get()
-					&& biome != BOPBiomes.bamboo_forest.get()
-					&& biome != BOPBiomes.mangrove.get()
-					&& biome != BOPBiomes.redwood_forest.get()
-					&& biome != BOPBiomes.undergarden.get()
+					&& biome != BOPBiomes.flower_island.orNull()
+					&& biome != BOPBiomes.sacred_springs.orNull()
+					&& biome != BOPBiomes.origin_island.orNull()
+					&& biome != BOPBiomes.shrubland.orNull()
+					&& biome != BOPBiomes.tundra.orNull()
+					&& biome != BOPBiomes.bamboo_forest.orNull()
+					&& biome != BOPBiomes.mangrove.orNull()
+					&& biome != BOPBiomes.redwood_forest.orNull()
+					&& biome != BOPBiomes.undergarden.orNull()
 			) {
 				event.setResult(Result.DENY);
 			}

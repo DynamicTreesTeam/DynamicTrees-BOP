@@ -52,7 +52,7 @@ public class SpeciesYellowAutumn extends SpeciesRare {
 	
 	@Override
 	public boolean isBiomePerfect(Biome biome) {
-		return isOneOfBiomes(biome, BOPBiomes.boreal_forest.get(), BOPBiomes.seasonal_forest.get());
+		return isOneOfBiomes(biome, BOPBiomes.boreal_forest.orNull(), BOPBiomes.seasonal_forest.orNull());
 	}
 	
 	@Override

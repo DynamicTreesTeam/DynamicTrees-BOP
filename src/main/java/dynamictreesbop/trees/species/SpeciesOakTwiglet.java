@@ -47,7 +47,7 @@ public class SpeciesOakTwiglet extends Species {
 	
 	@Override
 	public boolean isBiomePerfect(Biome biome) {
-		return isOneOfBiomes(biome, BOPBiomes.chaparral.get(), BOPBiomes.lush_desert.get());
+		return isOneOfBiomes(biome, BOPBiomes.chaparral.orNull(), BOPBiomes.lush_desert.orNull());
 	}
 	
 	@Override

@@ -65,7 +65,7 @@ public class TreeBamboo extends TreeFamily {
 		
 		@Override
 		public boolean isBiomePerfect(Biome biome) {
-			return isOneOfBiomes(biome, BOPBiomes.bamboo_forest.get());
+			return isOneOfBiomes(biome, BOPBiomes.bamboo_forest.orNull());
 		}
 		
 		@Override

@@ -53,7 +53,7 @@ public class SpeciesAcaciaBrush extends Species {
 	
 	@Override
 	public boolean isBiomePerfect(Biome biome) {
-		return isOneOfBiomes(biome, BOPBiomes.brushland.get());
+		return isOneOfBiomes(biome, BOPBiomes.brushland.orNull());
 	}
 	
 	@Override

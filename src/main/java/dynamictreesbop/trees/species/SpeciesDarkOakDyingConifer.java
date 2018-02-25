@@ -50,7 +50,7 @@ public class SpeciesDarkOakDyingConifer extends Species {
 	
 	@Override
 	public boolean isBiomePerfect(Biome biome) {
-		return biome == BOPBiomes.fen.get();
+		return biome == BOPBiomes.fen.orNull();
 	}
 	
 	@Override

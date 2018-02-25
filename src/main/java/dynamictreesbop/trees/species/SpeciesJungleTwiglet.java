@@ -43,8 +43,8 @@ public class SpeciesJungleTwiglet extends Species {
 	
 	@Override
 	public boolean isBiomePerfect(Biome biome) {
-		return isOneOfBiomes(biome, BOPBiomes.overgrown_cliffs.get(), BOPBiomes.tropical_island.get(),
-				BOPBiomes.brushland.get(), BOPBiomes.oasis.get());
+		return isOneOfBiomes(biome, BOPBiomes.overgrown_cliffs.orNull(), BOPBiomes.tropical_island.orNull(),
+				BOPBiomes.brushland.orNull(), BOPBiomes.oasis.orNull());
 	}
 	
 	@Override
@@ -60,7 +60,7 @@ public class SpeciesJungleTwiglet extends Species {
 	@Override
 	public boolean generate(World world, BlockPos pos, Biome biome, Random random, int radius) {
 		if (world.getBlockState(pos).getBlock() == Blocks.SAND) {
-			if (biome == BOPBiomes.oasis.get()) return TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "cactus")).generate(world, pos, biome, random, radius);
+			if (biome == BOPBiomes.oasis.orNull()) return TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "cactus")).generate(world, pos, biome, random, radius);
 			return false;
 		}
 		return super.generate(world, pos, biome, random, radius);

@@ -52,7 +52,7 @@ public class SpeciesOakFloweringVine extends Species {
 	
 	@Override
 	public boolean isBiomePerfect(Biome biome) {
-		return isOneOfBiomes(biome, BOPBiomes.mystic_grove.get());
+		return isOneOfBiomes(biome, BOPBiomes.mystic_grove.orNull());
 	}
 	
 	@Override

@@ -60,7 +60,7 @@ public class TreeMahogany extends TreeFamily {
 		
 		@Override
 		public boolean isBiomePerfect(Biome biome) {
-			return isOneOfBiomes(biome, BOPBiomes.tropical_rainforest.get(), BOPBiomes.overgrown_cliffs.get());
+			return isOneOfBiomes(biome, BOPBiomes.tropical_rainforest.orNull(), BOPBiomes.overgrown_cliffs.orNull());
 		};
 		
 		@Override

@@ -73,7 +73,7 @@ public class TreeEucalyptus extends TreeFamily {
 		
 		@Override
 		public boolean isBiomePerfect(Biome biome) {
-			return biome == BOPBiomes.eucalyptus_forest.get();
+			return biome == BOPBiomes.eucalyptus_forest.orNull();
 		}
 		
 		@Override

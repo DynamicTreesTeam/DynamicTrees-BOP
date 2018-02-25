@@ -41,23 +41,23 @@ public class CommonProxy {
 		TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "oak")).getFamily().addSpeciesLocationOverride((access, trunkPos) -> {
 			Biome biome = access.getBiome(trunkPos);
 			
-			if (biome == BOPBiomes.prairie.get()) return oakConifer;
-			if (biome == BOPBiomes.temperate_rainforest.get()) return access.rand.nextInt(3) == 0 ? megaOakConifer : oakConifer; 
+			if (biome == BOPBiomes.prairie.orNull()) return oakConifer;
+			if (biome == BOPBiomes.temperate_rainforest.orNull()) return access.rand.nextInt(3) == 0 ? megaOakConifer : oakConifer; 
 			
 			return Species.NULLSPECIES;
 		});
 		TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "birch")).getFamily().addSpeciesLocationOverride((access, trunkPos) -> {
 			Biome biome = access.getBiome(trunkPos);
 			
-			if (biome == BOPBiomes.grove.get()) return poplar;
+			if (biome == BOPBiomes.grove.orNull()) return poplar;
 			
 			return Species.NULLSPECIES;
 		});
 		TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "darkoak")).getFamily().addSpeciesLocationOverride((access, trunkPos) -> {
 			Biome biome = access.getBiome(trunkPos);
 			
-			if (biome == BOPBiomes.grove.get()) return darkPoplar;
-			if (biome == BOPBiomes.fen.get()) return darkOakConifer; 
+			if (biome == BOPBiomes.grove.orNull()) return darkPoplar;
+			if (biome == BOPBiomes.fen.orNull()) return darkOakConifer; 
 			
 			return Species.NULLSPECIES;
 		});
@@ -125,7 +125,7 @@ public class CommonProxy {
 	
 	@SuppressWarnings("unused")
 	private void removeTreeGen(Optional<Biome> optionalBiome, String... trees) {
-		Biome biome = optionalBiome.get();
+		Biome biome = optionalBiome.orNull();
 		if (biome != null && biome instanceof BOPBiome) {
 			IGenerator gen = ((BOPBiome) biome).getGenerator("trees");
 			if (gen instanceof GeneratorWeighted) {
@@ -138,12 +138,12 @@ public class CommonProxy {
 	}
 	
 	private void removeTreeGen(Optional<Biome> optionalBiome) {
-		Biome biome = optionalBiome.get();
+		Biome biome = optionalBiome.orNull();
 		if (biome != null && biome instanceof BOPBiome) ((BOPBiome) biome).removeGenerator("trees");
 	}
 	
 	private void removeCactusGen(Optional<Biome> optionalBiome) {
-		Biome biome = optionalBiome.get();
+		Biome biome = optionalBiome.orNull();
 		if (biome != null && biome instanceof BOPBiome) ((BOPBiome) biome).removeGenerator("cacti");
 	}
 	

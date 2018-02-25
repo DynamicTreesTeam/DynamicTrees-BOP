@@ -14,30 +14,30 @@ public class BiomeDensityProvider implements IBiomeDensityProvider {
 
 	@Override
 	public EnumChance chance(Biome biome, Species species, int radius, Random rand) {
-		if (biome == BOPBiomes.alps_foothills.get()) return rand.nextFloat() < 0.5f ? EnumChance.OK : EnumChance.CANCEL;
-		if (biome == BOPBiomes.brushland.get()) return EnumChance.OK;
-		if (biome == BOPBiomes.chaparral.get()) return rand.nextFloat() < 0.7f ? EnumChance.OK : EnumChance.CANCEL;
-		if (biome == BOPBiomes.dead_swamp.get()) return rand.nextFloat() < 0.6f ? EnumChance.OK : EnumChance.CANCEL;
-		if (biome == BOPBiomes.eucalyptus_forest.get()) return EnumChance.OK;
-		if (biome == BOPBiomes.lavender_fields.get()) return rand.nextFloat() < 0.3f ? EnumChance.OK : EnumChance.CANCEL;
-		if (biome == BOPBiomes.lush_desert.get()) return rand.nextFloat() < 0.4f ? EnumChance.OK : EnumChance.CANCEL;
-		if (biome == BOPBiomes.lush_swamp.get()) return EnumChance.OK;
-		if (biome == BOPBiomes.meadow.get()) return rand.nextFloat() < 0.6f ? EnumChance.OK : EnumChance.CANCEL;
-		if (biome == BOPBiomes.oasis.get()) {
+		if (biome == BOPBiomes.alps_foothills.orNull()) return rand.nextFloat() < 0.5f ? EnumChance.OK : EnumChance.CANCEL;
+		if (biome == BOPBiomes.brushland.orNull()) return EnumChance.OK;
+		if (biome == BOPBiomes.chaparral.orNull()) return rand.nextFloat() < 0.7f ? EnumChance.OK : EnumChance.CANCEL;
+		if (biome == BOPBiomes.dead_swamp.orNull()) return rand.nextFloat() < 0.6f ? EnumChance.OK : EnumChance.CANCEL;
+		if (biome == BOPBiomes.eucalyptus_forest.orNull()) return EnumChance.OK;
+		if (biome == BOPBiomes.lavender_fields.orNull()) return rand.nextFloat() < 0.3f ? EnumChance.OK : EnumChance.CANCEL;
+		if (biome == BOPBiomes.lush_desert.orNull()) return rand.nextFloat() < 0.4f ? EnumChance.OK : EnumChance.CANCEL;
+		if (biome == BOPBiomes.lush_swamp.orNull()) return EnumChance.OK;
+		if (biome == BOPBiomes.meadow.orNull()) return rand.nextFloat() < 0.6f ? EnumChance.OK : EnumChance.CANCEL;
+		if (biome == BOPBiomes.oasis.orNull()) {
 			if (species.getRegistryName().getResourcePath().equals("palm")) {
 				return rand.nextFloat() < 0.5f ? EnumChance.OK : EnumChance.CANCEL;
 			}
 			return EnumChance.OK;
 		}
-		if (biome == BOPBiomes.outback.get()) return EnumChance.OK;
-		if (biome == BOPBiomes.overgrown_cliffs.get()) return EnumChance.OK;
-		if (biome == BOPBiomes.prairie.get()) return rand.nextFloat() < 0.2f ? EnumChance.OK : EnumChance.CANCEL;
-		if (biome == BOPBiomes.rainforest.get()) return EnumChance.OK;
-		if (biome == BOPBiomes.tropical_island.get()) return EnumChance.OK;
-		if (biome == BOPBiomes.tropical_rainforest.get()) return EnumChance.OK;
-		if (biome == BOPBiomes.wasteland.get()) return rand.nextFloat() < 0.3f ? EnumChance.OK : EnumChance.CANCEL;
-		if (biome == BOPBiomes.xeric_shrubland.get()) return rand.nextFloat() < 0.7f ? EnumChance.OK : EnumChance.CANCEL;
-		/*if (biome == BOPBiomes.brushland.get()) {
+		if (biome == BOPBiomes.outback.orNull()) return EnumChance.OK;
+		if (biome == BOPBiomes.overgrown_cliffs.orNull()) return EnumChance.OK;
+		if (biome == BOPBiomes.prairie.orNull()) return rand.nextFloat() < 0.2f ? EnumChance.OK : EnumChance.CANCEL;
+		if (biome == BOPBiomes.rainforest.orNull()) return EnumChance.OK;
+		if (biome == BOPBiomes.tropical_island.orNull()) return EnumChance.OK;
+		if (biome == BOPBiomes.tropical_rainforest.orNull()) return EnumChance.OK;
+		if (biome == BOPBiomes.wasteland.orNull()) return rand.nextFloat() < 0.3f ? EnumChance.OK : EnumChance.CANCEL;
+		if (biome == BOPBiomes.xeric_shrubland.orNull()) return rand.nextFloat() < 0.7f ? EnumChance.OK : EnumChance.CANCEL;
+		/*if (biome == BOPBiomes.brushland.orNull()) {
 			if (radius > 3) { // Start dropping tree spawn opportunities when the radius gets bigger than 3
 				float chance = 2.0f / radius;
 				return rand.nextFloat() < Math.sqrt(chance) ? EnumChance.OK : EnumChance.CANCEL;
@@ -52,83 +52,83 @@ public class BiomeDensityProvider implements IBiomeDensityProvider {
 		//double naturalDensity = MathHelper.clamp((CompatHelper.getBiomeTreesPerChunk(biome)) / 10.0f, 0.0f, 1.0f);
 		//double base = naturalDensity * noiseDensity;
 		
-		if (biome == BOPBiomes.alps_foothills.get()) return noiseDensity * 0.05;
+		if (biome == BOPBiomes.alps_foothills.orNull()) return noiseDensity * 0.05;
 		
-		if (biome == BOPBiomes.bayou.get()) return noiseDensity * 0.8;
+		if (biome == BOPBiomes.bayou.orNull()) return noiseDensity * 0.8;
 		
-		if (biome == BOPBiomes.bog.get()) return noiseDensity * 0.5;
+		if (biome == BOPBiomes.bog.orNull()) return noiseDensity * 0.5;
 		
-		if (biome == BOPBiomes.boreal_forest.get()) return noiseDensity;
+		if (biome == BOPBiomes.boreal_forest.orNull()) return noiseDensity;
 		
-		if (biome == BOPBiomes.brushland.get()) return ((noiseDensity * 0.75) + 0.25) * 0.4;
+		if (biome == BOPBiomes.brushland.orNull()) return ((noiseDensity * 0.75) + 0.25) * 0.4;
 		
-		if (biome == BOPBiomes.chaparral.get()) return noiseDensity * 0.7;
+		if (biome == BOPBiomes.chaparral.orNull()) return noiseDensity * 0.7;
 		
-		if (biome == BOPBiomes.cherry_blossom_grove.get()) return noiseDensity * 0.3;
+		if (biome == BOPBiomes.cherry_blossom_grove.orNull()) return noiseDensity * 0.3;
 		
-		if (biome == BOPBiomes.coniferous_forest.get()) return noiseDensity * 0.8;
+		if (biome == BOPBiomes.coniferous_forest.orNull()) return noiseDensity * 0.8;
 		
-		if (biome == BOPBiomes.dead_forest.get()) return noiseDensity * 0.3;
+		if (biome == BOPBiomes.dead_forest.orNull()) return noiseDensity * 0.3;
 		
-		if (biome == BOPBiomes.dead_swamp.get()) return noiseDensity * 0.06;
+		if (biome == BOPBiomes.dead_swamp.orNull()) return noiseDensity * 0.06;
 		
-		if (biome == BOPBiomes.eucalyptus_forest.get()) return (noiseDensity * 0.5) + 0.5;
+		if (biome == BOPBiomes.eucalyptus_forest.orNull()) return (noiseDensity * 0.5) + 0.5;
 		
-		if (biome == BOPBiomes.fen.get()) return noiseDensity * 0.9;
+		if (biome == BOPBiomes.fen.orNull()) return noiseDensity * 0.9;
 		
-		if (biome == BOPBiomes.grove.get()) return noiseDensity * 0.25;
+		if (biome == BOPBiomes.grove.orNull()) return noiseDensity * 0.25;
 		
-		if (biome == BOPBiomes.lavender_fields.get()) return noiseDensity * 0.1;
+		if (biome == BOPBiomes.lavender_fields.orNull()) return noiseDensity * 0.1;
 		
-		if (biome == BOPBiomes.lush_desert.get()) return noiseDensity * 0.4;
+		if (biome == BOPBiomes.lush_desert.orNull()) return noiseDensity * 0.4;
 		
-		if (biome == BOPBiomes.lush_swamp.get()) return noiseDensity * 0.9;
+		if (biome == BOPBiomes.lush_swamp.orNull()) return noiseDensity * 0.9;
 		
-		if (biome == BOPBiomes.maple_woods.get()) return noiseDensity;
+		if (biome == BOPBiomes.maple_woods.orNull()) return noiseDensity;
 		
-		if (biome == BOPBiomes.meadow.get()) return noiseDensity * 0.25;
+		if (biome == BOPBiomes.meadow.orNull()) return noiseDensity * 0.25;
 		
-		if (biome == BOPBiomes.mountain.get()) return noiseDensity * 0.3;
+		if (biome == BOPBiomes.mountain.orNull()) return noiseDensity * 0.3;
 		
-		if (biome == BOPBiomes.mountain_foothills.get()) return noiseDensity * 0.3;
+		if (biome == BOPBiomes.mountain_foothills.orNull()) return noiseDensity * 0.3;
 		
-		if (biome == BOPBiomes.mystic_grove.get()) return noiseDensity;
+		if (biome == BOPBiomes.mystic_grove.orNull()) return noiseDensity;
 		
-		if (biome == BOPBiomes.oasis.get()) return ((noiseDensity * 0.25) + 0.75) * 0.7;
+		if (biome == BOPBiomes.oasis.orNull()) return ((noiseDensity * 0.25) + 0.75) * 0.7;
 		
-		if (biome == BOPBiomes.ominous_woods.get()) return noiseDensity;
+		if (biome == BOPBiomes.ominous_woods.orNull()) return noiseDensity;
 		
-		if (biome == BOPBiomes.orchard.get()) return noiseDensity * 0.5;
+		if (biome == BOPBiomes.orchard.orNull()) return noiseDensity * 0.5;
 		
-		if (biome == BOPBiomes.outback.get()) return noiseDensity * 0.45;
+		if (biome == BOPBiomes.outback.orNull()) return noiseDensity * 0.45;
 		
-		if (biome == BOPBiomes.overgrown_cliffs.get()) return (noiseDensity * 0.75) + 0.25;
+		if (biome == BOPBiomes.overgrown_cliffs.orNull()) return (noiseDensity * 0.75) + 0.25;
 		
-		if (biome == BOPBiomes.prairie.get()) return noiseDensity * 0.1;
+		if (biome == BOPBiomes.prairie.orNull()) return noiseDensity * 0.1;
 		
-		if (biome == BOPBiomes.rainforest.get()) return noiseDensity;
+		if (biome == BOPBiomes.rainforest.orNull()) return noiseDensity;
 		
-		if (biome == BOPBiomes.seasonal_forest.get()) return noiseDensity * 0.9;
+		if (biome == BOPBiomes.seasonal_forest.orNull()) return noiseDensity * 0.9;
 		
-		if (biome == BOPBiomes.shield.get()) return noiseDensity * 0.9;
+		if (biome == BOPBiomes.shield.orNull()) return noiseDensity * 0.9;
 		
-		if (biome == BOPBiomes.snowy_coniferous_forest.get()) return noiseDensity * 0.8;
+		if (biome == BOPBiomes.snowy_coniferous_forest.orNull()) return noiseDensity * 0.8;
 		
-		if (biome == BOPBiomes.snowy_forest.get()) return noiseDensity * 0.3;
+		if (biome == BOPBiomes.snowy_forest.orNull()) return noiseDensity * 0.3;
 		
-		if (biome == BOPBiomes.temperate_rainforest.get()) return noiseDensity;
+		if (biome == BOPBiomes.temperate_rainforest.orNull()) return noiseDensity;
 		
-		if (biome == BOPBiomes.tropical_island.get()) return (noiseDensity * 0.75) + 0.25;
+		if (biome == BOPBiomes.tropical_island.orNull()) return (noiseDensity * 0.75) + 0.25;
 		
-		if (biome == BOPBiomes.tropical_rainforest.get()) return (noiseDensity * 0.5) + 0.5;
+		if (biome == BOPBiomes.tropical_rainforest.orNull()) return (noiseDensity * 0.5) + 0.5;
 		
-		if (biome == BOPBiomes.wasteland.get()) return noiseDensity * 0.03;
+		if (biome == BOPBiomes.wasteland.orNull()) return noiseDensity * 0.03;
 		
-		if (biome == BOPBiomes.wetland.get()) return noiseDensity;
+		if (biome == BOPBiomes.wetland.orNull()) return noiseDensity;
 		
-		if (biome == BOPBiomes.woodland.get()) return noiseDensity;
+		if (biome == BOPBiomes.woodland.orNull()) return noiseDensity;
 		
-		if (biome == BOPBiomes.xeric_shrubland.get()) return noiseDensity * 0.4;
+		if (biome == BOPBiomes.xeric_shrubland.orNull()) return noiseDensity * 0.4;
 		
 		return -1;
 	}

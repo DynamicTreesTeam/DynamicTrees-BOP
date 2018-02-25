@@ -49,7 +49,7 @@ public class TreeEbony extends TreeFamily {
 		
 		@Override
 		public boolean isBiomePerfect(Biome biome) {
-			return isOneOfBiomes(biome, BOPBiomes.brushland.get());
+			return isOneOfBiomes(biome, BOPBiomes.brushland.orNull());
 		}
 		
 	}
@@ -74,7 +74,7 @@ public class TreeEbony extends TreeFamily {
 		
 		@Override
 		public boolean isBiomePerfect(Biome biome) {
-			return isOneOfBiomes(biome, BOPBiomes.brushland.get());
+			return isOneOfBiomes(biome, BOPBiomes.brushland.orNull());
 		}
 		
 		@Override

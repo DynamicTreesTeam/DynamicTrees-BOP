@@ -56,7 +56,7 @@ public class SpeciesMaple extends SpeciesRare {
 	
 	@Override
 	public boolean isBiomePerfect(Biome biome) {
-		return isOneOfBiomes(biome, BOPBiomes.seasonal_forest.get(), BOPBiomes.maple_woods.get());
+		return isOneOfBiomes(biome, BOPBiomes.seasonal_forest.orNull(), BOPBiomes.maple_woods.orNull());
 	}
 	
 	@Override

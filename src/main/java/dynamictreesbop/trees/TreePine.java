@@ -108,7 +108,7 @@ public class TreePine extends TreeFamily {
 			world.setBlockState(highest.up(2), leavesProperties.getDynamicLeavesState(3));
 			world.setBlockState(highest.up(3), leavesProperties.getDynamicLeavesState(1));
 			
-			if (worldGen && biome == BOPBiomes.shield.get()) {
+			if (worldGen && biome == BOPBiomes.shield.orNull()) {
 				//Generate undergrowth
 				bushGen.setRadius(radius).gen(world, rootPos.up(), endPoints);
 			}
