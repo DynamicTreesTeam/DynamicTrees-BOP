@@ -3,6 +3,7 @@ package dynamictreesbop.models;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.ferreusveritas.dynamictrees.util.CoordUtils;
 import com.google.common.primitives.Ints;
 
 import dynamictreesbop.ModContent;
@@ -28,7 +29,7 @@ public class PalmLeavesCompositeModel implements IBakedModel {
 	private void bakeFronds() {
 		IBlockState state = ModContent.palmLeavesProperties.getDynamicLeavesState(1);
 
-		for (BlockDynamicLeavesPalm.Surround surr : BlockDynamicLeavesPalm.Surround.values()) {
+		for (CoordUtils.Surround surr : CoordUtils.Surround.values()) {
 			List<BakedQuad> quadsForSurr = cachedFrondQuads[surr.ordinal()] = new ArrayList<BakedQuad>(0);
 			List<BakedQuad> baseQuads = baseModel.getQuads(state, null, 0);
 

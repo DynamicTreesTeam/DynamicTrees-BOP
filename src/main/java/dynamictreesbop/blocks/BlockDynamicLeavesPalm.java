@@ -2,6 +2,7 @@ package dynamictreesbop.blocks;
 
 import com.ferreusveritas.dynamictrees.blocks.BlockBranch;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicLeaves;
+import com.ferreusveritas.dynamictrees.util.CoordUtils.Surround;
 
 import dynamictreesbop.DynamicTreesBOP;
 import net.minecraft.block.properties.IProperty;
@@ -10,7 +11,6 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.common.property.ExtendedBlockState;
 import net.minecraftforge.common.property.IExtendedBlockState;
@@ -18,38 +18,6 @@ import net.minecraftforge.common.property.IUnlistedProperty;
 import net.minecraftforge.common.property.Properties;
 
 public class BlockDynamicLeavesPalm extends BlockDynamicLeaves {
-
-	public enum Surround {
-		N ("n" , EnumFacing.NORTH),
-		NW("nw", EnumFacing.NORTH, EnumFacing.WEST),
-		W ("w" , EnumFacing.WEST),
-		SW("sw", EnumFacing.SOUTH, EnumFacing.WEST),
-		S ("s" , EnumFacing.SOUTH),
-		SE("se", EnumFacing.SOUTH, EnumFacing.EAST),
-		E ("e" , EnumFacing.EAST),		
-		NE("ne", EnumFacing.NORTH, EnumFacing.EAST);
-
-		
-		final private String name;
-		final private Vec3i offset;
-		
-		private Surround(String name, EnumFacing ... dirs) {
-			this.name = name;
-			BlockPos pos = BlockPos.ORIGIN;
-			for(EnumFacing d : dirs) {
-				pos = pos.add(d.getDirectionVec());
-			}
-			this.offset = pos;
-		}
-		
-		public String getName() {
-			return name;
-		}
-		
-		public Vec3i getOffset() {
-			return offset;
-		}
-	}
 	
 	public static final Surround hydroSurroundMap[][]  = new Surround[][] {
 		{}, //Hydro 0
