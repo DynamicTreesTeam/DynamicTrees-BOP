@@ -1,5 +1,3 @@
-Bamboo Forest: bamboo
-Bamboo Forest: bamboo_thin
 Mangrove: mangrove
 Redwood Forest: redwood
 Redwood Forest: redwood_thin

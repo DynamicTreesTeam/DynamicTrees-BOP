@@ -1,4 +1,5 @@
 alps_foothills
+bamboo_forest
 bayou
 bog
 boreal forest
