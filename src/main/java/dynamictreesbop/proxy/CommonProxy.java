@@ -66,6 +66,7 @@ public class CommonProxy {
 	public void postInit() {
 		if (WorldGenRegistry.isWorldGenEnabled()) {
 			removeTreeGen(BOPBiomes.alps_foothills);
+			removeTreeGen(BOPBiomes.bamboo_forest);
 			removeTreeGen(BOPBiomes.bayou);
 			removeTreeGen(BOPBiomes.bog);
 			removeTreeGen(BOPBiomes.boreal_forest);

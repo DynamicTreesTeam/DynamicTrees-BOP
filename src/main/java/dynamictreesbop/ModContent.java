@@ -338,16 +338,24 @@ public class ModContent {
 		bambooLeavesProperties = new LeavesProperties(
 				BlockBOPLeaves.paging.getVariantState(BOPTrees.BAMBOO),
 				BlockBOPLeaves.paging.getVariantItem(BOPTrees.BAMBOO),
-				TreeRegistry.findCellKit("deciduous")){
+				TreeRegistry.findCellKit(new ResourceLocation(DynamicTreesBOP.MODID, "bamboo"))) {
 					@Override
 					public int getRadiusForConnection(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, BlockBranch from, EnumFacing side, int fromRadius) {
 						return from.getFamily().isCompatibleDynamicLeaves(blockAccess.getBlockState(pos), blockAccess, pos) ? 1 : 0;
+					}
+					@Override
+					public int getSmotherLeavesMax() {
+						return 6;
+					}
+					@Override
+					public int getLightRequirement() {
+						return 13;
 					}
 				};
 		eucalyptusLeavesProperties = new LeavesProperties(
 				BlockBOPLeaves.paging.getVariantState(BOPTrees.EUCALYPTUS),
 				BlockBOPLeaves.paging.getVariantItem(BOPTrees.EUCALYPTUS),
-				TreeRegistry.findCellKit(new ResourceLocation(DynamicTreesBOP.MODID, "eucalyptus"))){
+				TreeRegistry.findCellKit(new ResourceLocation(DynamicTreesBOP.MODID, "eucalyptus"))) {
 					@Override
 					public int getSmotherLeavesMax() {
 						return 13;

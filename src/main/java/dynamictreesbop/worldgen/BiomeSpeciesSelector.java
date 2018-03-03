@@ -46,6 +46,7 @@ public class BiomeSpeciesSelector implements IBiomeSpeciesSelector {
 			select = fastTreeLookup.get(biomeId); // Speedily look up the selector for the biome id
 		} else {
 			if (biome == BOPBiomes.alps_foothills.orNull()) select = new StaticDecision(new Decision(firSmall));
+			else if (biome == BOPBiomes.bamboo_forest.orNull()) select = new RandomDecision(rand).addSpecies(bamboo, 4);
 			else if (biome == BOPBiomes.bayou.orNull()) select = new RandomDecision(rand).addSpecies(willow, 4);
 			else if (biome == BOPBiomes.bog.orNull()) select = new RandomDecision(rand).addSpecies(poplar, 3).addSpecies(darkPoplar, 1);
 			else if (biome == BOPBiomes.boreal_forest.orNull()) select = new RandomDecision(rand).addSpecies(yellowAutumn, 4).addSpecies(spruce, 4).addSpecies(oak, 5);

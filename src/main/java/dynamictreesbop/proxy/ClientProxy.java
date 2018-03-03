@@ -15,6 +15,7 @@ import dynamictreesbop.ModContent;
 import dynamictreesbop.event.ModelBakeEventListener;
 import dynamictreesbop.items.ItemMagicSeed;
 import dynamictreesbop.items.ItemMapleSeed;
+import dynamictreesbop.models.ModelLoaderBamboo;
 import dynamictreesbop.renderers.RenderMagicSeed;
 import dynamictreesbop.renderers.RenderMapleSeed;
 import net.minecraft.block.Block;
@@ -23,6 +24,7 @@ import net.minecraft.client.renderer.color.IBlockColor;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
+import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 
@@ -33,6 +35,8 @@ public class ClientProxy extends CommonProxy {
 		super.preInit();
 		registerClientEventHandlers();
 		registerEntityRenderers();
+		
+		ModelLoaderRegistry.registerLoader(new ModelLoaderBamboo());
 	}
 	
 	@Override

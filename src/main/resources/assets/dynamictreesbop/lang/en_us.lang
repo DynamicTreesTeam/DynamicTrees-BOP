@@ -17,6 +17,7 @@ item.pineseed.name=Pine Cone
 item.mahoganyseed.name=Mahogany Pod
 item.ebonyseed.name=Ebony Pod
 item.eucalyptusseed.name=Eucalyptus Capsule
+item.bambooseed.name=Bamboo Shoot
 
 item.floweringoakseed.name=Flowering Oak Acorn
 item.palmseed.name=Palm Seed
@@ -34,16 +35,12 @@ tile.leaves7.name=Dynamic Leaves
 tile.leaves_flowering.name=Dynamic Leaves
 tile.leaves_palm.name=Dynamic Leaves
 
-tile.dynamictreesbop:yellowautumnbranch.name=Dynamic Yellow Autumn Tree
-tile.dynamictreesbop:orangeautumnbranch.name=Dynamic Orange Autumn Tree
+
 tile.dynamictreesbop:magicbranch.name=Dynamic Magic Tree
 tile.dynamictreesbop:umbranbranch.name=Dynamic Umbran Tree
 tile.dynamictreesbop:umbranconiferbranch.name=Dynamic Umbran Tree
-tile.dynamictreesbop:dyingbranch.name=Dynamic Dying Tree
 tile.dynamictreesbop:firbranch.name=Dynamic Fir Tree
-tile.dynamictreesbop:pinkcherrybranch.name=Dynamic Cherry Tree
-tile.dynamictreesbop:whitecherrybranch.name=Dynamic Cherry Tree
-tile.dynamictreesbop:maplebranch.name=Dynamic Maple Tree
+tile.dynamictreesbop:cherrybranch.name=Dynamic Cherry Tree
 tile.dynamictreesbop:hellbarkbranch.name=Dynamic Hellbark Tree
 tile.dynamictreesbop:deadbranch.name=Dynamic Dead Tree
 tile.dynamictreesbop:jacarandabranch.name=Dynamic Jacaranda Tree
@@ -54,7 +51,7 @@ tile.dynamictreesbop:pinebranch.name=Dynamic Pine Tree
 tile.dynamictreesbop:mahoganybranch.name=Dynamic Mahogany Tree
 tile.dynamictreesbop:ebonybranch.name=Dynamic Ebony Tree
 tile.dynamictreesbop:eucalyptusbranch.name=Dynamic Eucalyptus Tree
+tile.dynamictreesbop:bamboobranch.name=Dynamic Bamboo Tree
 
-tile.dynamictreesbop:floweringoakbranch.name=Dynamic Flowering Oak Tree
 tile.dynamictreesbop:decayedbranch.name=Dynamic Dead Tree
 tile.dynamictreesbop:palmbranch.name=Dynamic Palm Tree

@@ -24,6 +24,7 @@ public class CellKits {
 		TreeRegistry.registerCellKit(new ResourceLocation(DynamicTreesBOP.MODID, "mahogany"), mahogany);
 		TreeRegistry.registerCellKit(new ResourceLocation(DynamicTreesBOP.MODID, "brush"), brush);
 		TreeRegistry.registerCellKit(new ResourceLocation(DynamicTreesBOP.MODID, "eucalyptus"), eucalyptus);
+		TreeRegistry.registerCellKit(new ResourceLocation(DynamicTreesBOP.MODID, "bamboo"), bamboo);
 	}
 	
 	private final ICellKit sparse = new ICellKit() {
@@ -236,6 +237,52 @@ public class CellKits {
 			if (radius == 128) return eucalyptusTopBranch;
 			if (radius == 1) return eucalyptusBranch;
 			if (radius <= 3) return eucalyptusUpperTrunk;
+			return CellNull.NULLCELL;
+		}
+		
+		@Override
+		public SimpleVoxmap getLeafCluster() {
+			return DTBOPLeafClusters.eucalyptus;
+		}
+		
+		@Override
+		public ICellSolver getCellSolver() {
+			return solver;
+		}
+		
+		@Override
+		public int getDefaultHydration() {
+			return 4;
+		}
+		
+	};
+	
+private final ICellKit bamboo = new ICellKit() {
+		
+		private final ICell bambooTopBranch = new CellEucalyptusTopBranch();
+		private final ICell bambooUpperTrunk = new CellNormal(2);
+		
+		private final ICell[] bambooLeaves = new ICell[] {
+				CellNull.NULLCELL,
+				new CellEucalyptusLeaf(1),
+				new CellEucalyptusLeaf(2),
+				new CellEucalyptusLeaf(3),
+				new CellEucalyptusLeaf(4),
+		};
+		
+		private final ICellSolver solver = new com.ferreusveritas.dynamictrees.cells.CellKits.BasicSolver(new short[] {
+				0x0514, 0x0423, 0x0411, 0x0312, 0x0211
+		});
+		
+		@Override
+		public ICell getCellForLeaves(int hydro) {
+			return bambooLeaves[hydro];
+		}
+		
+		@Override
+		public ICell getCellForBranch(int radius) {
+			if (radius == 128) return bambooTopBranch;
+			if (radius == 2) return bambooUpperTrunk;
 			return CellNull.NULLCELL;
 		}
 		
