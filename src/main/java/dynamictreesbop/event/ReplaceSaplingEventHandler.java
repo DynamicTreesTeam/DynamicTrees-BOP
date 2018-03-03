@@ -1,5 +1,6 @@
 package dynamictreesbop.event;
 
+import com.ferreusveritas.dynamictrees.ModConfigs;
 import com.ferreusveritas.dynamictrees.api.TreeRegistry;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.util.CompatHelper;
@@ -20,6 +21,8 @@ public class ReplaceSaplingEventHandler {
 	
 	@SubscribeEvent
 	public static void onPlaceSapling(PlaceEvent event) {
+		if (!ModConfigs.replaceVanillaSapling) return;
+		
 		IBlockState state = event.getPlacedBlock();
 		
 		Species species = null;

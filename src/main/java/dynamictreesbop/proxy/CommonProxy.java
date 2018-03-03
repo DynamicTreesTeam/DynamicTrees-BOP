@@ -26,7 +26,7 @@ public class CommonProxy {
 	public void preInit() {
 		CellKits.init();
 		
-		if(WorldGenRegistry.isWorldGenEnabled()) {
+		if (WorldGenRegistry.isWorldGenEnabled()) {
 			GameRegistry.registerWorldGenerator(new NetherTreeGenerator(), 1);
 		}
 	}
