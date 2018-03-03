@@ -23,7 +23,9 @@ public class BiomeDensityProvider implements IBiomeDensityProvider {
 		if (biome == BOPBiomes.lavender_fields.orNull()) return rand.nextFloat() < 0.3f ? EnumChance.OK : EnumChance.CANCEL;
 		if (biome == BOPBiomes.lush_desert.orNull()) return rand.nextFloat() < 0.4f ? EnumChance.OK : EnumChance.CANCEL;
 		if (biome == BOPBiomes.lush_swamp.orNull()) return EnumChance.OK;
+		if (biome == BOPBiomes.marsh.orNull()) return rand.nextFloat() < 0.02f ? EnumChance.OK : EnumChance.CANCEL;
 		if (biome == BOPBiomes.meadow.orNull()) return rand.nextFloat() < 0.6f ? EnumChance.OK : EnumChance.CANCEL;
+		if (biome == BOPBiomes.moor.orNull()) return rand.nextFloat() < 0.01f ? EnumChance.OK : EnumChance.CANCEL;
 		if (biome == BOPBiomes.oasis.orNull()) {
 			if (species.getRegistryName().getResourcePath().equals("palm")) {
 				return rand.nextFloat() < 0.5f ? EnumChance.OK : EnumChance.CANCEL;
@@ -32,7 +34,8 @@ public class BiomeDensityProvider implements IBiomeDensityProvider {
 		}
 		if (biome == BOPBiomes.outback.orNull()) return EnumChance.OK;
 		if (biome == BOPBiomes.overgrown_cliffs.orNull()) return EnumChance.OK;
-		if (biome == BOPBiomes.prairie.orNull()) return rand.nextFloat() < 0.2f ? EnumChance.OK : EnumChance.CANCEL;
+		if (biome == BOPBiomes.prairie.orNull()) return rand.nextFloat() < 0.15f ? EnumChance.OK : EnumChance.CANCEL;
+		if (biome == BOPBiomes.quagmire.orNull()) return rand.nextFloat() < 0.02f ? EnumChance.OK : EnumChance.CANCEL;
 		if (biome == BOPBiomes.rainforest.orNull()) return EnumChance.OK;
 		if (biome == BOPBiomes.tropical_island.orNull()) return EnumChance.OK;
 		if (biome == BOPBiomes.tropical_rainforest.orNull()) return EnumChance.OK;
