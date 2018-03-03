@@ -1,9 +1,11 @@
 package dynamictreesbop.proxy;
 
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
+import com.ferreusveritas.dynamictrees.api.TreeRegistry;
 import com.ferreusveritas.dynamictrees.api.client.ModelHelper;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicLeaves;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSapling;
+import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 
 import biomesoplenty.api.enums.BOPTrees;
@@ -18,6 +20,7 @@ import dynamictreesbop.renderers.RenderMapleSeed;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.color.IBlockColor;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.common.MinecraftForge;
@@ -44,7 +47,7 @@ public class ClientProxy extends CommonProxy {
 
 	public void registerColorHandlers() {	
 		
-		final int magenta = 0x00FF00FF;//for errors.. because magenta sucks.
+		final int magenta = 0x00FF00FF; // for errors.. because magenta sucks.
 		
 		ModelHelper.regColorHandler(ModContent.floweringOakLeaves, new IBlockColor() {
 			@Override
@@ -72,8 +75,7 @@ public class ClientProxy extends CommonProxy {
 			}
 		});
 		
-		for(BlockDynamicLeaves leaves: TreeHelper.getLeavesMapForModId(DynamicTreesBOP.MODID).values()) {
-			
+		for (BlockDynamicLeaves leaves: TreeHelper.getLeavesMapForModId(DynamicTreesBOP.MODID).values()) {
 			ModelHelper.regColorHandler(leaves, new IBlockColor() {
 				@Override
 				public int colorMultiplier(IBlockState state, IBlockAccess worldIn, BlockPos pos, int tintIndex) {
@@ -113,17 +115,16 @@ public class ClientProxy extends CommonProxy {
 			if (tree.getName().getResourcePath().equals("decayed")) continue;
 			if (tree.getName().getResourcePath().equals("dead")) continue;
 			BlockDynamicSapling sapling = (BlockDynamicSapling) tree.getCommonSpecies().getDynamicSapling().getBlock();
-			if (tree.getName().getResourcePath().equals("floweringoak")) {
-				ModelHelper.regColorHandler(sapling, new IBlockColor() {
-					@Override
-					public int colorMultiplier(IBlockState state, IBlockAccess access, BlockPos pos, int tintIndex) {
-						return access == null || pos == null ? -1 : tintIndex != 0 ? 0xffffff : sapling.getSpecies(access, pos, state).getLeavesProperties().foliageColorMultiplier(state, access, pos);
-					}
-				});
-			} else {
-				ModelHelper.regDynamicSaplingColorHandler(sapling);
-			}
+			ModelHelper.regDynamicSaplingColorHandler(sapling);
 		}
+		
+		BlockDynamicSapling sapling = (BlockDynamicSapling) TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "floweringoak")).getDynamicSapling().getBlock();
+		ModelHelper.regColorHandler(sapling, new IBlockColor() {
+			@Override
+			public int colorMultiplier(IBlockState state, IBlockAccess access, BlockPos pos, int tintIndex) {
+				return access == null || pos == null ? -1 : tintIndex != 0 ? 0xffffff : sapling.getSpecies(access, pos, state).getLeavesProperties().foliageColorMultiplier(state, access, pos);
+			}
+		});
 	}
 	
 	public void registerClientEventHandlers() {

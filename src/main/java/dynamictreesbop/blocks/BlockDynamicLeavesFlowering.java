@@ -3,6 +3,8 @@ package dynamictreesbop.blocks;
 import java.util.ArrayList;
 import java.util.Random;
 
+import com.ferreusveritas.dynamictrees.api.TreeHelper;
+import com.ferreusveritas.dynamictrees.api.cells.ICell;
 import com.ferreusveritas.dynamictrees.api.treedata.ILeavesProperties;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicLeaves;
 import com.ferreusveritas.dynamictrees.blocks.LeavesProperties;
@@ -64,7 +66,7 @@ public class BlockDynamicLeavesFlowering extends BlockDynamicLeaves {
 	@Override
 	public boolean age(World world, BlockPos pos, IBlockState state, Random rand, boolean rapid) {
 		ILeavesProperties leavesProperties = getProperties(state);
-		int oldHydro = state.getValue(BlockDynamicLeaves.HYDRO);
+		int oldHydro = state.getValue(HYDRO);
 		
 		// Check hydration level.  Dry leaves are dead leaves.
 		int newHydro = getHydrationLevelFromNeighbors(world, pos, leavesProperties);
@@ -74,6 +76,7 @@ public class BlockDynamicLeavesFlowering extends BlockDynamicLeaves {
 		} else { 
 			// Encode new hydration level in metadata for this leaf
 			if (oldHydro != newHydro) { // A little performance gain
+				//System.out.println(state.withProperty(HYDRO, MathHelper.clamp(newHydro, 1, 4)));
 				world.setBlockState(pos, state.withProperty(HYDRO, MathHelper.clamp(newHydro, 1, 4)), 4);
 			}
 		}
@@ -82,19 +85,19 @@ public class BlockDynamicLeavesFlowering extends BlockDynamicLeaves {
 		if (canFlower(state)) {
 			boolean flowering = rapid || world.getLight(pos) >= 14;
 			if (isFlowering(state) != flowering) {
-				setFlowering(world, pos, flowering, state);
+				setFlowering(world, pos, flowering, state.withProperty(HYDRO, MathHelper.clamp(newHydro, 1, 4)));
 			}
 		}
 		
 		// We should do this even if the hydro is only 1.  Since there could be adjacent branch blocks that could use a leaves block
-		for (EnumFacing dir: EnumFacing.VALUES) { // Go on all 6 sides of this block
+		for (EnumFacing dir : EnumFacing.VALUES) { // Go on all 6 sides of this block
 			if (newHydro > 1 || rand.nextInt(4) == 0 ) { // we'll give it a 1 in 4 chance to grow leaves if hydro is low to help performance
 				BlockPos offpos = pos.offset(dir);
-				if (isLocationSuitableForNewLeaves(world, leavesProperties, offpos)) {//Attempt to grow new leaves
+				if (isLocationSuitableForNewLeaves(world, leavesProperties, offpos)) { // Attempt to grow new leaves
 					int hydro = getHydrationLevelFromNeighbors(world, offpos, leavesProperties);
 					if (hydro > 0) {
-						boolean canFlower = world.rand.nextInt(3) == 0;
-						world.setBlockState(pos, leavesProperties.getDynamicLeavesState().withProperty(CAN_FLOWER, canFlower).withProperty(FLOWERING, canFlower && world.getLight(pos) >= 14).withProperty(HYDRO, hydro), 2);
+						boolean canFlower = world.rand.nextInt(4) == 0;
+						world.setBlockState(offpos, leavesProperties.getDynamicLeavesState(hydro).withProperty(CAN_FLOWER, canFlower).withProperty(FLOWERING, canFlower && world.getLight(pos) >= 14), 2);
 					}
 				}
 			}
@@ -107,38 +110,20 @@ public class BlockDynamicLeavesFlowering extends BlockDynamicLeaves {
 	public boolean growLeavesIfLocationIsSuitable(World world, ILeavesProperties leavesProp, BlockPos pos, int hydro) {
 		hydro = hydro == 0 ? leavesProp.getCellKit().getDefaultHydration() : hydro;
 		if (isLocationSuitableForNewLeaves(world, leavesProp, pos)) {
-			boolean canFlower = world.rand.nextInt(3) == 0;
-			IBlockState state = leavesProp.getDynamicLeavesState(hydro).withProperty(CAN_FLOWER, canFlower).withProperty(FLOWERING, canFlower && world.getLight(pos) >= 14);
+			boolean canFlower = world.rand.nextInt(4) == 0;
+			IBlockState state = this.getDefaultState().withProperty(CAN_FLOWER, canFlower).withProperty(FLOWERING, canFlower && world.getLight(pos) >= 14).withProperty(HYDRO, hydro);
 			world.setBlockState(pos, state, 2 | (leavesProp.appearanceChangesWithHydro() ? 1 : 0)); // Removed Notify Neighbors Flag for performance
 			return true;
 		}
 		return false;
 	}
 	
-	@Override
-	public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand) {
-		if (properties.getDynamicLeavesState().getBlock() == this) {//The tree being clicked on is a flowering oak, add a chance for the placed leaves to be flowering
-			boolean flowers = world.rand.nextInt(3) == 0;
-			return getDefaultState().withProperty(CAN_FLOWER, flowers).withProperty(FLOWERING, flowers);
-		}
-		
-		return getDefaultState();
-	}
-	
 	public boolean isFlowering(IBlockState blockState) {
 		return blockState.getValue(FLOWERING);
 	}
 	
-	public boolean isFlowering(IBlockAccess blockAccess, BlockPos pos) {
-		return isFlowering(blockAccess.getBlockState(pos));
-	}
-	
 	public boolean canFlower(IBlockState blockState) {
 		return blockState.getValue(CAN_FLOWER);
-	}
-	
-	public boolean canFlower(IBlockAccess blockAccess, BlockPos pos) {
-		return canFlower(blockAccess.getBlockState(pos));
 	}
 	
 	public static void setFlowering(World world, BlockPos pos, boolean flowering, IBlockState currentBlockState) {

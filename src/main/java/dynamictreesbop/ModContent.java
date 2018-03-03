@@ -2,6 +2,7 @@ package dynamictreesbop;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Random;
 
 import com.ferreusveritas.dynamictrees.ModConstants;
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
@@ -141,18 +142,26 @@ public class ModContent {
 		// Initialize Leaves Properties
 		floweringOakLeavesProperties = new LeavesProperties(
 				Blocks.LEAVES.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.OAK),
-				new ItemStack(Blocks.LEAVES, 1, BlockPlanks.EnumType.OAK.getMetadata()),
-				TreeRegistry.findCellKit("deciduous"));
+				new ItemStack(Blocks.LEAVES, 1, BlockPlanks.EnumType.OAK.getMetadata())) {
+					Random rand = new Random();
+					@Override
+					public IBlockState getDynamicLeavesState(int hydro) {
+						if (rand.nextInt(4) == 0) {
+							return super.getDynamicLeavesState(hydro).withProperty(BlockDynamicLeavesFlowering.CAN_FLOWER, true).withProperty(BlockDynamicLeavesFlowering.FLOWERING, true);
+						}
+						return super.getDynamicLeavesState(hydro);
+					}
+				};
 		decayedLeavesProperties = new LeavesProperties(null, ItemStack.EMPTY, TreeRegistry.findCellKit("bare"));
 		palmLeavesProperties = new LeavesProperties(
 				BlockBOPLeaves.paging.getVariantState(BOPTrees.PALM),
 				BlockBOPLeaves.paging.getVariantItem(BOPTrees.PALM),
 				TreeRegistry.findCellKit("palm") ) {
-			@Override
-			public boolean appearanceChangesWithHydro() {
-				return true;
-			}
-		};
+					@Override
+					public boolean appearanceChangesWithHydro() {
+						return true;
+					}
+				};
 		
 		yellowAutumnLeavesProperties = new LeavesProperties(
 				BlockBOPLeaves.paging.getVariantState(BOPTrees.YELLOW_AUTUMN),
@@ -566,7 +575,6 @@ public class ModContent {
 		ModelHelper.regModel(TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "orangeautumn")).getSeed());
 		ModelHelper.regModel(TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "oakdying")).getSeed());
 		ModelHelper.regModel(TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "maple")).getSeed());
-		ModelHelper.regModel(TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "floweringoak")).getSeed());
 		ModelHelper.regModel(TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "umbranconifer")).getSeed());
 		ModelHelper.regModel(TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "whitecherry")).getSeed());
 		// register models for custom magic seed animation
