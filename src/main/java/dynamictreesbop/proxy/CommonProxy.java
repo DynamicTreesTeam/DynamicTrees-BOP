@@ -9,14 +9,11 @@ import com.google.common.base.Optional;
 
 import biomesoplenty.api.biome.BOPBiomes;
 import biomesoplenty.api.biome.IExtendedBiome;
-import biomesoplenty.api.generation.GeneratorStage;
 import biomesoplenty.api.generation.IGenerator;
 import biomesoplenty.common.biome.BOPBiome;
 import biomesoplenty.common.world.generator.GeneratorWeighted;
-import biomesoplenty.common.world.generator.tree.GeneratorBush;
 import dynamictreesbop.cells.CellKits;
 import dynamictreesbop.worldgen.NetherTreeGenerator;
-import net.minecraft.block.BlockPlanks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.common.registry.GameRegistry;

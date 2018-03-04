@@ -1,27 +1,19 @@
 package dynamictreesbop.models;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import com.google.common.primitives.Ints;
 
 import dynamictreesbop.blocks.BlockRootyWater;
-import net.minecraft.block.BlockLiquid;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ItemOverrideList;
-import net.minecraft.client.renderer.color.BlockColors;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.common.property.IExtendedBlockState;
 
 public class RootyWaterModel implements IBakedModel {
@@ -52,11 +44,11 @@ public class RootyWaterModel implements IBakedModel {
 		if (state instanceof IExtendedBlockState) {
 			IExtendedBlockState extState = (IExtendedBlockState) state;
 			
-            float f3 = 0.5F;
+            /*float f3 = 0.5F;
             float f4 = 1.0F;
             float f5 = 0.8F;
             float f6 = 0.6F;
-            Material material = state.getMaterial();
+            Material material = state.getMaterial();*/
             float f7 = extState.getValue(BlockRootyWater.CORNER_HEIGHTS[0]);
             float f8 = extState.getValue(BlockRootyWater.CORNER_HEIGHTS[1]);
             float f9 = extState.getValue(BlockRootyWater.CORNER_HEIGHTS[2]);

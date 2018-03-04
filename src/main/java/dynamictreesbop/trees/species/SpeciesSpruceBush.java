@@ -8,8 +8,6 @@ import com.ferreusveritas.dynamictrees.trees.Species;
 import biomesoplenty.api.block.BOPBlocks;
 import dynamictreesbop.DynamicTreesBOP;
 import dynamictreesbop.featuregen.FeatureGenBush;
-import net.minecraft.block.BlockNewLeaf;
-import net.minecraft.block.BlockNewLog;
 import net.minecraft.block.BlockOldLeaf;
 import net.minecraft.block.BlockOldLog;
 import net.minecraft.block.BlockPlanks;

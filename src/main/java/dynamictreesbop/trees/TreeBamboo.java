@@ -32,8 +32,6 @@ import biomesoplenty.common.block.BlockBOPLeaves;
 import dynamictreesbop.DynamicTreesBOP;
 import dynamictreesbop.ModContent;
 import dynamictreesbop.cells.DTBOPLeafClusters;
-import dynamictreesbop.trees.TreeEucalyptus.JoCodeEucalyptus;
-import dynamictreesbop.trees.TreeEucalyptus.NodeInflatorEucalyptus;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
@@ -283,7 +281,6 @@ public class TreeBamboo extends TreeFamily {
 			
 			if (branch != null) {
 				float areaAccum = radius * radius; // Start by accumulating the branch we just came from
-				boolean isTwig = true;
 				boolean isTop = (world.getBlockState(pos.down()).getBlock() == branch);
 				
 				for (EnumFacing dir: EnumFacing.VALUES) {
@@ -292,7 +289,6 @@ public class TreeBamboo extends TreeFamily {
 						BlockPos dPos = pos.offset(dir);
 						
 						if (dPos.equals(last)) { // or the branch we just came back from
-							isTwig = false; // on the return journey if the block we just came from is a branch we are obviously not the endpoint(twig)
 							isTop = false;
 							continue;
 						}
