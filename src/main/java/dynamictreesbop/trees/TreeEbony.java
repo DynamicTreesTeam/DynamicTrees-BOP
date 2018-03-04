@@ -7,6 +7,7 @@ import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSapling;
 import com.ferreusveritas.dynamictrees.items.Seed;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 import com.ferreusveritas.dynamictrees.trees.Species;
+import com.ferreusveritas.dynamictrees.trees.SpeciesRare;
 
 import biomesoplenty.api.biome.BOPBiomes;
 import biomesoplenty.api.block.BOPBlocks;
@@ -55,7 +56,7 @@ public class TreeEbony extends TreeFamily {
 		
 	}
 	
-	public class SpeciesEbonyTwiglet extends Species {
+	public class SpeciesEbonyTwiglet extends SpeciesRare {
 		
 		public SpeciesEbonyTwiglet(TreeFamily treeFamily) {
 			super(new ResourceLocation(DynamicTreesBOP.MODID, treeFamily.getName().getResourcePath() + "twiglet"), treeFamily, ModContent.ebonyLeavesProperties);

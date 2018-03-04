@@ -189,7 +189,7 @@ public class TreeUmbran extends TreeFamily {
 		
 	}
 	
-	public class SpeciesMegaUmbranConifer extends Species {
+	public class SpeciesMegaUmbranConifer extends SpeciesRare {
 		
 		SpeciesMegaUmbranConifer(TreeFamily treeFamily) {
 			super(new ResourceLocation(treeFamily.getName().getResourceDomain(), "umbranconifermega"), treeFamily, ModContent.umbranConiferLeavesProperties);

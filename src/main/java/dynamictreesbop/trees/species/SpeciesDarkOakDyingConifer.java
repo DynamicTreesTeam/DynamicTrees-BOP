@@ -9,6 +9,7 @@ import com.ferreusveritas.dynamictrees.items.Seed;
 import com.ferreusveritas.dynamictrees.systems.GrowSignal;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 import com.ferreusveritas.dynamictrees.trees.Species;
+import com.ferreusveritas.dynamictrees.trees.SpeciesRare;
 
 import biomesoplenty.api.biome.BOPBiomes;
 import biomesoplenty.api.block.BOPBlocks;
@@ -26,7 +27,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary.Type;
 
-public class SpeciesDarkOakDyingConifer extends Species {
+public class SpeciesDarkOakDyingConifer extends SpeciesRare {
 	
 	public SpeciesDarkOakDyingConifer(TreeFamily treeFamily) {
 		super(new ResourceLocation(DynamicTreesBOP.MODID, "darkoakdyingconifer"), treeFamily, ModContent.darkOakDyingConiferLeavesProperties);
