@@ -7,6 +7,8 @@ import com.ferreusveritas.dynamictrees.ModBlocks;
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
 import com.ferreusveritas.dynamictrees.api.network.MapSignal;
 import com.ferreusveritas.dynamictrees.blocks.BlockBranch;
+import com.ferreusveritas.dynamictrees.blocks.BlockBranchBasic;
+import com.ferreusveritas.dynamictrees.blocks.BlockDynamicLeaves;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSapling;
 import com.ferreusveritas.dynamictrees.blocks.BlockRooty;
 import com.ferreusveritas.dynamictrees.systems.GrowSignal;
@@ -15,7 +17,9 @@ import com.ferreusveritas.dynamictrees.systems.nodemappers.NodeFindEnds;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 import com.ferreusveritas.dynamictrees.util.CompatHelper;
+import com.ferreusveritas.dynamictrees.util.CoordUtils;
 
+import biomesoplenty.api.biome.BOPBiomes;
 import biomesoplenty.api.block.BOPBlocks;
 import biomesoplenty.api.enums.BOPTrees;
 import biomesoplenty.api.enums.BOPWoods;
@@ -25,6 +29,7 @@ import dynamictreesbop.DynamicTreesBOP;
 import dynamictreesbop.ModContent;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockGrass;
+import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -42,14 +47,14 @@ public class TreePalm extends TreeFamily {
 		SpeciesPalm(TreeFamily treeFamily) {
 			super(treeFamily.getName(), treeFamily, ModContent.palmLeavesProperties);
 			
-			setBasicGrowingParameters(0.4f, 7.0f, 4, 4, 0.9f);
+			setBasicGrowingParameters(0.4f, 7.0f, 4, 3, 0.9f);
 			
 			setDynamicSapling(new BlockDynamicSapling("palmsapling").getDefaultState());
 			
 			envFactor(Type.COLD, 0.25f);
 			
-			clearAcceptableSoils();
-			addAcceptableSoil(Blocks.SAND, BOPBlocks.white_sand);
+			//clearAcceptableSoils();
+			addAcceptableSoil(Blocks.SAND, BOPBlocks.white_sand, BOPBlocks.dirt, BOPBlocks.grass);
 			
 			generateSeed();
 			
@@ -65,19 +70,8 @@ public class TreePalm extends TreeFamily {
 		}
 		
 		@Override
-		public BlockRooty getRootyBlock() {
-			return ModBlocks.blockRootySand;
-		}
-
-		//Let the worldgen plant on dirt blocks.
-		@Override
-		public boolean isAcceptableSoilForWorldgen(World world, BlockPos pos, IBlockState soilBlockState) {
-			return soilBlockState.getBlock() instanceof BlockGrass ? true : super.isAcceptableSoilForWorldgen(world, pos, soilBlockState);
-		}
-		
-		@Override
 		public boolean isBiomePerfect(Biome biome) {
-			return CompatHelper.biomeHasType(biome, Type.BEACH);
+			return isOneOfBiomes(biome, BOPBiomes.oasis.orNull(), BOPBiomes.tropical_island.orNull()) || CompatHelper.biomeHasType(biome, Type.BEACH);
 		}
 		
 		@Override
@@ -87,8 +81,14 @@ public class TreePalm extends TreeFamily {
 			// Alter probability map for direction change
 			probMap[0] = 0; // Down is always disallowed for palm
 			probMap[1] = 10;
-			probMap[2] = probMap[3] = probMap[4] = probMap[5] =  0;	
+			probMap[2] = probMap[3] = probMap[4] = probMap[5] =  0;
 			probMap[originDir.ordinal()] = 0; // Disable the direction we came from
+			
+			/*if (signal.energy > 2 && originDir == EnumFacing.DOWN && CoordUtils.coordHashCode(pos, 1) % 2 == 0) {
+				int leanDir = (CoordUtils.coordHashCode(signal.rootPos, 3) % 4) + 2;
+				probMap[1] = 0;
+				probMap[leanDir] = 10;
+			}*/
 			
 			return probMap;
 		}
@@ -96,8 +96,8 @@ public class TreePalm extends TreeFamily {
 		@Override
 		protected EnumFacing newDirectionSelected(EnumFacing newDir, GrowSignal signal) {
 			if (signal.isInTrunk() && newDir != EnumFacing.UP) { // Turned out of trunk
-				signal.energy /= 6.0f;
-				if (signal.energy > 1.8f) signal.energy = 1.8f;
+				//signal.energy /= 6.0f;
+				//if (signal.energy > 1.8f) signal.energy = 1.8f;
 			}
 			return newDir;
 		}
@@ -110,12 +110,7 @@ public class TreePalm extends TreeFamily {
 			long day = world.getTotalWorldTime() / 24000L;
 			int month = (int) day / 30; // Change the hashs every in-game month
 			
-			return super.getEnergy(world, pos) * biomeSuitability(world, pos) + (coordHashCode(pos.up(month)) % 3); // Vary the height energy by a psuedorandom hash function
-		}
-		
-		public int coordHashCode(BlockPos pos) {
-			int hash = (pos.getX() * 9973 ^ pos.getY() * 8287 ^ pos.getZ() * 9721) >> 1;
-			return hash & 0xFFFF;
+			return super.getEnergy(world, pos) * biomeSuitability(world, pos) + (CoordUtils.coordHashCode(pos.up(month), 3) % 3); // Vary the height energy by a psuedorandom hash function
 		}
 		
 		@Override
@@ -157,6 +152,15 @@ public class TreePalm extends TreeFamily {
 			return 3.0f;
 		}
 		
+		public boolean placeRootyDirtBlock(World world, BlockPos rootPos, int life) {
+			if (world.getBlockState(rootPos).getMaterial() == Material.SAND) {
+				world.setBlockState(rootPos, ModBlocks.blockRootySand.getDefaultState().withProperty(BlockRooty.LIFE, life));
+			} else {
+				world.setBlockState(rootPos, getRootyBlock().getDefaultState().withProperty(BlockRooty.LIFE, life));
+			}
+			return true;
+		}
+		
 	}
 	
 	public TreePalm() {
@@ -182,6 +186,5 @@ public class TreePalm extends TreeFamily {
 		blockList.add(getCommonSpecies().getDynamicSapling().getBlock());
 		return super.getRegisterableBlocks(blockList);
 	}
-	
 	
 }

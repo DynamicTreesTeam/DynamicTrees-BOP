@@ -12,6 +12,7 @@ import biomesoplenty.api.biome.BOPBiomes;
 import biomesoplenty.api.block.BOPBlocks;
 import dynamictreesbop.DynamicTreesBOP;
 import dynamictreesbop.ModContent;
+import dynamictreesbop.dropcreators.DropCreatorInvoluntarySeed;
 import dynamictreesbop.dropcreators.DropCreatorTwigletLogs;
 import dynamictreesbop.featuregen.FeatureGenBush;
 import net.minecraft.block.BlockGrass;
@@ -38,7 +39,7 @@ public class SpeciesAcaciaTwiglet extends Species {
 		
 		addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt, Blocks.SAND);
 		
-		setupStandardSeedDropping();
+		addDropCreator(new DropCreatorInvoluntarySeed());
 		remDropCreator(new ResourceLocation(ModConstants.MODID, "logs"));
 		addDropCreator(new DropCreatorTwigletLogs());
 		

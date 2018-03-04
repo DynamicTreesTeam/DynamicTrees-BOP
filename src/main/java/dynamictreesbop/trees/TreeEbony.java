@@ -16,6 +16,7 @@ import biomesoplenty.common.block.BlockBOPLeaves;
 import biomesoplenty.common.block.BlockBOPLog;
 import dynamictreesbop.DynamicTreesBOP;
 import dynamictreesbop.ModContent;
+import dynamictreesbop.dropcreators.DropCreatorInvoluntarySeed;
 import dynamictreesbop.dropcreators.DropCreatorTwigletLogs;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -67,7 +68,7 @@ public class TreeEbony extends TreeFamily {
 			
 			addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
 			
-			setupStandardSeedDropping();
+			addDropCreator(new DropCreatorInvoluntarySeed());
 			remDropCreator(new ResourceLocation(ModConstants.MODID, "logs"));
 			addDropCreator(new DropCreatorTwigletLogs());
 		}

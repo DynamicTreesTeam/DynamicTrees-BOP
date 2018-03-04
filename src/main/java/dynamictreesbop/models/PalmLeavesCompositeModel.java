@@ -45,6 +45,9 @@ public class PalmLeavesCompositeModel implements IBakedModel {
 							float x = vertexData[v].x;
 							float z = vertexData[v].z;
 							float y = vertexData[v].y;
+							
+							x *= (40f / 32f);
+							z *= (40f / 32f);
 	
 							double len;
 							double angle;
@@ -61,7 +64,7 @@ public class PalmLeavesCompositeModel implements IBakedModel {
 							// Rotate on x axis
 							len = Math.sqrt(y * y + z * z);
 							angle = Math.atan2(y, z);
-							angle += Math.PI * (pass == 2 ? 0.15 : pass == 1 ? -0.05 : -0.25);
+							angle += Math.PI * (pass == 2 ? 0.28 : pass == 1 ? 0.06 : -0.17);
 							y = (float) (Math.sin(angle) * len);
 							z = (float) (Math.cos(angle) * len);
 	
@@ -69,13 +72,14 @@ public class PalmLeavesCompositeModel implements IBakedModel {
 							// Rotate on y axis
 							len = Math.sqrt(x * x + z * z);
 							angle = Math.atan2(x, z);
-							angle += Math.PI * 0.25 * surr.ordinal() + (Math.PI * (pass == 1 ? 0.125 : pass == 2 ? 0.08 : 0.005));
+							angle += Math.PI * 0.25 * surr.ordinal() + (Math.PI * (pass == 1 ? 0.185 : pass == 2 ? 0.08 : 0.005));
 							x = (float) (Math.sin(angle) * len);
 							z = (float) (Math.cos(angle) * len);
-	
+							
 							// Move to center of block
 							x += 0.5f;
 							z += 0.5f;
+							y += pass == 2 ? -0.125 : pass == 0 ? 0.125 : 0;
 							//y -= 0.25f;
 	
 							// Move to center of palm crown

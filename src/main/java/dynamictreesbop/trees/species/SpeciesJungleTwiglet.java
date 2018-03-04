@@ -12,6 +12,7 @@ import biomesoplenty.api.biome.BOPBiomes;
 import biomesoplenty.api.block.BOPBlocks;
 import dynamictreesbop.DynamicTreesBOP;
 import dynamictreesbop.ModContent;
+import dynamictreesbop.dropcreators.DropCreatorInvoluntarySeed;
 import dynamictreesbop.dropcreators.DropCreatorTwigletLogs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -34,7 +35,7 @@ public class SpeciesJungleTwiglet extends Species {
 		
 		addAcceptableSoil(Blocks.GRASS, BOPBlocks.grass, BOPBlocks.dirt, Blocks.SAND);
 		
-		setupStandardSeedDropping();
+		addDropCreator(new DropCreatorInvoluntarySeed());
 		remDropCreator(new ResourceLocation(ModConstants.MODID, "logs"));
 		addDropCreator(new DropCreatorTwigletLogs());
 		
