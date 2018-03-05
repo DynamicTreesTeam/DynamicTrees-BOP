@@ -26,7 +26,7 @@ public class DynamicTreesBOP {
 	
 	public static final String MODID = "dynamictreesbop";
 	public static final String NAME = "Dynamic Trees BOP";
-	public static final String VERSION = "1.0";
+	public static final String VERSION = "alpha 1";
 	public static final String DEPENDENCIES = "required-after:dynamictrees;after:biomesoplenty";
 	
 	@Mod.Instance
@@ -50,7 +50,7 @@ public class DynamicTreesBOP {
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
 		proxy.postInit();
-		
+		/*
 		//Set<String> trees = new HashSet<String>();
 		for (Biome b : ModBiomes.presentBiomes) {
 			if (!(b instanceof BOPBiome)) continue;
@@ -71,19 +71,17 @@ public class DynamicTreesBOP {
 			}
 		}
 		//trees.forEach(tree -> {System.out.println(tree);});
-		
+		*/
 	}
 	
 	public void registerBiomeHandlers() {
-		
-		if(WorldGenRegistry.isWorldGenEnabled()) {
+		if (WorldGenRegistry.isWorldGenEnabled()) {
 			IBiomeSpeciesSelector biomeSpeciesSelector = new BiomeSpeciesSelector();
 			WorldGenRegistry.registerBiomeTreeSelector(biomeSpeciesSelector);
 			WorldGenRegistry.registerBiomeDensityProvider(new BiomeDensityProvider());
 			
 			biomeSpeciesSelector.init();
 		}
-		
 	}
 	
 }

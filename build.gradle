@@ -42,7 +42,7 @@ jar {
 
 apply from: 'dependencies.gradle'
 
-version = "1.0"
+version = "alpha 1"
 group = "com.mangoose.dynamictreesbop" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "dynamictreesbop"
 
