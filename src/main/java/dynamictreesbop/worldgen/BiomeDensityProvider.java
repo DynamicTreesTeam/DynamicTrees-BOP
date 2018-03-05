@@ -7,6 +7,7 @@ import com.ferreusveritas.dynamictrees.trees.Species;
 
 import biomesoplenty.api.biome.BOPBiomes;
 import dynamictreesbop.DynamicTreesBOP;
+import net.minecraft.init.Biomes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 
@@ -47,6 +48,7 @@ public class BiomeDensityProvider implements IBiomeDensityProvider {
 				return rand.nextFloat() < Math.sqrt(chance) ? EnumChance.OK : EnumChance.CANCEL;
 			}
 		}*/
+		if (biome == Biomes.RIVER) return EnumChance.CANCEL;
 		
 		return EnumChance.UNHANDLED;
 	}
