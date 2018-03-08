@@ -16,12 +16,12 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.property.IExtendedBlockState;
 
-public class PalmLeavesCompositeModel implements IBakedModel {
+public class PalmFrondsCompositeModel implements IBakedModel {
 
 	protected IBakedModel baseModel;
 	protected List<BakedQuad>[] cachedFrondQuads = new List[8]; // 8 = Number of surrounding blocks
 
-	public PalmLeavesCompositeModel(IBakedModel baseModel) {
+	public PalmFrondsCompositeModel(IBakedModel baseModel) {
 		this.baseModel = baseModel;
 		bakeFronds();
 	}

@@ -15,6 +15,7 @@ import dynamictreesbop.event.ModelBakeEventListener;
 import dynamictreesbop.items.ItemMagicSeed;
 import dynamictreesbop.items.ItemMapleSeed;
 import dynamictreesbop.models.ModelLoaderBamboo;
+import dynamictreesbop.models.ModelLoaderPalmFronds;
 import dynamictreesbop.renderers.RenderMagicSeed;
 import dynamictreesbop.renderers.RenderMapleSeed;
 import net.minecraft.block.Block;
@@ -36,6 +37,7 @@ public class ClientProxy extends CommonProxy {
 		registerEntityRenderers();
 		
 		ModelLoaderRegistry.registerLoader(new ModelLoaderBamboo());
+		ModelLoaderRegistry.registerLoader(new ModelLoaderPalmFronds());
 	}
 	
 	@Override

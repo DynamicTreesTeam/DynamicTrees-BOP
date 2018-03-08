@@ -1,7 +1,7 @@
 package dynamictreesbop.event;
 
 import dynamictreesbop.ModContent;
-import dynamictreesbop.models.PalmLeavesCompositeModel;
+import dynamictreesbop.models.PalmFrondsCompositeModel;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraftforge.client.event.ModelBakeEvent;
@@ -21,7 +21,7 @@ public class ModelBakeEventListener {
 			Object palmLeavesObject =  event.getModelRegistry().getObject(resourceLocation);
 			if (palmLeavesObject instanceof IBakedModel) {
 				IBakedModel baseModel = (IBakedModel) palmLeavesObject;
-				PalmLeavesCompositeModel compositeModel = new PalmLeavesCompositeModel(baseModel);
+				PalmFrondsCompositeModel compositeModel = new PalmFrondsCompositeModel(baseModel);
 				event.getModelRegistry().putObject(resourceLocation, compositeModel);
 			}
 		}
