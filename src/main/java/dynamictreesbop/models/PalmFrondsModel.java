@@ -3,7 +3,6 @@ package dynamictreesbop.models;
 import java.util.Collection;
 import java.util.function.Function;
 
-import com.ferreusveritas.dynamictrees.models.CompositeBasicModel;
 import com.google.common.collect.ImmutableList;
 
 import net.minecraft.client.renderer.block.model.IBakedModel;
@@ -17,13 +16,10 @@ import net.minecraftforge.common.model.IModelState;
 
 public class PalmFrondsModel implements IModel {
 	
-	public ResourceLocation barkTexture;
-	public ResourceLocation ringsTexture;
-
+	public ResourceLocation frondTexture;
 	
 	public PalmFrondsModel(ModelBlock modelBlock) {
-		barkTexture = new ResourceLocation(modelBlock.resolveTextureName("bark"));
-		ringsTexture = new ResourceLocation(modelBlock.resolveTextureName("rings"));
+		frondTexture = new ResourceLocation(modelBlock.resolveTextureName("frond"));
 	}
 	
 	// return all other resources used by this model
@@ -35,14 +31,14 @@ public class PalmFrondsModel implements IModel {
 	// return all the textures used by this model
 	@Override
 	public Collection<ResourceLocation> getTextures() {
-		return ImmutableList.copyOf(new ResourceLocation[]{barkTexture, ringsTexture});
+		return ImmutableList.copyOf(new ResourceLocation[]{frondTexture});
 	}
 
 	// Bake the subcomponents into a CompositeModel
 	@Override
 	public IBakedModel bake(IModelState state, VertexFormat format, Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter) {
 		try {
-			return new CompositeBasicModel(barkTexture, ringsTexture, bakedTextureGetter);
+			return new CompositePalmFrondsModel(frondTexture, bakedTextureGetter);
 		} catch (Exception exception) {
 			System.err.println("PalmFrondsModel.bake() failed due to exception:" + exception);
 			return ModelLoaderRegistry.getMissingModel().bake(state, format, bakedTextureGetter);

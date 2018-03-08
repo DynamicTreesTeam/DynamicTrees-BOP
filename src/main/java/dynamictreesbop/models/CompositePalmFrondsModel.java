@@ -1,50 +1,65 @@
 package dynamictreesbop.models;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.function.Function;
 
 import com.ferreusveritas.dynamictrees.util.CoordUtils;
 import com.google.common.primitives.Ints;
 
-import dynamictreesbop.ModContent;
-import dynamictreesbop.blocks.BlockDynamicLeavesPalm;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.block.model.IBakedModel;
+import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.block.model.ItemOverrideList;
+import net.minecraft.client.renderer.block.model.ModelBlock;
+import net.minecraft.client.renderer.block.model.SimpleBakedModel;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.property.IExtendedBlockState;
 
-public class PalmFrondsCompositeModel implements IBakedModel {
+public class CompositePalmFrondsModel implements IBakedModel {
 
-	protected IBakedModel baseModel;
-	protected List<BakedQuad>[] cachedFrondQuads = new List[8]; // 8 = Number of surrounding blocks
-
-	public PalmFrondsCompositeModel(IBakedModel baseModel) {
-		this.baseModel = baseModel;
-		bakeFronds();
-	}
-
-	private void bakeFronds() {
-		IBlockState state = ModContent.palmLeavesProperties.getDynamicLeavesState(1);
-
+	protected ModelBlock modelBlock;
+	
+	TextureAtlasSprite barkParticles;
+	
+	private IBakedModel fronds[] = new IBakedModel[8]; // 8 = Number of surrounding blocks
+	
+	public CompositePalmFrondsModel(ResourceLocation frondRes, Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter) {		
+		modelBlock = new ModelBlock(null, null, null, false, false, ItemCameraTransforms.DEFAULT, null);
+		
+		TextureAtlasSprite barkIcon = bakedTextureGetter.apply(frondRes);
+		barkParticles = barkIcon;
+		
 		for (CoordUtils.Surround surr : CoordUtils.Surround.values()) {
-			List<BakedQuad> quadsForSurr = cachedFrondQuads[surr.ordinal()] = new ArrayList<BakedQuad>(0);
-			List<BakedQuad> baseQuads = baseModel.getQuads(state, null, 0);
 
-			for (BakedQuad bq : baseQuads) {
-				BlockVertexData vertexData[] = new BlockVertexData[4];
+			SimpleBakedModel.Builder builder = new SimpleBakedModel.Builder(modelBlock, ItemOverrideList.NONE).setTexture(barkIcon);
+
+			BlockVertexData quadData[] = {
+					new BlockVertexData(0.0f, 0.0f, 0.0f),
+					new BlockVertexData(1.0f, 0.0f, 0.0f),
+					new BlockVertexData(1.0f, 1.0f, 0.0f),
+					new BlockVertexData(0.0f, 1.0f, 0.0f)
+			};
+			
+			for (BlockVertexData bvd : quadData) {
 
 				for (int pass = 0; pass < 3; pass++) {
 					for (int half = 0; half < 2; half++) {
+						
+						BlockVertexData outData[] = new BlockVertexData[4];
+						
 						for (int v = 0; v < 4; v++) {
-							vertexData[v] = new BlockVertexData(bq, v);
-	
+							
 							// Nab the vertex;
-							float x = vertexData[v].x;
-							float z = vertexData[v].z;
-							float y = vertexData[v].y;
+							float x = bvd.x;
+							float z = bvd.z;
+							float y = bvd.y;
 							
 							x *= (40f / 32f);
 							z *= (40f / 32f);
@@ -86,49 +101,54 @@ public class PalmFrondsCompositeModel implements IBakedModel {
 							x += surr.getOffset().getX();
 							z += surr.getOffset().getZ();
 	
-							vertexData[v].x = x;
-							vertexData[v].z = z;
-							vertexData[v].y = y;
+							outData[v] = new BlockVertexData(x, y, z);
 						}
+						
+						builder.addGeneralQuad(
+							new BakedQuad(
+								Ints.concat(outData[0].toInts(), outData[1].toInts(), outData[2].toInts(), outData[3].toInts()),
+								0, EnumFacing.WEST, barkIcon, true, DefaultVertexFormats.BLOCK)
+						);
 	
-						BakedQuad movedQuad = new BakedQuad(
-								Ints.concat(vertexData[0].toInts(), vertexData[1].toInts(), vertexData[2].toInts(),
-										vertexData[3].toInts()),
-								bq.getTintIndex(), bq.getFace(), bq.getSprite(), bq.shouldApplyDiffuseLighting(),
-								bq.getFormat());
-	
-						quadsForSurr.add(movedQuad);
 					}
 				}
 			}
 		}
-
+		
 	}
-
+	
+	protected int[] vertexToInts(float x, float y, float z, int color, TextureAtlasSprite texture, float u, float v) {
+		return new int[] {
+				Float.floatToRawIntBits(x), Float.floatToRawIntBits(y), Float.floatToRawIntBits(z),
+				color,
+				Float.floatToRawIntBits(texture.getInterpolatedU(u)), Float.floatToRawIntBits(texture.getInterpolatedV(v)),
+				0,
+		};
+	}
+	
 	@Override
-	public List<BakedQuad> getQuads(IBlockState state, EnumFacing side, long rand) {
-		List<BakedQuad> quads = new ArrayList<BakedQuad>();
-
-		if (side == null && state != null && state.getBlock() instanceof BlockDynamicLeavesPalm && state instanceof IExtendedBlockState) {
-			for (int i = 0; i < 8; i++) {
-				Boolean b = ((IExtendedBlockState) state).getValue(BlockDynamicLeavesPalm.CONNECTIONS[i]);
-				if(b != null && b.booleanValue()) {
-					quads.addAll(cachedFrondQuads[i]);
-				}
-			}
+	public List<BakedQuad> getQuads(IBlockState blockState, EnumFacing side, long rand) {
+		List<BakedQuad> quadsList = new LinkedList<BakedQuad>();
+		if (MinecraftForgeClient.getRenderLayer() != BlockRenderLayer.CUTOUT_MIPPED) return quadsList;
+		
+		IExtendedBlockState extendedBlockState = (IExtendedBlockState)blockState;
+		if (blockState instanceof IExtendedBlockState) {
+			return quadsList;
 		}
-
-		return quads;
+		
+		return quadsList;
 	}
 
+
+	
 	@Override
 	public boolean isAmbientOcclusion() {
-		return baseModel.isAmbientOcclusion();
+		return false;
 	}
 
 	@Override
 	public boolean isGui3d() {
-		return true;
+		return false;
 	}
 
 	@Override
@@ -136,9 +156,15 @@ public class PalmFrondsCompositeModel implements IBakedModel {
 		return true;
 	}
 
+	// used for block breaking shards
 	@Override
 	public TextureAtlasSprite getParticleTexture() {
-		return baseModel.getParticleTexture();
+		return barkParticles;
+	}
+
+	@Override
+	public ItemCameraTransforms getItemCameraTransforms() {
+		return fronds[0].getItemCameraTransforms();
 	}
 
 	@Override
@@ -146,6 +172,8 @@ public class PalmFrondsCompositeModel implements IBakedModel {
 		return null;
 	}
 
+	
+	
 	public class BlockVertexData {
 
 		public float x;
@@ -188,5 +216,4 @@ public class PalmFrondsCompositeModel implements IBakedModel {
 		}
 
 	}
-	
 }
