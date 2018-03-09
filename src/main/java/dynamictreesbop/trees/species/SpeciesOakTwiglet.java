@@ -6,7 +6,6 @@ import com.ferreusveritas.dynamictrees.ModBlocks;
 import com.ferreusveritas.dynamictrees.ModConstants;
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
 import com.ferreusveritas.dynamictrees.items.Seed;
-import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.trees.SpeciesRare;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 

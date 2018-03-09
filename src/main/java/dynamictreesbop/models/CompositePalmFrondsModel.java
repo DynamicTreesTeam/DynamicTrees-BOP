@@ -4,8 +4,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.function.Function;
 
-import org.lwjgl.util.vector.Vector3f;
-
 import com.ferreusveritas.dynamictrees.util.CoordUtils;
 import com.google.common.primitives.Ints;
 
