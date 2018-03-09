@@ -42,18 +42,22 @@ public class CompositePalmFrondsModel implements IBakedModel {
 			SimpleBakedModel.Builder builder = new SimpleBakedModel.Builder(modelBlock, ItemOverrideList.NONE).setTexture(frondIcon);
 
 			BlockVertexData quadData[] = {
-					new BlockVertexData(0, 0, 0, 10, 4),
-					new BlockVertexData(0, 1, 0, 10, 0),
-					new BlockVertexData(2, 1, 0, 0, 0),
-					new BlockVertexData(2, 0, 0, 0, 4)
+				new BlockVertexData(0, 0, 2, 10, 4),
+				new BlockVertexData(0, 1, 2, 10, 0),
+				new BlockVertexData(0, 1, 0, 0, 0),
+				new BlockVertexData(0, 0, 0, 0, 4),
+				new BlockVertexData(0, 0, 2, 10, 4),
+				new BlockVertexData(0, 0, 0, 0, 4),
+				new BlockVertexData(0, 1, 0, 0, 0),
+				new BlockVertexData(0, 1, 2, 10, 0)
 			};
 
 			for (int pass = 0; pass < 3; pass++) {
 				for (int half = 0; half < 2; half++) {
+					
+					BlockVertexData outData[] = new BlockVertexData[8];
 
-					BlockVertexData outData[] = new BlockVertexData[4];
-
-					for (int v = 0; v < 4; v++) {
+					for (int v = 0; v < 8; v++) {
 
 						// Nab the vertex;
 						float x = quadData[v].x;
@@ -66,7 +70,7 @@ public class CompositePalmFrondsModel implements IBakedModel {
 						double len;
 						double angle;
 
-						/*
+						
 						// Rotate the vertex around x0,y=0.75
 						// Rotate on z axis
 						len = 0.75 - y;
@@ -74,7 +78,6 @@ public class CompositePalmFrondsModel implements IBakedModel {
 						angle += Math.PI * (half == 1 ? 0.8 : -0.8);
 						x = (float) (Math.sin(angle) * len);
 						y = (float) (Math.cos(angle) * len);
-						*/
 						
 						
 						// Rotate the vertex around x0,z0
@@ -121,6 +124,18 @@ public class CompositePalmFrondsModel implements IBakedModel {
 									0, null, frondIcon, true, DefaultVertexFormats.BLOCK)
 							);
 
+					builder.addGeneralQuad(
+							new BakedQuad(
+									Ints.concat(
+											outData[4].toInts(frondIcon),
+											outData[5].toInts(frondIcon),
+											outData[6].toInts(frondIcon),
+											outData[7].toInts(frondIcon)
+											),
+									0, null, frondIcon, true, DefaultVertexFormats.BLOCK)
+							);
+
+					
 					bakedFronds[surr.ordinal()] = builder.makeBakedModel();
 
 				}
