@@ -9,7 +9,7 @@ import net.minecraftforge.client.model.IModel;
 public class ModelLoaderPalmFronds extends ModelLoaderGeneric {
 	
 	public ModelLoaderPalmFronds() {
-		super("dynamicpalmfronds", new ResourceLocation("dynamictrees", "block/smartmodel/branch"));
+		super("dynamicpalmfronds", new ResourceLocation("dynamictreesbop", "block/dynamicpalmfronds"));
 	}
 	
 	@Override

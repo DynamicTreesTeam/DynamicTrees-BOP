@@ -15,16 +15,16 @@ public class ModelBakeEventListener {
 	@SubscribeEvent
 	public void onModelBakeEvent(ModelBakeEvent event) {
 		
-		for(int hydro = 1; hydro <= 2; hydro++) {
+		/*for(int hydro = 1; hydro <= 2; hydro++) {
 			ModelResourceLocation resourceLocation = new ModelResourceLocation(ModContent.palmLeavesProperties.getDynamicLeavesState().getBlock().getRegistryName(), "hydro=" + hydro);
 
 			Object palmLeavesObject =  event.getModelRegistry().getObject(resourceLocation);
 			if (palmLeavesObject instanceof IBakedModel) {
-				IBakedModel baseModel = (IBakedModel) palmLeavesObject;
-				PalmFrondsCompositeModel compositeModel = new PalmFrondsCompositeModel(baseModel);
-				event.getModelRegistry().putObject(resourceLocation, compositeModel);
+				//IBakedModel baseModel = (IBakedModel) palmLeavesObject;
+				//PalmFrondsCompositeModel compositeModel = new PalmFrondsCompositeModel(baseModel);
+				//event.getModelRegistry().putObject(resourceLocation, compositeModel);
 			}
-		}
+		}*/
 	}
 	
 }
