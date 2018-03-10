@@ -53,7 +53,7 @@ public class BiomeSpeciesSelector implements IBiomeSpeciesSelector {
 			else if (biome == BOPBiomes.brushland.orNull()) select = new RandomDecision(rand).addSpecies(ebony, 2).addSpecies(ebonyTwiglet, 2).addSpecies(jungleTwiglet, 1).addSpecies(acaciaBrush, 1);
 			else if (biome == BOPBiomes.chaparral.orNull()) select = new RandomDecision(rand).addSpecies(oakTwiglet, 3);
 			else if (biome == BOPBiomes.cherry_blossom_grove.orNull()) select = new RandomDecision(rand).addSpecies(pinkCherry, 6).addSpecies(whiteCherry, 4);
-			else if (biome == BOPBiomes.coniferous_forest.orNull()) select = new RandomDecision(rand).addSpecies(fir, 3).addSpecies(firSmall, 5);
+			else if (biome == BOPBiomes.coniferous_forest.orNull()) select = new RandomDecision(rand).addSpecies(fir, 4).addSpecies(firSmall, 5);
 			else if (biome == BOPBiomes.dead_forest.orNull()) select = new RandomDecision(rand).addSpecies(spruce, 3).addSpecies(decayed, 1).addSpecies(oakDying, 8);
 			else if (biome == BOPBiomes.dead_swamp.orNull()) select = new RandomDecision(rand).addSpecies(decayed, 1).addSpecies(dead, 2);
 			else if (biome == BOPBiomes.eucalyptus_forest.orNull()) select = new RandomDecision(rand).addSpecies(eucalyptus, 1).addSpecies(oakBush, 6);

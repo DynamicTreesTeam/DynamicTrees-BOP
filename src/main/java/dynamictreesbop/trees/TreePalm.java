@@ -44,7 +44,7 @@ public class TreePalm extends TreeFamily {
 		SpeciesPalm(TreeFamily treeFamily) {
 			super(treeFamily.getName(), treeFamily, ModContent.palmLeavesProperties);
 			
-			setBasicGrowingParameters(0.4f, 7.0f, 4, 3, 0.9f);
+			setBasicGrowingParameters(0.4f, 9.0f, 4, 3, 0.9f);
 			
 			setDynamicSapling(new BlockDynamicSapling("palmsapling").getDefaultState());
 			

@@ -240,7 +240,7 @@ public class ModContent {
 				TreeRegistry.findCellKit("conifer")){
 					@Override
 					public int getSmotherLeavesMax() {
-						return 3;
+						return 5;
 					}
 					@Override
 					public int foliageColorMultiplier(IBlockState state, IBlockAccess world, BlockPos pos) {
@@ -299,7 +299,12 @@ public class ModContent {
 		willowLeavesProperties = new LeavesProperties(
 				BlockBOPLeaves.paging.getVariantState(BOPTrees.WILLOW),
 				BlockBOPLeaves.paging.getVariantItem(BOPTrees.WILLOW),
-				TreeRegistry.findCellKit("deciduous"));
+				TreeRegistry.findCellKit("deciduous")) {
+					@Override
+					public int getSmotherLeavesMax() {
+						return 3;
+					}
+				};
 		hellbarkLeavesProperties = new LeavesProperties(
 				BlockBOPLeaves.paging.getVariantState(BOPTrees.HELLBARK),
 				BlockBOPLeaves.paging.getVariantItem(BOPTrees.HELLBARK),

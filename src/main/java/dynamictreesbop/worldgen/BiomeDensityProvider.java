@@ -18,15 +18,22 @@ public class BiomeDensityProvider implements IBiomeDensityProvider {
 		if (biome == BOPBiomes.alps_foothills.orNull()) return rand.nextFloat() < 0.5f ? EnumChance.OK : EnumChance.CANCEL;
 		if (biome == BOPBiomes.bamboo_forest.orNull()) return EnumChance.OK;
 		if (biome == BOPBiomes.brushland.orNull()) return EnumChance.OK;
+		if (biome == BOPBiomes.bog.orNull()) return EnumChance.OK;
 		if (biome == BOPBiomes.chaparral.orNull()) return rand.nextFloat() < 0.7f ? EnumChance.OK : EnumChance.CANCEL;
 		if (biome == BOPBiomes.dead_swamp.orNull()) return rand.nextFloat() < 0.6f ? EnumChance.OK : EnumChance.CANCEL;
 		if (biome == BOPBiomes.eucalyptus_forest.orNull()) return EnumChance.OK;
 		if (biome == BOPBiomes.lavender_fields.orNull()) return rand.nextFloat() < 0.3f ? EnumChance.OK : EnumChance.CANCEL;
 		if (biome == BOPBiomes.lush_desert.orNull()) return rand.nextFloat() < 0.4f ? EnumChance.OK : EnumChance.CANCEL;
-		if (biome == BOPBiomes.lush_swamp.orNull()) return EnumChance.OK;
-		if (biome == BOPBiomes.marsh.orNull()) return rand.nextFloat() < 0.02f ? EnumChance.OK : EnumChance.CANCEL;
+		if (biome == BOPBiomes.lush_swamp.orNull()) {
+			if (radius > 3) { // Start dropping tree spawn opportunities when the radius gets bigger than 3
+				float chance = 2.0f / radius;
+				return rand.nextFloat() < Math.sqrt(chance) ? EnumChance.OK : EnumChance.CANCEL;
+			}
+			return EnumChance.CANCEL;
+		}
+		if (biome == BOPBiomes.marsh.orNull()) return EnumChance.CANCEL;
 		if (biome == BOPBiomes.meadow.orNull()) return rand.nextFloat() < 0.6f ? EnumChance.OK : EnumChance.CANCEL;
-		if (biome == BOPBiomes.moor.orNull()) return rand.nextFloat() < 0.01f ? EnumChance.OK : EnumChance.CANCEL;
+		if (biome == BOPBiomes.moor.orNull()) return EnumChance.CANCEL;
 		if (biome == BOPBiomes.oasis.orNull()) {
 			if (species.getRegistryName().getResourcePath().equals("palm")) {
 				return rand.nextFloat() < 0.5f ? EnumChance.OK : EnumChance.CANCEL;
@@ -47,6 +54,7 @@ public class BiomeDensityProvider implements IBiomeDensityProvider {
 				float chance = 2.0f / radius;
 				return rand.nextFloat() < Math.sqrt(chance) ? EnumChance.OK : EnumChance.CANCEL;
 			}
+			EnumChance.CANCEL;
 		}*/
 		if (biome == Biomes.RIVER) return EnumChance.CANCEL;
 		
@@ -64,7 +72,7 @@ public class BiomeDensityProvider implements IBiomeDensityProvider {
 		
 		if (biome == BOPBiomes.bayou.orNull()) return noiseDensity * 0.8;
 		
-		if (biome == BOPBiomes.bog.orNull()) return noiseDensity * 0.5;
+		if (biome == BOPBiomes.bog.orNull()) return ((noiseDensity * 0.75) + 0.25) * 0.7;
 		
 		if (biome == BOPBiomes.boreal_forest.orNull()) return noiseDensity;
 		
@@ -74,7 +82,7 @@ public class BiomeDensityProvider implements IBiomeDensityProvider {
 		
 		if (biome == BOPBiomes.cherry_blossom_grove.orNull()) return noiseDensity * 0.3;
 		
-		if (biome == BOPBiomes.coniferous_forest.orNull()) return noiseDensity * 0.8;
+		if (biome == BOPBiomes.coniferous_forest.orNull()) return ((noiseDensity * 0.5) + 0.5) * 0.95;
 		
 		if (biome == BOPBiomes.dead_forest.orNull()) return noiseDensity * 0.3;
 		
@@ -126,7 +134,7 @@ public class BiomeDensityProvider implements IBiomeDensityProvider {
 		
 		if (biome == BOPBiomes.temperate_rainforest.orNull()) return noiseDensity;
 		
-		if (biome == BOPBiomes.tropical_island.orNull()) return (noiseDensity * 0.75) + 0.25;
+		if (biome == BOPBiomes.tropical_island.orNull()) return (noiseDensity * 0.5) + 0.5;
 		
 		if (biome == BOPBiomes.tropical_rainforest.orNull()) return (noiseDensity * 0.5) + 0.5;
 		
