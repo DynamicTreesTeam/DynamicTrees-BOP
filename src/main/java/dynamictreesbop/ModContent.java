@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.Random;
 
 import com.ferreusveritas.dynamictrees.ModConstants;
+import com.ferreusveritas.dynamictrees.ModItems;
+import com.ferreusveritas.dynamictrees.ModRecipes;
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
 import com.ferreusveritas.dynamictrees.api.TreeRegistry;
 import com.ferreusveritas.dynamictrees.api.client.ModelHelper;
@@ -12,12 +14,14 @@ import com.ferreusveritas.dynamictrees.api.treedata.ILeavesProperties;
 import com.ferreusveritas.dynamictrees.blocks.BlockBranch;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicLeaves;
 import com.ferreusveritas.dynamictrees.blocks.LeavesProperties;
+import com.ferreusveritas.dynamictrees.items.DendroPotion.DendroPotionType;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 
 import biomesoplenty.api.block.BOPBlocks;
 import biomesoplenty.api.enums.BOPTrees;
 import biomesoplenty.common.block.BlockBOPLeaves;
+import biomesoplenty.common.block.BlockBOPSapling;
 import dynamictreesbop.blocks.BlockDynamicLeavesFlowering;
 import dynamictreesbop.blocks.BlockDynamicLeavesPalm;
 import dynamictreesbop.items.ItemMagicSeed;
@@ -63,6 +67,8 @@ import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -70,14 +76,17 @@ import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.registries.IForgeRegistry;
 
 @Mod.EventBusSubscriber(modid = DynamicTreesBOP.MODID)
@@ -568,6 +577,60 @@ public class ModContent {
 		
 		EntityRegistry.registerModEntity(new ResourceLocation(DynamicTreesBOP.MODID, "maple_seed"), ItemMapleSeed.EntityItemMapleSeed.class, "maple_seed", id++, DynamicTreesBOP.MODID, 32, 1, true);
 		EntityRegistry.registerModEntity(new ResourceLocation(DynamicTreesBOP.MODID, "magic_seed"), ItemMagicSeed.EntityItemMagicSeed.class, "magic_seed", id++, DynamicTreesBOP.MODID, 32, 1, true);
+	}
+	
+	@SubscribeEvent
+	public static void registerRecipes(RegistryEvent.Register<IRecipe> event) {
+		// Add transformation potion recipes
+		String[] trees = new String[] {
+				"magic", "umbranconifer", "umbran", "fir", "whitecherry", "pinkcherry",
+				"jacaranda", "willow", "hellbark", "pine", "mahogany", "ebony", "eucalyptus",
+		};
+		for (String tree : trees) {
+			addTransformationPotion(tree);
+		}
+		// Do dead trees separately because the seed grows a species of oak tree
+		ItemStack outputStack = ModItems.dendroPotion.setTargetTree(new ItemStack(ModItems.dendroPotion, 1, DendroPotionType.TRANSFORM.getIndex()), TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "dead")).getFamily());
+		BrewingRecipeRegistry.addRecipe(new ItemStack(ModItems.dendroPotion, 1, DendroPotionType.TRANSFORM.getIndex()), TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "oakdying")).getSeedStack(1), outputStack);
+		
+		// Add seed <-> sapling recipes
+		addSeedExchange(BOPTrees.FLOWERING, "floweringoak");
+		addSeedExchange(BOPTrees.YELLOW_AUTUMN, "yellowautumn");
+		addSeedExchange(BOPTrees.ORANGE_AUTUMN, "orangeautumn");
+		addSeedExchange(BOPTrees.DEAD, "oakdying");
+		addSeedExchange(BOPTrees.MAPLE, "maple");
+		addSeedExchange(BOPTrees.MAGIC, "magic");
+		addSeedExchange(BOPTrees.UMBRAN, "umbran");
+		addSeedExchange(BOPTrees.FIR, "fir");
+		addSeedExchange(BOPTrees.WHITE_CHERRY, "whitecherry");
+		addSeedExchange(BOPTrees.PINK_CHERRY, "pinkcherry");
+		addSeedExchange(BOPTrees.JACARANDA, "jacaranda");
+		addSeedExchange(BOPTrees.WILLOW, "willow");
+		addSeedExchange(BOPTrees.HELLBARK, "hellbark");
+		addSeedExchange(BOPTrees.PINE, "pine");
+		addSeedExchange(BOPTrees.PALM, "palm");
+		addSeedExchange(BOPTrees.MAHOGANY, "mahogany");
+		addSeedExchange(BOPTrees.EBONY, "ebony");
+		addSeedExchange(BOPTrees.BAMBOO, "bamboo");
+		addSeedExchange(BOPTrees.EUCALYPTUS, "eucalyptus");
+		// Do umbran conifer seeds manually since they don't have a sapling in BOP
+		ItemStack saplingStack = BlockBOPSapling.paging.getVariantItem(BOPTrees.UMBRAN);
+		ItemStack seedStack = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "umbranconifer")).getSeedStack(1);
+		GameRegistry.addShapelessRecipe(new ResourceLocation(DynamicTreesBOP.MODID, "umbranconifer" + "sapling"),
+				null, saplingStack,
+				new Ingredient[] {Ingredient.fromStacks(seedStack), Ingredient.fromItem(ModItems.dirtBucket)});
+		OreDictionary.registerOre("treeSapling", seedStack);
+	}
+	
+	private static void addTransformationPotion(String tree) {
+		Species species = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, tree));
+		ItemStack outputStack = ModItems.dendroPotion.setTargetTree(new ItemStack(ModItems.dendroPotion, 1, DendroPotionType.TRANSFORM.getIndex()), species.getFamily());
+		BrewingRecipeRegistry.addRecipe(new ItemStack(ModItems.dendroPotion, 1, DendroPotionType.TRANSFORM.getIndex()), species.getSeedStack(1), outputStack);
+	}
+	
+	private static void addSeedExchange(BOPTrees saplingType, String species) {
+		ModRecipes.createDirtBucketExchangeRecipes(BlockBOPSapling.paging.getVariantItem(saplingType),
+				TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, species)).getSeedStack(1), true);
 	}
 	
 	@SideOnly(Side.CLIENT)

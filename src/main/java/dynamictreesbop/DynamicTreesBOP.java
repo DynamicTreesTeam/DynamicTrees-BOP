@@ -14,6 +14,7 @@ import dynamictreesbop.proxy.CommonProxy;
 import dynamictreesbop.worldgen.BiomeDensityProvider;
 import dynamictreesbop.worldgen.BiomeSpeciesSelector;
 import net.minecraft.world.biome.Biome;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -26,8 +27,8 @@ public class DynamicTreesBOP {
 	
 	public static final String MODID = "dynamictreesbop";
 	public static final String NAME = "Dynamic Trees BOP";
-	public static final String VERSION = "alpha 1";
-	public static final String DEPENDENCIES = "required-after:dynamictrees;after:biomesoplenty";
+	public static final String VERSION = "alpha 2";
+	public static final String DEPENDENCIES = "required-after:dynamictrees@[1.12.2-0.7.5b,);required-after:biomesoplenty";
 	
 	@Mod.Instance
 	public static DynamicTreesBOP instance;
