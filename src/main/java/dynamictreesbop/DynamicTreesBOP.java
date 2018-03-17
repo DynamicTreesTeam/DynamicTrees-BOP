@@ -1,20 +1,11 @@
 package dynamictreesbop;
 
-import java.lang.reflect.Field;
-
 import com.ferreusveritas.dynamictrees.api.WorldGenRegistry;
 import com.ferreusveritas.dynamictrees.api.worldgen.IBiomeSpeciesSelector;
 
-import biomesoplenty.api.generation.IGenerator;
-import biomesoplenty.common.biome.BOPBiome;
-import biomesoplenty.common.init.ModBiomes;
-import biomesoplenty.common.world.generator.GeneratorWeighted;
-import biomesoplenty.common.world.generator.tree.GeneratorTreeBase;
 import dynamictreesbop.proxy.CommonProxy;
 import dynamictreesbop.worldgen.BiomeDensityProvider;
 import dynamictreesbop.worldgen.BiomeSpeciesSelector;
-import net.minecraft.world.biome.Biome;
-import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
