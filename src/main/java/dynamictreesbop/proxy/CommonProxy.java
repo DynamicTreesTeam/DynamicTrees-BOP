@@ -13,9 +13,11 @@ import biomesoplenty.api.generation.IGenerator;
 import biomesoplenty.common.biome.BOPBiome;
 import biomesoplenty.common.world.generator.GeneratorWeighted;
 import dynamictreesbop.cells.CellKits;
+import dynamictreesbop.worldgen.DecorateEventHandler;
 import dynamictreesbop.worldgen.NetherTreeGenerator;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class CommonProxy {
@@ -118,6 +120,7 @@ public class CommonProxy {
 				removeCactusGen(BOPBiomes.outback);
 				removeCactusGen(BOPBiomes.xeric_shrubland);
 			}
+			MinecraftForge.TERRAIN_GEN_BUS.register(new DecorateEventHandler());
 		}
 	}
 	

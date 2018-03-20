@@ -13,7 +13,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class DecorateEventHandler {
 	
-	@SubscribeEvent(priority=EventPriority.NORMAL, receiveCanceled=true)
+	@SubscribeEvent(priority=EventPriority.HIGH, receiveCanceled=true)
 	public void onEvent(DecorateBiomeEvent.Decorate event) {
 		if (event.getType() == EventType.TREE) {
 			Biome biome = event.getWorld().getBiome(event.getPos());
