@@ -72,7 +72,7 @@ public class ItemMagicSeed extends Seed {
 			
 			//Add an impulse now and again as long as we're moving
 			int interval = 15;
-			int t = getAge() / 5 % interval;
+			int t = ticksExisted / 5 % interval;
 			double horizontalSpeed = Math.abs(motionX) + Math.abs(motionZ);
 			if ((!this.onGround && horizontalSpeed > 0.012f) || puffing || animFrame > 0) {
 				puffing = false;
