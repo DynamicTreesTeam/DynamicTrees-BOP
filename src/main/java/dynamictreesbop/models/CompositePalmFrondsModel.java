@@ -119,7 +119,7 @@ public class CompositePalmFrondsModel implements IBakedModel {
 											outData[2].toInts(frondIcon),
 											outData[3].toInts(frondIcon)
 											),
-									0, null, frondIcon, true, DefaultVertexFormats.BLOCK)
+									0, null, frondIcon, false, DefaultVertexFormats.BLOCK)
 							);
 
 					builder.addGeneralQuad(
@@ -130,7 +130,7 @@ public class CompositePalmFrondsModel implements IBakedModel {
 											outData[6].toInts(frondIcon),
 											outData[7].toInts(frondIcon)
 											),
-									0, null, frondIcon, true, DefaultVertexFormats.BLOCK)
+									0, null, frondIcon, false, DefaultVertexFormats.BLOCK)
 							);
 
 					

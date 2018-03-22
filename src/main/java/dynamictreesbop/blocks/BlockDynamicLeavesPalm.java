@@ -79,5 +79,4 @@ public class BlockDynamicLeavesPalm extends BlockDynamicLeaves {
 		return branch.getFamily() == getFamily(blockState, blockAccess, pos) ? BlockBranch.setSupport(0, 1) : 0;
 	}
 	
-	
 }
