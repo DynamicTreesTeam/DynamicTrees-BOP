@@ -92,8 +92,7 @@ public class PalmFrondsCompositeModel implements IBakedModel {
 						}
 	
 						BakedQuad movedQuad = new BakedQuad(
-								Ints.concat(vertexData[0].toInts(), vertexData[1].toInts(), vertexData[2].toInts(),
-										vertexData[3].toInts()),
+								Ints.concat(vertexData[0].toInts(), vertexData[1].toInts(), vertexData[2].toInts(), vertexData[3].toInts()),
 								bq.getTintIndex(), bq.getFace(), bq.getSprite(), bq.shouldApplyDiffuseLighting(),
 								bq.getFormat());
 	
