@@ -505,7 +505,7 @@ public class ModContent {
 		Species.REGISTRY.register(new SpeciesOakFloweringVine(oakTree));
 		Species.REGISTRY.register(new SpeciesFloweringOak(oakTree));
 		Species.REGISTRY.register(new SpeciesYellowAutumn(birchTree));
-		Species.REGISTRY.register(new SpeciesOrangeAutumn(oakTree));
+		Species.REGISTRY.register(new SpeciesOrangeAutumn(darkOakTree));
 		Species.REGISTRY.register(new SpeciesDyingOak(oakTree));
 		Species.REGISTRY.register(new SpeciesMaple(oakTree));
 		Species.REGISTRY.register(new SpeciesOakConifer(oakTree));
