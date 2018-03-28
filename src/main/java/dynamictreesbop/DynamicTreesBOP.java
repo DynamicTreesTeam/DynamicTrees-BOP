@@ -19,7 +19,7 @@ public class DynamicTreesBOP {
 	public static final String MODID = "dynamictreesbop";
 	public static final String NAME = "Dynamic Trees BOP";
 	public static final String VERSION = "beta 1";
-	public static final String DEPENDENCIES = "required-after:dynamictrees@[1.12.2-0.7.5b,);required-after:biomesoplenty";
+	public static final String DEPENDENCIES = "required-after:dynamictrees@[1.12.2-0.7.5c,);required-after:biomesoplenty";
 	
 	@Mod.Instance
 	public static DynamicTreesBOP instance;
