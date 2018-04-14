@@ -6,6 +6,7 @@ import com.ferreusveritas.dynamictrees.api.worldgen.IBiomeSpeciesSelector;
 import dynamictreesbop.proxy.CommonProxy;
 import dynamictreesbop.worldgen.BiomeDensityProvider;
 import dynamictreesbop.worldgen.BiomeSpeciesSelector;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -18,8 +19,8 @@ public class DynamicTreesBOP {
 	
 	public static final String MODID = "dynamictreesbop";
 	public static final String NAME = "Dynamic Trees BOP";
-	public static final String VERSION = "beta 2";
-	public static final String DEPENDENCIES = "required-after:dynamictrees@[1.12.2-0.7.5c,);required-after:biomesoplenty";
+	public static final String VERSION = "1.0.0";
+	public static final String DEPENDENCIES = "required-after:dynamictrees@[1.12.2-0.7.6,);required-after:biomesoplenty@[7.0.1.2344,)";
 	
 	@Mod.Instance
 	public static DynamicTreesBOP instance;

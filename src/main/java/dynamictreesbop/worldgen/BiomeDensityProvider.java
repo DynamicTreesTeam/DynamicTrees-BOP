@@ -24,9 +24,7 @@ public class BiomeDensityProvider implements IBiomeDensityProvider {
 		if (biome == BOPBiomes.eucalyptus_forest.orNull()) return EnumChance.OK;
 		if (biome == BOPBiomes.lavender_fields.orNull()) return rand.nextFloat() < 0.3f ? EnumChance.OK : EnumChance.CANCEL;
 		if (biome == BOPBiomes.lush_desert.orNull()) return rand.nextFloat() < 0.4f ? EnumChance.OK : EnumChance.CANCEL;
-		if (biome == BOPBiomes.marsh.orNull()) return EnumChance.CANCEL;
 		if (biome == BOPBiomes.meadow.orNull()) return rand.nextFloat() < 0.6f ? EnumChance.OK : EnumChance.CANCEL;
-		if (biome == BOPBiomes.moor.orNull()) return EnumChance.CANCEL;
 		if (biome == BOPBiomes.oasis.orNull()) {
 			if (species.getRegistryName().getResourcePath().equals("palm")) {
 				return rand.nextFloat() < 0.5f ? EnumChance.OK : EnumChance.CANCEL;
@@ -51,7 +49,26 @@ public class BiomeDensityProvider implements IBiomeDensityProvider {
 		}*/
 		if (biome == Biomes.RIVER) return EnumChance.CANCEL;
 		
+		if (biome == BOPBiomes.cold_desert.orNull()) return EnumChance.CANCEL;
+		if (biome == BOPBiomes.crag.orNull()) return EnumChance.CANCEL;
+		if (biome == BOPBiomes.flower_field.orNull()) return EnumChance.CANCEL;
+		if (biome == BOPBiomes.flower_island.orNull()) return EnumChance.CANCEL;
+		if (biome == BOPBiomes.glacier.orNull()) return EnumChance.CANCEL;
+		if (biome == BOPBiomes.grassland.orNull()) return EnumChance.CANCEL;
+		if (biome == BOPBiomes.gravel_beach.orNull()) return EnumChance.CANCEL;
+		if (biome == BOPBiomes.highland.orNull()) return EnumChance.CANCEL;
+		if (biome == BOPBiomes.mangrove.orNull()) return EnumChance.CANCEL;
+		if (biome == BOPBiomes.marsh.orNull()) return EnumChance.CANCEL;
+		if (biome == BOPBiomes.moor.orNull()) return EnumChance.CANCEL;
+		if (biome == BOPBiomes.origin_beach.orNull()) return EnumChance.CANCEL;
+		if (biome == BOPBiomes.origin_island.orNull()) return EnumChance.CANCEL;
+		if (biome == BOPBiomes.pasture.orNull()) return EnumChance.CANCEL;
 		if (biome == BOPBiomes.redwood_forest.orNull()) return EnumChance.CANCEL;
+		if (biome == BOPBiomes.sacred_springs.orNull()) return EnumChance.CANCEL;
+		if (biome == BOPBiomes.shrubland.orNull()) return EnumChance.CANCEL;
+		if (biome == BOPBiomes.steppe.orNull()) return EnumChance.CANCEL;
+		if (biome == BOPBiomes.tundra.orNull()) return EnumChance.CANCEL;
+		if (biome == BOPBiomes.volcanic_island.orNull()) return EnumChance.CANCEL;
 		
 		return EnumChance.UNHANDLED;
 	}
