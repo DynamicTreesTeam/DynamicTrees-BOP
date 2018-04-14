@@ -11,6 +11,7 @@ import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSapling;
 import com.ferreusveritas.dynamictrees.blocks.BlockRooty;
 import com.ferreusveritas.dynamictrees.systems.GrowSignal;
 import com.ferreusveritas.dynamictrees.systems.dropcreators.DropCreatorLogs;
+import com.ferreusveritas.dynamictrees.systems.dropcreators.DropCreatorSeed;
 import com.ferreusveritas.dynamictrees.systems.nodemappers.NodeFindEnds;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
@@ -33,6 +34,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary.Type;
@@ -55,7 +57,30 @@ public class TreePalm extends TreeFamily {
 			
 			generateSeed();
 			
-			setupStandardSeedDropping();
+			addDropCreator(new DropCreatorSeed(3.0f) {
+				@Override
+				public List<ItemStack> getHarvestDrop(World world, Species species, BlockPos leafPos, Random random, List<ItemStack> dropList, int soilLife, int fortune) {
+					if(random.nextInt(4) == 0) { // 1 in 4 chance to drop a seed on destruction..	
+						dropList.add(species.getSeedStack(1));
+					}
+					return dropList;
+				}
+				
+				@Override
+				public List<ItemStack> getLeavesDrop(IBlockAccess access, Species species, BlockPos breakPos, Random random, List<ItemStack> dropList, int fortune) {
+					int chance = 4;
+					if (fortune > 0) {
+						chance -= fortune;
+						if (chance < 3) { 
+							chance = 3;
+						}
+					}
+					if (random.nextInt(chance) == 0) {
+						dropList.add(species.getSeedStack(1));
+					}
+					return dropList;
+				}
+			});
 			addDropCreator(new DropCreatorLogs() {
 				@Override
 				public List<ItemStack> getLogsDrop(World world, Species species, BlockPos breakPos, Random random, List<ItemStack> dropList, int volume) {
