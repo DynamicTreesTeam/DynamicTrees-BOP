@@ -1,7 +1,11 @@
 {
 	"forge_marker": 1,
 	"defaults": {
-		"model": "biomesoplenty:bamboo_sapling"
+		"model": "dynamictreesbop:skinnysapling",
+		"textures": {
+			"log": "biomesoplenty:blocks/bamboo",
+			"leaves": "biomesoplenty:blocks/leaves_bamboo"
+		}
 	},
 	"variants": {
 		"normal": [{
