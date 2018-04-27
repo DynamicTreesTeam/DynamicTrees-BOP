@@ -55,15 +55,15 @@ public class BiomeDensityProvider implements IBiomeDensityProvider {
 	
 	@Override
 	public double density(Biome biome, double noiseDensity, Random random) {
-		return getDensityData(biome).getDensity().getDensity(random, noiseDensity);
+		return getDensityData(biome).getDensitySelector().getDensity(random, noiseDensity);
 	}
 	
 	@Override
 	public EnumChance chance(Biome biome, Species species, int radius, Random random) {
-		return getDensityData(biome).getChance().getChance(random, species, radius);
+		return getDensityData(biome).getChanceSelector().getChance(random, species, radius);
 	}
 	
-	public IBiomeDensityProvider.IChance computeChance(Biome biome) {
+	public IBiomeDensityProvider.IChanceSelector computeChance(Biome biome) {
 		if (biome == BOPBiomes.alps_foothills.orNull()) {
 			return (rnd, spc, rad) -> { return rnd.nextFloat() < 0.5f ? EnumChance.OK : EnumChance.CANCEL; };
 		}
@@ -156,7 +156,7 @@ public class BiomeDensityProvider implements IBiomeDensityProvider {
 		return (rnd, spc, rad) -> { return EnumChance.UNHANDLED; };
 	}
 	
-	public IDensity computeDensity(Biome biome) {
+	public IDensitySelector computeDensity(Biome biome) {
 		if (biome == BOPBiomes.alps_foothills.orNull()) {
 			return (rnd, nd) -> { return nd * 0.05; };
 		}

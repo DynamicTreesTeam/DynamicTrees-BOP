@@ -23,7 +23,7 @@ public class BiomeSpeciesSelector implements IBiomeSpeciesSelector {
 	Species acaciaBush, oakBush, spruceBush;
 	Species cactus;
 	
-	HashMap<Integer, DecisionProvider> fastTreeLookup = new HashMap<Integer, DecisionProvider>();
+	HashMap<Integer, ISpeciesSelector> fastTreeLookup = new HashMap<Integer, ISpeciesSelector>();
 	
 	@Override
 	public ResourceLocation getName() {
@@ -36,68 +36,68 @@ public class BiomeSpeciesSelector implements IBiomeSpeciesSelector {
 	}
 
 	@Override
-	public Decision getSpecies(World world, Biome biome, BlockPos pos, IBlockState state, Random rand) {
-		if (biome == null) return new Decision();
+	public SpeciesSelection getSpecies(World world, Biome biome, BlockPos pos, IBlockState dirt, Random rand) {
+		if (biome == null) return new SpeciesSelection();
 		
 		int biomeId = Biome.getIdForBiome(biome);
-		DecisionProvider select;
+		ISpeciesSelector select;
 				
 		if(fastTreeLookup.containsKey(biomeId)) {
 			select = fastTreeLookup.get(biomeId); // Speedily look up the selector for the biome id
 		} else {
-			if (biome == BOPBiomes.alps_foothills.orNull()) select = new StaticDecision(new Decision(firSmall));
-			else if (biome == BOPBiomes.bamboo_forest.orNull()) select = new RandomDecision(rand).addSpecies(bamboo, 4);
-			else if (biome == BOPBiomes.bayou.orNull()) select = new RandomDecision(rand).addSpecies(willow, 4);
-			else if (biome == BOPBiomes.bog.orNull()) select = new RandomDecision(rand).addSpecies(poplar, 3).addSpecies(darkPoplar, 1);
-			else if (biome == BOPBiomes.boreal_forest.orNull()) select = new RandomDecision(rand).addSpecies(yellowAutumn, 4).addSpecies(spruce, 4).addSpecies(oak, 5);
-			else if (biome == BOPBiomes.brushland.orNull()) select = new RandomDecision(rand).addSpecies(ebony, 2).addSpecies(ebonyTwiglet, 2).addSpecies(jungleTwiglet, 1).addSpecies(acaciaBrush, 1);
-			else if (biome == BOPBiomes.chaparral.orNull()) select = new RandomDecision(rand).addSpecies(oakTwiglet, 3);
-			else if (biome == BOPBiomes.cherry_blossom_grove.orNull()) select = new RandomDecision(rand).addSpecies(pinkCherry, 6).addSpecies(whiteCherry, 4);
-			else if (biome == BOPBiomes.coniferous_forest.orNull()) select = new RandomDecision(rand).addSpecies(fir, 4).addSpecies(firSmall, 5);
-			else if (biome == BOPBiomes.dead_forest.orNull()) select = new RandomDecision(rand).addSpecies(spruce, 3).addSpecies(decayed, 1).addSpecies(oakDying, 8);
-			else if (biome == BOPBiomes.dead_swamp.orNull()) select = new RandomDecision(rand).addSpecies(decayed, 1).addSpecies(dead, 2);
-			else if (biome == BOPBiomes.eucalyptus_forest.orNull()) select = new RandomDecision(rand).addSpecies(eucalyptus, 1).addSpecies(oakBush, 6);
-			else if (biome == BOPBiomes.fen.orNull()) select = new RandomDecision(rand).addSpecies(decayed, 1).addSpecies(darkOakConifer, 5).addSpecies(darkOakDyingConifer, 10);
-			else if (biome == BOPBiomes.grove.orNull()) select = new RandomDecision(rand).addSpecies(poplar, 1).addSpecies(darkPoplar, 1);
-			else if (biome == BOPBiomes.land_of_lakes.orNull()) select = new RandomDecision(rand).addSpecies(spruce, 3).addSpecies(birch, 1).addSpecies(oak, 5);
-			else if (biome == BOPBiomes.lavender_fields.orNull()) select = new RandomDecision(rand).addSpecies(floweringOak, 1).addSpecies(jacaranda, 3);
-			else if (biome == BOPBiomes.lush_desert.orNull()) select = new RandomDecision(rand).addSpecies(decayed, 1).addSpecies(oakTwiglet, 5).addSpecies(acacia, 3);
-			else if (biome == BOPBiomes.lush_swamp.orNull()) select = new StaticDecision(new Decision(swamp));
-			else if (biome == BOPBiomes.maple_woods.orNull()) select = new RandomDecision(rand).addSpecies(spruce, 1).addSpecies(maple, 5);
-			else if (biome == BOPBiomes.meadow.orNull()) select = new RandomDecision(rand).addSpecies(spruce, 4).addSpecies(oakBush, 3);
-			else if (biome == BOPBiomes.mountain.orNull()) select = new RandomDecision(rand).addSpecies(oak, 1).addSpecies(pine, 2);
-			else if (biome == BOPBiomes.mountain_foothills.orNull()) select = new RandomDecision(rand).addSpecies(oak, 1).addSpecies(pine, 2);
-			else if (biome == BOPBiomes.mystic_grove.orNull()) select = new RandomDecision(rand).addSpecies(magic, 17).addSpecies(oakFloweringVine, 10).addSpecies(floweringOak, 8).addSpecies(jacaranda, 9);
-			else if (biome == BOPBiomes.oasis.orNull()) select = new RandomDecision(rand).addSpecies(palm, 4).addSpecies(jungleTwiglet, 2);
-			else if (biome == BOPBiomes.ominous_woods.orNull()) select = new RandomDecision(rand).addSpecies(umbran, 4).addSpecies(umbranConifer, 5).addSpecies(umbranConiferMega, 4).addSpecies(decayed, 3).addSpecies(dead, 1);
-			else if (biome == BOPBiomes.orchard.orNull()) select = new RandomDecision(rand).addSpecies(floweringOak, 6).addSpecies(apple, 1);
-			else if (biome == BOPBiomes.outback.orNull()) select = new RandomDecision(rand).addSpecies(acaciaTwiglet, 3).addSpecies(acaciaBush, 3).addSpecies(cactus, 4);
-			else if (biome == BOPBiomes.overgrown_cliffs.orNull()) select = new RandomDecision(rand).addSpecies(mahogany, 1).addSpecies(jungleTwiglet, 2).addSpecies(oakBush, 8);
-			else if (biome == BOPBiomes.prairie.orNull()) select = new StaticDecision(new Decision(oakConifer));
-			else if (biome == BOPBiomes.rainforest.orNull()) select = new RandomDecision(rand).addSpecies(jungle, 1).addSpecies(birch, 4).addSpecies(oak, 4).addSpecies(floweringOak, 7);
-			else if (biome == BOPBiomes.seasonal_forest.orNull()) select = new RandomDecision(rand).addSpecies(yellowAutumn, 4).addSpecies(orangeAutumn, 5).addSpecies(oak, 1).addSpecies(oakDying, 2).addSpecies(maple, 4);
-			else if (biome == BOPBiomes.shield.orNull()) select = new RandomDecision(rand).addSpecies(spruce, 4).addSpecies(pine, 2);
-			else if (biome == BOPBiomes.snowy_coniferous_forest.orNull()) select = new RandomDecision(rand).addSpecies(fir, 2).addSpecies(firSmall, 4);
-			else if (biome == BOPBiomes.snowy_forest.orNull()) select = new RandomDecision(rand).addSpecies(oak, 3).addSpecies(oakDying, 1);
-			else if (biome == BOPBiomes.temperate_rainforest.orNull()) select = new RandomDecision(rand).addSpecies(oakConifer, 3).addSpecies(megaOakConifer, 5).addSpecies(willow, 1);
-			else if (biome == BOPBiomes.tropical_island.orNull()) select = new RandomDecision(rand).addSpecies(palm, 4).addSpecies(jungleTwiglet, 2);
-			else if (biome == BOPBiomes.tropical_rainforest.orNull()) select = new RandomDecision(rand).addSpecies(jungle, 2).addSpecies(mahogany, 6);
-			else if (biome == BOPBiomes.wasteland.orNull()) select = new RandomDecision(rand).addSpecies(decayed, 3).addSpecies(dead, 1);
-			else if (biome == BOPBiomes.wetland.orNull()) select = new RandomDecision(rand).addSpecies(spruce, 5).addSpecies(willow, 3);
-			else if (biome == BOPBiomes.woodland.orNull()) select = new StaticDecision(new Decision(oak));
-			else if (biome == BOPBiomes.xeric_shrubland.orNull()) select = new RandomDecision(rand).addSpecies(acaciaTwiglet, 1).addSpecies(cactus, 1);
+			if (biome == BOPBiomes.alps_foothills.orNull()) select = new StaticSpeciesSelector(new SpeciesSelection(firSmall));
+			else if (biome == BOPBiomes.bamboo_forest.orNull()) select = new RandomSpeciesSelector(rand).addSpecies(bamboo, 4);
+			else if (biome == BOPBiomes.bayou.orNull()) select = new RandomSpeciesSelector(rand).addSpecies(willow, 4);
+			else if (biome == BOPBiomes.bog.orNull()) select = new RandomSpeciesSelector(rand).addSpecies(poplar, 3).addSpecies(darkPoplar, 1);
+			else if (biome == BOPBiomes.boreal_forest.orNull()) select = new RandomSpeciesSelector(rand).addSpecies(yellowAutumn, 4).addSpecies(spruce, 4).addSpecies(oak, 5);
+			else if (biome == BOPBiomes.brushland.orNull()) select = new RandomSpeciesSelector(rand).addSpecies(ebony, 2).addSpecies(ebonyTwiglet, 2).addSpecies(jungleTwiglet, 1).addSpecies(acaciaBrush, 1);
+			else if (biome == BOPBiomes.chaparral.orNull()) select = new RandomSpeciesSelector(rand).addSpecies(oakTwiglet, 3);
+			else if (biome == BOPBiomes.cherry_blossom_grove.orNull()) select = new RandomSpeciesSelector(rand).addSpecies(pinkCherry, 6).addSpecies(whiteCherry, 4);
+			else if (biome == BOPBiomes.coniferous_forest.orNull()) select = new RandomSpeciesSelector(rand).addSpecies(fir, 4).addSpecies(firSmall, 5);
+			else if (biome == BOPBiomes.dead_forest.orNull()) select = new RandomSpeciesSelector(rand).addSpecies(spruce, 3).addSpecies(decayed, 1).addSpecies(oakDying, 8);
+			else if (biome == BOPBiomes.dead_swamp.orNull()) select = new RandomSpeciesSelector(rand).addSpecies(decayed, 1).addSpecies(dead, 2);
+			else if (biome == BOPBiomes.eucalyptus_forest.orNull()) select = new RandomSpeciesSelector(rand).addSpecies(eucalyptus, 1).addSpecies(oakBush, 6);
+			else if (biome == BOPBiomes.fen.orNull()) select = new RandomSpeciesSelector(rand).addSpecies(decayed, 1).addSpecies(darkOakConifer, 5).addSpecies(darkOakDyingConifer, 10);
+			else if (biome == BOPBiomes.grove.orNull()) select = new RandomSpeciesSelector(rand).addSpecies(poplar, 1).addSpecies(darkPoplar, 1);
+			else if (biome == BOPBiomes.land_of_lakes.orNull()) select = new RandomSpeciesSelector(rand).addSpecies(spruce, 3).addSpecies(birch, 1).addSpecies(oak, 5);
+			else if (biome == BOPBiomes.lavender_fields.orNull()) select = new RandomSpeciesSelector(rand).addSpecies(floweringOak, 1).addSpecies(jacaranda, 3);
+			else if (biome == BOPBiomes.lush_desert.orNull()) select = new RandomSpeciesSelector(rand).addSpecies(decayed, 1).addSpecies(oakTwiglet, 5).addSpecies(acacia, 3);
+			else if (biome == BOPBiomes.lush_swamp.orNull()) select = new StaticSpeciesSelector(new SpeciesSelection(swamp));
+			else if (biome == BOPBiomes.maple_woods.orNull()) select = new RandomSpeciesSelector(rand).addSpecies(spruce, 1).addSpecies(maple, 5);
+			else if (biome == BOPBiomes.meadow.orNull()) select = new RandomSpeciesSelector(rand).addSpecies(spruce, 4).addSpecies(oakBush, 3);
+			else if (biome == BOPBiomes.mountain.orNull()) select = new RandomSpeciesSelector(rand).addSpecies(oak, 1).addSpecies(pine, 2);
+			else if (biome == BOPBiomes.mountain_foothills.orNull()) select = new RandomSpeciesSelector(rand).addSpecies(oak, 1).addSpecies(pine, 2);
+			else if (biome == BOPBiomes.mystic_grove.orNull()) select = new RandomSpeciesSelector(rand).addSpecies(magic, 17).addSpecies(oakFloweringVine, 10).addSpecies(floweringOak, 8).addSpecies(jacaranda, 9);
+			else if (biome == BOPBiomes.oasis.orNull()) select = new RandomSpeciesSelector(rand).addSpecies(palm, 4).addSpecies(jungleTwiglet, 2);
+			else if (biome == BOPBiomes.ominous_woods.orNull()) select = new RandomSpeciesSelector(rand).addSpecies(umbran, 4).addSpecies(umbranConifer, 5).addSpecies(umbranConiferMega, 4).addSpecies(decayed, 3).addSpecies(dead, 1);
+			else if (biome == BOPBiomes.orchard.orNull()) select = new RandomSpeciesSelector(rand).addSpecies(floweringOak, 6).addSpecies(apple, 1);
+			else if (biome == BOPBiomes.outback.orNull()) select = new RandomSpeciesSelector(rand).addSpecies(acaciaTwiglet, 3).addSpecies(acaciaBush, 3).addSpecies(cactus, 4);
+			else if (biome == BOPBiomes.overgrown_cliffs.orNull()) select = new RandomSpeciesSelector(rand).addSpecies(mahogany, 1).addSpecies(jungleTwiglet, 2).addSpecies(oakBush, 8);
+			else if (biome == BOPBiomes.prairie.orNull()) select = new StaticSpeciesSelector(new SpeciesSelection(oakConifer));
+			else if (biome == BOPBiomes.rainforest.orNull()) select = new RandomSpeciesSelector(rand).addSpecies(jungle, 1).addSpecies(birch, 4).addSpecies(oak, 4).addSpecies(floweringOak, 7);
+			else if (biome == BOPBiomes.seasonal_forest.orNull()) select = new RandomSpeciesSelector(rand).addSpecies(yellowAutumn, 4).addSpecies(orangeAutumn, 5).addSpecies(oak, 1).addSpecies(oakDying, 2).addSpecies(maple, 4);
+			else if (biome == BOPBiomes.shield.orNull()) select = new RandomSpeciesSelector(rand).addSpecies(spruce, 4).addSpecies(pine, 2);
+			else if (biome == BOPBiomes.snowy_coniferous_forest.orNull()) select = new RandomSpeciesSelector(rand).addSpecies(fir, 2).addSpecies(firSmall, 4);
+			else if (biome == BOPBiomes.snowy_forest.orNull()) select = new RandomSpeciesSelector(rand).addSpecies(oak, 3).addSpecies(oakDying, 1);
+			else if (biome == BOPBiomes.temperate_rainforest.orNull()) select = new RandomSpeciesSelector(rand).addSpecies(oakConifer, 3).addSpecies(megaOakConifer, 5).addSpecies(willow, 1);
+			else if (biome == BOPBiomes.tropical_island.orNull()) select = new RandomSpeciesSelector(rand).addSpecies(palm, 4).addSpecies(jungleTwiglet, 2);
+			else if (biome == BOPBiomes.tropical_rainforest.orNull()) select = new RandomSpeciesSelector(rand).addSpecies(jungle, 2).addSpecies(mahogany, 6);
+			else if (biome == BOPBiomes.wasteland.orNull()) select = new RandomSpeciesSelector(rand).addSpecies(decayed, 3).addSpecies(dead, 1);
+			else if (biome == BOPBiomes.wetland.orNull()) select = new RandomSpeciesSelector(rand).addSpecies(spruce, 5).addSpecies(willow, 3);
+			else if (biome == BOPBiomes.woodland.orNull()) select = new StaticSpeciesSelector(new SpeciesSelection(oak));
+			else if (biome == BOPBiomes.xeric_shrubland.orNull()) select = new RandomSpeciesSelector(rand).addSpecies(acaciaTwiglet, 1).addSpecies(cactus, 1);
 			
-			else if (biome == Biomes.BEACH) select = new StaticDecision(new Decision(palm));
-			else if (biome == Biomes.FOREST || biome == Biomes.FOREST_HILLS) select = new RandomDecision(world.rand).addSpecies(oak, 8).addSpecies(birch, 2).addSpecies(floweringOak, 1);
-			else if (biome == Biomes.EXTREME_HILLS || biome == Biomes.EXTREME_HILLS_WITH_TREES) select = new RandomDecision(world.rand).addSpecies(spruce, 3).addSpecies(jacaranda, 1);
-			else if (biome == Biomes.SWAMPLAND) select = new RandomDecision(world.rand).addSpecies(swamp, 5).addSpecies(willow, 1);
+			else if (biome == Biomes.BEACH) select = new StaticSpeciesSelector(new SpeciesSelection(palm));
+			else if (biome == Biomes.FOREST || biome == Biomes.FOREST_HILLS) select = new RandomSpeciesSelector(world.rand).addSpecies(oak, 8).addSpecies(birch, 2).addSpecies(floweringOak, 1);
+			else if (biome == Biomes.EXTREME_HILLS || biome == Biomes.EXTREME_HILLS_WITH_TREES) select = new RandomSpeciesSelector(world.rand).addSpecies(spruce, 3).addSpecies(jacaranda, 1);
+			else if (biome == Biomes.SWAMPLAND) select = new RandomSpeciesSelector(world.rand).addSpecies(swamp, 5).addSpecies(willow, 1);
 			
-			else select = new StaticDecision(new Decision());
+			else select = new StaticSpeciesSelector(new SpeciesSelection());
 			
 			fastTreeLookup.put(biomeId, select); //Cache decision for future use
 		}
 		
-		return select.getDecision();
+		return select.getSpecies(pos, dirt, rand);
 	}
 
 	@Override
