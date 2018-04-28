@@ -218,6 +218,21 @@ public class BiomeDataBasePopulator {
 		addChanceSelector(BOPBiomes.steppe,				cancel);
 		addChanceSelector(BOPBiomes.tundra,				cancel);
 		addChanceSelector(BOPBiomes.volcanic_island,	cancel);
+
+		Biome.REGISTRY.forEach(biome -> {
+			if( biome.getRegistryName().getResourceDomain().equals("biomesoplenty")
+				&& biome != BOPBiomes.flower_island.orNull() 
+				&& biome != BOPBiomes.sacred_springs.orNull()
+				&& biome != BOPBiomes.origin_island.orNull()
+				&& biome != BOPBiomes.shrubland.orNull()
+				&& biome != BOPBiomes.tundra.orNull()
+				&& biome != BOPBiomes.mangrove.orNull()
+				&& biome != BOPBiomes.redwood_forest.orNull()
+				&& biome != BOPBiomes.undergarden.orNull()
+			) {
+				dbase.setCancelVanillaTreeGen(biome, true);
+			}
+		});
 	}
 	
 	
