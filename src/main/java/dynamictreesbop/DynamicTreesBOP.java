@@ -1,11 +1,10 @@
 package dynamictreesbop;
 
 import com.ferreusveritas.dynamictrees.api.WorldGenRegistry;
-import com.ferreusveritas.dynamictrees.api.worldgen.IBiomeSpeciesSelector;
+import com.ferreusveritas.dynamictrees.worldgen.TreeGenerator;
 
 import dynamictreesbop.proxy.CommonProxy;
-import dynamictreesbop.worldgen.BiomeDensityProvider;
-import dynamictreesbop.worldgen.BiomeSpeciesSelector;
+import dynamictreesbop.worldgen.BiomeDataBasePopulator;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -34,7 +33,10 @@ public class DynamicTreesBOP {
 
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
-		registerBiomeHandlers();
+		
+		if (WorldGenRegistry.isWorldGenEnabled()) {
+			new BiomeDataBasePopulator(TreeGenerator.getTreeGenerator().biomeDataBase).init();
+		}
 		
 		proxy.init();
 	}
@@ -64,18 +66,6 @@ public class DynamicTreesBOP {
 		}
 		//trees.forEach(tree -> {System.out.println(tree);});
 		*/
-	}
-	
-	public void registerBiomeHandlers() {
-		if (WorldGenRegistry.isWorldGenEnabled()) {
-			IBiomeSpeciesSelector biomeSpeciesSelector = new BiomeSpeciesSelector();
-			WorldGenRegistry.registerBiomeTreeSelector(biomeSpeciesSelector);
-
-			//WorldGenRegistry.registerBiomeDensityProvider(new BiomeDensityProvider());
-			new BiomeDensityProvider().processBiomeDensityInjections();//Instead of registering the Density Provider we'll just inject into the DT default provider
-			
-			biomeSpeciesSelector.init();
-		}
 	}
 	
 }
