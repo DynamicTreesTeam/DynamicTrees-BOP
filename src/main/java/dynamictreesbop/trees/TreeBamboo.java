@@ -68,7 +68,11 @@ public class TreeBamboo extends TreeFamily {
 			addDropCreator(new DropCreatorLogs() {
 				@Override
 				public List<ItemStack> getLogsDrop(World world, Species species, BlockPos breakPos, Random random, List<ItemStack> dropList, int volume) {
-					dropList.add(species.getFamily().getPrimitiveLogItemStack(volume / 768));
+					int numLogs = volume / 768;
+					while(numLogs > 64) {
+						dropList.add(species.getFamily().getPrimitiveLogItemStack(numLogs >= 64 ? 64 : numLogs));
+						numLogs -= 64;
+					}
 					return dropList;
 				}
 			});

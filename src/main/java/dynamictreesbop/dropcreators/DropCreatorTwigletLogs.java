@@ -20,7 +20,11 @@ public class DropCreatorTwigletLogs extends DropCreator {
 
 	@Override
 	public List<ItemStack> getLogsDrop(World world, Species species, BlockPos breakPos, Random random, List<ItemStack> dropList, int volume) {
-		dropList.add(species.getFamily().getPrimitiveLogItemStack(volume / 256));
+		int numLogs = volume / 256;
+		while(numLogs > 0) {
+			dropList.add(species.getFamily().getPrimitiveLogItemStack(numLogs >= 64 ? 64 : numLogs));
+			numLogs -= 64;
+		}
 		dropList.add(species.getFamily().getStick((volume % 256) / 64));
 		return dropList;
 	}

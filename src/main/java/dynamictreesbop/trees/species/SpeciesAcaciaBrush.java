@@ -43,7 +43,11 @@ public class SpeciesAcaciaBrush extends SpeciesRare {
 		addDropCreator(new DropCreatorLogs() {
 			@Override
 			public List<ItemStack> getLogsDrop(World world, Species species, BlockPos breakPos, Random random, List<ItemStack> dropList, int volume) {
-				dropList.add(species.getFamily().getPrimitiveLogItemStack(volume / 1024)); // A log contains 4096 voxels of wood material(16x16x16 pixels) Drop vanilla logs or whatever
+				int numLogs = volume / 1024;
+				while(numLogs > 0) {
+					dropList.add(species.getFamily().getPrimitiveLogItemStack(numLogs >= 64 ? 64 : numLogs)); // A log contains 4096 voxels of wood material(16x16x16 pixels) Drop vanilla logs or whatever
+					numLogs -= 64;
+				}
 				dropList.add(species.getFamily().getStick((volume % 1024) / 128)); // A stick contains 512 voxels of wood (1/8th log) (1 log = 4 planks, 2 planks = 4 sticks) Give him the stick!
 				return dropList;
 			}
