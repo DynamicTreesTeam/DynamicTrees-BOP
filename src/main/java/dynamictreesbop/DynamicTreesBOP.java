@@ -35,7 +35,7 @@ public class DynamicTreesBOP {
 	public void init(FMLInitializationEvent event) {
 		
 		if (WorldGenRegistry.isWorldGenEnabled()) {
-			new BiomeDataBasePopulator(TreeGenerator.getTreeGenerator().biomeDataBase).init();
+			new BiomeDataBasePopulator(TreeGenerator.getTreeGenerator().biomeDataBase).populate();
 		}
 		
 		proxy.init();

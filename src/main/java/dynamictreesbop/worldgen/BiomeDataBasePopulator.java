@@ -8,6 +8,7 @@ import com.ferreusveritas.dynamictrees.api.worldgen.BiomePropertySelectors.IDens
 import com.ferreusveritas.dynamictrees.api.worldgen.BiomePropertySelectors.ISpeciesSelector;
 import com.ferreusveritas.dynamictrees.api.worldgen.BiomePropertySelectors.RandomSpeciesSelector;
 import com.ferreusveritas.dynamictrees.api.worldgen.BiomePropertySelectors.StaticSpeciesSelector;
+import com.ferreusveritas.dynamictrees.api.worldgen.IBiomeDataBasePopulator;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.worldgen.BiomeDataBase;
 import com.ferreusveritas.dynamictrees.worldgen.BiomeDataBase.Operation;
@@ -19,9 +20,9 @@ import net.minecraft.init.Biomes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 
-public class BiomeDataBasePopulator {
+public class BiomeDataBasePopulator implements IBiomeDataBasePopulator {
 	
-	private final BiomeDataBase dbase;
+	protected final BiomeDataBase dbase;
 	private final IChanceSelector ok = (rnd, spc, rad) -> { return EnumChance.OK; };
 	private final IChanceSelector cancel = (rnd, spc, rad) -> { return EnumChance.CANCEL; };
 	
@@ -33,7 +34,7 @@ public class BiomeDataBasePopulator {
 		this.dbase = dbase;
 	}
 	
-	public void init () {
+	public void populate() {
 		apple =					findVanSpecies("oakapple");
 		jungle =				findVanSpecies("jungle");
 		spruce =				findVanSpecies("spruce");
@@ -79,7 +80,6 @@ public class BiomeDataBasePopulator {
 		cactus =				findVanSpecies("cactus");
 		acaciaBush =			findBopSpecies("acaciabush");
 		oakBush =				findBopSpecies("oakbush");
-		
 		
 		
 		//Species Selectors
@@ -132,7 +132,6 @@ public class BiomeDataBasePopulator {
 		addSpeciesSelector(Biomes.SWAMPLAND,					new RandomSpeciesSelector().add(swamp, 5).add(willow, 1));
 		
 		
-		
 		//Density Selectors
 		addDensitySelector(BOPBiomes.alps_foothills,			scale(0.05) );
 		addDensitySelector(BOPBiomes.bamboo_forest,				scale(0.25, 0.75) );
@@ -174,7 +173,6 @@ public class BiomeDataBasePopulator {
 		addDensitySelector(BOPBiomes.wetland,					scale() );
 		addDensitySelector(BOPBiomes.woodland,					scale() );
 		addDensitySelector(BOPBiomes.xeric_shrubland,			scale(0.4) );
-		
 		
 		
 		//Chance Selectors
