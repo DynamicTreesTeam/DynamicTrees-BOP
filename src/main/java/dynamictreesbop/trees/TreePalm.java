@@ -168,16 +168,6 @@ public class TreePalm extends TreeFamily {
 			}
 		}
 
-		@Override
-		public float getPrimaryThickness() {
-			return 3.0f;
-		}
-
-		@Override
-		public float getSecondaryThickness() {
-			return 3.0f;
-		}
-		
 		public boolean placeRootyDirtBlock(World world, BlockPos rootPos, int life) {
 			if (world.getBlockState(rootPos).getMaterial() == Material.SAND) {
 				world.setBlockState(rootPos, ModBlocks.blockRootySand.getDefaultState().withProperty(BlockRooty.LIFE, life));
@@ -205,6 +195,16 @@ public class TreePalm extends TreeFamily {
 	@Override
 	public void createSpecies() {
 		setCommonSpecies(new SpeciesPalm(this));
+	}
+
+	@Override
+	public float getPrimaryThickness() {
+		return 3.0f;
+	}
+
+	@Override
+	public float getSecondaryThickness() {
+		return 3.0f;
 	}
 	
 	@Override
