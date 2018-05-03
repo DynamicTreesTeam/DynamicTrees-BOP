@@ -11,7 +11,7 @@ import com.ferreusveritas.dynamictrees.systems.GrowSignal;
 import com.ferreusveritas.dynamictrees.systems.nodemappers.NodeFruitCocoa;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 import com.ferreusveritas.dynamictrees.trees.Species;
-import com.ferreusveritas.dynamictrees.util.CompatHelper;
+import com.ferreusveritas.dynamictrees.util.ItemHelper;
 
 import biomesoplenty.api.biome.BOPBiomes;
 import biomesoplenty.api.block.BOPBlocks;
@@ -168,7 +168,7 @@ public class TreeMahogany extends TreeFamily {
 						EnumFacing facing = cocoaState.getValue(BlockHorizontal.FACING);
 						world.setBlockState(pos, ModBlocks.blockFruitCocoa.getDefaultState().withProperty(BlockHorizontal.FACING, facing), 2);
 						if (!player.capabilities.isCreativeMode) {
-							CompatHelper.shrinkStack(heldItem, 1);
+							ItemHelper.shrinkStack(heldItem, 1);
 						}
 						return true;
 					}

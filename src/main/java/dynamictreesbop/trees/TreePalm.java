@@ -15,7 +15,6 @@ import com.ferreusveritas.dynamictrees.systems.dropcreators.DropCreatorSeed;
 import com.ferreusveritas.dynamictrees.systems.nodemappers.NodeFindEnds;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
-import com.ferreusveritas.dynamictrees.util.CompatHelper;
 import com.ferreusveritas.dynamictrees.util.CoordUtils;
 
 import biomesoplenty.api.biome.BOPBiomes;
@@ -37,6 +36,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
+import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
 
 public class TreePalm extends TreeFamily {
@@ -97,7 +97,7 @@ public class TreePalm extends TreeFamily {
 		
 		@Override
 		public boolean isBiomePerfect(Biome biome) {
-			return isOneOfBiomes(biome, BOPBiomes.oasis.orNull(), BOPBiomes.tropical_island.orNull()) || CompatHelper.biomeHasType(biome, Type.BEACH);
+			return isOneOfBiomes(biome, BOPBiomes.oasis.orNull(), BOPBiomes.tropical_island.orNull()) || BiomeDictionary.hasType(biome, Type.BEACH);
 		}
 		
 		@Override

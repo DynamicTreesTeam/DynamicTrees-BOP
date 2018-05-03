@@ -6,9 +6,8 @@ import java.util.Random;
 import com.ferreusveritas.dynamictrees.ModBlocks;
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSapling;
-import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 import com.ferreusveritas.dynamictrees.trees.Species;
-import com.ferreusveritas.dynamictrees.util.CompatHelper;
+import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 
 import biomesoplenty.api.block.BOPBlocks;
 import biomesoplenty.api.enums.BOPTrees;
@@ -64,7 +63,7 @@ public class TreeWillow extends TreeFamily {
 		public boolean isAcceptableSoilForWorldgen(World world, BlockPos pos, IBlockState soilBlockState) {
 			if (soilBlockState.getBlock() == Blocks.WATER) {
 				Biome biome = world.getBiome(pos);
-				if (CompatHelper.biomeHasType(biome, Type.SWAMP)) {
+				if (BiomeDictionary.hasType(biome, Type.SWAMP)) {
 					BlockPos down = pos.down();
 					if (isAcceptableSoil(world, down, world.getBlockState(down))) {
 						return true;

@@ -3,7 +3,6 @@ package dynamictreesbop.event;
 import com.ferreusveritas.dynamictrees.ModConfigs;
 import com.ferreusveritas.dynamictrees.api.TreeRegistry;
 import com.ferreusveritas.dynamictrees.trees.Species;
-import com.ferreusveritas.dynamictrees.util.CompatHelper;
 
 import biomesoplenty.api.block.BOPBlocks;
 import biomesoplenty.api.enums.BOPTrees;
@@ -111,7 +110,7 @@ public class ReplaceSaplingEventHandler {
 				double y = event.getPos().getY() + 0.5;
 				double z = event.getPos().getZ() + 0.5;
 				EntityItem itemEntity = new EntityItem(event.getWorld(), x, y, z, species.getSeedStack(1));
-				CompatHelper.spawnEntity(event.getWorld(), itemEntity);
+				event.getWorld().spawnEntity(itemEntity);
 			}
 		}
 	}
