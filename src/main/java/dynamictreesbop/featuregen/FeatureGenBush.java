@@ -15,6 +15,7 @@ import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.BlockPos.MutableBlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
@@ -63,8 +64,9 @@ public class FeatureGenBush implements IGenFeature {
 				world.setBlockState(pos, logState);
 				
 				SimpleVoxmap leafMap = DTBOPLeafClusters.bush;
-				for (BlockPos dPos : leafMap.getAllNonZero()) {
-					BlockPos leafPos = pos.add(dPos);
+				MutableBlockPos leafPos = new MutableBlockPos();
+				for (MutableBlockPos dPos : leafMap.getAllNonZeroMutable()) {
+					leafPos.setPos( pos.getX() + dPos.getX(), pos.getY() + dPos.getY(), pos.getZ() + dPos.getZ() );
 					if ((coordHashCode(leafPos) % 5) != 0 && world.getBlockState(leafPos).getBlock().isReplaceable(world, leafPos)) {
 						world.setBlockState(leafPos, (secondaryLeavesState == null || world.rand.nextInt(4) != 0) ? leavesState : secondaryLeavesState);
 					}
