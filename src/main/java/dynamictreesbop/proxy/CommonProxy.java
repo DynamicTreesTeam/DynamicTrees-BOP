@@ -62,6 +62,7 @@ public class CommonProxy {
 	
 	public void postInit() {
 		if (WorldGenRegistry.isWorldGenEnabled()) {
+			/*
 			removeTreeGen(BOPBiomes.alps_foothills);
 			removeTreeGen(BOPBiomes.bamboo_forest);
 			removeTreeGen(BOPBiomes.bayou);
@@ -104,14 +105,15 @@ public class CommonProxy {
 			removeTreeGen(BOPBiomes.wetland);
 			removeTreeGen(BOPBiomes.woodland);
 			removeTreeGen(BOPBiomes.xeric_shrubland);
-			
-			removeTreeGen(BOPBiomes.undergarden);
+			*/
+			//removeTreeGen(BOPBiomes.undergarden);
 			
 			removeTreeGen(BOPBiomes.forest_extension);
 			removeTreeGen(BOPBiomes.forest_hills_extension);
 			removeTreeGen(BOPBiomes.extreme_hills_extension);
 			removeTreeGen(BOPBiomes.extreme_hills_plus_extension);
 			removeTreeGen(BOPBiomes.swampland_extension);
+			
 			
 			if (!ModConfigs.vanillaCactusWorldGen) {
 				removeCactusGen(BOPBiomes.oasis);
@@ -121,7 +123,6 @@ public class CommonProxy {
 		}
 	}
 	
-	@SuppressWarnings("unused")
 	private void removeTreeGen(Optional<Biome> optionalBiome, String... trees) {
 		Biome biome = optionalBiome.orNull();
 		if (biome != null && biome instanceof BOPBiome) {
@@ -145,7 +146,6 @@ public class CommonProxy {
 		if (biome != null && biome instanceof BOPBiome) ((BOPBiome) biome).removeGenerator("cacti");
 	}
 	
-	@SuppressWarnings("unused")
 	private void removeTreeGen(IExtendedBiome extendedBiome, String... trees) {
 		IGenerator gen = extendedBiome.getGenerationManager().getGenerator("trees");
 		if (gen instanceof GeneratorWeighted) {

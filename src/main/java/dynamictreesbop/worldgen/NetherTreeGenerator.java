@@ -28,7 +28,6 @@ public class NetherTreeGenerator implements IWorldGenerator {
 		}
 	}
 	
-	@SuppressWarnings("unused")
 	private void generateNether(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
 		for (int i = 0; i < 6; i++) { 
 			int x = chunkX + random.nextInt(14) + 1;

@@ -1,5 +1,6 @@
 package dynamictreesbop.worldgen;
 
+import com.ferreusveritas.dynamictrees.ModConfigs;
 import com.ferreusveritas.dynamictrees.ModConstants;
 import com.ferreusveritas.dynamictrees.api.TreeRegistry;
 import com.ferreusveritas.dynamictrees.api.worldgen.BiomePropertySelectors.EnumChance;
@@ -15,6 +16,7 @@ import com.ferreusveritas.dynamictrees.worldgen.BiomeDataBase.Operation;
 import com.google.common.base.Optional;
 
 import biomesoplenty.api.biome.BOPBiomes;
+import biomesoplenty.common.biome.BOPBiome;
 import dynamictreesbop.DynamicTreesBOP;
 import net.minecraft.init.Biomes;
 import net.minecraft.util.ResourceLocation;
@@ -218,7 +220,7 @@ public class BiomeDataBasePopulator implements IBiomeDataBasePopulator {
 		addChanceSelector(BOPBiomes.volcanic_island,	cancel);
 
 		Biome.REGISTRY.forEach(biome -> {
-			if( biome.getRegistryName().getResourceDomain().equals("biomesoplenty")
+			if (biome.getRegistryName().getResourceDomain().equals("biomesoplenty")
 				&& biome != BOPBiomes.flower_island.orNull() 
 				&& biome != BOPBiomes.sacred_springs.orNull()
 				&& biome != BOPBiomes.origin_island.orNull()
@@ -228,6 +230,9 @@ public class BiomeDataBasePopulator implements IBiomeDataBasePopulator {
 				&& biome != BOPBiomes.redwood_forest.orNull()
 				&& biome != BOPBiomes.undergarden.orNull()
 			) {
+				if (biome != null && biome instanceof BOPBiome) {
+					((BOPBiome) biome).removeGenerator("trees");
+				}
 				dbase.setCancelVanillaTreeGen(biome, true);
 			}
 		});
