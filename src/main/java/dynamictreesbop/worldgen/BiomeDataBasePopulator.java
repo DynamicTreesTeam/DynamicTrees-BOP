@@ -232,6 +232,9 @@ public class BiomeDataBasePopulator implements IBiomeDataBasePopulator {
 			) {
 				if (biome != null && biome instanceof BOPBiome) {
 					((BOPBiome) biome).removeGenerator("trees");
+					if (!ModConfigs.vanillaCactusWorldGen) {
+						((BOPBiome) biome).removeGenerator("cacti");
+					}
 				}
 				dbase.setCancelVanillaTreeGen(biome, true);
 			}

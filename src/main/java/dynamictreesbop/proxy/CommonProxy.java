@@ -114,12 +114,13 @@ public class CommonProxy {
 			removeTreeGen(BOPBiomes.extreme_hills_plus_extension);
 			removeTreeGen(BOPBiomes.swampland_extension);
 			
-			
+			/*
 			if (!ModConfigs.vanillaCactusWorldGen) {
 				removeCactusGen(BOPBiomes.oasis);
 				removeCactusGen(BOPBiomes.outback);
 				removeCactusGen(BOPBiomes.xeric_shrubland);
 			}
+			*/
 		}
 	}
 	
