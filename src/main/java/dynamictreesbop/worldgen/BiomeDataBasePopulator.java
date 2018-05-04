@@ -16,7 +16,10 @@ import com.ferreusveritas.dynamictrees.worldgen.BiomeDataBase.Operation;
 import com.google.common.base.Optional;
 
 import biomesoplenty.api.biome.BOPBiomes;
+import biomesoplenty.api.biome.IExtendedBiome;
+import biomesoplenty.api.generation.IGenerator;
 import biomesoplenty.common.biome.BOPBiome;
+import biomesoplenty.common.world.generator.GeneratorWeighted;
 import dynamictreesbop.DynamicTreesBOP;
 import net.minecraft.init.Biomes;
 import net.minecraft.util.ResourceLocation;
@@ -239,9 +242,28 @@ public class BiomeDataBasePopulator implements IBiomeDataBasePopulator {
 				dbase.setCancelVanillaTreeGen(biome, true);
 			}
 		});
+		
+		//Remove generators from extended biomes
+		removeTreeGen(BOPBiomes.forest_extension);
+		removeTreeGen(BOPBiomes.forest_hills_extension);
+		removeTreeGen(BOPBiomes.extreme_hills_extension);
+		removeTreeGen(BOPBiomes.extreme_hills_plus_extension);
+		removeTreeGen(BOPBiomes.swampland_extension);
+		
+		
 	}
 	
 	
+	
+	private void removeTreeGen(IExtendedBiome extendedBiome, String... trees) {
+		IGenerator gen = extendedBiome.getGenerationManager().getGenerator("trees");
+		if (gen instanceof GeneratorWeighted) {
+			for (String tree : trees) {
+				GeneratorWeighted treeGen = (GeneratorWeighted) gen;
+				treeGen.removeGenerator(tree);
+			}
+		}
+	}
 	
 	////////////////////////////////////////////////////////////////
 	// Helper Members
