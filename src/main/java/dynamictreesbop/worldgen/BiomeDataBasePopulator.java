@@ -250,9 +250,8 @@ public class BiomeDataBasePopulator implements IBiomeDataBasePopulator {
 		removeTreeGen(BOPBiomes.extreme_hills_plus_extension);
 		removeTreeGen(BOPBiomes.swampland_extension);
 		
-		
+		dbase.setIsSubterranean(BOPBiomes.undergarden.orNull(), true);
 	}
-	
 	
 	
 	private void removeTreeGen(IExtendedBiome extendedBiome, String... trees) {
