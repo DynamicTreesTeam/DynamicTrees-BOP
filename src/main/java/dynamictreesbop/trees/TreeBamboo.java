@@ -236,7 +236,7 @@ public class TreeBamboo extends TreeFamily {
 				}
 				
 				// Age volume for 6 cycles using a leafmap
-				TreeHelper.ageVolume(world, treePos, radius, 32, leafMap, 6);
+				TreeHelper.ageVolume(world, leafMap, 6);
 				
 				// Rot the unsupported branches
 				species.handleRot(world, endPoints, rootPos, treePos, 0, true);

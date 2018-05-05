@@ -309,7 +309,7 @@ public class TreeEucalyptus extends TreeFamily {
 				}
 				
 				// Age volume for 3 cycles using a leafmap
-				TreeHelper.ageVolume(world, treePos, radius, 32, leafMap, 3);
+				TreeHelper.ageVolume(world, leafMap, 3);
 				
 				// Rot the unsupported branches
 				species.handleRot(world, endPoints, rootPos, treePos, 0, true);

@@ -60,7 +60,7 @@ public class BlockDynamicLeavesFlowering extends BlockDynamicLeaves {
 	}
 	
 	@Override
-	public boolean age(World world, BlockPos pos, IBlockState state, Random rand, boolean rapid) {
+	public int age(World world, BlockPos pos, IBlockState state, Random rand, boolean rapid) {
 		ILeavesProperties leavesProperties = getProperties(state);
 		int oldHydro = state.getValue(HYDRO);
 		
@@ -68,7 +68,7 @@ public class BlockDynamicLeavesFlowering extends BlockDynamicLeaves {
 		int newHydro = getHydrationLevelFromNeighbors(world, pos, leavesProperties);
 		if (newHydro == 0 || (!rapid && !hasAdequateLight(state, world, leavesProperties, pos))) { // Light doesn't work right during worldgen so we'll just disable it during worldgen for now.
 			world.setBlockToAir(pos); // No water, no light .. no leaves
-			return true; // Leaves were destroyed
+			return -1; // Leaves were destroyed
 		} else { 
 			// Encode new hydration level in metadata for this leaf
 			if (oldHydro != newHydro) { // A little performance gain
@@ -99,7 +99,7 @@ public class BlockDynamicLeavesFlowering extends BlockDynamicLeaves {
 			}
 		}
 		
-		return false; // Leaves were not destroyed
+		return newHydro; // Leaves were not destroyed
 	}
 	
 	@Override
