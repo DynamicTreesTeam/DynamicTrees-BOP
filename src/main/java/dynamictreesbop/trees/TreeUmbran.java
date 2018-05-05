@@ -12,6 +12,7 @@ import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSaplingRare;
 import com.ferreusveritas.dynamictrees.items.Seed;
 import com.ferreusveritas.dynamictrees.systems.GrowSignal;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
+import com.ferreusveritas.dynamictrees.util.SafeChunkBounds;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.trees.SpeciesRare;
 
@@ -75,11 +76,11 @@ public class TreeUmbran extends TreeFamily {
 		}
 		
 		@Override
-		public void postGeneration(World world, BlockPos rootPos, Biome biome, int radius, List<BlockPos> endPoints, boolean worldGen) {
-			super.postGeneration(world, rootPos, biome, radius, endPoints, worldGen);
+		public void postGeneration(World world, BlockPos rootPos, Biome biome, int radius, List<BlockPos> endPoints, boolean worldGen, SafeChunkBounds safeBounds) {
+			super.postGeneration(world, rootPos, biome, radius, endPoints, worldGen, safeBounds);
 			
 			//Generate Vines
-			vineGen.gen(world, rootPos.up(), endPoints);
+			vineGen.gen(world, rootPos.up(), endPoints, safeBounds);
 		}
 		
 		@Override
@@ -166,7 +167,7 @@ public class TreeUmbran extends TreeFamily {
 		}
 		
 		@Override
-		public void postGeneration(World world, BlockPos rootPos, Biome biome, int radius, List<BlockPos> endPoints, boolean worldGen) {
+		public void postGeneration(World world, BlockPos rootPos, Biome biome, int radius, List<BlockPos> endPoints, boolean worldGen, SafeChunkBounds safeBounds) {
 			//Manually place the highest few blocks of the conifer since the leafCluster voxmap won't handle it
 			BlockPos highest = Collections.max(endPoints, (a, b) -> a.getY() - b.getY());
 			world.setBlockState(highest.up(1), leavesProperties.getDynamicLeavesState(4));
@@ -254,7 +255,7 @@ public class TreeUmbran extends TreeFamily {
 		}
 		
 		@Override
-		public void postGeneration(World world, BlockPos rootPos, Biome biome, int radius, List<BlockPos> endPoints, boolean worldGen) {
+		public void postGeneration(World world, BlockPos rootPos, Biome biome, int radius, List<BlockPos> endPoints, boolean worldGen, SafeChunkBounds safeBounds) {
 			//Manually place the highest few blocks of the conifer since the leafCluster voxmap won't handle it
 			BlockPos highest = Collections.max(endPoints, (a, b) -> a.getY() - b.getY());
 			world.setBlockState(highest.up(1), leavesProperties.getDynamicLeavesState(4));

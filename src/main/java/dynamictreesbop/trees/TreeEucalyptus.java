@@ -122,10 +122,10 @@ public class TreeEucalyptus extends TreeFamily {
 		}
 		
 		@Override
-		public void postGeneration(World world, BlockPos rootPos, Biome biome, int radius, List<BlockPos> endPoints, boolean worldGen) {
+		public void postGeneration(World world, BlockPos rootPos, Biome biome, int radius, List<BlockPos> endPoints, boolean worldGen, SafeChunkBounds safeBounds) {
 			if (worldGen) {
 				//Generate undergrowth
-				bushGen.setRadius(radius).gen(world, rootPos.up(), endPoints);
+				bushGen.setRadius(radius).gen(world, rootPos.up(), endPoints, safeBounds);
 			}
 		}
 		
@@ -315,7 +315,7 @@ public class TreeEucalyptus extends TreeFamily {
 				species.handleRot(world, endPoints, rootPos, treePos, 0, true);
 				
 				// Allow for special decorations by the tree itself
-				species.postGeneration(world, rootPos, biome, radius, endPoints, !careful);
+				species.postGeneration(world, rootPos, biome, radius, endPoints, !careful, safeBounds);
 			
 			} else { // The growth failed.. turn the soil back to what it was
 				world.setBlockState(rootPos, initialState, careful ? 3 : 2);

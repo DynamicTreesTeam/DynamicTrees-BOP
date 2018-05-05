@@ -36,7 +36,7 @@ public class SpeciesSpruceBush extends Species {
 	
 	@Override
 	public boolean generate(World world, BlockPos pos, Biome biome, Random random, int radius, SafeChunkBounds safeBounds) {
-		bushGen.setRadius(radius).gen(world, pos, new ArrayList<BlockPos>());
+		bushGen.setRadius(radius).gen(world, pos, new ArrayList<BlockPos>(), safeBounds);
 		return true;
 	}
 

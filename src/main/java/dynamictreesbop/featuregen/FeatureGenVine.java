@@ -6,6 +6,7 @@ import com.ferreusveritas.dynamictrees.api.IGenFeature;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.util.CoordUtils;
 import com.ferreusveritas.dynamictrees.util.MathHelper;
+import com.ferreusveritas.dynamictrees.util.SafeChunkBounds;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockVine;
@@ -14,6 +15,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.BlockPos.MutableBlockPos;
 import net.minecraft.world.World;
 
 public class FeatureGenVine implements IGenFeature {
@@ -56,30 +58,31 @@ public class FeatureGenVine implements IGenFeature {
 	}
 	
 	@Override
-	public void gen(World world, BlockPos treePos, List<BlockPos> endPoints) {
+	public void gen(World world, BlockPos treePos, List<BlockPos> endPoints, SafeChunkBounds safeBounds) {
 		if(!endPoints.isEmpty()) {
 			for(int i = 0; i < qty; i++) {
 				BlockPos endPoint = endPoints.get(world.rand.nextInt(endPoints.size()));
-				addVine(world, species, treePos, endPoint);
+				addVine(world, species, treePos, endPoint, safeBounds);
 			}
 		}
 	}
 	
-	protected void addVine(World world, Species species, BlockPos treePos, BlockPos branchPos) {
+	protected void addVine(World world, Species species, BlockPos treePos, BlockPos branchPos, SafeChunkBounds safeBounds) {
 		
 		RayTraceResult result = CoordUtils.branchRayTrace(world, species, treePos, branchPos, 90, verSpread, rayDistance);
 		
 		if(result != null) {
 			BlockPos vinePos = result.getBlockPos().offset(result.sideHit);
-			if(vinePos != BlockPos.ORIGIN) {
+			if(vinePos != BlockPos.ORIGIN && safeBounds.inBounds(vinePos, true)) {
 				PropertyBool vineSide = vineMap[result.sideHit.getOpposite().getIndex()];
 				if(vineSide != null) {
 					IBlockState vineState = vineBlock.getDefaultState().withProperty(vineSide, Boolean.valueOf(true));
 					int len = MathHelper.clamp(world.rand.nextInt(maxLength) + 3, 3, maxLength);
+					MutableBlockPos mPos = new MutableBlockPos(vinePos);
 					for(int i = 0; i < len; i++) {
-						if(world.isAirBlock(vinePos)) {
-							world.setBlockState(vinePos, vineState);
-							vinePos = vinePos.down();
+						if(world.isAirBlock(mPos)) {
+							world.setBlockState(mPos, vineState);
+							mPos.setY(mPos.getY() - 1);
 						} else {
 							break;
 						}
@@ -89,9 +92,4 @@ public class FeatureGenVine implements IGenFeature {
 		}
 	}
 	
-	public static int coordHashCode(BlockPos pos) {
-		int hash = (pos.getX() * 4111 ^ pos.getY() * 271 ^ pos.getZ() * 3067) >> 1;
-		return hash & 0xFFFF;
-	}
-
 }

@@ -6,6 +6,7 @@ import com.ferreusveritas.dynamictrees.api.IGenFeature;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.util.CoordUtils;
 import com.ferreusveritas.dynamictrees.util.MathHelper;
+import com.ferreusveritas.dynamictrees.util.SafeChunkBounds;
 import com.ferreusveritas.dynamictrees.util.SimpleVoxmap;
 
 import dynamictreesbop.cells.DTBOPLeafClusters;
@@ -49,7 +50,7 @@ public class FeatureGenBush implements IGenFeature {
 	}
 	
 	@Override
-	public void gen(World world, BlockPos treePos, List<BlockPos> endPoints) {
+	public void gen(World world, BlockPos treePos, List<BlockPos> endPoints, SafeChunkBounds safeBounds) {
 		Vec3d vTree = new Vec3d(treePos).addVector(0.5, 0.5, 0.5);
 
 		for (int i = 0; i < 2; i++) {

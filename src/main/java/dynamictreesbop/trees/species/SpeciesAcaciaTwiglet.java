@@ -67,7 +67,7 @@ public class SpeciesAcaciaTwiglet extends SpeciesRare {
 	@Override
 	public boolean generate(World world, BlockPos pos, Biome biome, Random random, int radius, SafeChunkBounds safeBounds) {
 		if (biome == BOPBiomes.xeric_shrubland.orNull() && world.getBlockState(pos).getBlock() instanceof BlockGrass) {
-			bushGen.setRadius(radius).gen(world, pos, new ArrayList<BlockPos>());
+			bushGen.setRadius(radius).gen(world, pos, new ArrayList<BlockPos>(), safeBounds);
 			return false;
 		}
 		return super.generate(world, pos, biome, random, radius, safeBounds);

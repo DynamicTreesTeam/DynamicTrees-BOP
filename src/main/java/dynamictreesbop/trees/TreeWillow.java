@@ -8,6 +8,7 @@ import com.ferreusveritas.dynamictrees.api.TreeHelper;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSapling;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
+import com.ferreusveritas.dynamictrees.util.SafeChunkBounds;
 
 import biomesoplenty.api.block.BOPBlocks;
 import biomesoplenty.api.enums.BOPTrees;
@@ -85,11 +86,11 @@ public class TreeWillow extends TreeFamily {
 		}
 		
 		@Override
-		public void postGeneration(World world, BlockPos rootPos, Biome biome, int radius, List<BlockPos> endPoints, boolean worldGen) {
-			super.postGeneration(world, rootPos, biome, radius, endPoints, worldGen);
+		public void postGeneration(World world, BlockPos rootPos, Biome biome, int radius, List<BlockPos> endPoints, boolean worldGen, SafeChunkBounds safeBounds) {
+			super.postGeneration(world, rootPos, biome, radius, endPoints, worldGen, safeBounds);
 			
 			//Generate Vines
-			vineGen.gen(world, rootPos.up(), endPoints);
+			vineGen.gen(world, rootPos.up(), endPoints, safeBounds);
 		}
 	
 	}

@@ -11,6 +11,7 @@ import com.ferreusveritas.dynamictrees.systems.GrowSignal;
 import com.ferreusveritas.dynamictrees.systems.nodemappers.NodeFruitCocoa;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
+import com.ferreusveritas.dynamictrees.util.SafeChunkBounds;
 
 import biomesoplenty.api.biome.BOPBiomes;
 import biomesoplenty.api.block.BOPBlocks;
@@ -101,8 +102,8 @@ public class TreeMahogany extends TreeFamily {
 		}
 		
 		@Override
-		public void postGeneration(World world, BlockPos rootPos, Biome biome, int radius, List<BlockPos> endPoints, boolean worldGen) {
-			super.postGeneration(world, rootPos, biome, radius, endPoints, worldGen);
+		public void postGeneration(World world, BlockPos rootPos, Biome biome, int radius, List<BlockPos> endPoints, boolean worldGen, SafeChunkBounds safeBounds) {
+			super.postGeneration(world, rootPos, biome, radius, endPoints, worldGen, safeBounds);
 
 			if (world.rand.nextInt() % 8 == 0) {
 				addCocoa(world, rootPos, true);

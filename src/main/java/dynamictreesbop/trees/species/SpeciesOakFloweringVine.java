@@ -9,6 +9,7 @@ import com.ferreusveritas.dynamictrees.api.TreeRegistry;
 import com.ferreusveritas.dynamictrees.items.Seed;
 import com.ferreusveritas.dynamictrees.systems.dropcreators.DropCreatorApple;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
+import com.ferreusveritas.dynamictrees.util.SafeChunkBounds;
 import com.ferreusveritas.dynamictrees.trees.Species;
 
 import biomesoplenty.api.biome.BOPBiomes;
@@ -66,11 +67,11 @@ public class SpeciesOakFloweringVine extends Species {
 	}
 	
 	@Override
-	public void postGeneration(World world, BlockPos rootPos, Biome biome, int radius, List<BlockPos> endPoints, boolean worldGen) {
-		super.postGeneration(world, rootPos, biome, radius, endPoints, worldGen);
+	public void postGeneration(World world, BlockPos rootPos, Biome biome, int radius, List<BlockPos> endPoints, boolean worldGen, SafeChunkBounds safeBounds) {
+		super.postGeneration(world, rootPos, biome, radius, endPoints, worldGen, safeBounds);
 		
 		//Generate Vines
-		vineGen.gen(world, rootPos.up(), endPoints);
+		vineGen.gen(world, rootPos.up(), endPoints, safeBounds);
 	}
 	
 }
