@@ -1,7 +1,6 @@
 Mangrove: mangrove
 Redwood Forest: redwood
 Redwood Forest: redwood_thin
-Undergarden: twiglet (tiny hellbark)
 
 Tundra: tundra_tree (oak bush)
 Shrubland: shrubland_tree (oak bush)

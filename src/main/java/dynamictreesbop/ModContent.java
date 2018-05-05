@@ -148,6 +148,8 @@ public class ModContent {
 		TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "acacia")).addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt, Blocks.HARDENED_CLAY);
 		TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "darkoak")).addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
 		TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "cactus")).addAcceptableSoil(BOPBlocks.white_sand);
+		TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "mushroomred")).addAcceptableSoil(BOPBlocks.dirt, BOPBlocks.grass);
+		TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "mushroombrn")).addAcceptableSoil(BOPBlocks.dirt, BOPBlocks.grass);
 		
 		// Initialize Leaves Properties
 		floweringOakLeavesProperties = new LeavesProperties(

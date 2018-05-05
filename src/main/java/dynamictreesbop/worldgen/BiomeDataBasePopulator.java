@@ -34,6 +34,7 @@ public class BiomeDataBasePopulator implements IBiomeDataBasePopulator {
 	private Species swamp, apple, jungle, spruce, birch, oak, acacia, acaciaBrush, oakFloweringVine, oakConifer, megaOakConifer, darkOakConifer, darkOakDyingConifer, oakTwiglet, poplar, darkPoplar, jungleTwiglet, acaciaTwiglet, yellowAutumn, orangeAutumn, magic, floweringOak, umbran, umbranConifer, umbranConiferMega, oakDying, decayed, fir, firSmall, pinkCherry, whiteCherry, maple, dead, jacaranda, willow, pine, palm, ebony, ebonyTwiglet, mahogany, eucalyptus, bamboo, hellbark;
 	private Species acaciaBush, oakBush;
 	private Species cactus;
+	private Species mushroomRed, mushroomBrown;
 	
 	public BiomeDataBasePopulator(BiomeDataBase dbase) {
 		this.dbase = dbase;
@@ -86,7 +87,8 @@ public class BiomeDataBasePopulator implements IBiomeDataBasePopulator {
 		cactus =				findVanSpecies("cactus");
 		acaciaBush =			findBopSpecies("acaciabush");
 		oakBush =				findBopSpecies("oakbush");
-		
+		mushroomRed = 			findVanSpecies("mushroomred");
+		mushroomBrown = 		findVanSpecies("mushroombrn");
 		
 		//Species Selectors
 		addSpeciesSelector(BOPBiomes.alps_foothills,			new StaticSpeciesSelector(firSmall));
@@ -111,7 +113,7 @@ public class BiomeDataBasePopulator implements IBiomeDataBasePopulator {
 		addSpeciesSelector(BOPBiomes.meadow,					new RandomSpeciesSelector().add(spruce, 4).add(oakBush, 3));
 		addSpeciesSelector(BOPBiomes.mountain,					new RandomSpeciesSelector().add(oak, 1).add(pine, 2));
 		addSpeciesSelector(BOPBiomes.mountain_foothills,		new RandomSpeciesSelector().add(oak, 1).add(pine, 2));
-		addSpeciesSelector(BOPBiomes.mystic_grove,				new RandomSpeciesSelector().add(magic, 17).add(oakFloweringVine, 10).add(floweringOak, 8).add(jacaranda, 9));
+		addSpeciesSelector(BOPBiomes.mystic_grove,				new RandomSpeciesSelector().add(magic, 17).add(oakFloweringVine, 10).add(floweringOak, 8).add(jacaranda, 9).add(mushroomRed, 3).add(mushroomBrown, 1));
 		addSpeciesSelector(BOPBiomes.oasis,						new RandomSpeciesSelector().add(palm, 4).add(jungleTwiglet, 2));
 		addSpeciesSelector(BOPBiomes.ominous_woods,				new RandomSpeciesSelector().add(umbran, 4).add(umbranConifer, 5).add(umbranConiferMega, 4).add(decayed, 3).add(dead, 1));
 		addSpeciesSelector(BOPBiomes.orchard,					new RandomSpeciesSelector().add(floweringOak, 6).add(apple, 1));
@@ -238,6 +240,8 @@ public class BiomeDataBasePopulator implements IBiomeDataBasePopulator {
 			) {
 				if (biome != null && biome instanceof BOPBiome) {
 					((BOPBiome) biome).removeGenerator("trees");
+					((BOPBiome) biome).removeGenerator("big_red_mushroom");
+					((BOPBiome) biome).removeGenerator("big_brown_mushroom");
 					if (!ModConfigs.vanillaCactusWorldGen) {
 						((BOPBiome) biome).removeGenerator("cacti");
 					}

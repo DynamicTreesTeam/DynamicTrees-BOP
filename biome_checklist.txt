@@ -35,6 +35,7 @@ snowy_forest
 temperate_rainforest
 tropical_island
 tropical_rainforest
+undergarden
 wetland
 wasteland
 woodland
