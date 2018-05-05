@@ -31,7 +31,7 @@ public class BiomeDataBasePopulator implements IBiomeDataBasePopulator {
 	private final IChanceSelector ok = (rnd, spc, rad) -> { return EnumChance.OK; };
 	private final IChanceSelector cancel = (rnd, spc, rad) -> { return EnumChance.CANCEL; };
 	
-	private Species swamp, apple, jungle, spruce, birch, oak, acacia, acaciaBrush, oakFloweringVine, oakConifer, megaOakConifer, darkOakConifer, darkOakDyingConifer, oakTwiglet, poplar, darkPoplar, jungleTwiglet, acaciaTwiglet, yellowAutumn, orangeAutumn, magic, floweringOak, umbran, umbranConifer, umbranConiferMega, oakDying, decayed, fir, firSmall, pinkCherry, whiteCherry, maple, dead, jacaranda, willow, pine, palm, ebony, ebonyTwiglet, mahogany, eucalyptus, bamboo;
+	private Species swamp, apple, jungle, spruce, birch, oak, acacia, acaciaBrush, oakFloweringVine, oakConifer, megaOakConifer, darkOakConifer, darkOakDyingConifer, oakTwiglet, poplar, darkPoplar, jungleTwiglet, acaciaTwiglet, yellowAutumn, orangeAutumn, magic, floweringOak, umbran, umbranConifer, umbranConiferMega, oakDying, decayed, fir, firSmall, pinkCherry, whiteCherry, maple, dead, jacaranda, willow, pine, palm, ebony, ebonyTwiglet, mahogany, eucalyptus, bamboo, hellbark;
 	private Species acaciaBush, oakBush;
 	private Species cactus;
 	
@@ -79,6 +79,7 @@ public class BiomeDataBasePopulator implements IBiomeDataBasePopulator {
 		mahogany =				findBopSpecies("mahogany");
 		eucalyptus =			findBopSpecies("eucalyptus");
 		bamboo =				findBopSpecies("bamboo");
+		hellbark = 				findBopSpecies("hellbark");
 		floweringOak =			findBopSpecies("floweringoak");
 		decayed =				findBopSpecies("decayed");
 		palm =					findBopSpecies("palm");
@@ -125,6 +126,7 @@ public class BiomeDataBasePopulator implements IBiomeDataBasePopulator {
 		addSpeciesSelector(BOPBiomes.temperate_rainforest,		new RandomSpeciesSelector().add(oakConifer, 3).add(megaOakConifer, 5).add(willow, 1));
 		addSpeciesSelector(BOPBiomes.tropical_island,			new RandomSpeciesSelector().add(palm, 4).add(jungleTwiglet, 2));
 		addSpeciesSelector(BOPBiomes.tropical_rainforest,		new RandomSpeciesSelector().add(jungle, 2).add(mahogany, 6));
+		addSpeciesSelector(BOPBiomes.undergarden, 				new StaticSpeciesSelector(hellbark));
 		addSpeciesSelector(BOPBiomes.wasteland,					new RandomSpeciesSelector().add(decayed, 3).add(dead, 1));
 		addSpeciesSelector(BOPBiomes.wetland,					new RandomSpeciesSelector().add(spruce, 5).add(willow, 3));
 		addSpeciesSelector(BOPBiomes.woodland,					new StaticSpeciesSelector(oak));
@@ -174,6 +176,7 @@ public class BiomeDataBasePopulator implements IBiomeDataBasePopulator {
 		addDensitySelector(BOPBiomes.temperate_rainforest,		scale() );
 		addDensitySelector(BOPBiomes.tropical_island,			scale(0.5, 0.5) );
 		addDensitySelector(BOPBiomes.tropical_rainforest,		scale(0.5, 0.5) );
+		addDensitySelector(BOPBiomes.undergarden,				(rnd, nd) -> { return 1; } );
 		addDensitySelector(BOPBiomes.wasteland,					scale(0.03) );
 		addDensitySelector(BOPBiomes.wetland,					scale() );
 		addDensitySelector(BOPBiomes.woodland,					scale() );
@@ -199,6 +202,7 @@ public class BiomeDataBasePopulator implements IBiomeDataBasePopulator {
 		addChanceSelector(BOPBiomes.rainforest,			ok);
 		addChanceSelector(BOPBiomes.tropical_island,	ok);
 		addChanceSelector(BOPBiomes.tropical_rainforest,ok);
+		addChanceSelector(BOPBiomes.undergarden,		ok);
 		addChanceSelector(BOPBiomes.wasteland,			rand(0.3f));
 		addChanceSelector(BOPBiomes.xeric_shrubland,	rand(0.7f));
 		addChanceSelector(BOPBiomes.cold_desert,		cancel);
@@ -231,7 +235,6 @@ public class BiomeDataBasePopulator implements IBiomeDataBasePopulator {
 				&& biome != BOPBiomes.tundra.orNull()
 				&& biome != BOPBiomes.mangrove.orNull()
 				&& biome != BOPBiomes.redwood_forest.orNull()
-				&& biome != BOPBiomes.undergarden.orNull()
 			) {
 				if (biome != null && biome instanceof BOPBiome) {
 					((BOPBiome) biome).removeGenerator("trees");

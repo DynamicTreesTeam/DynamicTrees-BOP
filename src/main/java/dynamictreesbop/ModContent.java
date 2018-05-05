@@ -311,6 +311,10 @@ public class ModContent {
 				BlockBOPLeaves.paging.getVariantItem(BOPTrees.HELLBARK),
 				TreeRegistry.findCellKit(new ResourceLocation(DynamicTreesBOP.MODID, "sparse"))) {
 					@Override
+					public int getLightRequirement() {
+						return 0;
+					}
+					@Override
 					public int foliageColorMultiplier(IBlockState state, IBlockAccess world, BlockPos pos) {
 						return 0xffffff;
 					}
@@ -326,7 +330,7 @@ public class ModContent {
 		pineLeavesProperties = new LeavesProperties(
 				BlockBOPLeaves.paging.getVariantState(BOPTrees.PINE),
 				BlockBOPLeaves.paging.getVariantItem(BOPTrees.PINE),
-				TreeRegistry.findCellKit("conifer")){
+				TreeRegistry.findCellKit("conifer")) {
 					@Override
 					public int getSmotherLeavesMax() {
 						return 13; // because pines are so thin and made mostly of leaves, this has to be very high
@@ -384,7 +388,7 @@ public class ModContent {
 		oakConiferLeavesProperties = new LeavesProperties(
 				Blocks.LEAVES.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.OAK),
 				new ItemStack(Blocks.LEAVES, 1, BlockPlanks.EnumType.OAK.getMetadata()),
-				TreeRegistry.findCellKit("conifer")){
+				TreeRegistry.findCellKit("conifer")) {
 					@Override
 					public int getSmotherLeavesMax() {
 						return 3;
@@ -402,7 +406,7 @@ public class ModContent {
 		darkOakDyingConiferLeavesProperties = new LeavesProperties(
 				BlockBOPLeaves.paging.getVariantState(BOPTrees.DEAD),
 				BlockBOPLeaves.paging.getVariantItem(BOPTrees.DEAD),
-				TreeRegistry.findCellKit("conifer")){
+				TreeRegistry.findCellKit("conifer")) {
 					@Override
 					public int getSmotherLeavesMax() {
 						return 3;

@@ -21,6 +21,7 @@ import dynamictreesbop.ModContent;
 import dynamictreesbop.dropcreators.DropCreatorTwigletLogs;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.EnumSkyBlock;
@@ -54,6 +55,11 @@ public class TreeHellbark extends TreeFamily {
 		@Override
 		public boolean isBiomePerfect(Biome biome) {
 			return isOneOfBiomes(biome, BOPBiomes.undergarden.orNull());
+		}
+		
+		@Override
+		public boolean isAcceptableSoilForWorldgen(World world, BlockPos pos, IBlockState soilBlockState) {
+			return super.isAcceptableSoilForWorldgen(world, pos, soilBlockState) || soilBlockState.getBlock() == Blocks.NETHERRACK;
 		}
 		
 		@Override
