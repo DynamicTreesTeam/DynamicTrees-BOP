@@ -7,6 +7,7 @@ import com.ferreusveritas.dynamictrees.api.TreeRegistry;
 import com.ferreusveritas.dynamictrees.items.Seed;
 import com.ferreusveritas.dynamictrees.trees.SpeciesRare;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
+import com.ferreusveritas.dynamictrees.util.SafeChunkBounds;
 
 import biomesoplenty.api.biome.BOPBiomes;
 import biomesoplenty.api.block.BOPBlocks;
@@ -59,12 +60,12 @@ public class SpeciesJungleTwiglet extends SpeciesRare {
 	}
 	
 	@Override
-	public boolean generate(World world, BlockPos pos, Biome biome, Random random, int radius) {
+	public boolean generate(World world, BlockPos pos, Biome biome, Random random, int radius, SafeChunkBounds safeBounds) {
 		if (world.getBlockState(pos).getBlock() == Blocks.SAND) {
-			if (biome == BOPBiomes.oasis.orNull()) return TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "cactus")).generate(world, pos, biome, random, radius);
+			if (biome == BOPBiomes.oasis.orNull()) return TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "cactus")).generate(world, pos, biome, random, radius, safeBounds);
 			return false;
 		}
-		return super.generate(world, pos, biome, random, radius);
+		return super.generate(world, pos, biome, random, radius, safeBounds);
 	}
 
 }

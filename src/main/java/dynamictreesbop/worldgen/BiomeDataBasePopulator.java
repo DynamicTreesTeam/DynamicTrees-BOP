@@ -1,5 +1,7 @@
 package dynamictreesbop.worldgen;
 
+import java.util.ArrayList;
+
 import com.ferreusveritas.dynamictrees.ModConfigs;
 import com.ferreusveritas.dynamictrees.ModConstants;
 import com.ferreusveritas.dynamictrees.api.TreeRegistry;
@@ -17,9 +19,7 @@ import com.google.common.base.Optional;
 
 import biomesoplenty.api.biome.BOPBiomes;
 import biomesoplenty.api.biome.IExtendedBiome;
-import biomesoplenty.api.generation.IGenerator;
 import biomesoplenty.common.biome.BOPBiome;
-import biomesoplenty.common.world.generator.GeneratorWeighted;
 import dynamictreesbop.DynamicTreesBOP;
 import net.minecraft.init.Biomes;
 import net.minecraft.util.ResourceLocation;
@@ -229,16 +229,18 @@ public class BiomeDataBasePopulator implements IBiomeDataBasePopulator {
 		addChanceSelector(BOPBiomes.tundra,				cancel);
 		addChanceSelector(BOPBiomes.volcanic_island,	cancel);
 
+		ArrayList<Biome> blackList = new ArrayList<>();
+		blackList.addAll(BOPBiomes.flower_island.asSet());
+		blackList.addAll(BOPBiomes.flower_island.asSet());
+		blackList.addAll(BOPBiomes.sacred_springs.asSet());
+		blackList.addAll(BOPBiomes.origin_island.asSet());
+		blackList.addAll(BOPBiomes.shrubland.asSet());
+		blackList.addAll(BOPBiomes.tundra.asSet());
+		blackList.addAll(BOPBiomes.mangrove.asSet());
+		blackList.addAll(BOPBiomes.redwood_forest.asSet());
+		
 		Biome.REGISTRY.forEach(biome -> {
-			if (biome.getRegistryName().getResourceDomain().equals("biomesoplenty")
-				&& biome != BOPBiomes.flower_island.orNull() 
-				&& biome != BOPBiomes.sacred_springs.orNull()
-				&& biome != BOPBiomes.origin_island.orNull()
-				&& biome != BOPBiomes.shrubland.orNull()
-				&& biome != BOPBiomes.tundra.orNull()
-				&& biome != BOPBiomes.mangrove.orNull()
-				&& biome != BOPBiomes.redwood_forest.orNull()
-			) {
+			if (biome.getRegistryName().getResourceDomain().equals("biomesoplenty") && !blackList.contains(biome) ) {
 				if (biome != null && biome instanceof BOPBiome) {
 					((BOPBiome) biome).removeGenerator("trees");
 					((BOPBiome) biome).removeGenerator("big_red_mushroom");

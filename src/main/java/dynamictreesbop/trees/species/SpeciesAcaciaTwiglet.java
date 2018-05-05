@@ -7,6 +7,7 @@ import com.ferreusveritas.dynamictrees.ModConstants;
 import com.ferreusveritas.dynamictrees.items.Seed;
 import com.ferreusveritas.dynamictrees.trees.SpeciesRare;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
+import com.ferreusveritas.dynamictrees.util.SafeChunkBounds;
 
 import biomesoplenty.api.biome.BOPBiomes;
 import biomesoplenty.api.block.BOPBlocks;
@@ -64,12 +65,12 @@ public class SpeciesAcaciaTwiglet extends SpeciesRare {
 	}
 	
 	@Override
-	public boolean generate(World world, BlockPos pos, Biome biome, Random random, int radius) {
+	public boolean generate(World world, BlockPos pos, Biome biome, Random random, int radius, SafeChunkBounds safeBounds) {
 		if (biome == BOPBiomes.xeric_shrubland.orNull() && world.getBlockState(pos).getBlock() instanceof BlockGrass) {
 			bushGen.setRadius(radius).gen(world, pos, new ArrayList<BlockPos>());
 			return false;
 		}
-		return super.generate(world, pos, biome, random, radius);
+		return super.generate(world, pos, biome, random, radius, safeBounds);
 	}
 	
 }

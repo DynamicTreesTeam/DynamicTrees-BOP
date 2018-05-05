@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import com.ferreusveritas.dynamictrees.trees.Species;
+import com.ferreusveritas.dynamictrees.util.SafeChunkBounds;
 
 import biomesoplenty.api.block.BOPBlocks;
 import dynamictreesbop.DynamicTreesBOP;
@@ -28,7 +29,7 @@ FeatureGenBush bushGen;
 	}
 	
 	@Override
-	public boolean generate(World world, BlockPos pos, Biome biome, Random random, int radius) {
+	public boolean generate(World world, BlockPos pos, Biome biome, Random random, int radius, SafeChunkBounds safeBounds) {
 		bushGen.setRadius(radius).gen(world, pos, new ArrayList<BlockPos>());
 		return true;
 	}
