@@ -253,15 +253,8 @@ public class BiomeDataBasePopulator implements IBiomeDataBasePopulator {
 		dbase.setIsSubterranean(BOPBiomes.undergarden.orNull(), true);
 	}
 	
-	
-	private void removeTreeGen(IExtendedBiome extendedBiome, String... trees) {
-		IGenerator gen = extendedBiome.getGenerationManager().getGenerator("trees");
-		if (gen instanceof GeneratorWeighted) {
-			for (String tree : trees) {
-				GeneratorWeighted treeGen = (GeneratorWeighted) gen;
-				treeGen.removeGenerator(tree);
-			}
-		}
+	private void removeTreeGen(IExtendedBiome extendedBiome) {
+		extendedBiome.getGenerationManager().removeGenerator("trees");	
 	}
 	
 	////////////////////////////////////////////////////////////////

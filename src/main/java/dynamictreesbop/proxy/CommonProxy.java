@@ -7,7 +7,6 @@ import com.ferreusveritas.dynamictrees.trees.Species;
 
 import biomesoplenty.api.biome.BOPBiomes;
 import dynamictreesbop.cells.CellKits;
-import dynamictreesbop.worldgen.NetherTreeGenerator;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -16,10 +15,6 @@ public class CommonProxy {
 	
 	public void preInit() {
 		CellKits.init();
-		
-		if (WorldGenRegistry.isWorldGenEnabled()) {
-			GameRegistry.registerWorldGenerator(new NetherTreeGenerator(), 1);
-		}
 	}
 
 	public void init() {
