@@ -46,7 +46,7 @@ public class SpeciesOakConifer extends SpeciesRare {
 	
 	@Override
 	public boolean isBiomePerfect(Biome biome) {
-		return biome == BOPBiomes.prairie.orNull() || biome == BOPBiomes.temperate_rainforest.orNull();
+		return biome == BOPBiomes.temperate_rainforest.orNull();
 	}
 	
 	@Override

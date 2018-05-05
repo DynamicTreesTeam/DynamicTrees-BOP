@@ -23,11 +23,12 @@ public class CommonProxy {
 		Species darkOakConifer = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "darkoakconifer"));
 		Species poplar = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "poplar"));
 		Species darkPoplar = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "darkpoplar"));
+		Species oakSparse = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "oaksparse"));
 		
 		TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "oak")).getFamily().addSpeciesLocationOverride((access, trunkPos) -> {
 			Biome biome = access.getBiome(trunkPos);
 			
-			if (biome == BOPBiomes.prairie.orNull()) return oakConifer;
+			if (biome == BOPBiomes.prairie.orNull()) return oakSparse;
 			if (biome == BOPBiomes.temperate_rainforest.orNull()) return access.rand.nextInt(3) == 0 ? megaOakConifer : oakConifer; 
 			
 			return Species.NULLSPECIES;

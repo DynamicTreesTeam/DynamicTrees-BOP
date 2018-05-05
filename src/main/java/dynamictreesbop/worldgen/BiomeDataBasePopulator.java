@@ -31,7 +31,7 @@ public class BiomeDataBasePopulator implements IBiomeDataBasePopulator {
 	private final IChanceSelector ok = (rnd, spc, rad) -> { return EnumChance.OK; };
 	private final IChanceSelector cancel = (rnd, spc, rad) -> { return EnumChance.CANCEL; };
 	
-	private Species swamp, apple, jungle, spruce, birch, oak, acacia, acaciaBrush, oakFloweringVine, oakConifer, megaOakConifer, darkOakConifer, darkOakDyingConifer, oakTwiglet, poplar, darkPoplar, jungleTwiglet, acaciaTwiglet, yellowAutumn, orangeAutumn, magic, floweringOak, umbran, umbranConifer, umbranConiferMega, oakDying, decayed, fir, firSmall, pinkCherry, whiteCherry, maple, dead, jacaranda, willow, pine, palm, ebony, ebonyTwiglet, mahogany, eucalyptus, bamboo, hellbark;
+	private Species swamp, apple, jungle, spruce, birch, oak, acacia, acaciaBrush, oakFloweringVine, oakConifer, megaOakConifer, darkOakConifer, darkOakDyingConifer, oakTwiglet, oakSparse, poplar, darkPoplar, jungleTwiglet, acaciaTwiglet, yellowAutumn, orangeAutumn, magic, floweringOak, umbran, umbranConifer, umbranConiferMega, oakDying, decayed, fir, firSmall, pinkCherry, whiteCherry, maple, dead, jacaranda, willow, pine, palm, ebony, ebonyTwiglet, mahogany, eucalyptus, bamboo, hellbark;
 	private Species acaciaBush, oakBush;
 	private Species cactus;
 	private Species mushroomRed, mushroomBrown;
@@ -54,6 +54,7 @@ public class BiomeDataBasePopulator implements IBiomeDataBasePopulator {
 		darkOakConifer =		findBopSpecies("darkoakconifer");
 		darkOakDyingConifer =	findBopSpecies("darkoakdyingconifer");
 		oakTwiglet =			findBopSpecies("oaktwiglet");
+		oakSparse =				findBopSpecies("oaksparse");
 		poplar =				findBopSpecies("poplar");
 		darkPoplar =			findBopSpecies("darkpoplar");
 		jungleTwiglet =			findBopSpecies("jungletwiglet");
@@ -119,7 +120,7 @@ public class BiomeDataBasePopulator implements IBiomeDataBasePopulator {
 		addSpeciesSelector(BOPBiomes.orchard,					new RandomSpeciesSelector().add(floweringOak, 6).add(apple, 1));
 		addSpeciesSelector(BOPBiomes.outback,					new RandomSpeciesSelector().add(acaciaTwiglet, 3).add(acaciaBush, 3).add(cactus, 4));
 		addSpeciesSelector(BOPBiomes.overgrown_cliffs,			new RandomSpeciesSelector().add(mahogany, 1).add(jungleTwiglet, 2).add(oakBush, 8));
-		addSpeciesSelector(BOPBiomes.prairie,					new StaticSpeciesSelector(oakConifer));
+		addSpeciesSelector(BOPBiomes.prairie,					new StaticSpeciesSelector(oakSparse));
 		addSpeciesSelector(BOPBiomes.rainforest,				new RandomSpeciesSelector().add(jungle, 1).add(birch, 4).add(oak, 4).add(floweringOak, 7));
 		addSpeciesSelector(BOPBiomes.seasonal_forest,			new RandomSpeciesSelector().add(yellowAutumn, 4).add(orangeAutumn, 5).add(oak, 1).add(oakDying, 2).add(maple, 4));
 		addSpeciesSelector(BOPBiomes.shield,					new RandomSpeciesSelector().add(spruce, 4).add(pine, 2));
@@ -169,7 +170,7 @@ public class BiomeDataBasePopulator implements IBiomeDataBasePopulator {
 		addDensitySelector(BOPBiomes.orchard,					scale(0.5) );
 		addDensitySelector(BOPBiomes.outback,					scale(0.45) );
 		addDensitySelector(BOPBiomes.overgrown_cliffs,			scale(0.75, 0.25) );
-		addDensitySelector(BOPBiomes.prairie,					scale(0.1) );
+		addDensitySelector(BOPBiomes.prairie,					scale(0.03) );
 		addDensitySelector(BOPBiomes.rainforest,				scale() );
 		addDensitySelector(BOPBiomes.seasonal_forest,			scale(0.9) );
 		addDensitySelector(BOPBiomes.shield,					scale(0.9) );
@@ -199,7 +200,7 @@ public class BiomeDataBasePopulator implements IBiomeDataBasePopulator {
 		addChanceSelector(BOPBiomes.oasis,				(rnd, spc, rad) -> { return spc.equals(palm) && rnd.nextFloat() < 0.5f ? EnumChance.OK : EnumChance.CANCEL; });
 		addChanceSelector(BOPBiomes.outback,			ok);
 		addChanceSelector(BOPBiomes.overgrown_cliffs,	ok);
-		addChanceSelector(BOPBiomes.prairie,			rand(0.15f));
+		addChanceSelector(BOPBiomes.prairie,			rand(0.075f));
 		addChanceSelector(BOPBiomes.quagmire,			rand(0.02f));
 		addChanceSelector(BOPBiomes.rainforest,			ok);
 		addChanceSelector(BOPBiomes.tropical_island,	ok);

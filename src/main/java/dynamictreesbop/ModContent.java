@@ -53,6 +53,7 @@ import dynamictreesbop.trees.species.SpeciesMegaOakConifer;
 import dynamictreesbop.trees.species.SpeciesOakBush;
 import dynamictreesbop.trees.species.SpeciesOakConifer;
 import dynamictreesbop.trees.species.SpeciesOakFloweringVine;
+import dynamictreesbop.trees.species.SpeciesOakSparse;
 import dynamictreesbop.trees.species.SpeciesOakTwiglet;
 import dynamictreesbop.trees.species.SpeciesOrangeAutumn;
 import dynamictreesbop.trees.species.SpeciesPoplar;
@@ -108,7 +109,7 @@ public class ModContent {
 			pineLeavesProperties, mahoganyLeavesProperties, ebonyLeavesProperties,
 			bambooLeavesProperties, eucalyptusLeavesProperties,
 			oakConiferLeavesProperties, darkOakConiferLeavesProperties, darkOakDyingConiferLeavesProperties,
-			oakTwigletLeavesProperties, poplarLeavesProperties, darkPoplarLeavesProperties,
+			oakSparseLeavesProperties, poplarLeavesProperties, darkPoplarLeavesProperties,
 			jungleTwigletLeavesProperties, acaciaTwigletLeavesProperties, acaciaBrushLeavesProperties;
 	
 	// array of leaves properties with auto-generated leaves
@@ -414,7 +415,7 @@ public class ModContent {
 						return 3;
 					}
 				};
-		oakTwigletLeavesProperties = new LeavesProperties(
+		oakSparseLeavesProperties = new LeavesProperties(
 				Blocks.LEAVES.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.OAK),
 				new ItemStack(Blocks.LEAVES, 1, BlockPlanks.EnumType.OAK.getMetadata()),
 				TreeRegistry.findCellKit(new ResourceLocation(DynamicTreesBOP.MODID, "sparse")));
@@ -487,7 +488,7 @@ public class ModContent {
 				oakConiferLeavesProperties,
 				darkOakConiferLeavesProperties,
 				darkOakDyingConiferLeavesProperties,
-				oakTwigletLeavesProperties,
+				oakSparseLeavesProperties,
 				poplarLeavesProperties,
 				darkPoplarLeavesProperties,
 				jungleTwigletLeavesProperties,
@@ -524,6 +525,7 @@ public class ModContent {
 		Species.REGISTRY.register(new SpeciesJungleTwiglet(jungleTree));
 		Species.REGISTRY.register(new SpeciesAcaciaTwiglet(acaciaTree));
 		Species.REGISTRY.register(new SpeciesAcaciaBrush(acaciaTree));
+		Species.REGISTRY.register(new SpeciesOakSparse(oakTree));
 		
 		// Register bush dummies
 		Species.REGISTRY.register(new SpeciesAcaciaBush());
