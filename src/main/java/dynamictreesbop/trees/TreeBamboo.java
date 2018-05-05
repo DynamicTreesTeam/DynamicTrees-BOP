@@ -311,7 +311,7 @@ public class TreeBamboo extends TreeFamily {
 					// Handle top leaves here
 					leafMap.setVoxel(pos, (byte) 16); // 16(bit 5) is code for a twig
 					SimpleVoxmap leafCluster = DTBOPLeafClusters.eucalyptusTop;
-					leafMap.BlitMax(pos, leafCluster);
+					leafMap.blitMax(pos, leafCluster);
 				} else {
 					// The new branch should be the square root of all of the sums of the areas of the branches coming into it.
 					radius = (float) Math.sqrt(areaAccum) + (species.getTapering() * species.getWorldGenTaperingFactor());
@@ -327,7 +327,7 @@ public class TreeBamboo extends TreeFamily {
 					
 					if (Math.floor(radius) <= 2 && pos.getY() > 5) {
 						SimpleVoxmap leafCluster = DTBOPLeafClusters.eucalyptus;
-						leafMap.BlitMax(pos, leafCluster);
+						leafMap.blitMax(pos, leafCluster);
 					}
 				}
 				last = pos;

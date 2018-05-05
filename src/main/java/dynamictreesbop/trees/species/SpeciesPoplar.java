@@ -263,12 +263,12 @@ public class SpeciesPoplar extends SpeciesRare {
 					// Handle top leaves here
 					leafMap.setVoxel(pos, (byte) 16); // 16(bit 5) is code for a twig
 					SimpleVoxmap leafCluster = DTBOPLeafClusters.poplarTop;
-					leafMap.BlitMax(pos, leafCluster);
+					leafMap.blitMax(pos, leafCluster);
 				} else if (isTwig) {
 					// Handle branch leaves here
 					leafMap.setVoxel(pos, (byte) 16); // 16(bit 5) is code for a twig
 					SimpleVoxmap leafCluster = species.getLeavesProperties().getCellKit().getLeafCluster();
-					leafMap.BlitMax(pos, leafCluster);
+					leafMap.blitMax(pos, leafCluster);
 				} else {
 					// The new branch should be the square root of all of the sums of the areas of the branches coming into it.
 					radius = (float) Math.sqrt(areaAccum) + (species.getTapering() * species.getWorldGenTaperingFactor());
@@ -283,7 +283,7 @@ public class SpeciesPoplar extends SpeciesRare {
 					leafMap.setVoxel(pos, (byte) 32); // 32(bit 6) is code for a branch
 					if (Math.floor(radius) < 3) {
 						SimpleVoxmap leafCluster = species.getLeavesProperties().getCellKit().getLeafCluster();
-						leafMap.BlitMax(pos, leafCluster);
+						leafMap.blitMax(pos, leafCluster);
 					}
 				}
 				last = pos;

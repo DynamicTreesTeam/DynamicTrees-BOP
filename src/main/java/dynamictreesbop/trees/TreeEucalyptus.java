@@ -386,11 +386,11 @@ public class TreeEucalyptus extends TreeFamily {
 					// Handle top leaves here
 					leafMap.setVoxel(pos, (byte) 16); // 16(bit 5) is code for a twig
 					SimpleVoxmap leafCluster = DTBOPLeafClusters.eucalyptusTop;
-					leafMap.BlitMax(pos, leafCluster);
+					leafMap.blitMax(pos, leafCluster);
 				} else if (isTwig) {
 					leafMap.setVoxel(pos, (byte) 16); // 16(bit 5) is code for a twig
 					SimpleVoxmap leafCluster = species.getLeavesProperties().getCellKit().getLeafCluster();
-					leafMap.BlitMax(pos, leafCluster);
+					leafMap.blitMax(pos, leafCluster);
 					leafMap.setVoxel(pos.offset(fromDir.getOpposite()), (byte) 0);
 				} else {
 					// The new branch should be the square root of all of the sums of the areas of the branches coming into it.
@@ -407,7 +407,7 @@ public class TreeEucalyptus extends TreeFamily {
 					
 					if (Math.floor(radius) <= 3) {
 						SimpleVoxmap leafCluster = DTBOPLeafClusters.eucalyptusTrunk;
-						leafMap.BlitMax(pos, leafCluster);
+						leafMap.blitMax(pos, leafCluster);
 					}
 				}
 				last = pos;
