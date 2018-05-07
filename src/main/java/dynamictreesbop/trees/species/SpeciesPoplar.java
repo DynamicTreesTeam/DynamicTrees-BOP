@@ -193,7 +193,10 @@ public class SpeciesPoplar extends SpeciesRare {
 				
 				// Allow for special decorations by the tree itself
 				species.postGeneration(world, rootPos, biome, radius, endPoints, !careful, safeBounds);
-			
+				
+				//Add snow to parts of the tree in chunks where snow was already placed
+				addSnow(leafMap, world, rootPos, biome);
+				
 			} else { // The growth failed.. turn the soil back to what it was
 				world.setBlockState(rootPos, initialState, careful ? 3 : 2);
 			}
