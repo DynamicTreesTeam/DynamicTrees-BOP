@@ -28,8 +28,8 @@ import net.minecraft.world.biome.Biome;
 public class BiomeDataBasePopulator implements IBiomeDataBasePopulator {
 	
 	protected final BiomeDataBase dbase;
-	private final IChanceSelector ok = (rnd, spc, rad) -> { return EnumChance.OK; };
-	private final IChanceSelector cancel = (rnd, spc, rad) -> { return EnumChance.CANCEL; };
+	private final IChanceSelector ok = (rnd, spc, rad) -> EnumChance.OK;
+	private final IChanceSelector cancel = (rnd, spc, rad) -> EnumChance.CANCEL;
 	
 	private Species swamp, apple, jungle, spruce, birch, oak, acacia, acaciaBrush, oakFloweringVine, oakConifer, megaOakConifer, darkOakConifer, darkOakDyingConifer, oakTwiglet, oakSparse, poplar, darkPoplar, jungleTwiglet, acaciaTwiglet, yellowAutumn, orangeAutumn, magic, floweringOak, umbran, umbranConifer, umbranConiferMega, oakDying, decayed, fir, firSmall, pinkCherry, whiteCherry, maple, dead, jacaranda, willow, pine, palm, ebony, ebonyTwiglet, mahogany, eucalyptus, bamboo, hellbark;
 	private Species acaciaBush, oakBush;
@@ -179,7 +179,7 @@ public class BiomeDataBasePopulator implements IBiomeDataBasePopulator {
 		addDensitySelector(BOPBiomes.temperate_rainforest,		scale() );
 		addDensitySelector(BOPBiomes.tropical_island,			scale(0.5, 0.5) );
 		addDensitySelector(BOPBiomes.tropical_rainforest,		scale(0.5, 0.5) );
-		addDensitySelector(BOPBiomes.undergarden,				(rnd, nd) -> { return 1; } );
+		addDensitySelector(BOPBiomes.undergarden,				scale(0.0, 1.0) );
 		addDensitySelector(BOPBiomes.wasteland,					scale(0.03) );
 		addDensitySelector(BOPBiomes.wetland,					scale() );
 		addDensitySelector(BOPBiomes.woodland,					scale() );
@@ -197,7 +197,7 @@ public class BiomeDataBasePopulator implements IBiomeDataBasePopulator {
 		addChanceSelector(BOPBiomes.lavender_fields,	rand(0.3f));
 		addChanceSelector(BOPBiomes.lush_desert,		rand(0.4f));
 		addChanceSelector(BOPBiomes.meadow,				rand(0.6f));
-		addChanceSelector(BOPBiomes.oasis,				(rnd, spc, rad) -> { return spc.equals(palm) && rnd.nextFloat() < 0.5f ? EnumChance.OK : EnumChance.CANCEL; });
+		addChanceSelector(BOPBiomes.oasis,				(rnd, spc, rad) -> spc.equals(palm) && rnd.nextFloat() < 0.5f ? EnumChance.OK : EnumChance.CANCEL);
 		addChanceSelector(BOPBiomes.outback,			ok);
 		addChanceSelector(BOPBiomes.overgrown_cliffs,	ok);
 		addChanceSelector(BOPBiomes.prairie,			rand(0.075f));
@@ -296,7 +296,7 @@ public class BiomeDataBasePopulator implements IBiomeDataBasePopulator {
 	}
 	
 	private IChanceSelector rand(float threshhold) {
-		return (rnd, spc, rad) -> { return rnd.nextFloat() < threshhold ? EnumChance.OK : EnumChance.CANCEL; };
+		return (rnd, spc, rad) -> rnd.nextFloat() < threshhold ? EnumChance.OK : EnumChance.CANCEL;
 	}
 	
 	private void addDensitySelector(Optional<Biome> biome, IDensitySelector selector) {
@@ -306,19 +306,19 @@ public class BiomeDataBasePopulator implements IBiomeDataBasePopulator {
 	}
 
 	private IDensitySelector scale() {
-		return (rnd, nd) -> { return nd; };
+		return (rnd, nd) -> nd;
 	}
 	
 	private IDensitySelector scale(double factor1) {
-		return (rnd, nd) -> { return nd * factor1; };
+		return (rnd, nd) -> nd * factor1;
 	}
 	
 	private IDensitySelector scale(double factor1, double addend) {
-		return (rnd, nd) -> { return (nd * factor1) + addend; };
+		return (rnd, nd) -> (nd * factor1) + addend;
 	}
 	
 	private IDensitySelector scale(double factor1, double addend, double factor2) {
-		return (rnd, nd) -> { return ((nd * factor1) + addend) * factor2; };
+		return (rnd, nd) -> ((nd * factor1) + addend) * factor2;
 	}
 	
 }
