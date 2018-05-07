@@ -6,8 +6,6 @@ import java.util.Random;
 import com.ferreusveritas.dynamictrees.ModBlocks;
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
 import com.ferreusveritas.dynamictrees.api.network.INodeInspector;
-import com.ferreusveritas.dynamictrees.api.network.MapSignal;
-import com.ferreusveritas.dynamictrees.api.treedata.ILeavesProperties;
 import com.ferreusveritas.dynamictrees.api.treedata.ITreePart;
 import com.ferreusveritas.dynamictrees.blocks.BlockBranch;
 import com.ferreusveritas.dynamictrees.blocks.BlockBranchBasic;
@@ -15,15 +13,11 @@ import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSapling;
 import com.ferreusveritas.dynamictrees.blocks.BlockRooty;
 import com.ferreusveritas.dynamictrees.systems.GrowSignal;
 import com.ferreusveritas.dynamictrees.systems.dropcreators.DropCreatorLogs;
-import com.ferreusveritas.dynamictrees.systems.nodemappers.NodeFindEnds;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 import com.ferreusveritas.dynamictrees.util.CoordUtils;
 import com.ferreusveritas.dynamictrees.util.MathHelper;
-import com.ferreusveritas.dynamictrees.util.SafeChunkBounds;
 import com.ferreusveritas.dynamictrees.util.SimpleVoxmap;
-import com.ferreusveritas.dynamictrees.util.SimpleVoxmap.Cell;
-import com.ferreusveritas.dynamictrees.worldgen.JoCode;
 
 import biomesoplenty.api.biome.BOPBiomes;
 import biomesoplenty.api.block.BOPBlocks;
@@ -39,7 +33,6 @@ import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockPos.MutableBlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
@@ -77,6 +70,22 @@ public class TreeBamboo extends TreeFamily {
 					return dropList;
 				}
 			});
+			
+		}
+
+		@Override
+		public INodeInspector getNodeInflator(SimpleVoxmap leafMap) {
+			return new NodeInflatorBamboo(this, leafMap);
+		}
+		
+		@Override
+		public int getWorldGenAgeIterations() {
+			return 6;
+		}
+		
+		@Override
+		public int getWorldGenLeafMapHeight() {
+			return 36;
 		}
 		
 		@Override
@@ -119,11 +128,6 @@ public class TreeBamboo extends TreeFamily {
 			int month = (int) day / 30; // Change the hashs every in-game month
 			
 			return super.getEnergy(world, pos) * biomeSuitability(world, pos) + (CoordUtils.coordHashCode(pos.up(month), 3) % 11); // Vary the height energy by a psuedorandom hash function
-		}
-		
-		@Override
-		public JoCode getJoCode(String joCodeString) {
-			return new JoCodeBamboo(joCodeString);
 		}
 		
 	}
@@ -179,79 +183,6 @@ public class TreeBamboo extends TreeFamily {
 			}
 		}
 		return radius;
-	}
-	
-	
-	public class JoCodeBamboo extends JoCode {
-		
-		public JoCodeBamboo(String code) {
-			super(code);
-		}
-		
-		@Override
-		public void generate(World world, Species species, BlockPos rootPos, Biome biome, EnumFacing facing, int radius, SafeChunkBounds safeBounds) {
-			IBlockState initialState = world.getBlockState(rootPos); // Save the initial state of the dirt in case this fails
-			species.placeRootyDirtBlock(world, rootPos, 0); // Set to unfertilized rooty dirt
-
-			// A Tree generation boundary radius is at least 2 and at most 8
-			radius = MathHelper.clamp(radius, 2, 8);
-			BlockPos treePos = rootPos.up();
-			
-			// Create tree
-			setFacing(facing);
-			generateFork(world, species, 0, rootPos, false);
-
-			// Fix branch thicknesses and map out leaf locations
-			IBlockState branchState = world.getBlockState(treePos);
-			BlockBranch branch = TreeHelper.getBranch(branchState);
-			if (branch != null) { // If a branch exists then the growth was successful
-				ILeavesProperties leavesProperties = species.getLeavesProperties();
-				SimpleVoxmap leafMap = new SimpleVoxmap(radius * 2 + 1, 36, radius * 2 + 1).setMapAndCenter(treePos, new BlockPos(radius, 0, radius));
-				NodeInflatorBamboo inflator = new NodeInflatorBamboo(species, leafMap); // This is responsible for thickening the branches
-				NodeFindEnds endFinder = new NodeFindEnds(); // This is responsible for gathering a list of branch end points
-				MapSignal signal = new MapSignal(inflator, endFinder); // The inflator signal will "paint" a temporary voxmap of all of the leaves and branches.
-				branch.analyse(branchState, world, treePos, EnumFacing.DOWN, signal);
-				List<BlockPos> endPoints = endFinder.getEnds();
-				
-				// Place Growing Leaves Blocks from voxmap
-				for (Cell cell: leafMap.getAllNonZeroCells((byte) 0x0F)) { // Iterate through all of the cells that are leaves(not air or branches)
-					MutableBlockPos cellPos = cell.getPos();
-					if(safeBounds.inBounds(cellPos, false)) {
-						IBlockState testBlockState = world.getBlockState(cellPos);
-						Block testBlock = testBlockState.getBlock();
-						if(testBlock.isReplaceable(world, cellPos)) {
-							world.setBlockState(cellPos, leavesProperties.getDynamicLeavesState(cell.getValue()), careful ? 2 : 0);
-						}
-					} else {
-						leafMap.setVoxel(cellPos, (byte) 0);
-					}
-				}
-
-				// Shrink the safeBounds down by 1 so that the aging process won't look for neighbors outside of the bounds.
-				for (Cell cell: leafMap.getAllNonZeroCells((byte) 0x0F)) {
-					MutableBlockPos cellPos = cell.getPos();
-					if (!safeBounds.inBounds(cellPos, true)) {
-						leafMap.setVoxel(cellPos, (byte) 0);
-					}
-				}
-				
-				// Age volume for 6 cycles using a leafmap
-				TreeHelper.ageVolume(world, leafMap, 6);
-				
-				// Rot the unsupported branches
-				species.handleRot(world, endPoints, rootPos, treePos, 0, true);
-				
-				// Allow for special decorations by the tree itself
-				species.postGeneration(world, rootPos, biome, radius, endPoints, !careful, safeBounds);
-			
-				//Add snow to parts of the tree in chunks where snow was already placed
-				addSnow(leafMap, world, rootPos, biome);
-				
-			} else { // The growth failed.. turn the soil back to what it was
-				world.setBlockState(rootPos, initialState, careful ? 3 : 2);
-			}
-		}
-		
 	}
 	
 	public class NodeInflatorBamboo implements INodeInspector {
