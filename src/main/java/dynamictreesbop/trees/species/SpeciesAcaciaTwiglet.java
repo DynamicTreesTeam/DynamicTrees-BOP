@@ -5,6 +5,7 @@ import java.util.Random;
 
 import com.ferreusveritas.dynamictrees.ModConstants;
 import com.ferreusveritas.dynamictrees.items.Seed;
+import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenBush;
 import com.ferreusveritas.dynamictrees.trees.SpeciesRare;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 import com.ferreusveritas.dynamictrees.util.SafeChunkBounds;
@@ -15,7 +16,6 @@ import dynamictreesbop.DynamicTreesBOP;
 import dynamictreesbop.ModContent;
 import dynamictreesbop.dropcreators.DropCreatorInvoluntarySeed;
 import dynamictreesbop.dropcreators.DropCreatorTwigletLogs;
-import dynamictreesbop.featuregen.FeatureGenBush;
 import net.minecraft.block.BlockGrass;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;

@@ -3,11 +3,11 @@ package dynamictreesbop.trees.species;
 import java.util.ArrayList;
 import java.util.Random;
 
+import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenBush;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.util.SafeChunkBounds;
 
 import dynamictreesbop.DynamicTreesBOP;
-import dynamictreesbop.featuregen.FeatureGenBush;
 import net.minecraft.block.BlockNewLeaf;
 import net.minecraft.block.BlockNewLog;
 import net.minecraft.block.BlockPlanks;
