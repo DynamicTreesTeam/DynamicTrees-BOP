@@ -17,7 +17,6 @@ repositories {
 	}
 }
 
-
 configurations {
 	provided
 	shade
@@ -42,9 +41,9 @@ jar {
 
 apply from: 'dependencies.gradle'
 
-version = "1.1.0a"
-group = "com.mangoose.dynamictreesbop" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "dynamictreesbop"
+version = "${mc_version}-${mod_version}"
+group = package_group
+archivesBaseName = mod_name
 
 sourceCompatibility = targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
 compileJava {
@@ -52,10 +51,16 @@ compileJava {
 }
 
 minecraft {
-	version = "1.12.2-14.23.3.2655"
+	version = "${mc_version}-${forge_version}"
 	runDir = "run"
-    
-	mappings = "snapshot_20171003"
+	
+	replace "@VERSION@", project.version
+	replaceIn "DynamicTreesBOP.java"
+	
+	makeObfSourceJar = false
+	
+	if (project.hasProperty('mappings_version'))
+		mappings = project.mappings_version
 }
 
 dependencies {

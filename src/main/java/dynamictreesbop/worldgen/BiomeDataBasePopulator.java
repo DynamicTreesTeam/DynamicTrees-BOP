@@ -231,7 +231,6 @@ public class BiomeDataBasePopulator implements IBiomeDataBasePopulator {
 
 		ArrayList<Biome> blackList = new ArrayList<>();
 		blackList.addAll(BOPBiomes.flower_island.asSet());
-		blackList.addAll(BOPBiomes.flower_island.asSet());
 		blackList.addAll(BOPBiomes.sacred_springs.asSet());
 		blackList.addAll(BOPBiomes.origin_island.asSet());
 		blackList.addAll(BOPBiomes.shrubland.asSet());
@@ -252,6 +251,11 @@ public class BiomeDataBasePopulator implements IBiomeDataBasePopulator {
 				dbase.setCancelVanillaTreeGen(biome, true);
 			}
 		});
+		
+		if (BOPBiomes.tundra.isPresent()) dbase.setCancelVanillaTreeGen(BOPBiomes.tundra.get(), true);
+		if (BOPBiomes.shrubland.isPresent()) dbase.setCancelVanillaTreeGen(BOPBiomes.shrubland.get(), true);
+		if (BOPBiomes.redwood_forest.isPresent()) dbase.setCancelVanillaTreeGen(BOPBiomes.redwood_forest.get(), true);
+		if (BOPBiomes.mangrove.isPresent()) dbase.setCancelVanillaTreeGen(BOPBiomes.mangrove.get(), true);
 		
 		//Remove generators from extended biomes
 		removeTreeGen(BOPBiomes.forest_extension);
