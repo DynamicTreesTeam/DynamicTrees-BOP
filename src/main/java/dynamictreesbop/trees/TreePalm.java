@@ -34,7 +34,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockPos.MutableBlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
@@ -142,8 +141,8 @@ public class TreePalm extends TreeFamily {
 		}
 		
 		@Override
-		public boolean postGrow(World world, BlockPos rootPos, BlockPos treePos, int soilLife, boolean rapid) {
-			IBlockState trunkBlockState = world.getBlockState(treePos); 
+		public boolean postGrow(World world, BlockPos rootPos, BlockPos treePos, int soilLife, boolean natural) {
+			IBlockState trunkBlockState = world.getBlockState(treePos);
 			BlockBranch branch = TreeHelper.getBranch(trunkBlockState);
 			NodeFindEnds endFinder = new NodeFindEnds();
 			MapSignal signal = new MapSignal(endFinder);
@@ -151,7 +150,7 @@ public class TreePalm extends TreeFamily {
 			List<BlockPos> endPoints = endFinder.getEnds();
 			
 			for (BlockPos endPoint: endPoints) {
-				TreeHelper.ageVolume(world, endPoint, 2, 3, 3);
+				TreeHelper.ageVolume(world, endPoint, 2, 3, 3, SafeChunkBounds.ANY);
 			}
 			
 			// Make sure the bottom block is always just a little thicker that the block above it.
@@ -160,13 +159,13 @@ public class TreePalm extends TreeFamily {
 				branch.setRadius(world, treePos, radius + 1, null);
 			}
 			
-			return super.postGrow(world, rootPos, treePos, soilLife, rapid);
+			return super.postGrow(world, rootPos, treePos, soilLife, natural);
 		}
 		
 		@Override
-		public void postGeneration(World world, BlockPos rootPos, Biome biome, int radius, List<BlockPos> endPoints, boolean worldGen, SafeChunkBounds safeBounds) {
+		public void postGeneration(World world, BlockPos rootPos, Biome biome, int radius, List<BlockPos> endPoints, SafeChunkBounds safeBounds) {
 			for (BlockPos endPoint : endPoints) {
-				TreeHelper.ageVolume(world, endPoint, 1, 2, 3);
+				TreeHelper.ageVolume(world, endPoint, 1, 2, 3, safeBounds);
 			}
 		}
 

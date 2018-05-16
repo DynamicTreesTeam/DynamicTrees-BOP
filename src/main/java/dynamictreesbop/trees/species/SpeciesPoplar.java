@@ -108,8 +108,8 @@ public class SpeciesPoplar extends SpeciesRare {
 	}
 	
 	@Override
-	public void postGeneration(World world, BlockPos rootPos, Biome biome, int radius, List<BlockPos> endPoints, boolean worldGen, SafeChunkBounds safeBounds) {
-		if (worldGen && biome == BOPBiomes.grove.orNull()) {
+	public void postGeneration(World world, BlockPos rootPos, Biome biome, int radius, List<BlockPos> endPoints, SafeChunkBounds safeBounds) {
+		if (safeBounds != SafeChunkBounds.ANY && biome == BOPBiomes.grove.orNull()) {
 			//Generate undergrowth
 			bushGen.setRadius(radius).gen(world, rootPos.up(), endPoints, safeBounds);
 		}

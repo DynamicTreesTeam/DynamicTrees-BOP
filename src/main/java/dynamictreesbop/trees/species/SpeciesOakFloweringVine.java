@@ -67,8 +67,8 @@ public class SpeciesOakFloweringVine extends Species {
 	}
 	
 	@Override
-	public void postGeneration(World world, BlockPos rootPos, Biome biome, int radius, List<BlockPos> endPoints, boolean worldGen, SafeChunkBounds safeBounds) {
-		super.postGeneration(world, rootPos, biome, radius, endPoints, worldGen, safeBounds);
+	public void postGeneration(World world, BlockPos rootPos, Biome biome, int radius, List<BlockPos> endPoints, SafeChunkBounds safeBounds) {
+		super.postGeneration(world, rootPos, biome, radius, endPoints, safeBounds);
 		
 		//Generate Vines
 		vineGen.gen(world, rootPos.up(), endPoints, safeBounds);

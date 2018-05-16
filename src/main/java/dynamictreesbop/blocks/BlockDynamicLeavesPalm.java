@@ -1,8 +1,5 @@
 package dynamictreesbop.blocks;
 
-import java.util.Random;
-
-import com.ferreusveritas.dynamictrees.api.treedata.ILeavesProperties;
 import com.ferreusveritas.dynamictrees.blocks.BlockBranch;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicLeaves;
 import com.ferreusveritas.dynamictrees.util.CoordUtils.Surround;
@@ -15,7 +12,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
-import net.minecraft.world.World;
 import net.minecraftforge.common.property.ExtendedBlockState;
 import net.minecraftforge.common.property.IExtendedBlockState;
 import net.minecraftforge.common.property.IUnlistedProperty;
@@ -53,40 +49,6 @@ public class BlockDynamicLeavesPalm extends BlockDynamicLeaves {
 		return new ExtendedBlockState(this, new IProperty[] {HYDRO, TREE}, CONNECTIONS);
 	}
 	
-	@Override
-	public int age(World world, BlockPos pos, IBlockState state, Random rand, boolean rapid) {
-		ILeavesProperties leavesProperties = getProperties(state);
-		int oldHydro = state.getValue(BlockDynamicLeaves.HYDRO);
-		
-		//Check hydration level.  Dry leaves are dead leaves.
-		int newHydro = getHydrationLevelFromNeighbors(world, pos, leavesProperties);
-		if(newHydro == 0 || (!rapid && !hasAdequateLight(state, world, leavesProperties, pos))) { //Light doesn't work right during worldgen so we'll just disable it during worldgen for now.
-			world.setBlockToAir(pos);//No water, no light .. no leaves
-			return -1;//Leaves were destroyed
-		} else { 
-			if(oldHydro != newHydro) {//Only update if the hydro has changed. A little performance gain
-				//We do not use the 0x02 flag(update client) for performance reasons.  The clients do not need to know the hydration level of the leaves blocks as it
-				//does not affect appearance or behavior.  For the same reason we use the 0x04 flag to prevent the block from being re-rendered.
-				world.setBlockState(pos, leavesProperties.getDynamicLeavesState(newHydro), leavesProperties.appearanceChangesWithHydro() ? 2 : 4);
-			}
-		}
-		
-		//We should do this even if the hydro is only 1.  Since there could be adjacent branch blocks that could use a leaves block
-		for(EnumFacing dir: EnumFacing.VALUES) {//Go on all 6 sides of this block
-			if(newHydro > 1 || rand.nextInt(4) == 0 ) {//we'll give it a 1 in 4 chance to grow leaves if hydro is low to help performance
-				BlockPos offpos = pos.offset(dir);
-				if(isLocationSuitableForNewLeaves(world, leavesProperties, offpos)) {//Attempt to grow new leaves
-					int hydro = getHydrationLevelFromNeighbors(world, offpos, leavesProperties);
-					if(hydro > 0) {
-						world.setBlockState(offpos, leavesProperties.getDynamicLeavesState(hydro), 2);//Removed Notify Neighbors Flag for performance
-					}
-				}
-			}
-		}
-		
-		return newHydro;//Leaves were not destroyed
-	}
-
 	@Override
 	public IBlockState getExtendedState(IBlockState state, IBlockAccess access, BlockPos pos) {
 		

@@ -102,8 +102,8 @@ public class TreeMahogany extends TreeFamily {
 		}
 		
 		@Override
-		public void postGeneration(World world, BlockPos rootPos, Biome biome, int radius, List<BlockPos> endPoints, boolean worldGen, SafeChunkBounds safeBounds) {
-			super.postGeneration(world, rootPos, biome, radius, endPoints, worldGen, safeBounds);
+		public void postGeneration(World world, BlockPos rootPos, Biome biome, int radius, List<BlockPos> endPoints, SafeChunkBounds safeBounds) {
+			super.postGeneration(world, rootPos, biome, radius, endPoints, safeBounds);
 
 			if (world.rand.nextInt() % 8 == 0) {
 				addCocoa(world, rootPos, true);
@@ -111,8 +111,8 @@ public class TreeMahogany extends TreeFamily {
 		}
 		
 		@Override
-		public boolean postGrow(World world, BlockPos rootPos, BlockPos treePos, int soilLife, boolean rapid) {
-			super.postGrow(world, rootPos, treePos, soilLife, rapid);
+		public boolean postGrow(World world, BlockPos rootPos, BlockPos treePos, int soilLife, boolean natural) {
+			super.postGrow(world, rootPos, treePos, soilLife, natural);
 			
 			if (soilLife == 0 && world.rand.nextInt() % 16 == 0) {
 				addCocoa(world, rootPos, false);

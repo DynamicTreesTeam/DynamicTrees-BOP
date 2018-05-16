@@ -43,7 +43,7 @@ public class TreeDead extends TreeFamily {
 		}
 		
 		@Override
-		public boolean grow(World world, BlockRooty rootyDirt, BlockPos rootPos, int soilLife, ITreePart treeBase, BlockPos treePos, Random random, boolean rapid) {
+		public boolean grow(World world, BlockRooty rootyDirt, BlockPos rootPos, int soilLife, ITreePart treeBase, BlockPos treePos, Random random, boolean natural) {
 			return false;
 		}
 		
@@ -75,7 +75,7 @@ public class TreeDead extends TreeFamily {
 		}
 		
 		@Override
-		public boolean grow(World world, BlockRooty rootyDirt, BlockPos rootPos, int soilLife, ITreePart treeBase, BlockPos treePos, Random random, boolean rapid) {
+		public boolean grow(World world, BlockRooty rootyDirt, BlockPos rootPos, int soilLife, ITreePart treeBase, BlockPos treePos, Random random, boolean natural) {
 			return false;
 		}
 		

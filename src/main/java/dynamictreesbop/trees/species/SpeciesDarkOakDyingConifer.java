@@ -91,7 +91,7 @@ public class SpeciesDarkOakDyingConifer extends SpeciesRare {
 	}
 	
 	@Override
-	public void postGeneration(World world, BlockPos rootPos, Biome biome, int radius, List<BlockPos> endPoints, boolean worldGen, SafeChunkBounds safeBounds) {
+	public void postGeneration(World world, BlockPos rootPos, Biome biome, int radius, List<BlockPos> endPoints, SafeChunkBounds safeBounds) {
 		// Manually place the highest few blocks of the conifer since the leafCluster voxmap won't handle it
 		BlockPos highest = Collections.max(endPoints, (a, b) -> a.getY() - b.getY());
 		world.setBlockState(highest.up(1), leavesProperties.getDynamicLeavesState(4));
