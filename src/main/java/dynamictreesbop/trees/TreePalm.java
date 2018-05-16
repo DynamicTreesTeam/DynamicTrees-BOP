@@ -34,6 +34,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.BlockPos.MutableBlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
@@ -150,7 +151,7 @@ public class TreePalm extends TreeFamily {
 			List<BlockPos> endPoints = endFinder.getEnds();
 			
 			for (BlockPos endPoint: endPoints) {
-				TreeHelper.ageVolume(world, endPoint, 1, 2, 3);
+				TreeHelper.ageVolume(world, endPoint, 2, 3, 3);
 			}
 			
 			// Make sure the bottom block is always just a little thicker that the block above it.
@@ -164,7 +165,7 @@ public class TreePalm extends TreeFamily {
 		
 		@Override
 		public void postGeneration(World world, BlockPos rootPos, Biome biome, int radius, List<BlockPos> endPoints, boolean worldGen, SafeChunkBounds safeBounds) {
-			for (BlockPos endPoint: endPoints) {
+			for (BlockPos endPoint : endPoints) {
 				TreeHelper.ageVolume(world, endPoint, 1, 2, 3);
 			}
 		}
