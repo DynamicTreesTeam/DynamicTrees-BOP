@@ -92,7 +92,7 @@ public class BlockDynamicLeavesFlowering extends BlockDynamicLeaves {
 		for (EnumFacing dir : EnumFacing.VALUES) { // Go on all 6 sides of this block
 			if (newHydro > 1 || rand.nextInt(4) == 0 ) { // we'll give it a 1 in 4 chance to grow leaves if hydro is low to help performance
 				BlockPos offpos = pos.offset(dir);
-				if (isLocationSuitableForNewLeaves(world, leavesProperties, offpos)) { // Attempt to grow new leaves
+				if (safeBounds.inBounds(offpos, true) && isLocationSuitableForNewLeaves(world, leavesProperties, offpos)) { // Attempt to grow new leaves
 					int hydro = getHydrationLevelFromNeighbors(world, offpos, leavesProperties);
 					if (hydro > 0) {
 						boolean canFlower = world.rand.nextInt(4) == 0;
