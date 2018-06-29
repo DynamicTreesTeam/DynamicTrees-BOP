@@ -63,7 +63,7 @@ public class TreeBamboo extends TreeFamily {
 				@Override
 				public List<ItemStack> getLogsDrop(World world, Species species, BlockPos breakPos, Random random, List<ItemStack> dropList, int volume) {
 					int numLogs = volume / 768;
-					while(numLogs > 64) {
+					while(numLogs > 0) {
 						dropList.add(species.getFamily().getPrimitiveLogItemStack(numLogs >= 64 ? 64 : numLogs));
 						numLogs -= 64;
 					}
