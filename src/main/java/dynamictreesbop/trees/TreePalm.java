@@ -154,7 +154,7 @@ public class TreePalm extends TreeFamily {
 			}
 			
 			// Make sure the bottom block is always just a little thicker that the block above it.
-			int radius = branch.getRadius(world.getBlockState(treePos.up()), world, treePos.up());
+			int radius = branch.getRadius(world.getBlockState(treePos.up()));
 			if (radius != 0) {
 				branch.setRadius(world, treePos, radius + 1, null);
 			}

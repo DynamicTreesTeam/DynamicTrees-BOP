@@ -176,7 +176,7 @@ public class TreeBamboo extends TreeFamily {
 	
 	@Override
 	public int getRadiusForCellKit(IBlockAccess blockAccess, BlockPos pos, IBlockState blockState, EnumFacing dir, BlockBranch branch) {
-		int radius = branch.getRadius(blockState, blockAccess, pos);
+		int radius = branch.getRadius(blockState);
 		if (radius == 1) {
 			if (blockAccess.getBlockState(pos.down()).getBlock() == branch) {
 				return 128;
@@ -231,7 +231,7 @@ public class TreeBamboo extends TreeFamily {
 						IBlockState deltaBlockState = world.getBlockState(dPos);
 						ITreePart treepart = TreeHelper.getTreePart(deltaBlockState);
 						if (branch.isSameTree(treepart)) {
-							int branchRadius = treepart.getRadius(deltaBlockState, world, dPos);
+							int branchRadius = treepart.getRadius(deltaBlockState);
 							areaAccum += branchRadius * branchRadius;
 						}
 					}

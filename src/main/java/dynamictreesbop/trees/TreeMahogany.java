@@ -159,7 +159,7 @@ public class TreeMahogany extends TreeFamily {
 		if (heldItem != null) {
 			if (heldItem.getItem() == Items.DYE && heldItem.getItemDamage() == 3) {
 				BlockBranch branch = TreeHelper.getBranch(state);
-				if (branch != null && branch.getRadius(state, world, pos) == 8) {
+				if (branch != null && branch.getRadius(state) == 8) {
 					if (side != EnumFacing.UP && side != EnumFacing.DOWN) {
 						pos = pos.offset(side);
 					}

@@ -183,7 +183,7 @@ public class TreeEucalyptus extends TreeFamily {
 						} else if (world.isAirBlock(deltaPos)) {
 							if (signal.isInTrunk() || (prevDir != targetDir)) {
 							//if (signal.isInTrunk() || (signal.delta.getX() <= 1 && signal.delta.getX() >= -1 && signal.delta.getZ() <= 1 && signal.delta.getZ() >= -1)) {
-								signal = growIntoAir(world, deltaPos, signal, getRadius(blockState, world, pos));
+								signal = growIntoAir(world, deltaPos, signal, getRadius(blockState));
 							} else {
 								signal.success = false;
 								return signal;
@@ -206,7 +206,7 @@ public class TreeEucalyptus extends TreeFamily {
 								IBlockState blockState = world.getBlockState(deltaPos);
 								ITreePart treepart = TreeHelper.getTreePart(blockState);
 								if (isSameTree(treepart)) {
-									int branchRadius = treepart.getRadius(blockState, world, deltaPos);
+									int branchRadius = treepart.getRadius(blockState);
 									areaAccum += branchRadius * branchRadius;
 								}
 							}
@@ -215,7 +215,7 @@ public class TreeEucalyptus extends TreeFamily {
 						
 						// The new branch should be the square root of all of the sums of the areas of the branches coming into it.
 						// But it shouldn't be smaller than it's current size(prevents the instant slimming effect when chopping off branches)
-						signal.radius = MathHelper.clamp((float) Math.sqrt(areaAccum) + species.getTapering(), getRadius(currBlockState, world, pos), 8);// WOW!
+						signal.radius = MathHelper.clamp((float) Math.sqrt(areaAccum) + species.getTapering(), getRadius(currBlockState), 8);// WOW!
 						setRadius(world, pos, (int) Math.floor(signal.radius), null);
 					}
 				}
@@ -244,7 +244,7 @@ public class TreeEucalyptus extends TreeFamily {
 	
 	@Override
 	public int getRadiusForCellKit(IBlockAccess blockAccess, BlockPos pos, IBlockState blockState, EnumFacing dir, BlockBranch branch) {
-		int radius = branch.getRadius(blockState, blockAccess, pos);
+		int radius = branch.getRadius(blockState);
 		if (radius == 1) {
 			if (blockAccess.getBlockState(pos.down()).getBlock() == branch) {
 				return 128;
@@ -301,7 +301,7 @@ public class TreeEucalyptus extends TreeFamily {
 						IBlockState deltaBlockState = world.getBlockState(dPos);
 						ITreePart treepart = TreeHelper.getTreePart(deltaBlockState);
 						if (branch.isSameTree(treepart)) {
-							int branchRadius = treepart.getRadius(deltaBlockState, world, dPos);
+							int branchRadius = treepart.getRadius(deltaBlockState);
 							areaAccum += branchRadius * branchRadius;
 						}
 					}
