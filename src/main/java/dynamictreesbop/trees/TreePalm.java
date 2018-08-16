@@ -1,5 +1,6 @@
 package dynamictreesbop.trees;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
@@ -15,6 +16,7 @@ import com.ferreusveritas.dynamictrees.systems.dropcreators.DropCreatorSeed;
 import com.ferreusveritas.dynamictrees.systems.nodemappers.NodeFindEnds;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
+import com.ferreusveritas.dynamictrees.util.BranchDestructionData;
 import com.ferreusveritas.dynamictrees.util.CoordUtils;
 import com.ferreusveritas.dynamictrees.util.SafeChunkBounds;
 
@@ -26,6 +28,7 @@ import biomesoplenty.common.block.BlockBOPLeaves;
 import biomesoplenty.common.block.BlockBOPLog;
 import dynamictreesbop.DynamicTreesBOP;
 import dynamictreesbop.ModContent;
+import dynamictreesbop.blocks.BlockDynamicLeavesPalm;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -39,6 +42,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
+import net.minecraftforge.common.property.IExtendedBlockState;
 
 public class TreePalm extends TreeFamily {
 	
@@ -212,6 +216,35 @@ public class TreePalm extends TreeFamily {
 	public List<Block> getRegisterableBlocks(List<Block> blockList) {
 		blockList.add(getCommonSpecies().getDynamicSapling().getBlock());
 		return super.getRegisterableBlocks(blockList);
+	}
+	
+	@Override
+	public HashMap<BlockPos, IBlockState> getFellingLeavesClusters(BranchDestructionData destructionData) {
+		
+		HashMap<BlockPos, IBlockState> leaves = new HashMap<>();
+		
+		if(destructionData.getNumEndpoints() < 1) {
+			return null;
+		}
+		
+		BlockPos relPos = destructionData.getEndPointRelPos(0);
+		
+		//EXPERIMENTAL CODE!!!!
+		
+		IExtendedBlockState leavesState4 = (IExtendedBlockState) getCommonSpecies().getLeavesProperties().getDynamicLeavesState(4);
+		IExtendedBlockState leavesState3 = (IExtendedBlockState) getCommonSpecies().getLeavesProperties().getDynamicLeavesState(3);
+		IExtendedBlockState leavesState2 = (IExtendedBlockState) getCommonSpecies().getLeavesProperties().getDynamicLeavesState(2);
+		IExtendedBlockState leavesState1 = (IExtendedBlockState) getCommonSpecies().getLeavesProperties().getDynamicLeavesState(1);
+		
+		leaves.put(relPos.north(), leavesState4);
+		//leaves.put(relPos.north(), leavesState.withProperty(BlockDynamicLeavesPalm.CONNECTIONS[0], true));
+		leaves.put(relPos.south(), leavesState3);
+		leaves.put(relPos.east(), leavesState1.withProperty(BlockDynamicLeavesPalm.CONNECTIONS[0], true));
+		leaves.put(relPos.west(), leavesState2.withProperty(BlockDynamicLeavesPalm.CONNECTIONS[1], true));
+		
+		//System.out.println(leavesState1.withProperty(BlockDynamicLeavesPalm.CONNECTIONS[2], true));
+		
+		return leaves;
 	}
 	
 }

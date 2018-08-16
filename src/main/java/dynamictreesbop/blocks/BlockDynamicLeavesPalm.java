@@ -32,7 +32,7 @@ public class BlockDynamicLeavesPalm extends BlockDynamicLeaves {
 	
 	public static final IUnlistedProperty<Boolean> CONNECTIONS[];
 	
-	static {		
+	static {
 		CONNECTIONS = new Properties.PropertyAdapter[Surround.values().length];
 		
 		for (Surround surr : Surround.values()) {
