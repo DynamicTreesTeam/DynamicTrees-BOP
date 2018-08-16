@@ -22,7 +22,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.property.IExtendedBlockState;
 
 public class CompositePalmFrondsModel implements IBakedModel {
-
+	
 	protected ModelBlock modelBlock;
 	
 	TextureAtlasSprite barkParticles;
@@ -31,14 +31,14 @@ public class CompositePalmFrondsModel implements IBakedModel {
 	
 	public CompositePalmFrondsModel(ResourceLocation frondRes, Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter) {		
 		modelBlock = new ModelBlock(null, null, null, false, false, ItemCameraTransforms.DEFAULT, null);
-
+		
 		TextureAtlasSprite frondIcon = bakedTextureGetter.apply(frondRes);
 		barkParticles = frondIcon;
-
+		
 		for (CoordUtils.Surround surr : CoordUtils.Surround.values()) {
-
+			
 			SimpleBakedModel.Builder builder = new SimpleBakedModel.Builder(modelBlock, ItemOverrideList.NONE).setTexture(frondIcon);
-
+			
 			BlockVertexData quadData[] = {
 				new BlockVertexData(0, 0, 2, 10, 4),
 				new BlockVertexData(0, 1, 2, 10, 0),
@@ -49,25 +49,25 @@ public class CompositePalmFrondsModel implements IBakedModel {
 				new BlockVertexData(0, 1, 0, 0, 0),
 				new BlockVertexData(0, 1, 2, 10, 0)
 			};
-
+			
 			for (int pass = 0; pass < 3; pass++) {
 				for (int half = 0; half < 2; half++) {
 					
 					BlockVertexData outData[] = new BlockVertexData[8];
-
+					
 					for (int v = 0; v < 8; v++) {
-
+						
 						// Nab the vertex;
 						float x = quadData[v].x;
 						float z = quadData[v].z;
 						float y = quadData[v].y;
-
+						
 						x *= (40f / 32f);
 						z *= (40f / 32f);
-
+						
 						double len;
 						double angle;
-
+						
 						
 						// Rotate the vertex around x0,y=0.75
 						// Rotate on z axis
@@ -85,7 +85,7 @@ public class CompositePalmFrondsModel implements IBakedModel {
 						angle += Math.PI * (pass == 2 ? 0.28 : pass == 1 ? 0.06 : -0.17);
 						y = (float) (Math.sin(angle) * len);
 						z = (float) (Math.cos(angle) * len);
-
+						
 						
 						// Rotate the vertex around x0,z0
 						// Rotate on y axis
@@ -102,15 +102,15 @@ public class CompositePalmFrondsModel implements IBakedModel {
 						y += pass == 2 ? -0.125 : pass == 0 ? 0.125 : 0;
 						//y -= 0.25f;
 						
-
+						
 						// Move to center of palm crown
 						x += surr.getOffset().getX();
 						z += surr.getOffset().getZ();
 						
-
+						
 						outData[v] = new BlockVertexData(x, y, z, quadData[v].u, quadData[v].v);
 					}
-
+					
 					builder.addGeneralQuad(
 							new BakedQuad(
 									Ints.concat(
@@ -121,7 +121,7 @@ public class CompositePalmFrondsModel implements IBakedModel {
 											),
 									0, null, frondIcon, false, DefaultVertexFormats.BLOCK)
 							);
-
+					
 					builder.addGeneralQuad(
 							new BakedQuad(
 									Ints.concat(
@@ -132,23 +132,18 @@ public class CompositePalmFrondsModel implements IBakedModel {
 											),
 									0, null, frondIcon, false, DefaultVertexFormats.BLOCK)
 							);
-
+					
 					
 					bakedFronds[surr.ordinal()] = builder.makeBakedModel();
-
+					
 				}
 			}
 		}
 	}
-
 	
 	@Override
 	public List<BakedQuad> getQuads(IBlockState state, EnumFacing side, long rand) {
 		LinkedList<BakedQuad> quads = new LinkedList<BakedQuad>();
-		
-		//quads.addAll(bakedFronds[0].getQuads(state, side, rand));
-		
-		//System.out.println("Getting Quads: " + state + " " + side + " size:" + quads.size());
 		
 		if (side == null && state != null && state.getBlock() instanceof BlockDynamicLeavesPalm && state instanceof IExtendedBlockState) {
 			for (int i = 0; i < 8; i++) {
@@ -158,7 +153,7 @@ public class CompositePalmFrondsModel implements IBakedModel {
 				}
 			}
 		}
-
+		
 		return quads;
 	}
 	
@@ -166,51 +161,52 @@ public class CompositePalmFrondsModel implements IBakedModel {
 	public boolean isAmbientOcclusion() {
 		return false;
 	}
-
+	
 	@Override
 	public boolean isGui3d() {
 		return false;
 	}
-
+	
 	@Override
 	public boolean isBuiltInRenderer() {
 		return true;
 	}
-
+	
 	// used for block breaking shards
 	@Override
 	public TextureAtlasSprite getParticleTexture() {
 		return barkParticles;
 	}
-
+	
 	@Override
 	public ItemCameraTransforms getItemCameraTransforms() {
 		return bakedFronds[0].getItemCameraTransforms();
 	}
-
+	
 	@Override
 	public ItemOverrideList getOverrides() {
 		return null;
 	}
-
+	
 	
 	
 	public class BlockVertexData {
-
+		
 		public float x;
 		public float y;
 		public float z;
 		public int color;
 		public float u;
 		public float v;
-
-		 // Default format of the data in IBakedModel
-		 /* DEFAULT_BAKED_FORMAT.addElement(new VertexFormatElement(0, EnumType.FLOAT, EnumUsage.POSITION, 3));
+		
+		// Default format of the data in IBakedModel
+		/* 
+		 * DEFAULT_BAKED_FORMAT.addElement(new VertexFormatElement(0, EnumType.FLOAT, EnumUsage.POSITION, 3));
 		 * DEFAULT_BAKED_FORMAT.addElement(new VertexFormatElement(0, EnumType.UBYTE, EnumUsage.COLOR, 4));
 		 * DEFAULT_BAKED_FORMAT.addElement(new VertexFormatElement(0, EnumType.FLOAT, EnumUsage.UV, 2));
 		 * DEFAULT_BAKED_FORMAT.addElement(new VertexFormatElement(0, EnumType.BYTE, EnumUsage.PADDING, 4));
 		 */
-
+		
 		public BlockVertexData(float x, float y, float z, float u, float v) {
 			this.x = x;
 			this.y = y;
@@ -223,7 +219,7 @@ public class CompositePalmFrondsModel implements IBakedModel {
 		public BlockVertexData(BakedQuad quad, int vIndex) {
 			this(quad.getVertexData(), vIndex);
 		}
-
+		
 		public BlockVertexData(int data[], int vIndex) {
 			vIndex *= 7;
 			x = Float.intBitsToFloat(data[vIndex++]);
@@ -233,12 +229,12 @@ public class CompositePalmFrondsModel implements IBakedModel {
 			u = Float.intBitsToFloat(data[vIndex++]);
 			v = Float.intBitsToFloat(data[vIndex++]);
 		}
-
+		
 		public int[] toInts() {
 			return new int[] { Float.floatToRawIntBits(x), Float.floatToRawIntBits(y), Float.floatToRawIntBits(z),
 					color, Float.floatToRawIntBits(u), Float.floatToRawIntBits(v), 0, };
 		}
-
+		
 		protected int[] toInts(TextureAtlasSprite texture) {
 			return new int[] {
 					Float.floatToRawIntBits(x), Float.floatToRawIntBits(y), Float.floatToRawIntBits(z),

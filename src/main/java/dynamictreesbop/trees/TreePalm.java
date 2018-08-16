@@ -7,6 +7,7 @@ import java.util.Random;
 import com.ferreusveritas.dynamictrees.ModBlocks;
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
 import com.ferreusveritas.dynamictrees.api.network.MapSignal;
+import com.ferreusveritas.dynamictrees.api.treedata.ILeavesProperties;
 import com.ferreusveritas.dynamictrees.blocks.BlockBranch;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSapling;
 import com.ferreusveritas.dynamictrees.blocks.BlockRooty;
@@ -18,6 +19,7 @@ import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 import com.ferreusveritas.dynamictrees.util.BranchDestructionData;
 import com.ferreusveritas.dynamictrees.util.CoordUtils;
+import com.ferreusveritas.dynamictrees.util.CoordUtils.Surround;
 import com.ferreusveritas.dynamictrees.util.SafeChunkBounds;
 
 import biomesoplenty.api.biome.BOPBiomes;
@@ -217,32 +219,30 @@ public class TreePalm extends TreeFamily {
 		blockList.add(getCommonSpecies().getDynamicSapling().getBlock());
 		return super.getRegisterableBlocks(blockList);
 	}
-	
+
+	//THE FOLLOWING IS EXPERIMENTAL CODE!!!!
+
 	@Override
 	public HashMap<BlockPos, IBlockState> getFellingLeavesClusters(BranchDestructionData destructionData) {
-		
-		HashMap<BlockPos, IBlockState> leaves = new HashMap<>();
 		
 		if(destructionData.getNumEndpoints() < 1) {
 			return null;
 		}
 		
-		BlockPos relPos = destructionData.getEndPointRelPos(0);
+		HashMap<BlockPos, IBlockState> leaves = new HashMap<>();
+		BlockPos relPos = destructionData.getEndPointRelPos(0).up();//A palm tree is only supposed to have one endpoint at it's top.
+		ILeavesProperties leavesProperties = getCommonSpecies().getLeavesProperties();
 		
-		//EXPERIMENTAL CODE!!!!
+		leaves.put(relPos, leavesProperties.getDynamicLeavesState(4));//The barky overlapping part of the palm frond cluster
+		leaves.put(relPos.up(), leavesProperties.getDynamicLeavesState(3));//The leafy top of the palm frond cluster
 		
-		IExtendedBlockState leavesState4 = (IExtendedBlockState) getCommonSpecies().getLeavesProperties().getDynamicLeavesState(4);
-		IExtendedBlockState leavesState3 = (IExtendedBlockState) getCommonSpecies().getLeavesProperties().getDynamicLeavesState(3);
-		IExtendedBlockState leavesState2 = (IExtendedBlockState) getCommonSpecies().getLeavesProperties().getDynamicLeavesState(2);
-		IExtendedBlockState leavesState1 = (IExtendedBlockState) getCommonSpecies().getLeavesProperties().getDynamicLeavesState(1);
-		
-		leaves.put(relPos.north(), leavesState4);
-		//leaves.put(relPos.north(), leavesState.withProperty(BlockDynamicLeavesPalm.CONNECTIONS[0], true));
-		leaves.put(relPos.south(), leavesState3);
-		leaves.put(relPos.east(), leavesState1.withProperty(BlockDynamicLeavesPalm.CONNECTIONS[0], true));
-		leaves.put(relPos.west(), leavesState2.withProperty(BlockDynamicLeavesPalm.CONNECTIONS[1], true));
-		
-		//System.out.println(leavesState1.withProperty(BlockDynamicLeavesPalm.CONNECTIONS[2], true));
+		//The 4 corners and 4 sides of the palm frond cluster
+		for(int hydro = 1; hydro <= 2; hydro++) {
+			IExtendedBlockState extState = (IExtendedBlockState) leavesProperties.getDynamicLeavesState(hydro);
+			for(Surround surr : BlockDynamicLeavesPalm.hydroSurroundMap[hydro]) {
+				leaves.put(relPos.add(surr.getOpposite().getOffset()), extState.withProperty(BlockDynamicLeavesPalm.CONNECTIONS[surr.ordinal()], true));
+			}
+		}
 		
 		return leaves;
 	}
