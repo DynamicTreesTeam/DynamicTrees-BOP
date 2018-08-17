@@ -7,6 +7,7 @@ import java.util.function.Function;
 
 import org.lwjgl.util.vector.Vector3f;
 
+import com.ferreusveritas.dynamictrees.blocks.BlockBranch;
 import com.ferreusveritas.dynamictrees.blocks.BlockBranchBasic;
 import com.google.common.collect.Maps;
 import com.google.common.primitives.Ints;
@@ -360,7 +361,7 @@ public class CompositeBambooModel implements IBakedModel {
 	protected int[] pollConnections(int coreRadius, IExtendedBlockState extendedBlockState) {
 		int[] connections = new int[6];
 		for(EnumFacing dir: EnumFacing.VALUES) {
-			int connection = getConnectionRadius(extendedBlockState, BlockBranchBasic.CONNECTIONS[dir.getIndex()]);
+			int connection = getConnectionRadius(extendedBlockState, BlockBranch.CONNECTIONS[dir.getIndex()]);
 			connections[dir.getIndex()] = MathHelper.clamp(connection, 0, coreRadius);//Do not allow connections to exceed core radius
 		}
 		return connections;
