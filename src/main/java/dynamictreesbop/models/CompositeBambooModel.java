@@ -8,7 +8,6 @@ import java.util.function.Function;
 import org.lwjgl.util.vector.Vector3f;
 
 import com.ferreusveritas.dynamictrees.blocks.BlockBranch;
-import com.ferreusveritas.dynamictrees.blocks.BlockBranchBasic;
 import com.google.common.collect.Maps;
 import com.google.common.primitives.Ints;
 
@@ -299,8 +298,8 @@ public class CompositeBambooModel implements IBakedModel {
 		List<BakedQuad> quadsList = new LinkedList<BakedQuad>();
 		
 		IExtendedBlockState extendedBlockState = (IExtendedBlockState)blockState;
-		if (blockState instanceof IExtendedBlockState) {
-			int coreRadius = getRawRadius(blockState);
+		if (blockState instanceof IExtendedBlockState && blockState.getBlock() instanceof BlockBranch) {
+			int coreRadius = MathHelper.clamp(((BlockBranch) blockState.getBlock()).getRadius(blockState), 1, 3);
 			int[] connections = pollConnections(coreRadius, extendedBlockState);
 			
 			//Count number of connections
@@ -400,11 +399,6 @@ public class CompositeBambooModel implements IBakedModel {
 	 */
 	protected int resolveCoreDir(EnumFacing dir) {
 		return dir.getIndex() >> 1;
-	}
-	
-	protected int getRawRadius(IBlockState blockState) {
-		// This way works with branches that don't have the RADIUS property, like cactus
-		return ((BlockBranchBasic) blockState.getBlock()).getRadius(blockState);
 	}
 	
 	/**
