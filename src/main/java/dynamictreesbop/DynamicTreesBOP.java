@@ -17,9 +17,10 @@ public class DynamicTreesBOP {
 	
 	public static final String MODID = "dynamictreesbop";
 	public static final String NAME = "Dynamic Trees BOP";
-	public static final String VERSION = "1.12.2-1.2";
-	//public static final String VERSION = "@VERSION@";
-	public static final String DEPENDENCIES = "required-after:dynamictrees@[1.12.2-0.7.8,);required-after:biomesoplenty@[7.0.1.2344,);before:rustic;before:dynamictreestc";
+	public static final String VERSIONDEV = "1.12.2-9.9.9z";
+	public static final String VERSIONAUTO = "@VERSION@";
+	public static final String VERSION = VERSIONAUTO;
+	public static final String DEPENDENCIES = "required-after:dynamictrees@[1.12.2-0.8.1f,);required-after:biomesoplenty@[7.0.1.2344,);before:rustic;before:dynamictreestc";
 	
 	@Mod.Instance
 	public static DynamicTreesBOP instance;
@@ -40,7 +41,7 @@ public class DynamicTreesBOP {
 		
 		proxy.init();
 	}
-
+	
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
 		proxy.postInit();
