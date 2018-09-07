@@ -2,17 +2,19 @@ package dynamictreesbop.proxy;
 
 import com.ferreusveritas.dynamictrees.ModConstants;
 import com.ferreusveritas.dynamictrees.api.TreeRegistry;
+import com.ferreusveritas.dynamictrees.api.WorldGenRegistry;
 import com.ferreusveritas.dynamictrees.trees.Species;
 
 import biomesoplenty.api.biome.BOPBiomes;
 import dynamictreesbop.cells.CellKits;
+import dynamictreesbop.worldgen.BiomeDataBasePopulator;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 
 public class CommonProxy {
 	
 	public void preInit() {
-		CellKits.init();
+		CellKits.init();		
 	}
 
 	public void init() {
@@ -46,6 +48,8 @@ public class CommonProxy {
 			
 			return Species.NULLSPECIES;
 		});
+		
+		WorldGenRegistry.registerBiomeDataBasePopulator(new BiomeDataBasePopulator());
 	}
 	
 	public void postInit() {

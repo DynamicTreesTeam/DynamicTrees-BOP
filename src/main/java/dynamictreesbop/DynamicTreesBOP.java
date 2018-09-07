@@ -1,10 +1,6 @@
 package dynamictreesbop;
 
-import com.ferreusveritas.dynamictrees.api.WorldGenRegistry;
-import com.ferreusveritas.dynamictrees.worldgen.TreeGenerator;
-
 import dynamictreesbop.proxy.CommonProxy;
-import dynamictreesbop.worldgen.BiomeDataBasePopulator;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -19,7 +15,7 @@ public class DynamicTreesBOP {
 	public static final String NAME = "Dynamic Trees BOP";
 	public static final String VERSIONDEV = "1.12.2-9.9.9z";
 	public static final String VERSIONAUTO = "@VERSION@";
-	public static final String VERSION = VERSIONAUTO;
+	public static final String VERSION = VERSIONDEV;
 	public static final String DEPENDENCIES = "required-after:dynamictrees@[1.12.2-0.8.1f,);required-after:biomesoplenty@[7.0.1.2344,);before:rustic;before:dynamictreestc";
 	
 	@Mod.Instance
@@ -35,10 +31,6 @@ public class DynamicTreesBOP {
 
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
-		if (WorldGenRegistry.isWorldGenEnabled()) {
-			new BiomeDataBasePopulator(TreeGenerator.getTreeGenerator().biomeDataBase).populate();
-		}
-		
 		proxy.init();
 	}
 	
