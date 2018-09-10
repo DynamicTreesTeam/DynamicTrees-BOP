@@ -1,39 +1,38 @@
-item.yellowautumnseed.name=Autumnal Birch Catkin
-item.orangeautumnseed.name=Autumnal Oak Acorn
-item.magicseed.name=Magic Cypsela
-item.umbranseed.name=Umbran Seed
-item.umbranconiferseed.name=Umbran Cone
-item.oakdyingseed.name=Dying Oak Acorn
-item.firseed.name=Fir Cone
-item.pinkcherryseed.name=Pink Cherry Stone
-item.whitecherryseed.name=White Cherry Stone
-item.mapleseed.name=Maple Samara
-item.hellbarkseed.name=Hellish Acorn
-item.jacarandaseed.name=Jacaranda Pod
-item.mangroveseed.name=Mangrove Seedling
-item.redwoodseed.name=Redwood Cone
-item.willowseed.name=Willow Catkin
-item.pineseed.name=Pine Cone
-item.mahoganyseed.name=Mahogany Pod
-item.ebonyseed.name=Ebony Pod
-item.eucalyptusseed.name=Eucalyptus Capsule
-item.bambooseed.name=Bamboo Shoot
+item.dynamictreesbop:yellowautumnseed.name=Autumnal Birch Catkin
+item.dynamictreesbop:orangeautumnseed.name=Autumnal Oak Acorn
+item.dynamictreesbop:magicseed.name=Magic Cypsela
+item.dynamictreesbop:umbranseed.name=Umbran Seed
+item.dynamictreesbop:umbranconiferseed.name=Umbran Cone
+item.dynamictreesbop:oakdyingseed.name=Dying Oak Acorn
+item.dynamictreesbop:firseed.name=Fir Cone
+item.dynamictreesbop:pinkcherryseed.name=Pink Cherry Stone
+item.dynamictreesbop:whitecherryseed.name=White Cherry Stone
+item.dynamictreesbop:mapleseed.name=Maple Samara
+item.dynamictreesbop:hellbarkseed.name=Hellish Acorn
+item.dynamictreesbop:jacarandaseed.name=Jacaranda Pod
+item.dynamictreesbop:mangroveseed.name=Mangrove Seedling
+item.dynamictreesbop:redwoodseed.name=Redwood Cone
+item.dynamictreesbop:willowseed.name=Willow Catkin
+item.dynamictreesbop:pineseed.name=Pine Cone
+item.dynamictreesbop:mahoganyseed.name=Mahogany Pod
+item.dynamictreesbop:ebonyseed.name=Ebony Pod
+item.dynamictreesbop:eucalyptusseed.name=Eucalyptus Capsule
+item.dynamictreesbop:bambooseed.name=Bamboo Shoot
 
-item.floweringoakseed.name=Flowering Oak Acorn
-item.palmseed.name=Palm Seed
+item.dynamictreesbop:floweringoakseed.name=Flowering Oak Acorn
+item.dynamictreesbop:palmseed.name=Palm Seed
 
+tile.dynamictreesbop:leaves0.name=Dynamic Leaves
+tile.dynamictreesbop:leaves1.name=Dynamic Leaves
+tile.dynamictreesbop:leaves2.name=Dynamic Leaves
+tile.dynamictreesbop:leaves3.name=Dynamic Leaves
+tile.dynamictreesbop:leaves4.name=Dynamic Leaves
+tile.dynamictreesbop:leaves5.name=Dynamic Leaves
+tile.dynamictreesbop:leaves6.name=Dynamic Leaves
+tile.dynamictreesbop:leaves7.name=Dynamic Leaves
 
-tile.leaves0.name=Dynamic Leaves
-tile.leaves1.name=Dynamic Leaves
-tile.leaves2.name=Dynamic Leaves
-tile.leaves3.name=Dynamic Leaves
-tile.leaves4.name=Dynamic Leaves
-tile.leaves5.name=Dynamic Leaves
-tile.leaves6.name=Dynamic Leaves
-tile.leaves7.name=Dynamic Leaves
-
-tile.leaves_flowering.name=Dynamic Leaves
-tile.leaves_palm.name=Dynamic Leaves
+tile.dynamictreesbop:leaves_flowering.name=Dynamic Leaves
+tile.dynamictreesbop:leaves_palm.name=Dynamic Leaves
 
 
 tile.dynamictreesbop:magicbranch.name=Dynamic Magic Tree
