@@ -55,7 +55,7 @@ minecraft {
 	runDir = "run"
 	
 	replace "@VERSION@", project.version
-	replaceIn "DynamicTreesBOP.java"
+	replaceIn "ModConstants.java"
 	
 	makeObfSourceJar = false
 	
