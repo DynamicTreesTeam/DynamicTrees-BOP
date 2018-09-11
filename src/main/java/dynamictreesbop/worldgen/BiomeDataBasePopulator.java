@@ -139,8 +139,8 @@ public class BiomeDataBasePopulator implements IBiomeDataBasePopulator {
 		addSpeciesSelector(dbase, Biomes.BEACH,							new StaticSpeciesSelector(palm));
 		addSpeciesSelector(dbase, Biomes.FOREST,						new RandomSpeciesSelector().add(oak, 8).add(birch, 2).add(floweringOak, 1));
 		addSpeciesSelector(dbase, Biomes.FOREST_HILLS,					new RandomSpeciesSelector().add(oak, 8).add(birch, 2).add(floweringOak, 1));
-		addSpeciesSelector(dbase, Biomes.EXTREME_HILLS,					new RandomSpeciesSelector().add(spruce, 3).add(jacaranda, 1));
-		addSpeciesSelector(dbase, Biomes.EXTREME_HILLS_WITH_TREES,		new RandomSpeciesSelector().add(spruce, 3).add(jacaranda, 1));
+		addSpeciesSelector(dbase, Biomes.EXTREME_HILLS,					new StaticSpeciesSelector(spruce));
+		addSpeciesSelector(dbase, Biomes.EXTREME_HILLS_WITH_TREES,		new StaticSpeciesSelector(spruce));
 		addSpeciesSelector(dbase, Biomes.SWAMPLAND,						new RandomSpeciesSelector().add(swamp, 5).add(willow, 1));
 		
 		
