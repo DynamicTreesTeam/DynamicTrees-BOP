@@ -8,15 +8,10 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
-@Mod(modid=DynamicTreesBOP.MODID, name = DynamicTreesBOP.NAME, version = DynamicTreesBOP.VERSION, dependencies = DynamicTreesBOP.DEPENDENCIES)
+@Mod(modid=DynamicTreesBOP.MODID, name = ModConstants.NAME, version = ModConstants.VERSION, dependencies = ModConstants.DEPENDENCIES)
 public class DynamicTreesBOP {
 	
-	public static final String MODID = "dynamictreesbop";
-	public static final String NAME = "Dynamic Trees BOP";
-	public static final String VERSIONDEV = "1.12.2-9.9.9z";
-	public static final String VERSIONAUTO = "@VERSION@";
-	public static final String VERSION = VERSIONAUTO;
-	public static final String DEPENDENCIES = "required-after:dynamictrees@[1.12.2-0.8.1h,);required-after:biomesoplenty@[7.0.1.2344,);before:rustic;before:dynamictreestc";
+	public static final String MODID = ModConstants.MODID;
 	
 	@Mod.Instance
 	public static DynamicTreesBOP instance;
