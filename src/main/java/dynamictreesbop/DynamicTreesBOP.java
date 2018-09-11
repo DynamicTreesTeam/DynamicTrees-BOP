@@ -15,8 +15,8 @@ public class DynamicTreesBOP {
 	public static final String NAME = "Dynamic Trees BOP";
 	public static final String VERSIONDEV = "1.12.2-9.9.9z";
 	public static final String VERSIONAUTO = "@VERSION@";
-	public static final String VERSION = VERSIONDEV;
-	public static final String DEPENDENCIES = "required-after:dynamictrees@[1.12.2-0.8.1f,);required-after:biomesoplenty@[7.0.1.2344,);before:rustic;before:dynamictreestc";
+	public static final String VERSION = VERSIONAUTO;
+	public static final String DEPENDENCIES = "required-after:dynamictrees@[1.12.2-0.8.1h,);required-after:biomesoplenty@[7.0.1.2344,);before:rustic;before:dynamictreestc";
 	
 	@Mod.Instance
 	public static DynamicTreesBOP instance;
