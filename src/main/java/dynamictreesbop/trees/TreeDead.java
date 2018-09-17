@@ -37,14 +37,14 @@ public class TreeDead extends TreeFamily {
 			envFactor(Type.SPOOKY, 1.05f);
 			envFactor(Type.DEAD, 1.05f);
 			
-			addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt, BOPBlocks.dried_sand);
+			addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt, BOPBlocks.dried_sand, Blocks.SAND);
 			
 			addDropCreator(new DropCreatorFruit(BOPItems.persimmon));
 		}
 		
 		@Override
 		public boolean grow(World world, BlockRooty rootyDirt, BlockPos rootPos, int soilLife, ITreePart treeBase, BlockPos treePos, Random random, boolean natural) {
-			return false;
+			return true;
 		}
 		
 		@Override
@@ -76,7 +76,7 @@ public class TreeDead extends TreeFamily {
 		
 		@Override
 		public boolean grow(World world, BlockRooty rootyDirt, BlockPos rootPos, int soilLife, ITreePart treeBase, BlockPos treePos, Random random, boolean natural) {
-			return false;
+			return true;
 		}
 		
 		@Override
