@@ -19,6 +19,7 @@ import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.particle.ParticleManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -29,6 +30,7 @@ import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -54,17 +56,16 @@ public class BlockRootyWater extends BlockRooty {
 			new UnlistedPropertyFloat("level_se"),
 			new UnlistedPropertyFloat("level_ne"),
 	};
-	public static final UnlistedPropertyInt COLOR = new UnlistedPropertyInt("color");
 	
 	public BlockRootyWater(boolean isTileEntity) {
-		super("rootywater", Material.WATER, isTileEntity);
+		super("rootywater", Material.GROUND, isTileEntity);
 		setSoundType(SoundType.PLANT);
-		setDefaultState(super.getDefaultState().withProperty(BlockLiquid.LEVEL, 15));
+		setDefaultState(super.getDefaultState());
 	}
 	
 	@Override
 	protected BlockStateContainer createBlockState() {
-		return new ExtendedBlockState(this, new IProperty[] {LIFE, BlockLiquid.LEVEL}, new IUnlistedProperty[] {
+		return new ExtendedBlockState(this, new IProperty[] {LIFE}, new IUnlistedProperty[] {
 				MimicProperty.MIMIC,
 				RENDER_SIDES[0],
 				RENDER_SIDES[1],
@@ -76,42 +77,72 @@ public class BlockRootyWater extends BlockRooty {
 				CORNER_HEIGHTS[1],
 				CORNER_HEIGHTS[2],
 				CORNER_HEIGHTS[3],
-				COLOR,
 		});
 	}
 	
 	@Override
 	public IBlockState getExtendedState(IBlockState state, IBlockAccess access, BlockPos pos) {
-		int i = 0;
-		float avg = 0;
-		avg += BlockLiquid.getLiquidHeightPercent(7);
-		i++;
-		float h = getFluidHeight(access, pos.west(), Material.WATER);
-		if (h != 0) i++;
-		avg += h;
+		int avgLvl = 0;
+		int total = 0;
+		for (EnumFacing dir : EnumFacing.HORIZONTALS) {
+			IBlockState st = access.getBlockState(pos.offset(dir));
+			if (st.getProperties().containsKey(BlockLiquid.LEVEL)) {
+				avgLvl += st.getValue(BlockLiquid.LEVEL);
+				total++;
+			}
+		}
+		if (total == 0) avgLvl = 7;
+		else avgLvl /= total;
 		
 		if (state instanceof IExtendedBlockState) {
 			IExtendedBlockState extState = (IExtendedBlockState) state;
 			for (EnumFacing dir : EnumFacing.VALUES) {
 				extState = extState.withProperty(RENDER_SIDES[dir.ordinal()], Blocks.WATER.shouldSideBeRendered(state, access, pos, dir));
 			}
-			//System.out.println(avg + " " + i);
-			extState = extState.withProperty(CORNER_HEIGHTS[0], avg / i);
-			//extState = extState.withProperty(CORNER_HEIGHTS[0], getFluidHeight(access, pos.west().north(), Material.WATER));
-			extState = extState.withProperty(CORNER_HEIGHTS[1], getFluidHeight(access, pos.south(), Material.WATER));
-			extState = extState.withProperty(CORNER_HEIGHTS[2], getFluidHeight(access, pos.east().south(), Material.WATER));
-			extState = extState.withProperty(CORNER_HEIGHTS[3], getFluidHeight(access, pos.east(), Material.WATER));
 			
-			extState = extState.withProperty(COLOR, Minecraft.getMinecraft().getBlockColors().colorMultiplier(Blocks.WATER.getDefaultState(), access, pos, 0));
+			float defaultHeight = 1 - BlockLiquid.getLiquidHeightPercent(avgLvl);
 			
+			float c0 = getFluidHeight(access, pos, Material.WATER);
+			float c1 = getFluidHeight(access, pos.south(), Material.WATER);
+			float c2 = getFluidHeight(access, pos.east().south(), Material.WATER);
+			float c3 = getFluidHeight(access, pos.east(), Material.WATER);
+			
+			float avg = 0;
+			int i = 0;
+			if (c0 > 0) {
+				avg += c0;
+				i++;
+			}
+			if (c1 > 0) {
+				avg += c1;
+				i++;
+			}
+			if (c2 > 0) {
+				avg += c2;
+				i++;
+			}
+			if (c3 > 0) {
+				avg += c3;
+				i++;
+			}
+			if (i > 0) avg /= i;
+			
+			defaultHeight = avg;
+			
+			extState = extState.withProperty(CORNER_HEIGHTS[0], c0 < 0 ? defaultHeight : c0);
+			extState = extState.withProperty(CORNER_HEIGHTS[1], c1 < 0 ? defaultHeight : c1);
+			extState = extState.withProperty(CORNER_HEIGHTS[2], c2 < 0 ? defaultHeight : c2);
+			extState = extState.withProperty(CORNER_HEIGHTS[3], c3 < 0 ? defaultHeight : c3);
+
 			return extState;
 		}
-		//return state.withProperty(BlockLiquid.LEVEL, i > 0 ? avg / i : 7);
+		
 		return state;
 	}
 	
 	private float getFluidHeight(IBlockAccess blockAccess, BlockPos blockPosIn, Material blockMaterial) {
         int i = 0;
+        int w = 0;
         float f = 0.0F;
 
         for (int j = 0; j < 4; ++j) {
@@ -131,7 +162,7 @@ public class BlockRootyWater extends BlockRooty {
                 }
             } else {
                 int k = iblockstate.getValue(BlockLiquid.LEVEL);
-
+                
                 if (k >= 8 || k == 0) {
                     f += BlockLiquid.getLiquidHeightPercent(k) * 10.0F;
                     i += 10;
@@ -140,8 +171,12 @@ public class BlockRootyWater extends BlockRooty {
                 f += BlockLiquid.getLiquidHeightPercent(k);
                 ++i;
             }
+            if (iblockstate.isFullCube() || iblockstate.isOpaqueCube() || iblockstate.isFullBlock()) {
+            	w++;
+            }
         }
-
+        if (w == 0 && i == 0) return 0;
+        if (i == 0) return -1;
         return 1.0F - f / (float) i;
     }
 	
@@ -172,6 +207,12 @@ public class BlockRootyWater extends BlockRooty {
 	}
 	
 	@Override
+	@SideOnly(Side.CLIENT)
+	public boolean canRenderInLayer(IBlockState state, BlockRenderLayer layer) {
+        return getBlockLayer() == layer;
+    }
+	
+	@Override
 	public EnumBlockRenderType getRenderType(IBlockState state) {
         return EnumBlockRenderType.MODEL;
     }
@@ -179,11 +220,32 @@ public class BlockRootyWater extends BlockRooty {
 	@Override
 	@SideOnly(Side.CLIENT)
     public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
-        if (blockAccess.getBlockState(pos.offset(side)).getMaterial() == this.blockMaterial) {
+        Material mat = blockAccess.getBlockState(pos.offset(side)).getMaterial();
+
+        //return side == EnumFacing.UP || side == EnumFacing.DOWN;
+        return super.shouldSideBeRendered(blockState, blockAccess, pos, side);
+        	/*
+        if (side.getAxis() != EnumFacing.Axis.Y) {
+        	//boolean flag = super.shouldSideBeRendered(blockState, blockAccess, pos, side);
+        	//if (flag) return flag;
+        }
+		if (mat == this.blockMaterial || mat == Material.WATER) {
             return false;
         } else {
             return side == EnumFacing.UP ? true : super.shouldSideBeRendered(blockState, blockAccess, pos, side);
         }
+        */
+    }
+	
+	@Override
+	public boolean doesSideBlockRendering(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing face) {
+        IBlockState adjState = world.getBlockState(pos.offset(face));
+        
+        if (adjState.getMaterial() == Material.WATER) {
+        	return true;
+        }
+        
+		return state.isOpaqueCube();
     }
 
 	@Override
@@ -224,7 +286,7 @@ public class BlockRootyWater extends BlockRooty {
 
     @Nullable
     public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) {
-        return NULL_AABB;
+    	return FULL_BLOCK_AABB;//NULL_AABB;
     }
 	
 	@Override
@@ -244,5 +306,17 @@ public class BlockRootyWater extends BlockRooty {
     public Vec3d getFogColor(World world, BlockPos pos, IBlockState state, Entity entity, Vec3d originalColor, float partialTicks) {
         return super.getFogColor(world, pos, Blocks.WATER.getDefaultState(), entity, originalColor, partialTicks);
     }
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+	public boolean addDestroyEffects(World world, BlockPos pos, ParticleManager manager) {
+		return true;
+	}
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+	public boolean addHitEffects(IBlockState state, World world, RayTraceResult target, ParticleManager manager) {
+		return true;
+	}
 	
 }

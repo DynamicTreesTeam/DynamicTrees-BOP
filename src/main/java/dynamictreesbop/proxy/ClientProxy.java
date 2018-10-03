@@ -19,10 +19,13 @@ import dynamictreesbop.renderers.RenderMagicSeed;
 import dynamictreesbop.renderers.RenderMapleSeed;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.color.IBlockColor;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 
@@ -51,6 +54,14 @@ public class ClientProxy extends CommonProxy {
 	public void registerColorHandlers() {	
 		
 		final int magenta = 0x00FF00FF; // for errors.. because magenta sucks.
+		
+		ModelHelper.regColorHandler(ModContent.rootyWater, (state, world, pos, tintIndex) -> {
+			int color = 0xFFFFFF;
+			
+			color = Minecraft.getMinecraft().getBlockColors().colorMultiplier(Blocks.WATER.getDefaultState(), world, pos, tintIndex);
+			
+			return color;
+		});
 		
 		ModelHelper.regColorHandler(ModContent.floweringOakLeaves, new IBlockColor() {
 			@Override

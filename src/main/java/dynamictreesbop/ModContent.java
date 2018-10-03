@@ -24,6 +24,7 @@ import biomesoplenty.common.block.BlockBOPLeaves;
 import biomesoplenty.common.block.BlockBOPSapling;
 import dynamictreesbop.blocks.BlockDynamicLeavesFlowering;
 import dynamictreesbop.blocks.BlockDynamicLeavesPalm;
+import dynamictreesbop.blocks.BlockRootyWater;
 import dynamictreesbop.items.ItemMagicSeed;
 import dynamictreesbop.items.ItemMapleSeed;
 import dynamictreesbop.trees.TreeBamboo;
@@ -61,6 +62,7 @@ import dynamictreesbop.trees.species.SpeciesSpruceBush;
 import dynamictreesbop.trees.species.SpeciesYellowAutumn;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
+import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.BlockNewLeaf;
 import net.minecraft.block.BlockOldLeaf;
 import net.minecraft.block.BlockPlanks;
@@ -95,6 +97,8 @@ import net.minecraftforge.registries.IForgeRegistry;
 @ObjectHolder(DynamicTreesBOP.MODID)
 public class ModContent {
 	
+	public static BlockRootyWater rootyWater;
+	
 	public static BlockDynamicLeavesFlowering floweringOakLeaves;
 	public static BlockDynamicLeavesPalm palmFrondLeaves;
 	
@@ -124,6 +128,10 @@ public class ModContent {
 	@SubscribeEvent
 	public static void registerBlocks(final RegistryEvent.Register<Block> event) {
 		IForgeRegistry<Block> registry = event.getRegistry();
+		
+		// TODO: create reference
+		rootyWater = new BlockRootyWater(false);
+		registry.register(rootyWater);
 		
 		// Register Special Leaf Blocks
 		floweringOakLeaves = new BlockDynamicLeavesFlowering();
@@ -650,6 +658,8 @@ public class ModContent {
 	@SideOnly(Side.CLIENT)
 	@SubscribeEvent
 	public static void registerModels(ModelRegistryEvent event) {
+		ModelLoader.setCustomStateMapper(rootyWater, new StateMap.Builder().ignore(BlockRootyWater.LIFE, BlockLiquid.LEVEL).build());
+		
 		for(TreeFamily tree : ModContent.trees) {
 			ModelHelper.regModel(tree.getDynamicBranch());
 			ModelHelper.regModel(tree.getCommonSpecies().getSeed());
