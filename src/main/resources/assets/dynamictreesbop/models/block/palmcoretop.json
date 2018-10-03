@@ -4,6 +4,7 @@
         "texture": "dynamictreesbop:blocks/palmbase",
         "frond": "dynamictreesbop:blocks/frond"
     },
+		"ambientocclusion": false,
     "elements": [
         {   "from": [ -16, -8, 8 ],
             "to": [ 32, 32, 8 ],
