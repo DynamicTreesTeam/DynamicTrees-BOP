@@ -5,7 +5,7 @@ public class ModConstants extends com.ferreusveritas.dynamictrees.ModConstants {
 	public static final String MODID = "dynamictreesbop";
 	public static final String NAME = "Dynamic Trees BOP";
 	public static final String VERSIONAUTO = "@VERSION@";
-	public static final String VERSION = VERSIONAUTO;//Change to VERSIONDEV in development, VERSIONAUTO for release
+	public static final String VERSION = VERSIONDEV;//Change to VERSIONDEV in development, VERSIONAUTO for release
 	
 	//Other Mods
 	public static final String BOP = "biomesoplenty";

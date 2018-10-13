@@ -7,8 +7,8 @@ import com.ferreusveritas.dynamictrees.ModBlocks;
 import com.ferreusveritas.dynamictrees.ModConstants;
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSapling;
-import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 import com.ferreusveritas.dynamictrees.trees.Species;
+import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 
 import biomesoplenty.api.biome.BOPBiomes;
 import biomesoplenty.api.block.BOPBlocks;
@@ -18,7 +18,6 @@ import biomesoplenty.common.block.BlockBOPLeaves;
 import biomesoplenty.common.block.BlockBOPLog;
 import dynamictreesbop.DynamicTreesBOP;
 import dynamictreesbop.ModContent;
-import dynamictreesbop.dropcreators.DropCreatorTwigletLogs;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -49,7 +48,11 @@ public class TreeHellbark extends TreeFamily {
 			
 			setupStandardSeedDropping();
 			remDropCreator(new ResourceLocation(ModConstants.MODID, "logs"));
-			addDropCreator(new DropCreatorTwigletLogs());
+		}
+		
+		@Override
+		public LogsAndSticks getLogsAndSticks(int volume) {
+			return new LogsAndSticks(volume / 256, (volume % 256) / 64);
 		}
 		
 		@Override

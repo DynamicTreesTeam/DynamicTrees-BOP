@@ -12,7 +12,6 @@ import com.ferreusveritas.dynamictrees.blocks.BlockBranch;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSapling;
 import com.ferreusveritas.dynamictrees.blocks.BlockRooty;
 import com.ferreusveritas.dynamictrees.systems.GrowSignal;
-import com.ferreusveritas.dynamictrees.systems.dropcreators.DropCreatorLogs;
 import com.ferreusveritas.dynamictrees.systems.dropcreators.DropCreatorSeed;
 import com.ferreusveritas.dynamictrees.systems.nodemappers.NodeFindEnds;
 import com.ferreusveritas.dynamictrees.trees.Species;
@@ -88,18 +87,11 @@ public class TreePalm extends TreeFamily {
 					return dropList;
 				}
 			});
-			addDropCreator(new DropCreatorLogs() {
-				@Override
-				public List<ItemStack> getLogsDrop(World world, Species species, BlockPos breakPos, Random random, List<ItemStack> dropList, int volume) {
-					int numLogs = volume / 768;
-					while(numLogs > 0) {
-						dropList.add(species.getFamily().getPrimitiveLogItemStack(numLogs >= 64 ? 64 : numLogs)); // A log contains 4096 voxels of wood material(16x16x16 pixels) Drop vanilla logs or whatever
-						numLogs -= 64;
-					}
-					dropList.add(species.getFamily().getStick((volume % 768) / 96)); // A stick contains 512 voxels of wood (1/8th log) (1 log = 4 planks, 2 planks = 4 sticks) Give him the stick!
-					return dropList;
-				}
-			});
+		}
+		
+		@Override
+		public LogsAndSticks getLogsAndSticks(int volume) {
+			return new LogsAndSticks(volume / 768, (volume % 768) / 96);
 		}
 		
 		@Override

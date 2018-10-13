@@ -1,7 +1,6 @@
 package dynamictreesbop.trees;
 
 import java.util.List;
-import java.util.Random;
 
 import com.ferreusveritas.dynamictrees.ModBlocks;
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
@@ -12,7 +11,6 @@ import com.ferreusveritas.dynamictrees.blocks.BlockBranchBasic;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSapling;
 import com.ferreusveritas.dynamictrees.blocks.BlockRooty;
 import com.ferreusveritas.dynamictrees.systems.GrowSignal;
-import com.ferreusveritas.dynamictrees.systems.dropcreators.DropCreatorLogs;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 import com.ferreusveritas.dynamictrees.util.CoordUtils;
@@ -58,21 +56,14 @@ public class TreeBamboo extends TreeFamily {
 			generateSeed();
 			
 			setupStandardSeedDropping();
-
-			addDropCreator(new DropCreatorLogs() {
-				@Override
-				public List<ItemStack> getLogsDrop(World world, Species species, BlockPos breakPos, Random random, List<ItemStack> dropList, int volume) {
-					int numLogs = volume / 768;
-					while(numLogs > 0) {
-						dropList.add(species.getFamily().getPrimitiveLogItemStack(numLogs >= 64 ? 64 : numLogs));
-						numLogs -= 64;
-					}
-					return dropList;
-				}
-			});
 			
 		}
-
+		
+		@Override
+		public LogsAndSticks getLogsAndSticks(int volume) {
+			return new LogsAndSticks(volume / 768, 0);
+		}
+		
 		@Override
 		public INodeInspector getNodeInflator(SimpleVoxmap leafMap) {
 			return new NodeInflatorBamboo(this, leafMap);

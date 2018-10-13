@@ -14,7 +14,6 @@ import biomesoplenty.api.block.BOPBlocks;
 import dynamictreesbop.DynamicTreesBOP;
 import dynamictreesbop.ModContent;
 import dynamictreesbop.dropcreators.DropCreatorInvoluntarySeed;
-import dynamictreesbop.dropcreators.DropCreatorTwigletLogs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -38,9 +37,13 @@ public class SpeciesJungleTwiglet extends SpeciesRare {
 		
 		addDropCreator(new DropCreatorInvoluntarySeed());
 		remDropCreator(new ResourceLocation(ModConstants.MODID, "logs"));
-		addDropCreator(new DropCreatorTwigletLogs());
 		
 		leavesProperties.setTree(treeFamily);
+	}
+	
+	@Override
+	public LogsAndSticks getLogsAndSticks(int volume) {
+		return new LogsAndSticks(volume / 256, (volume % 256) / 64);
 	}
 	
 	@Override

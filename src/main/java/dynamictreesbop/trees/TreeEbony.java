@@ -5,9 +5,9 @@ import java.util.List;
 import com.ferreusveritas.dynamictrees.ModConstants;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSapling;
 import com.ferreusveritas.dynamictrees.items.Seed;
-import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.trees.SpeciesRare;
+import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 
 import biomesoplenty.api.biome.BOPBiomes;
 import biomesoplenty.api.block.BOPBlocks;
@@ -18,7 +18,6 @@ import biomesoplenty.common.block.BlockBOPLog;
 import dynamictreesbop.DynamicTreesBOP;
 import dynamictreesbop.ModContent;
 import dynamictreesbop.dropcreators.DropCreatorInvoluntarySeed;
-import dynamictreesbop.dropcreators.DropCreatorTwigletLogs;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
@@ -71,7 +70,11 @@ public class TreeEbony extends TreeFamily {
 			
 			addDropCreator(new DropCreatorInvoluntarySeed());
 			remDropCreator(new ResourceLocation(ModConstants.MODID, "logs"));
-			addDropCreator(new DropCreatorTwigletLogs());
+		}
+		
+		@Override
+		public LogsAndSticks getLogsAndSticks(int volume) {
+			return new LogsAndSticks(volume / 256, (volume % 256) / 64);
 		}
 		
 		@Override

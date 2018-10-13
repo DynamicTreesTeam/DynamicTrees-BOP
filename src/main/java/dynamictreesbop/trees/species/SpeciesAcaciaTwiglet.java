@@ -15,7 +15,6 @@ import biomesoplenty.api.block.BOPBlocks;
 import dynamictreesbop.DynamicTreesBOP;
 import dynamictreesbop.ModContent;
 import dynamictreesbop.dropcreators.DropCreatorInvoluntarySeed;
-import dynamictreesbop.dropcreators.DropCreatorTwigletLogs;
 import net.minecraft.block.BlockGrass;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -42,11 +41,15 @@ public class SpeciesAcaciaTwiglet extends SpeciesRare {
 		
 		addDropCreator(new DropCreatorInvoluntarySeed());
 		remDropCreator(new ResourceLocation(ModConstants.MODID, "logs"));
-		addDropCreator(new DropCreatorTwigletLogs());
 		
 		bushGen = new FeatureGenBush(this);
 		
 		leavesProperties.setTree(treeFamily);
+	}
+
+	@Override
+	public LogsAndSticks getLogsAndSticks(int volume) {
+		return new LogsAndSticks(volume / 256, (volume % 256) / 64);
 	}
 	
 	@Override
