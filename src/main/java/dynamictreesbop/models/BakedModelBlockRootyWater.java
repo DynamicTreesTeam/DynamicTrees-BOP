@@ -16,13 +16,13 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.property.IExtendedBlockState;
 
-public class RootyWaterModel implements IBakedModel {
+public class BakedModelBlockRootyWater implements IBakedModel {
 	
 	protected IBakedModel rootsModel;
 	protected TextureAtlasSprite waterTexture;
 	protected int waterTextureAlpha;
 	
-	public RootyWaterModel(IBakedModel rootsModel) {
+	public BakedModelBlockRootyWater(IBakedModel rootsModel) {
 		this.rootsModel = rootsModel;
 		this.waterTexture = Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite("minecraft:blocks/water_still");
 		int i = 0;

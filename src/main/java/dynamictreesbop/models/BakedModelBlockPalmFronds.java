@@ -21,7 +21,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.property.IExtendedBlockState;
 
-public class CompositePalmFrondsModel implements IBakedModel {
+public class BakedModelBlockPalmFronds implements IBakedModel {
 	
 	protected ModelBlock modelBlock;
 	
@@ -29,7 +29,7 @@ public class CompositePalmFrondsModel implements IBakedModel {
 	
 	private IBakedModel bakedFronds[] = new IBakedModel[8]; // 8 = Number of surrounding blocks
 	
-	public CompositePalmFrondsModel(ResourceLocation frondRes, Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter) {		
+	public BakedModelBlockPalmFronds(ResourceLocation frondRes, Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter) {		
 		modelBlock = new ModelBlock(null, null, null, false, false, ItemCameraTransforms.DEFAULT, null);
 		
 		TextureAtlasSprite frondIcon = bakedTextureGetter.apply(frondRes);

@@ -14,11 +14,11 @@ import net.minecraftforge.client.model.IModel;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.common.model.IModelState;
 
-public class PalmFrondsModel implements IModel {
+public class ModelBlockPalmFronds implements IModel {
 	
 	public ResourceLocation frondTexture;
 	
-	public PalmFrondsModel(ModelBlock modelBlock) {
+	public ModelBlockPalmFronds(ModelBlock modelBlock) {
 		frondTexture = new ResourceLocation(modelBlock.resolveTextureName("frond"));
 	}
 	
@@ -38,7 +38,7 @@ public class PalmFrondsModel implements IModel {
 	@Override
 	public IBakedModel bake(IModelState state, VertexFormat format, Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter) {
 		try {
-			return new CompositePalmFrondsModel(frondTexture, bakedTextureGetter);
+			return new BakedModelBlockPalmFronds(frondTexture, bakedTextureGetter);
 		} catch (Exception exception) {
 			System.err.println("PalmFrondsModel.bake() failed due to exception:" + exception);
 			return ModelLoaderRegistry.getMissingModel().bake(state, format, bakedTextureGetter);

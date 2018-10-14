@@ -33,7 +33,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.common.property.IExtendedBlockState;
 import net.minecraftforge.common.property.IUnlistedProperty;
 
-public class CompositeBambooModel implements IBakedModel {
+public class BakedModelBlockBranchBamboo implements IBakedModel {
 
 	protected ModelBlock modelBlock;
 	
@@ -45,7 +45,7 @@ public class CompositeBambooModel implements IBakedModel {
 	private IBakedModel rings[] = new IBakedModel[3]; //3 Cores with the ring textures on all 6 sides
 	private IBakedModel coreLeaves[] = new IBakedModel[3]; // 3 cores with only the leafy edges
 	
-	public CompositeBambooModel(ResourceLocation barkRes, ResourceLocation ringsRes, Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter) {		
+	public BakedModelBlockBranchBamboo(ResourceLocation barkRes, ResourceLocation ringsRes, Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter) {		
 		this.modelBlock = new ModelBlock(null, null, null, false, false, ItemCameraTransforms.DEFAULT, null);
 		
 		TextureAtlasSprite barkIcon = bakedTextureGetter.apply(barkRes);

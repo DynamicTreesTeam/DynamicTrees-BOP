@@ -6,15 +6,15 @@ import net.minecraft.client.renderer.block.model.ModelBlock;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.IModel;
 
-public class ModelLoaderPalmFronds extends ModelLoaderGeneric {
+public class ModelLoaderBlockPalmFronds extends ModelLoaderGeneric {
 	
-	public ModelLoaderPalmFronds() {
+	public ModelLoaderBlockPalmFronds() {
 		super("dynamicpalmfronds", new ResourceLocation("dynamictreesbop", "block/dynamicpalmfronds"));
 	}
 	
 	@Override
 	protected IModel loadModel(ResourceLocation resourceLocation, ModelBlock baseModelBlock) {
-		return new PalmFrondsModel(baseModelBlock);
+		return new ModelBlockPalmFronds(baseModelBlock);
 	}
 	
 }
