@@ -141,8 +141,8 @@ public class TreeBamboo extends TreeFamily {
 		return new BlockBranchBasic(getName() + "branch") {
 			
 			@Override
-			public void setRadius(World world, BlockPos pos, int radius, EnumFacing dir, int flags) {
-				super.setRadius(world, pos, MathHelper.clamp(radius, 1, 3), dir, flags);
+			public int setRadius(World world, BlockPos pos, int radius, EnumFacing dir, int flags) {
+				return super.setRadius(world, pos, MathHelper.clamp(radius, 1, 3), dir, flags);
 			}
 			
 			@Override
