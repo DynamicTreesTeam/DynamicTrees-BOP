@@ -75,8 +75,8 @@ public class TreeWillow extends TreeFamily {
 		}
 		
 		@Override
-		public boolean rot(World world, BlockPos pos, int neighborCount, int radius, Random random) {
-			if(super.rot(world, pos, neighborCount, radius, random)) {
+		public boolean rot(World world, BlockPos pos, int neighborCount, int radius, Random random, boolean rapid) {
+			if(super.rot(world, pos, neighborCount, radius, random, rapid)) {
 				if(radius > 4 && TreeHelper.isRooty(world.getBlockState(pos.down())) && world.getLightFor(EnumSkyBlock.SKY, pos) < 4) {
 					world.setBlockState(pos, random.nextInt(3) == 0 ? ModBlocks.blockStates.redMushroom : BOPBlocks.mushroom.getDefaultState().withProperty(BlockBOPMushroom.VARIANT, BlockBOPMushroom.MushroomType.BLUE_MILK_CAP)); // Change branch to a mushroom
 				}

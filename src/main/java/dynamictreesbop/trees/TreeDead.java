@@ -58,7 +58,7 @@ public class TreeDead extends TreeFamily {
 		}
 		
 		@Override
-		public boolean rot(World world, BlockPos pos, int neighborCount, int radius, Random random) {
+		public boolean rot(World world, BlockPos pos, int neighborCount, int radius, Random random, boolean rapid) {
 			return false;
 		}
 		
@@ -90,7 +90,7 @@ public class TreeDead extends TreeFamily {
 		}
 		
 		@Override
-		public boolean rot(World world, BlockPos pos, int neighborCount, int radius, Random random) {
+		public boolean rot(World world, BlockPos pos, int neighborCount, int radius, Random random, boolean rapid) {
 			return false;
 		}
 		

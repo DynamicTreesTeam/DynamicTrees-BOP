@@ -251,6 +251,9 @@ public class BiomeDataBasePopulator implements IBiomeDataBasePopulator {
 					}
 				}
 				dbase.setCancelVanillaTreeGen(biome, true);
+				
+				//Identify the "forestness" of the biome.  Affects forest spread rate for biome.
+				dbase.setForestness(biome, identifyForestness(biome));
 			}
 		});
 		
