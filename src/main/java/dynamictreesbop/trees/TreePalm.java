@@ -161,7 +161,7 @@ public class TreePalm extends TreeFamily {
 		}
 		
 		@Override
-		public void postGeneration(World world, BlockPos rootPos, Biome biome, int radius, List<BlockPos> endPoints, SafeChunkBounds safeBounds) {
+		public void postGeneration(World world, BlockPos rootPos, Biome biome, int radius, List<BlockPos> endPoints, SafeChunkBounds safeBounds, IBlockState initialDirtState) {
 			for (BlockPos endPoint : endPoints) {
 				TreeHelper.ageVolume(world, endPoint, 1, 2, 3, safeBounds);
 			}

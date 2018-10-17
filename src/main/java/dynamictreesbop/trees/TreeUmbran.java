@@ -76,8 +76,8 @@ public class TreeUmbran extends TreeFamily {
 		}
 		
 		@Override
-		public void postGeneration(World world, BlockPos rootPos, Biome biome, int radius, List<BlockPos> endPoints, SafeChunkBounds safeBounds) {
-			super.postGeneration(world, rootPos, biome, radius, endPoints, safeBounds);
+		public void postGeneration(World world, BlockPos rootPos, Biome biome, int radius, List<BlockPos> endPoints, SafeChunkBounds safeBounds, IBlockState initialDirtState) {
+			super.postGeneration(world, rootPos, biome, radius, endPoints, safeBounds, initialDirtState);
 			
 			//Generate Vines
 			vineGen.gen(world, rootPos.up(), endPoints, safeBounds);
@@ -167,7 +167,7 @@ public class TreeUmbran extends TreeFamily {
 		}
 		
 		@Override
-		public void postGeneration(World world, BlockPos rootPos, Biome biome, int radius, List<BlockPos> endPoints, SafeChunkBounds safeBounds) {
+		public void postGeneration(World world, BlockPos rootPos, Biome biome, int radius, List<BlockPos> endPoints, SafeChunkBounds safeBounds, IBlockState initialDirtState) {
 			//Manually place the highest few blocks of the conifer since the leafCluster voxmap won't handle it
 			BlockPos highest = Collections.max(endPoints, (a, b) -> a.getY() - b.getY());
 			world.setBlockState(highest.up(1), leavesProperties.getDynamicLeavesState(4));
@@ -255,7 +255,7 @@ public class TreeUmbran extends TreeFamily {
 		}
 		
 		@Override
-		public void postGeneration(World world, BlockPos rootPos, Biome biome, int radius, List<BlockPos> endPoints, SafeChunkBounds safeBounds) {
+		public void postGeneration(World world, BlockPos rootPos, Biome biome, int radius, List<BlockPos> endPoints, SafeChunkBounds safeBounds, IBlockState initialDirtState) {
 			//Manually place the highest few blocks of the conifer since the leafCluster voxmap won't handle it
 			BlockPos highest = Collections.max(endPoints, (a, b) -> a.getY() - b.getY());
 			world.setBlockState(highest.up(1), leavesProperties.getDynamicLeavesState(4));

@@ -16,6 +16,7 @@ import com.ferreusveritas.dynamictrees.util.SafeChunkBounds;
 import biomesoplenty.api.biome.BOPBiomes;
 import biomesoplenty.api.block.BOPBlocks;
 import dynamictreesbop.DynamicTreesBOP;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -67,8 +68,8 @@ public class SpeciesOakFloweringVine extends Species {
 	}
 	
 	@Override
-	public void postGeneration(World world, BlockPos rootPos, Biome biome, int radius, List<BlockPos> endPoints, SafeChunkBounds safeBounds) {
-		super.postGeneration(world, rootPos, biome, radius, endPoints, safeBounds);
+	public void postGeneration(World world, BlockPos rootPos, Biome biome, int radius, List<BlockPos> endPoints, SafeChunkBounds safeBounds, IBlockState initialDirtState) {
+		super.postGeneration(world, rootPos, biome, radius, endPoints, safeBounds, initialDirtState);
 		
 		//Generate Vines
 		vineGen.gen(world, rootPos.up(), endPoints, safeBounds);

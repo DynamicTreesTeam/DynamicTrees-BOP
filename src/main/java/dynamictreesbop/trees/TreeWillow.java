@@ -86,8 +86,8 @@ public class TreeWillow extends TreeFamily {
 		}
 		
 		@Override
-		public void postGeneration(World world, BlockPos rootPos, Biome biome, int radius, List<BlockPos> endPoints, SafeChunkBounds safeBounds) {
-			super.postGeneration(world, rootPos, biome, radius, endPoints, safeBounds);
+		public void postGeneration(World world, BlockPos rootPos, Biome biome, int radius, List<BlockPos> endPoints, SafeChunkBounds safeBounds, IBlockState initialDirtState) {
+			super.postGeneration(world, rootPos, biome, radius, endPoints, safeBounds, initialDirtState);
 			
 			//Generate Vines
 			vineGen.gen(world, rootPos.up(), endPoints, safeBounds);
