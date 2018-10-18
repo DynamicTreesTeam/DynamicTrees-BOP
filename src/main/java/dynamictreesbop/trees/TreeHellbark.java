@@ -51,8 +51,8 @@ public class TreeHellbark extends TreeFamily {
 		}
 		
 		@Override
-		public LogsAndSticks getLogsAndSticks(int volume) {
-			return new LogsAndSticks(volume / 256, (volume % 256) / 64);
+		public LogsAndSticks getLogsAndSticks(float volume) {
+			return super.getLogsAndSticks(volume * 16);
 		}
 		
 		@Override

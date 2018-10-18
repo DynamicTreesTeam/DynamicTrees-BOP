@@ -36,8 +36,8 @@ public class SpeciesAcaciaBrush extends SpeciesRare {
 	}
 	
 	@Override
-	public LogsAndSticks getLogsAndSticks(int volume) {
-		return new LogsAndSticks(volume / 1024, (volume % 1024) / 128);
+	public LogsAndSticks getLogsAndSticks(float volume) {
+		return super.getLogsAndSticks(volume * 4);
 	}
 	
 	@Override

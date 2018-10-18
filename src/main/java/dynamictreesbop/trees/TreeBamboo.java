@@ -60,8 +60,8 @@ public class TreeBamboo extends TreeFamily {
 		}
 		
 		@Override
-		public LogsAndSticks getLogsAndSticks(int volume) {
-			return new LogsAndSticks(volume / 768, 0);
+		public LogsAndSticks getLogsAndSticks(float volume) {
+			return new LogsAndSticks((int) (volume * 5), 0);
 		}
 		
 		@Override

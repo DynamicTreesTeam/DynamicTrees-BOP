@@ -90,8 +90,8 @@ public class TreePalm extends TreeFamily {
 		}
 		
 		@Override
-		public LogsAndSticks getLogsAndSticks(int volume) {
-			return new LogsAndSticks(volume / 768, (volume % 768) / 96);
+		public LogsAndSticks getLogsAndSticks(float volume) {
+			return super.getLogsAndSticks(volume * 5);
 		}
 		
 		@Override
