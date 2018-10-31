@@ -36,7 +36,7 @@ public class BiomeDataBasePopulator implements IBiomeDataBasePopulator {
 	private static Species mushroomRed, mushroomBrown;
 	
 	private static void createStaticAliases() {
-		apple =					findVanSpecies("oakapple");
+		apple =					findVanSpecies("apple");
 		jungle =				findVanSpecies("jungle");
 		spruce =				findVanSpecies("spruce");
 		birch =					findVanSpecies("birch");
@@ -199,7 +199,7 @@ public class BiomeDataBasePopulator implements IBiomeDataBasePopulator {
 		addChanceSelector(dbase, BOPBiomes.lavender_fields,		rand(0.3f));
 		addChanceSelector(dbase, BOPBiomes.lush_desert,			rand(0.4f));
 		addChanceSelector(dbase, BOPBiomes.meadow,				rand(0.6f));
-		addChanceSelector(dbase, BOPBiomes.oasis,				(rnd, spc, rad) -> spc.equals(palm) && rnd.nextFloat() < 0.5f ? EnumChance.OK : EnumChance.CANCEL);
+		addChanceSelector(dbase, BOPBiomes.oasis,				(rnd, spc, rad) -> (!spc.equals(palm) || rnd.nextFloat() < 0.3f) ? EnumChance.OK : EnumChance.CANCEL);
 		addChanceSelector(dbase, BOPBiomes.outback,				ok);
 		addChanceSelector(dbase, BOPBiomes.overgrown_cliffs,	ok);
 		addChanceSelector(dbase, BOPBiomes.prairie,				rand(0.075f));

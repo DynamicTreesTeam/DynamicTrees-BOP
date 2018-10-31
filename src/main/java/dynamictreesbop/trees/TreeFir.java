@@ -3,13 +3,16 @@ package dynamictreesbop.trees;
 import java.util.Collections;
 import java.util.List;
 
+import com.ferreusveritas.dynamictrees.api.TreeHelper;
 import com.ferreusveritas.dynamictrees.blocks.BlockBranch;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSapling;
 import com.ferreusveritas.dynamictrees.items.Seed;
 import com.ferreusveritas.dynamictrees.systems.GrowSignal;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
+import com.ferreusveritas.dynamictrees.util.CoordUtils.Surround;
 import com.ferreusveritas.dynamictrees.util.SafeChunkBounds;
+import com.ferreusveritas.dynamictrees.worldgen.JoCode;
 
 import biomesoplenty.api.block.BOPBlocks;
 import biomesoplenty.api.enums.BOPTrees;
@@ -24,6 +27,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.BlockPos.MutableBlockPos;
+import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
@@ -101,12 +106,29 @@ public class TreeFir extends TreeFamily {
 		}
 		
 		@Override
+		public boolean preGeneration(World world, BlockPos rootPos, int radius, EnumFacing facing, SafeChunkBounds safeBounds, JoCode joCode, IBlockState initialDirtState) {
+			//Erase a volume of blocks that could potentially get in the way
+			for (MutableBlockPos pos : BlockPos.getAllInBoxMutable(rootPos.add(new Vec3i(-1,  1, -1)), rootPos.add(new Vec3i(1, 6, 1)))) {
+				world.setBlockToAir(pos);
+			}
+			return true;
+		}
+		
+		@Override
 		public void postGeneration(World world, BlockPos rootPos, Biome biome, int radius, List<BlockPos> endPoints, SafeChunkBounds safeBounds, IBlockState initialDirtState) {
 			//Manually place the highest few blocks of the conifer since the leafCluster voxmap won't handle it
 			BlockPos highest = Collections.max(endPoints, (a, b) -> a.getY() - b.getY());
 			world.setBlockState(highest.up(1), leavesProperties.getDynamicLeavesState(4));
 			world.setBlockState(highest.up(2), leavesProperties.getDynamicLeavesState(3));
 			world.setBlockState(highest.up(3), leavesProperties.getDynamicLeavesState(1));
+			
+			BlockPos treePos = rootPos.up();
+			IBlockState branchState = world.getBlockState(treePos);
+			if (TreeHelper.getTreePart(branchState).getRadius(branchState) > BlockBranch.RADMAX_NORMAL) {
+				for (Surround dir: Surround.values()) {
+					world.setBlockState(rootPos.add(dir.getOffset()), initialDirtState);
+				}
+			}
 		}
 		
 	}
@@ -173,6 +195,11 @@ public class TreeFir extends TreeFamily {
 		}
 		
 		@Override
+		public int maxBranchRadius() {
+			return 8;
+		}
+		
+		@Override
 		public void postGeneration(World world, BlockPos rootPos, Biome biome, int radius, List<BlockPos> endPoints, SafeChunkBounds safeBounds, IBlockState initialDirtState) {
 			//Manually place the highest few blocks of the conifer since the leafCluster voxmap won't handle it
 			BlockPos highest = Collections.max(endPoints, (a, b) -> a.getY() - b.getY());
@@ -218,6 +245,11 @@ public class TreeFir extends TreeFamily {
 	public void registerSpecies(IForgeRegistry<Species> speciesRegistry) {
 		super.registerSpecies(speciesRegistry);
 		speciesRegistry.register(smallSpecies);
+	}
+	
+	@Override
+	public boolean isThick() {
+		return true;
 	}
 	
 	@Override
