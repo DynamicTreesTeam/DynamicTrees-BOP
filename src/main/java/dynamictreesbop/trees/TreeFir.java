@@ -106,12 +106,12 @@ public class TreeFir extends TreeFamily {
 		}
 		
 		@Override
-		public boolean preGeneration(World world, BlockPos rootPos, int radius, EnumFacing facing, SafeChunkBounds safeBounds, JoCode joCode, IBlockState initialDirtState) {
+		public BlockPos preGeneration(World world, BlockPos rootPos, int radius, EnumFacing facing, SafeChunkBounds safeBounds, JoCode joCode, IBlockState initialDirtState) {
 			//Erase a volume of blocks that could potentially get in the way
 			for (MutableBlockPos pos : BlockPos.getAllInBoxMutable(rootPos.add(new Vec3i(-1,  1, -1)), rootPos.add(new Vec3i(1, 6, 1)))) {
 				world.setBlockToAir(pos);
 			}
-			return true;
+			return rootPos;
 		}
 		
 		@Override
