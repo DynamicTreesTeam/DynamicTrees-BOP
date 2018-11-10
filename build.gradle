@@ -54,7 +54,7 @@ minecraft {
 	version = "${mc_version}-${forge_version}"
 	runDir = "run"
 	
-	replace "@VERSION@", project.version
+	replace "1.12.2-9999.9999.9999z", project.version
 	replaceIn "ModConstants.java"
 	
 	makeObfSourceJar = false
