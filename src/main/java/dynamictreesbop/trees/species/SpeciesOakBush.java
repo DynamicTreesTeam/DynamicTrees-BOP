@@ -1,6 +1,5 @@
 package dynamictreesbop.trees.species;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenBush;
@@ -29,8 +28,8 @@ FeatureGenBush bushGen;
 	}
 	
 	@Override
-	public boolean generate(World world, BlockPos pos, Biome biome, Random random, int radius, SafeChunkBounds safeBounds) {
-		bushGen.setRadius(radius).gen(world, pos, new ArrayList<BlockPos>(), safeBounds);
+	public boolean generate(World world, BlockPos rootPos, Biome biome, Random random, int radius, SafeChunkBounds safeBounds) {
+		bushGen.gen(world, rootPos, biome, random, radius, safeBounds);
 		return true;
 	}
 

@@ -100,8 +100,7 @@ public class SpeciesMegaOakConifer extends SpeciesRare {
 		world.setBlockState(highest.up(3), leavesProperties.getDynamicLeavesState(1));
 		
 		if (safeBounds != SafeChunkBounds.ANY) {//worldgen
-			//Generate undergrowth
-			bushGen.setRadius(radius).gen(world, rootPos.up(), endPoints, safeBounds);
+			bushGen.postGeneration(world, rootPos, biome, radius, endPoints, safeBounds, initialDirtState);//Generate undergrowth
 		}
 	}
 	

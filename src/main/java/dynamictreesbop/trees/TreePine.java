@@ -109,9 +109,8 @@ public class TreePine extends TreeFamily {
 			world.setBlockState(highest.up(2), leavesProperties.getDynamicLeavesState(3));
 			world.setBlockState(highest.up(3), leavesProperties.getDynamicLeavesState(1));
 			
-			if (safeBounds != SafeChunkBounds.ANY && biome == BOPBiomes.shield.orNull()) {
-				//Generate undergrowth
-				bushGen.setRadius(radius).gen(world, rootPos.up(), endPoints, safeBounds);
+			if (biome == BOPBiomes.shield.orNull()) {
+				bushGen.postGeneration(world, rootPos, biome, radius, endPoints, safeBounds, initialDirtState);//Generate undergrowth
 			}
 		}
 		

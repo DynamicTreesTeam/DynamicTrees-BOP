@@ -112,10 +112,7 @@ public class TreeEucalyptus extends TreeFamily {
 		
 		@Override
 		public void postGeneration(World world, BlockPos rootPos, Biome biome, int radius, List<BlockPos> endPoints, SafeChunkBounds safeBounds, IBlockState initialDirtState) {
-			if (safeBounds != SafeChunkBounds.ANY) {
-				//Generate undergrowth
-				bushGen.setRadius(radius).gen(world, rootPos.up(), endPoints, safeBounds);
-			}
+			bushGen.postGeneration(world, rootPos, biome, radius, endPoints, safeBounds, initialDirtState);//Generate undergrowth
 		}
 		
 		@Override

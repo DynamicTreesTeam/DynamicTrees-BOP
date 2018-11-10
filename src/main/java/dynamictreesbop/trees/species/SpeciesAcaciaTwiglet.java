@@ -1,6 +1,5 @@
 package dynamictreesbop.trees.species;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 import com.ferreusveritas.dynamictrees.ModConstants;
@@ -68,12 +67,12 @@ public class SpeciesAcaciaTwiglet extends SpeciesRare {
 	}
 	
 	@Override
-	public boolean generate(World world, BlockPos pos, Biome biome, Random random, int radius, SafeChunkBounds safeBounds) {
-		if (biome == BOPBiomes.xeric_shrubland.orNull() && world.getBlockState(pos).getBlock() instanceof BlockGrass) {
-			bushGen.setRadius(radius).gen(world, pos, new ArrayList<BlockPos>(), safeBounds);
+	public boolean generate(World world, BlockPos rootPos, Biome biome, Random random, int radius, SafeChunkBounds safeBounds) {
+		if (biome == BOPBiomes.xeric_shrubland.orNull() && world.getBlockState(rootPos).getBlock() instanceof BlockGrass) {
+			bushGen.gen(world, rootPos, biome, random, radius, safeBounds);
 			return false;
 		}
-		return super.generate(world, pos, biome, random, radius, safeBounds);
+		return super.generate(world, rootPos, biome, random, radius, safeBounds);
 	}
 	
 }

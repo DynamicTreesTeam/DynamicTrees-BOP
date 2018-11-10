@@ -78,9 +78,7 @@ public class TreeUmbran extends TreeFamily {
 		@Override
 		public void postGeneration(World world, BlockPos rootPos, Biome biome, int radius, List<BlockPos> endPoints, SafeChunkBounds safeBounds, IBlockState initialDirtState) {
 			super.postGeneration(world, rootPos, biome, radius, endPoints, safeBounds, initialDirtState);
-			
-			//Generate Vines
-			vineGen.gen(world, rootPos.up(), endPoints, safeBounds);
+			vineGen.postGeneration(world, rootPos, biome, radius, endPoints, safeBounds, initialDirtState);//Generate Vines
 		}
 		
 		@Override
