@@ -13,7 +13,6 @@ import com.ferreusveritas.dynamictrees.systems.GrowSignal;
 import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenBush;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
-import com.ferreusveritas.dynamictrees.util.SafeChunkBounds;
 import com.ferreusveritas.dynamictrees.util.SimpleVoxmap;
 
 import biomesoplenty.api.biome.BOPBiomes;
@@ -39,9 +38,7 @@ import net.minecraftforge.common.BiomeDictionary.Type;
 public class TreeEucalyptus extends TreeFamily {
 	
 	public class SpeciesEucalyptus extends Species {
-		
-		FeatureGenBush bushGen;
-		
+				
 		public SpeciesEucalyptus(TreeFamily treeFamily) {
 			super(treeFamily.getName(), treeFamily, ModContent.eucalyptusLeavesProperties);
 			
@@ -60,7 +57,7 @@ public class TreeEucalyptus extends TreeFamily {
 			
 			setupStandardSeedDropping();
 			
-			bushGen = new FeatureGenBush(this);
+			addGenFeature(new FeatureGenBush(this));//Generate undergrowth
 		}
 		
 		@Override
@@ -104,17 +101,7 @@ public class TreeEucalyptus extends TreeFamily {
 		public int getLowestBranchHeight(World world, BlockPos pos) {
 			return getLowestBranchHeight() + (int) ((coordHashCode(pos) % 16) * 0.625f);
 		}
-		
-		public int coordHashCode(BlockPos pos) {
-			int hash = (pos.getX() * 9973 ^ pos.getY() * 8287 ^ pos.getZ() * 9721) >> 1;
-			return hash & 0xFFFF;
-		}
-		
-		@Override
-		public void postGeneration(World world, BlockPos rootPos, Biome biome, int radius, List<BlockPos> endPoints, SafeChunkBounds safeBounds, IBlockState initialDirtState) {
-			bushGen.postGeneration(world, rootPos, biome, radius, endPoints, safeBounds, initialDirtState);//Generate undergrowth
-		}
-		
+				
 		@Override
 		public INodeInspector getNodeInflator(SimpleVoxmap leafMap) {
 			return new NodeInflatorEucalyptus(this, leafMap);

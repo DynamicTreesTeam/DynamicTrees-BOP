@@ -1,18 +1,16 @@
 package dynamictreesbop.trees;
 
-import java.util.Collections;
 import java.util.List;
 
-import com.ferreusveritas.dynamictrees.api.TreeHelper;
 import com.ferreusveritas.dynamictrees.blocks.BlockBranch;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSapling;
 import com.ferreusveritas.dynamictrees.items.Seed;
 import com.ferreusveritas.dynamictrees.systems.GrowSignal;
+import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenClearVolume;
+import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenConiferTopper;
+import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenMound;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
-import com.ferreusveritas.dynamictrees.util.CoordUtils.Surround;
-import com.ferreusveritas.dynamictrees.util.SafeChunkBounds;
-import com.ferreusveritas.dynamictrees.worldgen.JoCode;
 
 import biomesoplenty.api.block.BOPBlocks;
 import biomesoplenty.api.enums.BOPTrees;
@@ -27,8 +25,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockPos.MutableBlockPos;
-import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
@@ -58,6 +54,11 @@ public class TreeFir extends TreeFamily {
 			generateSeed();
 			
 			setupStandardSeedDropping();
+			
+			//Add species features
+			addGenFeature(new FeatureGenClearVolume(6));//Clear a spot for the thick tree trunk
+			addGenFeature(new FeatureGenConiferTopper(getLeavesProperties()));//Make a topper for this conifer tree
+			addGenFeature(new FeatureGenMound(this, 999));//Establish mounds
 		}
 		
 		@Override
@@ -100,37 +101,6 @@ public class TreeFir extends TreeFamily {
 			return super.getEnergy(world, pos) * biomeSuitability(world, pos) + (coordHashCode(pos.up(month)) % 8);//Vary the height energy by a psuedorandom hash function
 		}
 		
-		public int coordHashCode(BlockPos pos) {
-			int hash = (pos.getX() * 9973 ^ pos.getY() * 8287 ^ pos.getZ() * 9721) >> 1;
-			return hash & 0xFFFF;
-		}
-		
-		@Override
-		public BlockPos preGeneration(World world, BlockPos rootPos, int radius, EnumFacing facing, SafeChunkBounds safeBounds, JoCode joCode) {
-			//Erase a volume of blocks that could potentially get in the way
-			for (MutableBlockPos pos : BlockPos.getAllInBoxMutable(rootPos.add(new Vec3i(-1,  1, -1)), rootPos.add(new Vec3i(1, 6, 1)))) {
-				world.setBlockToAir(pos);
-			}
-			return rootPos;
-		}
-		
-		@Override
-		public void postGeneration(World world, BlockPos rootPos, Biome biome, int radius, List<BlockPos> endPoints, SafeChunkBounds safeBounds, IBlockState initialDirtState) {
-			//Manually place the highest few blocks of the conifer since the leafCluster voxmap won't handle it
-			BlockPos highest = Collections.max(endPoints, (a, b) -> a.getY() - b.getY());
-			world.setBlockState(highest.up(1), leavesProperties.getDynamicLeavesState(4));
-			world.setBlockState(highest.up(2), leavesProperties.getDynamicLeavesState(3));
-			world.setBlockState(highest.up(3), leavesProperties.getDynamicLeavesState(1));
-			
-			BlockPos treePos = rootPos.up();
-			IBlockState branchState = world.getBlockState(treePos);
-			if (TreeHelper.getTreePart(branchState).getRadius(branchState) > BlockBranch.RADMAX_NORMAL) {
-				for (Surround dir: Surround.values()) {
-					world.setBlockState(rootPos.add(dir.getOffset()), initialDirtState);
-				}
-			}
-		}
-		
 	}
 	
 	public class SpeciesFir extends Species {
@@ -147,6 +117,9 @@ public class TreeFir extends TreeFamily {
 			addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
 			
 			setupStandardSeedDropping();
+			
+			//Add species features
+			addGenFeature(new FeatureGenConiferTopper(getLeavesProperties()));//Make a topper for this conifer tree
 		}
 		
 		@Override
@@ -189,23 +162,9 @@ public class TreeFir extends TreeFamily {
 			return super.getEnergy(world, pos) * biomeSuitability(world, pos) + (coordHashCode(pos.up(month)) % 5);//Vary the height energy by a psuedorandom hash function
 		}
 		
-		public int coordHashCode(BlockPos pos) {
-			int hash = (pos.getX() * 9973 ^ pos.getY() * 8287 ^ pos.getZ() * 9721) >> 1;
-			return hash & 0xFFFF;
-		}
-		
 		@Override
 		public int maxBranchRadius() {
 			return 8;
-		}
-		
-		@Override
-		public void postGeneration(World world, BlockPos rootPos, Biome biome, int radius, List<BlockPos> endPoints, SafeChunkBounds safeBounds, IBlockState initialDirtState) {
-			//Manually place the highest few blocks of the conifer since the leafCluster voxmap won't handle it
-			BlockPos highest = Collections.max(endPoints, (a, b) -> a.getY() - b.getY());
-			world.setBlockState(highest.up(1), leavesProperties.getDynamicLeavesState(4));
-			world.setBlockState(highest.up(2), leavesProperties.getDynamicLeavesState(3));
-			world.setBlockState(highest.up(3), leavesProperties.getDynamicLeavesState(1));
 		}
 		
 		@Override

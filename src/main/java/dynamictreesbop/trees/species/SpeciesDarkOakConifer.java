@@ -1,22 +1,19 @@
 package dynamictreesbop.trees.species;
 
-import java.util.Collections;
-import java.util.List;
 import java.util.Random;
 
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
 import com.ferreusveritas.dynamictrees.items.Seed;
 import com.ferreusveritas.dynamictrees.systems.GrowSignal;
+import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenConiferTopper;
 import com.ferreusveritas.dynamictrees.trees.SpeciesRare;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
-import com.ferreusveritas.dynamictrees.util.SafeChunkBounds;
 
 import biomesoplenty.api.biome.BOPBiomes;
 import biomesoplenty.api.block.BOPBlocks;
 import biomesoplenty.common.block.BlockBOPMushroom;
 import dynamictreesbop.DynamicTreesBOP;
 import dynamictreesbop.ModContent;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
@@ -42,6 +39,9 @@ public class SpeciesDarkOakConifer extends SpeciesRare {
 		setupStandardSeedDropping();
 		
 		leavesProperties.setTree(treeFamily);
+		
+		//Add species features
+		addGenFeature(new FeatureGenConiferTopper(getLeavesProperties()));//Make a topper for this conifer tree
 	}
 	
 	@Override
@@ -78,20 +78,6 @@ public class SpeciesDarkOakConifer extends SpeciesRare {
 		int month = (int)day / 30; // Change the hashs every in-game month
 		
 		return super.getEnergy(world, pos) * biomeSuitability(world, pos) + (coordHashCode(pos.up(month)) % 5); // Vary the height energy by a psuedorandom hash function
-	}
-	
-	public int coordHashCode(BlockPos pos) {
-		int hash = (pos.getX() * 9973 ^ pos.getY() * 8287 ^ pos.getZ() * 9721) >> 1;
-		return hash & 0xFFFF;
-	}
-	
-	@Override
-	public void postGeneration(World world, BlockPos rootPos, Biome biome, int radius, List<BlockPos> endPoints, SafeChunkBounds safeBounds, IBlockState initialDirtState) {
-		// Manually place the highest few blocks of the conifer since the leafCluster voxmap won't handle it
-		BlockPos highest = Collections.max(endPoints, (a, b) -> a.getY() - b.getY());
-		world.setBlockState(highest.up(1), leavesProperties.getDynamicLeavesState(4));
-		world.setBlockState(highest.up(2), leavesProperties.getDynamicLeavesState(3));
-		world.setBlockState(highest.up(3), leavesProperties.getDynamicLeavesState(1));
 	}
 	
 	@Override

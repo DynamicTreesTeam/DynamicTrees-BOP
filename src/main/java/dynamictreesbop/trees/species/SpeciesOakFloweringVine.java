@@ -1,7 +1,5 @@
 package dynamictreesbop.trees.species;
 
-import java.util.List;
-
 import com.ferreusveritas.dynamictrees.ModBlocks;
 import com.ferreusveritas.dynamictrees.ModConfigs;
 import com.ferreusveritas.dynamictrees.ModConstants;
@@ -11,23 +9,18 @@ import com.ferreusveritas.dynamictrees.systems.dropcreators.DropCreatorApple;
 import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenVine;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
-import com.ferreusveritas.dynamictrees.util.SafeChunkBounds;
 
 import biomesoplenty.api.biome.BOPBiomes;
 import biomesoplenty.api.block.BOPBlocks;
 import dynamictreesbop.DynamicTreesBOP;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary.Type;
 
 public class SpeciesOakFloweringVine extends Species {
 	
 	Species baseSpecies;
-	FeatureGenVine vineGen;
 	
 	public SpeciesOakFloweringVine(TreeFamily treeFamily) {
 		super(new ResourceLocation(DynamicTreesBOP.MODID, "oakfloweringvine"), treeFamily, ModBlocks.oakLeavesProperties);
@@ -49,7 +42,8 @@ public class SpeciesOakFloweringVine extends Species {
 		
 		setupStandardSeedDropping();
 		
-		vineGen = new FeatureGenVine(this).setQuantity(12).setMaxLength(6).setRayDistance(6).setVineBlock(BOPBlocks.flower_vine);
+		//Add species features
+		addGenFeature(new FeatureGenVine(this).setQuantity(12).setMaxLength(6).setRayDistance(6).setVineBlock(BOPBlocks.flower_vine));//Generate Vines
 	}
 	
 	@Override
@@ -65,12 +59,6 @@ public class SpeciesOakFloweringVine extends Species {
 	@Override
 	public Seed getSeed() {
 		return baseSpecies.getSeed();
-	}
-	
-	@Override
-	public void postGeneration(World world, BlockPos rootPos, Biome biome, int radius, List<BlockPos> endPoints, SafeChunkBounds safeBounds, IBlockState initialDirtState) {
-		super.postGeneration(world, rootPos, biome, radius, endPoints, safeBounds, initialDirtState);
-		vineGen.postGeneration(world, rootPos, biome, radius, endPoints, safeBounds, initialDirtState);//Generate Vines
 	}
 	
 }

@@ -1,6 +1,5 @@
 package dynamictreesbop.trees;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -11,11 +10,11 @@ import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSapling;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSaplingRare;
 import com.ferreusveritas.dynamictrees.items.Seed;
 import com.ferreusveritas.dynamictrees.systems.GrowSignal;
+import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenConiferTopper;
 import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenVine;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.trees.SpeciesRare;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
-import com.ferreusveritas.dynamictrees.util.SafeChunkBounds;
 
 import biomesoplenty.api.biome.BOPBiomes;
 import biomesoplenty.api.block.BOPBlocks;
@@ -43,9 +42,7 @@ import net.minecraftforge.registries.IForgeRegistry;
 public class TreeUmbran extends TreeFamily {
 	
 	public class SpeciesUmbran extends Species {
-		
-		FeatureGenVine vineGen;
-		
+				
 		SpeciesUmbran(TreeFamily treeFamily) {
 			super(treeFamily.getName(), treeFamily, ModContent.umbranLeavesProperties);
 			
@@ -67,18 +64,12 @@ public class TreeUmbran extends TreeFamily {
 			
 			setupStandardSeedDropping();
 			
-			vineGen = new FeatureGenVine(this).setQuantity(7).setMaxLength(6).setRayDistance(6).setVineBlock(BOPBlocks.tree_moss);
+			addGenFeature(new FeatureGenVine(this).setQuantity(7).setMaxLength(6).setRayDistance(6).setVineBlock(BOPBlocks.tree_moss));
 		}
 		
 		@Override
 		public boolean isBiomePerfect(Biome biome) {
 			return isOneOfBiomes(biome, BOPBiomes.ominous_woods.orNull());
-		}
-		
-		@Override
-		public void postGeneration(World world, BlockPos rootPos, Biome biome, int radius, List<BlockPos> endPoints, SafeChunkBounds safeBounds, IBlockState initialDirtState) {
-			super.postGeneration(world, rootPos, biome, radius, endPoints, safeBounds, initialDirtState);
-			vineGen.postGeneration(world, rootPos, biome, radius, endPoints, safeBounds, initialDirtState);//Generate Vines
 		}
 		
 		@Override
@@ -118,6 +109,9 @@ public class TreeUmbran extends TreeFamily {
 			generateSeed();
 			
 			setupStandardSeedDropping();
+			
+			//Add species features
+			addGenFeature(new FeatureGenConiferTopper(getLeavesProperties()));//Make a topper for this conifer tree
 		}
 		
 		@Override
@@ -165,15 +159,6 @@ public class TreeUmbran extends TreeFamily {
 		}
 		
 		@Override
-		public void postGeneration(World world, BlockPos rootPos, Biome biome, int radius, List<BlockPos> endPoints, SafeChunkBounds safeBounds, IBlockState initialDirtState) {
-			//Manually place the highest few blocks of the conifer since the leafCluster voxmap won't handle it
-			BlockPos highest = Collections.max(endPoints, (a, b) -> a.getY() - b.getY());
-			world.setBlockState(highest.up(1), leavesProperties.getDynamicLeavesState(4));
-			world.setBlockState(highest.up(2), leavesProperties.getDynamicLeavesState(3));
-			world.setBlockState(highest.up(3), leavesProperties.getDynamicLeavesState(1));
-		}
-		
-		@Override
 		public boolean rot(World world, BlockPos pos, int neighborCount, int radius, Random random, boolean rapid) {
 			if(super.rot(world, pos, neighborCount, radius, random, rapid)) {
 				if(radius > 4 && TreeHelper.isRooty(world.getBlockState(pos.down())) && world.getLightFor(EnumSkyBlock.SKY, pos) < 4) {
@@ -206,6 +191,9 @@ public class TreeUmbran extends TreeFamily {
 			addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
 			
 			setupStandardSeedDropping();
+			
+			//Add species features
+			addGenFeature(new FeatureGenConiferTopper(getLeavesProperties()));//Make a topper for this conifer tree
 		}
 		
 		@Override
@@ -250,15 +238,6 @@ public class TreeUmbran extends TreeFamily {
 		public int coordHashCode(BlockPos pos) {
 			int hash = (pos.getX() * 9973 ^ pos.getY() * 8287 ^ pos.getZ() * 9721) >> 1;
 			return hash & 0xFFFF;
-		}
-		
-		@Override
-		public void postGeneration(World world, BlockPos rootPos, Biome biome, int radius, List<BlockPos> endPoints, SafeChunkBounds safeBounds, IBlockState initialDirtState) {
-			//Manually place the highest few blocks of the conifer since the leafCluster voxmap won't handle it
-			BlockPos highest = Collections.max(endPoints, (a, b) -> a.getY() - b.getY());
-			world.setBlockState(highest.up(1), leavesProperties.getDynamicLeavesState(4));
-			world.setBlockState(highest.up(2), leavesProperties.getDynamicLeavesState(3));
-			world.setBlockState(highest.up(3), leavesProperties.getDynamicLeavesState(1));
 		}
 		
 		@Override

@@ -1,15 +1,14 @@
 package dynamictreesbop.trees;
 
-import java.util.Collections;
 import java.util.List;
 
 import com.ferreusveritas.dynamictrees.blocks.BlockBranch;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSapling;
 import com.ferreusveritas.dynamictrees.systems.GrowSignal;
 import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenBush;
+import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenConiferTopper;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
-import com.ferreusveritas.dynamictrees.util.SafeChunkBounds;
 
 import biomesoplenty.api.biome.BOPBiomes;
 import biomesoplenty.api.block.BOPBlocks;
@@ -33,9 +32,7 @@ import net.minecraftforge.common.BiomeDictionary.Type;
 public class TreePine extends TreeFamily {
 	
 	public class SpeciesPine extends Species {
-		
-		FeatureGenBush bushGen;
-		
+				
 		SpeciesPine(TreeFamily treeFamily) {
 			super(treeFamily.getName(), treeFamily, ModContent.pineLeavesProperties);
 			
@@ -53,7 +50,8 @@ public class TreePine extends TreeFamily {
 			
 			setupStandardSeedDropping();
 			
-			bushGen = new FeatureGenBush(this);
+			addGenFeature(new FeatureGenConiferTopper(getLeavesProperties()));//Make a topper for this conifer tree
+			addGenFeature(new FeatureGenBush(this).setBiomePredicate(b -> b == BOPBiomes.shield.orNull()));//Generate undergrowth
 		}
 		
 		@Override
@@ -94,24 +92,6 @@ public class TreePine extends TreeFamily {
 			int month = (int)day / 30;//Change the hashs every in-game month
 			
 			return super.getEnergy(world, pos) * biomeSuitability(world, pos) + (coordHashCode(pos.up(month)) % 6);//Vary the height energy by a psuedorandom hash function
-		}
-		
-		public int coordHashCode(BlockPos pos) {
-			int hash = (pos.getX() * 9973 ^ pos.getY() * 8287 ^ pos.getZ() * 9721) >> 1;
-			return hash & 0xFFFF;
-		}
-		
-		@Override
-		public void postGeneration(World world, BlockPos rootPos, Biome biome, int radius, List<BlockPos> endPoints, SafeChunkBounds safeBounds, IBlockState initialDirtState) {
-			//Manually place the highest few blocks of the conifer since the leafCluster voxmap won't handle it
-			BlockPos highest = Collections.max(endPoints, (a, b) -> a.getY() - b.getY());
-			world.setBlockState(highest.up(1), leavesProperties.getDynamicLeavesState(4));
-			world.setBlockState(highest.up(2), leavesProperties.getDynamicLeavesState(3));
-			world.setBlockState(highest.up(3), leavesProperties.getDynamicLeavesState(1));
-			
-			if (biome == BOPBiomes.shield.orNull()) {
-				bushGen.postGeneration(world, rootPos, biome, radius, endPoints, safeBounds, initialDirtState);//Generate undergrowth
-			}
 		}
 		
 	}

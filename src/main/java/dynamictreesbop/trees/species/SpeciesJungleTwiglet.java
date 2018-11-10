@@ -5,6 +5,7 @@ import java.util.Random;
 import com.ferreusveritas.dynamictrees.ModConstants;
 import com.ferreusveritas.dynamictrees.api.TreeRegistry;
 import com.ferreusveritas.dynamictrees.items.Seed;
+import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.trees.SpeciesRare;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 import com.ferreusveritas.dynamictrees.util.SafeChunkBounds;
@@ -24,6 +25,8 @@ import net.minecraftforge.common.BiomeDictionary.Type;
 
 public class SpeciesJungleTwiglet extends SpeciesRare {
 	
+	Species cactus;
+	
 	public SpeciesJungleTwiglet(TreeFamily treeFamily) {
 		super(new ResourceLocation(DynamicTreesBOP.MODID, treeFamily.getName().getResourcePath() + "twiglet"), treeFamily, ModContent.jungleTwigletLeavesProperties);
 		
@@ -37,6 +40,8 @@ public class SpeciesJungleTwiglet extends SpeciesRare {
 		
 		addDropCreator(new DropCreatorInvoluntarySeed());
 		remDropCreator(new ResourceLocation(ModConstants.MODID, "logs"));
+		
+		cactus = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "cactus"));//Cache the cactus species for quicker generation
 		
 		leavesProperties.setTree(treeFamily);
 	}
@@ -65,7 +70,7 @@ public class SpeciesJungleTwiglet extends SpeciesRare {
 	@Override
 	public boolean generate(World world, BlockPos pos, Biome biome, Random random, int radius, SafeChunkBounds safeBounds) {
 		if (world.getBlockState(pos).getBlock() == Blocks.SAND) {
-			if (biome == BOPBiomes.oasis.orNull()) return TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "cactus")).generate(world, pos, biome, random, radius, safeBounds);
+			if (biome == BOPBiomes.oasis.orNull()) return cactus.generate(world, pos, biome, random, radius, safeBounds);
 			return false;
 		}
 		return super.generate(world, pos, biome, random, radius, safeBounds);

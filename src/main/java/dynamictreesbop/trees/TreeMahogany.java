@@ -4,14 +4,12 @@ import java.util.List;
 
 import com.ferreusveritas.dynamictrees.ModBlocks;
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
-import com.ferreusveritas.dynamictrees.api.network.MapSignal;
 import com.ferreusveritas.dynamictrees.blocks.BlockBranch;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSapling;
 import com.ferreusveritas.dynamictrees.systems.GrowSignal;
-import com.ferreusveritas.dynamictrees.systems.nodemappers.NodeFruitCocoa;
+import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenCocoa;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
-import com.ferreusveritas.dynamictrees.util.SafeChunkBounds;
 
 import biomesoplenty.api.biome.BOPBiomes;
 import biomesoplenty.api.block.BOPBlocks;
@@ -56,6 +54,9 @@ public class TreeMahogany extends TreeFamily {
 			generateSeed();
 			
 			setupStandardSeedDropping();
+			
+			//Add species features
+			addGenFeature(new FeatureGenCocoa());
 		}
 		
 		@Override
@@ -99,30 +100,6 @@ public class TreeMahogany extends TreeFamily {
 				signal.energy += (Math.max(Math.abs(signal.delta.getX()), Math.abs(signal.delta.getZ())) - 2f) * 1.5f;
 			}
 			return newDir;
-		}
-		
-		@Override
-		public void postGeneration(World world, BlockPos rootPos, Biome biome, int radius, List<BlockPos> endPoints, SafeChunkBounds safeBounds, IBlockState initialDirtState) {
-			super.postGeneration(world, rootPos, biome, radius, endPoints, safeBounds, initialDirtState);
-
-			if (world.rand.nextInt() % 8 == 0) {
-				addCocoa(world, rootPos, true);
-			}
-		}
-		
-		@Override
-		public boolean postGrow(World world, BlockPos rootPos, BlockPos treePos, int soilLife, boolean natural) {
-			super.postGrow(world, rootPos, treePos, soilLife, natural);
-			
-			if (soilLife == 0 && world.rand.nextInt() % 16 == 0) {
-				addCocoa(world, rootPos, false);
-			}
-			
-			return true;
-		}
-		
-		private void addCocoa(World world, BlockPos rootPos, boolean worldGen) {
-			TreeHelper.startAnalysisFromRoot(world, rootPos, new MapSignal(new NodeFruitCocoa().setWorldGen(worldGen)));
 		}
 		
 	}

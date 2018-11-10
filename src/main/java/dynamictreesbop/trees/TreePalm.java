@@ -108,25 +108,10 @@ public class TreePalm extends TreeFamily {
 			probMap[1] = 10;
 			probMap[2] = probMap[3] = probMap[4] = probMap[5] =  0;
 			probMap[originDir.ordinal()] = 0; // Disable the direction we came from
-			
-			/*if (signal.energy > 2 && originDir == EnumFacing.DOWN && CoordUtils.coordHashCode(pos, 1) % 2 == 0) {
-				int leanDir = (CoordUtils.coordHashCode(signal.rootPos, 3) % 4) + 2;
-				probMap[1] = 0;
-				probMap[leanDir] = 10;
-			}*/
-			
+						
 			return probMap;
 		}
-		
-		@Override
-		protected EnumFacing newDirectionSelected(EnumFacing newDir, GrowSignal signal) {
-			if (signal.isInTrunk() && newDir != EnumFacing.UP) { // Turned out of trunk
-				//signal.energy /= 6.0f;
-				//if (signal.energy > 1.8f) signal.energy = 1.8f;
-			}
-			return newDir;
-		}
-		
+				
 		// Palm trees are so similar that it makes sense to randomize their height for a little variation
 		// but we don't want the trees to always be the same height all the time when planted in the same location
 		// so we feed the hash function the in-game month
@@ -211,9 +196,7 @@ public class TreePalm extends TreeFamily {
 		blockList.add(getCommonSpecies().getDynamicSapling().getBlock());
 		return super.getRegisterableBlocks(blockList);
 	}
-
-	//THE FOLLOWING IS EXPERIMENTAL CODE!!!!
-
+	
 	@Override
 	public HashMap<BlockPos, IBlockState> getFellingLeavesClusters(BranchDestructionData destructionData) {
 		

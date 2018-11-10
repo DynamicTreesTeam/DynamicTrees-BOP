@@ -1,15 +1,14 @@
 package dynamictreesbop.trees.species;
 
-import java.util.Collections;
-import java.util.List;
 import java.util.Random;
 
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
 import com.ferreusveritas.dynamictrees.items.Seed;
 import com.ferreusveritas.dynamictrees.systems.GrowSignal;
+import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenConiferTopper;
 import com.ferreusveritas.dynamictrees.trees.SpeciesRare;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
-import com.ferreusveritas.dynamictrees.util.SafeChunkBounds;
+import com.ferreusveritas.dynamictrees.util.CoordUtils;
 
 import biomesoplenty.api.biome.BOPBiomes;
 import biomesoplenty.api.block.BOPBlocks;
@@ -18,7 +17,6 @@ import biomesoplenty.common.block.BlockBOPLeaves;
 import biomesoplenty.common.block.BlockBOPMushroom;
 import dynamictreesbop.DynamicTreesBOP;
 import dynamictreesbop.ModContent;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
@@ -48,6 +46,9 @@ public class SpeciesDarkOakDyingConifer extends SpeciesRare {
 		treeFamily.addConnectableVanillaLeaves((state) -> {
 			return state.getBlock() instanceof BlockBOPLeaves && state.getValue(((BlockBOPLeaves) state.getBlock()).variantProperty) == BOPTrees.DEAD;
 		});
+		
+		//Add species features
+		addGenFeature(new FeatureGenConiferTopper(getLeavesProperties()));//Make a topper for this conifer tree
 	}
 	
 	@Override
@@ -87,19 +88,9 @@ public class SpeciesDarkOakDyingConifer extends SpeciesRare {
 	}
 	
 	public int coordHashCode(BlockPos pos) {
-		int hash = (pos.getX() * 9973 ^ pos.getY() * 8287 ^ pos.getZ() * 9721) >> 1;
-		return hash & 0xFFFF;
+		return CoordUtils.coordHashCode(pos, 2);
 	}
-	
-	@Override
-	public void postGeneration(World world, BlockPos rootPos, Biome biome, int radius, List<BlockPos> endPoints, SafeChunkBounds safeBounds, IBlockState initialDirtState) {
-		// Manually place the highest few blocks of the conifer since the leafCluster voxmap won't handle it
-		BlockPos highest = Collections.max(endPoints, (a, b) -> a.getY() - b.getY());
-		world.setBlockState(highest.up(1), leavesProperties.getDynamicLeavesState(4));
-		world.setBlockState(highest.up(2), leavesProperties.getDynamicLeavesState(3));
-		world.setBlockState(highest.up(3), leavesProperties.getDynamicLeavesState(1));
-	}
-	
+		
 	@Override
 	public ItemStack getSeedStack(int qty) {
 		return getFamily().getCommonSpecies().getSeedStack(qty);

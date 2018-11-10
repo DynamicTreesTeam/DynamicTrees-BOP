@@ -9,7 +9,6 @@ import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSapling;
 import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenVine;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
-import com.ferreusveritas.dynamictrees.util.SafeChunkBounds;
 
 import biomesoplenty.api.block.BOPBlocks;
 import biomesoplenty.api.enums.BOPTrees;
@@ -33,9 +32,7 @@ import net.minecraftforge.common.BiomeDictionary.Type;
 public class TreeWillow extends TreeFamily {
 	
 	public class SpeciesWillow extends Species {
-		
-		FeatureGenVine vineGen;
-		
+				
 		SpeciesWillow(TreeFamily treeFamily) {
 			super(treeFamily.getName(), treeFamily, ModContent.willowLeavesProperties);
 			
@@ -52,7 +49,7 @@ public class TreeWillow extends TreeFamily {
 			
 			setupStandardSeedDropping();
 			
-			vineGen = new FeatureGenVine(this).setQuantity(32).setMaxLength(8).setRayDistance(7).setVineBlock(BOPBlocks.willow_vine);
+			addGenFeature(new FeatureGenVine(this).setQuantity(32).setMaxLength(8).setRayDistance(7).setVineBlock(BOPBlocks.willow_vine));//Generate Vines
 		}
 		
 		@Override
@@ -85,12 +82,6 @@ public class TreeWillow extends TreeFamily {
 			return false;
 		}
 		
-		@Override
-		public void postGeneration(World world, BlockPos rootPos, Biome biome, int radius, List<BlockPos> endPoints, SafeChunkBounds safeBounds, IBlockState initialDirtState) {
-			super.postGeneration(world, rootPos, biome, radius, endPoints, safeBounds, initialDirtState);
-			vineGen.postGeneration(world, rootPos, biome, radius, endPoints, safeBounds, initialDirtState);//Generate Vines
-		}
-	
 	}
 	
 	public TreeWillow() {

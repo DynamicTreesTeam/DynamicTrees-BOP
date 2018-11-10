@@ -1,7 +1,5 @@
 package dynamictreesbop.trees.species;
 
-import java.util.List;
-
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
 import com.ferreusveritas.dynamictrees.api.network.INodeInspector;
 import com.ferreusveritas.dynamictrees.api.treedata.ILeavesProperties;
@@ -13,7 +11,6 @@ import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenBush;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.trees.SpeciesRare;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
-import com.ferreusveritas.dynamictrees.util.SafeChunkBounds;
 import com.ferreusveritas.dynamictrees.util.SimpleVoxmap;
 
 import biomesoplenty.api.biome.BOPBiomes;
@@ -32,9 +29,7 @@ import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary.Type;
 
 public class SpeciesPoplar extends SpeciesRare {
-	
-	FeatureGenBush bushGen;
-	
+		
 	public SpeciesPoplar(TreeFamily treeFamily, String name, ILeavesProperties leavesProps) {
 		super(new ResourceLocation(DynamicTreesBOP.MODID, name), treeFamily, leavesProps);
 		
@@ -48,7 +43,13 @@ public class SpeciesPoplar extends SpeciesRare {
 		
 		setupStandardSeedDropping();
 		
-		bushGen = new FeatureGenBush(this).setSecondaryLeavesState(BlockBOPLeaves.paging.getVariantState(BOPTrees.FLOWERING));
+		//Generate undergrowth
+		addGenFeature(
+				new FeatureGenBush(this)
+					.setBiomePredicate(b -> b == BOPBiomes.grove.orNull())
+					.setSecondaryLeavesState(BlockBOPLeaves.paging.getVariantState(BOPTrees.FLOWERING)
+				)
+			);
 		
 		leavesProperties.setTree(treeFamily);
 	}
@@ -105,13 +106,6 @@ public class SpeciesPoplar extends SpeciesRare {
 	public int coordHashCode(BlockPos pos) {
 		int hash = (pos.getX() * 9973 ^ pos.getY() * 8287 ^ pos.getZ() * 9721) >> 1;
 		return hash & 0xFFFF;
-	}
-	
-	@Override
-	public void postGeneration(World world, BlockPos rootPos, Biome biome, int radius, List<BlockPos> endPoints, SafeChunkBounds safeBounds, IBlockState initialDirtState) {
-		if (biome == BOPBiomes.grove.orNull()) {
-			bushGen.postGeneration(world, rootPos, biome, radius, endPoints, safeBounds, initialDirtState);//Generate undergrowth
-		}
 	}
 	
 	@Override
