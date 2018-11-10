@@ -1,6 +1,6 @@
 package dynamictreesbop.trees.species;
 
-import com.ferreusveritas.dynamictrees.api.IGenModule;
+import com.ferreusveritas.dynamictrees.api.IGenFeature;
 import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenBush;
 import com.ferreusveritas.dynamictrees.trees.Species;
 
@@ -22,7 +22,7 @@ public class SpeciesAcaciaBush extends Species {
 		
 		addGenFeature(new FeatureGenBush(this)
 			.setLeavesState(Blocks.LEAVES2.getDefaultState().withProperty(BlockNewLeaf.VARIANT, BlockPlanks.EnumType.ACACIA))
-			.setLogState(Blocks.LOG2.getDefaultState().withProperty(BlockNewLog.VARIANT, BlockPlanks.EnumType.ACACIA)), IGenModule.FULLGEN);
+			.setLogState(Blocks.LOG2.getDefaultState().withProperty(BlockNewLog.VARIANT, BlockPlanks.EnumType.ACACIA)), IGenFeature.FULLGEN);
 	}
 	
 }

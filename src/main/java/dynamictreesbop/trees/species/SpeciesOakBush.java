@@ -1,6 +1,6 @@
 package dynamictreesbop.trees.species;
 
-import com.ferreusveritas.dynamictrees.api.IGenModule;
+import com.ferreusveritas.dynamictrees.api.IGenFeature;
 import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenBush;
 import com.ferreusveritas.dynamictrees.trees.Species;
 
@@ -19,7 +19,7 @@ FeatureGenBush bushGen;
 		setStandardSoils();
 		addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
 		
-		addGenFeature(new FeatureGenBush(this), IGenModule.FULLGEN);
+		addGenFeature(new FeatureGenBush(this), IGenFeature.FULLGEN);
 	}
 	
 }

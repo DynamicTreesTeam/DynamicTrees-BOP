@@ -1,6 +1,6 @@
 package dynamictreesbop.trees.species;
 
-import com.ferreusveritas.dynamictrees.api.IGenModule;
+import com.ferreusveritas.dynamictrees.api.IGenFeature;
 import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenBush;
 import com.ferreusveritas.dynamictrees.trees.Species;
 
@@ -24,7 +24,7 @@ public class SpeciesSpruceBush extends Species {
 		addGenFeature(
 			new FeatureGenBush(this)
 				.setLeavesState(Blocks.LEAVES.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.SPRUCE))
-				.setLogState(Blocks.LOG.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.SPRUCE)), IGenModule.FULLGEN);
+				.setLogState(Blocks.LOG.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.SPRUCE)), IGenFeature.FULLGEN);
 	}
 	
 }
