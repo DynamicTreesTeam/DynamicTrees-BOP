@@ -70,8 +70,7 @@ public class SpeciesJungleTwiglet extends SpeciesRare {
 	@Override
 	public boolean generate(World world, BlockPos pos, Biome biome, Random random, int radius, SafeChunkBounds safeBounds) {
 		if (world.getBlockState(pos).getBlock() == Blocks.SAND) {
-			if (biome == BOPBiomes.oasis.orNull()) return cactus.generate(world, pos, biome, random, radius, safeBounds);
-			return false;
+			return biome == BOPBiomes.oasis.orNull() ? cactus.generate(world, pos, biome, random, radius, safeBounds) : false;
 		}
 		return super.generate(world, pos, biome, random, radius, safeBounds);
 	}

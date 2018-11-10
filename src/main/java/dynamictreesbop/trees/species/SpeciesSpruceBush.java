@@ -1,10 +1,8 @@
 package dynamictreesbop.trees.species;
 
-import java.util.Random;
-
+import com.ferreusveritas.dynamictrees.api.IGenModule;
 import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenBush;
 import com.ferreusveritas.dynamictrees.trees.Species;
-import com.ferreusveritas.dynamictrees.util.SafeChunkBounds;
 
 import biomesoplenty.api.block.BOPBlocks;
 import dynamictreesbop.DynamicTreesBOP;
@@ -13,14 +11,9 @@ import net.minecraft.block.BlockOldLog;
 import net.minecraft.block.BlockPlanks;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
 
 public class SpeciesSpruceBush extends Species {
-	
-	FeatureGenBush bushGen;
-	
+		
 	public SpeciesSpruceBush() {
 		super();
 		setRegistryName(new ResourceLocation(DynamicTreesBOP.MODID, "sprucebush"));
@@ -28,15 +21,10 @@ public class SpeciesSpruceBush extends Species {
 		setStandardSoils();
 		addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
 		
-		this.bushGen = new FeatureGenBush(this)
+		addGenFeature(
+			new FeatureGenBush(this)
 				.setLeavesState(Blocks.LEAVES.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.SPRUCE))
-				.setLogState(Blocks.LOG.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.SPRUCE));
+				.setLogState(Blocks.LOG.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.SPRUCE)), IGenModule.FULLGEN);
 	}
 	
-	@Override
-	public boolean generate(World world, BlockPos rootPos, Biome biome, Random random, int radius, SafeChunkBounds safeBounds) {
-		bushGen.generate(world, rootPos, biome, random, radius, safeBounds);
-		return true;
-	}
-
 }
