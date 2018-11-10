@@ -29,7 +29,7 @@ FeatureGenBush bushGen;
 	
 	@Override
 	public boolean generate(World world, BlockPos rootPos, Biome biome, Random random, int radius, SafeChunkBounds safeBounds) {
-		bushGen.gen(world, rootPos, biome, random, radius, safeBounds);
+		bushGen.generate(world, rootPos, biome, random, radius, safeBounds);
 		return true;
 	}
 
