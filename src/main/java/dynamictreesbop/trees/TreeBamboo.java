@@ -31,7 +31,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary.Type;
@@ -131,6 +130,8 @@ public class TreeBamboo extends TreeFamily {
 		
 		ModContent.bambooLeavesProperties.setTree(this);
 		
+		hasConiferVariants = true;
+		
 		this.addConnectableVanillaLeaves((state) -> {
 			return state.getBlock() instanceof BlockBOPLeaves && state.getValue(((BlockBOPLeaves) state.getBlock()).variantProperty) == BOPTrees.BAMBOO;
 		});
@@ -163,17 +164,6 @@ public class TreeBamboo extends TreeFamily {
 	public List<Block> getRegisterableBlocks(List<Block> blockList) {
 		blockList.add(getCommonSpecies().getDynamicSapling().getBlock());
 		return super.getRegisterableBlocks(blockList);
-	}
-	
-	@Override
-	public int getRadiusForCellKit(IBlockAccess blockAccess, BlockPos pos, IBlockState blockState, EnumFacing dir, BlockBranch branch) {
-		int radius = branch.getRadius(blockState);
-		if (radius == 1) {
-			if (blockAccess.getBlockState(pos.down()).getBlock() == branch) {
-				return 128;
-			}
-		}
-		return radius;
 	}
 	
 	public class NodeInflatorBamboo implements INodeInspector {

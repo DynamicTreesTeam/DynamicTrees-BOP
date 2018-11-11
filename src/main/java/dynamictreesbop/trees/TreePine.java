@@ -2,7 +2,6 @@ package dynamictreesbop.trees;
 
 import java.util.List;
 
-import com.ferreusveritas.dynamictrees.blocks.BlockBranch;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSapling;
 import com.ferreusveritas.dynamictrees.systems.GrowSignal;
 import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenBush;
@@ -23,7 +22,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
@@ -103,6 +101,7 @@ public class TreePine extends TreeFamily {
 		setPrimitiveLog(primLog, BlockBOPLog.paging.getVariantItem(BOPWoods.PINE));
 		
 		ModContent.pineLeavesProperties.setTree(this);
+		hasConiferVariants = true;
 		
 		this.addConnectableVanillaLeaves((state) -> {
 			return state.getBlock() instanceof BlockBOPLeaves && state.getValue(((BlockBOPLeaves) state.getBlock()).variantProperty) == BOPTrees.PINE;
@@ -112,17 +111,6 @@ public class TreePine extends TreeFamily {
 	@Override
 	public void createSpecies() {
 		setCommonSpecies(new SpeciesPine(this));
-	}
-	
-	@Override
-	public int getRadiusForCellKit(IBlockAccess blockAccess, BlockPos pos, IBlockState blockState, EnumFacing dir, BlockBranch branch) {
-		int radius = branch.getRadius(blockState);
-		if (radius == 1) {
-			if (blockAccess.getBlockState(pos.down()).getBlock() == branch) {
-				return 128;
-			}
-		}
-		return radius;
 	}
 	
 	@Override

@@ -30,7 +30,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary.Type;
@@ -119,6 +118,8 @@ public class TreeEucalyptus extends TreeFamily {
 		
 		IBlockState primLog = BlockBOPLog.paging.getVariantState(BOPWoods.EUCALYPTUS);
 		setPrimitiveLog(primLog, BlockBOPLog.paging.getVariantItem(BOPWoods.EUCALYPTUS));
+		
+		hasConiferVariants = true;
 		
 		ModContent.eucalyptusLeavesProperties.setTree(this);
 		
@@ -224,17 +225,6 @@ public class TreeEucalyptus extends TreeFamily {
 				return signal;
 			}
 		};
-	}
-	
-	@Override
-	public int getRadiusForCellKit(IBlockAccess blockAccess, BlockPos pos, IBlockState blockState, EnumFacing dir, BlockBranch branch) {
-		int radius = branch.getRadius(blockState);
-		if (radius == 1) {
-			if (blockAccess.getBlockState(pos.down()).getBlock() == branch) {
-				return 128;
-			}
-		}
-		return radius;
 	}
 	
 	public class NodeInflatorEucalyptus implements INodeInspector {

@@ -2,7 +2,6 @@ package dynamictreesbop.trees;
 
 import java.util.List;
 
-import com.ferreusveritas.dynamictrees.blocks.BlockBranch;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSapling;
 import com.ferreusveritas.dynamictrees.items.Seed;
 import com.ferreusveritas.dynamictrees.systems.GrowSignal;
@@ -25,7 +24,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
@@ -186,7 +184,7 @@ public class TreeFir extends TreeFamily {
 		
 		IBlockState primLog = BlockBOPLog.paging.getVariantState(BOPWoods.FIR);
 		setPrimitiveLog(primLog, BlockBOPLog.paging.getVariantItem(BOPWoods.FIR));
-		
+		hasConiferVariants = true;
 		ModContent.firLeavesProperties.setTree(this);
 		
 		this.addConnectableVanillaLeaves((state) -> {
@@ -209,17 +207,6 @@ public class TreeFir extends TreeFamily {
 	@Override
 	public boolean isThick() {
 		return true;
-	}
-	
-	@Override
-	public int getRadiusForCellKit(IBlockAccess blockAccess, BlockPos pos, IBlockState blockState, EnumFacing dir, BlockBranch branch) {
-		int radius = branch.getRadius(blockState);
-		if(radius == 1) {
-			if(blockAccess.getBlockState(pos.down()).getBlock() == branch) {
-				return 128;
-			}
-		}
-		return radius;
 	}
 	
 	@Override
