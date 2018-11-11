@@ -5,6 +5,7 @@ import com.ferreusveritas.dynamictrees.api.cells.CellNull;
 import com.ferreusveritas.dynamictrees.api.cells.ICell;
 import com.ferreusveritas.dynamictrees.api.cells.ICellKit;
 import com.ferreusveritas.dynamictrees.api.cells.ICellSolver;
+import com.ferreusveritas.dynamictrees.cells.CellMetadata;
 import com.ferreusveritas.dynamictrees.cells.CellNormal;
 import com.ferreusveritas.dynamictrees.util.SimpleVoxmap;
 
@@ -40,8 +41,8 @@ public class CellKits {
 		}
 		
 		@Override
-		public ICell getCellForBranch(int radius) {
-			return radius == 1 || radius == 128 ? sparseBranch : CellNull.NULLCELL;
+		public ICell getCellForBranch(int radius, int meta) {
+			return radius == 1 ? sparseBranch : CellNull.NULLCELL;
 		}
 		
 		@Override
@@ -85,8 +86,8 @@ public class CellKits {
 		}
 		
 		@Override
-		public ICell getCellForBranch(int radius) {
-			if (radius == 128) return poplarTopBranch;
+		public ICell getCellForBranch(int radius, int meta) {
+			if (meta == CellMetadata.CONIFERTOP) return poplarTopBranch;
 			if (radius == 1) return poplarBranch;
 			if (radius < 4) return poplarUpperTrunk;
 			return CellNull.NULLCELL;
@@ -131,8 +132,8 @@ public class CellKits {
 		}
 		
 		@Override
-		public ICell getCellForBranch(int radius) {
-			if (radius == 1 || radius == 128) return mahoganyBranch;
+		public ICell getCellForBranch(int radius, int meta) {
+			if (radius == 1) return mahoganyBranch;
 			return CellNull.NULLCELL;
 		}
 		
@@ -187,8 +188,8 @@ public class CellKits {
 		}
 		
 		@Override
-		public ICell getCellForBranch(int radius) {
-			if (radius == 1 || radius == 128) return branch;
+		public ICell getCellForBranch(int radius, int meta) {
+			if (radius == 1) return branch;
 			return CellNull.NULLCELL;
 		}
 		
@@ -233,8 +234,8 @@ public class CellKits {
 		}
 		
 		@Override
-		public ICell getCellForBranch(int radius) {
-			if (radius == 128) return eucalyptusTopBranch;
+		public ICell getCellForBranch(int radius, int meta) {
+			if (meta == CellMetadata.CONIFERTOP) return eucalyptusTopBranch;
 			if (radius == 1) return eucalyptusBranch;
 			if (radius <= 3) return eucalyptusUpperTrunk;
 			return CellNull.NULLCELL;
@@ -280,8 +281,8 @@ private final ICellKit bamboo = new ICellKit() {
 		}
 		
 		@Override
-		public ICell getCellForBranch(int radius) {
-			if (radius == 128) return bambooTopBranch;
+		public ICell getCellForBranch(int radius, int meta) {
+			if (meta == CellMetadata.CONIFERTOP) return bambooTopBranch;
 			if (radius == 2) return bambooUpperTrunk;
 			return CellNull.NULLCELL;
 		}
