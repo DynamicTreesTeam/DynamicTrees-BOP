@@ -2,6 +2,7 @@ package dynamictreesbop.trees.species;
 
 import java.util.Random;
 
+import com.ferreusveritas.dynamictrees.api.IGenFeature;
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
 import com.ferreusveritas.dynamictrees.items.Seed;
 import com.ferreusveritas.dynamictrees.systems.GrowSignal;
@@ -45,7 +46,7 @@ public class SpeciesMegaOakConifer extends SpeciesRare {
 		
 		//Add species features
 		addGenFeature(new FeatureGenConiferTopper(getLeavesProperties()));//Make a topper for this conifer tree
-		addGenFeature(new FeatureGenBush(this));//Generate undergrowth
+		addGenFeature(new FeatureGenBush(this), IGenFeature.POSTGEN);//Generate undergrowth
 	}
 	
 	@Override

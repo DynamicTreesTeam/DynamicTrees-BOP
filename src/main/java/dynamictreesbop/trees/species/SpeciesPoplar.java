@@ -1,5 +1,6 @@
 package dynamictreesbop.trees.species;
 
+import com.ferreusveritas.dynamictrees.api.IGenFeature;
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
 import com.ferreusveritas.dynamictrees.api.network.INodeInspector;
 import com.ferreusveritas.dynamictrees.api.treedata.ILeavesProperties;
@@ -48,7 +49,7 @@ public class SpeciesPoplar extends SpeciesRare {
 				new FeatureGenBush(this)
 					.setBiomePredicate(b -> b == BOPBiomes.grove.orNull())
 					.setSecondaryLeavesState(BlockBOPLeaves.paging.getVariantState(BOPTrees.FLOWERING)
-				)
+				), IGenFeature.POSTGEN
 			);
 		
 		leavesProperties.setTree(treeFamily);

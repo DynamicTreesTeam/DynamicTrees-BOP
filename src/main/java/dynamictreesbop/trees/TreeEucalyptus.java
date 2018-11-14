@@ -2,6 +2,7 @@ package dynamictreesbop.trees;
 
 import java.util.List;
 
+import com.ferreusveritas.dynamictrees.api.IGenFeature;
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
 import com.ferreusveritas.dynamictrees.api.network.INodeInspector;
 import com.ferreusveritas.dynamictrees.api.treedata.ITreePart;
@@ -56,7 +57,7 @@ public class TreeEucalyptus extends TreeFamily {
 			
 			setupStandardSeedDropping();
 			
-			addGenFeature(new FeatureGenBush(this));//Generate undergrowth
+			addGenFeature(new FeatureGenBush(this), IGenFeature.POSTGEN);//Generate undergrowth
 		}
 		
 		@Override

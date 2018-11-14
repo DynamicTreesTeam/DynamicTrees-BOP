@@ -7,6 +7,7 @@ import com.ferreusveritas.dynamictrees.items.Seed;
 import com.ferreusveritas.dynamictrees.systems.GrowSignal;
 import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenClearVolume;
 import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenConiferTopper;
+import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenFlareBottom;
 import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenMound;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
@@ -57,6 +58,7 @@ public class TreeFir extends TreeFamily {
 			addGenFeature(new FeatureGenClearVolume(6));//Clear a spot for the thick tree trunk
 			addGenFeature(new FeatureGenConiferTopper(getLeavesProperties()));//Make a topper for this conifer tree
 			addGenFeature(new FeatureGenMound(this, 999));//Establish mounds
+			addGenFeature(new FeatureGenFlareBottom(this));//Flare the bottom
 		}
 		
 		@Override

@@ -2,6 +2,7 @@ package dynamictreesbop.trees;
 
 import java.util.List;
 
+import com.ferreusveritas.dynamictrees.api.IGenFeature;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSapling;
 import com.ferreusveritas.dynamictrees.systems.GrowSignal;
 import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenBush;
@@ -49,7 +50,7 @@ public class TreePine extends TreeFamily {
 			setupStandardSeedDropping();
 			
 			addGenFeature(new FeatureGenConiferTopper(getLeavesProperties()));//Make a topper for this conifer tree
-			addGenFeature(new FeatureGenBush(this).setBiomePredicate(b -> b == BOPBiomes.shield.orNull()));//Generate undergrowth
+			addGenFeature(new FeatureGenBush(this).setBiomePredicate(b -> b == BOPBiomes.shield.orNull()), IGenFeature.POSTGEN);//Generate undergrowth
 		}
 		
 		@Override
