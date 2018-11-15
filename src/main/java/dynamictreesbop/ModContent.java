@@ -38,6 +38,7 @@ import dynamictreesbop.trees.TreeMagic;
 import dynamictreesbop.trees.TreeMahogany;
 import dynamictreesbop.trees.TreePalm;
 import dynamictreesbop.trees.TreePine;
+import dynamictreesbop.trees.TreeRedwood;
 import dynamictreesbop.trees.TreeUmbran;
 import dynamictreesbop.trees.TreeWillow;
 import dynamictreesbop.trees.species.SpeciesAcaciaBrush;
@@ -105,7 +106,7 @@ public class ModContent {
 			magicLeavesProperties, umbranLeavesProperties, umbranConiferLeavesProperties,
 			dyingOakLeavesProperties, firLeavesProperties, pinkCherryLeavesProperties,
 			whiteCherryLeavesProperties, mapleLeavesProperties, deadLeavesProperties,
-			jacarandaLeavesProperties, willowLeavesProperties, hellbarkLeavesProperties,
+			jacarandaLeavesProperties, redwoodLeavesProperties, willowLeavesProperties, hellbarkLeavesProperties,
 			pineLeavesProperties, mahoganyLeavesProperties, ebonyLeavesProperties,
 			bambooLeavesProperties, eucalyptusLeavesProperties,
 			oakConiferLeavesProperties, darkOakConiferLeavesProperties, darkOakDyingConiferLeavesProperties,
@@ -300,6 +301,19 @@ public class ModContent {
 						return 0xffffff;
 					}
 				};
+		redwoodLeavesProperties  = new LeavesProperties(
+				BlockBOPLeaves.paging.getVariantState(BOPTrees.REDWOOD),
+				BlockBOPLeaves.paging.getVariantItem(BOPTrees.REDWOOD),
+				TreeRegistry.findCellKit("deciduous")) {
+					@Override
+					public int getSmotherLeavesMax() {
+						return 26;
+					}
+					@Override
+					public int getLightRequirement() {
+						return 9;
+					}
+				};
 		willowLeavesProperties = new LeavesProperties(
 				BlockBOPLeaves.paging.getVariantState(BOPTrees.WILLOW),
 				BlockBOPLeaves.paging.getVariantItem(BOPTrees.WILLOW),
@@ -479,7 +493,7 @@ public class ModContent {
 				deadLeavesProperties,
 				jacarandaLeavesProperties,
 				LeavesProperties.NULLPROPERTIES, // placeholder for mangrove
-				LeavesProperties.NULLPROPERTIES, // placeholder for redwood
+				redwoodLeavesProperties,
 				willowLeavesProperties,
 				pineLeavesProperties,
 				mahoganyLeavesProperties,
@@ -539,6 +553,7 @@ public class ModContent {
 		TreeFamily cherryTree = new TreeCherry();
 		TreeFamily deadTree = new TreeDead();
 		TreeFamily jacarandaTree = new TreeJacaranda();
+		TreeFamily redwoodTree = new TreeRedwood();
 		TreeFamily willowTree = new TreeWillow();
 		hellbarkTree = new TreeHellbark();
 		TreeFamily pineTree = new TreePine();
@@ -548,7 +563,7 @@ public class ModContent {
 		TreeFamily bambooTree = new TreeBamboo();
 		TreeFamily eucalyptusTree = new TreeEucalyptus();
 		
-		Collections.addAll(trees, magicTree, umbranTree, firTree, cherryTree, deadTree, jacarandaTree, willowTree, hellbarkTree, pineTree, palmTree, mahoganyTree, ebonyTree, bambooTree, eucalyptusTree);
+		Collections.addAll(trees, magicTree, umbranTree, firTree, cherryTree, deadTree, jacarandaTree, redwoodTree, willowTree, hellbarkTree, pineTree, palmTree, mahoganyTree, ebonyTree, bambooTree, eucalyptusTree);
 		trees.forEach(tree -> tree.registerSpecies(Species.REGISTRY));
 		
 		// Register extra saplings
@@ -598,7 +613,8 @@ public class ModContent {
 		// Add transformation potion recipes
 		String[] trees = new String[] {
 				"magic", "umbranconifer", "umbran", "fir", "whitecherry", "pinkcherry",
-				"jacaranda", "willow", "hellbark", "pine", "mahogany", "ebony", "eucalyptus",
+				"jacaranda", "redwood", "willow", "hellbark", "pine", "mahogany",
+				"ebony", "eucalyptus",
 		};
 		for (String tree : trees) {
 			addTransformationPotion(tree);
@@ -619,6 +635,7 @@ public class ModContent {
 		addSeedExchange(BOPTrees.WHITE_CHERRY, "whitecherry");
 		addSeedExchange(BOPTrees.PINK_CHERRY, "pinkcherry");
 		addSeedExchange(BOPTrees.JACARANDA, "jacaranda");
+		addSeedExchange(BOPTrees.REDWOOD, "redwood");
 		addSeedExchange(BOPTrees.WILLOW, "willow");
 		addSeedExchange(BOPTrees.HELLBARK, "hellbark");
 		addSeedExchange(BOPTrees.PINE, "pine");
