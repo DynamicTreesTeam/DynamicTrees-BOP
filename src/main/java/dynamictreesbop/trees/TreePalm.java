@@ -117,7 +117,7 @@ public class TreePalm extends TreeFamily {
 		// so we feed the hash function the in-game month
 		@Override
 		public float getEnergy(World world, BlockPos pos) {
-			long day = world.getTotalWorldTime() / 24000L;
+			long day = world.getWorldTime() / 24000L;
 			int month = (int) day / 30; // Change the hashs every in-game month
 			
 			return super.getEnergy(world, pos) * biomeSuitability(world, pos) + (CoordUtils.coordHashCode(pos.up(month), 3) % 3); // Vary the height energy by a psuedorandom hash function

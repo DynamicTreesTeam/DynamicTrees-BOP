@@ -7,7 +7,10 @@ import com.ferreusveritas.dynamictrees.api.TreeHelper;
 import com.ferreusveritas.dynamictrees.items.Seed;
 import com.ferreusveritas.dynamictrees.systems.GrowSignal;
 import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenBush;
+import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenClearVolume;
 import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenConiferTopper;
+import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenFlareBottom;
+import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenMound;
 import com.ferreusveritas.dynamictrees.trees.SpeciesRare;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 import com.ferreusveritas.dynamictrees.util.CoordUtils;
@@ -45,7 +48,10 @@ public class SpeciesMegaOakConifer extends SpeciesRare {
 		setupStandardSeedDropping();
 		
 		//Add species features
+		addGenFeature(new FeatureGenClearVolume(6));//Clear a spot for the thick tree trunk
 		addGenFeature(new FeatureGenConiferTopper(getLeavesProperties()));//Make a topper for this conifer tree
+		addGenFeature(new FeatureGenMound(this, 999));//Establish mounds
+		addGenFeature(new FeatureGenFlareBottom(this));//Flare the bottom
 		addGenFeature(new FeatureGenBush(this), IGenFeature.POSTGEN);//Generate undergrowth
 	}
 	
@@ -79,7 +85,7 @@ public class SpeciesMegaOakConifer extends SpeciesRare {
 	
 	@Override
 	public float getEnergy(World world, BlockPos pos) {
-		long day = world.getTotalWorldTime() / 24000L;
+		long day = world.getWorldTime() / 24000L;
 		int month = (int)day / 30;//Change the hashs every in-game month
 		
 		return super.getEnergy(world, pos) * biomeSuitability(world, pos) + (coordHashCode(pos.up(month)) % 8);//Vary the height energy by a psuedorandom hash function

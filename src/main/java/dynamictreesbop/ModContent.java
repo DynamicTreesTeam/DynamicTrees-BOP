@@ -219,7 +219,7 @@ public class ModContent {
 				TreeRegistry.findCellKit("conifer")) {
 					@Override
 					public int getSmotherLeavesMax() {
-						return 3;
+						return 4;
 					}
 					@Override
 					public int foliageColorMultiplier(IBlockState state, IBlockAccess world, BlockPos pos) {
@@ -408,7 +408,7 @@ public class ModContent {
 				TreeRegistry.findCellKit("conifer")) {
 					@Override
 					public int getSmotherLeavesMax() {
-						return 3;
+						return 4;
 					}
 				};
 		darkOakConiferLeavesProperties = new LeavesProperties(

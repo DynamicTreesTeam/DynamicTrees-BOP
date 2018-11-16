@@ -61,4 +61,9 @@ public class SpeciesOakFloweringVine extends Species {
 		return baseSpecies.getSeed();
 	}
 	
+	@Override
+	public int maxBranchRadius() {
+		return 8;
+	}
+	
 }

@@ -247,7 +247,7 @@ public class TreeEucalyptus extends TreeFamily {
 			BlockBranch branch = TreeHelper.getBranch(blockState);
 			
 			if (branch != null) {
-				radius = 1.0f;
+				radius = species.getFamily().getPrimaryThickness();
 			}
 			return false;
 		}
@@ -295,6 +295,12 @@ public class TreeEucalyptus extends TreeFamily {
 				} else {
 					// The new branch should be the square root of all of the sums of the areas of the branches coming into it.
 					radius = (float) Math.sqrt(areaAccum) + (species.getTapering() * species.getWorldGenTaperingFactor());
+					
+					//Ensure the branch is never inflated past it's species maximum
+					int maxRadius = species.maxBranchRadius();
+					if(radius > maxRadius) {
+						radius = maxRadius;
+					}
 					
 					// Make sure that non-twig branches are at least radius 2
 					float secondaryThickness = species.getFamily().getSecondaryThickness();

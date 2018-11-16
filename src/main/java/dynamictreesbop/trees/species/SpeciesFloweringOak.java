@@ -57,6 +57,11 @@ public class SpeciesFloweringOak extends SpeciesRare {
 	}
 	
 	@Override
+	public int maxBranchRadius() {
+		return 8;
+	}
+	
+	@Override
 	public boolean rot(World world, BlockPos pos, int neighborCount, int radius, Random random, boolean rapid) {
 		if(super.rot(world, pos, neighborCount, radius, random, rapid)) {
 			if(radius > 4 && TreeHelper.isRooty(world.getBlockState(pos.down())) && world.getLightFor(EnumSkyBlock.SKY, pos) < 4) {

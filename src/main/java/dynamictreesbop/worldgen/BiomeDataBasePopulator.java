@@ -130,7 +130,7 @@ public class BiomeDataBasePopulator implements IBiomeDataBasePopulator {
 		addSpeciesSelector(dbase, BOPBiomes.shield,						new RandomSpeciesSelector().add(spruce, 4).add(pine, 2));
 		addSpeciesSelector(dbase, BOPBiomes.snowy_coniferous_forest,	new RandomSpeciesSelector().add(fir, 2).add(firSmall, 4));
 		addSpeciesSelector(dbase, BOPBiomes.snowy_forest,				new RandomSpeciesSelector().add(oak, 3).add(oakDying, 1));
-		addSpeciesSelector(dbase, BOPBiomes.temperate_rainforest,		new RandomSpeciesSelector().add(oakConifer, 3).add(megaOakConifer, 5).add(willow, 1));
+		addSpeciesSelector(dbase, BOPBiomes.temperate_rainforest,		new RandomSpeciesSelector().add(oakConifer, 6).add(megaOakConifer, 10).add(willow, 3));
 		addSpeciesSelector(dbase, BOPBiomes.tropical_island,			new RandomSpeciesSelector().add(palm, 4).add(jungleTwiglet, 2));
 		addSpeciesSelector(dbase, BOPBiomes.tropical_rainforest,		new RandomSpeciesSelector().add(jungle, 2).add(mahogany, 6));
 		addSpeciesSelector(dbase, BOPBiomes.undergarden, 				new StaticSpeciesSelector(hellbark));
@@ -208,6 +208,7 @@ public class BiomeDataBasePopulator implements IBiomeDataBasePopulator {
 		addChanceSelector(dbase, BOPBiomes.prairie,				rand(0.075f));
 		addChanceSelector(dbase, BOPBiomes.quagmire,			rand(0.02f));
 		addChanceSelector(dbase, BOPBiomes.rainforest,			ok);
+		addChanceSelector(dbase, BOPBiomes.redwood_forest,		ok);
 		addChanceSelector(dbase, BOPBiomes.tropical_island,		ok);
 		addChanceSelector(dbase, BOPBiomes.tropical_rainforest,	ok);
 		addChanceSelector(dbase, BOPBiomes.undergarden,			ok);
@@ -227,7 +228,6 @@ public class BiomeDataBasePopulator implements IBiomeDataBasePopulator {
 		addChanceSelector(dbase, BOPBiomes.origin_beach,		cancel);
 		addChanceSelector(dbase, BOPBiomes.origin_island,		cancel);
 		addChanceSelector(dbase, BOPBiomes.pasture,				cancel);
-		addChanceSelector(dbase, BOPBiomes.redwood_forest,		cancel);
 		addChanceSelector(dbase, BOPBiomes.sacred_springs,		cancel);
 		addChanceSelector(dbase, BOPBiomes.shrubland,			cancel);
 		addChanceSelector(dbase, BOPBiomes.steppe,				cancel);
@@ -241,7 +241,6 @@ public class BiomeDataBasePopulator implements IBiomeDataBasePopulator {
 		blackList.addAll(BOPBiomes.shrubland.asSet());
 		blackList.addAll(BOPBiomes.tundra.asSet());
 		blackList.addAll(BOPBiomes.mangrove.asSet());
-		blackList.addAll(BOPBiomes.redwood_forest.asSet());
 		
 		Biome.REGISTRY.forEach(biome -> {
 			if (biome.getRegistryName().getResourceDomain().equals("biomesoplenty") && !blackList.contains(biome) ) {

@@ -49,7 +49,7 @@ public class TreeRedwood extends TreeFamily {
 		SpeciesRedwood(TreeFamily treeFamily) {
 			super(treeFamily.getName(), treeFamily, ModContent.redwoodLeavesProperties);
 			
-			setBasicGrowingParameters(0.27f, 38.0f, 24, 22, 2.0f);
+			setBasicGrowingParameters(0.27f, 38.0f, 24, 22, 1.33f);
 			
 			setSoilLongevity(53);
 			
@@ -67,7 +67,7 @@ public class TreeRedwood extends TreeFamily {
 			
 			//Add species features
 			addGenFeature(new FeatureGenClearVolume(6));//Clear a spot for the thick tree trunk
-			addGenFeature(new FeatureGenMound(this, 999));//Establish mounds
+			addGenFeature(new FeatureGenMound(this, 6));//Establish mounds
 			addGenFeature(new FeatureGenFlareBottom(this));//Flare the bottom
 			addGenFeature(new FeatureGenRoots(this, 15).setScaler(getRootScaler()));//Finally Generate Roots
 		}
@@ -87,13 +87,9 @@ public class TreeRedwood extends TreeFamily {
 		@Override
 		public EnumFacing selectNewDirection(World world, BlockPos pos, BlockBranch branch, GrowSignal signal) {
 			EnumFacing originDir = signal.dir.getOpposite();
-			
 			int signalY = signal.delta.getY();
 			
-			// prevent branches on the ground
-			if (signalY <= 2) {
-				return EnumFacing.UP;
-			}
+			if (signalY <= 2) return EnumFacing.UP; // prevent branches on the ground
 			
 			int probMap[] = new int[6]; // 6 directions possible DUNSWE
 			
@@ -104,14 +100,17 @@ public class TreeRedwood extends TreeFamily {
 			int radius = branch.getRadius(world.getBlockState(pos));
 			
 			if (signal.delta.getY() < getLowestBranchHeight() - 3) {
-				int treeHash = CoordUtils.coordHashCode(signal.rootPos, 2);
-				int posHash = CoordUtils.coordHashCode(pos, 2);
+				long day = world.getWorldTime() / 24000L;
+				int month = (int) day / 30; // Change the hashs every in-game month
+				
+				int treeHash = CoordUtils.coordHashCode(signal.rootPos.up(month), 3);
+				int posHash = CoordUtils.coordHashCode(pos.up(month), 2);
 				
 				int hashMod = signalY < 7 ? 3 : 11;
 				boolean sideTurn = !signal.isInTrunk() || (signal.isInTrunk() && ((signal.numSteps + treeHash) % hashMod == 0) && (radius > 1)); // Only allow turns when we aren't in the trunk(or the branch is not a twig)
 				
 				if (!sideTurn) return EnumFacing.UP;
-				
+
 				probMap[2 + (posHash % 4)] = 1;
 			}
 			
@@ -142,12 +141,12 @@ public class TreeRedwood extends TreeFamily {
 		protected int[] customDirectionManipulation(World world, BlockPos pos, int radius, GrowSignal signal, int probMap[]) {
 			EnumFacing originDir = signal.dir.getOpposite();
 			
-			//Alter probability map for direction change
-			probMap[0] = 0;//Down is always disallowed
+			// Alter probability map for direction change
+			probMap[0] = 0; // Down is always disallowed
 			probMap[1] = signal.isInTrunk() || signal.delta.getY() >= getLowestBranchHeight() ? getUpProbability() : 1;
 			//probMap[2] = probMap[3] = probMap[4] = probMap[5] = //Only allow turns when we aren't in the trunk(or the branch is not a twig and step is odd)
 			//		!signal.isInTrunk() || (signal.isInTrunk() && signal.numSteps % 2 == 1 && radius > 1) ? 2 : 0;
-			probMap[originDir.ordinal()] = 0;//Disable the direction we came from
+			probMap[originDir.ordinal()] = 0; // Disable the direction we came from
 			
 			return probMap;
 		}
@@ -172,7 +171,7 @@ public class TreeRedwood extends TreeFamily {
 		// so we feed the hash function the in-game month
 		@Override
 		public float getEnergy(World world, BlockPos pos) {
-			long day = world.getTotalWorldTime() / 24000L;
+			long day = world.getWorldTime() / 24000L;
 			int month = (int) day / 30; // Change the hashs every in-game month
 			
 			return super.getEnergy(world, pos) * biomeSuitability(world, pos) + (coordHashCode(pos.up(month)) % 16); // Vary the height energy by a psuedorandom hash function
@@ -180,10 +179,10 @@ public class TreeRedwood extends TreeFamily {
 		
 		@Override
 		public int getLowestBranchHeight(World world, BlockPos pos) {
-			long day = world.getTotalWorldTime() / 24000L;
+			long day = world.getWorldTime() / 24000L;
 			int month = (int) day / 30; // Change the hashs every in-game month
 		
-			return (int) ((getLowestBranchHeight() + ((coordHashCode(pos) % 16) * 0.5f)) * biomeSuitability(world, pos));
+			return (int) ((getLowestBranchHeight() + ((coordHashCode(pos.up(month)) % 16) * 0.5f)) * biomeSuitability(world, pos));
 		}
 		
 		public int getWorldGenLeafMapHeight() {

@@ -9,7 +9,10 @@ import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSapling;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSaplingRare;
 import com.ferreusveritas.dynamictrees.items.Seed;
 import com.ferreusveritas.dynamictrees.systems.GrowSignal;
+import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenClearVolume;
 import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenConiferTopper;
+import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenFlareBottom;
+import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenMound;
 import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenVine;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.trees.SpeciesRare;
@@ -68,6 +71,16 @@ public class TreeUmbran extends TreeFamily {
 		@Override
 		public boolean isBiomePerfect(Biome biome) {
 			return isOneOfBiomes(biome, BOPBiomes.ominous_woods.orNull());
+		}
+		
+		@Override
+		public int maxBranchRadius() {
+			return 8;
+		}
+		
+		@Override
+		public boolean isThick() {
+			return false;
 		}
 		
 		@Override
@@ -145,7 +158,7 @@ public class TreeUmbran extends TreeFamily {
 		//so we feed the hash function the in-game month
 		@Override
 		public float getEnergy(World world, BlockPos pos) {
-			long day = world.getTotalWorldTime() / 24000L;
+			long day = world.getWorldTime() / 24000L;
 			int month = (int)day / 30;//Change the hashs every in-game month
 			
 			return super.getEnergy(world, pos) * biomeSuitability(world, pos) + (coordHashCode(pos.up(month)) % 5);//Vary the height energy by a psuedorandom hash function
@@ -154,6 +167,16 @@ public class TreeUmbran extends TreeFamily {
 		public int coordHashCode(BlockPos pos) {
 			int hash = (pos.getX() * 9973 ^ pos.getY() * 8287 ^ pos.getZ() * 9721) >> 1;
 			return hash & 0xFFFF;
+		}
+		
+		@Override
+		public int maxBranchRadius() {
+			return 8;
+		}
+		
+		@Override
+		public boolean isThick() {
+			return false;
 		}
 		
 		@Override
@@ -191,7 +214,10 @@ public class TreeUmbran extends TreeFamily {
 			setupStandardSeedDropping();
 			
 			//Add species features
+			addGenFeature(new FeatureGenClearVolume(6));//Clear a spot for the thick tree trunk
 			addGenFeature(new FeatureGenConiferTopper(getLeavesProperties()));//Make a topper for this conifer tree
+			addGenFeature(new FeatureGenMound(this, 999));//Establish mounds
+			addGenFeature(new FeatureGenFlareBottom(this));//Flare the bottom
 		}
 		
 		@Override
@@ -227,7 +253,7 @@ public class TreeUmbran extends TreeFamily {
 		//so we feed the hash function the in-game month
 		@Override
 		public float getEnergy(World world, BlockPos pos) {
-			long day = world.getTotalWorldTime() / 24000L;
+			long day = world.getWorldTime() / 24000L;
 			int month = (int)day / 30;//Change the hashs every in-game month
 			
 			return super.getEnergy(world, pos) * biomeSuitability(world, pos) + (coordHashCode(pos.up(month)) % 8);//Vary the height energy by a psuedorandom hash function
@@ -293,6 +319,11 @@ public class TreeUmbran extends TreeFamily {
 		super.registerSpecies(speciesRegistry);
 		speciesRegistry.register(coniferSpecies);
 		speciesRegistry.register(megaConiferSpecies);
+	}
+	
+	@Override
+	public boolean isThick() {
+		return true;
 	}
 	
 	@Override
