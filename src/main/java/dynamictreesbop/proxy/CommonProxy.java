@@ -7,7 +7,6 @@ import com.ferreusveritas.dynamictrees.trees.Species;
 
 import biomesoplenty.api.biome.BOPBiomes;
 import biomesoplenty.api.block.BOPBlocks;
-import dynamictreesbop.DynamicTreesBOP;
 import dynamictreesbop.cells.CellKits;
 import dynamictreesbop.worldgen.BiomeDataBasePopulator;
 import net.minecraft.util.ResourceLocation;
