@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.function.BiFunction;
 
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
-import com.ferreusveritas.dynamictrees.api.network.MapSignal;
 import com.ferreusveritas.dynamictrees.api.treedata.ITreePart;
 import com.ferreusveritas.dynamictrees.blocks.BlockBranch;
 import com.ferreusveritas.dynamictrees.blocks.BlockBranchThick;
@@ -252,56 +251,9 @@ public class TreeRedwood extends TreeFamily {
 			super(material, name, extended);
 		}
 		
-		/**
-		 * This is a recursive algorithm used to explore the branch network.  It calls a run() function for the signal on the way out
-		 * and a returnRun() on the way back.
-		 * 
-		 * Okay so a little explanation here..  
-		 * I've been hit up by people who claim that recursion is a bad idea.  The reason why they think this is because java has to push values
-		 * on the stack for each level of recursion and then pop them off as the levels complete.  Many time this can lead to performance issues.
-		 * Fine, I understand that.  The reason why it doesn't matter here is because of the object oriented nature of how the tree parts
-		 * function demand that a different analyze function be called for each object type.  Even if this were rewritten to be iterative the
-		 * same number of stack pushes and pops would need to be performed to run the custom function for each node in the network anyway.  The
-		 * depth of recursion for this algorithm is less than 32.  So there's no real risk of a stack overflow.
-		 * 
-		 * The difference being that in an iterative design I would need to maintain a stack array holding all of the values and push and pop
-		 * them manually or use a stack index.  This is messy and not something I would want to maintain for practically non-existent gains.
-		 * Java does a pretty good job of managing the stack on its own.
-		 */
 		@Override
-		public MapSignal analyse(IBlockState blockState, World world, BlockPos pos, EnumFacing fromDir, MapSignal signal) {
-			// Note: fromDir will be null in the origin node
-			if (signal.depth++ < 64) { // Prevents going too deep into large networks, or worse, being caught in a network loop
-				signal.run(blockState, world, pos, fromDir); // Run the inspectors of choice
-				for (EnumFacing dir : EnumFacing.VALUES) { // Spread signal in various directions
-					if (dir != fromDir) { // don't count where the signal originated from
-						BlockPos deltaPos = pos.offset(dir);
-						
-						IBlockState deltaState = world.getBlockState(deltaPos);
-						ITreePart treePart = TreeHelper.getTreePart(deltaState);
-						
-						if (treePart.shouldAnalyse()) {
-							signal = treePart.analyse(deltaState, world, deltaPos, dir.getOpposite(), signal);
-						
-							// This should only be true for the originating block when the root node is found
-							if (signal.found && signal.localRootDir == null && fromDir == null) {
-								signal.localRootDir = dir;
-							}
-						}
-					}
-				}
-				signal.returnRun(blockState, world, pos, fromDir);
-			} else {
-				IBlockState state = world.getBlockState(pos);
-				if(state.getBlock() instanceof BlockBranch) {
-					BlockBranch branch = (BlockBranch) state.getBlock();
-					branch.breakDeliberate(world, pos, EnumDestroyMode.OVERFLOW);// Destroy one of the offending nodes
-				}
-				signal.overflow = true;
-			}
-			signal.depth--;
-			
-			return signal;
+		protected int getMaxSignalDepth() {
+			return 64;
 		}
 		
 	}
