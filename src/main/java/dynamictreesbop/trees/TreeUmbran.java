@@ -65,7 +65,7 @@ public class TreeUmbran extends TreeFamily {
 			
 			setupStandardSeedDropping();
 			
-			addGenFeature(new FeatureGenVine(this).setQuantity(7).setMaxLength(6).setRayDistance(6).setVineBlock(BOPBlocks.tree_moss));
+			addGenFeature(new FeatureGenVine(this).setQuantity(7).setMaxLength(6).setRayDistance(6).setVineBlock(BOPBlocks.willow_vine));
 		}
 		
 		@Override
