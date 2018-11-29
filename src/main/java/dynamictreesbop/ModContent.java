@@ -7,12 +7,12 @@ import java.util.Random;
 import com.ferreusveritas.dynamictrees.ModConstants;
 import com.ferreusveritas.dynamictrees.ModItems;
 import com.ferreusveritas.dynamictrees.ModRecipes;
-import com.ferreusveritas.dynamictrees.api.TreeHelper;
 import com.ferreusveritas.dynamictrees.api.TreeRegistry;
 import com.ferreusveritas.dynamictrees.api.client.ModelHelper;
 import com.ferreusveritas.dynamictrees.api.treedata.ILeavesProperties;
 import com.ferreusveritas.dynamictrees.blocks.BlockBranch;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicLeaves;
+import com.ferreusveritas.dynamictrees.blocks.LeavesPaging;
 import com.ferreusveritas.dynamictrees.blocks.LeavesProperties;
 import com.ferreusveritas.dynamictrees.items.DendroPotion.DendroPotionType;
 import com.ferreusveritas.dynamictrees.trees.Species;
@@ -512,9 +512,8 @@ public class ModContent {
 		};
 		
 		// Generate leaves for leaves properties
-		int seq = 0;
 		for (ILeavesProperties lp : basicLeavesProperties) {
-			TreeHelper.getLeavesBlockForSequence(DynamicTreesBOP.MODID, seq++, lp);
+			LeavesPaging.getNextLeavesBlock(DynamicTreesBOP.MODID, lp);
 		}
 		floweringOakLeavesProperties.setDynamicLeavesState(floweringOakLeaves.getDefaultState());
 		floweringOakLeaves.setProperties(0, floweringOakLeavesProperties);
@@ -577,7 +576,7 @@ public class ModContent {
 		
 		ArrayList<Block> treeBlocks = new ArrayList<>();
 		trees.forEach(tree -> tree.getRegisterableBlocks(treeBlocks));
-		treeBlocks.addAll(TreeHelper.getLeavesMapForModId(DynamicTreesBOP.MODID).values());
+		treeBlocks.addAll(LeavesPaging.getLeavesMapForModId(DynamicTreesBOP.MODID).values());
 		registry.registerAll(treeBlocks.toArray(new Block[treeBlocks.size()]));
 	}
 	
@@ -682,7 +681,7 @@ public class ModContent {
 		// register models for custom magic seed animation
 		for (int i = 1; i <= 3; i++) ModelHelper.regModel(TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "magic")).getSeed(), i);
 
-		TreeHelper.getLeavesMapForModId(DynamicTreesBOP.MODID).forEach((key,leaves) -> ModelLoader.setCustomStateMapper(leaves, new StateMap.Builder().ignore(BlockLeaves.DECAYABLE).build()));
+		LeavesPaging.getLeavesMapForModId(DynamicTreesBOP.MODID).forEach((key,leaves) -> ModelLoader.setCustomStateMapper(leaves, new StateMap.Builder().ignore(BlockLeaves.DECAYABLE).build()));
 		
 		ModelLoader.setCustomStateMapper(ModContent.palmLeavesProperties.getDynamicLeavesState().getBlock(), new StateMap.Builder().ignore(BlockDynamicLeaves.TREE).build());
 	}
