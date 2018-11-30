@@ -110,17 +110,7 @@ public class ClientProxy extends CommonProxy {
 				}
 			});
 		}
-
-		/*
-		//TODO: Account for special tintIndex for flowering oaks
-		BlockDynamicSapling sapling = (BlockDynamicSapling) TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "floweringoak")).getDynamicSapling().getBlock();
-		ModelHelper.regColorHandler(sapling, new IBlockColor() {
-			@Override
-			public int colorMultiplier(IBlockState state, IBlockAccess access, BlockPos pos, int tintIndex) {
-				return access == null || pos == null ? -1 : tintIndex != 0 ? 0xffffff : sapling.getSpecies(access, pos, state).getLeavesProperties().foliageColorMultiplier(state, access, pos);
-			}
-		});
-		*/
+		
 	}
 	
 	public void registerClientEventHandlers() {

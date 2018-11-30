@@ -14,9 +14,11 @@ import biomesoplenty.common.block.BlockBOPLeaves;
 import dynamictreesbop.DynamicTreesBOP;
 import dynamictreesbop.ModContent;
 import dynamictreesbop.dropcreators.DropCreatorFruit;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.EnumSkyBlock;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
@@ -71,4 +73,8 @@ public class SpeciesFloweringOak extends SpeciesRare {
 		return false;
 	}
 	
+	@Override
+	public int saplingColorMultiplier(IBlockState state, IBlockAccess access, BlockPos pos, int tintIndex) {
+		return tintIndex != 0 ? 0xffffff : getLeavesProperties().foliageColorMultiplier(state, access, pos);
+	}
 }
