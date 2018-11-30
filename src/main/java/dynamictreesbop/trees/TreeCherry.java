@@ -5,11 +5,9 @@ import java.util.Random;
 
 import com.ferreusveritas.dynamictrees.ModBlocks;
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
-import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSapling;
-import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSaplingRare;
-import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.trees.SpeciesRare;
+import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 
 import biomesoplenty.api.biome.BOPBiomes;
 import biomesoplenty.api.block.BOPBlocks;
@@ -20,7 +18,6 @@ import biomesoplenty.common.block.BlockBOPLog;
 import biomesoplenty.common.block.BlockBOPMushroom;
 import dynamictreesbop.DynamicTreesBOP;
 import dynamictreesbop.ModContent;
-import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
@@ -39,9 +36,7 @@ public class TreeCherry extends TreeFamily {
 			super(new ResourceLocation(treeFamily.getName().getResourceDomain(), "pinkcherry"), treeFamily, ModContent.pinkCherryLeavesProperties);
 			
 			setBasicGrowingParameters(0.3f, 12.0f, upProbability, lowestBranchHeight, 0.8f);
-			
-			setDynamicSapling(new BlockDynamicSapling("pinkcherrysapling").getDefaultState());
-			
+						
 			envFactor(Type.COLD, 0.75f);
 			envFactor(Type.HOT, 0.50f);
 			envFactor(Type.DRY, 0.50f);
@@ -80,9 +75,7 @@ public class TreeCherry extends TreeFamily {
 			super(new ResourceLocation(treeFamily.getName().getResourceDomain(), "whitecherry"), treeFamily, ModContent.whiteCherryLeavesProperties);
 			
 			setBasicGrowingParameters(0.3f, 12.0f, upProbability, lowestBranchHeight, 0.8f);
-			
-			setDynamicSapling(new BlockDynamicSaplingRare("whitecherrysapling").getDefaultState());
-			
+						
 			envFactor(Type.COLD, 0.75f);
 			envFactor(Type.HOT, 0.50f);
 			envFactor(Type.DRY, 0.50f);
@@ -145,13 +138,6 @@ public class TreeCherry extends TreeFamily {
 	public void registerSpecies(IForgeRegistry<Species> speciesRegistry) {
 		super.registerSpecies(speciesRegistry);
 		speciesRegistry.register(whiteSpecies);
-	}
-	
-	@Override
-	public List<Block> getRegisterableBlocks(List<Block> blockList) {
-		blockList.add(getCommonSpecies().getDynamicSapling().getBlock());
-		blockList.add(whiteSpecies.getDynamicSapling().getBlock());
-		return super.getRegisterableBlocks(blockList);
 	}
 	
 	@Override

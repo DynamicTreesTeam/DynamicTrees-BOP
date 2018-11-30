@@ -1,9 +1,6 @@
 package dynamictreesbop.trees;
 
-import java.util.List;
-
 import com.ferreusveritas.dynamictrees.ModConstants;
-import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSapling;
 import com.ferreusveritas.dynamictrees.items.Seed;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.trees.SpeciesRare;
@@ -18,7 +15,6 @@ import biomesoplenty.common.block.BlockBOPLog;
 import dynamictreesbop.DynamicTreesBOP;
 import dynamictreesbop.ModContent;
 import dynamictreesbop.dropcreators.DropCreatorInvoluntarySeed;
-import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -34,9 +30,7 @@ public class TreeEbony extends TreeFamily {
 			super(treeFamily.getName(), treeFamily, ModContent.ebonyLeavesProperties);
 			
 			setBasicGrowingParameters(0.3f, 12.0f, upProbability, lowestBranchHeight, 1.0f);
-			
-			setDynamicSapling(new BlockDynamicSapling("ebonysapling").getDefaultState());
-			
+						
 			envFactor(Type.WET, 0.5f);
 			envFactor(Type.COLD, 0.5f);
 			envFactor(Type.SAVANNA, 1.05f);
@@ -120,12 +114,6 @@ public class TreeEbony extends TreeFamily {
 	public void registerSpecies(IForgeRegistry<Species> speciesRegistry) {
 		super.registerSpecies(speciesRegistry);
 		speciesRegistry.register(twigletSpecies);
-	}
-	
-	@Override
-	public List<Block> getRegisterableBlocks(List<Block> blockList) {
-		blockList.add(getCommonSpecies().getDynamicSapling().getBlock());
-		return super.getRegisterableBlocks(blockList);
 	}
 	
 }

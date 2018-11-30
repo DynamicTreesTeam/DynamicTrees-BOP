@@ -1,11 +1,8 @@
 package dynamictreesbop.trees;
 
-import java.util.List;
-
 import com.ferreusveritas.dynamictrees.ModBlocks;
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
 import com.ferreusveritas.dynamictrees.blocks.BlockBranch;
-import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSapling;
 import com.ferreusveritas.dynamictrees.systems.GrowSignal;
 import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenCocoa;
 import com.ferreusveritas.dynamictrees.trees.Species;
@@ -19,7 +16,6 @@ import biomesoplenty.common.block.BlockBOPLeaves;
 import biomesoplenty.common.block.BlockBOPLog;
 import dynamictreesbop.DynamicTreesBOP;
 import dynamictreesbop.ModContent;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -41,9 +37,7 @@ public class TreeMahogany extends TreeFamily {
 			super(treeFamily.getName(), treeFamily, ModContent.mahoganyLeavesProperties);
 			
 			setBasicGrowingParameters(0.15f, 16.0f, 2, 7, 10.9f);
-			
-			setDynamicSapling(new BlockDynamicSapling("mahoganysapling").getDefaultState());
-			
+						
 			envFactor(Type.COLD, 0.15f);
 			envFactor(Type.DRY,  0.20f);
 			envFactor(Type.HOT, 1.1f);
@@ -123,13 +117,7 @@ public class TreeMahogany extends TreeFamily {
 	public void createSpecies() {
 		setCommonSpecies(new SpeciesMahogany(this));
 	}
-	
-	@Override
-	public List<Block> getRegisterableBlocks(List<Block> blockList) {
-		blockList.add(getCommonSpecies().getDynamicSapling().getBlock());
-		return super.getRegisterableBlocks(blockList);
-	}
-	
+		
 	@Override
 	public boolean onTreeActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
 		//Place Cocoa Pod if we are holding Cocoa Beans

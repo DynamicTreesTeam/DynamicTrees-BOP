@@ -1,12 +1,9 @@
 package dynamictreesbop.proxy;
 
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
-import com.ferreusveritas.dynamictrees.api.TreeRegistry;
 import com.ferreusveritas.dynamictrees.api.client.ModelHelper;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicLeaves;
-import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSapling;
 import com.ferreusveritas.dynamictrees.blocks.LeavesPaging;
-import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 
 import biomesoplenty.api.enums.BOPTrees;
 import biomesoplenty.common.block.BlockBOPLeaves;
@@ -21,7 +18,6 @@ import dynamictreesbop.renderers.RenderMapleSeed;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.color.IBlockColor;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
@@ -115,13 +111,8 @@ public class ClientProxy extends CommonProxy {
 			});
 		}
 
-		for(TreeFamily tree: ModContent.trees) {
-			if (tree.getName().getResourcePath().equals("decayed")) continue;
-			if (tree.getName().getResourcePath().equals("dead")) continue;
-			BlockDynamicSapling sapling = (BlockDynamicSapling) tree.getCommonSpecies().getDynamicSapling().getBlock();
-			ModelHelper.regDynamicSaplingColorHandler(sapling);
-		}
-		
+		/*
+		//TODO: Account for special tintIndex for flowering oaks
 		BlockDynamicSapling sapling = (BlockDynamicSapling) TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "floweringoak")).getDynamicSapling().getBlock();
 		ModelHelper.regColorHandler(sapling, new IBlockColor() {
 			@Override
@@ -129,6 +120,7 @@ public class ClientProxy extends CommonProxy {
 				return access == null || pos == null ? -1 : tintIndex != 0 ? 0xffffff : sapling.getSpecies(access, pos, state).getLeavesProperties().foliageColorMultiplier(state, access, pos);
 			}
 		});
+		*/
 	}
 	
 	public void registerClientEventHandlers() {

@@ -565,15 +565,6 @@ public class ModContent {
 		Collections.addAll(trees, magicTree, umbranTree, firTree, cherryTree, deadTree, jacarandaTree, redwoodTree, willowTree, hellbarkTree, pineTree, palmTree, mahoganyTree, ebonyTree, bambooTree, eucalyptusTree);
 		trees.forEach(tree -> tree.registerSpecies(Species.REGISTRY));
 		
-		// Register extra saplings
-		registry.registerAll(
-				TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "floweringoak")).getDynamicSapling().getBlock(),
-				TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "yellowautumn")).getDynamicSapling().getBlock(),
-				TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "orangeautumn")).getDynamicSapling().getBlock(),
-				TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "oakdying")).getDynamicSapling().getBlock(),
-				TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "maple")).getDynamicSapling().getBlock()
-		);
-		
 		ArrayList<Block> treeBlocks = new ArrayList<>();
 		trees.forEach(tree -> tree.getRegisterableBlocks(treeBlocks));
 		treeBlocks.addAll(LeavesPaging.getLeavesMapForModId(DynamicTreesBOP.MODID).values());

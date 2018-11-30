@@ -1,12 +1,10 @@
 package dynamictreesbop.trees;
 
-import java.util.List;
 import java.util.Random;
 
 import com.ferreusveritas.dynamictrees.ModBlocks;
 import com.ferreusveritas.dynamictrees.ModConstants;
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
-import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSapling;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 
@@ -18,7 +16,6 @@ import biomesoplenty.common.block.BlockBOPLeaves;
 import biomesoplenty.common.block.BlockBOPLog;
 import dynamictreesbop.DynamicTreesBOP;
 import dynamictreesbop.ModContent;
-import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
@@ -36,9 +33,7 @@ public class TreeHellbark extends TreeFamily {
 			super(treeFamily.getName(), treeFamily, ModContent.hellbarkLeavesProperties);
 			
 			setBasicGrowingParameters(0.3f, 2.5f, 1, 2, 1.0f);
-			
-			setDynamicSapling(new BlockDynamicSapling("hellbarksapling").getDefaultState());
-			
+						
 			envFactor(Type.COLD, 0.25f);
 			envFactor(Type.NETHER, 1.05f);
 			
@@ -96,10 +91,4 @@ public class TreeHellbark extends TreeFamily {
 		setCommonSpecies(new SpeciesHellbark(this));
 	}
 	
-	@Override
-	public List<Block> getRegisterableBlocks(List<Block> blockList) {
-		blockList.add(getCommonSpecies().getDynamicSapling().getBlock());
-		return super.getRegisterableBlocks(blockList);
-	}
-
 }

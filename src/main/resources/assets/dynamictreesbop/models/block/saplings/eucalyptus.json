@@ -1,0 +1,7 @@
+{   "parent": "dynamictrees:block/sapling",
+    "textures": {
+        "particle": "biomesoplenty:blocks/leaves_eucalyptus",
+        "log": "biomesoplenty:blocks/eucalyptus_log",
+        "leaves": "biomesoplenty:blocks/leaves_eucalyptus"
+    }
+}

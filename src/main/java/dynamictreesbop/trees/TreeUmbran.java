@@ -5,8 +5,6 @@ import java.util.Random;
 
 import com.ferreusveritas.dynamictrees.ModBlocks;
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
-import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSapling;
-import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSaplingRare;
 import com.ferreusveritas.dynamictrees.items.Seed;
 import com.ferreusveritas.dynamictrees.systems.GrowSignal;
 import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenClearVolume;
@@ -27,7 +25,6 @@ import biomesoplenty.common.block.BlockBOPLeaves;
 import biomesoplenty.common.block.BlockBOPLog;
 import dynamictreesbop.DynamicTreesBOP;
 import dynamictreesbop.ModContent;
-import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -48,9 +45,7 @@ public class TreeUmbran extends TreeFamily {
 			super(treeFamily.getName(), treeFamily, ModContent.umbranLeavesProperties);
 			
 			setBasicGrowingParameters(0.3f, 12.0f, upProbability, lowestBranchHeight, 0.7f);
-			
-			setDynamicSapling(new BlockDynamicSapling("umbransapling").getDefaultState());
-			
+						
 			envFactor(Type.COLD, 0.75f);
 			envFactor(Type.HOT, 0.50f);
 			envFactor(Type.DRY, 0.50f);
@@ -104,9 +99,7 @@ public class TreeUmbran extends TreeFamily {
 			super(new ResourceLocation(treeFamily.getName().getResourceDomain(), "umbranconifer"), treeFamily, ModContent.umbranConiferLeavesProperties);
 			
 			setBasicGrowingParameters(0.25f, 16.0f, 3, 3, 0.8f);
-			
-			setDynamicSapling(new BlockDynamicSaplingRare("umbranconifersapling").getDefaultState());
-			
+						
 			envFactor(Type.COLD, 0.75f);
 			envFactor(Type.HOT, 0.50f);
 			envFactor(Type.DRY, 0.50f);
@@ -324,13 +317,6 @@ public class TreeUmbran extends TreeFamily {
 	@Override
 	public boolean isThick() {
 		return true;
-	}
-	
-	@Override
-	public List<Block> getRegisterableBlocks(List<Block> blockList) {
-		blockList.add(getCommonSpecies().getDynamicSapling().getBlock());
-		blockList.add(coniferSpecies.getDynamicSapling().getBlock());
-		return super.getRegisterableBlocks(blockList);
 	}
 	
 	@Override

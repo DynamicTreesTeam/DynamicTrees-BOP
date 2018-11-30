@@ -7,7 +7,6 @@ import com.ferreusveritas.dynamictrees.api.TreeHelper;
 import com.ferreusveritas.dynamictrees.api.treedata.ITreePart;
 import com.ferreusveritas.dynamictrees.blocks.BlockBranch;
 import com.ferreusveritas.dynamictrees.blocks.BlockBranchThick;
-import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSapling;
 import com.ferreusveritas.dynamictrees.blocks.BlockSurfaceRoot;
 import com.ferreusveritas.dynamictrees.systems.GrowSignal;
 import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenClearVolume;
@@ -47,9 +46,7 @@ public class TreeRedwood extends TreeFamily {
 			setBasicGrowingParameters(0.27f, 38.0f, 24, 22, 1.33f);
 			
 			setSoilLongevity(53);
-			
-			setDynamicSapling(new BlockDynamicSapling("redwoodsapling").getDefaultState());
-			
+						
 			envFactor(Type.HOT, 0.50f);
 			envFactor(Type.DRY, 0.25f);
 			envFactor(Type.FOREST, 1.05f);
@@ -217,7 +214,6 @@ public class TreeRedwood extends TreeFamily {
 	@Override
 	public List<Block> getRegisterableBlocks(List<Block> blockList) {
 		blockList = super.getRegisterableBlocks(blockList);
-		blockList.add(getCommonSpecies().getDynamicSapling().getBlock());
 		blockList.add(surfaceRootBlock);
 		return blockList;
 	}

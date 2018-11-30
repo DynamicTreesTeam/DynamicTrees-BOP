@@ -1,9 +1,6 @@
 package dynamictreesbop.trees;
 
-import java.util.List;
-
 import com.ferreusveritas.dynamictrees.api.IGenFeature;
-import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSapling;
 import com.ferreusveritas.dynamictrees.systems.GrowSignal;
 import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenBush;
 import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenConiferTopper;
@@ -18,7 +15,6 @@ import biomesoplenty.common.block.BlockBOPLeaves;
 import biomesoplenty.common.block.BlockBOPLog;
 import dynamictreesbop.DynamicTreesBOP;
 import dynamictreesbop.ModContent;
-import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
@@ -36,8 +32,6 @@ public class TreePine extends TreeFamily {
 			super(treeFamily.getName(), treeFamily, ModContent.pineLeavesProperties);
 			
 			setBasicGrowingParameters(0.3f, 16.0f, 4, 4, 0.9f);
-			
-			setDynamicSapling(new BlockDynamicSapling("pinesapling").getDefaultState());
 			
 			envFactor(Type.HOT, 0.50f);
 			envFactor(Type.DRY, 0.25f);
@@ -114,10 +108,4 @@ public class TreePine extends TreeFamily {
 		setCommonSpecies(new SpeciesPine(this));
 	}
 	
-	@Override
-	public List<Block> getRegisterableBlocks(List<Block> blockList) {
-		blockList.add(getCommonSpecies().getDynamicSapling().getBlock());
-		return super.getRegisterableBlocks(blockList);
-	}
-
 }

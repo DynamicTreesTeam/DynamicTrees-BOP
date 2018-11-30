@@ -1,14 +1,11 @@
 package dynamictreesbop.trees;
 
-import java.util.List;
-
 import com.ferreusveritas.dynamictrees.ModBlocks;
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
 import com.ferreusveritas.dynamictrees.api.network.INodeInspector;
 import com.ferreusveritas.dynamictrees.api.treedata.ITreePart;
 import com.ferreusveritas.dynamictrees.blocks.BlockBranch;
 import com.ferreusveritas.dynamictrees.blocks.BlockBranchBasic;
-import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSapling;
 import com.ferreusveritas.dynamictrees.blocks.BlockRooty;
 import com.ferreusveritas.dynamictrees.systems.GrowSignal;
 import com.ferreusveritas.dynamictrees.trees.Species;
@@ -45,9 +42,7 @@ public class TreeBamboo extends TreeFamily {
 			super(treeFamily.getName(), treeFamily, ModContent.bambooLeavesProperties);
 			
 			setBasicGrowingParameters(0.125f, 11.0f, 4, 4, 1.5f); // Fastest growing "tree"
-			
-			setDynamicSapling(new BlockDynamicSapling("bamboosapling").getDefaultState());
-			
+						
 			envFactor(Type.COLD, 0.25f);
 			
 			addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
@@ -158,12 +153,6 @@ public class TreeBamboo extends TreeFamily {
 	@Override
 	public void createSpecies() {
 		setCommonSpecies(new SpeciesBamboo(this));
-	}
-	
-	@Override
-	public List<Block> getRegisterableBlocks(List<Block> blockList) {
-		blockList.add(getCommonSpecies().getDynamicSapling().getBlock());
-		return super.getRegisterableBlocks(blockList);
 	}
 	
 	public class NodeInflatorBamboo implements INodeInspector {

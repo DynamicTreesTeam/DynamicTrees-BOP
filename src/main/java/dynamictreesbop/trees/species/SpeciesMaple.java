@@ -4,10 +4,9 @@ import java.util.Random;
 
 import com.ferreusveritas.dynamictrees.ModBlocks;
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
-import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSaplingRare;
 import com.ferreusveritas.dynamictrees.items.Seed;
-import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 import com.ferreusveritas.dynamictrees.trees.SpeciesRare;
+import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 
 import biomesoplenty.api.biome.BOPBiomes;
 import biomesoplenty.api.block.BOPBlocks;
@@ -32,9 +31,7 @@ public class SpeciesMaple extends SpeciesRare {
 		super(new ResourceLocation(DynamicTreesBOP.MODID, "maple"), treeFamily, ModContent.mapleLeavesProperties);
 		
 		setBasicGrowingParameters(0.15f, 14.0f, 4, 4, 1.05f);
-		
-		setDynamicSapling(new BlockDynamicSaplingRare("maplesapling").getDefaultState());
-		
+				
 		envFactor(Type.HOT, 0.50f);
 		envFactor(Type.DRY, 0.50f);
 		envFactor(Type.FOREST, 1.05f);

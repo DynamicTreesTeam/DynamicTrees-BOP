@@ -1,8 +1,5 @@
 package dynamictreesbop.trees;
 
-import java.util.List;
-
-import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSapling;
 import com.ferreusveritas.dynamictrees.items.Seed;
 import com.ferreusveritas.dynamictrees.systems.GrowSignal;
 import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenClearVolume;
@@ -19,7 +16,6 @@ import biomesoplenty.common.block.BlockBOPLeaves;
 import biomesoplenty.common.block.BlockBOPLog;
 import dynamictreesbop.DynamicTreesBOP;
 import dynamictreesbop.ModContent;
-import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
@@ -41,9 +37,7 @@ public class TreeFir extends TreeFamily {
 			setBasicGrowingParameters(0.3f, 32.0f, 7, 7, 1.0f);
 			
 			setSoilLongevity(14);
-			
-			setDynamicSapling(new BlockDynamicSapling("firsapling").getDefaultState());
-			
+						
 			envFactor(Type.HOT, 0.50f);
 			envFactor(Type.DRY, 0.25f);
 			envFactor(Type.WET, 0.75f);
@@ -214,12 +208,6 @@ public class TreeFir extends TreeFamily {
 	@Override
 	public boolean isThick() {
 		return true;
-	}
-	
-	@Override
-	public List<Block> getRegisterableBlocks(List<Block> blockList) {
-		blockList.add(getCommonSpecies().getDynamicSapling().getBlock());
-		return super.getRegisterableBlocks(blockList);
 	}
 	
 }

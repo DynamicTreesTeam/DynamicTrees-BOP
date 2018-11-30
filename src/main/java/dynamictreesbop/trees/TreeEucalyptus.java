@@ -1,7 +1,5 @@
 package dynamictreesbop.trees;
 
-import java.util.List;
-
 import com.ferreusveritas.dynamictrees.api.IGenFeature;
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
 import com.ferreusveritas.dynamictrees.api.network.INodeInspector;
@@ -9,7 +7,6 @@ import com.ferreusveritas.dynamictrees.api.treedata.ITreePart;
 import com.ferreusveritas.dynamictrees.blocks.BlockBranch;
 import com.ferreusveritas.dynamictrees.blocks.BlockBranchBasic;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicLeaves;
-import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSapling;
 import com.ferreusveritas.dynamictrees.systems.GrowSignal;
 import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenBush;
 import com.ferreusveritas.dynamictrees.trees.Species;
@@ -25,7 +22,6 @@ import biomesoplenty.common.block.BlockBOPLog;
 import dynamictreesbop.DynamicTreesBOP;
 import dynamictreesbop.ModContent;
 import dynamictreesbop.cells.DTBOPLeafClusters;
-import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
@@ -43,9 +39,7 @@ public class TreeEucalyptus extends TreeFamily {
 			super(treeFamily.getName(), treeFamily, ModContent.eucalyptusLeavesProperties);
 			
 			setBasicGrowingParameters(0.25f, 15.0f, 5, 11, 0.9f);
-			
-			setDynamicSapling(new BlockDynamicSapling("eucalyptussapling").getDefaultState());
-			
+						
 			envFactor(Type.COLD, 0.15f);
 			envFactor(Type.DRY,  0.20f);
 			envFactor(Type.HOT, 1.1f);
@@ -132,12 +126,6 @@ public class TreeEucalyptus extends TreeFamily {
 	@Override
 	public void createSpecies() {
 		setCommonSpecies(new SpeciesEucalyptus(this));
-	}
-	
-	@Override
-	public List<Block> getRegisterableBlocks(List<Block> blockList) {
-		blockList.add(getCommonSpecies().getDynamicSapling().getBlock());
-		return super.getRegisterableBlocks(blockList);
 	}
 	
 	@Override

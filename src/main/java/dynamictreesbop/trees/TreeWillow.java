@@ -1,11 +1,9 @@
 package dynamictreesbop.trees;
 
-import java.util.List;
 import java.util.Random;
 
 import com.ferreusveritas.dynamictrees.ModBlocks;
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
-import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSapling;
 import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenVine;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
@@ -18,7 +16,6 @@ import biomesoplenty.common.block.BlockBOPLog;
 import biomesoplenty.common.block.BlockBOPMushroom;
 import dynamictreesbop.DynamicTreesBOP;
 import dynamictreesbop.ModContent;
-import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
@@ -37,9 +34,7 @@ public class TreeWillow extends TreeFamily {
 			super(treeFamily.getName(), treeFamily, ModContent.willowLeavesProperties);
 			
 			setBasicGrowingParameters(0.3f, 12.0f, upProbability, lowestBranchHeight, 0.8f);
-			
-			setDynamicSapling(new BlockDynamicSapling("willowsapling").getDefaultState());
-			
+						
 			envFactor(Type.COLD, 0.50f);
 			envFactor(Type.DRY, 0.50f);
 			
@@ -102,10 +97,4 @@ public class TreeWillow extends TreeFamily {
 		setCommonSpecies(new SpeciesWillow(this));
 	}
 	
-	@Override
-	public List<Block> getRegisterableBlocks(List<Block> blockList) {
-		blockList.add(getCommonSpecies().getDynamicSapling().getBlock());
-		return super.getRegisterableBlocks(blockList);
-	}
-
 }

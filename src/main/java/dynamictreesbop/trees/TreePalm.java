@@ -9,7 +9,6 @@ import com.ferreusveritas.dynamictrees.api.TreeHelper;
 import com.ferreusveritas.dynamictrees.api.network.MapSignal;
 import com.ferreusveritas.dynamictrees.api.treedata.ILeavesProperties;
 import com.ferreusveritas.dynamictrees.blocks.BlockBranch;
-import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSapling;
 import com.ferreusveritas.dynamictrees.blocks.BlockRooty;
 import com.ferreusveritas.dynamictrees.systems.GrowSignal;
 import com.ferreusveritas.dynamictrees.systems.dropcreators.DropCreatorSeed;
@@ -30,7 +29,6 @@ import biomesoplenty.common.block.BlockBOPLog;
 import dynamictreesbop.DynamicTreesBOP;
 import dynamictreesbop.ModContent;
 import dynamictreesbop.blocks.BlockDynamicLeavesPalm;
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -53,9 +51,7 @@ public class TreePalm extends TreeFamily {
 			super(treeFamily.getName(), treeFamily, ModContent.palmLeavesProperties);
 			
 			setBasicGrowingParameters(0.4f, 9.0f, 4, 3, 0.9f);
-			
-			setDynamicSapling(new BlockDynamicSapling("palmsapling").getDefaultState());
-			
+						
 			envFactor(Type.COLD, 0.25f);
 			
 			//clearAcceptableSoils();
@@ -189,12 +185,6 @@ public class TreePalm extends TreeFamily {
 	@Override
 	public float getSecondaryThickness() {
 		return 3.0f;
-	}
-	
-	@Override
-	public List<Block> getRegisterableBlocks(List<Block> blockList) {
-		blockList.add(getCommonSpecies().getDynamicSapling().getBlock());
-		return super.getRegisterableBlocks(blockList);
 	}
 	
 	@Override

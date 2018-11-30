@@ -4,9 +4,8 @@ import java.util.Random;
 
 import com.ferreusveritas.dynamictrees.ModBlocks;
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
-import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSaplingRare;
-import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 import com.ferreusveritas.dynamictrees.trees.SpeciesRare;
+import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 
 import biomesoplenty.api.block.BOPBlocks;
 import biomesoplenty.api.enums.BOPTrees;
@@ -29,9 +28,7 @@ public class SpeciesDyingOak extends SpeciesRare {
 		super(new ResourceLocation(DynamicTreesBOP.MODID, "oakdying"), treeFamily, ModContent.dyingOakLeavesProperties);
 		
 		setBasicGrowingParameters(0.3f, 12.0f, upProbability, lowestBranchHeight, 0.65f);
-		
-		setDynamicSapling(new BlockDynamicSaplingRare("oakdyingsapling").getDefaultState());
-		
+				
 		envFactor(Type.LUSH, 0.75f);
 		envFactor(Type.SPOOKY, 1.05f);
 		envFactor(Type.DEAD, 1.05f);

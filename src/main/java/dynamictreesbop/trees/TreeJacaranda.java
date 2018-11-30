@@ -1,10 +1,7 @@
 package dynamictreesbop.trees;
 
-import java.util.List;
-
-import com.ferreusveritas.dynamictrees.blocks.BlockDynamicSapling;
-import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 import com.ferreusveritas.dynamictrees.trees.Species;
+import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 
 import biomesoplenty.api.biome.BOPBiomes;
 import biomesoplenty.api.block.BOPBlocks;
@@ -16,7 +13,6 @@ import biomesoplenty.common.block.BlockBOPLog;
 import dynamictreesbop.DynamicTreesBOP;
 import dynamictreesbop.ModContent;
 import dynamictreesbop.dropcreators.DropCreatorFruit;
-import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Biomes;
 import net.minecraft.util.ResourceLocation;
@@ -31,9 +27,7 @@ public class TreeJacaranda extends TreeFamily {
 			super(treeFamily.getName(), treeFamily, ModContent.jacarandaLeavesProperties);
 			
 			setBasicGrowingParameters(0.3f, 12.0f, upProbability, lowestBranchHeight, 0.9f);
-			
-			setDynamicSapling(new BlockDynamicSapling("jacarandasapling").getDefaultState());
-			
+						
 			envFactor(Type.HOT, 0.50f);
 			envFactor(Type.DRY, 0.50f);
 			
@@ -70,10 +64,4 @@ public class TreeJacaranda extends TreeFamily {
 		setCommonSpecies(new SpeciesJacaranda(this));
 	}
 	
-	@Override
-	public List<Block> getRegisterableBlocks(List<Block> blockList) {
-		blockList.add(getCommonSpecies().getDynamicSapling().getBlock());
-		return super.getRegisterableBlocks(blockList);
-	}
-
 }

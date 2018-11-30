@@ -1,0 +1,7 @@
+{   "parent": "dynamictrees:block/sapling",
+    "textures": {
+        "particle": "biomesoplenty:blocks/leaves_yellow_autumn",
+        "log": "blocks/log_birch",
+        "leaves": "biomesoplenty:blocks/leaves_yellow_autumn"
+    }
+}
