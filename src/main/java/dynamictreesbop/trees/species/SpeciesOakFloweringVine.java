@@ -1,6 +1,5 @@
 package dynamictreesbop.trees.species;
 
-import com.ferreusveritas.dynamictrees.ModBlocks;
 import com.ferreusveritas.dynamictrees.ModConfigs;
 import com.ferreusveritas.dynamictrees.ModConstants;
 import com.ferreusveritas.dynamictrees.api.TreeRegistry;
@@ -23,7 +22,7 @@ public class SpeciesOakFloweringVine extends Species {
 	Species baseSpecies;
 	
 	public SpeciesOakFloweringVine(TreeFamily treeFamily) {
-		super(new ResourceLocation(DynamicTreesBOP.MODID, "oakfloweringvine"), treeFamily, ModBlocks.leaves.get("oak"));
+		super(new ResourceLocation(DynamicTreesBOP.MODID, "oakfloweringvine"), treeFamily);
 		
 		baseSpecies = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "oak"));
 		
