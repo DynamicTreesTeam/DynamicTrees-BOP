@@ -23,7 +23,7 @@ public class SpeciesOakFloweringVine extends Species {
 	Species baseSpecies;
 	
 	public SpeciesOakFloweringVine(TreeFamily treeFamily) {
-		super(new ResourceLocation(DynamicTreesBOP.MODID, "oakfloweringvine"), treeFamily, ModBlocks.oakLeavesProperties);
+		super(new ResourceLocation(DynamicTreesBOP.MODID, "oakfloweringvine"), treeFamily, ModBlocks.leaves.get("oak"));
 		
 		baseSpecies = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "oak"));
 		
