@@ -577,17 +577,20 @@ public class ModContent {
 		
 		// register seeds
 		registry.registerAll(
-				TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "floweringoak")).getSeed(),
-				TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "yellowautumn")).getSeed(),
-				TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "orangeautumn")).getSeed(),
-				TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "oakdying")).getSeed(),
-				TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "maple")).getSeed()
+			getSpeciesSeed("floweringoak"),
+			getSpeciesSeed("yellowautumn"),
+			getSpeciesSeed("orangeautumn"),
+			getSpeciesSeed("oakdying"),
+			getSpeciesSeed("maple")
 		);
 		
 		ArrayList<Item> treeItems = new ArrayList<>();
 		trees.forEach(tree -> tree.getRegisterableItems(treeItems));
-		//TreeHelper.getLeavesMapForModId(DynamicTreesBOP.MODID).forEach((key, block) -> registerItemBlock(registry, block));
 		registry.registerAll(treeItems.toArray(new Item[treeItems.size()]));
+	}
+	
+	private static Item getSpeciesSeed(String name) {
+		return TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "floweringoak")).getSeed();		
 	}
 	
 	@SubscribeEvent
@@ -657,19 +660,20 @@ public class ModContent {
 	@SideOnly(Side.CLIENT)
 	@SubscribeEvent
 	public static void registerModels(ModelRegistryEvent event) {
+		
+		//Register all of the models used for the tree families
 		for(TreeFamily tree : ModContent.trees) {
 			ModelHelper.regModel(tree.getDynamicBranch());
 			ModelHelper.regModel(tree.getCommonSpecies().getSeed());
 			ModelHelper.regModel(tree);
 		}
-		ModelHelper.regModel(TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "floweringoak")).getSeed());
-		ModelHelper.regModel(TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "yellowautumn")).getSeed());
-		ModelHelper.regModel(TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "orangeautumn")).getSeed());
-		ModelHelper.regModel(TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "oakdying")).getSeed());
-		ModelHelper.regModel(TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "maple")).getSeed());
-		ModelHelper.regModel(TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "umbranconifer")).getSeed());
-		ModelHelper.regModel(TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "whitecherry")).getSeed());
-		// register models for custom magic seed animation
+		
+		//Register all of the seeds that where not constructed as part of a tree family
+		for(String name: new String[]{ "floweringoak", "yellowautumn", "orangeautumn", "oakdying", "maple", "umbranconifer", "whitecherry" }) {
+			ModelHelper.regModel(getSpeciesSeed(name));
+		}
+		
+		//Register models for custom magic seed animation
 		for (int i = 1; i <= 3; i++) ModelHelper.regModel(TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "magic")).getSeed(), i);
 
 		LeavesPaging.getLeavesMapForModId(DynamicTreesBOP.MODID).forEach((key,leaves) -> ModelLoader.setCustomStateMapper(leaves, new StateMap.Builder().ignore(BlockLeaves.DECAYABLE).build()));
