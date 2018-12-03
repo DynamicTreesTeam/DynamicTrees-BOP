@@ -41,7 +41,7 @@ public class SpeciesAcaciaTwiglet extends SpeciesRare {
 		addDropCreator(new DropCreatorInvoluntarySeed());
 		remDropCreator(new ResourceLocation(ModConstants.MODID, "logs"));
 		
-		bushGen = new FeatureGenBush(this);
+		bushGen = new FeatureGenBush();
 		
 		leavesProperties.setTree(treeFamily);
 	}
@@ -69,7 +69,7 @@ public class SpeciesAcaciaTwiglet extends SpeciesRare {
 	@Override
 	public boolean generate(World world, BlockPos rootPos, Biome biome, Random random, int radius, SafeChunkBounds safeBounds) {
 		if (biome == BOPBiomes.xeric_shrubland.orNull() && world.getBlockState(rootPos).getBlock() instanceof BlockGrass) {
-			return bushGen.generate(world, rootPos, biome, random, radius, safeBounds);
+			return bushGen.generate(world, rootPos, this, biome, random, radius, safeBounds);
 		}
 		return super.generate(world, rootPos, biome, random, radius, safeBounds);
 	}

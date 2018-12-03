@@ -22,7 +22,7 @@ public class SpeciesSpruceBush extends Species {
 		addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
 		
 		addGenFeature(
-			new FeatureGenBush(this)
+			new FeatureGenBush()
 				.setLeavesState(Blocks.LEAVES.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.SPRUCE))
 				.setLogState(Blocks.LOG.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.SPRUCE)), IGenFeature.FULLGEN);
 	}

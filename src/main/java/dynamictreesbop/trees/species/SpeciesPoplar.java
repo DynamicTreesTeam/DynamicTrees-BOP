@@ -46,7 +46,7 @@ public class SpeciesPoplar extends SpeciesRare {
 		
 		//Generate undergrowth
 		addGenFeature(
-				new FeatureGenBush(this)
+				new FeatureGenBush()
 					.setBiomePredicate(b -> b == BOPBiomes.grove.orNull())
 					.setSecondaryLeavesState(BlockBOPLeaves.paging.getVariantState(BOPTrees.FLOWERING)
 				), IGenFeature.POSTGEN

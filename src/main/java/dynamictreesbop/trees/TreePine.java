@@ -44,7 +44,7 @@ public class TreePine extends TreeFamily {
 			setupStandardSeedDropping();
 			
 			addGenFeature(new FeatureGenConiferTopper(getLeavesProperties()));//Make a topper for this conifer tree
-			addGenFeature(new FeatureGenBush(this).setBiomePredicate(b -> b == BOPBiomes.shield.orNull()), IGenFeature.POSTGEN);//Generate undergrowth
+			addGenFeature(new FeatureGenBush().setBiomePredicate(b -> b == BOPBiomes.shield.orNull()), IGenFeature.POSTGEN);//Generate undergrowth
 		}
 		
 		@Override

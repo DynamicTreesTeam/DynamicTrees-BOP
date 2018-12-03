@@ -19,7 +19,7 @@ FeatureGenBush bushGen;
 		setStandardSoils();
 		addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
 		
-		addGenFeature(new FeatureGenBush(this), IGenFeature.FULLGEN);
+		addGenFeature(new FeatureGenBush(), IGenFeature.FULLGEN);
 	}
 	
 }

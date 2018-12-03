@@ -51,7 +51,7 @@ public class TreeEucalyptus extends TreeFamily {
 			
 			setupStandardSeedDropping();
 			
-			addGenFeature(new FeatureGenBush(this), IGenFeature.POSTGEN);//Generate undergrowth
+			addGenFeature(new FeatureGenBush(), IGenFeature.POSTGEN);//Generate undergrowth
 		}
 		
 		@Override

@@ -59,9 +59,9 @@ public class TreeRedwood extends TreeFamily {
 			
 			//Add species features
 			addGenFeature(new FeatureGenClearVolume(6));//Clear a spot for the thick tree trunk
-			addGenFeature(new FeatureGenMound(this, 6));//Establish mounds
-			addGenFeature(new FeatureGenFlareBottom(this));//Flare the bottom
-			addGenFeature(new FeatureGenRoots(this, 15).setScaler(getRootScaler()));//Finally Generate Roots
+			addGenFeature(new FeatureGenMound(6));//Establish mounds
+			addGenFeature(new FeatureGenFlareBottom());//Flare the bottom
+			addGenFeature(new FeatureGenRoots(15).setScaler(getRootScaler()));//Finally Generate Roots
 		}
 		
 		protected BiFunction<Integer, Integer, Integer> getRootScaler() {

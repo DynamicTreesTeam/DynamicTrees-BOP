@@ -51,8 +51,8 @@ public class TreeFir extends TreeFamily {
 			//Add species features
 			addGenFeature(new FeatureGenClearVolume(6));//Clear a spot for the thick tree trunk
 			addGenFeature(new FeatureGenConiferTopper(getLeavesProperties()));//Make a topper for this conifer tree
-			addGenFeature(new FeatureGenMound(this, 999));//Establish mounds
-			addGenFeature(new FeatureGenFlareBottom(this));//Flare the bottom
+			addGenFeature(new FeatureGenMound(999));//Establish mounds
+			addGenFeature(new FeatureGenFlareBottom());//Flare the bottom
 		}
 		
 		@Override

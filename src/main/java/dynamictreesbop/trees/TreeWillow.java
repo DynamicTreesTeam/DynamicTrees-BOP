@@ -44,7 +44,7 @@ public class TreeWillow extends TreeFamily {
 			
 			setupStandardSeedDropping();
 			
-			addGenFeature(new FeatureGenVine(this).setQuantity(32).setMaxLength(8).setRayDistance(7).setVineBlock(BOPBlocks.willow_vine));//Generate Vines
+			addGenFeature(new FeatureGenVine().setQuantity(32).setMaxLength(8).setRayDistance(7).setVineBlock(BOPBlocks.willow_vine));//Generate Vines
 		}
 		
 		@Override

@@ -60,7 +60,7 @@ public class TreeUmbran extends TreeFamily {
 			
 			setupStandardSeedDropping();
 			
-			addGenFeature(new FeatureGenVine(this).setQuantity(7).setMaxLength(6).setRayDistance(6).setVineBlock(BOPBlocks.willow_vine));
+			addGenFeature(new FeatureGenVine().setQuantity(7).setMaxLength(6).setRayDistance(6).setVineBlock(BOPBlocks.willow_vine));
 		}
 		
 		@Override
@@ -209,8 +209,8 @@ public class TreeUmbran extends TreeFamily {
 			//Add species features
 			addGenFeature(new FeatureGenClearVolume(6));//Clear a spot for the thick tree trunk
 			addGenFeature(new FeatureGenConiferTopper(getLeavesProperties()));//Make a topper for this conifer tree
-			addGenFeature(new FeatureGenMound(this, 999));//Establish mounds
-			addGenFeature(new FeatureGenFlareBottom(this));//Flare the bottom
+			addGenFeature(new FeatureGenMound(999));//Establish mounds
+			addGenFeature(new FeatureGenFlareBottom());//Flare the bottom
 		}
 		
 		@Override

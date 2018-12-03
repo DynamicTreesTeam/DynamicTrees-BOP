@@ -20,7 +20,7 @@ public class SpeciesAcaciaBush extends Species {
 		setStandardSoils();
 		addAcceptableSoil(Blocks.SAND);
 		
-		addGenFeature(new FeatureGenBush(this)
+		addGenFeature(new FeatureGenBush()
 			.setLeavesState(Blocks.LEAVES2.getDefaultState().withProperty(BlockNewLeaf.VARIANT, BlockPlanks.EnumType.ACACIA))
 			.setLogState(Blocks.LOG2.getDefaultState().withProperty(BlockNewLog.VARIANT, BlockPlanks.EnumType.ACACIA)), IGenFeature.FULLGEN);
 	}
