@@ -590,7 +590,7 @@ public class ModContent {
 	}
 	
 	private static Item getSpeciesSeed(String name) {
-		return TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "floweringoak")).getSeed();		
+		return TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, name)).getSeed();		
 	}
 	
 	@SubscribeEvent
