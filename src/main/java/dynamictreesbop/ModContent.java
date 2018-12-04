@@ -3,6 +3,7 @@ package dynamictreesbop;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
+import java.util.function.Function;
 
 import com.ferreusveritas.dynamictrees.ModConstants;
 import com.ferreusveritas.dynamictrees.ModItems;
@@ -10,13 +11,15 @@ import com.ferreusveritas.dynamictrees.ModRecipes;
 import com.ferreusveritas.dynamictrees.api.TreeRegistry;
 import com.ferreusveritas.dynamictrees.api.client.ModelHelper;
 import com.ferreusveritas.dynamictrees.api.treedata.ILeavesProperties;
-import com.ferreusveritas.dynamictrees.blocks.BlockBranch;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicLeaves;
 import com.ferreusveritas.dynamictrees.blocks.LeavesPaging;
 import com.ferreusveritas.dynamictrees.blocks.LeavesProperties;
+import com.ferreusveritas.dynamictrees.blocks.LeavesPropertiesJson;
+import com.ferreusveritas.dynamictrees.blocks.LeavesPropertiesJson.PrimitiveLeavesComponents;
 import com.ferreusveritas.dynamictrees.items.DendroPotion.DendroPotionType;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
+import com.google.gson.JsonElement;
 
 import biomesoplenty.api.block.BOPBlocks;
 import biomesoplenty.api.enums.BOPTrees;
@@ -62,7 +65,6 @@ import dynamictreesbop.trees.species.SpeciesSpruceBush;
 import dynamictreesbop.trees.species.SpeciesYellowAutumn;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
-import net.minecraft.block.BlockNewLeaf;
 import net.minecraft.block.BlockOldLeaf;
 import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.state.IBlockState;
@@ -72,11 +74,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.ColorizerFoliage;
-import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
@@ -153,6 +151,22 @@ public class ModContent {
 		TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "mushroomred")).addAcceptableSoil(BOPBlocks.dirt, BOPBlocks.grass);
 		TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "mushroombrn")).addAcceptableSoil(BOPBlocks.dirt, BOPBlocks.grass);
 		
+		//This registers a finding function for use with Json leaves properties
+		LeavesPropertiesJson.addLeavesFinderFunction("bop", new Function<JsonElement, LeavesPropertiesJson.PrimitiveLeavesComponents>() {
+			@Override
+			public PrimitiveLeavesComponents apply(JsonElement element) {
+				if(element.isJsonPrimitive() && element.getAsJsonPrimitive().isString()) {
+					String searchData = element.getAsString();
+					for(BOPTrees tree: BOPTrees.values()) {
+						if(tree.getName().equals(searchData.toLowerCase())) {
+							return new PrimitiveLeavesComponents(BlockBOPLeaves.paging.getVariantState(tree), BlockBOPLeaves.paging.getVariantItem(tree));
+						}
+					}
+				}
+				return null;
+			}
+		});
+		
 		// Initialize Leaves Properties
 		floweringOakLeavesProperties = new LeavesProperties(
 				Blocks.LEAVES.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.OAK),
@@ -166,7 +180,7 @@ public class ModContent {
 						return super.getDynamicLeavesState(hydro);
 					}
 				};
-		decayedLeavesProperties = new LeavesProperties(null, ItemStack.EMPTY, TreeRegistry.findCellKit("bare"));
+		
 		palmLeavesProperties = new LeavesProperties(
 				BlockBOPLeaves.paging.getVariantState(BOPTrees.PALM),
 				BlockBOPLeaves.paging.getVariantItem(BOPTrees.PALM),
@@ -177,347 +191,50 @@ public class ModContent {
 					}
 				};
 		
-		yellowAutumnLeavesProperties = new LeavesProperties(
-				BlockBOPLeaves.paging.getVariantState(BOPTrees.YELLOW_AUTUMN),
-				BlockBOPLeaves.paging.getVariantItem(BOPTrees.YELLOW_AUTUMN),
-				TreeRegistry.findCellKit("deciduous")) {
-					@Override
-					public int foliageColorMultiplier(IBlockState state, IBlockAccess world, BlockPos pos) {
-						return 0xffffff;
-					}
-				};
-		orangeAutumnLeavesProperties = new LeavesProperties(
-				BlockBOPLeaves.paging.getVariantState(BOPTrees.ORANGE_AUTUMN),
-				BlockBOPLeaves.paging.getVariantItem(BOPTrees.ORANGE_AUTUMN),
-				TreeRegistry.findCellKit("deciduous")) {
-					@Override
-					public int foliageColorMultiplier(IBlockState state, IBlockAccess world, BlockPos pos) {
-						return 0xffffff;
-					}
-				};
-		magicLeavesProperties = new LeavesProperties(
-				BlockBOPLeaves.paging.getVariantState(BOPTrees.MAGIC),
-				BlockBOPLeaves.paging.getVariantItem(BOPTrees.MAGIC),
-				TreeRegistry.findCellKit("deciduous")) {
-					@Override
-					public int foliageColorMultiplier(IBlockState state, IBlockAccess world, BlockPos pos) {
-						return 0xffffff;
-					}
-				};
-		umbranLeavesProperties = new LeavesProperties(
-				BlockBOPLeaves.paging.getVariantState(BOPTrees.UMBRAN),
-				BlockBOPLeaves.paging.getVariantItem(BOPTrees.UMBRAN),
-				TreeRegistry.findCellKit("deciduous")) {
-					@Override
-					public int foliageColorMultiplier(IBlockState state, IBlockAccess world, BlockPos pos) {
-						return 0xffffff;
-					}
-				};
-		umbranConiferLeavesProperties = new LeavesProperties(
-				BlockBOPLeaves.paging.getVariantState(BOPTrees.UMBRAN),
-				BlockBOPLeaves.paging.getVariantItem(BOPTrees.UMBRAN),
-				TreeRegistry.findCellKit("conifer")) {
-					@Override
-					public int getSmotherLeavesMax() {
-						return 4;
-					}
-					@Override
-					public int foliageColorMultiplier(IBlockState state, IBlockAccess world, BlockPos pos) {
-						return 0xffffff;
-					}
-				};
-		dyingOakLeavesProperties = new LeavesProperties(
-				BlockBOPLeaves.paging.getVariantState(BOPTrees.DEAD),
-				BlockBOPLeaves.paging.getVariantItem(BOPTrees.DEAD),
-				TreeRegistry.findCellKit(new ResourceLocation(DynamicTreesBOP.MODID, "sparse"))) {
-					@Override
-					public int getSmotherLeavesMax() {
-						return 1;
-					}
-					@Override
-					public int foliageColorMultiplier(IBlockState state, IBlockAccess world, BlockPos pos) {
-						return 0xffffff;
-					}
-				};
-		firLeavesProperties = new LeavesProperties(
-				BlockBOPLeaves.paging.getVariantState(BOPTrees.FIR),
-				BlockBOPLeaves.paging.getVariantItem(BOPTrees.FIR),
-				TreeRegistry.findCellKit("conifer")){
-					@Override
-					public int getSmotherLeavesMax() {
-						return 5;
-					}
-					@Override
-					public int foliageColorMultiplier(IBlockState state, IBlockAccess world, BlockPos pos) {
-						return 0xffffff;
-					}
-				};
-		pinkCherryLeavesProperties = new LeavesProperties(
-				BlockBOPLeaves.paging.getVariantState(BOPTrees.PINK_CHERRY),
-				BlockBOPLeaves.paging.getVariantItem(BOPTrees.PINK_CHERRY),
-				TreeRegistry.findCellKit("deciduous")) {
-					@Override
-					public int foliageColorMultiplier(IBlockState state, IBlockAccess world, BlockPos pos) {
-						return 0xffffff;
-					}
-				};
-		whiteCherryLeavesProperties = new LeavesProperties(
-				BlockBOPLeaves.paging.getVariantState(BOPTrees.WHITE_CHERRY),
-				BlockBOPLeaves.paging.getVariantItem(BOPTrees.WHITE_CHERRY),
-				TreeRegistry.findCellKit("deciduous")) {
-					@Override
-					public int foliageColorMultiplier(IBlockState state, IBlockAccess world, BlockPos pos) {
-						return 0xffffff;
-					}
-				};
-		mapleLeavesProperties = new LeavesProperties(
-				BlockBOPLeaves.paging.getVariantState(BOPTrees.MAPLE),
-				BlockBOPLeaves.paging.getVariantItem(BOPTrees.MAPLE),
-				TreeRegistry.findCellKit("deciduous")) {
-					@Override
-					public int foliageColorMultiplier(IBlockState state, IBlockAccess world, BlockPos pos) {
-						return 0xffffff;
-					}
-				};
-		deadLeavesProperties = new LeavesProperties(
-				BlockBOPLeaves.paging.getVariantState(BOPTrees.DEAD),
-				BlockBOPLeaves.paging.getVariantItem(BOPTrees.DEAD),
-				TreeRegistry.findCellKit(new ResourceLocation(DynamicTreesBOP.MODID, "sparse"))) {
-					@Override
-					public int getSmotherLeavesMax() {
-						return 1;
-					}
-					@Override
-					public int foliageColorMultiplier(IBlockState state, IBlockAccess world, BlockPos pos) {
-						return 0xffffff;
-					}
-				};
-		jacarandaLeavesProperties = new LeavesProperties(
-				BlockBOPLeaves.paging.getVariantState(BOPTrees.JACARANDA),
-				BlockBOPLeaves.paging.getVariantItem(BOPTrees.JACARANDA),
-				TreeRegistry.findCellKit("deciduous")) {
-					@Override
-					public int foliageColorMultiplier(IBlockState state, IBlockAccess world, BlockPos pos) {
-						return 0xffffff;
-					}
-				};
-		redwoodLeavesProperties  = new LeavesProperties(
-				BlockBOPLeaves.paging.getVariantState(BOPTrees.REDWOOD),
-				BlockBOPLeaves.paging.getVariantItem(BOPTrees.REDWOOD),
-				TreeRegistry.findCellKit("deciduous")) {
-					@Override
-					public int getSmotherLeavesMax() {
-						return 26;
-					}
-					@Override
-					public int getLightRequirement() {
-						return 9;
-					}
-				};
-		willowLeavesProperties = new LeavesProperties(
-				BlockBOPLeaves.paging.getVariantState(BOPTrees.WILLOW),
-				BlockBOPLeaves.paging.getVariantItem(BOPTrees.WILLOW),
-				TreeRegistry.findCellKit("deciduous")) {
-					@Override
-					public int getSmotherLeavesMax() {
-						return 3;
-					}
-				};
-		hellbarkLeavesProperties = new LeavesProperties(
-				BlockBOPLeaves.paging.getVariantState(BOPTrees.HELLBARK),
-				BlockBOPLeaves.paging.getVariantItem(BOPTrees.HELLBARK),
-				TreeRegistry.findCellKit(new ResourceLocation(DynamicTreesBOP.MODID, "sparse"))) {
-					@Override
-					public int getLightRequirement() {
-						return 0;
-					}
-					@Override
-					public int foliageColorMultiplier(IBlockState state, IBlockAccess world, BlockPos pos) {
-						return 0xffffff;
-					}
-					@Override
-					public int getFlammability() {
-						return 0;
-					}
-					@Override
-					public int getFireSpreadSpeed() {
-						return 0;
-					}
-				};
-		pineLeavesProperties = new LeavesProperties(
-				BlockBOPLeaves.paging.getVariantState(BOPTrees.PINE),
-				BlockBOPLeaves.paging.getVariantItem(BOPTrees.PINE),
-				TreeRegistry.findCellKit("conifer")) {
-					@Override
-					public int getSmotherLeavesMax() {
-						return 13; // because pines are so thin and made mostly of leaves, this has to be very high
-					}
-				};
-		mahoganyLeavesProperties = new LeavesProperties(
-				BlockBOPLeaves.paging.getVariantState(BOPTrees.MAHOGANY),
-				BlockBOPLeaves.paging.getVariantItem(BOPTrees.MAHOGANY),
-				TreeRegistry.findCellKit(new ResourceLocation(DynamicTreesBOP.MODID, "mahogany"))){
-					@Override
-					public int getSmotherLeavesMax() {
-						return 2;
-					}
-				};
-		ebonyLeavesProperties = new LeavesProperties(
-				BlockBOPLeaves.paging.getVariantState(BOPTrees.EBONY),
-				BlockBOPLeaves.paging.getVariantItem(BOPTrees.EBONY),
-				TreeRegistry.findCellKit(new ResourceLocation(DynamicTreesBOP.MODID, "sparse"))){
-					@Override
-					public int getSmotherLeavesMax() {
-						return 1;
-					}
-				};
-		bambooLeavesProperties = new LeavesProperties(
-				BlockBOPLeaves.paging.getVariantState(BOPTrees.BAMBOO),
-				BlockBOPLeaves.paging.getVariantItem(BOPTrees.BAMBOO),
-				TreeRegistry.findCellKit(new ResourceLocation(DynamicTreesBOP.MODID, "bamboo"))) {
-					@Override
-					public int getRadiusForConnection(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, BlockBranch from, EnumFacing side, int fromRadius) {
-						return from.getFamily().isCompatibleDynamicLeaves(blockAccess.getBlockState(pos), blockAccess, pos) ? 1 : 0;
-					}
-					@Override
-					public int getSmotherLeavesMax() {
-						return 6;
-					}
-					@Override
-					public int getLightRequirement() {
-						return 13;
-					}
-				};
-		eucalyptusLeavesProperties = new LeavesProperties(
-				BlockBOPLeaves.paging.getVariantState(BOPTrees.EUCALYPTUS),
-				BlockBOPLeaves.paging.getVariantItem(BOPTrees.EUCALYPTUS),
-				TreeRegistry.findCellKit(new ResourceLocation(DynamicTreesBOP.MODID, "eucalyptus"))) {
-					@Override
-					public int getSmotherLeavesMax() {
-						return 13;
-					}
-					@Override
-					public int getLightRequirement() {
-						return 13;
-					}
-				};
+		decayedLeavesProperties 		= new LeavesPropertiesJson("{`cellkit`:`bare`}");
 		
-		oakConiferLeavesProperties = new LeavesProperties(
-				Blocks.LEAVES.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.OAK),
-				new ItemStack(Blocks.LEAVES, 1, BlockPlanks.EnumType.OAK.getMetadata()),
-				TreeRegistry.findCellKit("conifer")) {
-					@Override
-					public int getSmotherLeavesMax() {
-						return 4;
-					}
-				};
-		darkOakConiferLeavesProperties = new LeavesProperties(
-				Blocks.LEAVES2.getDefaultState().withProperty(BlockNewLeaf.VARIANT, BlockPlanks.EnumType.DARK_OAK),
-				new ItemStack(Blocks.LEAVES2, 1, BlockPlanks.EnumType.DARK_OAK.getMetadata()),
-				TreeRegistry.findCellKit("conifer")){
-					@Override
-					public int getSmotherLeavesMax() {
-						return 3;
-					}
-				};
-		darkOakDyingConiferLeavesProperties = new LeavesProperties(
-				BlockBOPLeaves.paging.getVariantState(BOPTrees.DEAD),
-				BlockBOPLeaves.paging.getVariantItem(BOPTrees.DEAD),
-				TreeRegistry.findCellKit("conifer")) {
-					@Override
-					public int getSmotherLeavesMax() {
-						return 3;
-					}
-				};
-		oakSparseLeavesProperties = new LeavesProperties(
-				Blocks.LEAVES.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.OAK),
-				new ItemStack(Blocks.LEAVES, 1, BlockPlanks.EnumType.OAK.getMetadata()),
-				TreeRegistry.findCellKit(new ResourceLocation(DynamicTreesBOP.MODID, "sparse")));
-		poplarLeavesProperties = new LeavesProperties(
-				Blocks.LEAVES.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.BIRCH),
-				new ItemStack(Blocks.LEAVES, 1, BlockPlanks.EnumType.BIRCH.getMetadata()),
-				TreeRegistry.findCellKit(new ResourceLocation(DynamicTreesBOP.MODID, "poplar"))) {
-					@Override
-					public int getSmotherLeavesMax() {
-						return 9; // because poplars are so thin and made mostly of leaves, this has to be very high
-					}
-					@Override
-					public int getLightRequirement() {
-						return 13; // allow leaves to grow under the branches to make the tree more rounded
-					}
-					@Override
-					@SideOnly(Side.CLIENT)
-					public int foliageColorMultiplier(IBlockState state, IBlockAccess world, BlockPos pos) {
-						return ColorizerFoliage.getFoliageColorBirch();
-					}
-				};
-		darkPoplarLeavesProperties = new LeavesProperties(
-				Blocks.LEAVES2.getDefaultState().withProperty(BlockNewLeaf.VARIANT, BlockPlanks.EnumType.DARK_OAK),
-				new ItemStack(Blocks.LEAVES2, 1, BlockPlanks.EnumType.DARK_OAK.getMetadata()),
-				TreeRegistry.findCellKit(new ResourceLocation(DynamicTreesBOP.MODID, "poplar"))) {
-					@Override
-					public int getSmotherLeavesMax() {
-						return 9; // because poplars are so thin and made mostly of leaves, this has to be very high
-					}
-					@Override
-					public int getLightRequirement() {
-						return 13; // allow leaves to grow under the branches to make the tree more rounded
-					}
-				};
-		jungleTwigletLeavesProperties = new LeavesProperties(
-				Blocks.LEAVES.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.JUNGLE),
-				new ItemStack(Blocks.LEAVES, 1, BlockPlanks.EnumType.JUNGLE.getMetadata()),
-				TreeRegistry.findCellKit(new ResourceLocation(DynamicTreesBOP.MODID, "sparse")));
-		acaciaTwigletLeavesProperties = new LeavesProperties(
-				Blocks.LEAVES2.getDefaultState().withProperty(BlockNewLeaf.VARIANT, BlockPlanks.EnumType.ACACIA),
-				new ItemStack(Blocks.LEAVES2, 1, BlockPlanks.EnumType.ACACIA.getMetadata()),
-				TreeRegistry.findCellKit(new ResourceLocation(DynamicTreesBOP.MODID, "sparse")));
-		acaciaBrushLeavesProperties = new LeavesProperties(
-				Blocks.LEAVES2.getDefaultState().withProperty(BlockNewLeaf.VARIANT, BlockPlanks.EnumType.ACACIA),
-				new ItemStack(Blocks.LEAVES2, 1, BlockPlanks.EnumType.ACACIA.getMetadata()),
-				TreeRegistry.findCellKit(new ResourceLocation(DynamicTreesBOP.MODID, "brush")));
-		
-		// Add leaves properties that need leaves to be generated to an array
+		//Leaves properties that are to be LeavesPaging generated from an array
 		basicLeavesProperties = new ILeavesProperties[] {
-				yellowAutumnLeavesProperties,
-				orangeAutumnLeavesProperties,
-				magicLeavesProperties,
-				umbranLeavesProperties,
-				umbranConiferLeavesProperties,
-				dyingOakLeavesProperties,
-				firLeavesProperties,
-				pinkCherryLeavesProperties,
-				whiteCherryLeavesProperties,
-				mapleLeavesProperties,
-				hellbarkLeavesProperties,
-				deadLeavesProperties,
-				jacarandaLeavesProperties,
+				yellowAutumnLeavesProperties		= new LeavesPropertiesJson("{`leaves`:{`bop`:`yellow_autumn`},`color`:`#ffffff`}"),
+				orangeAutumnLeavesProperties		= new LeavesPropertiesJson("{`leaves`:{`bop`:`orange_autumn`},`color`:`#ffffff`}"),
+				magicLeavesProperties				= new LeavesPropertiesJson("{`leaves`:{`bop`:`magic`},`color`:`#ffffff`}"),
+				umbranLeavesProperties				= new LeavesPropertiesJson("{`leaves`:{`bop`:`umbran`},`color`:`#ffffff`}"),
+				umbranConiferLeavesProperties		= new LeavesPropertiesJson("{`leaves`:{`bop`:`umbran`},`color`:`#ffffff`,`cellkit`:`conifer`,`smother`:4}"),
+				dyingOakLeavesProperties			= new LeavesPropertiesJson("{`leaves`:{`bop`:`dead`},`color`:`#ffffff`,`cellkit`:`dynamictreesbop:sparse`,`smother`:1}"),
+				firLeavesProperties					= new LeavesPropertiesJson("{`leaves`:{`bop`:`fir`},`color`:`#ffffff`,`cellkit`:`conifer`,`smother`:5}"),
+				pinkCherryLeavesProperties			= new LeavesPropertiesJson("{`leaves`:{`bop`:`pink_cherry`},`color`:`#ffffff`}"),
+				whiteCherryLeavesProperties			= new LeavesPropertiesJson("{`leaves`:{`bop`:`white_cherry`},`color`:`#ffffff`}"),
+				mapleLeavesProperties				= new LeavesPropertiesJson("{`leaves`:{`bop`:`maple`},`color`:`#ffffff`}"),
+				hellbarkLeavesProperties			= new LeavesPropertiesJson("{`leaves`:{`bop`:`hellbark`},`color`:`#ffffff`,`cellkit`:`dynamictreesbop:sparse`,`flammability`:0,`fireSpreadSpeed`:0,`light`:0}"),
+				deadLeavesProperties				= new LeavesPropertiesJson("{`leaves`:{`bop`:`dead`},`color`:`#ffffff`,`cellkit`:`dynamictreesbop:sparse`,`smother`:1}"),
+				jacarandaLeavesProperties			= new LeavesPropertiesJson("{`leaves`:{`bop`:`jacaranda`},`color`:`#ffffff`}"),
 				LeavesProperties.NULLPROPERTIES, // placeholder for mangrove
-				redwoodLeavesProperties,
-				willowLeavesProperties,
-				pineLeavesProperties,
-				mahoganyLeavesProperties,
-				ebonyLeavesProperties,
-				eucalyptusLeavesProperties,
-				oakConiferLeavesProperties,
-				darkOakConiferLeavesProperties,
-				darkOakDyingConiferLeavesProperties,
-				oakSparseLeavesProperties,
-				poplarLeavesProperties,
-				darkPoplarLeavesProperties,
-				jungleTwigletLeavesProperties,
-				acaciaTwigletLeavesProperties,
-				acaciaBrushLeavesProperties,
-				bambooLeavesProperties
+				redwoodLeavesProperties				= new LeavesPropertiesJson("{`leaves`:{`bop`:`redwood`},`smother`:26,`light`:9}"),
+				willowLeavesProperties				= new LeavesPropertiesJson("{`leaves`:{`bop`:`willow`},`smother`:3}"),
+				pineLeavesProperties				= new LeavesPropertiesJson("{`leaves`:{`bop`:`pine`},`cellkit`:`conifer`,`smother`:13}"),
+				mahoganyLeavesProperties 			= new LeavesPropertiesJson("{`leaves`:{`bop`:`mahogany`},`cellkit`:`dynamictreesbop:mahogany`,`smother`:2}"),
+				ebonyLeavesProperties				= new LeavesPropertiesJson("{`leaves`:{`bop`:`ebony`},`cellkit`:`dynamictreesbop:sparse`,`smother`:1}"),
+				eucalyptusLeavesProperties			= new LeavesPropertiesJson("{`leaves`:{`bop`:`eucalyptus`},`cellkit`:`dynamictreesbop:eucalyptus`,`smother`:13,`light`;13}"),
+				oakConiferLeavesProperties			= new LeavesPropertiesJson("{`leaves`:`minecraft:leaves variant=oak`,`cellkit`:`conifer`,`smother`:4}"),
+				darkOakConiferLeavesProperties		= new LeavesPropertiesJson("{`leaves`:`minecraft:leaves2 variant=dark_oak`,`cellkit`:`conifer`,`smother`:3}"),
+				darkOakDyingConiferLeavesProperties	= new LeavesPropertiesJson("{`leaves`:{`bop`:`dead`},`cellkit`:`conifer`,`smother`:3}"),
+				oakSparseLeavesProperties			= new LeavesPropertiesJson("{`leaves`:`minecraft:leaves variant=oak`,`cellkit`:`dynamictreesbop:sparse`}"),
+				poplarLeavesProperties				= new LeavesPropertiesJson("{`leaves`:`minecraft:leaves variant=birch`,`color`:`@biome`,`cellkit`:`dynamictreesbop:poplar`,`smother`:9,`light`:13}"),
+				darkPoplarLeavesProperties			= new LeavesPropertiesJson("{`leaves`:`minecraft:leaves2 variant=dark_oak`,`cellkit`:`dynamictreesbop:poplar`,`smother`:9,`light`:13}"),
+				jungleTwigletLeavesProperties		= new LeavesPropertiesJson("{`leaves`:`minecraft:leaves variant=jungle`,`cellkit`:`dynamictreesbop:sparse`}"),
+				acaciaTwigletLeavesProperties		= new LeavesPropertiesJson("{`leaves`:`minecraft:leaves2 variant=acacia`,`cellkit`:`dynamictreesbop:sparse`}"),
+				acaciaBrushLeavesProperties			= new LeavesPropertiesJson("{`leaves`:`minecraft:leaves2 variant=acacia`,`cellkit`:`dynamictreesbop:brush`}"),
+				bambooLeavesProperties				= new LeavesPropertiesJson("{`leaves`:{`bop`:`bamboo`},`cellkit`:`dynamictreesbop:bamboo`,`smother`:6,`light`;13,`connectAny`:true}")
 		};
 		
 		// Generate leaves for leaves properties
 		for (ILeavesProperties lp : basicLeavesProperties) {
 			LeavesPaging.getNextLeavesBlock(DynamicTreesBOP.MODID, lp);
 		}
+		
+		// Leaves properties that could not be automatically paging generated
 		floweringOakLeavesProperties.setDynamicLeavesState(floweringOakLeaves.getDefaultState());
 		floweringOakLeaves.setProperties(0, floweringOakLeavesProperties);
-		
 		palmLeavesProperties.setDynamicLeavesState(palmFrondLeaves.getDefaultState());
 		palmFrondLeaves.setProperties(0, palmLeavesProperties);
 		
