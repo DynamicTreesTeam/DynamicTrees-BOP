@@ -28,7 +28,7 @@ public class SpeciesJungleTwiglet extends SpeciesRare {
 	Species cactus;
 	
 	public SpeciesJungleTwiglet(TreeFamily treeFamily) {
-		super(new ResourceLocation(DynamicTreesBOP.MODID, treeFamily.getName().getResourcePath() + "twiglet"), treeFamily, ModContent.leaves.get("jungletwiglet"));
+		super(new ResourceLocation(DynamicTreesBOP.MODID, ModContent.JUNGLETWIGLET), treeFamily, ModContent.leaves.get(ModContent.JUNGLETWIGLET));
 		
 		setBasicGrowingParameters(0.3f, 2.5f, 1, 2, 1.0f);
 		
@@ -41,7 +41,7 @@ public class SpeciesJungleTwiglet extends SpeciesRare {
 		addDropCreator(new DropCreatorInvoluntarySeed());
 		remDropCreator(new ResourceLocation(ModConstants.MODID, "logs"));
 		
-		cactus = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "cactus"));//Cache the cactus species for quicker generation
+		cactus = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, ModContent.CACTUS));//Cache the cactus species for quicker generation
 		
 		leavesProperties.setTree(treeFamily);
 	}

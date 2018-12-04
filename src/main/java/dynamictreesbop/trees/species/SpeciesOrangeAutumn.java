@@ -25,7 +25,7 @@ import net.minecraftforge.common.BiomeDictionary.Type;
 public class SpeciesOrangeAutumn extends SpeciesRare {
 	
 	public SpeciesOrangeAutumn(TreeFamily treeFamily) {
-		super(new ResourceLocation(DynamicTreesBOP.MODID, "orangeautumn"), treeFamily, ModContent.leaves.get("orangeautumn"));
+		super(new ResourceLocation(DynamicTreesBOP.MODID, ModContent.ORANGEAUTUMN), treeFamily, ModContent.leaves.get(ModContent.ORANGEAUTUMN));
 		
 		setBasicGrowingParameters(0.3f, 12.0f, upProbability, lowestBranchHeight, 0.8f);
 				

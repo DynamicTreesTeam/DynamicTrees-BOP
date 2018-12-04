@@ -18,7 +18,7 @@ import net.minecraftforge.common.BiomeDictionary.Type;
 public class SpeciesAcaciaBrush extends SpeciesRare {
 	
 	public SpeciesAcaciaBrush(TreeFamily treeFamily) {
-		super(new ResourceLocation(DynamicTreesBOP.MODID, "acaciabrush"), treeFamily, ModContent.leaves.get("acaciabrush"));
+		super(new ResourceLocation(DynamicTreesBOP.MODID, ModContent.ACACIABRUSH), treeFamily, ModContent.leaves.get(ModContent.ACACIABRUSH));
 		
 		setBasicGrowingParameters(0.25f, 6.0f, 3, 4, 0.7f);
 		

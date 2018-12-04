@@ -27,7 +27,7 @@ public class TreeEbony extends TreeFamily {
 	public class SpeciesEbony extends Species {
 		
 		public SpeciesEbony(TreeFamily treeFamily) {
-			super(treeFamily.getName(), treeFamily, ModContent.leaves.get("ebony"));
+			super(treeFamily.getName(), treeFamily, ModContent.leaves.get(ModContent.EBONY));
 			
 			setBasicGrowingParameters(0.3f, 12.0f, upProbability, lowestBranchHeight, 1.0f);
 						
@@ -52,7 +52,7 @@ public class TreeEbony extends TreeFamily {
 	public class SpeciesEbonyTwiglet extends SpeciesRare {
 		
 		public SpeciesEbonyTwiglet(TreeFamily treeFamily) {
-			super(new ResourceLocation(DynamicTreesBOP.MODID, treeFamily.getName().getResourcePath() + "twiglet"), treeFamily, ModContent.leaves.get("ebony"));
+			super(new ResourceLocation(DynamicTreesBOP.MODID, ModContent.EBONYTWIGLET), treeFamily, ModContent.leaves.get(ModContent.EBONY));
 			
 			setBasicGrowingParameters(0.3f, 2.5f, 1, 2, 1.0f);
 			
@@ -92,12 +92,12 @@ public class TreeEbony extends TreeFamily {
 	Species twigletSpecies;
 	
 	public TreeEbony() {
-		super(new ResourceLocation(DynamicTreesBOP.MODID, "ebony"));
+		super(new ResourceLocation(DynamicTreesBOP.MODID, ModContent.EBONY));
 		
 		IBlockState primLog = BlockBOPLog.paging.getVariantState(BOPWoods.EBONY);
 		setPrimitiveLog(primLog, BlockBOPLog.paging.getVariantItem(BOPWoods.EBONY));
 		
-		ModContent.leaves.get("ebony").setTree(this);
+		ModContent.leaves.get(ModContent.EBONY).setTree(this);
 		
 		this.addConnectableVanillaLeaves((state) -> {
 			return state.getBlock() instanceof BlockBOPLeaves && state.getValue(((BlockBOPLeaves) state.getBlock()).variantProperty) == BOPTrees.EBONY;

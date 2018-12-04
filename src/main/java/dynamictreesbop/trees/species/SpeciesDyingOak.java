@@ -25,7 +25,7 @@ import net.minecraftforge.common.BiomeDictionary.Type;
 public class SpeciesDyingOak extends SpeciesRare {
 	
 	public SpeciesDyingOak(TreeFamily treeFamily) {
-		super(new ResourceLocation(DynamicTreesBOP.MODID, "oakdying"), treeFamily, ModContent.leaves.get("dyingoak"));
+		super(new ResourceLocation(DynamicTreesBOP.MODID, ModContent.OAKDYING), treeFamily, ModContent.leaves.get(ModContent.OAKDYING));
 		
 		setBasicGrowingParameters(0.3f, 12.0f, upProbability, lowestBranchHeight, 0.65f);
 				

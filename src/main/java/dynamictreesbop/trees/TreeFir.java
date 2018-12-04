@@ -32,7 +32,7 @@ public class TreeFir extends TreeFamily {
 	public class SpeciesMegaFir extends Species {
 		
 		SpeciesMegaFir(TreeFamily treeFamily) {
-			super(treeFamily.getName(), treeFamily, ModContent.leaves.get("fir"));
+			super(treeFamily.getName(), treeFamily, ModContent.leaves.get(ModContent.FIR));
 			
 			setBasicGrowingParameters(0.3f, 32.0f, 7, 7, 1.0f);
 			
@@ -100,7 +100,7 @@ public class TreeFir extends TreeFamily {
 	public class SpeciesFir extends Species {
 		
 		SpeciesFir(TreeFamily treeFamily) {
-			super(new ResourceLocation(treeFamily.getName().getResourceDomain(), treeFamily.getName().getResourcePath() + "small"), treeFamily, ModContent.leaves.get("fir"));
+			super(new ResourceLocation(treeFamily.getName().getResourceDomain(), treeFamily.getName().getResourcePath() + "small"), treeFamily, ModContent.leaves.get(ModContent.FIR));
 			
 			setBasicGrowingParameters(0.3f, 16.0f, 3, 3, 0.9f);
 			
@@ -181,12 +181,12 @@ public class TreeFir extends TreeFamily {
 	Species smallSpecies;
 	
 	public TreeFir() {
-		super(new ResourceLocation(DynamicTreesBOP.MODID, "fir"));
+		super(new ResourceLocation(DynamicTreesBOP.MODID, ModContent.FIR));
 		
 		IBlockState primLog = BlockBOPLog.paging.getVariantState(BOPWoods.FIR);
 		setPrimitiveLog(primLog, BlockBOPLog.paging.getVariantItem(BOPWoods.FIR));
 		hasConiferVariants = true;
-		ModContent.leaves.get("fir").setTree(this);
+		ModContent.leaves.get(ModContent.FIR).setTree(this);
 		
 		this.addConnectableVanillaLeaves((state) -> {
 			return state.getBlock() instanceof BlockBOPLeaves && state.getValue(((BlockBOPLeaves) state.getBlock()).variantProperty) == BOPTrees.FIR;

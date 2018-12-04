@@ -33,7 +33,7 @@ public class TreeCherry extends TreeFamily {
 	public class SpeciesPinkCherry extends Species {
 		
 		SpeciesPinkCherry(TreeFamily treeFamily) {
-			super(new ResourceLocation(treeFamily.getName().getResourceDomain(), "pinkcherry"), treeFamily, ModContent.leaves.get("pinkcherry"));
+			super(new ResourceLocation(treeFamily.getName().getResourceDomain(), ModContent.PINKCHERRY), treeFamily, ModContent.leaves.get(ModContent.PINKCHERRY));
 			
 			setBasicGrowingParameters(0.3f, 12.0f, upProbability, lowestBranchHeight, 0.8f);
 						
@@ -72,7 +72,7 @@ public class TreeCherry extends TreeFamily {
 	public class SpeciesWhiteCherry extends SpeciesRare {
 		
 		SpeciesWhiteCherry(TreeFamily treeFamily) {
-			super(new ResourceLocation(treeFamily.getName().getResourceDomain(), "whitecherry"), treeFamily, ModContent.leaves.get("whitecherry"));
+			super(new ResourceLocation(treeFamily.getName().getResourceDomain(), ModContent.WHITECHERRY), treeFamily, ModContent.leaves.get(ModContent.WHITECHERRY));
 			
 			setBasicGrowingParameters(0.3f, 12.0f, upProbability, lowestBranchHeight, 0.8f);
 						
@@ -111,13 +111,13 @@ public class TreeCherry extends TreeFamily {
 	Species whiteSpecies;
 	
 	public TreeCherry() {
-		super(new ResourceLocation(DynamicTreesBOP.MODID, "cherry"));
+		super(new ResourceLocation(DynamicTreesBOP.MODID, ModContent.CHERRY));
 		
 		IBlockState primLog = BlockBOPLog.paging.getVariantState(BOPWoods.CHERRY);
 		setPrimitiveLog(primLog, BlockBOPLog.paging.getVariantItem(BOPWoods.CHERRY));
 		
-		ModContent.leaves.get("pinkcherry").setTree(this);
-		ModContent.leaves.get("whitecherry").setTree(this);
+		ModContent.leaves.get(ModContent.PINKCHERRY).setTree(this);
+		ModContent.leaves.get(ModContent.WHITECHERRY).setTree(this);
 		
 		this.addConnectableVanillaLeaves((state) -> {
 			if (state.getBlock() instanceof BlockBOPLeaves) {

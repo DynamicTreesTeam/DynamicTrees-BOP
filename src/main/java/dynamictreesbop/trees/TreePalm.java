@@ -160,7 +160,7 @@ public class TreePalm extends TreeFamily {
 	}
 	
 	public TreePalm() {
-		super(new ResourceLocation(DynamicTreesBOP.MODID, "palm"));
+		super(new ResourceLocation(DynamicTreesBOP.MODID, ModContent.PALM));
 		
 		IBlockState primLog = BlockBOPLog.paging.getVariantState(BOPWoods.PALM);
 		setPrimitiveLog(primLog, BlockBOPLog.paging.getVariantItem(BOPWoods.PALM));

@@ -24,7 +24,7 @@ public class TreeJacaranda extends TreeFamily {
 	public class SpeciesJacaranda extends Species {
 		
 		SpeciesJacaranda(TreeFamily treeFamily) {
-			super(treeFamily.getName(), treeFamily, ModContent.leaves.get("jacaranda"));
+			super(treeFamily.getName(), treeFamily, ModContent.leaves.get(ModContent.JACARANDA));
 			
 			setBasicGrowingParameters(0.3f, 12.0f, upProbability, lowestBranchHeight, 0.9f);
 						
@@ -47,12 +47,12 @@ public class TreeJacaranda extends TreeFamily {
 	}
 	
 	public TreeJacaranda() {
-		super(new ResourceLocation(DynamicTreesBOP.MODID, "jacaranda"));
+		super(new ResourceLocation(DynamicTreesBOP.MODID, ModContent.JACARANDA));
 		
 		IBlockState primLog = BlockBOPLog.paging.getVariantState(BOPWoods.JACARANDA);
 		setPrimitiveLog(primLog, BlockBOPLog.paging.getVariantItem(BOPWoods.JACARANDA));
 		
-		ModContent.leaves.get("jacaranda").setTree(this);
+		ModContent.leaves.get(ModContent.JACARANDA).setTree(this);
 		
 		this.addConnectableVanillaLeaves((state) -> {
 			return state.getBlock() instanceof BlockBOPLeaves && state.getValue(((BlockBOPLeaves) state.getBlock()).variantProperty) == BOPTrees.JACARANDA;

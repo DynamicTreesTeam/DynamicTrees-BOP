@@ -32,7 +32,7 @@ public class TreeMagic extends TreeFamily {
 	public class SpeciesMagic extends Species {
 		
 		SpeciesMagic(TreeFamily treeFamily) {
-			super(treeFamily.getName(), treeFamily, ModContent.leaves.get("magic"));
+			super(treeFamily.getName(), treeFamily, ModContent.leaves.get(ModContent.MAGIC));
 			
 			setBasicGrowingParameters(0.3f, 12.0f, upProbability, lowestBranchHeight, 1.0f);
 						
@@ -70,12 +70,12 @@ public class TreeMagic extends TreeFamily {
 	}
 	
 	public TreeMagic() {
-		super(new ResourceLocation(DynamicTreesBOP.MODID, "magic"));
+		super(new ResourceLocation(DynamicTreesBOP.MODID, ModContent.MAGIC));
 		
 		IBlockState primLog = BlockBOPLog.paging.getVariantState(BOPWoods.MAGIC);
 		setPrimitiveLog(primLog, BlockBOPLog.paging.getVariantItem(BOPWoods.MAGIC));
 		
-		ModContent.leaves.get("magic").setTree(this);
+		ModContent.leaves.get(ModContent.MAGIC).setTree(this);
 		
 		this.addConnectableVanillaLeaves((state) -> {
 			return state.getBlock() instanceof BlockBOPLeaves && state.getValue(((BlockBOPLeaves) state.getBlock()).variantProperty) == BOPTrees.MAGIC;

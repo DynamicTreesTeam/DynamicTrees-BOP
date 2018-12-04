@@ -18,6 +18,7 @@ import biomesoplenty.api.block.BOPBlocks;
 import biomesoplenty.api.enums.BOPTrees;
 import biomesoplenty.common.block.BlockBOPLeaves;
 import dynamictreesbop.DynamicTreesBOP;
+import dynamictreesbop.ModConstants;
 import dynamictreesbop.ModContent;
 import dynamictreesbop.cells.DTBOPLeafClusters;
 import net.minecraft.block.Block;
@@ -39,7 +40,7 @@ public class TreeBamboo extends TreeFamily {
 	public class SpeciesBamboo extends Species {
 		
 		SpeciesBamboo(TreeFamily treeFamily) {
-			super(treeFamily.getName(), treeFamily, ModContent.leaves.get("bamboo"));
+			super(treeFamily.getName(), treeFamily, ModContent.leaves.get(ModContent.BAMBOO));
 			
 			setBasicGrowingParameters(0.125f, 11.0f, 4, 4, 1.5f); // Fastest growing "tree"
 						
@@ -118,12 +119,12 @@ public class TreeBamboo extends TreeFamily {
 	}
 	
 	public TreeBamboo() {
-		super(new ResourceLocation(DynamicTreesBOP.MODID, "bamboo"));
+		super(new ResourceLocation(DynamicTreesBOP.MODID, ModContent.BAMBOO));
 		
-		setPrimitiveLog(Block.REGISTRY.getObject(new ResourceLocation("biomesoplenty", "bamboo")).getDefaultState());
+		setPrimitiveLog(Block.REGISTRY.getObject(new ResourceLocation(ModConstants.BOP, ModContent.BAMBOO)).getDefaultState());
 		setStick(ItemStack.EMPTY);
 		
-		ModContent.leaves.get("bamboo").setTree(this);
+		ModContent.leaves.get(ModContent.BAMBOO).setTree(this);
 		
 		hasConiferVariants = true;
 		

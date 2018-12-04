@@ -29,7 +29,7 @@ public class TreeDead extends TreeFamily {
 	public class SpeciesDead extends Species {
 		
 		SpeciesDead(TreeFamily treeFamily) {
-			super(treeFamily.getName(), treeFamily, ModContent.leaves.get("dead"));
+			super(treeFamily.getName(), treeFamily, ModContent.leaves.get(ModContent.DEAD));
 			
 			setBasicGrowingParameters(0.3f, 12.0f, upProbability, lowestBranchHeight, 0.5f);
 			
@@ -67,7 +67,7 @@ public class TreeDead extends TreeFamily {
 	public class SpeciesDecayed extends Species {
 		
 		SpeciesDecayed(TreeFamily treeFamily) {
-			super(new ResourceLocation(treeFamily.getName().getResourceDomain(), "decayed"), treeFamily, ModContent.decayedLeavesProperties);
+			super(new ResourceLocation(treeFamily.getName().getResourceDomain(), ModContent.DECAYED), treeFamily, ModContent.decayedLeavesProperties);
 			
 			setBasicGrowingParameters(0.3f, 12.0f, upProbability, lowestBranchHeight, 1.0f);
 			
@@ -99,12 +99,12 @@ public class TreeDead extends TreeFamily {
 	Species decayedSpecies;
 	
 	public TreeDead() {
-		super(new ResourceLocation(DynamicTreesBOP.MODID, "dead"));
+		super(new ResourceLocation(DynamicTreesBOP.MODID, ModContent.DEAD));
 		
 		IBlockState primLog = BlockBOPLog.paging.getVariantState(BOPWoods.DEAD);
 		setPrimitiveLog(primLog, BlockBOPLog.paging.getVariantItem(BOPWoods.DEAD));
 		
-		ModContent.leaves.get("dead").setTree(this);
+		ModContent.leaves.get(ModContent.DEAD).setTree(this);
 		ModContent.decayedLeavesProperties.setTree(this);
 		
 		this.addConnectableVanillaLeaves((state) -> {

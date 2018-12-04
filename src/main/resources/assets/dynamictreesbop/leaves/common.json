@@ -4,7 +4,7 @@
 "magic"					: {"leaves":{"bop":"magic"}, "color":"#ffffff"},
 "umbran"				: {"leaves":{"bop":"umbran"}, "color":"#ffffff"},
 "umbranconifer"			: {"leaves":{"bop":"umbran"}, "color":"#ffffff", "cellkit":"conifer", "smother":4},
-"dyingoak"				: {"leaves":{"bop":"dead"}, "color":"#ffffff", "cellkit":"dynamictreesbop:sparse", "smother":1},
+"oakdying"				: {"leaves":{"bop":"dead"}, "color":"#ffffff", "cellkit":"dynamictreesbop:sparse", "smother":1},
 "fir"					: {"leaves":{"bop":"fir"}, "color":"#ffffff", "cellkit":"conifer", "smother":5},
 "pinkcherry"			: {"leaves":{"bop":"pink_cherry"}, "color":"#ffffff"},
 "whitecherry"			: {"leaves":{"bop":"white_cherry"}, "color":"#ffffff"},

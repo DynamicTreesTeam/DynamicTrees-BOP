@@ -27,7 +27,7 @@ import net.minecraftforge.common.BiomeDictionary.Type;
 public class SpeciesFloweringOak extends SpeciesRare {
 	
 	public SpeciesFloweringOak(TreeFamily treeFamily) {
-		super(new ResourceLocation(DynamicTreesBOP.MODID, "floweringoak"), treeFamily, ModContent.floweringOakLeavesProperties);
+		super(new ResourceLocation(DynamicTreesBOP.MODID, ModContent.FLOWERINGOAK), treeFamily, ModContent.floweringOakLeavesProperties);
 		
 		setBasicGrowingParameters(0.3f, 12.0f, upProbability, lowestBranchHeight, 0.85f);
 		

@@ -34,7 +34,7 @@ public class TreeMahogany extends TreeFamily {
 	public class SpeciesMahogany extends Species {
 		
 		public SpeciesMahogany(TreeFamily treeFamily) {
-			super(treeFamily.getName(), treeFamily, ModContent.leaves.get("mahogany"));
+			super(treeFamily.getName(), treeFamily, ModContent.leaves.get(ModContent.MAHOGANY));
 			
 			setBasicGrowingParameters(0.15f, 16.0f, 2, 7, 10.9f);
 						
@@ -99,12 +99,12 @@ public class TreeMahogany extends TreeFamily {
 	}
 	
 	public TreeMahogany() {
-		super(new ResourceLocation(DynamicTreesBOP.MODID, "mahogany"));
+		super(new ResourceLocation(DynamicTreesBOP.MODID, ModContent.MAHOGANY));
 		
 		IBlockState primLog = BlockBOPLog.paging.getVariantState(BOPWoods.MAHOGANY);
 		setPrimitiveLog(primLog, BlockBOPLog.paging.getVariantItem(BOPWoods.MAHOGANY));
 		
-		ModContent.leaves.get("mahogany").setTree(this);
+		ModContent.leaves.get(ModContent.MAHOGANY).setTree(this);
 		
 		this.addConnectableVanillaLeaves((state) -> {
 			return state.getBlock() instanceof BlockBOPLeaves && state.getValue(((BlockBOPLeaves) state.getBlock()).variantProperty) == BOPTrees.MAHOGANY;

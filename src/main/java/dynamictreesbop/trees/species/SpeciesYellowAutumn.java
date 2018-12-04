@@ -25,7 +25,7 @@ import net.minecraftforge.common.BiomeDictionary.Type;
 public class SpeciesYellowAutumn extends SpeciesRare {
 	
 	public SpeciesYellowAutumn(TreeFamily treeFamily) {
-		super(new ResourceLocation(DynamicTreesBOP.MODID, "yellowautumn"), treeFamily, ModContent.leaves.get("yellowautumn"));
+		super(new ResourceLocation(DynamicTreesBOP.MODID, ModContent.YELLOWAUTUMN), treeFamily, ModContent.leaves.get(ModContent.YELLOWAUTUMN));
 		
 		setBasicGrowingParameters(0.1f, 14.0f, 4, 4, 1.25f);
 				

@@ -5,6 +5,7 @@ import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenBush;
 import com.ferreusveritas.dynamictrees.trees.Species;
 
 import dynamictreesbop.DynamicTreesBOP;
+import dynamictreesbop.ModContent;
 import net.minecraft.block.BlockNewLeaf;
 import net.minecraft.block.BlockNewLog;
 import net.minecraft.block.BlockPlanks;
@@ -15,7 +16,7 @@ public class SpeciesAcaciaBush extends Species {
 	
 	public SpeciesAcaciaBush() {
 		super();
-		setRegistryName(new ResourceLocation(DynamicTreesBOP.MODID, "acaciabush"));
+		setRegistryName(new ResourceLocation(DynamicTreesBOP.MODID, ModContent.ACACIABUSH));
 		
 		setStandardSoils();
 		addAcceptableSoil(Blocks.SAND);

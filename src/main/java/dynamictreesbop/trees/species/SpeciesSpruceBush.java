@@ -6,6 +6,7 @@ import com.ferreusveritas.dynamictrees.trees.Species;
 
 import biomesoplenty.api.block.BOPBlocks;
 import dynamictreesbop.DynamicTreesBOP;
+import dynamictreesbop.ModContent;
 import net.minecraft.block.BlockOldLeaf;
 import net.minecraft.block.BlockOldLog;
 import net.minecraft.block.BlockPlanks;
@@ -16,7 +17,7 @@ public class SpeciesSpruceBush extends Species {
 		
 	public SpeciesSpruceBush() {
 		super();
-		setRegistryName(new ResourceLocation(DynamicTreesBOP.MODID, "sprucebush"));
+		setRegistryName(new ResourceLocation(DynamicTreesBOP.MODID, ModContent.SPRUCEBUSH));
 		
 		setStandardSoils();
 		addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);

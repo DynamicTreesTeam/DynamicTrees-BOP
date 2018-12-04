@@ -36,7 +36,7 @@ public class TreeEucalyptus extends TreeFamily {
 	public class SpeciesEucalyptus extends Species {
 				
 		public SpeciesEucalyptus(TreeFamily treeFamily) {
-			super(treeFamily.getName(), treeFamily, ModContent.leaves.get("eucalyptus"));
+			super(treeFamily.getName(), treeFamily, ModContent.leaves.get(ModContent.EUCALYPTUS));
 			
 			setBasicGrowingParameters(0.25f, 15.0f, 5, 11, 0.9f);
 						
@@ -109,14 +109,14 @@ public class TreeEucalyptus extends TreeFamily {
 	}
 	
 	public TreeEucalyptus() {
-		super(new ResourceLocation(DynamicTreesBOP.MODID, "eucalyptus"));
+		super(new ResourceLocation(DynamicTreesBOP.MODID, ModContent.EUCALYPTUS));
 		
 		IBlockState primLog = BlockBOPLog.paging.getVariantState(BOPWoods.EUCALYPTUS);
 		setPrimitiveLog(primLog, BlockBOPLog.paging.getVariantItem(BOPWoods.EUCALYPTUS));
 		
 		hasConiferVariants = true;
 		
-		ModContent.leaves.get("eucalyptus").setTree(this);
+		ModContent.leaves.get(ModContent.EUCALYPTUS).setTree(this);
 		
 		this.addConnectableVanillaLeaves((state) -> {
 			return state.getBlock() instanceof BlockBOPLeaves && state.getValue(((BlockBOPLeaves) state.getBlock()).variantProperty) == BOPTrees.EUCALYPTUS;

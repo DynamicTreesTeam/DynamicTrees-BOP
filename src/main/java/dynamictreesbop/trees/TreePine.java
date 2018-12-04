@@ -29,7 +29,7 @@ public class TreePine extends TreeFamily {
 	public class SpeciesPine extends Species {
 				
 		SpeciesPine(TreeFamily treeFamily) {
-			super(treeFamily.getName(), treeFamily, ModContent.leaves.get("pine"));
+			super(treeFamily.getName(), treeFamily, ModContent.leaves.get(ModContent.PINE));
 			
 			setBasicGrowingParameters(0.3f, 16.0f, 4, 4, 0.9f);
 			
@@ -90,12 +90,12 @@ public class TreePine extends TreeFamily {
 	}
 	
 	public TreePine() {
-		super(new ResourceLocation(DynamicTreesBOP.MODID, "pine"));
+		super(new ResourceLocation(DynamicTreesBOP.MODID, ModContent.PINE));
 		
 		IBlockState primLog = BlockBOPLog.paging.getVariantState(BOPWoods.PINE);
 		setPrimitiveLog(primLog, BlockBOPLog.paging.getVariantItem(BOPWoods.PINE));
 		
-		ModContent.leaves.get("pine").setTree(this);
+		ModContent.leaves.get(ModContent.PINE).setTree(this);
 		hasConiferVariants = true;
 		
 		this.addConnectableVanillaLeaves((state) -> {

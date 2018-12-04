@@ -23,7 +23,7 @@ import net.minecraftforge.common.BiomeDictionary.Type;
 public class SpeciesOakSparse extends SpeciesRare {
 	
 	public SpeciesOakSparse(TreeFamily treeFamily) {
-		super(new ResourceLocation(DynamicTreesBOP.MODID, treeFamily.getName().getResourcePath() + "sparse"), treeFamily, ModContent.leaves.get("oaksparse"));
+		super(new ResourceLocation(DynamicTreesBOP.MODID, ModContent.OAKSPARSE), treeFamily, ModContent.leaves.get(ModContent.OAKSPARSE));
 		
 		setBasicGrowingParameters(0.3f, 2.5f, 1, 2, 1.0f);
 		

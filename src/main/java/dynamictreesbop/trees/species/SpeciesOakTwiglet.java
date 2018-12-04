@@ -26,7 +26,7 @@ import net.minecraftforge.common.BiomeDictionary.Type;
 public class SpeciesOakTwiglet extends SpeciesRare {
 	
 	public SpeciesOakTwiglet(TreeFamily treeFamily) {
-		super(new ResourceLocation(DynamicTreesBOP.MODID, treeFamily.getName().getResourcePath() + "twiglet"), treeFamily, ModContent.leaves.get("oaksparse"));
+		super(new ResourceLocation(DynamicTreesBOP.MODID, ModContent.OAKTWIGLET), treeFamily, ModContent.leaves.get(ModContent.OAKSPARSE));
 		
 		setBasicGrowingParameters(0.3f, 2.5f, 1, 2, 1.0f);
 		

@@ -31,7 +31,7 @@ public class TreeWillow extends TreeFamily {
 	public class SpeciesWillow extends Species {
 				
 		SpeciesWillow(TreeFamily treeFamily) {
-			super(treeFamily.getName(), treeFamily, ModContent.leaves.get("willow"));
+			super(treeFamily.getName(), treeFamily, ModContent.leaves.get(ModContent.WILLOW));
 			
 			setBasicGrowingParameters(0.3f, 12.0f, upProbability, lowestBranchHeight, 0.8f);
 						
@@ -80,12 +80,12 @@ public class TreeWillow extends TreeFamily {
 	}
 	
 	public TreeWillow() {
-		super(new ResourceLocation(DynamicTreesBOP.MODID, "willow"));
+		super(new ResourceLocation(DynamicTreesBOP.MODID, ModContent.WILLOW));
 		
 		IBlockState primLog = BlockBOPLog.paging.getVariantState(BOPWoods.WILLOW);
 		setPrimitiveLog(primLog, BlockBOPLog.paging.getVariantItem(BOPWoods.WILLOW));
 		
-		ModContent.leaves.get("willow").setTree(this);
+		ModContent.leaves.get(ModContent.WILLOW).setTree(this);
 		
 		this.addConnectableVanillaLeaves((state) -> {
 			return state.getBlock() instanceof BlockBOPLeaves && state.getValue(((BlockBOPLeaves) state.getBlock()).variantProperty) == BOPTrees.WILLOW;

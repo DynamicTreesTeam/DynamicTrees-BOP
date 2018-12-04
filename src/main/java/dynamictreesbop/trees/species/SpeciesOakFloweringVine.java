@@ -12,6 +12,7 @@ import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 import biomesoplenty.api.biome.BOPBiomes;
 import biomesoplenty.api.block.BOPBlocks;
 import dynamictreesbop.DynamicTreesBOP;
+import dynamictreesbop.ModContent;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
@@ -22,9 +23,9 @@ public class SpeciesOakFloweringVine extends Species {
 	Species baseSpecies;
 	
 	public SpeciesOakFloweringVine(TreeFamily treeFamily) {
-		super(new ResourceLocation(DynamicTreesBOP.MODID, "oakfloweringvine"), treeFamily);
+		super(new ResourceLocation(DynamicTreesBOP.MODID, ModContent.OAKFLOWERINGVINE), treeFamily);
 		
-		baseSpecies = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "oak"));
+		baseSpecies = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, ModContent.OAK));
 		
 		setBasicGrowingParameters(0.3f, 12.0f, upProbability, lowestBranchHeight, 0.8f);
 		
