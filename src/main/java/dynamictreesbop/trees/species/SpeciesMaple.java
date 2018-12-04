@@ -28,7 +28,7 @@ import net.minecraftforge.common.BiomeDictionary.Type;
 public class SpeciesMaple extends SpeciesRare {
 	
 	public SpeciesMaple(TreeFamily treeFamily) {
-		super(new ResourceLocation(DynamicTreesBOP.MODID, "maple"), treeFamily, ModContent.mapleLeavesProperties);
+		super(new ResourceLocation(DynamicTreesBOP.MODID, "maple"), treeFamily, ModContent.leaves.get("maple"));
 		
 		setBasicGrowingParameters(0.15f, 14.0f, 4, 4, 1.05f);
 				

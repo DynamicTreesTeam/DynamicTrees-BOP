@@ -33,7 +33,7 @@ public class TreeCherry extends TreeFamily {
 	public class SpeciesPinkCherry extends Species {
 		
 		SpeciesPinkCherry(TreeFamily treeFamily) {
-			super(new ResourceLocation(treeFamily.getName().getResourceDomain(), "pinkcherry"), treeFamily, ModContent.pinkCherryLeavesProperties);
+			super(new ResourceLocation(treeFamily.getName().getResourceDomain(), "pinkcherry"), treeFamily, ModContent.leaves.get("pinkcherry"));
 			
 			setBasicGrowingParameters(0.3f, 12.0f, upProbability, lowestBranchHeight, 0.8f);
 						
@@ -72,7 +72,7 @@ public class TreeCherry extends TreeFamily {
 	public class SpeciesWhiteCherry extends SpeciesRare {
 		
 		SpeciesWhiteCherry(TreeFamily treeFamily) {
-			super(new ResourceLocation(treeFamily.getName().getResourceDomain(), "whitecherry"), treeFamily, ModContent.whiteCherryLeavesProperties);
+			super(new ResourceLocation(treeFamily.getName().getResourceDomain(), "whitecherry"), treeFamily, ModContent.leaves.get("whitecherry"));
 			
 			setBasicGrowingParameters(0.3f, 12.0f, upProbability, lowestBranchHeight, 0.8f);
 						
@@ -116,8 +116,8 @@ public class TreeCherry extends TreeFamily {
 		IBlockState primLog = BlockBOPLog.paging.getVariantState(BOPWoods.CHERRY);
 		setPrimitiveLog(primLog, BlockBOPLog.paging.getVariantItem(BOPWoods.CHERRY));
 		
-		ModContent.pinkCherryLeavesProperties.setTree(this);
-		ModContent.whiteCherryLeavesProperties.setTree(this);
+		ModContent.leaves.get("pinkcherry").setTree(this);
+		ModContent.leaves.get("whitecherry").setTree(this);
 		
 		this.addConnectableVanillaLeaves((state) -> {
 			if (state.getBlock() instanceof BlockBOPLeaves) {

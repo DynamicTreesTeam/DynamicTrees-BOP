@@ -29,7 +29,7 @@ public class TreeDead extends TreeFamily {
 	public class SpeciesDead extends Species {
 		
 		SpeciesDead(TreeFamily treeFamily) {
-			super(treeFamily.getName(), treeFamily, ModContent.deadLeavesProperties);
+			super(treeFamily.getName(), treeFamily, ModContent.leaves.get("dead"));
 			
 			setBasicGrowingParameters(0.3f, 12.0f, upProbability, lowestBranchHeight, 0.5f);
 			
@@ -104,7 +104,7 @@ public class TreeDead extends TreeFamily {
 		IBlockState primLog = BlockBOPLog.paging.getVariantState(BOPWoods.DEAD);
 		setPrimitiveLog(primLog, BlockBOPLog.paging.getVariantItem(BOPWoods.DEAD));
 		
-		ModContent.deadLeavesProperties.setTree(this);
+		ModContent.leaves.get("dead").setTree(this);
 		ModContent.decayedLeavesProperties.setTree(this);
 		
 		this.addConnectableVanillaLeaves((state) -> {

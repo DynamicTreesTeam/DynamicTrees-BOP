@@ -42,7 +42,7 @@ public class TreeUmbran extends TreeFamily {
 	public class SpeciesUmbran extends Species {
 				
 		SpeciesUmbran(TreeFamily treeFamily) {
-			super(treeFamily.getName(), treeFamily, ModContent.umbranLeavesProperties);
+			super(treeFamily.getName(), treeFamily, ModContent.leaves.get("umbran"));
 			
 			setBasicGrowingParameters(0.3f, 12.0f, upProbability, lowestBranchHeight, 0.7f);
 						
@@ -96,7 +96,7 @@ public class TreeUmbran extends TreeFamily {
 	public class SpeciesUmbranConifer extends SpeciesRare {
 		
 		SpeciesUmbranConifer(TreeFamily treeFamily) {
-			super(new ResourceLocation(treeFamily.getName().getResourceDomain(), "umbranconifer"), treeFamily, ModContent.umbranConiferLeavesProperties);
+			super(new ResourceLocation(treeFamily.getName().getResourceDomain(), "umbranconifer"), treeFamily, ModContent.leaves.get("umbranconifer"));
 			
 			setBasicGrowingParameters(0.25f, 16.0f, 3, 3, 0.8f);
 						
@@ -190,7 +190,7 @@ public class TreeUmbran extends TreeFamily {
 	public class SpeciesMegaUmbranConifer extends SpeciesRare {
 		
 		SpeciesMegaUmbranConifer(TreeFamily treeFamily) {
-			super(new ResourceLocation(treeFamily.getName().getResourceDomain(), "umbranconifermega"), treeFamily, ModContent.umbranConiferLeavesProperties);
+			super(new ResourceLocation(treeFamily.getName().getResourceDomain(), "umbranconifermega"), treeFamily, ModContent.leaves.get("umbranconifer"));
 			
 			setBasicGrowingParameters(0.3f, 32.0f, 7, 7, 1.0f);
 			
@@ -291,8 +291,8 @@ public class TreeUmbran extends TreeFamily {
 		IBlockState primLog = BlockBOPLog.paging.getVariantState(BOPWoods.UMBRAN);
 		setPrimitiveLog(primLog, BlockBOPLog.paging.getVariantItem(BOPWoods.UMBRAN));
 		
-		ModContent.umbranLeavesProperties.setTree(this);
-		ModContent.umbranConiferLeavesProperties.setTree(this);
+		ModContent.leaves.get("umbran").setTree(this);
+		ModContent.leaves.get("umbranconifer").setTree(this);
 		hasConiferVariants = true;
 		
 		this.addConnectableVanillaLeaves((state) -> {

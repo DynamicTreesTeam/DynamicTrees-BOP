@@ -28,7 +28,7 @@ public class SpeciesJungleTwiglet extends SpeciesRare {
 	Species cactus;
 	
 	public SpeciesJungleTwiglet(TreeFamily treeFamily) {
-		super(new ResourceLocation(DynamicTreesBOP.MODID, treeFamily.getName().getResourcePath() + "twiglet"), treeFamily, ModContent.jungleTwigletLeavesProperties);
+		super(new ResourceLocation(DynamicTreesBOP.MODID, treeFamily.getName().getResourcePath() + "twiglet"), treeFamily, ModContent.leaves.get("jungletwiglet"));
 		
 		setBasicGrowingParameters(0.3f, 2.5f, 1, 2, 1.0f);
 		

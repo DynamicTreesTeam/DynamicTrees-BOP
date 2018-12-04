@@ -29,7 +29,7 @@ public class TreePine extends TreeFamily {
 	public class SpeciesPine extends Species {
 				
 		SpeciesPine(TreeFamily treeFamily) {
-			super(treeFamily.getName(), treeFamily, ModContent.pineLeavesProperties);
+			super(treeFamily.getName(), treeFamily, ModContent.leaves.get("pine"));
 			
 			setBasicGrowingParameters(0.3f, 16.0f, 4, 4, 0.9f);
 			
@@ -95,7 +95,7 @@ public class TreePine extends TreeFamily {
 		IBlockState primLog = BlockBOPLog.paging.getVariantState(BOPWoods.PINE);
 		setPrimitiveLog(primLog, BlockBOPLog.paging.getVariantItem(BOPWoods.PINE));
 		
-		ModContent.pineLeavesProperties.setTree(this);
+		ModContent.leaves.get("pine").setTree(this);
 		hasConiferVariants = true;
 		
 		this.addConnectableVanillaLeaves((state) -> {

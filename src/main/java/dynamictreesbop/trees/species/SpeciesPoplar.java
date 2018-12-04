@@ -3,7 +3,6 @@ package dynamictreesbop.trees.species;
 import com.ferreusveritas.dynamictrees.api.IGenFeature;
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
 import com.ferreusveritas.dynamictrees.api.network.INodeInspector;
-import com.ferreusveritas.dynamictrees.api.treedata.ILeavesProperties;
 import com.ferreusveritas.dynamictrees.api.treedata.ITreePart;
 import com.ferreusveritas.dynamictrees.blocks.BlockBranch;
 import com.ferreusveritas.dynamictrees.items.Seed;
@@ -19,6 +18,7 @@ import biomesoplenty.api.block.BOPBlocks;
 import biomesoplenty.api.enums.BOPTrees;
 import biomesoplenty.common.block.BlockBOPLeaves;
 import dynamictreesbop.DynamicTreesBOP;
+import dynamictreesbop.ModContent;
 import dynamictreesbop.cells.DTBOPLeafClusters;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
@@ -31,8 +31,8 @@ import net.minecraftforge.common.BiomeDictionary.Type;
 
 public class SpeciesPoplar extends SpeciesRare {
 		
-	public SpeciesPoplar(TreeFamily treeFamily, String name, ILeavesProperties leavesProps) {
-		super(new ResourceLocation(DynamicTreesBOP.MODID, name), treeFamily, leavesProps);
+	public SpeciesPoplar(TreeFamily treeFamily, String name) {
+		super(new ResourceLocation(DynamicTreesBOP.MODID, name), treeFamily, ModContent.leaves.get(name));
 		
 		setBasicGrowingParameters(0.25f, 11.0f, 5, 4, 0.85f);
 		

@@ -39,7 +39,7 @@ public class TreeBamboo extends TreeFamily {
 	public class SpeciesBamboo extends Species {
 		
 		SpeciesBamboo(TreeFamily treeFamily) {
-			super(treeFamily.getName(), treeFamily, ModContent.bambooLeavesProperties);
+			super(treeFamily.getName(), treeFamily, ModContent.leaves.get("bamboo"));
 			
 			setBasicGrowingParameters(0.125f, 11.0f, 4, 4, 1.5f); // Fastest growing "tree"
 						
@@ -123,7 +123,7 @@ public class TreeBamboo extends TreeFamily {
 		setPrimitiveLog(Block.REGISTRY.getObject(new ResourceLocation("biomesoplenty", "bamboo")).getDefaultState());
 		setStick(ItemStack.EMPTY);
 		
-		ModContent.bambooLeavesProperties.setTree(this);
+		ModContent.leaves.get("bamboo").setTree(this);
 		
 		hasConiferVariants = true;
 		

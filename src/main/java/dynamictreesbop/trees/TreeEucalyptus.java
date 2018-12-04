@@ -36,7 +36,7 @@ public class TreeEucalyptus extends TreeFamily {
 	public class SpeciesEucalyptus extends Species {
 				
 		public SpeciesEucalyptus(TreeFamily treeFamily) {
-			super(treeFamily.getName(), treeFamily, ModContent.eucalyptusLeavesProperties);
+			super(treeFamily.getName(), treeFamily, ModContent.leaves.get("eucalyptus"));
 			
 			setBasicGrowingParameters(0.25f, 15.0f, 5, 11, 0.9f);
 						
@@ -116,7 +116,7 @@ public class TreeEucalyptus extends TreeFamily {
 		
 		hasConiferVariants = true;
 		
-		ModContent.eucalyptusLeavesProperties.setTree(this);
+		ModContent.leaves.get("eucalyptus").setTree(this);
 		
 		this.addConnectableVanillaLeaves((state) -> {
 			return state.getBlock() instanceof BlockBOPLeaves && state.getValue(((BlockBOPLeaves) state.getBlock()).variantProperty) == BOPTrees.EUCALYPTUS;

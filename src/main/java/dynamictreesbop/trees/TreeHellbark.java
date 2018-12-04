@@ -30,7 +30,7 @@ public class TreeHellbark extends TreeFamily {
 	public class SpeciesHellbark extends Species {
 		
 		SpeciesHellbark(TreeFamily treeFamily) {
-			super(treeFamily.getName(), treeFamily, ModContent.hellbarkLeavesProperties);
+			super(treeFamily.getName(), treeFamily, ModContent.leaves.get("hellbark"));
 			
 			setBasicGrowingParameters(0.3f, 2.5f, 1, 2, 1.0f);
 						
@@ -79,7 +79,7 @@ public class TreeHellbark extends TreeFamily {
 		IBlockState primLog = BlockBOPLog.paging.getVariantState(BOPWoods.HELLBARK);
 		setPrimitiveLog(primLog, BlockBOPLog.paging.getVariantItem(BOPWoods.HELLBARK));
 		
-		ModContent.hellbarkLeavesProperties.setTree(this);
+		ModContent.leaves.get("hellbark").setTree(this);
 		
 		this.addConnectableVanillaLeaves((state) -> {
 			return state.getBlock() instanceof BlockBOPLeaves && state.getValue(((BlockBOPLeaves) state.getBlock()).variantProperty) == BOPTrees.HELLBARK;

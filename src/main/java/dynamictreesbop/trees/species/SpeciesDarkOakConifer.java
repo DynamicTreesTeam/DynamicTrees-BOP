@@ -26,7 +26,7 @@ import net.minecraftforge.common.BiomeDictionary.Type;
 public class SpeciesDarkOakConifer extends SpeciesRare {
 	
 	public SpeciesDarkOakConifer(TreeFamily treeFamily) {
-		super(new ResourceLocation(DynamicTreesBOP.MODID, "darkoakconifer"), treeFamily, ModContent.darkOakConiferLeavesProperties);
+		super(new ResourceLocation(DynamicTreesBOP.MODID, "darkoakconifer"), treeFamily, ModContent.leaves.get("darkoakconifer"));
 		
 		setBasicGrowingParameters(0.3f, 16.0f, 3, 3, 0.9f);
 		

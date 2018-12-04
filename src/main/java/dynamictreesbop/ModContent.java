@@ -2,6 +2,7 @@ package dynamictreesbop;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Map;
 import java.util.Random;
 import java.util.function.Function;
 
@@ -99,17 +100,9 @@ public class ModContent {
 	
 	// leaves properties for leaves without auto-generated leaves
 	public static ILeavesProperties floweringOakLeavesProperties, decayedLeavesProperties, palmLeavesProperties;
-	// leaves properties for leaves with auto-generated leaves
-	public static ILeavesProperties yellowAutumnLeavesProperties, orangeAutumnLeavesProperties,
-			magicLeavesProperties, umbranLeavesProperties, umbranConiferLeavesProperties,
-			dyingOakLeavesProperties, firLeavesProperties, pinkCherryLeavesProperties,
-			whiteCherryLeavesProperties, mapleLeavesProperties, deadLeavesProperties,
-			jacarandaLeavesProperties, redwoodLeavesProperties, willowLeavesProperties, hellbarkLeavesProperties,
-			pineLeavesProperties, mahoganyLeavesProperties, ebonyLeavesProperties,
-			bambooLeavesProperties, eucalyptusLeavesProperties,
-			oakConiferLeavesProperties, darkOakConiferLeavesProperties, darkOakDyingConiferLeavesProperties,
-			oakSparseLeavesProperties, poplarLeavesProperties, darkPoplarLeavesProperties,
-			jungleTwigletLeavesProperties, acaciaTwigletLeavesProperties, acaciaBrushLeavesProperties;
+	
+	// A map for leaves properties for leaves with auto-generated leaves
+	public static Map<String, ILeavesProperties> leaves;
 	
 	// array of leaves properties with auto-generated leaves
 	public static ILeavesProperties[] basicLeavesProperties;
@@ -117,9 +110,45 @@ public class ModContent {
 	// trees added by this mod
 	public static ArrayList<TreeFamily> trees = new ArrayList<TreeFamily>();
 	
-	// store hellbark out here so it can be quickly accessed for world gen
-	public static TreeFamily hellbarkTree;
+	//DT tree name constants
+	public static final String ACACIA = "acacia";
+	public static final String APPLE = "apple";
+	public static final String BIRCH = "birch";
+	public static final String CACTUS = "cactus";
+	public static final String DARKOAK = "darkoak";
+	public static final String JUNGLE = "jungle";
+	public static final String OAK = "oak";
+	public static final String OAKSWAMP = "oakswamp";
+	public static final String SPRUCE = "spruce";
+	public static final String MUSHROOMRED = "mushroomred";
+	public static final String MUSHROOMBRN = "mushroombrn";
 	
+	//BOP tree name constants
+	public static final String BAMBOO = "bamboo";
+	public static final String DARKPOPLAR = "darkpoplar";
+	public static final String DEAD = "dead";
+	public static final String EBONY = "ebony";
+	public static final String EUCALYPTUS = "eucalyptus";
+	public static final String FIR = "fir";
+	public static final String FLOWERINGOAK = "floweringoak";
+	public static final String HELLBARK = "hellbark";
+	public static final String JACARANDA = "jacaranda";
+	public static final String MAGIC = "magic";
+	public static final String MAPLE = "maple";
+	public static final String MAHOGANY = "mahogany";
+	public static final String OAKDYING = "oakdying";
+	public static final String ORANGEAUTUMN = "orangeautumn";
+	public static final String PALM = "palm";
+	public static final String PINE = "pine";
+	public static final String PINKCHERRY = "pinkcherry";
+	public static final String POPLAR = "poplar";
+	public static final String REDWOOD = "redwood";
+	public static final String UMBRAN = "umbran";
+	public static final String UMBRANCONIFER = "umbranconifer";
+	public static final String WHITECHERRY = "whitecherry";
+	public static final String WILLOW = "willow";
+	public static final String YELLOWAUTUMN = "yellowautumn";
+
 	@SubscribeEvent
 	public static void registerBlocks(final RegistryEvent.Register<Block> event) {
 		IForgeRegistry<Block> registry = event.getRegistry();
@@ -130,28 +159,20 @@ public class ModContent {
 		palmFrondLeaves = new BlockDynamicLeavesPalm();
 		registry.register(palmFrondLeaves);
 		
-		// Get tree types from base mod so they can be given new species
-		TreeFamily oakTree = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "oak")).getFamily();
-		//DynamicTree spruceTree = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "spruce")).getTree();
-		TreeFamily birchTree = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "birch")).getFamily();
-		TreeFamily jungleTree = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "jungle")).getFamily();
-		TreeFamily acaciaTree = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "acacia")).getFamily();
-		TreeFamily darkOakTree = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "darkoak")).getFamily();
-		
 		// Add BOP dirt and grass as acceptable soils to species from base Dynamic Trees
-		TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "oak")).addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
-		TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "oakswamp")).addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
-		TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "apple")).addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
-		TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "spruce")).addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
-		TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "birch")).addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
-		TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "jungle")).addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
-		TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "acacia")).addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt, Blocks.HARDENED_CLAY);
-		TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "darkoak")).addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
-		TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "cactus")).addAcceptableSoil(BOPBlocks.white_sand);
-		TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "mushroomred")).addAcceptableSoil(BOPBlocks.dirt, BOPBlocks.grass);
-		TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "mushroombrn")).addAcceptableSoil(BOPBlocks.dirt, BOPBlocks.grass);
+		TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, OAK)).addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
+		TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, OAKSWAMP)).addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
+		TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, APPLE)).addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
+		TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, SPRUCE)).addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
+		TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, BIRCH)).addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
+		TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, JUNGLE)).addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
+		TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, ACACIA)).addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt, Blocks.HARDENED_CLAY);
+		TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, DARKOAK)).addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
+		TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, CACTUS)).addAcceptableSoil(BOPBlocks.white_sand);
+		TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, MUSHROOMRED)).addAcceptableSoil(BOPBlocks.dirt, BOPBlocks.grass);
+		TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, MUSHROOMBRN)).addAcceptableSoil(BOPBlocks.dirt, BOPBlocks.grass);
 		
-		//This registers a finding function for use with Json leaves properties
+		//Registers a BoP Primitive Leaves finding function for use with Json leaves properties
 		LeavesPropertiesJson.addLeavesFinderFunction("bop", new Function<JsonElement, LeavesPropertiesJson.PrimitiveLeavesComponents>() {
 			@Override
 			public PrimitiveLeavesComponents apply(JsonElement element) {
@@ -167,7 +188,11 @@ public class ModContent {
 			}
 		});
 		
-		// Initialize Leaves Properties
+		//Leaves properties are read from a Json file
+		leaves = LeavesPaging.build(DynamicTreesBOP.MODID, new ResourceLocation(DynamicTreesBOP.MODID, "leaves/common.json"));
+
+		// Leaves properties that could not be automatically paging generated
+		decayedLeavesProperties = new LeavesPropertiesJson("{`cellkit`:`bare`}");
 		floweringOakLeavesProperties = new LeavesProperties(
 				Blocks.LEAVES.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.OAK),
 				new ItemStack(Blocks.LEAVES, 1, BlockPlanks.EnumType.OAK.getMetadata())) {
@@ -180,7 +205,6 @@ public class ModContent {
 						return super.getDynamicLeavesState(hydro);
 					}
 				};
-		
 		palmLeavesProperties = new LeavesProperties(
 				BlockBOPLeaves.paging.getVariantState(BOPTrees.PALM),
 				BlockBOPLeaves.paging.getVariantItem(BOPTrees.PALM),
@@ -190,96 +214,52 @@ public class ModContent {
 						return true;
 					}
 				};
-		
-		decayedLeavesProperties 		= new LeavesPropertiesJson("{`cellkit`:`bare`}");
-		
-		//Leaves properties that are to be LeavesPaging generated from an array
-		basicLeavesProperties = new ILeavesProperties[] {
-				yellowAutumnLeavesProperties		= new LeavesPropertiesJson("{`leaves`:{`bop`:`yellow_autumn`},`color`:`#ffffff`}"),
-				orangeAutumnLeavesProperties		= new LeavesPropertiesJson("{`leaves`:{`bop`:`orange_autumn`},`color`:`#ffffff`}"),
-				magicLeavesProperties				= new LeavesPropertiesJson("{`leaves`:{`bop`:`magic`},`color`:`#ffffff`}"),
-				umbranLeavesProperties				= new LeavesPropertiesJson("{`leaves`:{`bop`:`umbran`},`color`:`#ffffff`}"),
-				umbranConiferLeavesProperties		= new LeavesPropertiesJson("{`leaves`:{`bop`:`umbran`},`color`:`#ffffff`,`cellkit`:`conifer`,`smother`:4}"),
-				dyingOakLeavesProperties			= new LeavesPropertiesJson("{`leaves`:{`bop`:`dead`},`color`:`#ffffff`,`cellkit`:`dynamictreesbop:sparse`,`smother`:1}"),
-				firLeavesProperties					= new LeavesPropertiesJson("{`leaves`:{`bop`:`fir`},`color`:`#ffffff`,`cellkit`:`conifer`,`smother`:5}"),
-				pinkCherryLeavesProperties			= new LeavesPropertiesJson("{`leaves`:{`bop`:`pink_cherry`},`color`:`#ffffff`}"),
-				whiteCherryLeavesProperties			= new LeavesPropertiesJson("{`leaves`:{`bop`:`white_cherry`},`color`:`#ffffff`}"),
-				mapleLeavesProperties				= new LeavesPropertiesJson("{`leaves`:{`bop`:`maple`},`color`:`#ffffff`}"),
-				hellbarkLeavesProperties			= new LeavesPropertiesJson("{`leaves`:{`bop`:`hellbark`},`color`:`#ffffff`,`cellkit`:`dynamictreesbop:sparse`,`flammability`:0,`fireSpreadSpeed`:0,`light`:0}"),
-				deadLeavesProperties				= new LeavesPropertiesJson("{`leaves`:{`bop`:`dead`},`color`:`#ffffff`,`cellkit`:`dynamictreesbop:sparse`,`smother`:1}"),
-				jacarandaLeavesProperties			= new LeavesPropertiesJson("{`leaves`:{`bop`:`jacaranda`},`color`:`#ffffff`}"),
-				LeavesProperties.NULLPROPERTIES, // placeholder for mangrove
-				redwoodLeavesProperties				= new LeavesPropertiesJson("{`leaves`:{`bop`:`redwood`},`smother`:26,`light`:9}"),
-				willowLeavesProperties				= new LeavesPropertiesJson("{`leaves`:{`bop`:`willow`},`smother`:3}"),
-				pineLeavesProperties				= new LeavesPropertiesJson("{`leaves`:{`bop`:`pine`},`cellkit`:`conifer`,`smother`:13}"),
-				mahoganyLeavesProperties 			= new LeavesPropertiesJson("{`leaves`:{`bop`:`mahogany`},`cellkit`:`dynamictreesbop:mahogany`,`smother`:2}"),
-				ebonyLeavesProperties				= new LeavesPropertiesJson("{`leaves`:{`bop`:`ebony`},`cellkit`:`dynamictreesbop:sparse`,`smother`:1}"),
-				eucalyptusLeavesProperties			= new LeavesPropertiesJson("{`leaves`:{`bop`:`eucalyptus`},`cellkit`:`dynamictreesbop:eucalyptus`,`smother`:13,`light`;13}"),
-				oakConiferLeavesProperties			= new LeavesPropertiesJson("{`leaves`:`minecraft:leaves variant=oak`,`cellkit`:`conifer`,`smother`:4}"),
-				darkOakConiferLeavesProperties		= new LeavesPropertiesJson("{`leaves`:`minecraft:leaves2 variant=dark_oak`,`cellkit`:`conifer`,`smother`:3}"),
-				darkOakDyingConiferLeavesProperties	= new LeavesPropertiesJson("{`leaves`:{`bop`:`dead`},`cellkit`:`conifer`,`smother`:3}"),
-				oakSparseLeavesProperties			= new LeavesPropertiesJson("{`leaves`:`minecraft:leaves variant=oak`,`cellkit`:`dynamictreesbop:sparse`}"),
-				poplarLeavesProperties				= new LeavesPropertiesJson("{`leaves`:`minecraft:leaves variant=birch`,`color`:`@biome`,`cellkit`:`dynamictreesbop:poplar`,`smother`:9,`light`:13}"),
-				darkPoplarLeavesProperties			= new LeavesPropertiesJson("{`leaves`:`minecraft:leaves2 variant=dark_oak`,`cellkit`:`dynamictreesbop:poplar`,`smother`:9,`light`:13}"),
-				jungleTwigletLeavesProperties		= new LeavesPropertiesJson("{`leaves`:`minecraft:leaves variant=jungle`,`cellkit`:`dynamictreesbop:sparse`}"),
-				acaciaTwigletLeavesProperties		= new LeavesPropertiesJson("{`leaves`:`minecraft:leaves2 variant=acacia`,`cellkit`:`dynamictreesbop:sparse`}"),
-				acaciaBrushLeavesProperties			= new LeavesPropertiesJson("{`leaves`:`minecraft:leaves2 variant=acacia`,`cellkit`:`dynamictreesbop:brush`}"),
-				bambooLeavesProperties				= new LeavesPropertiesJson("{`leaves`:{`bop`:`bamboo`},`cellkit`:`dynamictreesbop:bamboo`,`smother`:6,`light`;13,`connectAny`:true}")
-		};
-		
-		// Generate leaves for leaves properties
-		for (ILeavesProperties lp : basicLeavesProperties) {
-			LeavesPaging.getNextLeavesBlock(DynamicTreesBOP.MODID, lp);
-		}
-		
-		// Leaves properties that could not be automatically paging generated
 		floweringOakLeavesProperties.setDynamicLeavesState(floweringOakLeaves.getDefaultState());
 		floweringOakLeaves.setProperties(0, floweringOakLeavesProperties);
 		palmLeavesProperties.setDynamicLeavesState(palmFrondLeaves.getDefaultState());
 		palmFrondLeaves.setProperties(0, palmLeavesProperties);
 		
-		// Register new species of trees from the base mod
-		Species.REGISTRY.register(new SpeciesOakFloweringVine(oakTree));
-		Species.REGISTRY.register(new SpeciesFloweringOak(oakTree));
-		Species.REGISTRY.register(new SpeciesYellowAutumn(birchTree));
-		Species.REGISTRY.register(new SpeciesOrangeAutumn(darkOakTree));
-		Species.REGISTRY.register(new SpeciesDyingOak(oakTree));
-		Species.REGISTRY.register(new SpeciesMaple(oakTree));
-		Species.REGISTRY.register(new SpeciesOakConifer(oakTree));
-		Species.REGISTRY.register(new SpeciesMegaOakConifer(oakTree));
-		Species.REGISTRY.register(new SpeciesDarkOakConifer(darkOakTree));
-		Species.REGISTRY.register(new SpeciesDarkOakDyingConifer(darkOakTree));
-		Species.REGISTRY.register(new SpeciesOakTwiglet(oakTree));
-		Species.REGISTRY.register(new SpeciesPoplar(birchTree, "poplar", poplarLeavesProperties));
-		Species.REGISTRY.register(new SpeciesPoplar(darkOakTree, "darkpoplar", darkPoplarLeavesProperties));
-		Species.REGISTRY.register(new SpeciesJungleTwiglet(jungleTree));
-		Species.REGISTRY.register(new SpeciesAcaciaTwiglet(acaciaTree));
-		Species.REGISTRY.register(new SpeciesAcaciaBrush(acaciaTree));
-		Species.REGISTRY.register(new SpeciesOakSparse(oakTree));
 		
-		// Register bush dummies
-		Species.REGISTRY.register(new SpeciesAcaciaBush());
-		Species.REGISTRY.register(new SpeciesOakBush());
-		Species.REGISTRY.register(new SpeciesSpruceBush());
+		// Get tree types from base mod so they can be given new species
+		TreeFamily oakTree = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, OAK)).getFamily();
+		TreeFamily birchTree = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, BIRCH)).getFamily();
+		TreeFamily jungleTree = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, JUNGLE)).getFamily();
+		TreeFamily acaciaTree = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, ACACIA)).getFamily();
+		TreeFamily darkOakTree = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, DARKOAK)).getFamily();
+			
+		Species.REGISTRY.registerAll(
+			// Register new species of trees from the base mod
+			new SpeciesOakFloweringVine(oakTree),
+			new SpeciesFloweringOak(oakTree),
+			new SpeciesYellowAutumn(birchTree),
+			new SpeciesOrangeAutumn(darkOakTree),
+			new SpeciesDyingOak(oakTree),
+			new SpeciesMaple(oakTree),
+			new SpeciesOakConifer(oakTree),
+			new SpeciesMegaOakConifer(oakTree),
+			new SpeciesDarkOakConifer(darkOakTree),
+			new SpeciesDarkOakDyingConifer(darkOakTree),
+			new SpeciesOakTwiglet(oakTree),
+			new SpeciesPoplar(birchTree, POPLAR),
+			new SpeciesPoplar(darkOakTree, DARKPOPLAR),
+			new SpeciesJungleTwiglet(jungleTree),
+			new SpeciesAcaciaTwiglet(acaciaTree),
+			new SpeciesAcaciaBrush(acaciaTree),
+			new SpeciesOakSparse(oakTree),
+
+			// Register bush dummies
+			new SpeciesAcaciaBush(),
+			new SpeciesOakBush(),
+			new SpeciesSpruceBush()
+		);
 		
 		// Register new tree types
-		TreeFamily magicTree = new TreeMagic();
-		TreeFamily umbranTree = new TreeUmbran();
-		TreeFamily firTree = new TreeFir();
-		TreeFamily cherryTree = new TreeCherry();
-		TreeFamily deadTree = new TreeDead();
-		TreeFamily jacarandaTree = new TreeJacaranda();
-		TreeFamily redwoodTree = new TreeRedwood();
-		TreeFamily willowTree = new TreeWillow();
-		hellbarkTree = new TreeHellbark();
-		TreeFamily pineTree = new TreePine();
-		TreeFamily palmTree = new TreePalm();
-		TreeFamily mahoganyTree = new TreeMahogany();
-		TreeFamily ebonyTree = new TreeEbony();
-		TreeFamily bambooTree = new TreeBamboo();
-		TreeFamily eucalyptusTree = new TreeEucalyptus();
-		
-		Collections.addAll(trees, magicTree, umbranTree, firTree, cherryTree, deadTree, jacarandaTree, redwoodTree, willowTree, hellbarkTree, pineTree, palmTree, mahoganyTree, ebonyTree, bambooTree, eucalyptusTree);
+		Collections.addAll(trees,
+			new TreeMagic(), new TreeUmbran(), new TreeFir(), new TreeCherry(),
+			new TreeDead(), new TreeJacaranda(), new TreeRedwood(), new TreeWillow(),
+			new TreeHellbark(), new TreePine(), new TreePalm(), new TreeMahogany(),
+			new TreeEbony(), new TreeBamboo(), new TreeEucalyptus()
+		);
 		trees.forEach(tree -> tree.registerSpecies(Species.REGISTRY));
 		
 		ArrayList<Block> treeBlocks = new ArrayList<>();
@@ -289,21 +269,19 @@ public class ModContent {
 	}
 	
 	@SubscribeEvent
-	public static void registerItems(RegistryEvent.Register<Item> event) {
-		IForgeRegistry<Item> registry = event.getRegistry();
-		
+	public static void registerItems(RegistryEvent.Register<Item> event) {		
 		// register seeds
-		registry.registerAll(
-			getSpeciesSeed("floweringoak"),
-			getSpeciesSeed("yellowautumn"),
-			getSpeciesSeed("orangeautumn"),
-			getSpeciesSeed("oakdying"),
-			getSpeciesSeed("maple")
+		event.getRegistry().registerAll(
+			getSpeciesSeed(FLOWERINGOAK),
+			getSpeciesSeed(YELLOWAUTUMN),
+			getSpeciesSeed(ORANGEAUTUMN),
+			getSpeciesSeed(OAKDYING),
+			getSpeciesSeed(MAPLE)
 		);
 		
 		ArrayList<Item> treeItems = new ArrayList<>();
 		trees.forEach(tree -> tree.getRegisterableItems(treeItems));
-		registry.registerAll(treeItems.toArray(new Item[treeItems.size()]));
+		event.getRegistry().registerAll(treeItems.toArray(new Item[treeItems.size()]));
 	}
 	
 	private static Item getSpeciesSeed(String name) {
@@ -321,43 +299,39 @@ public class ModContent {
 	@SubscribeEvent
 	public static void registerRecipes(RegistryEvent.Register<IRecipe> event) {
 		// Add transformation potion recipes
-		String[] trees = new String[] {
-				"magic", "umbranconifer", "umbran", "fir", "whitecherry", "pinkcherry",
-				"jacaranda", "redwood", "willow", "hellbark", "pine", "mahogany",
-				"ebony", "eucalyptus",
+		for(String name: new String[] { MAGIC, UMBRANCONIFER, UMBRAN, FIR, WHITECHERRY, PINKCHERRY, JACARANDA, REDWOOD, WILLOW, HELLBARK, PINE, MAHOGANY, EBONY, EUCALYPTUS } ) {
+			addTransformationPotion(name);
 		};
-		for (String tree : trees) {
-			addTransformationPotion(tree);
-		}
+		
 		// Do dead trees separately because the seed grows a species of oak tree
-		ItemStack outputStack = ModItems.dendroPotion.setTargetTree(new ItemStack(ModItems.dendroPotion, 1, DendroPotionType.TRANSFORM.getIndex()), TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "dead")).getFamily());
-		BrewingRecipeRegistry.addRecipe(new ItemStack(ModItems.dendroPotion, 1, DendroPotionType.TRANSFORM.getIndex()), TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "oakdying")).getSeedStack(1), outputStack);
+		ItemStack outputStack = ModItems.dendroPotion.setTargetTree(new ItemStack(ModItems.dendroPotion, 1, DendroPotionType.TRANSFORM.getIndex()), TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, DEAD)).getFamily());
+		BrewingRecipeRegistry.addRecipe(new ItemStack(ModItems.dendroPotion, 1, DendroPotionType.TRANSFORM.getIndex()), TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, DEAD)).getSeedStack(1), outputStack);
 		
 		// Add seed <-> sapling recipes
-		addSeedExchange(BOPTrees.FLOWERING, "floweringoak");
-		addSeedExchange(BOPTrees.YELLOW_AUTUMN, "yellowautumn");
-		addSeedExchange(BOPTrees.ORANGE_AUTUMN, "orangeautumn");
-		addSeedExchange(BOPTrees.DEAD, "oakdying");
-		addSeedExchange(BOPTrees.MAPLE, "maple");
-		addSeedExchange(BOPTrees.MAGIC, "magic");
-		addSeedExchange(BOPTrees.UMBRAN, "umbran");
-		addSeedExchange(BOPTrees.FIR, "fir");
-		addSeedExchange(BOPTrees.WHITE_CHERRY, "whitecherry");
-		addSeedExchange(BOPTrees.PINK_CHERRY, "pinkcherry");
-		addSeedExchange(BOPTrees.JACARANDA, "jacaranda");
-		addSeedExchange(BOPTrees.REDWOOD, "redwood");
-		addSeedExchange(BOPTrees.WILLOW, "willow");
-		addSeedExchange(BOPTrees.HELLBARK, "hellbark");
-		addSeedExchange(BOPTrees.PINE, "pine");
-		addSeedExchange(BOPTrees.PALM, "palm");
-		addSeedExchange(BOPTrees.MAHOGANY, "mahogany");
-		addSeedExchange(BOPTrees.EBONY, "ebony");
-		addSeedExchange(BOPTrees.BAMBOO, "bamboo");
-		addSeedExchange(BOPTrees.EUCALYPTUS, "eucalyptus");
+		addSeedExchange(BOPTrees.FLOWERING, FLOWERINGOAK);
+		addSeedExchange(BOPTrees.YELLOW_AUTUMN, YELLOWAUTUMN);
+		addSeedExchange(BOPTrees.ORANGE_AUTUMN, ORANGEAUTUMN);
+		addSeedExchange(BOPTrees.DEAD, OAKDYING);
+		addSeedExchange(BOPTrees.MAPLE, MAPLE);
+		addSeedExchange(BOPTrees.MAGIC, MAGIC);
+		addSeedExchange(BOPTrees.UMBRAN, UMBRAN);
+		addSeedExchange(BOPTrees.FIR, FIR);
+		addSeedExchange(BOPTrees.WHITE_CHERRY, WHITECHERRY);
+		addSeedExchange(BOPTrees.PINK_CHERRY, PINKCHERRY);
+		addSeedExchange(BOPTrees.JACARANDA, JACARANDA);
+		addSeedExchange(BOPTrees.REDWOOD, REDWOOD);
+		addSeedExchange(BOPTrees.WILLOW, WILLOW);
+		addSeedExchange(BOPTrees.HELLBARK, HELLBARK);
+		addSeedExchange(BOPTrees.PINE, PINE);
+		addSeedExchange(BOPTrees.PALM, PALM);
+		addSeedExchange(BOPTrees.MAHOGANY, MAHOGANY);
+		addSeedExchange(BOPTrees.EBONY, EBONY);
+		addSeedExchange(BOPTrees.BAMBOO, BAMBOO);
+		addSeedExchange(BOPTrees.EUCALYPTUS, EUCALYPTUS);
 		// Do umbran conifer seeds manually since they don't have a sapling in BOP
 		ItemStack saplingStack = BlockBOPSapling.paging.getVariantItem(BOPTrees.UMBRAN);
-		ItemStack seedStack = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "umbranconifer")).getSeedStack(1);
-		GameRegistry.addShapelessRecipe(new ResourceLocation(DynamicTreesBOP.MODID, "umbranconifer" + "sapling"),
+		ItemStack seedStack = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, UMBRANCONIFER)).getSeedStack(1);
+		GameRegistry.addShapelessRecipe(new ResourceLocation(DynamicTreesBOP.MODID, UMBRANCONIFER + "sapling"),
 				null, saplingStack,
 				new Ingredient[] {Ingredient.fromStacks(seedStack), Ingredient.fromItem(ModItems.dirtBucket)});
 		OreDictionary.registerOre("treeSapling", seedStack);
@@ -386,12 +360,12 @@ public class ModContent {
 		}
 		
 		//Register all of the seeds that where not constructed as part of a tree family
-		for(String name: new String[]{ "floweringoak", "yellowautumn", "orangeautumn", "oakdying", "maple", "umbranconifer", "whitecherry" }) {
+		for(String name: new String[]{ FLOWERINGOAK, YELLOWAUTUMN, ORANGEAUTUMN, OAKDYING, MAPLE, UMBRANCONIFER, WHITECHERRY }) {
 			ModelHelper.regModel(getSpeciesSeed(name));
 		}
 		
 		//Register models for custom magic seed animation
-		for (int i = 1; i <= 3; i++) ModelHelper.regModel(TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, "magic")).getSeed(), i);
+		for (int i = 1; i <= 3; i++) ModelHelper.regModel(TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, MAGIC)).getSeed(), i);
 
 		LeavesPaging.getLeavesMapForModId(DynamicTreesBOP.MODID).forEach((key,leaves) -> ModelLoader.setCustomStateMapper(leaves, new StateMap.Builder().ignore(BlockLeaves.DECAYABLE).build()));
 		

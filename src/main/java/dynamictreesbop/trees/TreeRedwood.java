@@ -41,7 +41,7 @@ public class TreeRedwood extends TreeFamily {
 	public class SpeciesRedwood extends Species {
 		
 		SpeciesRedwood(TreeFamily treeFamily) {
-			super(treeFamily.getName(), treeFamily, ModContent.redwoodLeavesProperties);
+			super(treeFamily.getName(), treeFamily, ModContent.leaves.get("redwood"));
 			
 			setBasicGrowingParameters(0.27f, 38.0f, 24, 22, 1.33f);
 			
@@ -192,7 +192,7 @@ public class TreeRedwood extends TreeFamily {
 		IBlockState primLog = BlockBOPLog.paging.getVariantState(BOPWoods.REDWOOD);
 		setPrimitiveLog(primLog, BlockBOPLog.paging.getVariantItem(BOPWoods.REDWOOD));
 		
-		ModContent.redwoodLeavesProperties.setTree(this);
+		ModContent.leaves.get("redwood").setTree(this);
 		
 		surfaceRootBlock = new BlockSurfaceRoot(Material.WOOD, getName() + "root");
 		
