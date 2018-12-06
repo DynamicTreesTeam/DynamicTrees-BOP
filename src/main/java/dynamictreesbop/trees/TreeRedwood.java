@@ -37,7 +37,7 @@ import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary.Type;
 
 public class TreeRedwood extends TreeFamily {
-
+	
 	public class SpeciesRedwood extends Species {
 		
 		SpeciesRedwood(TreeFamily treeFamily) {
@@ -102,7 +102,7 @@ public class TreeRedwood extends TreeFamily {
 				boolean sideTurn = !signal.isInTrunk() || (signal.isInTrunk() && ((signal.numSteps + treeHash) % hashMod == 0) && (radius > 1)); // Only allow turns when we aren't in the trunk(or the branch is not a twig)
 				
 				if (!sideTurn) return EnumFacing.UP;
-
+				
 				probMap[2 + (posHash % 4)] = 1;
 			}
 			
@@ -115,7 +115,7 @@ public class TreeRedwood extends TreeFamily {
 					if (signalY >= getLowestBranchHeight()) {
 						IBlockState deltaBlockState = world.getBlockState(deltaPos);
 						ITreePart treePart = TreeHelper.getTreePart(deltaBlockState);
-					
+						
 						probMap[dir.getIndex()] += treePart.probabilityForBlock(deltaBlockState, world, deltaPos, branch);
 					}
 				}
