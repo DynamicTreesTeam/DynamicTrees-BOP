@@ -10,6 +10,7 @@ import com.ferreusveritas.dynamictrees.ModConstants;
 import com.ferreusveritas.dynamictrees.ModItems;
 import com.ferreusveritas.dynamictrees.ModRecipes;
 import com.ferreusveritas.dynamictrees.api.TreeRegistry;
+import com.ferreusveritas.dynamictrees.api.WorldGenRegistry.BiomeDataBasePopulatorRegistryEvent;
 import com.ferreusveritas.dynamictrees.api.client.ModelHelper;
 import com.ferreusveritas.dynamictrees.api.treedata.ILeavesProperties;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicLeaves;
@@ -64,6 +65,7 @@ import dynamictreesbop.trees.species.SpeciesOrangeAutumn;
 import dynamictreesbop.trees.species.SpeciesPoplar;
 import dynamictreesbop.trees.species.SpeciesSpruceBush;
 import dynamictreesbop.trees.species.SpeciesYellowAutumn;
+import dynamictreesbop.worldgen.BiomeDataBasePopulator;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockOldLeaf;
 import net.minecraft.block.BlockPlanks;
@@ -163,6 +165,11 @@ public class ModContent {
 	public static final String WILLOW = "willow";
 	public static final String YELLOWAUTUMN = "yellowautumn";
 
+	@SubscribeEvent
+	public static void registerDataBasePopulators(final BiomeDataBasePopulatorRegistryEvent event) {
+		event.register(new BiomeDataBasePopulator());
+	}
+	
 	@SubscribeEvent
 	public static void registerBlocks(final RegistryEvent.Register<Block> event) {
 		IForgeRegistry<Block> registry = event.getRegistry();
