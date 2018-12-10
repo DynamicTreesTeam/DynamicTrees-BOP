@@ -1,25 +1,53 @@
 [
+	{ "select" : { "name": "biomesoplenty:flower_island"	}, "apply" : { "blacklist": true } },
+	{ "select" : { "name": "biomesoplenty:sacred_springs"	}, "apply" : { "blacklist": true } },
+	{ "select" : { "name": "biomesoplenty:origin_island"	}, "apply" : { "blacklist": true } },
+	{
+		"__comment" : "cancels all vanilla generation except for those blacklisted above",
+		"select" : { "name": "biomesoplenty:.*" },
+		"apply" : {
+			"cancelvanilla": true
+		}
+	},
+	
+	{ "select" : { "name": "biomesoplenty:shrubland"	}, "apply" : { "blacklist": true } },
+	{ "select" : { "name": "biomesoplenty:tundra"		}, "apply" : { "blacklist": true } },
+	{ "select" : { "name": "biomesoplenty:mangrove"		}, "apply" : { "blacklist": true } },
+	{
+		"__comment0": "Removes select `vanilla` bop generators from biomesoplenty biomes not on the blacklist", 
+		"__comment1": "This link in the populator chain will serve as default settings for all BoP biomes",
+		"select" : { "name": "biomesoplenty:.*" },
+		"apply" : {
+			"removebopgen" : [ "trees", "big_red_mushroom", "big_brown_mushroom", "cacti" ],
+			"density" : "standard",
+			"chance" : "standard"
+		}
+	},
+	{
+		"select" : { "name" : "biomesoplenty:.*", "type" : [ "forest", "jungle" ] },
+		"apply" : { "forestness" : 1.0 }
+	},
 	{
 		"select": { "name": "biomesoplenty:alps_foothills" },
 		"apply" : {
-			"species" : { "static" : "dynamictreesbop:firsmall" },
-			"density" : { "scale" : [ 0.05 ] },
-			"chance" : { "static" : 0.5 }
+			"species" : "dynamictreesbop:firsmall",
+			"density" : [ 0.05 ],
+			"chance" : 0.5
 		}
 	},
-	{			
+	{
 		"select": { "name": "biomesoplenty:bamboo_forest" },
 		"apply": {
-			"species" : { "static" : "dynamictreesbop:bamboo" },
-			"density" : { "scale" : [ 0.25, 0.75 ] },
-			"chance" : { "static" : 1.0 }
+			"species" : "dynamictreesbop:bamboo",
+			"density" : [ 0.25, 0.75 ],
+			"chance" : 1.0
 		}
 	},
-	{	
+	{
 		"select": { "name": "biomesoplenty:bayou" },
 		"apply": {
-			"species" : { "static" : "dynamictreesbop:willow" },
-			"density" : { "scale" : [0.8] }
+			"species" : "dynamictreesbop:willow",
+			"density" : [0.8]
 		}
 	},
 	{
@@ -31,11 +59,11 @@
 					"dynamictreesbop:darkpoplar" : 1
 				}
 			},
-			"density" : { "scale" : [ 0.75, 0.25, 0.7 ] },
-			"chance": { "static" :  1.0 }
+			"density" : [ 0.75, 0.25, 0.7 ],
+			"chance": 1.0
 		}
 	},
-	{			
+	{
 		"select": { "name": "biomesoplenty:boreal_forest" },
 		"apply": {
 			"species" : {
@@ -45,10 +73,10 @@
 					"dynamictrees:oak" : 5
 				}
 			},
-			"density" : { "scale" : [] }
+			"density" : []
 		}
 	},
-	{	
+	{
 		"select": { "name": "biomesoplenty:brushland" },
 		"apply": {		
 			"species" : {
@@ -60,18 +88,18 @@
 				}
 			},
 			"density" : { "scale" : [ 0.75, 0.25, 0.4 ] },
-			"chance": { "static" : 1.0 }
+			"chance": 1.0
 		}
 	},
-	{			
+	{
 		"select": { "name": "biomesoplenty:chaparral" },
 		"apply": {
 			"species" : { "static" : "dynamictreesbop:oaktwiglet" },
 			"density" : { "scale" : [ 0.7 ] },
-			"chance" : { "static" : 0.7 }
+			"chance" : 0.7
 		}
 	},
-	{			
+	{
 		"select": { "name": "biomesoplenty:cherry_blossom_grove" },
 		"apply": {
 			"species" : {
@@ -80,10 +108,10 @@
 					"dynamictreesbop:whitecherry" : 4
 				}
 			},
-			"density" : { "scale" : [ 0.3 ] }
+			"density" : [ 0.3 ]
 		}
 	},
-	{	
+	{
 		"select": { "name": "biomesoplenty:coniferous_forest" },
 		"apply": {
 			"species" : {
@@ -92,10 +120,10 @@
 					"dynamictreesbop:firsmall" : 5
 				}
 			},
-			"density" : { "scale" : [ 0.5, 0.5, 0.95 ] }
+			"density" : [ 0.5, 0.5, 0.95 ]
 		}
 	},
-	{			
+	{
 		"select": { "name": "biomesoplenty:dead_forest" },
 		"apply": {
 			"species" : {
@@ -105,10 +133,10 @@
 					"dynamictreesbop:oakdying" : 8
 				}
 			},
-			"density" : { "scale" : [ 0.3 ] }
+			"density" : [ 0.3 ]
 		}
 	},
-	{			
+	{
 		"select": { "name": "biomesoplenty:dead_swamp" },
 		"apply": {
 			"species" : {
@@ -117,11 +145,11 @@
 					"dynamictreesbop:dead" : 2
 				}
 			},
-			"density" : { "scale" : [ 0.06 ] },
-			"chance" : { "static" : 0.6 }
+			"density" : [ 0.06 ],
+			"chance" : 0.6
 		}
 	},
-	{			
+	{
 		"select": { "name": "biomesoplenty:eucalyptus_forest" },
 		"apply": {
 			"species" : {
@@ -130,11 +158,11 @@
 					"dynamictreesbop:oakbush" : 6
 				}
 			},
-			"density" : { "scale" : [ 0.5, 0.5 ] },
-			"chance" : { "static" : 1.0 }
+			"density" : [ 0.5, 0.5 ],
+			"chance" : 1.0
 		}
 	},
-	{			
+	{
 		"select": { "name": "biomesoplenty:fen" },
 		"apply": {
 			"species" : {
@@ -144,10 +172,10 @@
 					"dynamictreesbop:darkoakdyingconifer" : 10
 				}
 			},
-			"density" : { "scale" : [ 0.9 ] }
+			"density" : [ 0.9 ]
 		}
 	},
-	{			
+	{
 		"select": { "name": "biomesoplenty:grove" },
 		"apply": {
 			"species" : {
@@ -156,10 +184,10 @@
 					"dynamictreesbop:darkpoplar" : 1
 				}
 			},
-			"density" : { "scale" : [ 0.25 ] }
+			"density" : [ 0.25 ]
 		}
 	},
-	{			
+	{
 		"select": { "name": "biomesoplenty:land_of_lakes" },
 		"apply": {
 			"species" : {
@@ -171,7 +199,7 @@
 			}
 		}
 	},
-	{			
+	{
 		"select": { "name": "biomesoplenty:lavender_fields" },
 		"apply": {
 			"species" : {
@@ -180,8 +208,8 @@
 					"dynamictreesbop:jacaranda" : 3
 				}
 			},
-			"density" : { "scale" : [ 0.1 ] },
-			"chance" : { "static" : 0.3 }
+			"density" : [ 0.1 ],
+			"chance" : 0.3
 		}
 	},
 	{
@@ -194,18 +222,18 @@
 					"dynamictreesbop:acacia" : 3
 				}
 			},
-			"density" : { "scale" : [ 0.4 ] },
-			"chance" : { "static" : 0.4 }
+			"density" : [ 0.4 ],
+			"chance" : 0.4
 		}
 	},
-	{			
+	{
 		"select": { "name": "biomesoplenty:lush_swamp" },
 		"apply": {
-			"species" : { "static" : "dynamictrees:oakswamp" },
-			"density" : { "scale" : [ 0.8 ] }
+			"species" : "dynamictrees:oakswamp",
+			"density" : [ 0.8 ]
 		}
 	},
-	{			
+	{
 		"select": { "name": "biomesoplenty:maple_woods" },
 		"apply": {
 			"species" : {
@@ -214,10 +242,11 @@
 					"dynamictreesbop:maple" : 5
 				}
 			},
-			"density" : { "scale" : [] }
+			"chance" : 1.0,
+			"density" : []
 		}
 	},
-	{			
+	{
 		"select": { "name": "biomesoplenty:meadow" },
 		"apply": {
 			"species" : {
@@ -226,11 +255,11 @@
 					"dynamictreesbop:oakbush" : 3
 				}
 			},
-			"density" : { "scale" : [ 0.25 ] },
-			"chance" : { "static" : 0.6 }
+			"density" : [ 0.25 ],
+			"chance" : 0.6
 		}
 	},
-	{		
+	{
 		"select": { "name": "biomesoplenty:mountain" },
 		"apply": {
 			"species" : {
@@ -239,10 +268,10 @@
 					"dynamictreesbop:pine" : 2
 				}
 			},
-			"density" : { "scale" : [ 0.3 ] }
+			"density" : [ 0.3 ]
 		}
 	},
-	{		
+	{
 		"select": { "name": "biomesoplenty:mountain_foothills" },
 		"apply": {	
 			"species" : {
@@ -251,10 +280,10 @@
 					"dynamictreesbop:pine" : 2
 				}
 			},
-			"density" : { "scale" : [ 0.3 ] }
+			"density" : [ 0.3 ]
 		}
 	},
-	{			
+	{
 		"select": { "name": "biomesoplenty:mystic_grove" },
 		"apply": {
 			"species" : {
@@ -267,10 +296,10 @@
 					"dynamictrees:mushroombrown" : 1
 				}
 			},
-			"density" : { "scale" : [] }
+			"density" : []
 		}
 	},
-	{			
+	{
 		"select": { "name": "biomesoplenty:oasis" },
 		"apply": {
 			"species" : {
@@ -279,11 +308,11 @@
 					"dynamictreesbop:jungletwiglet" : 2
 				}
 			},
-			"density" : { "scale" :  [ 0.25, 0.75, 0.7 ] },
+			"density" : [ 0.25, 0.75, 0.7 ],
 			"chance" : { "math" : { "species" : [ "dynamictreesbop:palm", 1.0, 0.3 ] } }
 		}
 	},
-	{			
+	{
 		"select": { "name": "biomesoplenty:ominous_woods" },
 		"apply": {
 			"species" : {
@@ -295,10 +324,10 @@
 					"dynamictreesbop:dead" : 1
 				}
 			},
-			"density" : { "scale" : [] }
+			"density" : []
 		}
 	},
-	{			
+	{
 		"select": { "name": "biomesoplenty:orchard" },
 		"apply": {
 			"species" : {
@@ -307,10 +336,10 @@
 					"dynamictrees:apple" : 1
 				}
 			},
-			"density" : { "scale" : [ 0.5 ] }
+			"density" : [ 0.5 ]
 		}
 	},
-	{			
+	{
 		"select": { "name": "biomesoplenty:outback" },
 		"apply": {
 			"species" : { 
@@ -320,11 +349,11 @@
 					"dynamictrees:cactus" : 4
 				}
 			},
-			"density" : { "scale" : [ 0.45 ] },
-			"chance" : { "static" : 1.0 }
+			"density" : [ 0.45 ],
+			"chance" : 1.0
 		}
 	},
-	{			
+	{
 		"select": { "name": "biomesoplenty:overgrown_cliffs" },
 		"apply": {
 			"species" : {
@@ -334,25 +363,25 @@
 					"dynamictreesbop:oakbush" : 8
 				}
 			},
-			"density" : { "scale" : [ 0.75, 0.25 ] },
-			"chance" : { "static" : 1.0 }
+			"density" : [ 0.75, 0.25 ],
+			"chance" : 1.0
 		}
 	},
-	{		
+	{
 		"select": { "name": "biomesoplenty:prairie" },
 		"apply": {	
-			"species" : { "static" : "dynamictreesbop:oaksparse" },
-			"density" : { "scale" : [ 0.03 ] },
-			"chance" : { "static" : [ 0.075 ] }
+			"species" : "dynamictreesbop:oaksparse",
+			"density" : [ 0.03 ],
+			"chance" : 0.075
 		}
 	},
-	{			
+	{
 		"select": { "name": "biomesoplenty:quagmire" },
 		"apply": {
-			"chance" : { "static" : 0.02 }
+			"chance" : 0.02
 		}
 	},
-	{			
+	{
 		"select": { "name": "biomesoplenty:rainforest" },
 		"apply": {
 			"species" : {
@@ -363,19 +392,19 @@
 					"dynamictreesbop:floweringoak" : 7
 				}
 			},
-			"density" : { "scale" : [] },
-			"chance" : { "static" : 1.0 }
+			"density" : [],
+			"chance" : 1.0
 		}
 	},
-	{			
+	{
 		"select": { "name": "biomesoplenty:redwood_forest" },
 		"apply": {
-			"species" : { "static" : "dynamictreesbop:redwood" },
-			"density" : { "scale" : [ 0.25, 0.2 ] },
-			"chance" : { "static" : 1.0 }
+			"species" : "dynamictreesbop:redwood",
+			"density" : [ 0.25, 0.2 ],
+			"chance" : 1.0
 		}
 	},
-	{			
+	{
 		"select": { "name": "biomesoplenty:seasonal_forest" },
 		"apply": {
 			"species" : {
@@ -387,10 +416,11 @@
 					"dynamictreesbop:maple" : 4
 				}
 			},
-			"density" : { "scale" : [ 0.9 ] }
+			"density" : [ 0.9 ],
+			"chance" : 1.0
 		}
 	},
-	{		
+	{
 		"select": { "name": "biomesoplenty:shield" },
 		"apply": {	
 			"species" : {
@@ -399,10 +429,10 @@
 					"dynamictreesbop:pine" : 2
 				}
 			},
-			"density" : { "scale" : [ 0.9 ] }
+			"density" : [ 0.9 ]
 		}
 	},
-	{		
+	{
 		"select": { "name": "biomesoplenty:snowy_coniferous_forest" },
 		"apply": {	
 			"species" : {
@@ -411,10 +441,10 @@
 					"dynamictreesbop:firsmall" : 4
 				}
 			},
-			"density" : { "scale" : [ 0.8 ] }
+			"density" : [ 0.8 ]
 		}
 	},
-	{		
+	{
 		"select": { "name": "biomesoplenty:snowy_forest" },
 		"apply": {	
 			"species" : {
@@ -423,10 +453,10 @@
 					"dynamictreesbop:oakdying" : 1
 				}
 			},
-			"density" : { "scale" : [ 0.3 ] }
+			"density" : [ 0.3 ]
 		}
 	},
-	{		
+	{
 		"select": { "name": "biomesoplenty:temperate_rainforest" },
 		"apply": {	
 			"species" : {
@@ -436,10 +466,10 @@
 					"dynamictreesbop:willow" : 3
 				}
 			},
-			"density" : { "scale" : [] }
+			"density" : []
 		}
 	},
-	{		
+	{
 		"select": { "name": "biomesoplenty:tropical_island" },
 		"apply": {	
 			"species" : {
@@ -448,11 +478,11 @@
 					"dynamictreesbop:jungletwiglet" : 2
 				}
 			},
-			"density" : { "scale" : [ 0.5, 0.5 ] },
-			"chance" : { "static" : 1.0 }
+			"density" : [ 0.5, 0.5 ],
+			"chance" : 1.0
 		}
 	},
-	{		
+	{
 		"select": { "name": "biomesoplenty:tropical_rainforest" },
 		"apply": {	
 			"species" : {
@@ -461,19 +491,20 @@
 					"dynamictreesbop:mahogany" : 6
 				}
 			},
-			"density" : { "scale" : [ 0.5, 0.5 ] },
-			"chance" : { "static" : 1.0 }
+			"density" : [ 0.5, 0.5 ],
+			"chance" : 1.0
 		}
 	},
-	{		
+	{
 		"select": { "name": "biomesoplenty:undergarden" },
 		"apply": {	
-			"species" : { "static" : "dynamictreesbop:hellbark" },
-			"density" : { "scale" : [ 0.0, 1.0 ] },
-			"chance" : { "static" : 1.0 }
+			"species" : "dynamictreesbop:hellbark",
+			"density" : [ 0.0, 1.0 ],
+			"chance" : 1.0,
+			"subterranean": true
 		}
 	},
-	{		
+	{
 		"select": { "name": "biomesoplenty:wasteland" },
 		"apply": {	
 			"species" : {
@@ -482,11 +513,11 @@
 					"dynamictreesbop:dead" : 1
 				}
 			},
-			"density" : { "scale" : [ 0.03 ] },
-			"chance" : { "static" : 0.3 }
+			"density" : [ 0.03 ],
+			"chance" : 0.3
 		}
 	},
-	{		
+	{
 		"select": { "name": "biomesoplenty:wetland" },
 		"apply": {	
 			"species" : {
@@ -495,17 +526,17 @@
 					"dynamictreesbop:willow" : 3
 				}
 			},
-			"density" : { "scale" : [] }
+			"density" : []
 		}
 	},
-	{		
+	{
 		"select": { "name": "biomesoplenty:woodland" },
 		"apply": {	
-			"species" : { "static" : "dynamictrees:oak" },
-			"density" : { "scale" : [] }
+			"species" : "dynamictrees:oak",
+			"density" : []
 		}
 	},
-	{		
+	{
 		"select": { "name": "biomesoplenty:xeric_shrubland" },
 		"apply": {	
 			"species" : {
@@ -514,17 +545,19 @@
 					"dynamictrees:cactus" : 1
 				}
 			},
-			"density" : { "scale" : [ 0.4 ] },
-			"chance" : { "static" : 0.7 }
+			"density" : [ 0.4 ],
+			"chance" : 0.7
 		}
 	},
-	{		
+	
+	
+	{
 		"select": { "name": "minecraft:beaches" },
 		"apply": {
-			"species" : { "static" : "dynamictreesbop:palm" }
+			"species" : "dynamictreesbop:palm"
 		}
 	},
-	{			
+	{
 		"select": { "name": "minecraft:forest" },
 		"apply": {
 			"species" : {
@@ -536,7 +569,7 @@
 			}
 		}
 	},
-	{		
+	{
 		"select": { "name": "minecraft:forest_hills" },
 		"apply": {	
 			"species" : {
@@ -548,19 +581,19 @@
 			}
 		}
 	},
-	{		
+	{
 		"select": { "name": "minecraft:extreme_hills" },
 		"apply": {	
-			"species" : { "static" : "dynamictrees:spruce" }
+			"species" : "dynamictrees:spruce"
 		}
 	},
-	{			
+	{
 		"select": { "name" : "minecraft:extreme_hills_with_trees" },
 		"apply": {
-			"species" : { "static" : "dynamictrees:spruce" }
+			"species" : "dynamictrees:spruce"
 		}
 	},
-	{			
+	{
 		"select": { "name" : "minecraft:swampland" },
 		"apply": {
 			"species" : {
@@ -570,8 +603,9 @@
 				}
 			}
 		}
-	},		
-
+	},
+	
+	
 	{ "select" : { "name" : "biomesoplenty:cold_desert"		}, "apply" : { "chance" : 0.0 } },
 	{ "select" : { "name" : "biomesoplenty:crag"			}, "apply" : { "chance" : 0.0 } },
 	{ "select" : { "name" : "biomesoplenty:flower_field"	}, "apply" : { "chance" : 0.0 } },

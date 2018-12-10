@@ -20,6 +20,11 @@ public class CommonProxy {
 	}
 
 	public void init() {
+		addSpeciesLocationOverrides();
+		WorldGenRegistry.registerBiomeDataBasePopulator(new BiomeDataBasePopulator());
+	}
+	
+	private void addSpeciesLocationOverrides() {
 		Species oakConifer = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "oakconifer"));
 		Species megaOakConifer = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "megaoakconifer"));
 		Species darkOakConifer = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, "darkoakconifer"));
@@ -50,8 +55,6 @@ public class CommonProxy {
 			
 			return Species.NULLSPECIES;
 		});
-		
-		WorldGenRegistry.registerBiomeDataBasePopulator(new BiomeDataBasePopulator());
 	}
 	
 	public void postInit() {
