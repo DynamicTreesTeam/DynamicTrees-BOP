@@ -2,14 +2,17 @@ package dynamictreesbop;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.function.Function;
 
+import com.ferreusveritas.dynamictrees.ModConfigs;
 import com.ferreusveritas.dynamictrees.ModConstants;
 import com.ferreusveritas.dynamictrees.ModItems;
 import com.ferreusveritas.dynamictrees.ModRecipes;
 import com.ferreusveritas.dynamictrees.api.TreeRegistry;
+import com.ferreusveritas.dynamictrees.api.WorldGenRegistry.BiomeDataBaseJsonCapabilityRegistryEvent;
 import com.ferreusveritas.dynamictrees.api.WorldGenRegistry.BiomeDataBasePopulatorRegistryEvent;
 import com.ferreusveritas.dynamictrees.api.client.ModelHelper;
 import com.ferreusveritas.dynamictrees.api.treedata.ILeavesProperties;
@@ -25,6 +28,7 @@ import com.google.gson.JsonElement;
 
 import biomesoplenty.api.block.BOPBlocks;
 import biomesoplenty.api.enums.BOPTrees;
+import biomesoplenty.common.biome.BOPBiome;
 import biomesoplenty.common.block.BlockBOPLeaves;
 import biomesoplenty.common.block.BlockBOPSapling;
 import dynamictreesbop.blocks.BlockDynamicLeavesFlowering;
@@ -164,11 +168,8 @@ public class ModContent {
 	public static final String WHITECHERRY = "whitecherry";
 	public static final String WILLOW = "willow";
 	public static final String YELLOWAUTUMN = "yellowautumn";
-
-	@SubscribeEvent
-	public static void registerDataBasePopulators(final BiomeDataBasePopulatorRegistryEvent event) {
-		event.register(new BiomeDataBasePopulator());
-	}
+	
+	public static final String REMOVEBOPGEN = "removebopgen";
 	
 	@SubscribeEvent
 	public static void registerBlocks(final RegistryEvent.Register<Block> event) {
@@ -389,6 +390,42 @@ public class ModContent {
 		for (int i = 1; i <= 3; i++) ModelHelper.regModel(TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, MAGIC)).getSeed(), i);
 		
 		ModelLoader.setCustomStateMapper(ModContent.palmLeavesProperties.getDynamicLeavesState().getBlock(), new StateMap.Builder().ignore(BlockDynamicLeaves.TREE).build());
+	}
+		
+	@SubscribeEvent
+	public static void registerDataBaseCapability(final BiomeDataBaseJsonCapabilityRegistryEvent event) {
+		
+		//Add a removebopgen applier to the JSON capabilities
+		event.register(REMOVEBOPGEN, (database, element, biome) -> {
+			if(biome instanceof BOPBiome) {
+				List<String> featuresToRemove = new ArrayList<>();
+				
+				if(element.isJsonPrimitive()) {
+					featuresToRemove.add(element.getAsString());
+				}
+				else if(element.isJsonArray()) {
+					for(JsonElement e : element.getAsJsonArray()) {
+						if(e.isJsonPrimitive()) {
+							featuresToRemove.add(e.getAsString());
+						}
+					}
+				}
+				
+				for(String featureName : featuresToRemove) {
+					if(CACTUS.equals(featureName) && ModConfigs.vanillaCactusWorldGen) {
+						return; //Don't allow the cancellation of the cactus generator if the DynamicTrees has dual dynamic/vanilla cactus generation enabled 
+					}
+					((BOPBiome) biome).removeGenerator(featureName);
+				}
+				
+			}
+		});
+		
+	}
+	
+	@SubscribeEvent
+	public static void registerDataBasePopulators(final BiomeDataBasePopulatorRegistryEvent event) {
+		event.register(new BiomeDataBasePopulator());
 	}
 	
 }
