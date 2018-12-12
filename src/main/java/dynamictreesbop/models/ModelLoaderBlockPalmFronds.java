@@ -1,6 +1,6 @@
 package dynamictreesbop.models;
 
-import com.ferreusveritas.dynamictrees.models.ModelLoaderGeneric;
+import com.ferreusveritas.dynamictrees.models.loaders.ModelLoaderGeneric;
 
 import net.minecraft.client.renderer.block.model.ModelBlock;
 import net.minecraft.util.ResourceLocation;

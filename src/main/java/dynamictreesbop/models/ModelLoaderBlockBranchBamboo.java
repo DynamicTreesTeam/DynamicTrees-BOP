@@ -2,8 +2,8 @@ package dynamictreesbop.models;
 
 import java.util.function.Function;
 
-import com.ferreusveritas.dynamictrees.models.ModelBlockBranchBasic;
-import com.ferreusveritas.dynamictrees.models.ModelLoaderGeneric;
+import com.ferreusveritas.dynamictrees.models.blockmodels.ModelBlockBranchBasic;
+import com.ferreusveritas.dynamictrees.models.loaders.ModelLoaderGeneric;
 
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ModelBlock;
