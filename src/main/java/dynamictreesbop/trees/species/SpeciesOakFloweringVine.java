@@ -43,7 +43,7 @@ public class SpeciesOakFloweringVine extends Species {
 		setupStandardSeedDropping();
 		
 		//Add species features
-		addGenFeature(new FeatureGenVine().setQuantity(12).setMaxLength(6).setRayDistance(6).setVineBlock(BOPBlocks.ivy));//Generate Ivy
+		addGenFeature(new FeatureGenVine().setQuantity(20).setMaxLength(7).setRayDistance(6).setVineBlock(BOPBlocks.ivy));//Generate Ivy
 	}
 	
 	@Override
