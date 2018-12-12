@@ -58,7 +58,7 @@ public class TreeRedwood extends TreeFamily {
 			setupStandardSeedDropping();
 			
 			//Add species features
-			addGenFeature(new FeatureGenClearVolume(6));//Clear a spot for the thick tree trunk
+			addGenFeature(new FeatureGenClearVolume(32));//Clear a spot for the thick tree trunk
 			addGenFeature(new FeatureGenMound(6));//Establish mounds
 			addGenFeature(new FeatureGenFlareBottom());//Flare the bottom
 			addGenFeature(new FeatureGenRoots(15).setScaler(getRootScaler()));//Finally Generate Roots
