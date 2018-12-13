@@ -10,9 +10,10 @@
 		}
 	},
 	
-	{ "select" : { "name": "biomesoplenty:shrubland"	}, "apply" : { "blacklist": true } },
-	{ "select" : { "name": "biomesoplenty:tundra"		}, "apply" : { "blacklist": true } },
-	{ "select" : { "name": "biomesoplenty:mangrove"		}, "apply" : { "blacklist": true } },
+	{ "select" : { "name": "biomesoplenty:shrubland"		}, "apply" : { "blacklist": true } },
+	{ "select" : { "name": "biomesoplenty:tundra"			}, "apply" : { "blacklist": true } },
+	{ "select" : { "name": "biomesoplenty:mangrove"			}, "apply" : { "blacklist": true } },
+	{ "select" : { "name": "biomesoplenty:xeric_shrubland"	}, "apply" : { "blacklist": true } },
 	{
 		"__comment0": "Removes select `vanilla` bop generators from biomesoplenty biomes not on the blacklist", 
 		"__comment1": "This link in the populator chain will serve as default settings for all BoP biomes",
@@ -47,7 +48,8 @@
 		"select": { "name": "biomesoplenty:bayou" },
 		"apply": {
 			"species" : "dynamictreesbop:willow",
-			"density" : [0.8]
+			"density" : [ 0.75, 0.25, 0.7 ],
+			"chance": 1.0
 		}
 	},
 	{
@@ -55,8 +57,9 @@
 		"apply": {
 			"species" : {
 				"random" : {
-					"dynamictreesbop:poplar" : 3,
-					"dynamictreesbop:darkpoplar" : 1
+					"dynamictreesbop:oaksparse" : 2,
+					"dynamictreesbop:oaktwiglet" : 6,
+					"dynamictrees:mushroombrn" : 1
 				}
 			},
 			"density" : [ 0.75, 0.25, 0.7 ],
@@ -69,8 +72,8 @@
 			"species" : {
 				"random" : {
 					"dynamictreesbop:yellowautumn" : 4,
-					"dynamictrees:spruce" : 4,
-					"dynamictrees:oak" : 5
+					"dynamictrees:spruce" : 5,
+					"dynamictrees:oak" : 3
 				}
 			},
 			"density" : []
@@ -108,7 +111,8 @@
 					"dynamictreesbop:whitecherry" : 4
 				}
 			},
-			"density" : [ 0.3 ]
+			"density" : [ 0.5, 0.25, 0.5 ],
+			"chance": 1.0
 		}
 	},
 	{
@@ -133,7 +137,7 @@
 					"dynamictreesbop:oakdying" : 8
 				}
 			},
-			"density" : [ 0.3 ]
+			"density" : [ 0.4 ]
 		}
 	},
 	{
@@ -167,9 +171,7 @@
 		"apply": {
 			"species" : {
 				"random" : {
-					"dynamictreesbop:decayed" : 1,
-					"dynamictreesbop:darkoakconifer" : 5,
-					"dynamictreesbop:darkoakdyingconifer" : 10
+					"dynamictreesbop:oakdying" : 2
 				}
 			},
 			"density" : [ 0.9 ]
@@ -184,7 +186,7 @@
 					"dynamictreesbop:darkpoplar" : 1
 				}
 			},
-			"density" : [ 0.25 ]
+			"density" : [ 0.4 ]
 		}
 	},
 	{
@@ -230,7 +232,8 @@
 		"select": { "name": "biomesoplenty:lush_swamp" },
 		"apply": {
 			"species" : "dynamictrees:oakswamp",
-			"density" : [ 0.8 ]
+			"density" : [ 0.5, 0.25, 0.5 ],
+			"chance": 0.75
 		}
 	},
 	{
@@ -239,7 +242,7 @@
 			"species" : {
 				"random" : {
 					"dynamictrees:spruce" : 1,
-					"dynamictreesbop:maple" : 5
+					"dynamictreesbop:maple" : 2
 				}
 			},
 			"chance" : 1.0,
@@ -296,7 +299,8 @@
 					"dynamictrees:mushroombrown" : 1
 				}
 			},
-			"density" : []
+			"density" : [ 0.7, 0.2, 0.7 ],
+			"chance": 1.0
 		}
 	},
 	{
@@ -304,12 +308,12 @@
 		"apply": {
 			"species" : {
 				"random" : {
-					"dynamictreesbop:palm" : 4,
-					"dynamictreesbop:jungletwiglet" : 2
+					"dynamictreesbop:palm" : 1,
+					"dynamictreesbop:jungletwiglet" : 3
 				}
 			},
-			"density" : [ 0.25, 0.75, 0.7 ],
-			"chance" : { "math" : { "species" : [ "dynamictreesbop:palm", 1.0, 0.3 ] } }
+			"density" : [ 0.6, 0.5, 0.6 ],
+			"chance": 1.0
 		}
 	},
 	{
@@ -317,14 +321,14 @@
 		"apply": {
 			"species" : {
 				"random" : {
-					"dynamictreesbop:umbran" : 4,
-					"dynamictreesbop:umbranconifer" : 5,
-					"dynamictreesbop:umbranconifermega" : 4,
-					"dynamictreesbop:decayed" : 3,
+					"dynamictreesbop:willow" : 3,
+					"dynamictreesbop:umbranconifer" : 4,
+					"dynamictreesbop:umbranconifermega" : 5,
+					"dynamictreesbop:decayed" : 2,
 					"dynamictreesbop:dead" : 1
 				}
 			},
-			"density" : []
+			"density" : [ 0.5, 0.5, 0.8 ]
 		}
 	},
 	{
@@ -336,7 +340,7 @@
 					"dynamictrees:apple" : 1
 				}
 			},
-			"density" : [ 0.5 ]
+			"density" : [ 0.85 ]
 		}
 	},
 	{
@@ -387,7 +391,7 @@
 			"species" : {
 				"random" : {
 					"dynamictrees:jungle" : 1,
-					"dynamictrees:birch" : 4,
+					"dynamictreesbop:palm" : 4,
 					"dynamictrees:oak" : 4,
 					"dynamictreesbop:floweringoak" : 7
 				}
@@ -399,7 +403,27 @@
 	{
 		"select": { "name": "biomesoplenty:redwood_forest" },
 		"apply": {
-			"species" : "dynamictreesbop:redwood",
+			"species" : {
+				"random" : {
+					"dynamictreesbop:redwood" : 7,
+					"dynamictreesbop:oaksparse" : 3,
+					"dynamictreesbop:oakbush" : 1
+				}
+			},
+			"density" : [ 0.25, 0.2 ],
+			"chance" : 1.0
+		}
+	},
+	{
+		"select": { "name": "biomesoplenty:redwood_forest_edge" },
+		"apply": {
+			"species" : {
+				"random" : {
+					"dynamictreesbop:redwood" : 1,
+					"dynamictreesbop:oaksparse" : 2,
+					"dynamictreesbop:oakbush" : 3
+				}
+			},
 			"density" : [ 0.25, 0.2 ],
 			"chance" : 1.0
 		}
@@ -461,9 +485,9 @@
 		"apply": {	
 			"species" : {
 				"random" : {
-					"dynamictreesbop:oakconifer" : 6,
-					"dynamictreesbop:megaoakconifer" : 10,
-					"dynamictreesbop:willow" : 3
+					"dynamictreesbop:oakconifer" : 4,
+					"dynamictreesbop:megaoakconifer" : 5,
+					"dynamictrees:oakswamp" : 6
 				}
 			},
 			"density" : []
@@ -536,47 +560,16 @@
 			"density" : []
 		}
 	},
-	{
-		"select": { "name": "biomesoplenty:xeric_shrubland" },
-		"apply": {	
-			"species" : {
-				"random" : {
-					"dynamictreesbop:acaciatwiglet" : 1,
-					"dynamictrees:cactus" : 1
-				}
-			},
-			"density" : [ 0.4 ],
-			"chance" : 0.7
-		}
-	},
 	
 	
 	{
-		"select": { "name": "minecraft:beaches" },
-		"apply": {
-			"species" : "dynamictreesbop:palm"
-		}
-	},
-	{
-		"select": { "name": "minecraft:forest" },
+		"select": { "name": "minecraft:mutated_forest" },
 		"apply": {
 			"species" : {
 				"random" : {
 					"dynamictrees:oak" : 8,
 					"dynamictrees:birch" : 2,
-					"dynamictreesbop:floweringoak" : 1
-				}
-			}
-		}
-	},
-	{
-		"select": { "name": "minecraft:forest_hills" },
-		"apply": {	
-			"species" : {
-				"random" : {
-					"dynamictrees:oak" : 8,
-					"dynamictrees:birch" : 2,
-					"dynamictreesbop:floweringoak" : 1
+					"dynamictreesbop:floweringoak" : 3
 				}
 			}
 		}
