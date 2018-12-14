@@ -75,11 +75,6 @@ public class TreeUmbran extends TreeFamily {
 		}
 		
 		@Override
-		public boolean isThick() {
-			return false;
-		}
-		
-		@Override
 		public boolean rot(World world, BlockPos pos, int neighborCount, int radius, Random random, boolean rapid) {
 			if(super.rot(world, pos, neighborCount, radius, random, rapid)) {
 				if(radius > 4 && TreeHelper.isRooty(world.getBlockState(pos.down())) && world.getLightFor(EnumSkyBlock.SKY, pos) < 4) {
@@ -203,6 +198,11 @@ public class TreeUmbran extends TreeFamily {
 		@Override
 		public Seed getSeed() {
 			return coniferSpecies.getSeed();
+		}
+		
+		@Override
+		public boolean isThick() {
+			return true;
 		}
 		
 	}

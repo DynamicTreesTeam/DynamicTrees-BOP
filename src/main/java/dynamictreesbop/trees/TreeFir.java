@@ -60,6 +60,11 @@ public class TreeFir extends TreeFamily {
 			return BiomeDictionary.hasType(biome, Type.CONIFEROUS);
 		}
 		
+		@Override
+		public boolean isThick() {
+			return true;
+		}
+		
 	}
 	
 	public class SpeciesFir extends Species {
@@ -90,11 +95,6 @@ public class TreeFir extends TreeFamily {
 		@Override
 		public int maxBranchRadius() {
 			return 8;
-		}
-		
-		@Override
-		public boolean isThick() {
-			return false;
 		}
 		
 		@Override

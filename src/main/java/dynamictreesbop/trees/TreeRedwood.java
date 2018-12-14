@@ -181,6 +181,10 @@ public class TreeRedwood extends TreeFamily {
 			return 60;
 		}
 		
+		@Override
+		public boolean isThick() {
+			return true;
+		}
 	}
 	
 	
