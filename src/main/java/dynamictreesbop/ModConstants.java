@@ -18,9 +18,9 @@ public class ModConstants extends com.ferreusveritas.dynamictrees.ModConstants {
 		+ NEXT
 		+ REQAFTER + BOP + BOP_VER
 		+ NEXT
-		+ BEFORE + RUSTIC
+		+ OPTBEFORE + RUSTIC
 		+ NEXT
-		+ BEFORE + DYNAMICTREESTC
+		+ OPTBEFORE + DYNAMICTREESTC
 		;	
 
 }
