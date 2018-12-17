@@ -105,6 +105,22 @@ public class BlockDynamicLeavesFlowering extends BlockDynamicLeaves {
 		return newHydro; // Leaves were not destroyed
 	}
 	
+	/*@Override
+	public NewLeavesPropertiesHandler getNewLeavesPropertiesHandler(World world, BlockPos pos, IBlockState state, int newHydro, ILeavesProperties leavesProperties, SafeChunkBounds safeBounds) {
+		
+		boolean worldGen = safeBounds != SafeChunkBounds.ANY;
+		
+		// If this block can flower, check if flowers should grow or decay
+		if (canFlower(state)) {
+			boolean flowering = worldGen || world.getLight(pos) >= 14;
+			if (isFlowering(state) != flowering) {
+				setFlowering(world, pos, flowering, state.withProperty(HYDRO, MathHelper.clamp(newHydro, 1, 4)));
+			}
+		}
+		
+		return null;
+	}*/
+	
 	@Override
 	public boolean growLeavesIfLocationIsSuitable(World world, ILeavesProperties leavesProp, BlockPos pos, int hydro) {
 		hydro = hydro == 0 ? leavesProp.getCellKit().getDefaultHydration() : hydro;
