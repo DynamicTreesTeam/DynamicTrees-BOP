@@ -1,12 +1,10 @@
 package dynamictreesbop.blocks;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 import com.ferreusveritas.dynamictrees.api.treedata.ILeavesProperties;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicLeaves;
 import com.ferreusveritas.dynamictrees.blocks.LeavesProperties;
-import com.ferreusveritas.dynamictrees.util.SafeChunkBounds;
 
 import biomesoplenty.api.enums.BOPTrees;
 import biomesoplenty.common.block.BlockBOPLeaves;
@@ -16,7 +14,6 @@ import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IBlockAccess;
@@ -61,24 +58,7 @@ public class BlockDynamicLeavesFlowering extends BlockDynamicLeaves {
 	}
 	
 	@Override
-	public int age(World world, BlockPos pos, IBlockState state, Random rand, SafeChunkBounds safeBounds) {
-		ILeavesProperties leavesProperties = getProperties(state);
-		int oldHydro = state.getValue(HYDRO);
-		
-		boolean worldGen = safeBounds != SafeChunkBounds.ANY;
-		
-		// Check hydration level.  Dry leaves are dead leaves.
-		int newHydro = getHydrationLevelFromNeighbors(world, pos, leavesProperties);
-		if (newHydro == 0 || (!worldGen && !hasAdequateLight(state, world, leavesProperties, pos))) { // Light doesn't work right during worldgen so we'll just disable it during worldgen for now.
-			world.setBlockToAir(pos); // No water, no light .. no leaves
-			return -1; // Leaves were destroyed
-		} else { 
-			// Encode new hydration level in metadata for this leaf
-			if (oldHydro != newHydro) { // A little performance gain
-				//System.out.println(state.withProperty(HYDRO, MathHelper.clamp(newHydro, 1, 4)));
-				world.setBlockState(pos, state.withProperty(HYDRO, MathHelper.clamp(newHydro, 1, 4)), 4);
-			}
-		}
+	public NewLeavesPropertiesHandler getNewLeavesPropertiesHandler(World world, BlockPos pos, IBlockState state, int newHydro, boolean worldGen) {
 		
 		// If this block can flower, check if flowers should grow or decay
 		if (canFlower(state)) {
@@ -88,38 +68,12 @@ public class BlockDynamicLeavesFlowering extends BlockDynamicLeaves {
 			}
 		}
 		
-		// We should do this even if the hydro is only 1.  Since there could be adjacent branch blocks that could use a leaves block
-		for (EnumFacing dir : EnumFacing.VALUES) { // Go on all 6 sides of this block
-			if (newHydro > 1 || rand.nextInt(4) == 0 ) { // we'll give it a 1 in 4 chance to grow leaves if hydro is low to help performance
-				BlockPos offpos = pos.offset(dir);
-				if (safeBounds.inBounds(offpos, true) && isLocationSuitableForNewLeaves(world, leavesProperties, offpos)) { // Attempt to grow new leaves
-					int hydro = getHydrationLevelFromNeighbors(world, offpos, leavesProperties);
-					if (hydro > 0) {
-						boolean canFlower = world.rand.nextInt(4) == 0;
-						world.setBlockState(offpos, leavesProperties.getDynamicLeavesState(hydro).withProperty(CAN_FLOWER, canFlower).withProperty(FLOWERING, canFlower && world.getLight(pos) >= 14), 2);
-					}
-				}
-			}
-		}
-		
-		return newHydro; // Leaves were not destroyed
+		return (w, p, l) -> {
+			boolean canFlower = world.rand.nextInt(4) == 0;
+			return l.withProperty(CAN_FLOWER, canFlower).withProperty(FLOWERING, canFlower && world.getLight(pos) >= 14);
+		};
+
 	}
-	
-	/*@Override
-	public NewLeavesPropertiesHandler getNewLeavesPropertiesHandler(World world, BlockPos pos, IBlockState state, int newHydro, ILeavesProperties leavesProperties, SafeChunkBounds safeBounds) {
-		
-		boolean worldGen = safeBounds != SafeChunkBounds.ANY;
-		
-		// If this block can flower, check if flowers should grow or decay
-		if (canFlower(state)) {
-			boolean flowering = worldGen || world.getLight(pos) >= 14;
-			if (isFlowering(state) != flowering) {
-				setFlowering(world, pos, flowering, state.withProperty(HYDRO, MathHelper.clamp(newHydro, 1, 4)));
-			}
-		}
-		
-		return null;
-	}*/
 	
 	@Override
 	public boolean growLeavesIfLocationIsSuitable(World world, ILeavesProperties leavesProp, BlockPos pos, int hydro) {
