@@ -58,7 +58,7 @@ public class BlockDynamicLeavesFlowering extends BlockDynamicLeaves {
 	}
 	
 	@Override
-	public NewLeavesPropertiesHandler getNewLeavesPropertiesHandler(World world, BlockPos pos, IBlockState state, int newHydro, boolean worldGen) {
+	protected NewLeavesPropertiesHandler getNewLeavesPropertiesHandler(World world, BlockPos pos, IBlockState state, int newHydro, boolean worldGen) {
 		
 		// If this block can flower, check if flowers should grow or decay
 		if (canFlower(state)) {
@@ -72,7 +72,7 @@ public class BlockDynamicLeavesFlowering extends BlockDynamicLeaves {
 			boolean canFlower = world.rand.nextInt(4) == 0;
 			return l.withProperty(CAN_FLOWER, canFlower).withProperty(FLOWERING, canFlower && world.getLight(pos) >= 14);
 		};
-
+		
 	}
 	
 	@Override
