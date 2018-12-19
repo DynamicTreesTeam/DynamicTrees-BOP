@@ -1,6 +1,8 @@
 package dynamictreesbop.trees.species;
 
+import com.ferreusveritas.dynamictrees.ModBlocks;
 import com.ferreusveritas.dynamictrees.ModConstants;
+import com.ferreusveritas.dynamictrees.blocks.BlockRooty;
 import com.ferreusveritas.dynamictrees.items.Seed;
 import com.ferreusveritas.dynamictrees.trees.SpeciesRare;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
@@ -10,9 +12,12 @@ import biomesoplenty.api.block.BOPBlocks;
 import dynamictreesbop.DynamicTreesBOP;
 import dynamictreesbop.ModContent;
 import dynamictreesbop.dropcreators.DropCreatorInvoluntarySeed;
+import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary.Type;
 
@@ -54,6 +59,16 @@ public class SpeciesJungleTwiglet extends SpeciesRare {
 	@Override
 	public Seed getSeed() {
 		return getFamily().getCommonSpecies().getSeed();
+	}
+	
+	@Override
+	public boolean placeRootyDirtBlock(World world, BlockPos rootPos, int life) {
+		if (world.getBlockState(rootPos).getMaterial() == Material.SAND) {
+			world.setBlockState(rootPos, ModBlocks.blockRootySand.getDefaultState().withProperty(BlockRooty.LIFE, life));
+		} else {
+			world.setBlockState(rootPos, getRootyBlock().getDefaultState().withProperty(BlockRooty.LIFE, life));
+		}
+		return true;
 	}
 
 }

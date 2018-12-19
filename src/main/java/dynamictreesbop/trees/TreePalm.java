@@ -147,7 +147,8 @@ public class TreePalm extends TreeFamily {
 				TreeHelper.ageVolume(world, endPoint, 1, 2, 3, safeBounds);
 			}
 		}
-
+		
+		@Override
 		public boolean placeRootyDirtBlock(World world, BlockPos rootPos, int life) {
 			if (world.getBlockState(rootPos).getMaterial() == Material.SAND) {
 				world.setBlockState(rootPos, ModBlocks.blockRootySand.getDefaultState().withProperty(BlockRooty.LIFE, life));

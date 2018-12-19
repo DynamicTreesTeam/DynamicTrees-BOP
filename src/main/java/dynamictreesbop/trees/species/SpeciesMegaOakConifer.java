@@ -80,4 +80,9 @@ public class SpeciesMegaOakConifer extends SpeciesRare {
 		return false;
 	}
 	
+	@Override
+	public boolean isThick() {
+		return true;
+	}
+	
 }
