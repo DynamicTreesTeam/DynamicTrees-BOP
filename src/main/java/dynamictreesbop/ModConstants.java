@@ -11,7 +11,7 @@ public class ModConstants extends com.ferreusveritas.dynamictrees.ModConstants {
 	public static final String RUSTIC = "rustic";
 	
 	//Other Mod Versions
-	public static final String BOP_VER = AT + "7.0.1.2419" + ORGREATER;
+	public static final String BOP_VER = AT + "7.0.1.2422" + ORGREATER;
 
 	public static final String DEPENDENCIES
 		= REQAFTER + DYNAMICTREES_LATEST
