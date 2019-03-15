@@ -1,0 +1,57 @@
+item.dynamictreesbop:yellowautumnseed.name=Семя осенней берёзы
+item.dynamictreesbop:orangeautumnseed.name=Осенний жёлудь
+item.dynamictreesbop:magicseed.name=Магическое семя
+item.dynamictreesbop:umbranseed.name=Теневое семя
+item.dynamictreesbop:umbranconiferseed.name=Теневая шишка
+item.dynamictreesbop:oakdyingseed.name=Мертвый жёлудь
+item.dynamictreesbop:firseed.name=Пихтовая шишка
+item.dynamictreesbop:pinkcherryseed.name=Косточка розовой сакуры
+item.dynamictreesbop:whitecherryseed.name=Косточка белый сакуры
+item.dynamictreesbop:mapleseed.name=Семя клёна
+item.dynamictreesbop:hellbarkseed.name=Адский жёлудь
+item.dynamictreesbop:jacarandaseed.name=Стручок жакаранды
+item.dynamictreesbop:mangroveseed.name=Мaнгровое семя
+item.dynamictreesbop:redwoodseed.name=Шишка красного дерева
+item.dynamictreesbop:willowseed.name=Серёжка ивы
+item.dynamictreesbop:pineseed.name=Сосновая шишка
+item.dynamictreesbop:mahoganyseed.name=Стручок махагони
+item.dynamictreesbop:ebonyseed.name=Эбеновый стручок
+item.dynamictreesbop:eucalyptusseed.name=Семя эвкалипта
+item.dynamictreesbop:bambooseed.name=Стручок бамбука
+
+item.dynamictreesbop:floweringoakseed.name=Цветущий жёлудь
+item.dynamictreesbop:palmseed.name=Семя пальмы
+
+tile.dynamictreesbop:leaves0.name=Листва
+tile.dynamictreesbop:leaves1.name=Листва
+tile.dynamictreesbop:leaves2.name=Листва
+tile.dynamictreesbop:leaves3.name=Листва
+tile.dynamictreesbop:leaves4.name=Листва
+tile.dynamictreesbop:leaves5.name=Листва
+tile.dynamictreesbop:leaves6.name=Листва
+tile.dynamictreesbop:leaves7.name=Листва
+
+tile.dynamictreesbop:leaves_flowering.name=Цветущая листва
+tile.dynamictreesbop:leaves_palm.name=Пальмовая листва
+
+
+tile.dynamictreesbop:magicbranch.name=Ствол магического дерева
+tile.dynamictreesbop:umbranbranch.name=Ствол тёмного дерева
+tile.dynamictreesbop:umbranconiferbranch.name=Ствол тёмного дерева
+tile.dynamictreesbop:firbranch.name=Ствол пихтового дерева
+tile.dynamictreesbop:cherrybranch.name=Ствол вишневого дерева
+tile.dynamictreesbop:hellbarkbranch.name=Ствол адского дерева
+tile.dynamictreesbop:deadbranch.name=Ствол мёртвого дерева
+tile.dynamictreesbop:jacarandabranch.name=Ствол жакарандового дерева
+tile.dynamictreesbop:mangrovebranch.name=Ствол мангрового дерева
+tile.dynamictreesbop:redwoodbranch.name=Ствол красного дерева
+tile.dynamictreesbop:willowbranch.name=Ствол ивового дерева
+tile.dynamictreesbop:pinebranch.name=Ствол соснового дерева
+tile.dynamictreesbop:mahoganybranch.name=Ствол махагониевого дерева
+tile.dynamictreesbop:ebonybranch.name=Ствол эбенового дерева
+tile.dynamictreesbop:eucalyptusbranch.name=Ствол эвкалиптового дерева
+tile.dynamictreesbop:bamboobranch.name=Ствол бамбукового дерева
+
+tile.dynamictreesbop:decayedbranch.name=Ствол погибающего дерева
+tile.dynamictreesbop:palmbranch.name=Ствол пальмы
+
