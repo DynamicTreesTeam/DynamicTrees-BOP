@@ -5,6 +5,15 @@
 			"false": { "model": "oak_leaves" },
 			"true": { "model": "biomesoplenty:flowering_leaves" }
 		},
+		"fast_leaves": {
+			"false": {},
+			"true": { 
+				"textures": {
+					"all": "dynamictreesbop:blocks/leaves_oak_fast",
+					"under": "dynamictreesbop:blocks/leaves_oak_fast"
+				}
+			}
+		},
 		"can_flower": {
 			"false": {},
 			"true": {}

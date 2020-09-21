@@ -13,16 +13,21 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BlockDynamicLeavesFlowering extends BlockDynamicLeaves {
 	
 	public static final PropertyBool FLOWERING = PropertyBool.create("flowering");
 	public static final PropertyBool CAN_FLOWER = PropertyBool.create("can_flower");
+	public static final PropertyBool FAST_LEAVES = PropertyBool.create("fast_leaves");
 	
 	private ILeavesProperties properties = LeavesProperties.NULLPROPERTIES;
 	
@@ -34,7 +39,7 @@ public class BlockDynamicLeavesFlowering extends BlockDynamicLeaves {
 	
 	@Override
 	protected BlockStateContainer createBlockState() {
-		return new BlockStateContainer(this, new IProperty[] {HYDRO, FLOWERING, CAN_FLOWER, TREE}); // TREE is unused, but it has to be there to prevent a crash when the constructor of BlockDynamicLeaves sets the default state
+		return new BlockStateContainer(this, new IProperty[] {HYDRO, FLOWERING, CAN_FLOWER, TREE, FAST_LEAVES }); // TREE is unused, but it has to be there to prevent a crash when the constructor of BlockDynamicLeaves sets the default state
 	}
 	
 	@Override
@@ -45,6 +50,12 @@ public class BlockDynamicLeavesFlowering extends BlockDynamicLeaves {
 	@Override
 	public int getMetaFromState(IBlockState state) {
 		return (state.getValue(HYDRO) - 1) | (state.getValue(FLOWERING) ? 4 : 0) | (state.getValue(CAN_FLOWER) ? 8 : 0);
+	}
+	
+	
+	@Override
+	public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
+		return state.withProperty(FAST_LEAVES, Blocks.LEAVES.isOpaqueCube(state));//Hacks within Hacks
 	}
 	
 	public void setProperties(int tree, ILeavesProperties properties) {
@@ -97,6 +108,11 @@ public class BlockDynamicLeavesFlowering extends BlockDynamicLeaves {
 	
 	public static void setFlowering(World world, BlockPos pos, boolean flowering, IBlockState currentBlockState) {
 		world.setBlockState(pos, currentBlockState.withProperty(FLOWERING, flowering), 2);
+	}
+	
+	@SideOnly(Side.CLIENT)
+	public BlockRenderLayer getBlockLayer() {
+		return BlockRenderLayer.CUTOUT_MIPPED;
 	}
 	
 	@Override
