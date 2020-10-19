@@ -2,6 +2,7 @@
 	"parent": "dynamictrees:block/smartmodel/branch",
 	"textures": {
 		"bark": "biomesoplenty:blocks/mangrove_log",
-    "rings": "biomesoplenty:blocks/mangrove_log_top"
+		"rings": "biomesoplenty:blocks/mangrove_log_top",
+		"roots": "dynamictreesbop:blocks/wateryroots_top"
 	}
 }

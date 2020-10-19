@@ -1,5 +1,5 @@
 {
-  "variants": {
-		"normal": { "model": "dynamictrees:roots" }
+	"variants": {
+		"normal": { "model": "dynamictreesbop:rootywater" }
 	}
 }

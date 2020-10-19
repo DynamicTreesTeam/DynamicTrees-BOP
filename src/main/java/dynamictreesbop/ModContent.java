@@ -33,6 +33,7 @@ import biomesoplenty.common.block.BlockBOPLeaves;
 import biomesoplenty.common.block.BlockBOPSapling;
 import dynamictreesbop.blocks.BlockDynamicLeavesFlowering;
 import dynamictreesbop.blocks.BlockDynamicLeavesPalm;
+import dynamictreesbop.blocks.BlockRootyWater;
 import dynamictreesbop.items.ItemMagicSeed;
 import dynamictreesbop.items.ItemMapleSeed;
 import dynamictreesbop.trees.TreeBamboo;
@@ -45,6 +46,7 @@ import dynamictreesbop.trees.TreeHellbark;
 import dynamictreesbop.trees.TreeJacaranda;
 import dynamictreesbop.trees.TreeMagic;
 import dynamictreesbop.trees.TreeMahogany;
+import dynamictreesbop.trees.TreeMangrove;
 import dynamictreesbop.trees.TreePalm;
 import dynamictreesbop.trees.TreePine;
 import dynamictreesbop.trees.TreeRedwood;
@@ -71,6 +73,7 @@ import dynamictreesbop.trees.species.SpeciesSpruceBush;
 import dynamictreesbop.trees.species.SpeciesYellowAutumn;
 import dynamictreesbop.worldgen.BiomeDataBasePopulator;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.BlockOldLeaf;
 import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.state.IBlockState;
@@ -97,6 +100,8 @@ import net.minecraftforge.registries.IForgeRegistry;
 
 @Mod.EventBusSubscriber(modid = DynamicTreesBOP.MODID)
 public class ModContent {
+	
+	public static BlockRootyWater rootyWater;
 	
 	public static BlockDynamicLeavesFlowering floweringOakLeaves;
 	public static BlockDynamicLeavesPalm palmFrondLeaves;
@@ -148,6 +153,7 @@ public class ModContent {
 	public static final String MAGIC = "magic";
 	public static final String MAPLE = "maple";
 	public static final String MAHOGANY = "mahogany";
+	public static final String MANGROVE = "mangrove";
 	public static final String MEGAOAKCONIFER = "megaoakconifer";
 	public static final String OAKBUSH = "oakbush";
 	public static final String OAKCONIFER = "oakconifer";
@@ -174,6 +180,10 @@ public class ModContent {
 	@SubscribeEvent
 	public static void registerBlocks(final RegistryEvent.Register<Block> event) {
 		IForgeRegistry<Block> registry = event.getRegistry();
+		
+		// TODO: create reference
+		rootyWater = new BlockRootyWater(false);
+		registry.register(rootyWater);
 		
 		// Register Special Leaf Blocks
 		floweringOakLeaves = new BlockDynamicLeavesFlowering();
@@ -280,7 +290,7 @@ public class ModContent {
 			new TreeMagic(), new TreeUmbran(), new TreeFir(), new TreeCherry(),
 			new TreeDead(), new TreeJacaranda(), new TreeRedwood(), new TreeWillow(),
 			new TreeHellbark(), new TreePine(), new TreePalm(), new TreeMahogany(),
-			new TreeEbony(), new TreeBamboo(), new TreeEucalyptus()
+			new TreeMangrove(), new TreeEbony(), new TreeBamboo(), new TreeEucalyptus()
 		);
 		trees.forEach(tree -> tree.registerSpecies(Species.REGISTRY));
 		
@@ -288,6 +298,7 @@ public class ModContent {
 		trees.forEach(tree -> tree.getRegisterableBlocks(treeBlocks));
 		treeBlocks.addAll(LeavesPaging.getLeavesMapForModId(DynamicTreesBOP.MODID).values());
 		registry.registerAll(treeBlocks.toArray(new Block[treeBlocks.size()]));
+		
 	}
 	
 	@SubscribeEvent
@@ -347,6 +358,7 @@ public class ModContent {
 		addSeedExchange(BOPTrees.PINE, PINE);
 		addSeedExchange(BOPTrees.PALM, PALM);
 		addSeedExchange(BOPTrees.MAHOGANY, MAHOGANY);
+		addSeedExchange(BOPTrees.MANGROVE, MANGROVE);
 		addSeedExchange(BOPTrees.EBONY, EBONY);
 		addSeedExchange(BOPTrees.BAMBOO, BAMBOO);
 		addSeedExchange(BOPTrees.EUCALYPTUS, EUCALYPTUS);
@@ -373,6 +385,8 @@ public class ModContent {
 	@SideOnly(Side.CLIENT)
 	@SubscribeEvent
 	public static void registerModels(ModelRegistryEvent event) {
+		
+		ModelLoader.setCustomStateMapper(rootyWater, new StateMap.Builder().ignore(BlockRootyWater.LIFE, BlockLiquid.LEVEL).build());
 		
 		//Register all of the models used for the tree families
 		for(TreeFamily tree : ModContent.trees) {

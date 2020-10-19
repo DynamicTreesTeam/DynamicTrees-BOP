@@ -1,5 +1,7 @@
 package dynamictreesbop.models;
 
+import java.util.function.BiFunction;
+
 import com.ferreusveritas.dynamictrees.models.loaders.ModelLoaderGeneric;
 
 import net.minecraft.client.renderer.block.model.ModelBlock;
@@ -7,15 +9,18 @@ import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.IModel;
 
-public class ModelLoaderBlockPalmFronds extends ModelLoaderGeneric {
+public class ModelLoaderDelegated extends ModelLoaderGeneric {
 	
-	public ModelLoaderBlockPalmFronds() {
-		super("dynamicpalmfronds", new ResourceLocation("dynamictreesbop", "block/dynamicpalmfronds"));
+	protected final BiFunction<ResourceLocation, ModelBlock, IModel> loaderDelegate;
+	
+	public ModelLoaderDelegated(String key, ResourceLocation resourceName, BiFunction<ResourceLocation, ModelBlock, IModel> loaderDelegate) {
+		super(key, resourceName);
+		this.loaderDelegate = loaderDelegate;
 	}
 	
 	@Override
 	protected IModel loadModel(ResourceLocation resourceLocation, ModelBlock baseModelBlock) {
-		return new ModelBlockPalmFronds(baseModelBlock);
+		return loaderDelegate.apply(resourceLocation, baseModelBlock);
 	}
 	
 	@Override

@@ -12,7 +12,7 @@
 "hellbark"				: {"leaves":{"bop":"hellbark"}, "color":"#ffffff", "cellkit":"dynamictreesbop:sparse", "flammability":0, "fireSpreadSpeed":0, "light":0},
 "dead"					: {"leaves":{"bop":"dead"}, "color":"#ffffff", "cellkit":"dynamictreesbop:sparse", "smother":1},
 "jacaranda"				: {"leaves":{"bop":"jacaranda"}, "color":"#ffffff"},
-"-mangrove"  			: {},
+"mangrove"				: {"leaves":{"bop":"mangrove"}, "color":"@biome"},
 "redwood"				: {"leaves":{"bop":"redwood"}, "smother":26, "light":9}, 
 "willow"				: {"leaves":{"bop":"willow"}, "smother":3},
 "pine"					: {"leaves":{"bop":"pine"}, "cellkit":"conifer", "smother":13},

@@ -36,7 +36,7 @@ public class TreeMahogany extends TreeFamily {
 		public SpeciesMahogany(TreeFamily treeFamily) {
 			super(treeFamily.getName(), treeFamily, ModContent.leaves.get(ModContent.MAHOGANY));
 			
-			setBasicGrowingParameters(0.15f, 16.0f, 2, 7, 10.9f);
+			setBasicGrowingParameters(0.15f, 16.0f, 2, 7, 0.9f);
 						
 			envFactor(Type.COLD, 0.15f);
 			envFactor(Type.DRY,  0.20f);

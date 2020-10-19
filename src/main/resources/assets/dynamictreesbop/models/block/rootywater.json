@@ -1,0 +1,6 @@
+{
+	"parent": "block/tinted_cross",
+	"textures": {
+		"cross": "dynamictreesbop:blocks/wateryroots_mid"
+	}
+}
