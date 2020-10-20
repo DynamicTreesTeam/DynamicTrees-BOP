@@ -11,6 +11,8 @@ import com.ferreusveritas.dynamictrees.tileentity.TileEntitySpecies;
 
 import dynamictreesbop.blocks.properties.UnlistedPropertyBool;
 import dynamictreesbop.blocks.properties.UnlistedPropertyFloat;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockDoor;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -33,7 +35,6 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.common.property.ExtendedBlockState;
 import net.minecraftforge.common.property.IExtendedBlockState;
 import net.minecraftforge.common.property.IUnlistedProperty;
 import net.minecraftforge.fml.relauncher.Side;
@@ -57,14 +58,14 @@ public class BlockRootyWater extends BlockRooty {
 	};
 	
 	public BlockRootyWater(boolean isTileEntity) {
-		super("rootywater", Material.GROUND, isTileEntity);
+		super("rootywater", Material.WATER, isTileEntity);
 		setSoundType(SoundType.PLANT);
 		setDefaultState(super.getDefaultState());
 	}
 	
 	@Override
 	protected BlockStateContainer createBlockState() {
-		return new ExtendedBlockState(this, new IProperty[] {LIFE}, new IUnlistedProperty[] {
+		return new ExtendedBlockStateWater(this, new IProperty[] {LIFE}, new IUnlistedProperty[] {
 				MimicProperty.MIMIC,
 				RENDER_SIDES[0],
 				RENDER_SIDES[1],
@@ -75,7 +76,7 @@ public class BlockRootyWater extends BlockRooty {
 				CORNER_HEIGHTS[0],
 				CORNER_HEIGHTS[1],
 				CORNER_HEIGHTS[2],
-				CORNER_HEIGHTS[3],
+				CORNER_HEIGHTS[3]
 		});
 	}
 	
@@ -90,8 +91,8 @@ public class BlockRootyWater extends BlockRooty {
 				total++;
 			}
 		}
-		if (total == 0) avgLvl = 7;
-		else avgLvl /= total;
+		
+		avgLvl = total == 0 ? 7 : avgLvl / total;
 		
 		if (state instanceof IExtendedBlockState) {
 			IExtendedBlockState extState = (IExtendedBlockState) state;
@@ -137,6 +138,37 @@ public class BlockRootyWater extends BlockRooty {
 		}
 		
 		return state;
+	}
+	
+	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos) {
+		
+		int y = fromPos.getY() - pos.getY();
+		
+		
+		if(y < 1) {
+			IBlockState newState = worldIn.getBlockState(fromPos);
+			if(canFlowInto(worldIn, fromPos, newState)) {
+				newState.getBlock().dropBlockAsItem(worldIn, pos, newState, 0);
+				worldIn.setBlockState(fromPos, Blocks.FLOWING_WATER.getDefaultState().withProperty(BlockLiquid.LEVEL, 7), 2);
+			}
+		}
+	}
+	
+	private boolean canFlowInto(World worldIn, BlockPos pos, IBlockState state) {
+		Material material = state.getMaterial();
+		return material != this.blockMaterial && material != Material.LAVA && !this.isBlocked(worldIn, pos, state);
+	}
+	
+	private boolean isBlocked(World worldIn, BlockPos pos, IBlockState state) {
+		Block block = state.getBlock(); //Forge: state must be valid for position
+		Material mat = state.getMaterial();
+		
+		if (!(block instanceof BlockDoor) && block != Blocks.STANDING_SIGN && block != Blocks.LADDER && block != Blocks.REEDS) {
+			return mat != Material.PORTAL && mat != Material.STRUCTURE_VOID ? mat.blocksMovement() : true;
+		}
+		else {
+			return true;
+		}
 	}
 	
 	private float getFluidHeight(IBlockAccess blockAccess, BlockPos blockPosIn, Material blockMaterial) {
@@ -217,23 +249,15 @@ public class BlockRootyWater extends BlockRooty {
 	}
 	
 	@Override
+	public boolean isReplaceable(IBlockAccess worldIn, BlockPos pos) {
+		return false;
+	}
+	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
-		//Material mat = blockAccess.getBlockState(pos.offset(side)).getMaterial();
-		
-		//return side == EnumFacing.UP || side == EnumFacing.DOWN;
+		//return true;
 		return super.shouldSideBeRendered(blockState, blockAccess, pos, side);
-		/*
-        if (side.getAxis() != EnumFacing.Axis.Y) {
-        	//boolean flag = super.shouldSideBeRendered(blockState, blockAccess, pos, side);
-        	//if (flag) return flag;
-        }
-		if (mat == this.blockMaterial || mat == Material.WATER) {
-            return false;
-        } else {
-            return side == EnumFacing.UP ? true : super.shouldSideBeRendered(blockState, blockAccess, pos, side);
-        }
-		 */
 	}
 	
 	@Override
