@@ -193,10 +193,10 @@ public class ModContent {
 		registry.register(palmFrondLeaves);
 		
 		// Add BOP dirt, grass and sand as acceptable soils
-		DirtHelper.registerSoil(BOPBlocks.grass, DirtHelper.Type.DIRTLIKE);
-		DirtHelper.registerSoil(BOPBlocks.dirt, DirtHelper.Type.DIRTLIKE);
-		DirtHelper.registerSoil(BOPBlocks.white_sand, DirtHelper.Type.SANDLIKE);
-		DirtHelper.registerSoil(BOPBlocks.mud, DirtHelper.Type.MUDLIKE);
+		DirtHelper.registerSoil(BOPBlocks.grass, DirtHelper.DIRTLIKE);
+		DirtHelper.registerSoil(BOPBlocks.dirt, DirtHelper.DIRTLIKE);
+		DirtHelper.registerSoil(BOPBlocks.white_sand, DirtHelper.SANDLIKE);
+		DirtHelper.registerSoil(BOPBlocks.mud, DirtHelper.MUDLIKE);
 		
 		//Registers a BoP Primitive Leaves finding function for use with Json leaves properties
 		LeavesPropertiesJson.addLeavesFinderFunction("bop", new Function<JsonElement, LeavesPropertiesJson.PrimitiveLeavesComponents>() {

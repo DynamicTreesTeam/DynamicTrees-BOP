@@ -83,7 +83,7 @@ public class TreePalm extends TreeFamily {
 		
 		@Override
 		protected void setStandardSoils() {
-			addAcceptableSoils(DirtHelper.Type.DIRTLIKE, DirtHelper.Type.SANDLIKE);
+			addAcceptableSoils(DirtHelper.DIRTLIKE, DirtHelper.SANDLIKE);
 		}
 		
 		@Override

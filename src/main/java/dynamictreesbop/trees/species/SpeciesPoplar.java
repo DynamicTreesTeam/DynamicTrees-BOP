@@ -55,7 +55,7 @@ public class SpeciesPoplar extends SpeciesRare {
 	
 	@Override
 	protected void setStandardSoils() {
-		addAcceptableSoils(DirtHelper.Type.DIRTLIKE, DirtHelper.Type.MUDLIKE);
+		addAcceptableSoils(DirtHelper.DIRTLIKE, DirtHelper.MUDLIKE);
 	}
 	
 	@Override

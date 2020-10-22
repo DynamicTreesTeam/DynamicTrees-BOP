@@ -47,7 +47,7 @@ public class TreeDead extends TreeFamily {
 		
 		@Override
 		protected void setStandardSoils() {
-			addAcceptableSoils(DirtHelper.Type.DIRTLIKE, DirtHelper.Type.SANDLIKE);
+			addAcceptableSoils(DirtHelper.DIRTLIKE, DirtHelper.SANDLIKE);
 		}
 		
 		@Override
@@ -86,7 +86,7 @@ public class TreeDead extends TreeFamily {
 		
 		@Override
 		protected void setStandardSoils() {
-			addAcceptableSoils(DirtHelper.Type.DIRTLIKE, DirtHelper.Type.SANDLIKE, DirtHelper.Type.HARDCLAYLIKE);
+			addAcceptableSoils(DirtHelper.DIRTLIKE, DirtHelper.SANDLIKE, DirtHelper.HARDCLAYLIKE);
 		}
 		
 		@Override

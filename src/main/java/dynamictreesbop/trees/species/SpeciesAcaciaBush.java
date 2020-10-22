@@ -19,7 +19,7 @@ public class SpeciesAcaciaBush extends Species {
 		super();
 		setRegistryName(new ResourceLocation(DynamicTreesBOP.MODID, ModContent.ACACIABUSH));
 		
-		addAcceptableSoils(DirtHelper.Type.DIRTLIKE, DirtHelper.Type.SANDLIKE);
+		addAcceptableSoils(DirtHelper.DIRTLIKE, DirtHelper.SANDLIKE);
 		
 		addGenFeature(new FeatureGenBush()
 			.setLeavesState(Blocks.LEAVES2.getDefaultState().withProperty(BlockNewLeaf.VARIANT, BlockPlanks.EnumType.ACACIA))

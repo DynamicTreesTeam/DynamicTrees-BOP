@@ -39,7 +39,7 @@ public class SpeciesJungleTwiglet extends SpeciesRare {
 	
 	@Override
 	protected void setStandardSoils() {
-		addAcceptableSoils(DirtHelper.Type.DIRTLIKE, DirtHelper.Type.SANDLIKE);
+		addAcceptableSoils(DirtHelper.DIRTLIKE, DirtHelper.SANDLIKE);
 	}
 	
 	@Override

@@ -48,7 +48,7 @@ public class TreeWillow extends TreeFamily {
 		
 		@Override
 		protected void setStandardSoils() {
-			addAcceptableSoils(DirtHelper.Type.DIRTLIKE, DirtHelper.Type.MUDLIKE);
+			addAcceptableSoils(DirtHelper.DIRTLIKE, DirtHelper.MUDLIKE);
 		}
 		
 		@Override
