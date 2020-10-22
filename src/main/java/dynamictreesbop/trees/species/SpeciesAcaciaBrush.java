@@ -2,7 +2,7 @@ package dynamictreesbop.trees.species;
 
 import com.ferreusveritas.dynamictrees.items.Seed;
 import com.ferreusveritas.dynamictrees.systems.GrowSignal;
-import com.ferreusveritas.dynamictrees.trees.SpeciesRare;
+import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 
 import biomesoplenty.api.biome.BOPBiomes;
@@ -14,7 +14,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary.Type;
 
-public class SpeciesAcaciaBrush extends SpeciesRare {
+public class SpeciesAcaciaBrush extends Species {
 	
 	public SpeciesAcaciaBrush(TreeFamily treeFamily) {
 		super(new ResourceLocation(DynamicTreesBOP.MODID, ModContent.ACACIABRUSH), treeFamily, ModContent.leaves.get(ModContent.ACACIABRUSH));
@@ -28,6 +28,8 @@ public class SpeciesAcaciaBrush extends SpeciesRare {
 		envFactor(Type.SAVANNA, 1.05f);
 		
 		setupStandardSeedDropping();
+		
+		setRequiresTileEntity(true);
 		
 		leavesProperties.setTree(treeFamily);
 	}

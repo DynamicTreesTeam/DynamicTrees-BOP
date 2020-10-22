@@ -3,7 +3,6 @@ package dynamictreesbop.trees;
 import com.ferreusveritas.dynamictrees.ModConstants;
 import com.ferreusveritas.dynamictrees.items.Seed;
 import com.ferreusveritas.dynamictrees.trees.Species;
-import com.ferreusveritas.dynamictrees.trees.SpeciesRare;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 
 import biomesoplenty.api.biome.BOPBiomes;
@@ -46,7 +45,7 @@ public class TreeEbony extends TreeFamily {
 		
 	}
 	
-	public class SpeciesEbonyTwiglet extends SpeciesRare {
+	public class SpeciesEbonyTwiglet extends Species {
 		
 		public SpeciesEbonyTwiglet(TreeFamily treeFamily) {
 			super(new ResourceLocation(DynamicTreesBOP.MODID, ModContent.EBONYTWIGLET), treeFamily, ModContent.leaves.get(ModContent.EBONY));
@@ -56,6 +55,8 @@ public class TreeEbony extends TreeFamily {
 			envFactor(Type.WET, 0.5f);
 			envFactor(Type.COLD, 0.5f);
 			envFactor(Type.SAVANNA, 1.05f);
+			
+			setRequiresTileEntity(true);
 			
 			addDropCreator(new DropCreatorInvoluntarySeed());
 			remDropCreator(new ResourceLocation(ModConstants.MODID, "logs"));

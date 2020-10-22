@@ -6,7 +6,7 @@ import com.ferreusveritas.dynamictrees.ModConstants;
 import com.ferreusveritas.dynamictrees.items.Seed;
 import com.ferreusveritas.dynamictrees.systems.DirtHelper;
 import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenBush;
-import com.ferreusveritas.dynamictrees.trees.SpeciesRare;
+import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 import com.ferreusveritas.dynamictrees.util.SafeChunkBounds;
 
@@ -22,7 +22,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary.Type;
 
-public class SpeciesAcaciaTwiglet extends SpeciesRare {
+public class SpeciesAcaciaTwiglet extends Species {
 	
 	FeatureGenBush bushGen;
 	
@@ -37,6 +37,8 @@ public class SpeciesAcaciaTwiglet extends SpeciesRare {
 		
 		addDropCreator(new DropCreatorInvoluntarySeed());
 		remDropCreator(new ResourceLocation(ModConstants.MODID, "logs"));
+		
+		setRequiresTileEntity(true);
 		
 		bushGen = new FeatureGenBush();
 		

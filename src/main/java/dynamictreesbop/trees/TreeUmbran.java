@@ -15,7 +15,6 @@ import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenFlareBottom;
 import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenMound;
 import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenVine;
 import com.ferreusveritas.dynamictrees.trees.Species;
-import com.ferreusveritas.dynamictrees.trees.SpeciesRare;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 
 import biomesoplenty.api.biome.BOPBiomes;
@@ -87,7 +86,7 @@ public class TreeUmbran extends TreeFamily {
 		
 	}
 	
-	public class SpeciesUmbranConifer extends SpeciesRare {
+	public class SpeciesUmbranConifer extends Species {
 		
 		SpeciesUmbranConifer(TreeFamily treeFamily) {
 			super(new ResourceLocation(treeFamily.getName().getResourceDomain(), ModContent.UMBRANCONIFER), treeFamily, ModContent.leaves.get(ModContent.UMBRANCONIFER));
@@ -106,6 +105,8 @@ public class TreeUmbran extends TreeFamily {
 			generateSeed();
 			
 			setupStandardSeedDropping();
+			
+			setRequiresTileEntity(true);
 			
 			//Add species features
 			addGenFeature(new FeatureGenConiferTopper(getLeavesProperties()));//Make a topper for this conifer tree
@@ -141,7 +142,7 @@ public class TreeUmbran extends TreeFamily {
 		
 	}
 	
-	public class SpeciesMegaUmbranConifer extends SpeciesRare {
+	public class SpeciesMegaUmbranConifer extends Species {
 		
 		SpeciesMegaUmbranConifer(TreeFamily treeFamily) {
 			super(new ResourceLocation(treeFamily.getName().getResourceDomain(), ModContent.UMBRANCONIFERMEGA), treeFamily, ModContent.leaves.get(ModContent.UMBRANCONIFER));
@@ -158,6 +159,8 @@ public class TreeUmbran extends TreeFamily {
 			envFactor(Type.MAGICAL, 1.1f);
 			
 			setupStandardSeedDropping();
+			
+			setRequiresTileEntity(true);
 			
 			//Add species features
 			addGenFeature(new FeatureGenClearVolume(6));//Clear a spot for the thick tree trunk

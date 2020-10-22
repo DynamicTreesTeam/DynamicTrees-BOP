@@ -11,7 +11,7 @@ import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenClearVolume;
 import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenConiferTopper;
 import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenFlareBottom;
 import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenMound;
-import com.ferreusveritas.dynamictrees.trees.SpeciesRare;
+import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 
 import biomesoplenty.api.biome.BOPBiomes;
@@ -27,7 +27,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary.Type;
 
-public class SpeciesMegaOakConifer extends SpeciesRare {
+public class SpeciesMegaOakConifer extends Species {
 		
 	public SpeciesMegaOakConifer(TreeFamily treeFamily) {
 		super(new ResourceLocation(DynamicTreesBOP.MODID, ModContent.MEGAOAKCONIFER), treeFamily, ModContent.leaves.get(ModContent.OAKCONIFER));
@@ -43,6 +43,8 @@ public class SpeciesMegaOakConifer extends SpeciesRare {
 		envFactor(Type.FOREST, 1.05f);
 		
 		setupStandardSeedDropping();
+		
+		setRequiresTileEntity(true);
 		
 		//Add species features
 		addGenFeature(new FeatureGenClearVolume(6));//Clear a spot for the thick tree trunk

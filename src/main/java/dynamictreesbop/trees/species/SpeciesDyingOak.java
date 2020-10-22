@@ -4,7 +4,7 @@ import java.util.Random;
 
 import com.ferreusveritas.dynamictrees.ModBlocks;
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
-import com.ferreusveritas.dynamictrees.trees.SpeciesRare;
+import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 
 import biomesoplenty.api.enums.BOPTrees;
@@ -21,7 +21,7 @@ import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
 
-public class SpeciesDyingOak extends SpeciesRare {
+public class SpeciesDyingOak extends Species {
 	
 	public SpeciesDyingOak(TreeFamily treeFamily) {
 		super(new ResourceLocation(DynamicTreesBOP.MODID, ModContent.OAKDYING), treeFamily, ModContent.leaves.get(ModContent.OAKDYING));
@@ -36,6 +36,7 @@ public class SpeciesDyingOak extends SpeciesRare {
 		
 		addDropCreator(new DropCreatorFruit(BOPItems.persimmon));
 		setupStandardSeedDropping();
+		setRequiresTileEntity(true);
 		
 		leavesProperties.setTree(treeFamily);
 		

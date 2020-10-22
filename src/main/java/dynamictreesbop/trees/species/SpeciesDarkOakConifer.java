@@ -7,7 +7,7 @@ import com.ferreusveritas.dynamictrees.api.TreeHelper;
 import com.ferreusveritas.dynamictrees.api.TreeRegistry;
 import com.ferreusveritas.dynamictrees.items.Seed;
 import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenConiferTopper;
-import com.ferreusveritas.dynamictrees.trees.SpeciesRare;
+import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 
 import biomesoplenty.api.biome.BOPBiomes;
@@ -23,7 +23,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary.Type;
 
-public class SpeciesDarkOakConifer extends SpeciesRare {
+public class SpeciesDarkOakConifer extends Species {
 	
 	public SpeciesDarkOakConifer(TreeFamily treeFamily) {
 		super(new ResourceLocation(DynamicTreesBOP.MODID, ModContent.DARKOAKCONIFER), treeFamily, ModContent.leaves.get(ModContent.DARKOAKCONIFER));
@@ -36,6 +36,8 @@ public class SpeciesDarkOakConifer extends SpeciesRare {
 		envFactor(Type.SWAMP, 1.05f);
 		
 		setupStandardSeedDropping();
+		
+		setRequiresTileEntity(true);
 		
 		leavesProperties.setTree(treeFamily);
 		

@@ -5,7 +5,7 @@ import java.util.Random;
 import com.ferreusveritas.dynamictrees.ModBlocks;
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
 import com.ferreusveritas.dynamictrees.items.Seed;
-import com.ferreusveritas.dynamictrees.trees.SpeciesRare;
+import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 
 import biomesoplenty.api.biome.BOPBiomes;
@@ -19,7 +19,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary.Type;
 
-public class SpeciesOakSparse extends SpeciesRare {
+public class SpeciesOakSparse extends Species {
 	
 	public SpeciesOakSparse(TreeFamily treeFamily) {
 		super(new ResourceLocation(DynamicTreesBOP.MODID, ModContent.OAKSPARSE), treeFamily, ModContent.leaves.get(ModContent.OAKSPARSE));
@@ -29,6 +29,8 @@ public class SpeciesOakSparse extends SpeciesRare {
 		envFactor(Type.SNOWY, 0.25f);
 		envFactor(Type.DRY, 0.75f);
 		envFactor(Type.PLAINS, 1.05f);
+		
+		setRequiresTileEntity(true);
 		
 		leavesProperties.setTree(treeFamily);
 	}

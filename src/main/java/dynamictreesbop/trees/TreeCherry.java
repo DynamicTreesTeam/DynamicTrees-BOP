@@ -6,7 +6,6 @@ import java.util.Random;
 import com.ferreusveritas.dynamictrees.ModBlocks;
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
 import com.ferreusveritas.dynamictrees.trees.Species;
-import com.ferreusveritas.dynamictrees.trees.SpeciesRare;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 
 import biomesoplenty.api.biome.BOPBiomes;
@@ -67,7 +66,7 @@ public class TreeCherry extends TreeFamily {
 		
 	}
 	
-	public class SpeciesWhiteCherry extends SpeciesRare {
+	public class SpeciesWhiteCherry extends Species {
 		
 		SpeciesWhiteCherry(TreeFamily treeFamily) {
 			super(new ResourceLocation(treeFamily.getName().getResourceDomain(), ModContent.WHITECHERRY), treeFamily, ModContent.leaves.get(ModContent.WHITECHERRY));
@@ -82,6 +81,8 @@ public class TreeCherry extends TreeFamily {
 			generateSeed();
 			
 			setupStandardSeedDropping();
+			
+			setRequiresTileEntity(true);
 		}
 		
 		@Override

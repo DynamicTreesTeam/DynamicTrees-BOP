@@ -4,7 +4,7 @@ import java.util.Random;
 
 import com.ferreusveritas.dynamictrees.ModBlocks;
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
-import com.ferreusveritas.dynamictrees.trees.SpeciesRare;
+import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 
 import biomesoplenty.api.enums.BOPTrees;
@@ -23,7 +23,7 @@ import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
 
-public class SpeciesFloweringOak extends SpeciesRare {
+public class SpeciesFloweringOak extends Species {
 	
 	public SpeciesFloweringOak(TreeFamily treeFamily) {
 		super(new ResourceLocation(DynamicTreesBOP.MODID, ModContent.FLOWERINGOAK), treeFamily, ModContent.floweringOakLeavesProperties);
@@ -39,6 +39,8 @@ public class SpeciesFloweringOak extends SpeciesRare {
 		
 		addDropCreator(new DropCreatorFruit(BOPItems.peach));
 		setupStandardSeedDropping();
+		
+		setRequiresTileEntity(true);
 		
 		ModContent.floweringOakLeavesProperties.setTree(treeFamily);
 		

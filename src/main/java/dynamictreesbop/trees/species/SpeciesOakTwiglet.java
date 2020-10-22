@@ -7,7 +7,7 @@ import com.ferreusveritas.dynamictrees.ModConstants;
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
 import com.ferreusveritas.dynamictrees.items.Seed;
 import com.ferreusveritas.dynamictrees.systems.DirtHelper;
-import com.ferreusveritas.dynamictrees.trees.SpeciesRare;
+import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 
 import biomesoplenty.api.biome.BOPBiomes;
@@ -22,7 +22,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary.Type;
 
-public class SpeciesOakTwiglet extends SpeciesRare {
+public class SpeciesOakTwiglet extends Species {
 	
 	public SpeciesOakTwiglet(TreeFamily treeFamily) {
 		super(new ResourceLocation(DynamicTreesBOP.MODID, ModContent.OAKTWIGLET), treeFamily, ModContent.leaves.get(ModContent.OAKSPARSE));
@@ -32,6 +32,8 @@ public class SpeciesOakTwiglet extends SpeciesRare {
 		envFactor(Type.SNOWY, 0.25f);
 		envFactor(Type.DRY, 0.75f);
 		envFactor(Type.PLAINS, 1.05f);
+		
+		setRequiresTileEntity(true);
 		
 		addDropCreator(new DropCreatorInvoluntarySeed());
 		remDropCreator(new ResourceLocation(ModConstants.MODID, "logs"));
