@@ -9,7 +9,6 @@ import com.ferreusveritas.dynamictrees.trees.SpeciesRare;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 
 import biomesoplenty.api.biome.BOPBiomes;
-import biomesoplenty.api.block.BOPBlocks;
 import dynamictreesbop.DynamicTreesBOP;
 import dynamictreesbop.ModContent;
 import net.minecraft.item.ItemStack;
@@ -30,8 +29,6 @@ public class SpeciesOakSparse extends SpeciesRare {
 		envFactor(Type.SNOWY, 0.25f);
 		envFactor(Type.DRY, 0.75f);
 		envFactor(Type.PLAINS, 1.05f);
-		
-		addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
 		
 		leavesProperties.setTree(treeFamily);
 	}

@@ -55,8 +55,6 @@ public class TreeUmbran extends TreeFamily {
 			envFactor(Type.DEAD, 1.1f);
 			envFactor(Type.MAGICAL, 1.1f);
 			
-			addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
-			
 			generateSeed();
 			
 			setupStandardSeedDropping();
@@ -104,8 +102,6 @@ public class TreeUmbran extends TreeFamily {
 			envFactor(Type.SPOOKY, 1.1f);
 			envFactor(Type.DEAD, 1.1f);
 			envFactor(Type.MAGICAL, 1.1f);
-			
-			addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
 			
 			generateSeed();
 			
@@ -160,8 +156,6 @@ public class TreeUmbran extends TreeFamily {
 			envFactor(Type.SPOOKY, 1.1f);
 			envFactor(Type.DEAD, 1.1f);
 			envFactor(Type.MAGICAL, 1.1f);
-			
-			addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
 			
 			setupStandardSeedDropping();
 			

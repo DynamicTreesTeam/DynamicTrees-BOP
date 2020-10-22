@@ -42,8 +42,6 @@ public class SpeciesMegaOakConifer extends SpeciesRare {
 		envFactor(Type.PLAINS, 1.05f);
 		envFactor(Type.FOREST, 1.05f);
 		
-		addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
-		
 		setupStandardSeedDropping();
 		
 		//Add species features

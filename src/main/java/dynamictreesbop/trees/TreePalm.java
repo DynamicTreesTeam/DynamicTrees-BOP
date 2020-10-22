@@ -10,6 +10,7 @@ import com.ferreusveritas.dynamictrees.api.network.MapSignal;
 import com.ferreusveritas.dynamictrees.api.treedata.ILeavesProperties;
 import com.ferreusveritas.dynamictrees.blocks.BlockBranch;
 import com.ferreusveritas.dynamictrees.blocks.BlockRooty;
+import com.ferreusveritas.dynamictrees.systems.DirtHelper;
 import com.ferreusveritas.dynamictrees.systems.GrowSignal;
 import com.ferreusveritas.dynamictrees.systems.dropcreators.DropCreatorSeed;
 import com.ferreusveritas.dynamictrees.systems.nodemappers.NodeFindEnds;
@@ -21,7 +22,6 @@ import com.ferreusveritas.dynamictrees.util.CoordUtils.Surround;
 import com.ferreusveritas.dynamictrees.util.SafeChunkBounds;
 
 import biomesoplenty.api.biome.BOPBiomes;
-import biomesoplenty.api.block.BOPBlocks;
 import biomesoplenty.api.enums.BOPTrees;
 import biomesoplenty.api.enums.BOPWoods;
 import biomesoplenty.common.block.BlockBOPLeaves;
@@ -31,7 +31,6 @@ import dynamictreesbop.ModContent;
 import dynamictreesbop.blocks.BlockDynamicLeavesPalm;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
@@ -53,9 +52,6 @@ public class TreePalm extends TreeFamily {
 			setBasicGrowingParameters(0.4f, 9.0f, 4, 3, 0.9f);
 						
 			envFactor(Type.COLD, 0.25f);
-			
-			//clearAcceptableSoils();
-			addAcceptableSoil(Blocks.SAND, BOPBlocks.white_sand, BOPBlocks.dirt, BOPBlocks.grass);
 			
 			generateSeed();
 			
@@ -83,6 +79,11 @@ public class TreePalm extends TreeFamily {
 					return dropList;
 				}
 			});
+		}
+		
+		@Override
+		protected void setStandardSoils() {
+			addAcceptableSoils(DirtHelper.Type.DIRTLIKE, DirtHelper.Type.SANDLIKE);
 		}
 		
 		@Override

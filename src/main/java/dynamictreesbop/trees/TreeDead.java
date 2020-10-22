@@ -4,8 +4,9 @@ import java.util.Random;
 
 import com.ferreusveritas.dynamictrees.api.treedata.ITreePart;
 import com.ferreusveritas.dynamictrees.blocks.BlockRooty;
-import com.ferreusveritas.dynamictrees.trees.TreeFamily;
+import com.ferreusveritas.dynamictrees.systems.DirtHelper;
 import com.ferreusveritas.dynamictrees.trees.Species;
+import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 
 import biomesoplenty.api.block.BOPBlocks;
 import biomesoplenty.api.enums.BOPTrees;
@@ -17,7 +18,6 @@ import dynamictreesbop.DynamicTreesBOP;
 import dynamictreesbop.ModContent;
 import dynamictreesbop.dropcreators.DropCreatorFruit;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -37,9 +37,17 @@ public class TreeDead extends TreeFamily {
 			envFactor(Type.SPOOKY, 1.05f);
 			envFactor(Type.DEAD, 1.05f);
 			
-			addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt, BOPBlocks.dried_sand, Blocks.SAND);
-			
 			addDropCreator(new DropCreatorFruit(BOPItems.persimmon));
+		}
+		
+		@Override
+		public boolean isAcceptableSoil(IBlockState soilBlockState) {
+			return super.isAcceptableSoil(soilBlockState) || soilBlockState.getBlock() == BOPBlocks.dried_sand;
+		}
+		
+		@Override
+		protected void setStandardSoils() {
+			addAcceptableSoils(DirtHelper.Type.DIRTLIKE, DirtHelper.Type.SANDLIKE);
 		}
 		
 		@Override
@@ -68,10 +76,17 @@ public class TreeDead extends TreeFamily {
 		
 		SpeciesDecayed(TreeFamily treeFamily) {
 			super(new ResourceLocation(treeFamily.getName().getResourceDomain(), ModContent.DECAYED), treeFamily, ModContent.decayedLeavesProperties);
-			
 			setBasicGrowingParameters(0.3f, 12.0f, upProbability, lowestBranchHeight, 1.0f);
-			
-			addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt, BOPBlocks.dried_sand, Blocks.SAND, Blocks.HARDENED_CLAY, Blocks.STAINED_HARDENED_CLAY);
+		}
+		
+		@Override
+		public boolean isAcceptableSoil(IBlockState soilBlockState) {
+			return super.isAcceptableSoil(soilBlockState) || soilBlockState.getBlock() == BOPBlocks.dried_sand;
+		}
+		
+		@Override
+		protected void setStandardSoils() {
+			addAcceptableSoils(DirtHelper.Type.DIRTLIKE, DirtHelper.Type.SANDLIKE, DirtHelper.Type.HARDCLAYLIKE);
 		}
 		
 		@Override

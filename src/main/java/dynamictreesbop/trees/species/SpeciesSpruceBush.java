@@ -4,7 +4,6 @@ import com.ferreusveritas.dynamictrees.api.IGenFeature;
 import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenBush;
 import com.ferreusveritas.dynamictrees.trees.Species;
 
-import biomesoplenty.api.block.BOPBlocks;
 import dynamictreesbop.DynamicTreesBOP;
 import dynamictreesbop.ModContent;
 import net.minecraft.block.BlockOldLeaf;
@@ -20,7 +19,6 @@ public class SpeciesSpruceBush extends Species {
 		setRegistryName(new ResourceLocation(DynamicTreesBOP.MODID, ModContent.SPRUCEBUSH));
 		
 		setStandardSoils();
-		addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
 		
 		addGenFeature(
 			new FeatureGenBush()

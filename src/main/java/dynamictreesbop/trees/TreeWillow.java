@@ -4,6 +4,7 @@ import java.util.Random;
 
 import com.ferreusveritas.dynamictrees.ModBlocks;
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
+import com.ferreusveritas.dynamictrees.systems.DirtHelper;
 import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenVine;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
@@ -29,22 +30,25 @@ import net.minecraftforge.common.BiomeDictionary.Type;
 public class TreeWillow extends TreeFamily {
 	
 	public class SpeciesWillow extends Species {
-				
+		
 		SpeciesWillow(TreeFamily treeFamily) {
 			super(treeFamily.getName(), treeFamily, ModContent.leaves.get(ModContent.WILLOW));
 			
 			setBasicGrowingParameters(0.3f, 12.0f, upProbability, lowestBranchHeight, 0.8f);
-						
+			
 			envFactor(Type.COLD, 0.50f);
 			envFactor(Type.DRY, 0.50f);
-			
-			addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt, BOPBlocks.mud);
 			
 			generateSeed();
 			
 			setupStandardSeedDropping();
 			
 			addGenFeature(new FeatureGenVine().setQuantity(32).setMaxLength(8).setRayDistance(7).setVineBlock(BOPBlocks.willow_vine));//Generate Vines
+		}
+		
+		@Override
+		protected void setStandardSoils() {
+			addAcceptableSoils(DirtHelper.Type.DIRTLIKE, DirtHelper.Type.MUDLIKE);
 		}
 		
 		@Override

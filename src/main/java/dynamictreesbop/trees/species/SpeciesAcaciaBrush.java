@@ -6,7 +6,6 @@ import com.ferreusveritas.dynamictrees.trees.SpeciesRare;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 
 import biomesoplenty.api.biome.BOPBiomes;
-import biomesoplenty.api.block.BOPBlocks;
 import dynamictreesbop.DynamicTreesBOP;
 import dynamictreesbop.ModContent;
 import net.minecraft.item.ItemStack;
@@ -27,8 +26,6 @@ public class SpeciesAcaciaBrush extends SpeciesRare {
 		envFactor(Type.WET, 0.5f);
 		envFactor(Type.COLD, 0.5f);
 		envFactor(Type.SAVANNA, 1.05f);
-		
-		addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
 		
 		setupStandardSeedDropping();
 		

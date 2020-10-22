@@ -41,8 +41,6 @@ public class TreeMagic extends TreeFamily {
 			envFactor(Type.DRY, 0.50f);
 			envFactor(Type.FOREST, 1.05f);
 			
-			addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
-			
 			Seed seed = new ItemMagicSeed(getRegistryName().getResourcePath() + "seed");
 			setSeedStack(new ItemStack(seed));
 			

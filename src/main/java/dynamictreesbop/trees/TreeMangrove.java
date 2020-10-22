@@ -2,19 +2,21 @@ package dynamictreesbop.trees;
 
 import com.ferreusveritas.dynamictrees.blocks.BlockBranch;
 import com.ferreusveritas.dynamictrees.blocks.BlockBranchBasic;
+import com.ferreusveritas.dynamictrees.items.Seed;
 import com.ferreusveritas.dynamictrees.systems.GrowSignal;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 
 import biomesoplenty.api.biome.BOPBiomes;
-import biomesoplenty.api.block.BOPBlocks;
 import biomesoplenty.api.enums.BOPTrees;
 import biomesoplenty.api.enums.BOPWoods;
 import biomesoplenty.common.block.BlockBOPLeaves;
 import biomesoplenty.common.block.BlockBOPLog;
 import dynamictreesbop.DynamicTreesBOP;
 import dynamictreesbop.ModContent;
+import dynamictreesbop.items.ItemMangroveSeed;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
@@ -30,16 +32,15 @@ public class TreeMangrove extends TreeFamily {
 		public SpeciesMangrove(TreeFamily treeFamily) {
 			super(treeFamily.getName(), treeFamily, ModContent.leaves.get(ModContent.MANGROVE));
 			
-			setBasicGrowingParameters(0.15f, 12.0f, 2, 2, 0.8f);
-						
+			setBasicGrowingParameters(0.12f, 14.0f, 2, 2, 0.8f);
+			
 			envFactor(Type.COLD, 0.15f);
 			envFactor(Type.DRY,  0.20f);
 			envFactor(Type.HOT, 1.1f);
 			envFactor(Type.WET, 1.1f);
 			
-			addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
-			
-			generateSeed();
+			Seed seed = new ItemMangroveSeed(getRegistryName().getResourcePath() + "seed");
+			setSeedStack(new ItemStack(seed));
 			
 			setupStandardSeedDropping();
 			

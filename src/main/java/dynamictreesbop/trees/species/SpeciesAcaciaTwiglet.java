@@ -4,18 +4,17 @@ import java.util.Random;
 
 import com.ferreusveritas.dynamictrees.ModConstants;
 import com.ferreusveritas.dynamictrees.items.Seed;
+import com.ferreusveritas.dynamictrees.systems.DirtHelper;
 import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenBush;
 import com.ferreusveritas.dynamictrees.trees.SpeciesRare;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 import com.ferreusveritas.dynamictrees.util.SafeChunkBounds;
 
 import biomesoplenty.api.biome.BOPBiomes;
-import biomesoplenty.api.block.BOPBlocks;
 import dynamictreesbop.DynamicTreesBOP;
 import dynamictreesbop.ModContent;
 import dynamictreesbop.dropcreators.DropCreatorInvoluntarySeed;
 import net.minecraft.block.BlockGrass;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -36,8 +35,6 @@ public class SpeciesAcaciaTwiglet extends SpeciesRare {
 		envFactor(Type.DRY, 0.75f);
 		envFactor(Type.HOT, 1.05f);
 		
-		addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt, Blocks.SAND);
-		
 		addDropCreator(new DropCreatorInvoluntarySeed());
 		remDropCreator(new ResourceLocation(ModConstants.MODID, "logs"));
 		
@@ -45,7 +42,12 @@ public class SpeciesAcaciaTwiglet extends SpeciesRare {
 		
 		leavesProperties.setTree(treeFamily);
 	}
-
+	
+	@Override
+	protected void setStandardSoils() {
+		addAcceptableSoils(DirtHelper.Type.DIRTLIKE, DirtHelper.Type.SANDLIKE);
+	}
+	
 	@Override
 	public LogsAndSticks getLogsAndSticks(float volume) {
 		return super.getLogsAndSticks(volume * 16);

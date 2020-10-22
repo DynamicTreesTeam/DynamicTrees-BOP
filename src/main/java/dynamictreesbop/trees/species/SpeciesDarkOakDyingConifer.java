@@ -32,12 +32,10 @@ public class SpeciesDarkOakDyingConifer extends SpeciesRare {
 		
 		setBasicGrowingParameters(0.3f, 16.0f, 3, 3, 0.9f);
 		setGrowthLogicKit(TreeRegistry.findGrowthLogicKit(ModTrees.CONIFER));
-
+		
 		envFactor(Type.HOT, 0.50f);
 		envFactor(Type.DRY, 0.50f);
 		envFactor(Type.SWAMP, 1.05f);
-		
-		addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
 		
 		setupStandardSeedDropping();
 		

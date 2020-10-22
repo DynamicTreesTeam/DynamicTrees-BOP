@@ -42,8 +42,6 @@ public class TreeCherry extends TreeFamily {
 			envFactor(Type.DRY, 0.50f);
 			envFactor(Type.FOREST, 1.05f);
 			
-			addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
-			
 			generateSeed();
 			
 			setupStandardSeedDropping();
@@ -80,8 +78,6 @@ public class TreeCherry extends TreeFamily {
 			envFactor(Type.HOT, 0.50f);
 			envFactor(Type.DRY, 0.50f);
 			envFactor(Type.FOREST, 1.05f);
-			
-			addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
 			
 			generateSeed();
 			

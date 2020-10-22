@@ -7,7 +7,6 @@ import com.ferreusveritas.dynamictrees.trees.SpeciesRare;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 
 import biomesoplenty.api.biome.BOPBiomes;
-import biomesoplenty.api.block.BOPBlocks;
 import biomesoplenty.api.enums.BOPTrees;
 import biomesoplenty.api.enums.BOPWoods;
 import biomesoplenty.common.block.BlockBOPLeaves;
@@ -30,12 +29,10 @@ public class TreeEbony extends TreeFamily {
 			super(treeFamily.getName(), treeFamily, ModContent.leaves.get(ModContent.EBONY));
 			
 			setBasicGrowingParameters(0.3f, 12.0f, upProbability, lowestBranchHeight, 1.0f);
-						
+			
 			envFactor(Type.WET, 0.5f);
 			envFactor(Type.COLD, 0.5f);
 			envFactor(Type.SAVANNA, 1.05f);
-			
-			addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
 			
 			generateSeed();
 			
@@ -59,8 +56,6 @@ public class TreeEbony extends TreeFamily {
 			envFactor(Type.WET, 0.5f);
 			envFactor(Type.COLD, 0.5f);
 			envFactor(Type.SAVANNA, 1.05f);
-			
-			addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
 			
 			addDropCreator(new DropCreatorInvoluntarySeed());
 			remDropCreator(new ResourceLocation(ModConstants.MODID, "logs"));

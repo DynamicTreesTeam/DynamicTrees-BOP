@@ -81,10 +81,6 @@ public class ClientProxy extends CommonProxy {
 		registerColorHandlers();
 	}
 	
-	@Override public void postInit() {
-		super.postInit();
-	}
-	
 	public void registerColorHandlers() {	
 		
 		final int magenta = 0x00FF00FF; // for errors.. because magenta sucks.

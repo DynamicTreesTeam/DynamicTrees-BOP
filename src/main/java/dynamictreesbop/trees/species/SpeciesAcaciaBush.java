@@ -1,6 +1,7 @@
 package dynamictreesbop.trees.species;
 
 import com.ferreusveritas.dynamictrees.api.IGenFeature;
+import com.ferreusveritas.dynamictrees.systems.DirtHelper;
 import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenBush;
 import com.ferreusveritas.dynamictrees.trees.Species;
 
@@ -18,8 +19,7 @@ public class SpeciesAcaciaBush extends Species {
 		super();
 		setRegistryName(new ResourceLocation(DynamicTreesBOP.MODID, ModContent.ACACIABUSH));
 		
-		setStandardSoils();
-		addAcceptableSoil(Blocks.SAND);
+		addAcceptableSoils(DirtHelper.Type.DIRTLIKE, DirtHelper.Type.SANDLIKE);
 		
 		addGenFeature(new FeatureGenBush()
 			.setLeavesState(Blocks.LEAVES2.getDefaultState().withProperty(BlockNewLeaf.VARIANT, BlockPlanks.EnumType.ACACIA))

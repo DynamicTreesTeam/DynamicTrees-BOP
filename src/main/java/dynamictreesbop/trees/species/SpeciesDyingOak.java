@@ -7,7 +7,6 @@ import com.ferreusveritas.dynamictrees.api.TreeHelper;
 import com.ferreusveritas.dynamictrees.trees.SpeciesRare;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 
-import biomesoplenty.api.block.BOPBlocks;
 import biomesoplenty.api.enums.BOPTrees;
 import biomesoplenty.api.item.BOPItems;
 import biomesoplenty.common.block.BlockBOPLeaves;
@@ -32,8 +31,6 @@ public class SpeciesDyingOak extends SpeciesRare {
 		envFactor(Type.LUSH, 0.75f);
 		envFactor(Type.SPOOKY, 1.05f);
 		envFactor(Type.DEAD, 1.05f);
-		
-		addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
 		
 		generateSeed();
 		

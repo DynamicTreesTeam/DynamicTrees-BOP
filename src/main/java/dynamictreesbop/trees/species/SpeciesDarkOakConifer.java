@@ -35,8 +35,6 @@ public class SpeciesDarkOakConifer extends SpeciesRare {
 		envFactor(Type.DRY, 0.50f);
 		envFactor(Type.SWAMP, 1.05f);
 		
-		addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
-		
 		setupStandardSeedDropping();
 		
 		leavesProperties.setTree(treeFamily);

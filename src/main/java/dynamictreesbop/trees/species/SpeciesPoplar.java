@@ -6,6 +6,7 @@ import com.ferreusveritas.dynamictrees.api.network.INodeInspector;
 import com.ferreusveritas.dynamictrees.api.treedata.ITreePart;
 import com.ferreusveritas.dynamictrees.blocks.BlockBranch;
 import com.ferreusveritas.dynamictrees.items.Seed;
+import com.ferreusveritas.dynamictrees.systems.DirtHelper;
 import com.ferreusveritas.dynamictrees.systems.GrowSignal;
 import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenBush;
 import com.ferreusveritas.dynamictrees.trees.Species;
@@ -14,7 +15,6 @@ import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 import com.ferreusveritas.dynamictrees.util.SimpleVoxmap;
 
 import biomesoplenty.api.biome.BOPBiomes;
-import biomesoplenty.api.block.BOPBlocks;
 import biomesoplenty.api.enums.BOPTrees;
 import biomesoplenty.common.block.BlockBOPLeaves;
 import dynamictreesbop.DynamicTreesBOP;
@@ -40,8 +40,6 @@ public class SpeciesPoplar extends SpeciesRare {
 		envFactor(Type.DRY, 0.50f);
 		envFactor(Type.FOREST, 1.05f);
 		
-		addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt, BOPBlocks.mud);
-		
 		setupStandardSeedDropping();
 		
 		//Generate undergrowth
@@ -53,6 +51,11 @@ public class SpeciesPoplar extends SpeciesRare {
 			);
 		
 		leavesProperties.setTree(treeFamily);
+	}
+	
+	@Override
+	protected void setStandardSoils() {
+		addAcceptableSoils(DirtHelper.Type.DIRTLIKE, DirtHelper.Type.MUDLIKE);
 	}
 	
 	@Override

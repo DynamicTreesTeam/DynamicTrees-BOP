@@ -8,7 +8,6 @@ import com.ferreusveritas.dynamictrees.trees.SpeciesRare;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 
 import biomesoplenty.api.biome.BOPBiomes;
-import biomesoplenty.api.block.BOPBlocks;
 import biomesoplenty.api.enums.BOPTrees;
 import biomesoplenty.api.item.BOPItems;
 import biomesoplenty.common.block.BlockBOPLeaves;
@@ -32,8 +31,6 @@ public class SpeciesOrangeAutumn extends SpeciesRare {
 		envFactor(Type.HOT, 0.50f);
 		envFactor(Type.DRY, 0.50f);
 		envFactor(Type.FOREST, 1.05f);
-		
-		addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
 		
 		generateSeed();
 		

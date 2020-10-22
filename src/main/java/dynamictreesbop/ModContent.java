@@ -22,6 +22,7 @@ import com.ferreusveritas.dynamictrees.blocks.LeavesProperties;
 import com.ferreusveritas.dynamictrees.blocks.LeavesPropertiesJson;
 import com.ferreusveritas.dynamictrees.blocks.LeavesPropertiesJson.PrimitiveLeavesComponents;
 import com.ferreusveritas.dynamictrees.items.DendroPotion.DendroPotionType;
+import com.ferreusveritas.dynamictrees.systems.DirtHelper;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 import com.google.gson.JsonElement;
@@ -191,18 +192,11 @@ public class ModContent {
 		palmFrondLeaves = new BlockDynamicLeavesPalm();
 		registry.register(palmFrondLeaves);
 		
-		// Add BOP dirt and grass as acceptable soils to species from base Dynamic Trees
-		TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, OAK)).addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
-		TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, OAKSWAMP)).addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
-		TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, APPLE)).addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
-		TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, SPRUCE)).addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
-		TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, BIRCH)).addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
-		TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, JUNGLE)).addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
-		TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, ACACIA)).addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt, Blocks.HARDENED_CLAY);
-		TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, DARKOAK)).addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
-		TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, CACTUS)).addAcceptableSoil(BOPBlocks.white_sand);
-		TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, MUSHROOMRED)).addAcceptableSoil(BOPBlocks.dirt, BOPBlocks.grass);
-		TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, MUSHROOMBRN)).addAcceptableSoil(BOPBlocks.dirt, BOPBlocks.grass);
+		// Add BOP dirt, grass and sand as acceptable soils
+		DirtHelper.registerSoil(BOPBlocks.grass, DirtHelper.Type.DIRTLIKE);
+		DirtHelper.registerSoil(BOPBlocks.dirt, DirtHelper.Type.DIRTLIKE);
+		DirtHelper.registerSoil(BOPBlocks.white_sand, DirtHelper.Type.SANDLIKE);
+		DirtHelper.registerSoil(BOPBlocks.mud, DirtHelper.Type.MUDLIKE);
 		
 		//Registers a BoP Primitive Leaves finding function for use with Json leaves properties
 		LeavesPropertiesJson.addLeavesFinderFunction("bop", new Function<JsonElement, LeavesPropertiesJson.PrimitiveLeavesComponents>() {

@@ -14,7 +14,6 @@ import com.ferreusveritas.dynamictrees.util.CoordUtils;
 import com.ferreusveritas.dynamictrees.util.SimpleVoxmap;
 
 import biomesoplenty.api.biome.BOPBiomes;
-import biomesoplenty.api.block.BOPBlocks;
 import biomesoplenty.api.enums.BOPTrees;
 import biomesoplenty.common.block.BlockBOPLeaves;
 import dynamictreesbop.DynamicTreesBOP;
@@ -43,10 +42,8 @@ public class TreeBamboo extends TreeFamily {
 			super(treeFamily.getName(), treeFamily, ModContent.leaves.get(ModContent.BAMBOO));
 			
 			setBasicGrowingParameters(0.125f, 11.0f, 4, 4, 1.5f); // Fastest growing "tree"
-						
-			envFactor(Type.COLD, 0.25f);
 			
-			addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
+			envFactor(Type.COLD, 0.25f);
 			
 			generateSeed();
 			

@@ -4,7 +4,6 @@ import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 
 import biomesoplenty.api.biome.BOPBiomes;
-import biomesoplenty.api.block.BOPBlocks;
 import biomesoplenty.api.enums.BOPTrees;
 import biomesoplenty.api.enums.BOPWoods;
 import biomesoplenty.api.item.BOPItems;
@@ -30,8 +29,6 @@ public class TreeJacaranda extends TreeFamily {
 						
 			envFactor(Type.HOT, 0.50f);
 			envFactor(Type.DRY, 0.50f);
-			
-			addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
 			
 			generateSeed();
 			

@@ -4,7 +4,6 @@ import com.ferreusveritas.dynamictrees.api.IGenFeature;
 import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenBush;
 import com.ferreusveritas.dynamictrees.trees.Species;
 
-import biomesoplenty.api.block.BOPBlocks;
 import dynamictreesbop.DynamicTreesBOP;
 import dynamictreesbop.ModContent;
 import net.minecraft.util.ResourceLocation;
@@ -18,7 +17,6 @@ FeatureGenBush bushGen;
 		setRegistryName(new ResourceLocation(DynamicTreesBOP.MODID, ModContent.OAKBUSH));
 		
 		setStandardSoils();
-		addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
 		
 		addGenFeature(new FeatureGenBush(), IGenFeature.FULLGEN);
 	}

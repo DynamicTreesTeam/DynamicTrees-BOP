@@ -40,8 +40,6 @@ public class SpeciesOakConifer extends SpeciesRare {
 		envFactor(Type.PLAINS, 1.05f);
 		envFactor(Type.FOREST, 1.05f);
 		
-		addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
-		
 		setupStandardSeedDropping();
 		
 		leavesProperties.setTree(treeFamily);

@@ -5,11 +5,9 @@ import com.ferreusveritas.dynamictrees.api.TreeRegistry;
 import com.ferreusveritas.dynamictrees.trees.Species;
 
 import biomesoplenty.api.biome.BOPBiomes;
-import biomesoplenty.api.block.BOPBlocks;
 import dynamictreesbop.cells.CellKits;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
-import net.minecraftforge.fml.common.Loader;
 
 public class CommonProxy {
 	
@@ -52,23 +50,6 @@ public class CommonProxy {
 			
 			return Species.NULLSPECIES;
 		});
-	}
-	
-	public void postInit() {
-		String rusticModid = "rustic";
-		String dttcModid = "dynamictreestc";
-		if (Loader.isModLoaded(rusticModid)) {
-			Species olive = TreeRegistry.findSpecies(new ResourceLocation(rusticModid, "olive"));
-			Species ironwood = TreeRegistry.findSpecies(new ResourceLocation(rusticModid, "ironwood"));
-			if (olive != null) olive.addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
-			if (ironwood != null) ironwood.addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
-		}
-		if (Loader.isModLoaded(dttcModid)) {
-			Species greatwood = TreeRegistry.findSpecies(new ResourceLocation(dttcModid, "greatwood"));
-			Species silverwood = TreeRegistry.findSpecies(new ResourceLocation(dttcModid, "silverwood"));
-			if (greatwood != null) greatwood.addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
-			if (silverwood != null) silverwood.addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
-		}
 	}
 	
 }

@@ -9,7 +9,6 @@ import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 
 import biomesoplenty.api.biome.BOPBiomes;
-import biomesoplenty.api.block.BOPBlocks;
 import biomesoplenty.api.enums.BOPTrees;
 import biomesoplenty.api.enums.BOPWoods;
 import biomesoplenty.common.block.BlockBOPLeaves;
@@ -42,8 +41,6 @@ public class TreeMahogany extends TreeFamily {
 			envFactor(Type.DRY,  0.20f);
 			envFactor(Type.HOT, 1.1f);
 			envFactor(Type.WET, 1.1f);
-			
-			addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
 			
 			generateSeed();
 			

@@ -7,7 +7,6 @@ import com.ferreusveritas.dynamictrees.api.TreeHelper;
 import com.ferreusveritas.dynamictrees.trees.SpeciesRare;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 
-import biomesoplenty.api.block.BOPBlocks;
 import biomesoplenty.api.enums.BOPTrees;
 import biomesoplenty.api.item.BOPItems;
 import biomesoplenty.common.block.BlockBOPLeaves;
@@ -37,8 +36,6 @@ public class SpeciesFloweringOak extends SpeciesRare {
 		envFactor(Type.FOREST, 1.05f);
 		
 		generateSeed();
-		
-		addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
 		
 		addDropCreator(new DropCreatorFruit(BOPItems.peach));
 		setupStandardSeedDropping();

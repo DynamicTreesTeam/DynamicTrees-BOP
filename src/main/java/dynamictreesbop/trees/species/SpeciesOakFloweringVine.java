@@ -34,8 +34,6 @@ public class SpeciesOakFloweringVine extends Species {
 		envFactor(Type.DRY, 0.625f);
 		envFactor(Type.FOREST, 1.05f);
 		
-		addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
-		
 		if(ModConfigs.worldGen && !ModConfigs.enableAppleTrees) {//If we've disabled apple trees we still need some way to get apples.
 			addDropCreator(new DropCreatorApple());
 		}

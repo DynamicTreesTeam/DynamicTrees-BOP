@@ -18,7 +18,6 @@ import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 import com.ferreusveritas.dynamictrees.util.CoordUtils;
 
 import biomesoplenty.api.biome.BOPBiomes;
-import biomesoplenty.api.block.BOPBlocks;
 import biomesoplenty.api.enums.BOPTrees;
 import biomesoplenty.api.enums.BOPWoods;
 import biomesoplenty.common.block.BlockBOPLeaves;
@@ -50,8 +49,6 @@ public class TreeRedwood extends TreeFamily {
 			envFactor(Type.HOT, 0.50f);
 			envFactor(Type.DRY, 0.25f);
 			envFactor(Type.FOREST, 1.05f);
-			
-			addAcceptableSoil(BOPBlocks.grass, BOPBlocks.dirt);
 			
 			generateSeed();
 			
