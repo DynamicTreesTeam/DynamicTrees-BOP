@@ -2,7 +2,9 @@ package dynamictreesbop.trees;
 
 import com.ferreusveritas.dynamictrees.blocks.BlockBranch;
 import com.ferreusveritas.dynamictrees.blocks.BlockBranchBasic;
+import com.ferreusveritas.dynamictrees.blocks.BlockRooty;
 import com.ferreusveritas.dynamictrees.items.Seed;
+import com.ferreusveritas.dynamictrees.systems.DirtHelper;
 import com.ferreusveritas.dynamictrees.systems.GrowSignal;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
@@ -32,7 +34,7 @@ public class TreeMangrove extends TreeFamily {
 		public SpeciesMangrove(TreeFamily treeFamily) {
 			super(treeFamily.getName(), treeFamily, ModContent.leaves.get(ModContent.MANGROVE));
 			
-			setBasicGrowingParameters(0.12f, 14.0f, 2, 2, 0.8f);
+			setBasicGrowingParameters(0.12f, 14.0f, 1, 2, 0.8f);
 			
 			envFactor(Type.COLD, 0.15f);
 			envFactor(Type.DRY,  0.20f);
@@ -56,6 +58,16 @@ public class TreeMangrove extends TreeFamily {
 		@Override
 		protected int[] customDirectionManipulation(World world, BlockPos pos, int radius, GrowSignal signal, int probMap[]) {
 			return super.customDirectionManipulation(world, pos, radius, signal, probMap);
+		}
+		
+		@Override
+		protected void setStandardSoils() {
+			addAcceptableSoils(DirtHelper.WATERLIKE);
+		}
+		
+		@Override
+		public BlockRooty getRootyBlock(World world, BlockPos rootPos) {
+			return ModContent.rootyWater;
 		}
 		
 		@Override

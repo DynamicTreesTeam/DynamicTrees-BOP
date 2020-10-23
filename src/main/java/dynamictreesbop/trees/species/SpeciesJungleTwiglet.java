@@ -70,7 +70,7 @@ public class SpeciesJungleTwiglet extends Species {
 		if (world.getBlockState(rootPos).getMaterial() == Material.SAND) {
 			world.setBlockState(rootPos, ModBlocks.blockRootySand.getDefaultState().withProperty(BlockRooty.LIFE, life));
 		} else {
-			world.setBlockState(rootPos, getRootyBlock().getDefaultState().withProperty(BlockRooty.LIFE, life));
+			world.setBlockState(rootPos, getRootyBlock(world, rootPos).getDefaultState().withProperty(BlockRooty.LIFE, life));
 		}
 		return true;
 	}

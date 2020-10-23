@@ -22,9 +22,11 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.particle.ParticleManager;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumBlockRenderType;
@@ -41,6 +43,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BlockRootyWater extends BlockRooty {
+	
+	protected static final AxisAlignedBB WATER_ROOTS_AABB = new AxisAlignedBB(0.1, 0.0, 0.1, 0.9, 1.0, 0.9);
 	
 	public static final UnlistedPropertyBool[] RENDER_SIDES = new UnlistedPropertyBool[] {
 			new UnlistedPropertyBool("render_d"),
@@ -212,6 +216,12 @@ public class BlockRootyWater extends BlockRooty {
 	}
 	
 	@Override
+	public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity te, ItemStack stack) {
+		super.harvestBlock(worldIn, player, pos, state, te, stack);
+		worldIn.setBlockState(pos, Blocks.WATER.getDefaultState());
+	}
+	
+	@Override
 	public IBlockState getMimic(IBlockAccess access, BlockPos pos) {
 		return  Blocks.WATER.getDefaultState();
 	}
@@ -304,12 +314,12 @@ public class BlockRootyWater extends BlockRooty {
 	
 	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-		return FULL_BLOCK_AABB;
+		return WATER_ROOTS_AABB;
 	}
 	
 	@Nullable
 	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) {
-		return FULL_BLOCK_AABB;//NULL_AABB;
+		return NULL_AABB;
 	}
 	
 	@Override

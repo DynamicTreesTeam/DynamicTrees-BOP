@@ -15,32 +15,32 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemMagicSeed extends Seed {
-
+	
 	public ItemMagicSeed(String name) {
 		super(name);
 		this.setHasSubtypes(true);
 		// Add a property getter instead of just registering different models for different damage values so that cheating in items with different metadata values won't look different
 		this.addPropertyOverride(new ResourceLocation("puff"), new IItemPropertyGetter() {
-            @SideOnly(Side.CLIENT)
-            public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn) {
-                return entityIn == null ? stack.getMetadata() : 0;
-            }
-        });
+			@SideOnly(Side.CLIENT)
+			public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn) {
+				return entityIn == null ? stack.getMetadata() : 0;
+			}
+		});
 	}
 	
 	@Override
 	public int getMetadata(int damage) {
-        return damage;
-    }
+		return damage;
+	}
 	
 	@Override
 	public boolean hasCustomEntity(ItemStack stack) {
-        return true;
-    }
+		return true;
+	}
 	
 	@Override
 	@Nullable
-    public Entity createEntity(World world, Entity location, ItemStack itemstack) {
+	public Entity createEntity(World world, Entity location, ItemStack itemstack) {
 		EntityItemMagicSeed magicSeedEntity = new EntityItemMagicSeed(world, location.posX, location.posY, location.posZ, itemstack);
 		
 		//We need to also copy the motion of the replaced entity or it acts funny when the item spawns.
@@ -48,10 +48,10 @@ public class ItemMagicSeed extends Seed {
 		magicSeedEntity.motionY = location.motionY;
 		magicSeedEntity.motionZ = location.motionZ;
 		
-        return magicSeedEntity;
-    }
+		return magicSeedEntity;
+	}
 	
-
+	
 	public static class EntityItemMagicSeed extends EntityItem {
 		
 		public int animFrame = 0;
@@ -109,9 +109,9 @@ public class ItemMagicSeed extends Seed {
 		
 		@Override
 		public void setDefaultPickupDelay() {
-	        this.setPickupDelay(50);
-	    }
+			this.setPickupDelay(50);
+		}
 		
 	}
-
+	
 }

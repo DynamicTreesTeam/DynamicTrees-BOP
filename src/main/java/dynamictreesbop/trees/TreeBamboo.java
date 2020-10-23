@@ -72,7 +72,7 @@ public class TreeBamboo extends TreeFamily {
 		}
 		
 		@Override
-		public BlockRooty getRootyBlock() {
+		public BlockRooty getRootyBlock(World world, BlockPos rootPos) {
 			return ModBlocks.blockRootyDirt;
 		}
 		
