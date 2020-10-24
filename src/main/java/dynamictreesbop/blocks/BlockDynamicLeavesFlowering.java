@@ -32,7 +32,7 @@ public class BlockDynamicLeavesFlowering extends BlockDynamicLeaves {
 	private ILeavesProperties properties = LeavesProperties.NULLPROPERTIES;
 	
 	public BlockDynamicLeavesFlowering() {
-		setDefaultState(this.blockState.getBaseState().withProperty(HYDRO, 4).withProperty(FLOWERING, false).withProperty(CAN_FLOWER, false));
+		setDefaultState(this.blockState.getBaseState().withProperty(HYDRO, 4).withProperty(FLOWERING, false).withProperty(CAN_FLOWER, false).withProperty(FAST_LEAVES, false));
 		setRegistryName(DynamicTreesBOP.MODID, "leaves_flowering");
 		setUnlocalizedName("leaves_flowering");
 	}
