@@ -31,10 +31,12 @@ public class TreeMangrove extends TreeFamily {
 	
 	public class SpeciesMangrove extends Species {
 		
+		protected int deepSoilTypeFlags;
+		
 		public SpeciesMangrove(TreeFamily treeFamily) {
 			super(treeFamily.getName(), treeFamily, ModContent.leaves.get(ModContent.MANGROVE));
 			
-			setBasicGrowingParameters(0.12f, 14.0f, 1, 2, 0.8f);
+			setBasicGrowingParameters(0.13f, 10.0f, 1, 2, 0.8f);
 			
 			envFactor(Type.COLD, 0.15f);
 			envFactor(Type.DRY,  0.20f);
@@ -63,6 +65,12 @@ public class TreeMangrove extends TreeFamily {
 		@Override
 		protected void setStandardSoils() {
 			addAcceptableSoils(DirtHelper.WATERLIKE);
+			deepSoilTypeFlags = DirtHelper.getSoilFlags(DirtHelper.DIRTLIKE, DirtHelper.SANDLIKE, DirtHelper.MUDLIKE);
+		}
+		
+		@Override
+		public boolean isAcceptableSoil(World world, BlockPos pos, IBlockState soilBlockState) {
+			return super.isAcceptableSoil(world, pos, soilBlockState) && DirtHelper.isSoilAcceptable(world.getBlockState(pos.down()).getBlock(), deepSoilTypeFlags);
 		}
 		
 		@Override

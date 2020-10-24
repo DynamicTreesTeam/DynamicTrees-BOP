@@ -2,8 +2,8 @@
 	"parent": "block/tinted_cross",
 	"textures": {
 		"cross": "dynamictreesbop:blocks/wateryroots_mid",
-		"cross_low": "dynamictreesbop:blocks/wateryroots_low"
-		
+		"cross_low": "dynamictreesbop:blocks/wateryroots_low",
+		"root": "dynamictreesbop:blocks/wateryroots_tiny"
 	},
 	"elements": [
 		{	"from": [ 0.8, 0, 8 ],

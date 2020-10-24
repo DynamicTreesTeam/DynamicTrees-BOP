@@ -2,6 +2,8 @@
 	"textures": {
 		"particle": "biomesoplenty:blocks/leaves_mangrove",
 		"log": "biomesoplenty:blocks/mangrove_log",
-		"leaves": "biomesoplenty:blocks/leaves_mangrove"
+		"leaves": "biomesoplenty:blocks/leaves_mangrove",
+		"root": "dynamictreesbop:blocks/wateryroots_tiny"
+		
 	}
 }

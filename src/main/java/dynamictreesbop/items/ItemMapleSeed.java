@@ -10,19 +10,19 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 public class ItemMapleSeed extends Seed {
-
+	
 	public ItemMapleSeed(String name) {
 		super(name);
 	}
 	
 	@Override
 	public boolean hasCustomEntity(ItemStack stack) {
-        return true;
-    }
+		return true;
+	}
 	
 	@Override
 	@Nullable
-    public Entity createEntity(World world, Entity location, ItemStack itemstack) {
+	public Entity createEntity(World world, Entity location, ItemStack itemstack) {
 		EntityItemMapleSeed mapleSeedEntity = new EntityItemMapleSeed(world, location.posX, location.posY, location.posZ, itemstack);
 		
 		//We need to also copy the motion of the replaced entity or it acts funny when the item spawns.
@@ -30,8 +30,8 @@ public class ItemMapleSeed extends Seed {
 		mapleSeedEntity.motionY = location.motionY;
 		mapleSeedEntity.motionZ = location.motionZ;
 		
-        return mapleSeedEntity;
-    }
+		return mapleSeedEntity;
+	}
 	
 	public static class EntityItemMapleSeed extends EntityItem {
 		
@@ -59,9 +59,9 @@ public class ItemMapleSeed extends Seed {
 		
 		@Override
 		public void setDefaultPickupDelay() {
-	        this.setPickupDelay(50);
-	    }
+			this.setPickupDelay(50);
+		}
 		
 	}
-
+	
 }
