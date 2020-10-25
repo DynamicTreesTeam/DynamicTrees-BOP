@@ -39,10 +39,13 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.property.IExtendedBlockState;
 import net.minecraftforge.common.property.IUnlistedProperty;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BlockRootyWater extends BlockRooty {
+	
+	protected final boolean isSmoothWaterInstalled;
 	
 	protected static final AxisAlignedBB WATER_ROOTS_AABB = new AxisAlignedBB(0.1, 0.0, 0.1, 0.9, 1.0, 0.9);
 	
@@ -65,6 +68,7 @@ public class BlockRootyWater extends BlockRooty {
 		super("rootywater", Material.WATER, isTileEntity);
 		setSoundType(SoundType.PLANT);
 		setDefaultState(super.getDefaultState());
+		isSmoothWaterInstalled = Loader.isModLoaded("smoothwater");
 	}
 	
 	@Override
@@ -101,7 +105,8 @@ public class BlockRootyWater extends BlockRooty {
 		if (state instanceof IExtendedBlockState) {
 			IExtendedBlockState extState = (IExtendedBlockState) state;
 			for (EnumFacing dir : EnumFacing.VALUES) {
-				extState = extState.withProperty(RENDER_SIDES[dir.ordinal()], Blocks.WATER.shouldSideBeRendered(state, access, pos, dir));
+				//extState = extState.withProperty(RENDER_SIDES[dir.ordinal()], Blocks.WATER.shouldSideBeRendered(state, access, pos, dir));
+				extState = extState.withProperty(RENDER_SIDES[dir.ordinal()], shouldSideBeRendered(state, access, pos, dir));
 			}
 			
 			float defaultHeight = 1 - BlockLiquid.getLiquidHeightPercent(avgLvl);
@@ -110,6 +115,21 @@ public class BlockRootyWater extends BlockRooty {
 			float c1 = getFluidHeight(access, pos.south(), Material.WATER);
 			float c2 = getFluidHeight(access, pos.east().south(), Material.WATER);
 			float c3 = getFluidHeight(access, pos.east(), Material.WATER);
+			
+			if(isSmoothWaterInstalled) {
+				if(c0 > 0.88f && c0 < 0.89f) {
+					c0 = 0.875f;
+				}
+				if(c1 > 0.88f && c1 < 0.89f) {
+					c1 = 0.875f;
+				}
+				if(c2 > 0.88f && c2 < 0.89f) {
+					c2 = 0.875f;
+				}
+				if(c3 > 0.88f && c3 < 0.89f) {
+					c3 = 0.875f;
+				}
+			}
 			
 			float avg = 0;
 			int i = 0;
@@ -266,19 +286,21 @@ public class BlockRootyWater extends BlockRooty {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
-		//return true;
-		return super.shouldSideBeRendered(blockState, blockAccess, pos, side);
+		
+		if (blockAccess.getBlockState(pos.offset(side)).getMaterial() == Material.WATER) {
+			return false;
+		}
+		
+		if(side == EnumFacing.UP) {
+			return true;
+		}
+		
+		return !blockAccess.getBlockState(pos.offset(side)).doesSideBlockRendering(blockAccess, pos.offset(side), side.getOpposite());
 	}
 	
 	@Override
 	public boolean doesSideBlockRendering(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing face) {
-		IBlockState adjState = world.getBlockState(pos.offset(face));
-		
-		if (adjState.getMaterial() == Material.WATER) {
-			return true;
-		}
-		
-		return state.isOpaqueCube();
+		return world.getBlockState(pos.offset(face)).getMaterial() == Material.WATER;
 	}
 	
 	@Override

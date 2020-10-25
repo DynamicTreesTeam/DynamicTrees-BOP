@@ -69,93 +69,99 @@ public class RootyWaterModel implements IBakedModel {
 					colors[facing.ordinal()] = 0xFF000000 | v << 16 | v << 8 | v; //0xAARRGGBB'
 				}
 				
+				float min = 0.0f;
+				float max = 16.0f;
+				
+				float p0 = 0.0001f;
+				float p1 = 0.9999f;
+				
 				//DOWN
 				if (extState.getValue(BlockRootyWater.RENDER_SIDES[0])) {
 					quads.add(new BakedQuad(Ints.concat(
-							vertexToInts(0, 0, 1, colors[0], textureatlassprite, 0.0f, 16.0f),
-							vertexToInts(0, 0, 0, colors[0], textureatlassprite, 0.0f, 0.0f),
-							vertexToInts(1, 0, 0, colors[0], textureatlassprite, 16.0f, 0.0f),
-							vertexToInts(1, 0, 1, colors[0], textureatlassprite, 16.0f, 16.0f)
+							vertexToInts(0, 0, 1, colors[0], textureatlassprite, min, max),
+							vertexToInts(0, 0, 0, colors[0], textureatlassprite, min, min),
+							vertexToInts(1, 0, 0, colors[0], textureatlassprite, max, min),
+							vertexToInts(1, 0, 1, colors[0], textureatlassprite, max, max)
 							), 0, EnumFacing.DOWN, textureatlassprite, false, DefaultVertexFormats.BLOCK));
 				}
 				
 				//UP
 				if (extState.getValue(BlockRootyWater.RENDER_SIDES[1])) {
 					quads.add(new BakedQuad(Ints.concat(
-							vertexToInts(0, y0, 0, colors[1], textureatlassprite, 0.0f, 0.0f),
-							vertexToInts(0, y1, 1, colors[1], textureatlassprite, 0.0f, 16.0f),
-							vertexToInts(1, y2, 1, colors[1], textureatlassprite, 16.0f, 16.0f),
-							vertexToInts(1, y3, 0, colors[1], textureatlassprite, 16.0f, 0.0f)
+							vertexToInts(0, y0, 0, colors[1], textureatlassprite, min, min),
+							vertexToInts(0, y1, 1, colors[1], textureatlassprite, min, max),
+							vertexToInts(1, y2, 1, colors[1], textureatlassprite, max, max),
+							vertexToInts(1, y3, 0, colors[1], textureatlassprite, max, min)
 							), 0, EnumFacing.UP, textureatlassprite, false, DefaultVertexFormats.BLOCK));
 					quads.add(new BakedQuad(Ints.concat(
-							vertexToInts(0, y0, 0, colors[1], textureatlassprite, 0.0f, 0.0f),
-							vertexToInts(1, y3, 0, colors[1], textureatlassprite, 16.0f, 0.0f),
-							vertexToInts(1, y2, 1, colors[1], textureatlassprite, 16.0f, 16.0f),
-							vertexToInts(0, y1, 1, colors[1], textureatlassprite, 0.0f, 16.0f)
+							vertexToInts(0, y0, 0, colors[1], textureatlassprite, min, min),
+							vertexToInts(1, y3, 0, colors[1], textureatlassprite, max, min),
+							vertexToInts(1, y2, 1, colors[1], textureatlassprite, max, max),
+							vertexToInts(0, y1, 1, colors[1], textureatlassprite, min, max)
 							), 0, EnumFacing.DOWN, textureatlassprite, false, DefaultVertexFormats.BLOCK));
 				}
 				
 				//NORTH
 				if (extState.getValue(BlockRootyWater.RENDER_SIDES[2])) {
 					quads.add(new BakedQuad(Ints.concat(
-							vertexToInts(1, y3, 0, colors[2], flowWaterTexture, 8.0f, (1.0f - y3) * 8.0f),
-							vertexToInts(1,  0, 0, colors[2], flowWaterTexture, 8.0f, 8.0f),
-							vertexToInts(0,  0, 0, colors[2], flowWaterTexture, 0.0f, 8.0f),
-							vertexToInts(0, y0, 0, colors[2], flowWaterTexture, 0.0f, (1.0f - y0) * 8.0f)
+							vertexToInts(p1, y3, p0, colors[2], flowWaterTexture, 8.0f, (1.0f - y3) * 8.0f),
+							vertexToInts(p1,  0, p0, colors[2], flowWaterTexture, 8.0f, 8.0f),
+							vertexToInts(p0,  0, p0, colors[2], flowWaterTexture, 0.0f, 8.0f),
+							vertexToInts(p0, y0, p0, colors[2], flowWaterTexture, 0.0f, (1.0f - y0) * 8.0f)
 							), 0, EnumFacing.NORTH, flowWaterTexture, false, DefaultVertexFormats.BLOCK));
 					quads.add(new BakedQuad(Ints.concat(
-							vertexToInts(0, y3, 0, colors[2], flowWaterTexture, 8.0f, (1.0f - y3) * 8.0f),
-							vertexToInts(0,  0, 0, colors[2], flowWaterTexture, 8.0f, 8.0f),
-							vertexToInts(1,  0, 0, colors[2], flowWaterTexture, 0.0f, 8.0f),
-							vertexToInts(1, y0, 0, colors[2], flowWaterTexture, 0.0f, (1.0f - y0) * 8.0f)
+							vertexToInts(p0, y3, p0, colors[2], flowWaterTexture, 8.0f, (1.0f - y3) * 8.0f),
+							vertexToInts(p0,  0, p0, colors[2], flowWaterTexture, 8.0f, 8.0f),
+							vertexToInts(p1,  0, p0, colors[2], flowWaterTexture, 0.0f, 8.0f),
+							vertexToInts(p1, y0, p0, colors[2], flowWaterTexture, 0.0f, (1.0f - y0) * 8.0f)
 							), 0, EnumFacing.SOUTH, flowWaterTexture, false, DefaultVertexFormats.BLOCK));
 				}
 				
 				//SOUTH
 				if (extState.getValue(BlockRootyWater.RENDER_SIDES[3])) {
 					quads.add(new BakedQuad(Ints.concat(
-							vertexToInts(0, y1, 1, colors[3], flowWaterTexture, 8.0f, (1.0f - y1) * 8.0f),
-							vertexToInts(0,  0, 1, colors[3], flowWaterTexture, 8.0f, 8.0f),
-							vertexToInts(1,  0, 1, colors[3], flowWaterTexture, 0.0f, 8.0f),
-							vertexToInts(1, y2, 1, colors[3], flowWaterTexture, 0.0f, (1.0f - y2) * 8.0f)
+							vertexToInts(p0, y1, p1, colors[3], flowWaterTexture, 8.0f, (1.0f - y1) * 8.0f),
+							vertexToInts(p0,  0, p1, colors[3], flowWaterTexture, 8.0f, 8.0f),
+							vertexToInts(p1,  0, p1, colors[3], flowWaterTexture, 0.0f, 8.0f),
+							vertexToInts(p1, y2, p1, colors[3], flowWaterTexture, 0.0f, (1.0f - y2) * 8.0f)
 							), 0, EnumFacing.SOUTH, flowWaterTexture, false, DefaultVertexFormats.BLOCK));
 					quads.add(new BakedQuad(Ints.concat(
-							vertexToInts(1, y1, 1, colors[3], flowWaterTexture, 8.0f, (1.0f - y1) * 8.0f),
-							vertexToInts(1,  0, 1, colors[3], flowWaterTexture, 8.0f, 8.0f),
-							vertexToInts(0,  0, 1, colors[3], flowWaterTexture, 0.0f, 8.0f),
-							vertexToInts(0, y2, 1, colors[3], flowWaterTexture, 0.0f, (1.0f - y2) * 8.0f)
+							vertexToInts(p1, y1, p1, colors[3], flowWaterTexture, 8.0f, (1.0f - y1) * 8.0f),
+							vertexToInts(p1,  0, p1, colors[3], flowWaterTexture, 8.0f, 8.0f),
+							vertexToInts(p0,  0, p1, colors[3], flowWaterTexture, 0.0f, 8.0f),
+							vertexToInts(p0, y2, p1, colors[3], flowWaterTexture, 0.0f, (1.0f - y2) * 8.0f)
 							), 0, EnumFacing.NORTH, flowWaterTexture, false, DefaultVertexFormats.BLOCK));
 				}
 				
 				//WEST
 				if (extState.getValue(BlockRootyWater.RENDER_SIDES[4])) {
 					quads.add(new BakedQuad(Ints.concat(
-							vertexToInts(0, y0, 0, colors[4], flowWaterTexture, 8.0f, (1.0f - y0) * 8.0f),
-							vertexToInts(0,  0, 0, colors[4], flowWaterTexture, 8.0f, 8.0f),
-							vertexToInts(0,  0, 1, colors[4], flowWaterTexture, 0.0f, 8.0f),
-							vertexToInts(0, y1, 1, colors[4], flowWaterTexture, 0.0f, (1.0f - y1) * 8.0f)
+							vertexToInts(p0, y0, p0, colors[4], flowWaterTexture, 8.0f, (1.0f - y0) * 8.0f),
+							vertexToInts(p0,  0, p0, colors[4], flowWaterTexture, 8.0f, 8.0f),
+							vertexToInts(p0,  0, p1, colors[4], flowWaterTexture, 0.0f, 8.0f),
+							vertexToInts(p0, y1, p1, colors[4], flowWaterTexture, 0.0f, (1.0f - y1) * 8.0f)
 							), 0, EnumFacing.WEST, flowWaterTexture, false, DefaultVertexFormats.BLOCK));
 					quads.add(new BakedQuad(Ints.concat(
-							vertexToInts(0, y0, 1, colors[4], flowWaterTexture, 8.0f, (1.0f - y0) * 8.0f),
-							vertexToInts(0,  0, 1, colors[4], flowWaterTexture, 8.0f, 8.0f),
-							vertexToInts(0,  0, 0, colors[4], flowWaterTexture, 0.0f, 8.0f),
-							vertexToInts(0, y1, 0, colors[4], flowWaterTexture, 0.0f, (1.0f - y1) * 8.0f)
+							vertexToInts(p0, y0, p1, colors[4], flowWaterTexture, 8.0f, (1.0f - y0) * 8.0f),
+							vertexToInts(p0,  0, p1, colors[4], flowWaterTexture, 8.0f, 8.0f),
+							vertexToInts(p0,  0, p0, colors[4], flowWaterTexture, 0.0f, 8.0f),
+							vertexToInts(p0, y1, p0, colors[4], flowWaterTexture, 0.0f, (1.0f - y1) * 8.0f)
 							), 0, EnumFacing.EAST, flowWaterTexture, false, DefaultVertexFormats.BLOCK));
 				}
 				
 				//EAST
 				if (extState.getValue(BlockRootyWater.RENDER_SIDES[5])) {
 					quads.add(new BakedQuad(Ints.concat(
-							vertexToInts(1, y2, 1, colors[5], flowWaterTexture, 8.0f, (1.0f - y2) * 8.0f),
-							vertexToInts(1,  0, 1, colors[5], flowWaterTexture, 8.0f, 8.0f),
-							vertexToInts(1,  0, 0, colors[5], flowWaterTexture, 0.0f, 8.0f),
-							vertexToInts(1, y3, 0, colors[5], flowWaterTexture, 0.0f, (1.0f - y3) * 8.0f)
+							vertexToInts(p1, y2, p1, colors[5], flowWaterTexture, 8.0f, (1.0f - y2) * 8.0f),
+							vertexToInts(p1,  0, p1, colors[5], flowWaterTexture, 8.0f, 8.0f),
+							vertexToInts(p1,  0, p0, colors[5], flowWaterTexture, 0.0f, 8.0f),
+							vertexToInts(p1, y3, p0, colors[5], flowWaterTexture, 0.0f, (1.0f - y3) * 8.0f)
 							), 0, EnumFacing.EAST, flowWaterTexture, false, DefaultVertexFormats.BLOCK));
 					quads.add(new BakedQuad(Ints.concat(
-							vertexToInts(1, y2, 0, colors[5], flowWaterTexture, 8.0f, (1.0f - y2) * 8.0f),
-							vertexToInts(1,  0, 0, colors[5], flowWaterTexture, 8.0f, 8.0f),
-							vertexToInts(1,  0, 1, colors[5], flowWaterTexture, 0.0f, 8.0f),
-							vertexToInts(1, y3, 1, colors[5], flowWaterTexture, 0.0f, (1.0f - y3) * 8.0f)
+							vertexToInts(p1, y2, p0, colors[5], flowWaterTexture, 8.0f, (1.0f - y2) * 8.0f),
+							vertexToInts(p1,  0, p0, colors[5], flowWaterTexture, 8.0f, 8.0f),
+							vertexToInts(p1,  0, p1, colors[5], flowWaterTexture, 0.0f, 8.0f),
+							vertexToInts(p1, y3, p1, colors[5], flowWaterTexture, 0.0f, (1.0f - y3) * 8.0f)
 							), 0, EnumFacing.WEST, flowWaterTexture, false, DefaultVertexFormats.BLOCK));
 					
 				}

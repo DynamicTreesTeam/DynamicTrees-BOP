@@ -88,7 +88,9 @@ public class ClientProxy extends CommonProxy {
 		ModelHelper.regColorHandler(ModContent.rootyWater, (state, world, pos, tintIndex) -> {
 			int color = 0xFFFFFF;
 			
-			color = Minecraft.getMinecraft().getBlockColors().colorMultiplier(Blocks.WATER.getDefaultState(), world, pos, tintIndex);
+			if(tintIndex != 2) {
+				color = Minecraft.getMinecraft().getBlockColors().colorMultiplier(Blocks.WATER.getDefaultState(), world, pos, tintIndex);
+			}
 			
 			return color;
 		});
