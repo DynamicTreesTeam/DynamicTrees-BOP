@@ -12,7 +12,6 @@
 	
 	{ "select" : { "name": "biomesoplenty:shrubland"		}, "apply" : { "blacklist": true } },
 	{ "select" : { "name": "biomesoplenty:tundra"			}, "apply" : { "blacklist": true } },
-	{ "select" : { "name": "biomesoplenty:mangrove"			}, "apply" : { "blacklist": true } },
 	{ "select" : { "name": "biomesoplenty:xeric_shrubland"	}, "apply" : { "blacklist": true } },
 	{
 		"__comment0": "Removes select `vanilla` bop generators from biomesoplenty biomes not on the blacklist", 
@@ -81,7 +80,7 @@
 	},
 	{
 		"select": { "name": "biomesoplenty:brushland" },
-		"apply": {		
+		"apply": {
 			"species" : {
 				"random" : {
 					"dynamictreesbop:ebony" : 2,
@@ -216,7 +215,7 @@
 	},
 	{
 		"select": { "name": "biomesoplenty:lush_desert" },
-		"apply": {			
+		"apply": {
 			"species" : {
 				"random" : {
 					"dynamictreesbop:decayed" : 1,
@@ -276,7 +275,7 @@
 	},
 	{
 		"select": { "name": "biomesoplenty:mountain_foothills" },
-		"apply": {	
+		"apply": {
 			"species" : {
 				"random" : {
 					"dynamictrees:oak" : 1,
@@ -373,7 +372,7 @@
 	},
 	{
 		"select": { "name": "biomesoplenty:prairie" },
-		"apply": {	
+		"apply": {
 			"species" : "dynamictreesbop:oaksparse",
 			"density" : [ 0.03 ],
 			"chance" : 0.075
@@ -446,7 +445,7 @@
 	},
 	{
 		"select": { "name": "biomesoplenty:shield" },
-		"apply": {	
+		"apply": {
 			"species" : {
 				"random" : {
 					"dynamictrees:spruce" : 4,
@@ -458,7 +457,7 @@
 	},
 	{
 		"select": { "name": "biomesoplenty:snowy_coniferous_forest" },
-		"apply": {	
+		"apply": {
 			"species" : {
 				"random" : {
 					"dynamictreesbop:fir" : 2,
@@ -470,7 +469,7 @@
 	},
 	{
 		"select": { "name": "biomesoplenty:snowy_forest" },
-		"apply": {	
+		"apply": {
 			"species" : {
 				"random" : {
 					"dynamictrees:oak" : 3,
@@ -482,7 +481,7 @@
 	},
 	{
 		"select": { "name": "biomesoplenty:temperate_rainforest" },
-		"apply": {	
+		"apply": {
 			"species" : {
 				"random" : {
 					"dynamictreesbop:oakconifer" : 4,
@@ -495,7 +494,7 @@
 	},
 	{
 		"select": { "name": "biomesoplenty:tropical_island" },
-		"apply": {	
+		"apply": {
 			"species" : {
 				"random" : {
 					"dynamictreesbop:palm" : 4,
@@ -508,7 +507,7 @@
 	},
 	{
 		"select": { "name": "biomesoplenty:tropical_rainforest" },
-		"apply": {	
+		"apply": {
 			"species" : {
 				"random" : {
 					"dynamictreesbop:jungle" : 2,
@@ -521,7 +520,7 @@
 	},
 	{
 		"select": { "name": "biomesoplenty:undergarden" },
-		"apply": {	
+		"apply": {
 			"species" : "dynamictreesbop:hellbark",
 			"density" : [ 0.0, 1.0 ],
 			"chance" : 1.0,
@@ -530,7 +529,7 @@
 	},
 	{
 		"select": { "name": "biomesoplenty:wasteland" },
-		"apply": {	
+		"apply": {
 			"species" : {
 				"random" : {
 					"dynamictreesbop:decayed" : 3,
@@ -543,7 +542,7 @@
 	},
 	{
 		"select": { "name": "biomesoplenty:wetland" },
-		"apply": {	
+		"apply": {
 			"species" : {
 				"random" : {
 					"dynamictrees:spruce" : 5,
@@ -555,13 +554,19 @@
 	},
 	{
 		"select": { "name": "biomesoplenty:woodland" },
-		"apply": {	
+		"apply": {
 			"species" : "dynamictrees:oak",
 			"density" : []
 		}
 	},
-	
-	
+	{
+		"select": { "name": "biomesoplenty:mangrove" },
+		"apply": {
+			"species" : "dynamictrees:mangrove",
+			"chance" : 1.0,
+			"density" : 1.0
+		}
+	},
 	{
 		"select": { "name": "minecraft:mutated_forest" },
 		"apply": {
@@ -576,7 +581,7 @@
 	},
 	{
 		"select": { "name": "minecraft:extreme_hills" },
-		"apply": {	
+		"apply": {
 			"species" : "dynamictrees:spruce"
 		}
 	},
@@ -608,7 +613,6 @@
 	{ "select" : { "name" : "biomesoplenty:gravel_beach"	}, "apply" : { "chance" : 0.0 } },
 	{ "select" : { "name" : "biomesoplenty:highland"		}, "apply" : { "chance" : 0.0 } },
 	{ "select" : { "name" : "biomesoplenty:cold_desert"		}, "apply" : { "chance" : 0.0 } },
-	{ "select" : { "name" : "biomesoplenty:mangrove"		}, "apply" : { "chance" : 0.0 } },
 	{ "select" : { "name" : "biomesoplenty:marsh"			}, "apply" : { "chance" : 0.0 } },
 	{ "select" : { "name" : "biomesoplenty:moor"			}, "apply" : { "chance" : 0.0 } },
 	{ "select" : { "name" : "biomesoplenty:origin_beach"	}, "apply" : { "chance" : 0.0 } },

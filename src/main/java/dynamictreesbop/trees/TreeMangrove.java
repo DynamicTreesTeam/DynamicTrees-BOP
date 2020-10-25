@@ -1,15 +1,21 @@
 package dynamictreesbop.trees;
 
+import java.util.List;
+
+import com.ferreusveritas.dynamictrees.api.IPostGenFeature;
 import com.ferreusveritas.dynamictrees.blocks.BlockBranch;
 import com.ferreusveritas.dynamictrees.blocks.BlockBranchBasic;
 import com.ferreusveritas.dynamictrees.blocks.BlockRooty;
 import com.ferreusveritas.dynamictrees.items.Seed;
 import com.ferreusveritas.dynamictrees.systems.DirtHelper;
 import com.ferreusveritas.dynamictrees.systems.GrowSignal;
+import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenMudHole;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
+import com.ferreusveritas.dynamictrees.util.SafeChunkBounds;
 
 import biomesoplenty.api.biome.BOPBiomes;
+import biomesoplenty.api.block.BOPBlocks;
 import biomesoplenty.api.enums.BOPTrees;
 import biomesoplenty.api.enums.BOPWoods;
 import biomesoplenty.common.block.BlockBOPLeaves;
@@ -23,6 +29,7 @@ import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary.Type;
@@ -49,7 +56,8 @@ public class TreeMangrove extends TreeFamily {
 			setupStandardSeedDropping();
 			
 			//Add species features
-			//addGenFeature(new FeatureGenCocoa());
+			addGenFeature(new FeatureGenMudHole(BOPBlocks.mud.getDefaultState()));
+			addGenFeature(new FeatureGenMangrovelings());
 		}
 		
 		@Override
@@ -71,6 +79,11 @@ public class TreeMangrove extends TreeFamily {
 		@Override
 		public boolean isAcceptableSoil(World world, BlockPos pos, IBlockState soilBlockState) {
 			return super.isAcceptableSoil(world, pos, soilBlockState) && DirtHelper.isSoilAcceptable(world.getBlockState(pos.down()).getBlock(), deepSoilTypeFlags);
+		}
+		
+		@Override
+		public boolean isAcceptableSoilForWorldgen(World world, BlockPos pos, IBlockState soilBlockState) {
+			return soilBlockState.getBlock() == BOPBlocks.mud || super.isAcceptableSoilForWorldgen(world, pos, soilBlockState);
 		}
 		
 		@Override
@@ -124,6 +137,54 @@ public class TreeMangrove extends TreeFamily {
 				return BlockRenderLayer.CUTOUT_MIPPED;
 			}
 		};
+	}
+	
+	public static class FeatureGenMangrovelings implements IPostGenFeature {
+
+		@Override
+		public boolean postGeneration(World world, BlockPos rootPos, Species species, Biome biome, int radius, List<BlockPos> endPoints, SafeChunkBounds safeBounds, IBlockState initialDirtState) {
+			
+			int[] angles = new int[2]; 
+			angles[0] = angles[1] = world.rand.nextInt(6);
+			while(angles[0] == angles[1]) {
+				angles[1] = world.rand.nextInt(6);
+			}
+			
+			anglesLoop:
+			for(int a : angles) {
+				double angle = Math.toRadians(a * 60.0f);
+				float distance = 3.0f + world.rand.nextFloat() * 2.0f;
+				BlockPos offPos = rootPos.add(new Vec3i(Math.sin(angle) * distance, 0, Math.cos(angle) * distance));
+				
+				if(safeBounds.inBounds(offPos, true)) {
+					if(species.isAcceptableSoil(world, offPos, world.getBlockState(offPos))) {
+						if( !(world.isAirBlock(offPos.up(1)) && world.isAirBlock(offPos.up(2))) ) {
+							continue anglesLoop;
+						}
+						for(EnumFacing hor : EnumFacing.HORIZONTALS) {
+							BlockPos offPos2 = offPos.offset(hor);
+							if( !(world.isAirBlock(offPos2.up(1)) && world.isAirBlock(offPos2.up(2))) ) {
+								continue anglesLoop;
+							}
+						}
+						
+						world.setBlockState(offPos, species.getRootyBlock(world, offPos).getDefaultState().withProperty(BlockRooty.LIFE, 0));
+						species.getFamily().getDynamicBranch().setRadius(world, offPos.up(1), 1, EnumFacing.DOWN, 0);
+						if(world.rand.nextInt(2) == 0) {
+							world.setBlockState(offPos.up(2), species.getLeavesProperties().getDynamicLeavesState(1));
+						} else {
+							species.getFamily().getDynamicBranch().setRadius(world, offPos.up(2), 1, EnumFacing.DOWN, 0);
+							if(world.isAirBlock(offPos.up(3))) {
+								world.setBlockState(offPos.up(3), species.getLeavesProperties().getDynamicLeavesState(1));
+							}
+						}
+					}
+				}
+			}
+			
+			return false;
+		}
+		
 	}
 	
 }
