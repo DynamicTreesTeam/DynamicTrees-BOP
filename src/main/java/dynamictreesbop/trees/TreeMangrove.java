@@ -61,6 +61,11 @@ public class TreeMangrove extends TreeFamily {
 		}
 		
 		@Override
+		public LogsAndSticks getLogsAndSticks(float volume) {
+			return super.getLogsAndSticks(volume * 2.5f);
+		}
+		
+		@Override
 		public boolean isBiomePerfect(Biome biome) {
 			return isOneOfBiomes(biome, BOPBiomes.mangrove.orNull());
 		};
