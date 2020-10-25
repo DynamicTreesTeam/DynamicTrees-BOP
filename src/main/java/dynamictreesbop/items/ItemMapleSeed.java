@@ -32,7 +32,7 @@ public class ItemMapleSeed extends Seed {
 		
 		return mapleSeedEntity;
 	}
-	
+
 	public static class EntityItemMapleSeed extends EntityItem {
 		
 		public EntityItemMapleSeed(World worldIn) {
@@ -43,17 +43,20 @@ public class ItemMapleSeed extends Seed {
 			super(worldIn, x, y, z, stack);
 			this.setDefaultPickupDelay();
 		}
-		
+
 		@Override
 		public void onUpdate() {
-			
-			//Counteract the air friction that will be applied in super.onUpdate() this results in a 0.99 factor instead of 0.98
-			motionX *= 1.01f;
-			motionZ *= 1.01f;
-			
-			//Add lift to counteract the gravity that will be applied in super.onUpdate()
-			motionY += 0.03;
-			
+
+			if (motionY<=0){
+				//Counteract the air friction that will be applied in super.onUpdate() this results in a 0.99 factor instead of 0.98
+				motionX *= 1.01f;
+				motionZ *= 1.01f;
+
+				//Add lift to counteract the gravity that will be applied in super.onUpdate()
+				motionY += 0.03;
+			}
+
+
 			super.onUpdate();
 		}
 		
@@ -61,7 +64,7 @@ public class ItemMapleSeed extends Seed {
 		public void setDefaultPickupDelay() {
 			this.setPickupDelay(50);
 		}
-		
+
 	}
-	
+
 }

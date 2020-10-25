@@ -228,10 +228,13 @@ public class BakedModelBlockBranchMangrove implements IBakedModel {
 				sourceDir = EnumFacing.DOWN;
 			}
 			int coreDir = resolveCoreDir(sourceDir);
-			
+
+			int rootConn = getConnectionRadius(extendedBlockState, BlockBranch.CONNECTIONS[EnumFacing.DOWN.getIndex()]);
+			if (rootConn == 8) numConnections++;
+
 			//This is for drawing the rings on a terminating branch
 			EnumFacing coreRingDir = (numConnections == 1) ? sourceDir.getOpposite() : null;
-			
+
 			//Get quads for core model
 			if(side == null || coreRadius != connections[side.getIndex()]) {
 				if(coreRingDir == null || coreRingDir != side) {
@@ -251,8 +254,7 @@ public class BakedModelBlockBranchMangrove implements IBakedModel {
 					}
 				}
 			}
-			
-			int rootConn = getConnectionRadius(extendedBlockState, BlockBranch.CONNECTIONS[EnumFacing.DOWN.getIndex()]);
+
 			if(rootConn == 8) {
 				quadsList.addAll(roots.getQuads(extendedBlockState, side, rand));
 			}
