@@ -17,6 +17,7 @@ import com.ferreusveritas.dynamictrees.api.WorldGenRegistry.BiomeDataBasePopulat
 import com.ferreusveritas.dynamictrees.api.client.ModelHelper;
 import com.ferreusveritas.dynamictrees.api.treedata.ILeavesProperties;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicLeaves;
+import com.ferreusveritas.dynamictrees.blocks.BlockRootyWater;
 import com.ferreusveritas.dynamictrees.blocks.LeavesPaging;
 import com.ferreusveritas.dynamictrees.blocks.LeavesProperties;
 import com.ferreusveritas.dynamictrees.blocks.LeavesPropertiesJson;
@@ -34,7 +35,6 @@ import biomesoplenty.common.block.BlockBOPLeaves;
 import biomesoplenty.common.block.BlockBOPSapling;
 import dynamictreesbop.blocks.BlockDynamicLeavesFlowering;
 import dynamictreesbop.blocks.BlockDynamicLeavesPalm;
-import dynamictreesbop.blocks.BlockRootyWater;
 import dynamictreesbop.items.ItemMagicSeed;
 import dynamictreesbop.items.ItemMapleSeed;
 import dynamictreesbop.trees.TreeBamboo;

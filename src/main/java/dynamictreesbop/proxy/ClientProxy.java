@@ -7,6 +7,7 @@ import com.ferreusveritas.dynamictrees.api.client.ModelHelper;
 import com.ferreusveritas.dynamictrees.blocks.BlockDynamicLeaves;
 import com.ferreusveritas.dynamictrees.blocks.LeavesPaging;
 import com.ferreusveritas.dynamictrees.models.blockmodels.ModelBlockBranchBasic;
+import com.ferreusveritas.dynamictrees.models.loaders.ModelLoaderDelegated;
 
 import biomesoplenty.api.enums.BOPTrees;
 import biomesoplenty.common.block.BlockBOPLeaves;
@@ -17,7 +18,6 @@ import dynamictreesbop.items.ItemMapleSeed;
 import dynamictreesbop.models.BakedModelBlockBranchBamboo;
 import dynamictreesbop.models.ModelBlockBranchMangrove;
 import dynamictreesbop.models.ModelBlockPalmFronds;
-import dynamictreesbop.models.ModelLoaderDelegated;
 import dynamictreesbop.renderers.RenderMagicSeed;
 import dynamictreesbop.renderers.RenderMapleSeed;
 import net.minecraft.block.Block;
