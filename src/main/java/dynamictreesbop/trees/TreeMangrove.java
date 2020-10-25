@@ -88,6 +88,10 @@ public class TreeMangrove extends TreeFamily {
 		
 		@Override
 		public boolean isAcceptableSoilForWorldgen(World world, BlockPos pos, IBlockState soilBlockState) {
+			if(world.getSeaLevel() - 1 != pos.getY()) {
+				return false;
+			}
+			
 			return soilBlockState.getBlock() == BOPBlocks.mud || super.isAcceptableSoilForWorldgen(world, pos, soilBlockState);
 		}
 		
