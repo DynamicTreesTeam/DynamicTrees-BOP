@@ -162,7 +162,7 @@ public class TreeMangrove extends TreeFamily {
 			anglesLoop:
 			for(int a : angles) {
 				double angle = Math.toRadians(a * 60.0f);
-				float distance = 3.0f + world.rand.nextFloat() * 2.0f;
+				float distance = Math.min(3.0f + world.rand.nextFloat() * 2.0f, radius);
 				BlockPos offPos = rootPos.add(new Vec3i(Math.sin(angle) * distance, 0, Math.cos(angle) * distance));
 				
 				if(safeBounds.inBounds(offPos, true)) {
