@@ -2,7 +2,6 @@ package dynamictreesbop.trees.species;
 
 import java.util.Random;
 
-import com.ferreusveritas.dynamictrees.ModConstants;
 import com.ferreusveritas.dynamictrees.items.Seed;
 import com.ferreusveritas.dynamictrees.systems.DirtHelper;
 import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenBush;
@@ -36,7 +35,6 @@ public class SpeciesAcaciaTwiglet extends Species {
 		envFactor(Type.HOT, 1.05f);
 		
 		addDropCreator(new DropCreatorInvoluntarySeed());
-		remDropCreator(new ResourceLocation(ModConstants.MODID, "logs"));
 		
 		setRequiresTileEntity(true);
 		
@@ -52,7 +50,7 @@ public class SpeciesAcaciaTwiglet extends Species {
 	
 	@Override
 	public LogsAndSticks getLogsAndSticks(float volume) {
-		return super.getLogsAndSticks(volume * 16);
+		return super.getLogsAndSticks(1.0f + volume);//Guarantee at least one log is produced
 	}
 	
 	@Override

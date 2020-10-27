@@ -62,7 +62,7 @@ public class TreeMangrove extends TreeFamily {
 		
 		@Override
 		public LogsAndSticks getLogsAndSticks(float volume) {
-			return super.getLogsAndSticks(volume * 2.5f);
+			return super.getLogsAndSticks(1.0f + volume);//Guarantee at least one log is produced
 		}
 		
 		@Override

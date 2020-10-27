@@ -3,7 +3,6 @@ package dynamictreesbop.trees;
 import java.util.Random;
 
 import com.ferreusveritas.dynamictrees.ModBlocks;
-import com.ferreusveritas.dynamictrees.ModConstants;
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
@@ -32,19 +31,18 @@ public class TreeHellbark extends TreeFamily {
 			super(treeFamily.getName(), treeFamily, ModContent.leaves.get(ModContent.HELLBARK));
 			
 			setBasicGrowingParameters(0.3f, 2.5f, 1, 2, 1.0f);
-						
+			
 			envFactor(Type.COLD, 0.25f);
 			envFactor(Type.NETHER, 1.05f);
 			
 			generateSeed();
 			
 			setupStandardSeedDropping();
-			remDropCreator(new ResourceLocation(ModConstants.MODID, "logs"));
 		}
 		
 		@Override
 		public LogsAndSticks getLogsAndSticks(float volume) {
-			return super.getLogsAndSticks(volume * 16);
+			return super.getLogsAndSticks(1.0f + volume);//Guarantee at least one log is produced
 		}
 		
 		@Override

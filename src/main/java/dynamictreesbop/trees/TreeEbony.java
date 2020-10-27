@@ -1,6 +1,5 @@
 package dynamictreesbop.trees;
 
-import com.ferreusveritas.dynamictrees.ModConstants;
 import com.ferreusveritas.dynamictrees.items.Seed;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
@@ -59,12 +58,11 @@ public class TreeEbony extends TreeFamily {
 			setRequiresTileEntity(true);
 			
 			addDropCreator(new DropCreatorInvoluntarySeed());
-			remDropCreator(new ResourceLocation(ModConstants.MODID, "logs"));
 		}
 		
 		@Override
 		public LogsAndSticks getLogsAndSticks(float volume) {
-			return super.getLogsAndSticks(volume * 16);
+			return super.getLogsAndSticks(1.0f + volume);//Guarantee at least one log is produced
 		}
 		
 		@Override

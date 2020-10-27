@@ -36,7 +36,7 @@ public class SpeciesAcaciaBrush extends Species {
 	
 	@Override
 	public LogsAndSticks getLogsAndSticks(float volume) {
-		return super.getLogsAndSticks(volume * 4);
+		return super.getLogsAndSticks(1.0f + volume);//Guarantee at least one log is produced
 	}
 	
 	@Override
