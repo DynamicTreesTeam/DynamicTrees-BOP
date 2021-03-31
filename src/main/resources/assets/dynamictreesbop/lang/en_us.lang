@@ -55,6 +55,9 @@ tile.dynamictreesbop:bamboobranch.name=Bamboo Tree
 tile.dynamictreesbop:decayedbranch.name=Dead Tree
 tile.dynamictreesbop:palmbranch.name=Palm Tree
 
+tile.dynamictreesbop:rootywater.name=Mangrove Roots
+tile.dynamictreesbop:rootywaterspecies.name=Mangrove Roots
+
 species.dynamictreesbop:darkpoplar.name=Dark Poplar
 species.dynamictreesbop:poplar.name=Poplar
 species.dynamictreesbop:dead.name=Dead
