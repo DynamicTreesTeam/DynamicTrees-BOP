@@ -4,6 +4,8 @@ import java.util.Random;
 
 import com.ferreusveritas.dynamictrees.ModBlocks;
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
+import com.ferreusveritas.dynamictrees.entities.EntityFallingTree;
+import com.ferreusveritas.dynamictrees.models.ModelEntityFallingTree;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
 
@@ -23,13 +25,19 @@ import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
 
+import javax.annotation.Nullable;
+
 public class SpeciesFloweringOak extends Species {
 	
 	public SpeciesFloweringOak(TreeFamily treeFamily) {
-		super(new ResourceLocation(DynamicTreesBOP.MODID, ModContent.FLOWERINGOAK), treeFamily, ModContent.floweringOakLeavesProperties);
+		super(new ResourceLocation(DynamicTreesBOP.MODID, ModContent.FLOWERINGOAK), treeFamily, ModContent.floweringOakLeavesProperties[0]);
 		
 		setBasicGrowingParameters(0.3f, 12.0f, upProbability, lowestBranchHeight, 0.85f);
-		
+
+		addValidLeavesBlocks(ModContent.floweringOakLeavesProperties);
+		ModContent.floweringOakLeavesProperties[0].setTree(treeFamily);
+		ModContent.floweringOakLeavesProperties[1].setTree(treeFamily);
+
 		envFactor(Type.COLD, 0.75f);
 		envFactor(Type.HOT, 0.50f);
 		envFactor(Type.DRY, 0.50f);
@@ -42,13 +50,14 @@ public class SpeciesFloweringOak extends Species {
 		
 		setRequiresTileEntity(true);
 		
-		ModContent.floweringOakLeavesProperties.setTree(treeFamily);
-		
-		treeFamily.addConnectableVanillaLeaves((state) -> {
-			return state.getBlock() instanceof BlockBOPLeaves && state.getValue(((BlockBOPLeaves) state.getBlock()).variantProperty) == BOPTrees.FLOWERING;
-		});
+		treeFamily.addConnectableVanillaLeaves((state) -> state.getBlock() instanceof BlockBOPLeaves && state.getValue(((BlockBOPLeaves) state.getBlock()).variantProperty) == BOPTrees.FLOWERING);
 	}
-	
+
+	@Override
+	public int colorTreeQuads(int defaultColor, ModelEntityFallingTree.TreeQuadData treeQuad, @Nullable EntityFallingTree entity) {
+		return treeQuad.bakedQuad.getTintIndex() != 0 ? 0xffffff : defaultColor;
+	}
+
 	@Override
 	public boolean isBiomePerfect(Biome biome) {
 		return BiomeDictionary.hasType(biome, Type.FOREST);

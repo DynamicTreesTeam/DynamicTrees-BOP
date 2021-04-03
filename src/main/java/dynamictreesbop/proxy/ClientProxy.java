@@ -95,68 +95,58 @@ public class ClientProxy extends CommonProxy {
 			return color;
 		});
 		
-		ModelHelper.regColorHandler(ModContent.floweringOakLeaves, new IBlockColor() {
-			@Override
-			public int colorMultiplier(IBlockState state, IBlockAccess worldIn, BlockPos pos, int tintIndex) {
-				boolean inWorld = worldIn != null && pos != null;
-				Block block = state.getBlock();
-				
-				if (inWorld && tintIndex == 0 && TreeHelper.isLeaves(block)) {
-					return ((BlockDynamicLeaves) block).getProperties(state).foliageColorMultiplier(state, worldIn, pos);
-				}
-				return 0xffffff;
+		ModelHelper.regColorHandler(ModContent.floweringOakLeaves, (state, worldIn, pos, tintIndex) -> {
+			boolean inWorld = worldIn != null && pos != null;
+			Block block = state.getBlock();
+
+			if (inWorld && tintIndex == 0 && TreeHelper.isLeaves(block)) {
+				return ((BlockDynamicLeaves) block).getProperties(state).foliageColorMultiplier(state, worldIn, pos);
 			}
+			return 0xffffff;
 		});
 		
-		ModelHelper.regColorHandler(ModContent.palmFrondLeaves, new IBlockColor() {
-			@Override
-			public int colorMultiplier(IBlockState state, IBlockAccess worldIn, BlockPos pos, int tintIndex) {
-				boolean inWorld = worldIn != null && pos != null;
-				Block block = state.getBlock();
-				
-				if (inWorld && tintIndex == 0 && TreeHelper.isLeaves(block)) {
-					return ((BlockDynamicLeaves) block).getProperties(state).foliageColorMultiplier(state, worldIn, pos);
-				}
-				return 0xffffff;
+		ModelHelper.regColorHandler(ModContent.palmFrondLeaves, (state, worldIn, pos, tintIndex) -> {
+			boolean inWorld = worldIn != null && pos != null;
+			Block block = state.getBlock();
+
+			if (inWorld && tintIndex == 0 && TreeHelper.isLeaves(block)) {
+				return ((BlockDynamicLeaves) block).getProperties(state).foliageColorMultiplier(state, worldIn, pos);
 			}
+			return 0xffffff;
 		});
 		
 		for (BlockDynamicLeaves leaves: LeavesPaging.getLeavesMapForModId(DynamicTreesBOP.MODID).values()) {
-			ModelHelper.regColorHandler(leaves, new IBlockColor() {
-				@Override
-				public int colorMultiplier(IBlockState state, IBlockAccess worldIn, BlockPos pos, int tintIndex) {
-					boolean inWorld = worldIn != null && pos != null;
-					
-					IBlockState primLeaves = leaves.getProperties(state).getPrimitiveLeaves();
-					Block block = state.getBlock();
-					
-					if (primLeaves.getBlock() instanceof BlockBOPLeaves) {
-						switch (BlockBOPLeaves.getColoringType((BOPTrees) primLeaves.getValue(((BlockBOPLeaves) primLeaves.getBlock()).variantProperty))) {
-							case TINTED:
-								if(inWorld && TreeHelper.isLeaves(block)) {
+			ModelHelper.regColorHandler(leaves, (state, worldIn, pos, tintIndex) -> {
+				boolean inWorld = worldIn != null && pos != null;
+
+				IBlockState primLeaves = leaves.getProperties(state).getPrimitiveLeaves();
+				Block block = state.getBlock();
+
+				if (primLeaves.getBlock() instanceof BlockBOPLeaves) {
+					switch (BlockBOPLeaves.getColoringType((BOPTrees) primLeaves.getValue(((BlockBOPLeaves) primLeaves.getBlock()).variantProperty))) {
+						case TINTED:
+							if(inWorld && TreeHelper.isLeaves(block)) {
+								return ((BlockDynamicLeaves) block).getProperties(state).foliageColorMultiplier(state, worldIn, pos);
+							}
+							return magenta;
+						case OVERLAY:
+							if (inWorld && tintIndex == 0) {
+								if(TreeHelper.isLeaves(block)) {
 									return ((BlockDynamicLeaves) block).getProperties(state).foliageColorMultiplier(state, worldIn, pos);
 								}
 								return magenta;
-							case OVERLAY:
-								if (inWorld && tintIndex == 0) {
-									if(TreeHelper.isLeaves(block)) {
-										return ((BlockDynamicLeaves) block).getProperties(state).foliageColorMultiplier(state, worldIn, pos);
-									}
-									return magenta;
-								}
-							default:
-								return 0xffffff;
-						}
-					} else {
-						if(TreeHelper.isLeaves(block)) {
-							return ((BlockDynamicLeaves) block).getProperties(state).foliageColorMultiplier(state, worldIn, pos);
-						}
-						return magenta;
+							}
+						default:
+							return 0xffffff;
 					}
+				} else {
+					if(TreeHelper.isLeaves(block)) {
+						return ((BlockDynamicLeaves) block).getProperties(state).foliageColorMultiplier(state, worldIn, pos);
+					}
+					return magenta;
 				}
 			});
 		}
-		
 	}
 	
 	public void registerClientEventHandlers() {

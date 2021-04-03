@@ -108,7 +108,8 @@ public class ModContent {
 	public static BlockDynamicLeavesPalm palmFrondLeaves;
 	
 	// leaves properties for leaves without auto-generated leaves
-	public static ILeavesProperties floweringOakLeavesProperties, decayedLeavesProperties, palmLeavesProperties;
+	public static ILeavesProperties decayedLeavesProperties, palmLeavesProperties;
+	public static ILeavesProperties[] floweringOakLeavesProperties;
 	
 	// A map for leaves properties for leaves with auto-generated leaves
 	public static Map<String, ILeavesProperties> leaves;
@@ -219,18 +220,23 @@ public class ModContent {
 
 		// Leaves properties that could not be automatically paging generated
 		decayedLeavesProperties = new LeavesPropertiesJson("{`cellkit`:`bare`}");
-		floweringOakLeavesProperties = new LeavesProperties(
-				Blocks.LEAVES.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.OAK),
-				new ItemStack(Blocks.LEAVES, 1, BlockPlanks.EnumType.OAK.getMetadata())) {
+		floweringOakLeavesProperties = new ILeavesProperties[]{
+				new LeavesProperties(
+						Blocks.LEAVES.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.OAK),
+						new ItemStack(Blocks.LEAVES, 1, BlockPlanks.EnumType.OAK.getMetadata())) {
 					Random rand = new Random();
 					@Override
 					public IBlockState getDynamicLeavesState(int hydro) {
 						if (rand.nextInt(4) == 0) {
-							return super.getDynamicLeavesState(hydro).withProperty(BlockDynamicLeavesFlowering.CAN_FLOWER, true).withProperty(BlockDynamicLeavesFlowering.FLOWERING, true);
+							return super.getDynamicLeavesState(hydro).withProperty(BlockDynamicLeaves.TREE, 3);
 						}
 						return super.getDynamicLeavesState(hydro);
 					}
-				};
+				},
+				new LeavesProperties(
+						Blocks.LEAVES.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.OAK),
+						BlockBOPLeaves.paging.getVariantItem(BOPTrees.FLOWERING))
+		};
 		palmLeavesProperties = new LeavesProperties(
 				BlockBOPLeaves.paging.getVariantState(BOPTrees.PALM),
 				BlockBOPLeaves.paging.getVariantItem(BOPTrees.PALM),
@@ -240,8 +246,15 @@ public class ModContent {
 						return true;
 					}
 				};
-		floweringOakLeavesProperties.setDynamicLeavesState(floweringOakLeaves.getDefaultState());
-		floweringOakLeaves.setProperties(0, floweringOakLeavesProperties);
+
+
+		floweringOakLeavesProperties[0].setDynamicLeavesState(floweringOakLeaves.getDefaultState().withProperty(BlockDynamicLeaves.TREE, 0));
+		floweringOakLeavesProperties[1].setDynamicLeavesState(floweringOakLeaves.getDefaultState().withProperty(BlockDynamicLeaves.TREE, 2));
+		floweringOakLeaves.setProperties(0, floweringOakLeavesProperties[0]);
+		floweringOakLeaves.setProperties(1, floweringOakLeavesProperties[0]);
+		floweringOakLeaves.setProperties(2, floweringOakLeavesProperties[1]);
+		floweringOakLeaves.setProperties(3, floweringOakLeavesProperties[1]);
+
 		palmLeavesProperties.setDynamicLeavesState(palmFrondLeaves.getDefaultState());
 		palmFrondLeaves.setProperties(0, palmLeavesProperties);
 		

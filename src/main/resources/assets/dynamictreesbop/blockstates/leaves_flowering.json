@@ -1,10 +1,6 @@
 {
 	"forge_marker": 1,
 	"variants": {
-		"flowering": {
-			"false": { "model": "oak_leaves" },
-			"true": { "model": "biomesoplenty:flowering_leaves" }
-		},
 		"fast_leaves": {
 			"false": {},
 			"true": { 
@@ -14,10 +10,6 @@
 				}
 			}
 		},
-		"can_flower": {
-			"false": {},
-			"true": {}
-		},
 		"hydro": {
 			"1": {},
 			"2": {},
@@ -25,10 +17,10 @@
 			"4": {}
 		},
 		"tree": {
-			"0": {},
-			"1": {},
-			"2": {},
-			"3": {}
+			"0": {"model": "oak_leaves"},
+			"1": {"model": "oak_leaves"},
+			"2": {"model": "biomesoplenty:flowering_leaves"},
+			"3": {"model": "biomesoplenty:flowering_leaves"}
 		}
 	}
 }
