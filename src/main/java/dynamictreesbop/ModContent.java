@@ -65,7 +65,7 @@ import dynamictreesbop.trees.species.SpeciesMaple;
 import dynamictreesbop.trees.species.SpeciesMegaOakConifer;
 import dynamictreesbop.trees.species.SpeciesOakBush;
 import dynamictreesbop.trees.species.SpeciesOakConifer;
-import dynamictreesbop.trees.species.SpeciesOakFloweringVine;
+import dynamictreesbop.trees.species.SpeciesOakIvyVines;
 import dynamictreesbop.trees.species.SpeciesOakSparse;
 import dynamictreesbop.trees.species.SpeciesOakTwiglet;
 import dynamictreesbop.trees.species.SpeciesOrangeAutumn;
@@ -160,7 +160,7 @@ public class ModContent {
 	public static final String OAKBUSH = "oakbush";
 	public static final String OAKCONIFER = "oakconifer";
 	public static final String OAKDYING = "oakdying";
-	public static final String OAKFLOWERINGVINE = "oakfloweringvine";
+	public static final String OAKIVYVINE = "oakivyvines";
 	public static final String OAKSPARSE = "oaksparse";
 	public static final String OAKTWIGLET = "oaktwiglet";
 	public static final String ORANGEAUTUMN = "orangeautumn";
@@ -268,7 +268,7 @@ public class ModContent {
 			
 		Species.REGISTRY.registerAll(
 			// Register new species of trees from the base mod
-			new SpeciesOakFloweringVine(oakTree),
+			new SpeciesOakIvyVines(oakTree),
 			new SpeciesFloweringOak(oakTree),
 			new SpeciesYellowAutumn(birchTree),
 			new SpeciesOrangeAutumn(darkOakTree),

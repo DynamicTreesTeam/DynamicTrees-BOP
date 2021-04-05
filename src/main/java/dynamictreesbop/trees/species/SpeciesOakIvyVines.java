@@ -18,12 +18,12 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary.Type;
 
-public class SpeciesOakFloweringVine extends Species {
+public class SpeciesOakIvyVines extends Species {
 	
 	Species baseSpecies;
 	
-	public SpeciesOakFloweringVine(TreeFamily treeFamily) {
-		super(new ResourceLocation(DynamicTreesBOP.MODID, ModContent.OAKFLOWERINGVINE), treeFamily);
+	public SpeciesOakIvyVines(TreeFamily treeFamily) {
+		super(new ResourceLocation(DynamicTreesBOP.MODID, ModContent.OAKIVYVINE), treeFamily);
 		
 		baseSpecies = TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, ModContent.OAK));
 		
