@@ -18,9 +18,15 @@ item.dynamictreesbop:mahoganyseed.name=Mahogany Pod
 item.dynamictreesbop:ebonyseed.name=Ebony Pod
 item.dynamictreesbop:eucalyptusseed.name=Eucalyptus Capsule
 item.dynamictreesbop:bambooseed.name=Bamboo Shoot
-
 item.dynamictreesbop:floweringoakseed.name=Flowering Oak Acorn
 item.dynamictreesbop:palmseed.name=Palm Seed
+
+item.dynamictreesbop:persimmonseed.name=Persimmon Pips
+item.dynamictreesbop:peachseed.name=Peach Stone
+item.dynamictreesbop:pearseed.name=Pear Pip
+
+item.dynamictreesbop:poplarseed.name=Poplar Catkin
+item.dynamictreesbop:darkpoplarseed.name=Dark Poplar Catkin
 
 tile.dynamictreesbop:leaves0.name=Leaves
 tile.dynamictreesbop:leaves1.name=Leaves
@@ -86,10 +92,15 @@ species.dynamictreesbop:oakconifer.name=Oak Conifer
 species.dynamictreesbop:megaoakconifer.name=Mega Oak Conifer
 species.dynamictreesbop:oaksparse.name=Sparse Oak
 species.dynamictreesbop:acaciabrush.name=Acacia Brush
+species.dynamictreesbop:oaktwiglet.name=Oak Twiglet
+species.dynamictreesbop:jungletwiglet.name=Jungle Twiglet
+species.dynamictreesbop:acaciatwiglet.name=Acacia Twiglet
+species.dynamictreesbop:ebonytwiglet.name=Ebony Twiglet
+species.dynamictreesbop:mapletwiglet.name=Maple Twiglet
 
-
-
-
+species.dynamictreesbop:persimmon.name=Persimmon
+species.dynamictreesbop:peach.name=Peach
+species.dynamictreesbop:pear.name=Pear
 
 
 

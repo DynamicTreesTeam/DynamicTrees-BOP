@@ -13,6 +13,7 @@ import biomesoplenty.api.enums.BOPTrees;
 import biomesoplenty.api.item.BOPItems;
 import biomesoplenty.common.block.BlockBOPLeaves;
 import dynamictreesbop.DynamicTreesBOP;
+import dynamictreesbop.ModConfigs;
 import dynamictreesbop.ModContent;
 import dynamictreesbop.dropcreators.DropCreatorFruit;
 import net.minecraft.block.state.IBlockState;
@@ -45,7 +46,8 @@ public class SpeciesFloweringOak extends Species {
 		
 		generateSeed();
 		
-		addDropCreator(new DropCreatorFruit(BOPItems.peach));
+		if (!ModConfigs.enablePeachTrees)
+			addDropCreator(new DropCreatorFruit(BOPItems.peach));
 		setupStandardSeedDropping();
 		
 		setRequiresTileEntity(true);

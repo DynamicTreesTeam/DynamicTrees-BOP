@@ -11,6 +11,7 @@ import biomesoplenty.api.enums.BOPTrees;
 import biomesoplenty.api.item.BOPItems;
 import biomesoplenty.common.block.BlockBOPLeaves;
 import dynamictreesbop.DynamicTreesBOP;
+import dynamictreesbop.ModConfigs;
 import dynamictreesbop.ModContent;
 import dynamictreesbop.dropcreators.DropCreatorFruit;
 import net.minecraft.init.Blocks;
@@ -33,8 +34,9 @@ public class SpeciesYellowAutumn extends Species {
 		envFactor(Type.FOREST, 1.05f);
 		
 		generateSeed();
-		
-		addDropCreator(new DropCreatorFruit(BOPItems.persimmon));
+
+		if (!ModConfigs.enablePersimmonTrees)
+			addDropCreator(new DropCreatorFruit(BOPItems.persimmon));
 		setupStandardSeedDropping();
 		
 		setRequiresTileEntity(true);

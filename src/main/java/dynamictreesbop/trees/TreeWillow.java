@@ -1,7 +1,9 @@
 package dynamictreesbop.trees;
 
+import java.util.List;
 import java.util.Random;
 
+import biomesoplenty.api.item.BOPItems;
 import com.ferreusveritas.dynamictrees.ModBlocks;
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
 import com.ferreusveritas.dynamictrees.systems.DirtHelper;
@@ -15,8 +17,11 @@ import biomesoplenty.api.enums.BOPWoods;
 import biomesoplenty.common.block.BlockBOPLeaves;
 import biomesoplenty.common.block.BlockBOPLog;
 import biomesoplenty.common.block.BlockBOPMushroom;
+import com.ferreusveritas.dynamictrees.util.SafeChunkBounds;
 import dynamictreesbop.DynamicTreesBOP;
+import dynamictreesbop.ModConfigs;
 import dynamictreesbop.ModContent;
+import dynamictreesbop.dropcreators.DropCreatorFruit;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
@@ -40,9 +45,11 @@ public class TreeWillow extends TreeFamily {
 			envFactor(Type.DRY, 0.50f);
 			
 			generateSeed();
-			
+
+			if (!ModConfigs.enablePearTrees)
+				addDropCreator(new DropCreatorFruit(BOPItems.pear));
 			setupStandardSeedDropping();
-			
+
 			addGenFeature(new FeatureGenVine().setQuantity(32).setMaxLength(8).setRayDistance(7).setVineBlock(BOPBlocks.willow_vine));//Generate Vines
 		}
 		
@@ -55,21 +62,35 @@ public class TreeWillow extends TreeFamily {
 		public boolean isBiomePerfect(Biome biome) {
 			return BiomeDictionary.hasType(biome, Type.SWAMP);
 		}
-		
-		@Override
-		public boolean isAcceptableSoilForWorldgen(World world, BlockPos pos, IBlockState soilBlockState) {
+
+		private boolean isGeneratingInWater (World world, BlockPos pos, IBlockState soilBlockState) {
 			if (soilBlockState.getBlock() == Blocks.WATER) {
 				Biome biome = world.getBiome(pos);
 				if (BiomeDictionary.hasType(biome, Type.SWAMP)) {
 					BlockPos down = pos.down();
-					if (isAcceptableSoil(world, down, world.getBlockState(down))) {
-						return true;
-					}
+					return isAcceptableSoil(world, down, world.getBlockState(down));
 				}
 			}
+			return false;
+		}
+
+		@Override
+		public boolean isAcceptableSoilForWorldgen(World world, BlockPos pos, IBlockState soilBlockState) {
+			if (isGeneratingInWater(world, pos, soilBlockState))
+				return true;
 			return super.isAcceptableSoilForWorldgen(world, pos, soilBlockState);
 		}
-		
+
+		@Override
+		public boolean generate(World world, BlockPos rootPos, Biome biome, Random random, int radius, SafeChunkBounds safeBounds) {
+			if (isGeneratingInWater(world, rootPos, world.getBlockState(rootPos))){
+				if (radius >= 5)
+					return super.generate(world, rootPos.down(), biome, random, radius, safeBounds);
+				return false;
+			}
+			return super.generate(world, rootPos, biome, random, radius, safeBounds);
+		}
+
 		@Override
 		public boolean rot(World world, BlockPos pos, int neighborCount, int radius, Random random, boolean rapid) {
 			if(super.rot(world, pos, neighborCount, radius, random, rapid)) {
@@ -91,9 +112,7 @@ public class TreeWillow extends TreeFamily {
 		
 		ModContent.leaves.get(ModContent.WILLOW).setTree(this);
 		
-		this.addConnectableVanillaLeaves((state) -> {
-			return state.getBlock() instanceof BlockBOPLeaves && state.getValue(((BlockBOPLeaves) state.getBlock()).variantProperty) == BOPTrees.WILLOW;
-		});
+		this.addConnectableVanillaLeaves((state) -> state.getBlock() instanceof BlockBOPLeaves && state.getValue(((BlockBOPLeaves) state.getBlock()).variantProperty) == BOPTrees.WILLOW);
 	}
 	
 	@Override

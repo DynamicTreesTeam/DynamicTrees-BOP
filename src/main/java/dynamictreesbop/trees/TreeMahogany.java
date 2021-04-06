@@ -1,5 +1,6 @@
 package dynamictreesbop.trees;
 
+import biomesoplenty.api.item.BOPItems;
 import com.ferreusveritas.dynamictrees.ModBlocks;
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
 import com.ferreusveritas.dynamictrees.blocks.BlockBranch;
@@ -14,7 +15,9 @@ import biomesoplenty.api.enums.BOPWoods;
 import biomesoplenty.common.block.BlockBOPLeaves;
 import biomesoplenty.common.block.BlockBOPLog;
 import dynamictreesbop.DynamicTreesBOP;
+import dynamictreesbop.ModConfigs;
 import dynamictreesbop.ModContent;
+import dynamictreesbop.dropcreators.DropCreatorFruit;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -45,7 +48,10 @@ public class TreeMahogany extends TreeFamily {
 			generateSeed();
 			
 			setupStandardSeedDropping();
-			
+
+			if (!ModConfigs.enablePeachTrees)
+				addDropCreator(new DropCreatorFruit(BOPItems.peach));
+
 			//Add species features
 			addGenFeature(new FeatureGenCocoa());
 		}

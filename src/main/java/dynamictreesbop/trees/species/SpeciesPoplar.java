@@ -17,6 +17,7 @@ import biomesoplenty.api.biome.BOPBiomes;
 import biomesoplenty.api.enums.BOPTrees;
 import biomesoplenty.common.block.BlockBOPLeaves;
 import dynamictreesbop.DynamicTreesBOP;
+import dynamictreesbop.ModConfigs;
 import dynamictreesbop.ModContent;
 import dynamictreesbop.cells.DTBOPLeafClusters;
 import net.minecraft.block.state.IBlockState;
@@ -35,14 +36,16 @@ public class SpeciesPoplar extends Species {
 		
 		setBasicGrowingParameters(0.25f, 11.0f, 5, 4, 0.85f);
 		
-		envFactor(Type.HOT, 0.50f);
-		envFactor(Type.DRY, 0.50f);
+		envFactor(Type.HOT, 0.75f);
+		envFactor(Type.DRY, 0.75f);
 		envFactor(Type.FOREST, 1.05f);
 		
 		setupStandardSeedDropping();
 		
 		setRequiresTileEntity(true);
-		
+
+		generateSeed();
+
 		//Generate undergrowth
 		addGenFeature(
 				new FeatureGenBush()
@@ -115,11 +118,15 @@ public class SpeciesPoplar extends Species {
 	
 	@Override
 	public ItemStack getSeedStack(int qty) {
+		if (ModConfigs.enablePoplarSeeds)
+			return super.getSeedStack(qty);
 		return getFamily().getCommonSpecies().getSeedStack(qty);
 	}
-	
+
 	@Override
 	public Seed getSeed() {
+		if (ModConfigs.enablePoplarSeeds)
+			return super.getSeed();
 		return getFamily().getCommonSpecies().getSeed();
 	}
 	

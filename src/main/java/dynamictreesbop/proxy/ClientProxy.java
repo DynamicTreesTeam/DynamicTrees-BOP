@@ -20,6 +20,7 @@ import dynamictreesbop.models.ModelBlockBranchMangrove;
 import dynamictreesbop.models.ModelBlockPalmFronds;
 import dynamictreesbop.renderers.RenderMagicSeed;
 import dynamictreesbop.renderers.RenderMapleSeed;
+import dynamictreesbop.trees.species.SpeciesPeach;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -103,6 +104,16 @@ public class ClientProxy extends CommonProxy {
 				return ((BlockDynamicLeaves) block).getProperties(state).foliageColorMultiplier(state, worldIn, pos);
 			}
 			return 0xffffff;
+		});
+
+		ModelHelper.regColorHandler(ModContent.peachLeaves, (state, worldIn, pos, tintIndex) -> {
+			boolean inWorld = worldIn != null && pos != null;
+			Block block = state.getBlock();
+
+			if (inWorld && tintIndex == 0 && TreeHelper.isLeaves(block)) {
+				return ((BlockDynamicLeaves) block).getProperties(state).foliageColorMultiplier(state, worldIn, pos);
+			}
+			return SpeciesPeach.PEACH_FLOWER_COLOR;
 		});
 		
 		ModelHelper.regColorHandler(ModContent.palmFrondLeaves, (state, worldIn, pos, tintIndex) -> {

@@ -9,6 +9,7 @@ import com.ferreusveritas.dynamictrees.api.TreeHelper;
 import com.ferreusveritas.dynamictrees.api.network.MapSignal;
 import com.ferreusveritas.dynamictrees.api.treedata.ILeavesProperties;
 import com.ferreusveritas.dynamictrees.blocks.BlockBranch;
+import com.ferreusveritas.dynamictrees.blocks.BlockDynamicLeaves;
 import com.ferreusveritas.dynamictrees.blocks.BlockRooty;
 import com.ferreusveritas.dynamictrees.systems.DirtHelper;
 import com.ferreusveritas.dynamictrees.systems.GrowSignal;
@@ -148,7 +149,20 @@ public class TreePalm extends TreeFamily {
 				TreeHelper.ageVolume(world, endPoint, 1, 2, 3, safeBounds);
 			}
 		}
-		
+
+		public boolean transitionToTree(World world, BlockPos pos) {
+			//Ensure planting conditions are right
+			TreeFamily family = getFamily();
+			if(world.isAirBlock(pos.up()) && isAcceptableSoil(world, pos.down(), world.getBlockState(pos.down()))) {
+				family.getDynamicBranch().setRadius(world, pos, (int)family.getPrimaryThickness(), null);//set to a single branch with 1 radius
+				world.setBlockState(pos.up(), getLeavesProperties().getDynamicLeavesState());//Place 2 leaf blocks on top
+				world.setBlockState(pos.up(2), getLeavesProperties().getDynamicLeavesState().withProperty(BlockDynamicLeaves.HYDRO, 3));
+				placeRootyDirtBlock(world, pos.down(), 15);//Set to fully fertilized rooty dirt underneath
+				return true;
+			}
+			return false;
+		}
+
 		@Override
 		public boolean placeRootyDirtBlock(World world, BlockPos rootPos, int life) {
 			if (world.getBlockState(rootPos).getMaterial() == Material.SAND) {

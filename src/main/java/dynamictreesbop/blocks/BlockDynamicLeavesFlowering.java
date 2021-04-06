@@ -26,10 +26,10 @@ public class BlockDynamicLeavesFlowering extends BlockDynamicLeaves {
 
 	public static final PropertyBool FAST_LEAVES = PropertyBool.create("fast_leaves");
 	
-	public BlockDynamicLeavesFlowering() {
+	public BlockDynamicLeavesFlowering(String name) {
 		setDefaultState(this.blockState.getBaseState().withProperty(HYDRO, 4).withProperty(FAST_LEAVES, false));
-		setRegistryName(DynamicTreesBOP.MODID, "leaves_flowering");
-		setUnlocalizedName("leaves_flowering");
+		setRegistryName(DynamicTreesBOP.MODID, name);
+		setUnlocalizedName(name);
 	}
 	
 	@Override

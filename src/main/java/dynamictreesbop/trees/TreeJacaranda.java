@@ -10,6 +10,7 @@ import biomesoplenty.api.item.BOPItems;
 import biomesoplenty.common.block.BlockBOPLeaves;
 import biomesoplenty.common.block.BlockBOPLog;
 import dynamictreesbop.DynamicTreesBOP;
+import dynamictreesbop.ModConfigs;
 import dynamictreesbop.ModContent;
 import dynamictreesbop.dropcreators.DropCreatorFruit;
 import net.minecraft.block.state.IBlockState;
@@ -31,8 +32,9 @@ public class TreeJacaranda extends TreeFamily {
 			envFactor(Type.DRY, 0.50f);
 			
 			generateSeed();
-			
-			addDropCreator(new DropCreatorFruit(BOPItems.peach));
+
+			if (!ModConfigs.enablePeachTrees)
+				addDropCreator(new DropCreatorFruit(BOPItems.peach));
 			setupStandardSeedDropping();
 		}
 		

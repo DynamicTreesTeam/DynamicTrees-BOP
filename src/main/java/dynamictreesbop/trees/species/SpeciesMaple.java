@@ -13,6 +13,7 @@ import biomesoplenty.api.enums.BOPTrees;
 import biomesoplenty.api.item.BOPItems;
 import biomesoplenty.common.block.BlockBOPLeaves;
 import dynamictreesbop.DynamicTreesBOP;
+import dynamictreesbop.ModConfigs;
 import dynamictreesbop.ModContent;
 import dynamictreesbop.dropcreators.DropCreatorFruit;
 import dynamictreesbop.items.ItemMapleSeed;
@@ -37,17 +38,16 @@ public class SpeciesMaple extends Species {
 		
 		Seed seed = new ItemMapleSeed(getRegistryName().getResourcePath() + "seed");
 		setSeedStack(new ItemStack(seed));
-		
-		addDropCreator(new DropCreatorFruit(BOPItems.persimmon));
+
+		if (!ModConfigs.enablePersimmonTrees)
+			addDropCreator(new DropCreatorFruit(BOPItems.persimmon));
 		setupStandardSeedDropping();
 		
 		setRequiresTileEntity(true);
 		
 		leavesProperties.setTree(treeFamily);
 		
-		treeFamily.addConnectableVanillaLeaves((state) -> {
-			return state.getBlock() instanceof BlockBOPLeaves && state.getValue(((BlockBOPLeaves) state.getBlock()).variantProperty) == BOPTrees.MAPLE;
-		});
+		treeFamily.addConnectableVanillaLeaves((state) -> state.getBlock() instanceof BlockBOPLeaves && state.getValue(((BlockBOPLeaves) state.getBlock()).variantProperty) == BOPTrees.MAPLE);
 	}
 	
 	@Override

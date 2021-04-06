@@ -2,6 +2,7 @@ package dynamictreesbop.trees;
 
 import java.util.List;
 
+import biomesoplenty.api.item.BOPItems;
 import com.ferreusveritas.dynamictrees.api.IPostGenFeature;
 import com.ferreusveritas.dynamictrees.blocks.BlockBranch;
 import com.ferreusveritas.dynamictrees.blocks.BlockBranchBasic;
@@ -21,7 +22,9 @@ import biomesoplenty.api.enums.BOPWoods;
 import biomesoplenty.common.block.BlockBOPLeaves;
 import biomesoplenty.common.block.BlockBOPLog;
 import dynamictreesbop.DynamicTreesBOP;
+import dynamictreesbop.ModConfigs;
 import dynamictreesbop.ModContent;
+import dynamictreesbop.dropcreators.DropCreatorFruit;
 import dynamictreesbop.items.ItemMangroveSeed;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
@@ -52,7 +55,9 @@ public class TreeMangrove extends TreeFamily {
 			
 			Seed seed = new ItemMangroveSeed(getRegistryName().getResourcePath() + "seed");
 			setSeedStack(new ItemStack(seed));
-			
+
+			if (!ModConfigs.enablePearTrees)
+				addDropCreator(new DropCreatorFruit(BOPItems.pear));
 			setupStandardSeedDropping();
 			
 			//Add species features

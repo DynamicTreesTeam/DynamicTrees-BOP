@@ -2,6 +2,8 @@ package dynamictreesbop.trees.species;
 
 import java.util.Random;
 
+import com.ferreusveritas.dynamictrees.ModBlocks;
+import com.ferreusveritas.dynamictrees.blocks.BlockRooty;
 import com.ferreusveritas.dynamictrees.items.Seed;
 import com.ferreusveritas.dynamictrees.systems.DirtHelper;
 import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenBush;
@@ -14,6 +16,7 @@ import dynamictreesbop.DynamicTreesBOP;
 import dynamictreesbop.ModContent;
 import dynamictreesbop.dropcreators.DropCreatorInvoluntarySeed;
 import net.minecraft.block.BlockGrass;
+import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -27,7 +30,7 @@ public class SpeciesAcaciaTwiglet extends Species {
 	
 	public SpeciesAcaciaTwiglet(TreeFamily treeFamily) {
 		super(new ResourceLocation(DynamicTreesBOP.MODID, ModContent.ACACIATWIGLET), treeFamily, ModContent.leaves.get(ModContent.ACACIATWIGLET));
-		
+
 		setBasicGrowingParameters(0.3f, 2.5f, 1, 2, 1.0f);
 		
 		envFactor(Type.SNOWY, 0.25f);
@@ -67,7 +70,17 @@ public class SpeciesAcaciaTwiglet extends Species {
 	public Seed getSeed() {
 		return getFamily().getCommonSpecies().getSeed();
 	}
-	
+
+	@Override
+	public boolean placeRootyDirtBlock(World world, BlockPos rootPos, int life) {
+		if (world.getBlockState(rootPos).getMaterial() == Material.SAND) {
+			world.setBlockState(rootPos, ModBlocks.blockRootySand.getDefaultState().withProperty(BlockRooty.LIFE, life));
+		} else {
+			world.setBlockState(rootPos, getRootyBlock(world, rootPos).getDefaultState().withProperty(BlockRooty.LIFE, life));
+		}
+		return true;
+	}
+
 	@Override
 	public boolean generate(World world, BlockPos rootPos, Biome biome, Random random, int radius, SafeChunkBounds safeBounds) {
 		if (biome == BOPBiomes.xeric_shrubland.orNull() && world.getBlockState(rootPos).getBlock() instanceof BlockGrass) {

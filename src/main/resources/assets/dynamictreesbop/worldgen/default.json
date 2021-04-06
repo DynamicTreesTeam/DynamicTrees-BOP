@@ -11,8 +11,32 @@
 	},
 	
 	{ "select" : { "name": "biomesoplenty:shrubland"		}, "apply" : { "blacklist": true } },
-	{ "select" : { "name": "biomesoplenty:tundra"			}, "apply" : { "blacklist": true } },
-	{ "select" : { "name": "biomesoplenty:xeric_shrubland"	}, "apply" : { "blacklist": true } },
+	{
+		"select": { "name": "biomesoplenty:tundra" },
+		"apply" : {
+			"species" : {
+				"random" : {
+					"dynamictreesbop:mapletwiglet" : 2,
+					"dynamictreesbop:deadbrushbush" : 3
+				}
+			},
+			"density" : [ 0.2 ],
+			"multipass" : true
+		}
+	},
+	{
+		"select": { "name": "biomesoplenty:xeric_shrubland" },
+		"apply" : {
+			"species" : {
+				"random" : {
+					"dynamictreesbop:acaciatwiglet" : 2,
+					"dynamictreesbop:acaciabrushbush" : 3
+				}
+			},
+			"density" : [ 0.2 ],
+			"multipass" : true
+		}
+	},
 	{
 		"__comment0": "Removes select `vanilla` bop generators from biomesoplenty biomes not on the blacklist", 
 		"__comment1": "This link in the populator chain will serve as default settings for all BoP biomes",
@@ -170,7 +194,8 @@
 		"apply": {
 			"species" : {
 				"random" : {
-					"dynamictreesbop:oakdying" : 2
+					"dynamictreesbop:oakdying" : 6,
+					"dynamictreesbop:persimmon" : 1
 				}
 			},
 			"density" : [ 0.9 ]
@@ -205,8 +230,9 @@
 		"apply": {
 			"species" : {
 				"random" : {
-					"dynamictreesbop:floweringoak" : 1,
-					"dynamictreesbop:jacaranda" : 3
+					"dynamictreesbop:floweringoak" : 2,
+					"dynamictreesbop:jacaranda" : 6,
+					"dynamictreesbop:peach" : 1
 				}
 			},
 			"density" : [ 0.1 ],
@@ -324,7 +350,8 @@
 					"dynamictreesbop:umbranconifer" : 4,
 					"dynamictreesbop:umbranconifermega" : 5,
 					"dynamictreesbop:decayed" : 2,
-					"dynamictreesbop:dead" : 1
+					"dynamictreesbop:dead" : 1,
+					"dynamictreesbop:pear" : 1
 				}
 			},
 			"density" : [ 0.5, 0.5, 0.8 ]
@@ -336,6 +363,8 @@
 			"species" : {
 				"random" : {
 					"dynamictreesbop:floweringoak" : 6,
+					"dynamictreesbop:peach" : 3,
+					"dynamictreesbop:pear" : 1,
 					"dynamictrees:apple" : 1
 				}
 			},
@@ -435,8 +464,9 @@
 					"dynamictreesbop:yellowautumn" : 4,
 					"dynamictreesbop:orangeautumn" : 5,
 					"dynamictrees:oak" : 1,
-					"dynamictreesbop:oakdying" : 2,
-					"dynamictreesbop:maple" : 4
+					"dynamictreesbop:oakdying" : 1,
+					"dynamictreesbop:maple" : 4,
+					"dynamictreesbop:persimmon" : 2
 				}
 			},
 			"density" : [ 0.9 ],
@@ -597,6 +627,7 @@
 			"species" : {
 				"random" : {
 					"dynamictrees:oakswamp" : 5,
+					"dynamictreesbop:pear" : 1,
 					"dynamictreesbop:willow" : 1
 				}
 			}
@@ -621,6 +652,5 @@
 	{ "select" : { "name" : "biomesoplenty:sacred_springs"	}, "apply" : { "chance" : 0.0 } },
 	{ "select" : { "name" : "biomesoplenty:shrubland"		}, "apply" : { "chance" : 0.0 } },
 	{ "select" : { "name" : "biomesoplenty:steppe"			}, "apply" : { "chance" : 0.0 } },
-	{ "select" : { "name" : "biomesoplenty:tundra"			}, "apply" : { "chance" : 0.0 } },
 	{ "select" : { "name" : "biomesoplenty:volcanic_island"	}, "apply" : { "chance" : 0.0 } }
 ]
