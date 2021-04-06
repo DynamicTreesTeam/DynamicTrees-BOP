@@ -346,11 +346,11 @@
 		"apply": {
 			"species" : {
 				"random" : {
-					"dynamictreesbop:willow" : 3,
-					"dynamictreesbop:umbranconifer" : 4,
-					"dynamictreesbop:umbranconifermega" : 5,
-					"dynamictreesbop:decayed" : 2,
-					"dynamictreesbop:dead" : 1,
+					"dynamictreesbop:willow" : 5,
+					"dynamictreesbop:umbranconifer" : 8,
+					"dynamictreesbop:umbranconifermega" : 10,
+					"dynamictreesbop:decayed" : 3,
+					"dynamictreesbop:dead" : 2,
 					"dynamictreesbop:pear" : 1
 				}
 			},

@@ -111,7 +111,12 @@ public class TreeUmbran extends TreeFamily {
 			//Add species features
 			addGenFeature(new FeatureGenConiferTopper(getLeavesProperties()));//Make a topper for this conifer tree
 		}
-		
+
+		@Override
+		public Species getMegaSpecies() {
+			return megaConiferSpecies;
+		}
+
 		@Override
 		public boolean isBiomePerfect(Biome biome) {
 			return isOneOfBiomes(biome, BOPBiomes.ominous_woods.orNull());
@@ -168,7 +173,12 @@ public class TreeUmbran extends TreeFamily {
 			addGenFeature(new FeatureGenMound(999));//Establish mounds
 			addGenFeature(new FeatureGenFlareBottom());//Flare the bottom
 		}
-		
+
+		@Override
+		public boolean isMega() {
+			return true;
+		}
+
 		@Override
 		public boolean isBiomePerfect(Biome biome) {
 			return isOneOfBiomes(biome, BOPBiomes.ominous_woods.orNull());
