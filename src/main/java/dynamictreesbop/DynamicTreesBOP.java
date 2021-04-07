@@ -7,7 +7,7 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
-@Mod(modid=DynamicTreesBOP.MODID, name = ModConstants.NAME, version = ModConstants.VERSION, dependencies = ModConstants.DEPENDENCIES)
+@Mod(modid=DynamicTreesBOP.MODID, name = ModConstants.NAME, version = ModConstants.VERSION, dependencies = ModConstants.DEPENDENCIES, updateJSON = "https://github.com/the-realest-stu/DynamicTrees-BOP/blob/master/version_info.json?raw=true")
 public class DynamicTreesBOP {
 	
 	public static final String MODID = ModConstants.MODID;

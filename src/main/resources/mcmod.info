@@ -5,10 +5,10 @@
 		"description": "Adding Dynamic Trees compatability for Biomes O' Plenty",
 		"version": "${version}",
 		"mcversion": "${mcversion}",
-		"url": "",
-		"updateUrl": "",
+		"url": "https://www.curseforge.com/minecraft/mc-mods/dtbop",
+		"updateUrl": "https://github.com/the-realest-stu/DynamicTrees-BOP/blob/master/version_info.json?raw=true",
 		"authorList": ["mangoose"],
-		"credits": "ferreusveritas",
+		"credits": "ferreusveritas, Max Hyper",
 		"logoFile": "",
 		"screenshots": [],
 		"dependencies": []
