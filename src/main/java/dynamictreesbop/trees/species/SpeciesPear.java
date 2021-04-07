@@ -5,10 +5,12 @@ import biomesoplenty.api.item.BOPItems;
 import biomesoplenty.common.block.BlockBOPLeaves;
 import com.ferreusveritas.dynamictrees.ModBlocks;
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
+import com.ferreusveritas.dynamictrees.api.TreeRegistry;
 import com.ferreusveritas.dynamictrees.seasons.SeasonHelper;
 import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenFruit;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
+import com.ferreusveritas.dynamictrees.util.SafeChunkBounds;
 import dynamictreesbop.DynamicTreesBOP;
 import dynamictreesbop.ModConfigs;
 import dynamictreesbop.ModContent;
@@ -41,13 +43,19 @@ public class SpeciesPear extends Species {
 
 		addDropCreator(new DropCreatorFruit(BOPItems.pear));
 
-		//this causes fruit trees to turn back to oak if they are disabled
-		setRequiresTileEntity(ModConfigs.enablePearTrees);
+		setRequiresTileEntity(true);
 		
 		treeFamily.addConnectableVanillaLeaves((state) -> state.getBlock() instanceof BlockBOPLeaves && state.getValue(((BlockBOPLeaves) state.getBlock()).variantProperty) == BOPTrees.DEAD);
 
 		//TODO: replace with pear
 		addGenFeature(new FeatureGenFruit(ModContent.pearFruit).setRayDistance(4).setFruitingRadius(4));
+	}
+
+	@Override
+	public boolean generate(World world, BlockPos rootPos, Biome biome, Random random, int radius, SafeChunkBounds safeBounds) {
+		if (ModConfigs.enablePearTrees)
+			return super.generate(world, rootPos, biome, random, radius, safeBounds);
+		return treeFamily.getCommonSpecies().generate(world, rootPos, biome, random, radius, safeBounds);
 	}
 
 	@Override

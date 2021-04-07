@@ -122,13 +122,6 @@ public class SpeciesPoplar extends Species {
 			return super.getSeedStack(qty);
 		return getFamily().getCommonSpecies().getSeedStack(qty);
 	}
-
-	@Override
-	public Seed getSeed() {
-		if (ModConfigs.enablePoplarSeeds)
-			return super.getSeed();
-		return getFamily().getCommonSpecies().getSeed();
-	}
 	
 	@Override
 	public int maxBranchRadius() {

@@ -5,10 +5,12 @@ import biomesoplenty.api.item.BOPItems;
 import biomesoplenty.common.block.BlockBOPLeaves;
 import com.ferreusveritas.dynamictrees.ModBlocks;
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
+import com.ferreusveritas.dynamictrees.api.TreeRegistry;
 import com.ferreusveritas.dynamictrees.seasons.SeasonHelper;
 import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenFruit;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
+import com.ferreusveritas.dynamictrees.util.SafeChunkBounds;
 import dynamictreesbop.DynamicTreesBOP;
 import dynamictreesbop.ModConfigs;
 import dynamictreesbop.ModContent;
@@ -42,8 +44,7 @@ public class SpeciesPersimmon extends Species {
 
 		addDropCreator(new DropCreatorFruit(BOPItems.persimmon));
 
-		//this causes fruit trees to turn back to oak if they are disabled
-		setRequiresTileEntity(ModConfigs.enablePersimmonTrees);
+		setRequiresTileEntity(true);
 		
 		leavesProperties.setTree(treeFamily);
 		
@@ -56,6 +57,14 @@ public class SpeciesPersimmon extends Species {
 				return 10;
 			}
 		}.setRayDistance(4));
+	}
+
+	@Override
+	public boolean generate(World world, BlockPos rootPos, Biome biome, Random random, int radius, SafeChunkBounds safeBounds) {
+		if (ModConfigs.enablePersimmonTrees)
+			return super.generate(world, rootPos, biome, random, radius, safeBounds);
+		Species def = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, ModContent.OAKDYING));
+		return def.generate(world, rootPos, biome, random, radius, safeBounds);
 	}
 
 	@Override

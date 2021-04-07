@@ -5,12 +5,14 @@ import biomesoplenty.api.item.BOPItems;
 import biomesoplenty.common.block.BlockBOPLeaves;
 import com.ferreusveritas.dynamictrees.ModBlocks;
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
+import com.ferreusveritas.dynamictrees.api.TreeRegistry;
 import com.ferreusveritas.dynamictrees.entities.EntityFallingTree;
 import com.ferreusveritas.dynamictrees.models.ModelEntityFallingTree;
 import com.ferreusveritas.dynamictrees.seasons.SeasonHelper;
 import com.ferreusveritas.dynamictrees.systems.featuregen.FeatureGenFruit;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.trees.TreeFamily;
+import com.ferreusveritas.dynamictrees.util.SafeChunkBounds;
 import dynamictreesbop.DynamicTreesBOP;
 import dynamictreesbop.ModConfigs;
 import dynamictreesbop.ModContent;
@@ -54,12 +56,19 @@ public class SpeciesPeach extends Species {
 
 		addDropCreator(new DropCreatorFruit(BOPItems.peach));
 
-		//this causes fruit trees to turn back to oak if they are disabled
-		setRequiresTileEntity(ModConfigs.enablePeachTrees);
+		setRequiresTileEntity(true);
 		
 		treeFamily.addConnectableVanillaLeaves((state) -> state.getBlock() instanceof BlockBOPLeaves && state.getValue(((BlockBOPLeaves) state.getBlock()).variantProperty) == BOPTrees.FLOWERING);
 
 		addGenFeature(new FeatureGenFruit(ModContent.peachFruit).setRayDistance(4));
+	}
+
+	@Override
+	public boolean generate(World world, BlockPos rootPos, Biome biome, Random random, int radius, SafeChunkBounds safeBounds) {
+		if (ModConfigs.enablePeachTrees)
+			return super.generate(world, rootPos, biome, random, radius, safeBounds);
+		Species def = TreeRegistry.findSpecies(new ResourceLocation(DynamicTreesBOP.MODID, ModContent.FLOWERINGOAK));
+		return def.generate(world, rootPos, biome, random, radius, safeBounds);
 	}
 
 	@Override
