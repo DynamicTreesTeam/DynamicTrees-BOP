@@ -194,7 +194,7 @@
 		"apply": {
 			"species" : {
 				"random" : {
-					"dynamictreesbop:oakdying" : 6,
+					"dynamictreesbop:oakdying" : 15,
 					"dynamictreesbop:persimmon" : 1
 				}
 			},
@@ -230,8 +230,8 @@
 		"apply": {
 			"species" : {
 				"random" : {
-					"dynamictreesbop:floweringoak" : 2,
-					"dynamictreesbop:jacaranda" : 6,
+					"dynamictreesbop:floweringoak" : 6,
+					"dynamictreesbop:jacaranda" : 13,
 					"dynamictreesbop:peach" : 1
 				}
 			},
@@ -362,9 +362,10 @@
 		"apply": {
 			"species" : {
 				"random" : {
-					"dynamictreesbop:floweringoak" : 6,
-					"dynamictreesbop:peach" : 3,
+					"dynamictreesbop:floweringoak" : 10,
+					"dynamictreesbop:peach" : 2,
 					"dynamictreesbop:pear" : 1,
+					"dynamictreesbop:floweringapple" : 1,
 					"dynamictrees:apple" : 1
 				}
 			},
@@ -418,10 +419,11 @@
 		"apply": {
 			"species" : {
 				"random" : {
-					"dynamictrees:jungle" : 1,
-					"dynamictreesbop:palm" : 4,
-					"dynamictrees:oak" : 4,
-					"dynamictreesbop:floweringoak" : 7
+					"dynamictrees:jungle" : 2,
+					"dynamictreesbop:palm" : 8,
+					"dynamictrees:oak" : 8,
+					"dynamictreesbop:floweringoak" : 14,
+					"dynamictreesbop:peach" : 1
 				}
 			},
 			"density" : [],
@@ -461,12 +463,12 @@
 		"apply": {
 			"species" : {
 				"random" : {
-					"dynamictreesbop:yellowautumn" : 4,
-					"dynamictreesbop:orangeautumn" : 5,
-					"dynamictrees:oak" : 1,
-					"dynamictreesbop:oakdying" : 1,
-					"dynamictreesbop:maple" : 4,
-					"dynamictreesbop:persimmon" : 2
+					"dynamictreesbop:yellowautumn" : 8,
+					"dynamictreesbop:orangeautumn" : 10,
+					"dynamictrees:oak" : 2,
+					"dynamictreesbop:oakdying" : 2,
+					"dynamictreesbop:maple" : 8,
+					"dynamictreesbop:persimmon" : 1
 				}
 			},
 			"density" : [ 0.9 ],
@@ -601,34 +603,23 @@
 		"select": { "name": "minecraft:mutated_forest" },
 		"apply": {
 			"species" : {
+				"method": "before",
 				"random" : {
-					"dynamictrees:oak" : 8,
-					"dynamictrees:birch" : 2,
-					"dynamictreesbop:floweringoak" : 3
+					"dynamictreesbop:floweringoak" : 3,
+					"..." : 10
 				}
 			}
-		}
-	},
-	{
-		"select": { "name": "minecraft:extreme_hills" },
-		"apply": {
-			"species" : "dynamictrees:spruce"
-		}
-	},
-	{
-		"select": { "name" : "minecraft:extreme_hills_with_trees" },
-		"apply": {
-			"species" : "dynamictrees:spruce"
 		}
 	},
 	{
 		"select": { "name" : "minecraft:swampland" },
 		"apply": {
 			"species" : {
+				"method": "before",
 				"random" : {
-					"dynamictrees:oakswamp" : 5,
 					"dynamictreesbop:pear" : 1,
-					"dynamictreesbop:willow" : 1
+					"dynamictreesbop:willow" : 8,
+					"..." : 21
 				}
 			}
 		}

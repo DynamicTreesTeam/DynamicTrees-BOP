@@ -146,6 +146,7 @@ public class ModContent {
 	public static final String WHITECHERRY = "whitecherry";
 	public static final String WILLOW = "willow";
 	public static final String YELLOWAUTUMN = "yellowautumn";
+	public static final String FLOWERINGAPPLE = "floweringapple";
 
 	public static final String PERSIMMONOAK = "persimmon";
 	public static final String PEACHOAK = "peach";
@@ -334,6 +335,7 @@ public class ModContent {
 				new SpeciesAcaciaBrush(acaciaTree),
 				new SpeciesOakSparse(oakTree),
 				new SpeciesMapleTwiglet(oakTree),
+				new SpeciesFloweringApple(oakTree),
 
 				//Register fruit trees
 				new SpeciesPersimmon(oakTree),

@@ -1,11 +1,12 @@
 {
 	"homepage": "https://www.curseforge.com/minecraft/mc-mods/dynamic-trees-forestry/files",
 	"1.12.2": {
+		"1.12.2-1.5.1": "New Features:\n+ Added flowering apple species that generates in orchards\nEnhancements:\n- Adjusted fruit tree generation\nBug Fixes:\n+ Fixed tree generator completely replacing generation in swamplands and other biomes instead of adding to them",
 		"1.12.2-1.5.0": "New Features:\n+ Added Persimmon tree as dying oak subspecies\n+ Added Peach tree as a flowering oak subspecies\n+ Added Pear tree as an oak species\n+ Added seeds for Poplar and Dark Poplar species\n+ Added config settings to disable or enable the features above\n+ Populated xeric shrubland and tundra biomes with acacia and maple twiglets\n+ Mega Umbran Conifer is now the mega variant of the Umbran Conifer, making it obtainable through the use of a Potion of Gigas\nEnhancements:\n+ Added version update checker\n+ Updated water roots to use new model\n+ Updated flowering oak to display flowers during felling animation\n+ Renamed OakFloweringVine to OakIvyVines (as flowering vines were removed)\n+ Updated textures slightly, making them more consistent\nBug Fixes:\n+ Fixed jungle twiglets in oasis not having their proper species\n+ Fixed missing translation for certain species",
 		"1.12.2-1.4.4": "New Features:\n-Mangrove world generation\n-Improvements to mangrove and rooty water block model"
 	},
 	"promos": {
-		"1.12.2-latest": "1.12.2-1.5.0",
-		"1.12.2-recommended": "1.12.2-1.5.0"
+		"1.12.2-latest": "1.12.2-1.5.1",
+		"1.12.2-recommended": "1.12.2-1.5.1"
 	}
 }

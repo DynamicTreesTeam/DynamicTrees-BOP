@@ -4,6 +4,7 @@ import java.util.Random;
 
 import com.ferreusveritas.dynamictrees.ModBlocks;
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
+import com.ferreusveritas.dynamictrees.api.treedata.ILeavesProperties;
 import com.ferreusveritas.dynamictrees.entities.EntityFallingTree;
 import com.ferreusveritas.dynamictrees.models.ModelEntityFallingTree;
 import com.ferreusveritas.dynamictrees.trees.Species;
@@ -29,30 +30,38 @@ import net.minecraftforge.common.BiomeDictionary.Type;
 import javax.annotation.Nullable;
 
 public class SpeciesFloweringOak extends Species {
-	
-	public SpeciesFloweringOak(TreeFamily treeFamily) {
-		super(new ResourceLocation(DynamicTreesBOP.MODID, ModContent.FLOWERINGOAK), treeFamily, ModContent.floweringOakLeavesProperties[0]);
-		
+
+	public SpeciesFloweringOak(ResourceLocation name, TreeFamily treeFamily, ILeavesProperties leavesProperties) {
+		super(name, treeFamily, leavesProperties);
+		setDefaultGrowingParameters();
+
+		setRequiresTileEntity(true);
+
+		treeFamily.addConnectableVanillaLeaves((state) -> state.getBlock() instanceof BlockBOPLeaves && state.getValue(((BlockBOPLeaves) state.getBlock()).variantProperty) == BOPTrees.FLOWERING);
+	}
+
+	protected void setDefaultGrowingParameters (){
 		setBasicGrowingParameters(0.3f, 12.0f, upProbability, lowestBranchHeight, 0.85f);
 
-		addValidLeavesBlocks(ModContent.floweringOakLeavesProperties);
-		ModContent.floweringOakLeavesProperties[0].setTree(treeFamily);
-		ModContent.floweringOakLeavesProperties[1].setTree(treeFamily);
+		setupStandardSeedDropping();
 
 		envFactor(Type.COLD, 0.75f);
 		envFactor(Type.HOT, 0.50f);
 		envFactor(Type.DRY, 0.50f);
 		envFactor(Type.FOREST, 1.05f);
-		
+	}
+
+	public SpeciesFloweringOak(TreeFamily treeFamily) {
+		super(new ResourceLocation(DynamicTreesBOP.MODID, ModContent.FLOWERINGOAK), treeFamily, ModContent.floweringOakLeavesProperties[0]);
+
+		addValidLeavesBlocks(ModContent.floweringOakLeavesProperties);
+		ModContent.floweringOakLeavesProperties[0].setTree(treeFamily);
+		ModContent.floweringOakLeavesProperties[1].setTree(treeFamily);
+
 		generateSeed();
-		
+
 		if (!ModConfigs.enablePeachTrees)
 			addDropCreator(new DropCreatorFruit(BOPItems.peach));
-		setupStandardSeedDropping();
-		
-		setRequiresTileEntity(true);
-		
-		treeFamily.addConnectableVanillaLeaves((state) -> state.getBlock() instanceof BlockBOPLeaves && state.getValue(((BlockBOPLeaves) state.getBlock()).variantProperty) == BOPTrees.FLOWERING);
 	}
 
 	@Override
