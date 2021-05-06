@@ -1,7 +1,0 @@
-{   "parent": "dynamictreesbop:block/skinnysapling",
-    "textures": {
-        "particle": "biomesoplenty:blocks/leaves_bamboo",
-        "log": "biomesoplenty:blocks/bamboo",
-        "leaves": "biomesoplenty:blocks/leaves_bamboo"
-    }
-}
