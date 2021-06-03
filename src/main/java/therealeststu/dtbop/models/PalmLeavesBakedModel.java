@@ -52,7 +52,7 @@ public class PalmLeavesBakedModel implements IDynamicBakedModel {
                     new BlockVertexData(0, 1, 3, 15, 0)
             };
 
-            for (int pass = 0; pass < 4; pass++) {
+            for (int pass = 0; pass < 3; pass++) {
                 for (int half = 0; half < 2; half++) {
 
                     BlockVertexData[] outData = new BlockVertexData[8];
@@ -86,16 +86,13 @@ public class PalmLeavesBakedModel implements IDynamicBakedModel {
                         angle = Math.atan2(y, z);
                         switch (pass){
                             case 0:
-                                mult = -0.29;
+                                mult = -0.17;
                                 break;
                             case 1:
-                                mult = -0.06;
+                                mult = 0.06;
                                 break;
                             case 2:
-                                mult = 0.16;
-                                break;
-                            case 3:
-                                mult = 0.32;
+                                mult = 0.28;
                                 break;
                             default:
                                 mult = 0;
@@ -111,7 +108,6 @@ public class PalmLeavesBakedModel implements IDynamicBakedModel {
                         angle = Math.atan2(x, z);
                         switch (pass){
                             default:
-                            case 3:
                             case 0:
                                 mult = 0;
                                 break;
@@ -140,8 +136,6 @@ public class PalmLeavesBakedModel implements IDynamicBakedModel {
                             default:
                                 y += 0;
                         }
-                        //y -= 0.25f;
-
 
                         // Move to center of palm crown
                         x += surr.getOffset().getX();
@@ -158,8 +152,7 @@ public class PalmLeavesBakedModel implements IDynamicBakedModel {
                             outData[3].toInts(frondsTexture)
                     );
                     builder.addUnculledFace(new BakedQuad(vertices,
-                                    0, FaceBakery.calculateFacing(vertices), frondsTexture, false)
-                    );
+                                    0, FaceBakery.calculateFacing(vertices), frondsTexture, false));
 
                     vertices = Ints.concat(
                             outData[4].toInts(frondsTexture),
@@ -168,8 +161,7 @@ public class PalmLeavesBakedModel implements IDynamicBakedModel {
                             outData[7].toInts(frondsTexture)
                     );
                     builder.addUnculledFace(new BakedQuad(vertices,
-                                    0, FaceBakery.calculateFacing(vertices), frondsTexture, false)
-                    );
+                            0, FaceBakery.calculateFacing(vertices), frondsTexture, false));
 
 
                     bakedFronds[surr.ordinal()] = builder.build();

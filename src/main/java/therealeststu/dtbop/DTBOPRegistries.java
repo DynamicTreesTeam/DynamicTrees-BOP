@@ -52,7 +52,7 @@ public class DTBOPRegistries {
     @SubscribeEvent
     public static void onBlocksRegistry(final RegistryEvent.Register<Block> event) {
         Bush.INSTANCES.forEach((Bush::setup));
-        
+
         DirtHelper.registerSoil(BOPBlocks.origin_grass_block, DirtHelper.DIRT_LIKE);
         DirtHelper.registerSoil(BOPBlocks.white_sand, DirtHelper.SAND_LIKE);
         DirtHelper.registerSoil(BOPBlocks.orange_sand, DirtHelper.SAND_LIKE);

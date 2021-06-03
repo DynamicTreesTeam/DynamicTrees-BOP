@@ -19,7 +19,7 @@
         }
       },
       "density": [ 5 ],
-      "chance": 0.8,
+      "chance": 1.0,
       "forestness" : 0.5
     }
   }
