@@ -2,8 +2,8 @@
   "type": "palm",
   "family": "dtbop:palm",
   "tapering": 0.5,
-  "signal_energy": 8.0,
-  "growth_rate": 0.8,
+  "signal_energy": 7.0,
+  "growth_rate": 0.9,
   "leaves_properties": "dtbop:palm",
   "environment_factors" : {
     "cold": 0.75,
