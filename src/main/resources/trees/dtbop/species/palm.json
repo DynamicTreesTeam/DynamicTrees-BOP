@@ -1,0 +1,18 @@
+{
+  "type": "palm",
+  "family": "dtbop:palm",
+  "tapering": 0.5,
+  "signal_energy": 8.0,
+  "growth_rate": 0.8,
+  "leaves_properties": "dtbop:palm",
+  "environment_factors" : {
+    "cold": 0.75,
+    "hot": 1.1,
+    "dry": 1.1
+  },
+  "seed_drop_rarity": 0.0,
+  "stick_drop_rarity": 1.0,
+  "transformable": false,
+  "perfect_biomes": { "name": "biomesoplenty:oasis" },
+  "primitive_sapling": "biomesoplenty:palm_sapling"
+}

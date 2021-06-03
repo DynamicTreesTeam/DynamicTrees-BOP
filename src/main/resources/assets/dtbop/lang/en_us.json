@@ -1,3 +1,9 @@
 {
+  "item.dtbop.palm_seed":"Palm Seed",
 
+  "species.dtbop.palm":"Palm",
+  "species.dtbop.deadwood":"Deadwood",
+
+  "block.dtbop.palm_branch":"Palm",
+  "block.dtbop.deadwood_branch":"Deadwood Tree"
 }

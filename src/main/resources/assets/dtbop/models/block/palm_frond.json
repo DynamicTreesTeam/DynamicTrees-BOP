@@ -1,0 +1,6 @@
+{
+  "loader": "dtbop:palm_fronds",
+  "textures": {
+    "frond": "dtbop:block/palm_frond"
+  }
+}

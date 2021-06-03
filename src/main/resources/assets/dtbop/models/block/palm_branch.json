@@ -1,0 +1,7 @@
+{
+  "loader": "dynamictrees:branch",
+  "textures": {
+    "bark": "biomesoplenty:block/palm_log",
+    "rings": "biomesoplenty:block/palm_log_top"
+  }
+}

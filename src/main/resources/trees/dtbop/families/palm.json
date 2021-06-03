@@ -1,0 +1,9 @@
+{
+  "common_leaves": "dtbop:palm",
+  "common_species": "dtbop:palm",
+  "primitive_log": "biomesoplenty:palm_log",
+  "primitive_stripped_log": "biomesoplenty:stripped_palm_log",
+  "max_branch_radius": 8,
+  "primary_thickness": 3,
+  "secondary_thickness": 3
+}
