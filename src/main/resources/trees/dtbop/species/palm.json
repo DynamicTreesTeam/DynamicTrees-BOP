@@ -14,5 +14,6 @@
   "stick_drop_rarity": 1.0,
   "transformable": false,
   "perfect_biomes": { "name": "biomesoplenty:oasis" },
-  "primitive_sapling": "biomesoplenty:palm_sapling"
+  "primitive_sapling": "biomesoplenty:palm_sapling",
+  "acceptable_soils": ["dirt_like", "sand_like"]
 }

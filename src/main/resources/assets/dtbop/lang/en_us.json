@@ -2,8 +2,7 @@
   "item.dtbop.palm_seed":"Palm Seed",
 
   "species.dtbop.palm":"Palm",
-  "species.dtbop.deadwood":"Deadwood",
+  "species.dtbop.jungle_twiglet":"Jungle Twiglet",
 
-  "block.dtbop.palm_branch":"Palm",
-  "block.dtbop.deadwood_branch":"Deadwood Tree"
+  "block.dtbop.palm_branch":"Palm"
 }

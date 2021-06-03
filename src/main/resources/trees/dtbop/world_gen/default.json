@@ -1,3 +1,26 @@
 [
+  {
+    "__comment": "Cancel standard tree features from the overworld.",
+    "select": { "name": "biomesoplenty.*", "type": "overworld" },
+    "cancellers": {
+      "type": "tree",
+      "namespace": "biomesoplenty"
+    }
+  },
 
+  {
+    "select": { "name": "biomesoplenty:tropics" },
+    "apply": {
+      "species" : {
+        "random" : {
+          "dtbop:palm" : 3,
+          "dtbop:flowering_oak_bush" : 1,
+          "dtbop:jungle_twiglet" : 1
+        }
+      },
+      "density": [ 5 ],
+      "chance": 0.8,
+      "forestness" : 0.5
+    }
+  }
 ]

@@ -1,0 +1,6 @@
+{
+  "multipart": [
+    {   "apply": { "model": "biomesoplenty:block/mud" }},
+    {	"apply": { "model": "dynamictrees:block/roots" }}
+  ]
+}

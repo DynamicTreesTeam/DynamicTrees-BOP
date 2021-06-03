@@ -1,6 +1,6 @@
 {
   "multipart": [
-    {   "apply": { "model": "dtbop:block/fertile_soil" }},
+    {   "apply": { "model": "biomesoplenty:block/dried_salt" }},
     {	"apply": { "model": "dynamictrees:block/roots" }}
   ]
 }

@@ -1,0 +1,6 @@
+{
+  "multipart": [
+    {   "apply": { "model": "biomesoplenty:block/orange_sand" }},
+    {	"apply": { "model": "dynamictrees:block/roots" }}
+  ]
+}
