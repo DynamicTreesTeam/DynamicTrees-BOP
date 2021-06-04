@@ -1,0 +1,7 @@
+{
+  "primitive_leaves": "minecraft:spruce_leaves",
+  "cell_kit": "dtbyg:poplar",
+  "color": "@spruce",
+  "smother": 9,
+  "light_requirement": 13
+}

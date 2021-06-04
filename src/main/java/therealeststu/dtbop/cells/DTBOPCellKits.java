@@ -4,6 +4,7 @@ import com.ferreusveritas.dynamictrees.api.cells.CellKit;
 import com.ferreusveritas.dynamictrees.api.cells.CellNull;
 import com.ferreusveritas.dynamictrees.api.cells.ICell;
 import com.ferreusveritas.dynamictrees.api.cells.ICellSolver;
+import com.ferreusveritas.dynamictrees.api.registry.IRegistry;
 import com.ferreusveritas.dynamictrees.cells.CellKits;
 import com.ferreusveritas.dynamictrees.cells.MetadataCell;
 import com.ferreusveritas.dynamictrees.cells.NormalCell;
@@ -235,5 +236,9 @@ public class DTBOPCellKits {
         }
 
     };
+
+    public static void register(final IRegistry<CellKit> registry) {
+        registry.registerAll(SPARSE, POPLAR, MAHOGANY, BRUSH, EUCALYPTUS);
+    }
 
 }

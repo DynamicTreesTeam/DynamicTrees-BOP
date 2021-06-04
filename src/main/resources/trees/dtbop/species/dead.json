@@ -1,0 +1,15 @@
+{
+  "family": "dtbop:dead",
+  "tapering": 0.3,
+  "signal_energy": 12.0,
+  "growth_rate": 0.5,
+  "leaves_properties": "dtbop:dead",
+  "environment_factors" : {
+    "lush": 0.75,
+    "spooky": 1.05,
+    "dead": 1.05
+  },
+  "seed_drop_rarity": 1.0,
+  "stick_drop_rarity": 1.0,
+  "primitive_sapling": "biomesoplenty:dead_sapling"
+}
