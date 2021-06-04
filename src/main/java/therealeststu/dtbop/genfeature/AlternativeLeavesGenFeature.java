@@ -36,7 +36,7 @@ public class AlternativeLeavesGenFeature extends GenFeature implements IPostGrow
 
     public ConfiguredGenFeature<GenFeature> createDefaultConfiguration() {
         return super.createDefaultConfiguration().with(ALT_LEAVES, Blocks.AIR)
-                .with(PLACE_CHANCE, 1f).with(QUANTITY, 5);
+                .with(PLACE_CHANCE, 0.5f).with(QUANTITY, 5);
     }
 
     @Override
