@@ -1,9 +1,13 @@
 package therealeststu.dtbop;
 
 import biomesoplenty.api.block.BOPBlocks;
+import com.ferreusveritas.dynamictrees.DynamicTrees;
 import com.ferreusveritas.dynamictrees.api.cells.CellKit;
 import com.ferreusveritas.dynamictrees.api.registry.TypeRegistryEvent;
 import com.ferreusveritas.dynamictrees.blocks.leaves.LeavesProperties;
+import com.ferreusveritas.dynamictrees.blocks.leaves.PalmLeavesProperties;
+import com.ferreusveritas.dynamictrees.blocks.leaves.SolidLeavesProperties;
+import com.ferreusveritas.dynamictrees.blocks.leaves.WartProperties;
 import com.ferreusveritas.dynamictrees.blocks.rootyblocks.RootyBlock;
 import com.ferreusveritas.dynamictrees.growthlogic.GrowthLogicKit;
 import com.ferreusveritas.dynamictrees.systems.DirtHelper;
@@ -15,6 +19,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import therealeststu.dtbop.blocks.leaves.CobwebLeavesProperties;
 import therealeststu.dtbop.cells.DTBOPCellKits;
 import therealeststu.dtbop.genfeature.AlternativeLeavesGenFeature;
 import therealeststu.dtbop.genfeature.DTBOPGenFeatures;
@@ -40,7 +45,8 @@ public class DTBOPRegistries {
     }
 
     @SubscribeEvent
-    public static void registerLeavesPropertiesTypes (final TypeRegistryEvent<LeavesProperties> event) {
+    public static void registerLeavesPropertiesTypes(TypeRegistryEvent<LeavesProperties> event) {
+        event.registerType(new ResourceLocation(DynamicTreesBOP.MOD_ID, "cobweb"), CobwebLeavesProperties.TYPE);
     }
 
     @SubscribeEvent

@@ -1,0 +1,62 @@
+[
+  {
+    "__comment": "Cancel standard tree features from the overworld.",
+    "select": { "name": "biomesoplenty.*", "type": "overworld" },
+    "cancellers": {
+      "type": "tree",
+      "namespace": "biomesoplenty"
+    }
+  },
+
+  {
+    "select": { "name": "biomesoplenty:tropics" },
+    "apply": {
+      "species" : {
+        "random" : {
+          "dtbop:palm" : 3,
+          "dtbop:flowering_oak_bush" : 1,
+          "dtbop:jungle_twiglet" : 1
+        }
+      },
+      "density": [ 5 ],
+      "chance": 1.0,
+      "forestness" : 0.5
+    }
+  },
+
+  {
+    "select": { "name": "biomesoplenty:silkglade" },
+    "apply": {
+      "species" : {
+        "random" : {
+          "dtbop:dead" : 4,
+          "dtbop:poplar" : 2,
+          "dtbop:infested" : 1,
+          "dtbop:oak_bush" : 1,
+          "dtbop:infested_bush" : 1,
+          "swamp_oak": 1
+        }
+      },
+      "density": [ 1 ],
+      "chance": 0.8,
+      "forestness" : 0.2
+    }
+  },
+  {
+    "select": { "name": "biomesoplenty:silkglade_nest" },
+    "apply": {
+      "species" : {
+        "random" : {
+          "dtbop:dead" : 1,
+          "dtbop:silk" : 2,
+          "dtbop:infested" : 1,
+          "dtbop:silk_bush" : 4,
+          "dtbop:infested_bush" : 3
+        }
+      },
+      "density": [ 2 ],
+      "chance": 1,
+      "forestness" : 0.2
+    }
+  }
+]
