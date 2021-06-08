@@ -1,8 +1,27 @@
 {
+  "item.dtbop.poplar_seed":"Poplar Catkin",
+  "item.dtbop.dark_poplar_seed":"Dark Poplar Catkin",
+  "item.dtbop.spruce_poplar_seed":"Spruce Poplar Catkin",
   "item.dtbop.palm_seed":"Palm Seed",
+  "item.dtbop.orange_autumn_seed":"Orange Acorn",
+  "item.dtbop.yellow_autumn_seed":"Yellow Catkin",
+  "item.dtbop.maple_seed":"Maple Samara",
+  "item.dtbop.dying_seed":"Dying Acorn",
 
+  "species.dtbop.poplar":"Poplar",
+  "species.dtbop.dark_poplar":"Dark Poplar",
+  "species.dtbop.spruce_poplar":"Spruce Poplar",
   "species.dtbop.palm":"Palm",
+  "species.dtbop.orange_autumn":"Orange Oak",
+  "species.dtbop.yellow_autumn":"Yellow Birch",
+  "species.dtbop.maple":"Maple",
+  "species.dtbop.dead":"Bare",
+  "species.dtbop.dying":"Dying",
+  "species.dtbop.infested":"Infested",
+  "species.dtbop.silk":"Silked",
   "species.dtbop.jungle_twiglet":"Jungle Twiglet",
 
-  "block.dtbop.palm_branch":"Palm"
+  "block.dtbop.palm_branch":"Palm",
+  "block.dtbop.dead_branch":"Dead Tree",
+  "block.dtbop.burnt_branch":"Burnt Tree"
 }

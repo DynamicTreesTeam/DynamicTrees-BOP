@@ -1,6 +1,6 @@
 {
   "parent":"dynamictrees:item/standard_seed",
   "textures": {
-    "layer0":"dtbop:item/dead_seed"
+    "layer0":"dtbop:item/orange_autumn_seed"
   }
 }

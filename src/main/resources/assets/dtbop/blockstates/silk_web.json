@@ -1,0 +1,10 @@
+{
+  "multipart": [
+    { "apply": {"model": "block/cobweb"}},
+    { "apply": [
+        {"model": "biomesoplenty:block/dead_leaves"},
+        {"model": "biomesoplenty:block/dead_leaves"},
+        {"model": "dynamictrees:block/empty"}
+      ]}
+  ]
+}

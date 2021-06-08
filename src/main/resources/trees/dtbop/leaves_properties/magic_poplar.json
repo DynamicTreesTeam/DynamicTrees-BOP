@@ -1,0 +1,6 @@
+{
+  "primitive_leaves": "biomesoplenty:magic_leaves",
+  "cell_kit": "dtbop:poplar",
+  "smother": 9,
+  "light_requirement": 13
+}

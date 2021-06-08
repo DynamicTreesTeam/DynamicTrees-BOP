@@ -1,9 +1,9 @@
 {
-  "family": "dtbop:dead",
+  "family": "dtbop:burnt",
   "tapering": 0.3,
   "signal_energy": 12.0,
   "growth_rate": 0.0,
-  "leaves_properties": "dtbop:dead",
+  "leaves_properties": "dtbop:burnt",
   "seed_drop_rarity": 0.0,
   "can_bone_meal_tree": false
 }

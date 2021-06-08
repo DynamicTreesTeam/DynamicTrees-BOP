@@ -1,0 +1,7 @@
+{
+  "common_leaves": "dtbop:burnt",
+  "common_species": "dtbop:burnt",
+  "primitive_log": "biomesoplenty:stripped_hellbark_log",
+  "generate_stripped_branch": false,
+  "max_branch_radius": 8
+}

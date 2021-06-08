@@ -3,7 +3,7 @@
   "tapering": 0.3,
   "signal_energy": 12.0,
   "growth_rate": 0.5,
-  "leaves_properties": "dtbop:dead",
+  "leaves_properties": "dtbop:dying",
   "environment_factors" : {
     "lush": 0.75,
     "spooky": 1.05,

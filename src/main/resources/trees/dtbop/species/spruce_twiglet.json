@@ -1,0 +1,11 @@
+{
+  "type": "dtbop:twiglet",
+  "family": "spruce",
+  "leaves_properties": "dtbop:spruce_twiglet",
+  "environment_factors" : {
+    "hot": 0.5,
+    "dry": 0.5,
+    "cold": 1.05
+  },
+  "perfect_biomes": { "type": "biomesoplenty:tundra.*" }
+}

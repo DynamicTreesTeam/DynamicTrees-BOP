@@ -1,6 +1,6 @@
 {
-  "common_leaves": "dtbop:dead",
-  "common_species": "dtbop:dead",
+  "common_leaves": "dtbop:dying",
+  "common_species": "dtbop:dying",
   "primitive_log": "biomesoplenty:dead_log",
   "primitive_stripped_log": "biomesoplenty:stripped_dead_log",
   "max_branch_radius": 8
