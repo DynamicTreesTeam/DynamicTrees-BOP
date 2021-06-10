@@ -11,8 +11,10 @@ import net.minecraft.world.World;
 
 public class PoplarLogic extends GrowthLogicKit {
 
-    public PoplarLogic(ResourceLocation registryName) {
+    private final boolean isLarge;
+    public PoplarLogic(ResourceLocation registryName, boolean isLarge) {
         super(registryName);
+        this.isLarge = isLarge;
     }
 
     @Override
@@ -22,7 +24,7 @@ public class PoplarLogic extends GrowthLogicKit {
         // Alter probability map for direction change
         probMap[0] = signal.isInTrunk() ? 0 : 1;
         probMap[1] = signal.isInTrunk() ? 4 : 1;
-        probMap[2] = probMap[3] = probMap[4] = probMap[5] = (((signal.isInTrunk() && signal.numSteps % 2 == 0) || !signal.isInTrunk()) && signal.energy < 8) ? 2 : 0;
+        probMap[2] = probMap[3] = probMap[4] = probMap[5] = (((signal.isInTrunk() && signal.numSteps % 2 == 0) || !signal.isInTrunk())) ? 2 : 0; // && signal.energy < species.getSignalEnergy() * 0.8
         probMap[originDir.ordinal()] = 0; // Disable the direction we came from
         probMap[signal.dir.ordinal()] += (signal.isInTrunk() ? 0 : signal.numTurns == 1 ? 2 : 1); // Favor current travel direction
 
@@ -32,13 +34,14 @@ public class PoplarLogic extends GrowthLogicKit {
     @Override
     public Direction newDirectionSelected(Species species, Direction newDir, GrowSignal signal) {
         if (signal.isInTrunk() && newDir != Direction.UP) { // Turned out of trunk
-            if (signal.energy >= 4f) {
+            if (isLarge && signal.energy >= 12f)
+                signal.energy = 1.8f;
+            else if (isLarge && signal.energy >= 7f)
+                signal.energy = 2.8f;
+            else if (signal.energy >= 4f)
                 signal.energy = 1.8f; // don't grow branches more than 1 block out from the trunk
-            } else if (signal.energy < 5) {
+            else
                 signal.energy = 0.8f; // don't grow branches, only leaves
-            } else {
-                signal.energy = 0; // don't grow branches or leaves
-            }
         }
         return newDir;
     }
