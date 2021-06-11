@@ -1,11 +1,9 @@
 {
   "type": "dtbop:poplar",
   "family": "dtbop:magic",
-  "generate_seed": true,
-  "generate_sapling": true,
-  "tapering": 0.25,
+  "tapering": 0.1,
   "signal_energy": 20.0,
-  "up_probability": 8,
+  "up_probability": 10,
   "lowest_branch_height": 8,
   "growth_rate": 0.85,
   "growth_logic_kit": "dtbop:large_poplar",

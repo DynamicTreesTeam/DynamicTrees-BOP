@@ -1,0 +1,17 @@
+{
+  "type": "dtbop:twiglet",
+  "family": "dtbop:hellbark",
+  "tapering": 0.3,
+  "signal_energy": 1.5,
+  "up_probability": 1,
+  "lowest_branch_height": 1,
+  "growth_rate": 1.0,
+  "leaves_properties": "dtbop:hellbark",
+  "environment_factors" : {
+    "cold": 0.5,
+    "nether": 1.05
+  },
+  "perfect_biomes": { "type": "nether" },
+  "acceptable_soils": [ "nether_like", "dirt_like" ],
+  "primitive_sapling": "biomesoplenty:hellbark_sapling"
+}

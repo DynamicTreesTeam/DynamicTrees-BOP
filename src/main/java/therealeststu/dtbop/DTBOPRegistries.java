@@ -1,5 +1,6 @@
 package therealeststu.dtbop;
 
+import biomesoplenty.api.biome.BOPBiomes;
 import biomesoplenty.api.block.BOPBlocks;
 import com.ferreusveritas.dynamictrees.DynamicTrees;
 import com.ferreusveritas.dynamictrees.api.cells.CellKit;
@@ -13,14 +14,20 @@ import com.ferreusveritas.dynamictrees.growthlogic.GrowthLogicKit;
 import com.ferreusveritas.dynamictrees.systems.DirtHelper;
 import com.ferreusveritas.dynamictrees.systems.RootyBlockHelper;
 import com.ferreusveritas.dynamictrees.systems.dropcreators.DropCreator;
+import com.ferreusveritas.dynamictrees.systems.genfeatures.BeeNestGenFeature;
 import com.ferreusveritas.dynamictrees.systems.genfeatures.GenFeature;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.Biomes;
+import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -35,6 +42,7 @@ import therealeststu.dtbop.trees.PoplarSpecies;
 import therealeststu.dtbop.trees.TwigletSpecies;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
 @Mod.EventBusSubscriber(bus=Mod.EventBusSubscriber.Bus.MOD)
@@ -83,6 +91,7 @@ public class DTBOPRegistries {
         final Species floweringOak = Species.REGISTRY.get(new ResourceLocation(DynamicTreesBOP.MOD_ID, "flowering_oak"));
         final Species infested = Species.REGISTRY.get(new ResourceLocation(DynamicTreesBOP.MOD_ID, "infested"));
         final Species silk = Species.REGISTRY.get(new ResourceLocation(DynamicTreesBOP.MOD_ID, "silk"));
+        final Species rainbow_birch = Species.REGISTRY.get(new ResourceLocation(DynamicTreesBOP.MOD_ID, "rainbow_birch"));
 
         if (floweringOak.isValid()){
             LeavesProperties floweringLeaves = LeavesProperties.REGISTRY.get(new ResourceLocation(DynamicTreesBOP.MOD_ID, "flowering_oak"));
@@ -96,6 +105,15 @@ public class DTBOPRegistries {
         }
         if (silk.isValid()){
             silk.addDropCreator(new StringDropCreator(1f));
+        }
+        if (rainbow_birch.isValid()){
+            rainbow_birch.addGenFeature(new BeeNestGenFeature(new ResourceLocation("dynamictrees","bee_nest"))
+                    .with(BeeNestGenFeature.WORLD_GEN_CHANCE_FUNCTION, (world,pos)->{
+                        RegistryKey<Biome> biomeKey = RegistryKey.create(Registry.BIOME_REGISTRY, Objects.requireNonNull(world.getUncachedNoiseBiome(pos.getX() >> 2, pos.getY() >> 2, pos.getZ() >> 2).getRegistryName()));
+                        if (biomeKey == BOPBiomes.rainbow_hills)
+                            return 0.02;
+                         else return BiomeDictionary.hasType(biomeKey, BiomeDictionary.Type.FOREST) ? 0.0005 : 0.0;
+                    }));
         }
 
         DirtHelper.registerSoil(BOPBlocks.origin_grass_block, DirtHelper.DIRT_LIKE);

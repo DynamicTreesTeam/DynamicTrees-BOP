@@ -1,0 +1,7 @@
+{
+  "common_leaves": "dtbop:pink_cherry",
+  "common_species": "dtbop:pink_cherry",
+  "primitive_log": "biomesoplenty:cherry_log",
+  "primitive_stripped_log": "biomesoplenty:stripped_cherry_log",
+  "max_branch_radius": 8
+}

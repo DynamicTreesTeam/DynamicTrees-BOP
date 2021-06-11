@@ -23,7 +23,7 @@ public class PoplarLogic extends GrowthLogicKit {
 
         // Alter probability map for direction change
         probMap[0] = signal.isInTrunk() ? 0 : 1;
-        probMap[1] = signal.isInTrunk() ? 4 : 1;
+        probMap[1] = signal.isInTrunk() ? species.getUpProbability() : 1;
         probMap[2] = probMap[3] = probMap[4] = probMap[5] = (((signal.isInTrunk() && signal.numSteps % 2 == 0) || !signal.isInTrunk())) ? 2 : 0; // && signal.energy < species.getSignalEnergy() * 0.8
         probMap[originDir.ordinal()] = 0; // Disable the direction we came from
         probMap[signal.dir.ordinal()] += (signal.isInTrunk() ? 0 : signal.numTurns == 1 ? 2 : 1); // Favor current travel direction

@@ -1,5 +1,7 @@
 {
   "family": "dtbop:burnt",
+  "generate_seed": false,
+  "generate_sapling": false,
   "tapering": 0.3,
   "signal_energy": 12.0,
   "growth_rate": 0.0,

@@ -7,5 +7,5 @@
     "cold": 0.7,
     "wet": 1.05
   },
-  "perfect_biomes": { "type": "biomesoplenty:dead_swamp" }
+  "perfect_biomes": { "types": ["dead", "swamp"] }
 }

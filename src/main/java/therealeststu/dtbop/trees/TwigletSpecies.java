@@ -19,7 +19,8 @@ public class TwigletSpecies extends Species {
 
     @Override
     public LogsAndSticks getLogsAndSticks(NetVolumeNode.Volume volume) {
-        volume.addVolume(1, 0);
-        return super.getLogsAndSticks(volume);
+        NetVolumeNode.Volume volume1 = new NetVolumeNode.Volume(volume.getRawVolumesArray());
+        volume1.addVolume(NetVolumeNode.Volume.VOXELSPERLOG);
+        return super.getLogsAndSticks(volume1);
     }
 }

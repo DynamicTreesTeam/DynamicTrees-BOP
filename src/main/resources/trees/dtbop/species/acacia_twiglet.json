@@ -6,6 +6,6 @@
     "cold": 0.5,
     "dry": 1.05
   },
-  "perfect_biomes": { "type": "biomesoplenty:.*scrublands.*" },
+  "perfect_biomes": { "name": "biomesoplenty:.*scrublands.*" },
   "acceptable_soils": ["dirt_like", "sand_like"]
 }

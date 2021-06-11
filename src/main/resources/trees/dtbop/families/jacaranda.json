@@ -1,0 +1,7 @@
+{
+  "common_leaves": "dtbop:jacaranda",
+  "common_species": "dtbop:jacaranda",
+  "primitive_log": "biomesoplenty:jacaranda_log",
+  "primitive_stripped_log": "biomesoplenty:stripped_jacaranda_log",
+  "max_branch_radius": 8
+}

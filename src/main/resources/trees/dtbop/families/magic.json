@@ -3,5 +3,6 @@
   "common_species": "dtbop:magic_poplar",
   "primitive_log": "biomesoplenty:magic_log",
   "primitive_stripped_log": "biomesoplenty:stripped_magic_log",
-  "max_branch_radius": 8
+  "max_branch_radius": 8,
+  "conifer_variants": true
 }

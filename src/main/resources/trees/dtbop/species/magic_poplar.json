@@ -12,5 +12,7 @@
   "leaves_properties": "dtbop:magic_poplar",
   "seed_drop_rarity": 1.0,
   "stick_drop_rarity": 1.0,
-  "perfect_biomes": { "name": "biomesoplenty:mystic.*" }
+  "mega_species": "dtbop:large_magic_poplar",
+  "perfect_biomes": { "name": "biomesoplenty:mystic.*" },
+  "primitive_sapling": "biomesoplenty:magic_sapling"
 }

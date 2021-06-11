@@ -5,14 +5,12 @@
   "growth_rate": 0.8,
   "leaves_properties": "dtbop:sparse_oak",
   "environment_factors" : {
-    "cold": 0.75,
-    "hot": 0.5,
-    "dry": 0.5,
-    "forest": 1.05
+    "wet": 0.75,
+    "plains": 1.05
   },
   "seed_drop_rarity": 1.0,
   "stick_drop_rarity": 1.0,
-  "perfect_biomes": { "types": [ "forest", "overworld" ] },
+  "perfect_biomes": { "types": [ "plains", "overworld" ] },
   "features" : [
     {
       "name": "rot_soil",
