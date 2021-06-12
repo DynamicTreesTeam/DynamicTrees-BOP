@@ -1,7 +1,7 @@
 {   "parent": "dynamictrees:block/smartmodel/sapling",
   "textures": {
-    "particle": "biomesoplenty:block/magic_poplar_leaves",
-    "log": "biomesoplenty:block/magic_poplar_log",
-    "leaves": "biomesoplenty:block/magic_poplar_leaves"
+    "particle": "biomesoplenty:block/magic_leaves",
+    "log": "biomesoplenty:block/magic_log",
+    "leaves": "biomesoplenty:block/magic_leaves"
   }
 }

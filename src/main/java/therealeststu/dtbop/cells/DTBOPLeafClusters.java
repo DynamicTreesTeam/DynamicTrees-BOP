@@ -131,4 +131,22 @@ public class DTBOPLeafClusters {
             0, 2, 0,
     }).setCenter(new BlockPos(1, 1, 1));
 
+    public static final SimpleVoxmap HELLBARK = new SimpleVoxmap(5, 2, 5, new byte[] {
+
+            //Layer 0(Bottom)
+            0, 2, 1, 2, 0,
+            2, 3, 4, 3, 2,
+            1, 4, 0, 4, 1,
+            2, 3, 4, 3, 2,
+            0, 2, 1, 2, 0,
+
+            //Layer 1 (Top)
+            0, 0, 0, 0, 0,
+            0, 0, 5, 0, 0,
+            0, 5, 6, 5, 0,
+            0, 0, 5, 0, 0,
+            0, 0, 0, 0, 0,
+
+    }).setCenter(new BlockPos(2, 0, 2));
+
 }

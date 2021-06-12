@@ -14,6 +14,7 @@
   "item.dtbop.pink_cherry_seed":"Pink Cherry Pit",
   "item.dtbop.white_cherry_seed":"White Cherry Pit",
   "item.dtbop.hellbark_seed":"Hellbark Seed",
+  "item.dtbop.willow_seed":"Willow Catkin",
 
   "species.dtbop.poplar":"Poplar",
   "species.dtbop.dark_poplar":"Dark Poplar",
@@ -40,6 +41,8 @@
   "species.dtbop.pink_cherry":"Pink Cherry",
   "species.dtbop.white_cherry":"White Cherry",
   "species.dtbop.hellbark":"Hellbark",
+  "species.dtbop.willow":"Willow",
+  "species.dtbop.cypress_willow":"Cypress",
 
   "block.dtbop.palm_branch":"Palm",
   "block.dtbop.dead_branch":"Dead Tree",
@@ -47,5 +50,9 @@
   "block.dtbop.magic_branch":"Magic Tree",
   "block.dtbop.jacaranda_branch":"Jacaranda Tree",
   "block.dtbop.cherry_branch":"Cherry Tree",
-  "block.dtbop.hellbark_branch":"Hellbark Bush"
+  "block.dtbop.hellbark_branch":"Hellbark Bush",
+  "block.dtbop.willow_branch":"Willow Tree",
+
+
+  "block.dtbop.large_rooty_water":"Large Water Roots"
 }

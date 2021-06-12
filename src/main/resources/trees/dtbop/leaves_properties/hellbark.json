@@ -1,8 +1,9 @@
 {
   "primitive_leaves": "biomesoplenty:hellbark_leaves",
-  "cell_kit": "dynamictrees:acacia",
+  "cell_kit": "dtbop:hellbark",
   "smother": 2,
   "light_requirement": 0,
   "fire_spread": 0,
-  "flammability": 0
+  "flammability": 0,
+  "can_grow_on_ground": true
 }

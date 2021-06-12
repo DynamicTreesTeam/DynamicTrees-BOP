@@ -1,0 +1,27 @@
+{
+  "family": "dtbop:willow",
+  "tapering": 0.3,
+  "signal_energy": 12.0,
+  "growth_rate": 0.8,
+  "leaves_properties": "dtbop:willow",
+  "environment_factors" : {
+    "hot": 0.7,
+    "dry": 0.5
+  },
+  "seed_drop_rarity": 1.0,
+  "stick_drop_rarity": 1.0,
+  "perfect_biomes": { "types": [ "swamp", "overworld" ] },
+  "primitive_sapling": "biomesoplenty:willow_sapling",
+  "features" : [
+    {
+      "name": "vines",
+      "properties": {
+        "block": "biomesoplenty:willow_vines",
+        "max_length": 7,
+        "vertical_spread": 30,
+        "ray_distance": 6,
+        "quantity": 24
+      }
+    }
+  ]
+}

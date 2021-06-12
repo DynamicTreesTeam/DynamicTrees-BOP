@@ -5,9 +5,7 @@ import com.ferreusveritas.dynamictrees.api.cells.CellNull;
 import com.ferreusveritas.dynamictrees.api.cells.ICell;
 import com.ferreusveritas.dynamictrees.api.cells.ICellSolver;
 import com.ferreusveritas.dynamictrees.api.registry.IRegistry;
-import com.ferreusveritas.dynamictrees.cells.CellKits;
-import com.ferreusveritas.dynamictrees.cells.MetadataCell;
-import com.ferreusveritas.dynamictrees.cells.NormalCell;
+import com.ferreusveritas.dynamictrees.cells.*;
 import com.ferreusveritas.dynamictrees.util.SimpleVoxmap;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
@@ -237,8 +235,65 @@ public class DTBOPCellKits {
 
     };
 
+    public static final CellKit HELLBARK = new CellKit(new ResourceLocation(DynamicTreesBOP.MOD_ID, "hellbark")) {
+
+        private final ICell hellbarkBranch = new ICell() {
+            @Override
+            public int getValue() {
+                return 5;
+            }
+
+            final int[] map = {0, 7, 5, 5, 5, 5};
+
+            @Override
+            public int getValueFromSide(Direction side) {
+                return map[side.ordinal()];
+            }
+
+        };
+
+        private final ICell[] hellbarkLeafCells = {
+                CellNull.NULL_CELL,
+                new HellbarkLeafCell(1),
+                new HellbarkLeafCell(2),
+                new HellbarkLeafCell(3),
+                new HellbarkLeafCell(4),
+                new HellbarkLeafCell(5),
+                new HellbarkLeafCell(6),
+                new HellbarkLeafCell(7)
+        };
+
+        private final CellKits.BasicSolver hellbarkSolver = new CellKits.BasicSolver(new short[]{0x0716,0x0615, 0x0514, 0x0423, 0x0312, 0x0221});
+
+        @Override
+        public ICell getCellForLeaves(int hydro) {
+            return hellbarkLeafCells[hydro];
+        }
+
+        @Override
+        public ICell getCellForBranch(int radius, int meta) {
+            return radius <= 4 ? hellbarkBranch : CellNull.NULL_CELL;
+        }
+
+        @Override
+        public SimpleVoxmap getLeafCluster() {
+            return DTBOPLeafClusters.HELLBARK;
+        }
+
+        @Override
+        public ICellSolver getCellSolver() {
+            return hellbarkSolver;
+        }
+
+        @Override
+        public int getDefaultHydration() {
+            return 6;
+        }
+
+    };
+
     public static void register(final IRegistry<CellKit> registry) {
-        registry.registerAll(SPARSE, POPLAR, MAHOGANY, BRUSH, EUCALYPTUS);
+        registry.registerAll(SPARSE, POPLAR, MAHOGANY, BRUSH, EUCALYPTUS, HELLBARK);
     }
 
 }

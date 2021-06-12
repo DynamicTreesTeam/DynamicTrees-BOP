@@ -1,0 +1,33 @@
+{
+  "type": "dtbop:cypress",
+  "family": "dtbop:willow",
+  "tapering": 0.4,
+  "up_probability": 5,
+  "lowest_branch_height": 2,
+  "growth_rate": 0.8,
+  "soil_longevity": 8,
+  "max_branch_radius": 16,
+  "growth_logic_kit": "dtbop:cypress",
+  "leaves_properties": "dtbop:cypress_willow",
+  "environment_factors" : {
+    "hot": 0.7,
+    "dry": 0.5
+  },
+  "seed_drop_rarity": 1.0,
+  "stick_drop_rarity": 1.0,
+  "perfect_biomes": { "types": [ "swamp", "overworld" ] },
+  "acceptable_soils": [ "water_like", "dirt_like" ],
+  "features": [
+    {
+      "name": "vines",
+      "properties": {
+        "block": "biomesoplenty:willow_vines",
+        "max_length": 7,
+        "vertical_spread": 30,
+        "ray_distance": 6,
+        "quantity": 24
+      }
+    },
+    "dtbop:extra_bottom_flare"
+  ]
+}

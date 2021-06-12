@@ -1,0 +1,7 @@
+{
+  "common_leaves": "dtbop:willow",
+  "common_species": "dtbop:willow",
+  "primitive_log": "biomesoplenty:willow_log",
+  "primitive_stripped_log": "biomesoplenty:willow_log",
+  "max_branch_radius": 24
+}

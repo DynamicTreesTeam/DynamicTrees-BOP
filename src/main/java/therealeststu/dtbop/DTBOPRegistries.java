@@ -2,31 +2,24 @@ package therealeststu.dtbop;
 
 import biomesoplenty.api.biome.BOPBiomes;
 import biomesoplenty.api.block.BOPBlocks;
-import com.ferreusveritas.dynamictrees.DynamicTrees;
 import com.ferreusveritas.dynamictrees.api.cells.CellKit;
 import com.ferreusveritas.dynamictrees.api.registry.TypeRegistryEvent;
 import com.ferreusveritas.dynamictrees.blocks.leaves.LeavesProperties;
-import com.ferreusveritas.dynamictrees.blocks.leaves.PalmLeavesProperties;
-import com.ferreusveritas.dynamictrees.blocks.leaves.SolidLeavesProperties;
-import com.ferreusveritas.dynamictrees.blocks.leaves.WartProperties;
 import com.ferreusveritas.dynamictrees.blocks.rootyblocks.RootyBlock;
+import com.ferreusveritas.dynamictrees.blocks.rootyblocks.RootyWaterBlock;
 import com.ferreusveritas.dynamictrees.growthlogic.GrowthLogicKit;
 import com.ferreusveritas.dynamictrees.systems.DirtHelper;
 import com.ferreusveritas.dynamictrees.systems.RootyBlockHelper;
-import com.ferreusveritas.dynamictrees.systems.dropcreators.DropCreator;
 import com.ferreusveritas.dynamictrees.systems.genfeatures.BeeNestGenFeature;
 import com.ferreusveritas.dynamictrees.systems.genfeatures.GenFeature;
 import com.ferreusveritas.dynamictrees.trees.Species;
+import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
+import net.minecraft.block.Blocks;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
-import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.Biomes;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -34,19 +27,19 @@ import net.minecraftforge.fml.common.Mod;
 import therealeststu.dtbop.blocks.leaves.CobwebLeavesProperties;
 import therealeststu.dtbop.cells.DTBOPCellKits;
 import therealeststu.dtbop.dropcreators.StringDropCreator;
-import therealeststu.dtbop.genfeature.AlternativeLeavesGenFeature;
 import therealeststu.dtbop.genfeature.DTBOPGenFeatures;
 import therealeststu.dtbop.growthlogic.DTBOPGrowthLogicKits;
 import therealeststu.dtbop.trees.Bush;
+import therealeststu.dtbop.trees.CypressSpecies;
 import therealeststu.dtbop.trees.PoplarSpecies;
 import therealeststu.dtbop.trees.TwigletSpecies;
 
-import java.util.List;
 import java.util.Objects;
-import java.util.Random;
 
 @Mod.EventBusSubscriber(bus=Mod.EventBusSubscriber.Bus.MOD)
 public class DTBOPRegistries {
+
+    public static RootyWaterBlock largeRootyWater;
 
     @SubscribeEvent
     public static void onGenFeatureRegistry (final com.ferreusveritas.dynamictrees.api.registry.RegistryEvent<GenFeature> event) {
@@ -70,6 +63,7 @@ public class DTBOPRegistries {
     public static void registerSpeciesTypes (final TypeRegistryEvent<Species> event) {
         event.registerType(new ResourceLocation(DynamicTreesBOP.MOD_ID, "twiglet"), TwigletSpecies.TYPE);
         event.registerType(new ResourceLocation(DynamicTreesBOP.MOD_ID, "poplar"), PoplarSpecies.TYPE);
+        event.registerType(new ResourceLocation(DynamicTreesBOP.MOD_ID, "cypress"), CypressSpecies.TYPE);
     }
 
     @SubscribeEvent
@@ -115,6 +109,10 @@ public class DTBOPRegistries {
                          else return BiomeDictionary.hasType(biomeKey, BiomeDictionary.Type.FOREST) ? 0.0005 : 0.0;
                     }));
         }
+
+        largeRootyWater = new RootyWaterBlock(AbstractBlock.Properties.copy(Blocks.WATER).randomTicks(),
+                "large_rooty_water", Blocks.WATER);
+        event.getRegistry().register(largeRootyWater);
 
         DirtHelper.registerSoil(BOPBlocks.origin_grass_block, DirtHelper.DIRT_LIKE);
         DirtHelper.registerSoil(BOPBlocks.white_sand, DirtHelper.SAND_LIKE);

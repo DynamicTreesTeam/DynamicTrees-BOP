@@ -15,6 +15,12 @@
   "stick_drop_rarity": 1.0,
   "perfect_biomes": { "name": "biomesoplenty:orchard" },
   "features" : [
+    {
+      "name": "dtbop:alt_leaves",
+      "properties": {
+        "alternative_leaves": "dtbop:flowering_oak_leaves"
+      }
+    },
     "fruit"
   ]
 }

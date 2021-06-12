@@ -1,6 +1,8 @@
 package therealeststu.dtbop;
 
 import com.ferreusveritas.dynamictrees.api.registry.RegistryHandler;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.color.BlockColors;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -26,7 +28,9 @@ public class DynamicTreesBOP
     }
 
     private void clientSetup(final FMLClientSetupEvent event) {
-        // do something that can only be done on the client
+        final BlockColors blockColors = Minecraft.getInstance().getBlockColors();
+
+        blockColors.register((state, world, pos, tintIndex) -> DTBOPRegistries.largeRootyWater.colorMultiplier(blockColors, state, world, pos, tintIndex), DTBOPRegistries.largeRootyWater);
     }
 
 }

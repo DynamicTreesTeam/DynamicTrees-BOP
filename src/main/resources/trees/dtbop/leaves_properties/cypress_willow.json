@@ -1,0 +1,5 @@
+{
+  "primitive_leaves": "biomesoplenty:willow_leaves",
+  "cell_kit": "dynamictrees:conifer",
+  "smother": 9
+}
