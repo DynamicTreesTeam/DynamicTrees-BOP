@@ -2,8 +2,9 @@
   "type": "dtbop:cypress",
   "family": "dtbop:willow",
   "tapering": 0.4,
+  "signal_energy": 6.0,
   "up_probability": 5,
-  "lowest_branch_height": 2,
+  "lowest_branch_height": 3,
   "growth_rate": 0.8,
   "soil_longevity": 8,
   "max_branch_radius": 16,
@@ -21,11 +22,21 @@
     {
       "name": "vines",
       "properties": {
+        "vine_type": "ceiling",
+        "block": "biomesoplenty:spanish_moss_plant",
+        "tip_block": "biomesoplenty:spanish_moss",
+        "max_length": 12,
+        "quantity": 16
+      }
+    },
+    {
+      "name": "dtbop:vines_2",
+      "properties": {
         "block": "biomesoplenty:willow_vines",
         "max_length": 7,
         "vertical_spread": 30,
         "ray_distance": 6,
-        "quantity": 24
+        "quantity": 12
       }
     },
     "dtbop:extra_bottom_flare"
