@@ -1,0 +1,6 @@
+{
+  "loader": "dynamictrees:root",
+  "textures": {
+    "bark": "biomesoplenty:block/redwood_log"
+  }
+}

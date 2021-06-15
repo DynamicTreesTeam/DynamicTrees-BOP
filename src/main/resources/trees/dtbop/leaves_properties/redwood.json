@@ -1,0 +1,6 @@
+{
+  "primitive_leaves": "biomesoplenty:redwood_leaves",
+  "cell_kit": "dynamictrees:conifer",
+  "smother": 26,
+  "light_requirement": 9
+}

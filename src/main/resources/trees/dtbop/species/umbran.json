@@ -1,0 +1,23 @@
+{
+  "family": "dtbop:umbran",
+  "tapering": 0.25,
+  "signal_energy": 6.0,
+  "up_probability": 4,
+  "lowest_branch_height": 3,
+  "growth_rate": 0.9,
+  "growth_logic_kit": "dtbop:small_conifer",
+  "leaves_properties": "dtbop:umbran",
+  "environment_factors" : {
+    "hot": 0.50,
+    "dry": 0.25,
+    "wet": 0.75
+  },
+  "seed_drop_rarity": 1.0,
+  "stick_drop_rarity": 1.0,
+  "perfect_biomes": { "type": "coniferous" },
+  "primitive_sapling": "biomesoplenty:umbran_sapling",
+  "mega_species": "dtbop:mega_umbran",
+  "features" : [
+    "conifer_topper"
+  ]
+}

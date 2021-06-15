@@ -1,0 +1,8 @@
+{
+  "common_leaves": "dtbop:fir",
+  "common_species": "dtbop:fir",
+  "primitive_log": "biomesoplenty:fir_log",
+  "primitive_stripped_log": "biomesoplenty:stripped_fir_log",
+  "max_branch_radius": 24,
+  "conifer_variants": true
+}

@@ -15,6 +15,10 @@
   "item.dtbop.white_cherry_seed":"White Cherry Pit",
   "item.dtbop.hellbark_seed":"Hellbark Seed",
   "item.dtbop.willow_seed":"Willow Catkin",
+  "item.dtbop.fir_seed":"Fir Cone",
+  "item.dtbop.mahogany_seed":"Mahogany Pod",
+  "item.dtbop.redwood_seed":"Redwood Cone",
+  "item.dtbop.umbran_seed":"Umbran Cone",
 
   "species.dtbop.poplar":"Poplar",
   "species.dtbop.dark_poplar":"Dark Poplar",
@@ -43,6 +47,13 @@
   "species.dtbop.hellbark":"Hellbark",
   "species.dtbop.willow":"Willow",
   "species.dtbop.cypress_willow":"Cypress",
+  "species.dtbop.fir":"Fir",
+  "species.dtbop.mega_fir":"Mega Fir",
+  "species.dtbop.mahogany":"Mahogany",
+  "species.dtbop.small_redwood":"Small Redwood",
+  "species.dtbop.redwood":"Redwood",
+  "species.dtbop.umbran":"Umbran",
+  "species.dtbop.mega_umbran":"Mega Umbran",
 
   "block.dtbop.palm_branch":"Palm",
   "block.dtbop.dead_branch":"Dead Tree",
@@ -52,6 +63,10 @@
   "block.dtbop.cherry_branch":"Cherry Tree",
   "block.dtbop.hellbark_branch":"Hellbark Bush",
   "block.dtbop.willow_branch":"Willow Tree",
+  "block.dtbop.fir_branch":"Fir Tree",
+  "block.dtbop.mahogany_branch":"Mahogany Tree",
+  "block.dtbop.redwood_branch":"Redwood Tree",
+  "block.dtbop.umbran_branch":"Umbran Tree",
 
 
   "block.dtbop.large_rooty_water":"Large Water Roots"

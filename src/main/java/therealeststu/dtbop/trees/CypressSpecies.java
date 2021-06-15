@@ -32,6 +32,11 @@ public class CypressSpecies extends Species {
     }
 
     @Override
+    public Direction selectNewDirection(World world, BlockPos pos, BranchBlock branch, GrowSignal signal) {
+        return super.selectNewDirection(world, pos, branch, signal);
+    }
+
+    @Override
     public boolean placeRootyDirtBlock(IWorld world, BlockPos rootPos, int fertility) {
         if (this.isWater(world.getBlockState(rootPos)))
             return world.setBlock(rootPos, (DTBOPRegistries.largeRootyWater.defaultBlockState().setValue(RootyBlock.FERTILITY, fertility)).setValue(RootyBlock.IS_VARIANT, this.doesRequireTileEntity(world, rootPos)), 3);

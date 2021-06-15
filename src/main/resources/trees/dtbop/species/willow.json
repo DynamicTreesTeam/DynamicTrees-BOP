@@ -20,7 +20,8 @@
         "max_length": 7,
         "vertical_spread": 30,
         "ray_distance": 6,
-        "quantity": 24
+        "quantity": 24,
+        "fruiting_radius": 6
       }
     }
   ]

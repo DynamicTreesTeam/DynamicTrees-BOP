@@ -1,0 +1,10 @@
+{
+  "common_leaves": "dtbop:redwood",
+  "common_species": "dtbop:small_redwood",
+  "primitive_log": "biomesoplenty:redwood_log",
+  "primitive_stripped_log": "biomesoplenty:stripped_redwood_log",
+  "max_branch_radius": 24,
+  "max_signal_depth": 64,
+  "generate_surface_root": true,
+  "conifer_variants": true
+}

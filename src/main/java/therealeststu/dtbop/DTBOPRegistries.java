@@ -29,10 +29,7 @@ import therealeststu.dtbop.cells.DTBOPCellKits;
 import therealeststu.dtbop.dropcreators.StringDropCreator;
 import therealeststu.dtbop.genfeature.DTBOPGenFeatures;
 import therealeststu.dtbop.growthlogic.DTBOPGrowthLogicKits;
-import therealeststu.dtbop.trees.Bush;
-import therealeststu.dtbop.trees.CypressSpecies;
-import therealeststu.dtbop.trees.PoplarSpecies;
-import therealeststu.dtbop.trees.TwigletSpecies;
+import therealeststu.dtbop.trees.*;
 
 import java.util.Objects;
 

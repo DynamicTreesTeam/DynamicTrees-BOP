@@ -1,0 +1,35 @@
+{
+  "family": "dtbop:umbran",
+  "tapering": 0.3,
+  "signal_energy": 32.0,
+  "up_probability": 7,
+  "lowest_branch_height": 7,
+  "growth_rate": 1.0,
+  "soil_longevity": 14,
+  "max_branch_radius": 24,
+  "growth_logic_kit": "dtbop:fir",
+  "leaves_properties": "dtbop:umbran",
+  "environment_factors" : {
+    "cold": 0.75,
+    "hot": 0.50,
+    "dry": 0.50,
+    "forest": 1.05,
+    "spooky": 1.1,
+    "dead": 1.1,
+    "magical": 1.1
+  },
+  "seed_drop_rarity": 1.0,
+  "stick_drop_rarity": 1.0,
+  "perfect_biomes": { "type": "coniferous" },
+  "features" : [
+    "conifer_topper",
+    {
+      "name": "mound",
+      "properties": {
+        "mound_cutoff_radius": 999
+      }
+    },
+    "clear_volume",
+    "bottom_flare"
+  ]
+}
