@@ -1,0 +1,22 @@
+{
+  "type": "dtbop:twiglet",
+  "family": "dtbop:hellbark",
+  "tapering": 0.3,
+  "signal_energy": 1.5,
+  "up_probability": 1,
+  "lowest_branch_height": 1,
+  "growth_rate": 1.0,
+  "leaves_properties": "dtbop:hellbark_bush",
+  "environment_factors" : {
+    "cold": 0.5,
+    "nether": 1.05
+  },
+  "seed_drop_rarity": 1.0,
+  "stick_drop_rarity": 1.0,
+  "always_show_on_waila": true,
+  "seed_name": "hellbark_seed",
+  "sapling_name": "hellbark_sapling",
+  "perfect_biomes": { "type": "nether" },
+  "acceptable_soils": [ "nether_like", "dirt_like" ],
+  "primitive_sapling": "biomesoplenty:hellbark_sapling"
+}

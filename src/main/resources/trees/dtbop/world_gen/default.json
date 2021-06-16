@@ -15,6 +15,22 @@
       "namespace": "minecraft"
     }
   },
+  {
+    "__comment": "Special exception for woodland trees for now since they use a vanilla tree feature",
+    "select": { "name": "biomesoplenty:.*rainforest.*", "type": "overworld" },
+    "cancellers": {
+      "type": "tree",
+      "namespace": "minecraft"
+    }
+  },
+  {
+    "__comment": "Cancel standard tree features from the BoP nether.",
+    "select": { "name": "biomesoplenty.*", "type": "nether" },
+    "cancellers": {
+      "type": "tree",
+      "namespace": "biomesoplenty"
+    }
+  },
 
   {
     "select": { "name": "biomesoplenty:tropics" },
@@ -32,18 +48,81 @@
     }
   },
   {
+    "select": { "name": "biomesoplenty:rainforest" },
+    "apply": {
+      "species" : {
+        "random" : {
+          "dtbop:mahogany" : 7,
+          "jungle" : 1
+        }
+      },
+      "density": 2.0,
+      "chance": 1.0,
+      "forestness" : 1.0
+    }
+  },
+  {
+    "select": { "name": "biomesoplenty:rainforest_cliffs" },
+    "apply": {
+      "species" : {
+        "random" : {
+          "dtbop:mahogany" : 1,
+          "dtbop:jungle_twiglet" : 6,
+          "dtbop:oak_bush" : 2
+        }
+      },
+      "density": 4.0,
+      "chance": 1.0,
+      "forestness" : 1.0
+    }
+  },
+  {
+    "select": { "name": "biomesoplenty:rainforest_floodplain" },
+    "apply": {
+      "species" : {
+        "random" : {
+          "dtbop:sparse_oak" : 1,
+          "dtbop:oak_bush" : 1
+        }
+      },
+      "density": 0.5,
+      "chance": 0.3
+    }
+  },
+  {
+    "select": { "name": "biomesoplenty:fungal_jungle" },
+    "apply": {
+      "species" : "dtbop:oak_bush",
+      "density": 1.0,
+      "chance": 0.6
+    }
+  },
+  {
     "select": { "name": "biomesoplenty:alps_foothills" },
     "apply": {
-      "species" : "spruce",
-      "density": [ 0.8 ],
-      "chance": 0.6
+      "species" : "dtbop:alps_spruce",
+      "density": 0.8,
+      "chance": 0.4
+    }
+  },
+  {
+    "select": { "name": "biomesoplenty:jade_cliffs" },
+    "apply": {
+      "species" : {
+        "random" : {
+          "dtbop:spruce_bush" : 15,
+          "spruce" : 1
+        }
+      },
+      "density": 4.0,
+      "chance": 1.0
     }
   },
   {
     "select": { "name": "biomesoplenty:.*woodland" },
     "apply": {
       "species" : "oak",
-      "density": [ 1.0 ],
+      "density": 1.0,
       "chance": 0.9,
       "forestness" : 1.0
     }
@@ -51,6 +130,7 @@
   {
     "select": { "name": "biomesoplenty:dense_woodland" },
     "apply": {
+      "density": 1.5,
       "chance": 1.0
     }
   },
@@ -63,7 +143,7 @@
           "oak" : 1
         }
       },
-      "density": [ 0.1 ],
+      "density": 0.1,
       "chance": 0.2
     }
   },
@@ -76,7 +156,7 @@
           "dtbop:flowering_oak" : 1
         }
       },
-      "density": [ 0.1 ],
+      "density": 0.1,
       "chance": 0.3
     }
   },
@@ -89,8 +169,40 @@
           "dtbop:flowering_oak" : 1
         }
       },
-      "density": [ 1.0 ],
+      "density": 1.0,
       "chance": 1.0,
+      "forestness" : 1.0
+    }
+  },
+  {
+    "select": { "name": "biomesoplenty:cherry_blossom_grove" },
+    "apply": {
+      "species" : {
+        "random" : {
+          "dtbop:white_cherry" : 4,
+          "dtbop:pink_cherry" : 4,
+          "dtbop:flowering_oak" : 1,
+          "dtbop:flowering_oak_bush" : 1
+        }
+      },
+      "density": 1.0,
+      "chance": 0.8,
+      "forestness" : 1.0
+    }
+  },
+  {
+    "select": { "name": "biomesoplenty:bamboo_blossom_grove" },
+    "apply": {
+      "species" : {
+        "random" : {
+          "dtbop:white_cherry" : 1,
+          "dtbop:pink_cherry" : 1,
+          "dtbop:flowering_oak" : 6,
+          "dtbop:flowering_oak_bush" : 2
+        }
+      },
+      "density": 1.0,
+      "chance": 0.8,
       "forestness" : 1.0
     }
   },
@@ -104,7 +216,7 @@
           "dtbop:flowering_oak_bush" : 3
         }
       },
-      "density": [ 0.5 ],
+      "density": 0.5,
       "chance": 0.6
     }
   },
@@ -119,7 +231,7 @@
           "dtbop:flowering_oak_bush" : 1
         }
       },
-      "density": [ 1 ],
+      "density": 1.0,
       "chance": 1,
       "forestness" : 0.5
     }
@@ -139,6 +251,70 @@
     }
   },
   {
+    "select": { "name": "biomesoplenty:tundra" },
+    "apply": {
+      "species" : "dtbop:maple_twiglet",
+      "density": 0.1,
+      "chance": 0.4
+    }
+  },
+  {
+    "select": { "name": "biomesoplenty:tundra_bog" },
+    "apply": {
+      "species" : {
+        "random" : {
+          "dtbop:maple_twiglet" : 1,
+          "dtbop:oak_twiglet" : 1,
+          "dtbop:spruce_twiglet" : 1
+        }
+      },
+      "density": 4.0,
+      "chance": 1.0
+    }
+  },
+  {
+    "select": { "name": "biomesoplenty:muskeg" },
+    "apply": {
+      "species" : "dtbop:dead",
+      "density": 0.1,
+      "chance": 0.6
+    }
+  },
+  {
+    "select": { "name": "biomesoplenty:wasteland" },
+    "apply": {
+      "species" : {
+        "random" : {
+          "dtbop:dead" : 1,
+          "dtbop:dying" : 1
+        }
+      },
+      "density": 0.1,
+      "chance": 0.02
+    }
+  },
+  {
+    "select": { "name": "biomesoplenty:volcanic_plains" },
+    "apply": {
+      "species" : "dtbop:dark_oak_twiglet",
+      "density": 0.1,
+      "chance": 0.6
+    }
+  },
+  {
+    "select": { "name": "biomesoplenty:lush_desert" },
+    "apply": {
+      "species" : {
+        "random" : {
+          "dtbop:acacia_bush" : 4,
+          "dtbop:sparse_acacia" : 1
+        }
+      },
+      "density": 0.4,
+      "chance": 0.5
+    }
+  },
+  {
     "select": { "name": "biomesoplenty:dry.*" },
     "apply": {
       "species" : {
@@ -148,7 +324,7 @@
           "dtbop:acacia_twiglet" : 1
         }
       },
-      "density": [ 0.8 ],
+      "density": 0.8,
       "chance": 0.5
     }
   },
@@ -156,25 +332,46 @@
     "select": { "name": "biomesoplenty:shrubland.*" },
     "apply": {
       "species" : "dtbop:oak_bush",
-      "density": [ 0.01 ],
+      "density": 0.01,
       "chance": 0.5
     }
   },
   {
     "select": { "name": "biomesoplenty:shrubland_hills" },
     "apply": {
-      "density": [ 2.0 ],
+      "density": 2.0,
       "chance": 1.0
     }
   },
   {
     "select": { "name": "biomesoplenty:orchard" },
     "apply": {
-      "species" : "dtbop:flowering_oak",
-      "density": [ 0.8 ],
-      "chance": 0.5
+      "species" : {
+        "random" : {
+          "dtbop:flowering_oak" : 5,
+          "dtbop:flowering_apple" : 1
+        }
+      },
+      "density": 0.6,
+      "chance": 0.2
     }
   },
+  {
+    "select": { "name": "biomesoplenty:redwood.*" },
+    "apply": {
+      "species" : {
+        "random" : {
+          "dtbop:redwood" : 5,
+          "dtbop:small_redwood" : 3,
+          "dtbop:oak_bush" : 1
+        }
+      },
+      "density": 3.0,
+      "chance": 1.0,
+      "forestness" : 1.0
+    }
+  },
+
   {
     "select": { "name": "biomesoplenty:redwood_forest_edge" },
     "apply": {
@@ -186,31 +383,16 @@
           "dtbop:oak_bush" : 4
         }
       },
-      "density": [ 1.0 ],
-      "chance": 0.9,
+      "density": 0.6,
+      "chance": 0.5,
       "forestness" : 0.75
-    }
-  },
-  {
-    "select": { "name": "biomesoplenty:redwood_forest" },
-    "apply": {
-      "species" : {
-        "random" : {
-          "dtbop:redwood" : 5,
-          "dtbop:small_redwood" : 3,
-          "dtbop:oak_bush" : 1
-        }
-      },
-      "density": [ 3 ],
-      "chance": 1.0,
-      "forestness" : 1.0
     }
   },
   {
     "select": { "name": "biomesoplenty:coniferous_lakes" },
     "apply": {
       "species" : "dtbop:fir",
-      "density": [ 0.5 ],
+      "density": 0.5,
       "chance": 1.0,
       "forestness" : 0.75
     }
@@ -219,7 +401,7 @@
     "select": { "name": "biomesoplenty:.*fir_clearing" },
     "apply": {
       "species" : "dtbop:fir",
-      "density": [ 0.3 ],
+      "density": 0.3,
       "chance": 0.6,
       "forestness" : 0.25
     }
@@ -233,7 +415,7 @@
           "dtbop:fir" : 1
         }
       },
-      "density": [ 1.0 ],
+      "density": 1.0,
       "chance": 1.0,
       "forestness" : 1.0
     }
@@ -248,7 +430,7 @@
           "dtbop:maple" : 2
         }
       },
-      "density": [ 0.8 ],
+      "density": 0.8,
       "chance": 0.9,
       "forestness" : 1.0
     }
@@ -263,7 +445,7 @@
           "dtbop:fir" : 1
         }
       },
-      "density": [ 0.8 ],
+      "density": 0.8,
       "chance": 0.9,
       "forestness" : 1.0
     }
@@ -279,7 +461,7 @@
           "dtbop:maple" : 2
         }
       },
-      "density": [ 1.0 ],
+      "density": 1.0,
       "chance": 1.0,
       "forestness" : 1.0
     }
@@ -289,13 +471,12 @@
     "apply": {
       "species" : {
         "random" : {
-          "oak" : 1,
           "dtbop:orange_autumn" : 1,
           "dtbop:oak_bush" : 2,
           "dtbop:oak_twiglet" : 3
         }
       },
-      "density": [ 0.5 ],
+      "density": 0.5,
       "chance": 0.7
     }
   },
@@ -303,8 +484,8 @@
     "select": { "name": "biomesoplenty:seasonal_orchard" },
     "apply": {
       "species" : "dtbop:yellow_autumn",
-      "density": [ 0.8 ],
-      "chance": 0.5
+      "density": 0.6,
+      "chance": 0.2
     }
   },
   {
@@ -318,7 +499,7 @@
           "dtbop:dying" : 1
         }
       },
-      "density": [ 0.8 ],
+      "density": 0.8,
       "chance": 1.0,
       "forestness" : 0.75
     }
@@ -334,7 +515,7 @@
           "dtbop:dying" : 2
         }
       },
-      "density": [ 1.0 ],
+      "density": 1.0,
       "chance": 1.0,
       "forestness" : 1.0
     }
@@ -348,7 +529,7 @@
           "spruce" : 1
         }
       },
-      "density": [ 0.8 ],
+      "density": 0.8,
       "chance": 1.0
     }
   },
@@ -361,9 +542,23 @@
           "spruce" : 3
         }
       },
-      "density": [ 1.0 ],
+      "density": 1.0,
       "chance": 1.0,
       "forestness" : 1.0
+    }
+  },
+  {
+    "select": { "name": "biomesoplenty:.*bayou" },
+    "apply": {
+      "species" : "dtbop:cypress_willow",
+      "density": 0.2,
+      "chance": 0.1
+    }
+  },
+  {
+    "select": { "name": "biomesoplenty:deep_bayou" },
+    "apply": {
+      "chance": 0.6
     }
   },
   {
@@ -375,8 +570,8 @@
           "dtbop:dead" : 1
         }
       },
-      "density": [ 0.7 ],
-      "chance": 0.8,
+      "density": 0.7,
+      "chance": 0.3,
       "forestness" : 0.25
     }
   },
@@ -391,8 +586,8 @@
           "spruce" : 2
         }
       },
-      "density": [ 0.7 ],
-      "chance": 0.9,
+      "density": 0.7,
+      "chance": 0.3,
       "forestness" : 0.25
     }
   },
@@ -406,8 +601,8 @@
           "dtbop:dying" : 1
         }
       },
-      "density": [ 1.0 ],
-      "chance": 0.9,
+      "density": 1.0,
+      "chance": 0.3,
       "forestness" : 0.25
     }
   },
@@ -415,7 +610,7 @@
     "select": { "name": "biomesoplenty:wetland" },
     "apply": {
       "species" : "dtbop:willow",
-      "density": [ 0.5 ],
+      "density": 0.5,
       "chance": 0.9,
       "forestness" : 0.75
     }
@@ -451,8 +646,8 @@
           "dtbop:jacaranda" : 1
         }
       },
-      "density": [ 0.5 ],
-      "chance": 0.1
+      "density": 0.5,
+      "chance": 0.2
     }
   },
   {
@@ -460,15 +655,29 @@
     "apply": {
       "species" : {
         "random" : {
-          "dtbop:large_magic_poplar" : 3,
-          "dtbop:magic_poplar" : 5,
-          "dtbop:flowering_oak" : 4,
-          "dtbop:jacaranda" : 3,
+          "dtbop:large_magic_poplar" : 4,
+          "dtbop:magic_poplar" : 6,
+          "dtbop:flowering_oak" : 5,
+          "dtbop:jacaranda" : 4,
           "dtbop:mega_dark_oak" : 1
         }
       },
-      "density": [ 1.0 ],
+      "density": 0.4,
       "chance": 1.0
+    }
+  },
+
+  {
+    "select": { "name": "biomesoplenty:undergrowth" },
+    "apply": {
+      "species" : {
+        "random" : {
+          "dtbop:hellbark" : 1,
+          "dtbop:hellbark_bush" : 6
+        }
+      },
+      "density": 0.6,
+      "chance": 0.8
     }
   }
 ]

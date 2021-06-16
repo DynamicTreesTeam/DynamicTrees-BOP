@@ -118,6 +118,9 @@ public class DTBOPRegistries {
         DirtHelper.registerSoil(BOPBlocks.dried_salt, DirtHelper.SAND_LIKE);
         DirtHelper.registerSoil(BOPBlocks.mud, DirtHelper.MUD_LIKE);
 
+        //this is for spruce alps
+        DirtHelper.registerSoil(Blocks.STONE, DirtHelper.GRAVEL_LIKE, Blocks.GRAVEL);
+
         for (RootyBlock rooty : RootyBlockHelper.generateListForRegistry(true, DynamicTreesBOP.MOD_ID))
             event.getRegistry().register(rooty);
     }

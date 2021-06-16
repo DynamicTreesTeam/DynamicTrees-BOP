@@ -7,5 +7,6 @@
     "cold": 0.7,
     "wet": 1.05
   },
-  "perfect_biomes": { "types": ["dead", "swamp"] }
+  "perfect_biomes": { "types": ["dead", "swamp"] },
+  "acceptable_soils": ["dirt_like", "sand_like"]
 }

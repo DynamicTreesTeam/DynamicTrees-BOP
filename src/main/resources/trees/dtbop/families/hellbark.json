@@ -1,6 +1,6 @@
 {
-  "common_leaves": "dtbop:hellbark",
-  "common_species": "dtbop:hellbark",
+  "common_leaves": "dtbop:hellbark_bush",
+  "common_species": "dtbop:hellbark_bush",
   "primitive_log": "biomesoplenty:hellbark_log",
   "primitive_stripped_log": "biomesoplenty:stripped_hellbark_log",
   "max_branch_radius": 4,

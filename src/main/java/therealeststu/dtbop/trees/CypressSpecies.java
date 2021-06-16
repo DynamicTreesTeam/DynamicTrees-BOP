@@ -33,17 +33,6 @@ public class CypressSpecies extends Species {
     }
 
     @Override
-    public JoCode getJoCode(String joCodeString) {
-        return new JoCode(joCodeString){
-            @Override
-            public void generate(World worldObj, IWorld world, Species species, BlockPos rootPosIn, Biome biome, Direction facing, int radius, SafeChunkBounds safeBounds) {
-                worldObj.setBlockAndUpdate(rootPosIn.below(), Blocks.AIR.defaultBlockState());
-                super.generate(worldObj, world, species, rootPosIn, biome, facing, radius, safeBounds);
-            }
-        };
-    }
-
-    @Override
     public Direction selectNewDirection(World world, BlockPos pos, BranchBlock branch, GrowSignal signal) {
         return super.selectNewDirection(world, pos, branch, signal);
     }

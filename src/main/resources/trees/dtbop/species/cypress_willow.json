@@ -26,7 +26,7 @@
         "block": "biomesoplenty:spanish_moss_plant",
         "tip_block": "biomesoplenty:spanish_moss",
         "max_length": 12,
-        "quantity": 16
+        "quantity": 32
       }
     },
     {
@@ -39,7 +39,6 @@
         "quantity": 12
       }
     },
-    "dtbop:extra_bottom_flare",
-    "conifer_topper"
+    "dtbop:extra_bottom_flare"
   ]
 }
