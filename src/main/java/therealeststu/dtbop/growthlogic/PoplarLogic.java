@@ -4,6 +4,10 @@ import com.ferreusveritas.dynamictrees.growthlogic.GrowthLogicKit;
 import com.ferreusveritas.dynamictrees.systems.GrowSignal;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.util.CoordUtils;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.NoteBlock;
+import net.minecraft.state.properties.NoteBlockInstrument;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -46,19 +50,20 @@ public class PoplarLogic extends GrowthLogicKit {
         return newDir;
     }
 
-    private float getHashedVariation (World world, BlockPos pos){
+
+    private float getHashedVariation (World world, BlockPos pos, int mod){
         long day = world.getGameTime() / 24000L;
         int month = (int)day / 30;//Change the hashs every in-game month
-        return (CoordUtils.coordHashCode(pos.above(month), 2) % 3);//Vary the height energy by a psuedorandom hash function
+        return (CoordUtils.coordHashCode(pos.above(month), 2) % mod);//Vary the height energy by a psuedorandom hash function
     }
 
     @Override
     public float getEnergy(World world, BlockPos pos, Species species, float signalEnergy) {
-        return signalEnergy + getHashedVariation(world, pos); // Vary the height energy by a psuedorandom hash function
+        return signalEnergy + getHashedVariation(world, pos, 3); // Vary the height energy by a psuedorandom hash function
     }
 
     @Override
     public int getLowestBranchHeight(World world, BlockPos pos, Species species, int lowestBranchHeight) {
-        return (int) (lowestBranchHeight + getHashedVariation(world, pos));
+        return (int) (lowestBranchHeight + getHashedVariation(world, pos, 3));
     }
 }

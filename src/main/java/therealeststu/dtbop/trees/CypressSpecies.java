@@ -21,6 +21,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import therealeststu.dtbop.DTBOPRegistries;
 
 public class CypressSpecies extends Species {
@@ -29,6 +30,17 @@ public class CypressSpecies extends Species {
 
     public CypressSpecies(ResourceLocation name, Family family, LeavesProperties leavesProperties) {
         super(name, family, leavesProperties);
+    }
+
+    @Override
+    public JoCode getJoCode(String joCodeString) {
+        return new JoCode(joCodeString){
+            @Override
+            public void generate(World worldObj, IWorld world, Species species, BlockPos rootPosIn, Biome biome, Direction facing, int radius, SafeChunkBounds safeBounds) {
+                worldObj.setBlockAndUpdate(rootPosIn.below(), Blocks.AIR.defaultBlockState());
+                super.generate(worldObj, world, species, rootPosIn, biome, facing, radius, safeBounds);
+            }
+        };
     }
 
     @Override

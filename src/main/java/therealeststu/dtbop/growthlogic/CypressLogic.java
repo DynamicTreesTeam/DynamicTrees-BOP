@@ -5,6 +5,10 @@ import com.ferreusveritas.dynamictrees.growthlogic.GrowthLogicKit;
 import com.ferreusveritas.dynamictrees.systems.GrowSignal;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.util.CoordUtils;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.NoteBlock;
+import net.minecraft.state.properties.NoteBlockInstrument;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -47,11 +51,22 @@ public class CypressLogic extends GrowthLogicKit {
         return direction;
     }
 
-    private float getHashedVariation (World world, BlockPos pos, int factor){
-        long day = world.getGameTime() / 24000L;
-        int month = (int)day / 30;//Change the hashs every in-game month
-        return (CoordUtils.coordHashCode(pos.above(month), 2) % factor);//Vary the height energy by a psuedorandom hash function
+    private float getHashedVariation (World world, BlockPos pos, int mod){
+        BlockState noteblock = world.getBlockState(pos.below());
+        if (!(noteblock.getBlock() instanceof NoteBlock)){
+            int note = world.getRandom().nextInt(25);
+            int inst = world.getRandom().nextInt(NoteBlockInstrument.values().length);
+            world.setBlockAndUpdate(pos.below(), Blocks.NOTE_BLOCK.defaultBlockState().setValue(NoteBlock.NOTE, note).setValue(NoteBlock.INSTRUMENT, NoteBlockInstrument.values()[inst]));
+            return (note + 25 * inst) % mod;
+        }
+        return (noteblock.getValue(NoteBlock.NOTE) + 25 * noteblock.getValue(NoteBlock.INSTRUMENT).ordinal()) % mod;
     }
+
+//    private float getHashedVariation (World world, BlockPos pos, int mod){
+//        long day = world.getGameTime() / 24000L;
+//        int month = (int)day / 30;//Change the hashs every in-game month
+//        return (CoordUtils.coordHashCode(pos.above(month), 2) % mod);//Vary the height energy by a psuedorandom hash function
+//    }
 
     @Override
     public float getEnergy(World world, BlockPos rootPos, Species species, float signalEnergy) {

@@ -1,6 +1,11 @@
 {
   "replace": false,
   "values": [
-    "biomesoplenty:sprout"
+    "biomesoplenty:lavender",
+    "biomesoplenty:sprout",
+    "biomesoplenty:bush",
+    "biomesoplenty:dune_grass",
+    "biomesoplenty:desert_grass",
+    "biomesoplenty:dead_grass"
   ]
 }

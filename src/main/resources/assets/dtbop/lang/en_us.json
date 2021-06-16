@@ -31,6 +31,8 @@
   "species.dtbop.maple":"Maple",
   "species.dtbop.dead":"Bare",
   "species.dtbop.dying":"Dying",
+  "species.dtbop.tall_dead":"Tall Bare",
+  "species.dtbop.tall_dying":"Tall Dying",
   "species.dtbop.infested":"Infested",
   "species.dtbop.silk":"Silked",
   "species.dtbop.flowering_oak":"Flowering Oak",
@@ -54,6 +56,7 @@
   "species.dtbop.redwood":"Redwood",
   "species.dtbop.umbran":"Umbran",
   "species.dtbop.mega_umbran":"Mega Umbran",
+  "species.dtbop.mega_dark_oak":"Mega Dark Oak",
 
   "block.dtbop.palm_branch":"Palm",
   "block.dtbop.dead_branch":"Dead Tree",

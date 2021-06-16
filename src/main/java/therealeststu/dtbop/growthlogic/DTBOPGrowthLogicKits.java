@@ -15,9 +15,10 @@ public class DTBOPGrowthLogicKits {
     public static final GrowthLogicKit SMALL_CONIFER = new ConiferLogic(new ResourceLocation(DynamicTreesBOP.MOD_ID, "small_conifer"),4.0f);
     public static final GrowthLogicKit REDWOOD = new RedwoodLogic(new ResourceLocation(DynamicTreesBOP.MOD_ID, "redwood"));
     public static final GrowthLogicKit SMALL_REDWOOD = new SmallRedwoodLogic(new ResourceLocation(DynamicTreesBOP.MOD_ID, "small_redwood"));
+    public static final GrowthLogicKit MAHOGANY = new MahoganyLogic(new ResourceLocation(DynamicTreesBOP.MOD_ID, "mahogany"));
 
     public static void register(final IRegistry<GrowthLogicKit> registry) {
-        registry.registerAll(POPLAR, LARGE_POPLAR, CYPRESS, FIR, SMALL_CONIFER, REDWOOD, SMALL_REDWOOD);
+        registry.registerAll(POPLAR, LARGE_POPLAR, CYPRESS, FIR, SMALL_CONIFER, REDWOOD, SMALL_REDWOOD, MAHOGANY);
     }
 
 }

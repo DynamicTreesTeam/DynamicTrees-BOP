@@ -1,0 +1,38 @@
+{
+  "family": "dark_oak",
+  "tapering": 0.3,
+  "signal_energy": 40.0,
+  "lowest_branch_height": 9,
+  "up_probability": 2,
+  "growth_rate": 1.5,
+  "max_branch_radius": 24,
+  "soil_longevity": 45,
+  "leaves_properties": "dtbop:mega_dark_oak",
+  "environment_factors" : {
+    "hot": 0.8,
+    "dry": 0.8,
+    "magic": 1.1,
+    "forest": 1.05
+  },
+  "seed_drop_rarity": 0.6,
+  "stick_drop_rarity": 1.0,
+  "perfect_biomes": { "type": "biomesoplenty:mystic.*" },
+  "features" : [
+    {
+      "name": "rot_soil",
+      "properties": {
+        "rotten_soil": "podzol"
+      }
+    },
+    {
+      "name": "mushroom_rot",
+      "properties": {
+        "_comment": "An alternate mushroom chance of -1 means that a red mushroom will always be generated.",
+        "alternate_mushroom_chance": -1
+      }
+    },
+    "bottom_flare",
+    "mound",
+    "roots"
+  ]
+}

@@ -17,16 +17,6 @@ public class SmallRedwoodLogic extends ConiferLogic {
         super(registryName, 5.0f);
     }
 
-//    private float getHashedVariation (World world, BlockPos pos, int mod){
-//        BlockState noteblock = world.getBlockState(pos.below());
-//        if (!(noteblock.getBlock() instanceof NoteBlock)){
-//            int note = world.getRandom().nextInt(25);
-//            int inst = world.getRandom().nextInt(NoteBlockInstrument.values().length);
-//            world.setBlockAndUpdate(pos.below(), Blocks.NOTE_BLOCK.defaultBlockState().setValue(NoteBlock.NOTE, note).setValue(NoteBlock.INSTRUMENT, NoteBlockInstrument.values()[inst]));
-//            return (note + 25 * inst) % mod;
-//        }
-//        return (noteblock.getValue(NoteBlock.NOTE) + 25 * noteblock.getValue(NoteBlock.INSTRUMENT).ordinal()) % mod;
-//    }
     private float getHashedVariation (World world, BlockPos pos, int mod){
         long day = world.getGameTime() / 24000L;
         int month = (int)day / 30;//Change the hashs every in-game month
