@@ -39,6 +39,12 @@
         "quantity": 12
       }
     },
-    "dtbop:extra_bottom_flare"
+    "dtbop:extra_bottom_flare",
+    {
+      "name": "mound",
+      "properties": {
+        "mound_cutoff_radius": 999
+      }
+    }
   ]
 }

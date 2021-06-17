@@ -1,6 +1,6 @@
 {
   "family": "dtbop:dead",
-  "tapering": 0.3,
+  "tapering": 0.05,
   "signal_energy": 24.0,
   "growth_rate": 0.5,
   "leaves_properties": "dtbop:dying",

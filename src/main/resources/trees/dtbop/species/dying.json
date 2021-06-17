@@ -11,6 +11,7 @@
   },
   "seed_drop_rarity": 1.0,
   "stick_drop_rarity": 1.0,
+  "always_show_on_waila": true,
   "primitive_sapling": "biomesoplenty:dead_sapling",
   "acceptable_soils": ["dirt_like", "sand_like"]
 }

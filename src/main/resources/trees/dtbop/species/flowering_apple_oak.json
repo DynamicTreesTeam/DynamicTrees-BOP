@@ -5,7 +5,7 @@
   "up_probability": 1,
   "lowest_branch_height": 4,
   "growth_rate": 0.7,
-  "leaves_properties": "dtbop:flowering_oak",
+  "leaves_properties": "oak",
   "environment_factors" : {
     "cold": 0.75,
     "hot": 0.75,
@@ -13,6 +13,7 @@
   },
   "seed_drop_rarity": 0.0,
   "stick_drop_rarity": 1.0,
+  "use_seed_of_other_species": "dynamictrees:apple_oak",
   "perfect_biomes": { "name": "biomesoplenty:orchard" },
   "features" : [
     {

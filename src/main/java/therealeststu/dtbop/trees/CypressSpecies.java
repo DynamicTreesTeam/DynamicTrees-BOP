@@ -37,6 +37,25 @@ public class CypressSpecies extends Species {
         return super.selectNewDirection(world, pos, branch, signal);
     }
 
+    private static final int maxDepth = 3;
+    public boolean isAcceptableSoilForWorldgen(IWorld world, BlockPos pos, BlockState soilBlockState) {
+        final boolean isAcceptableSoil = isAcceptableSoil(world, pos, soilBlockState);
+
+        // If the block is water, check the block below it is valid soil (and not water).
+        if (isAcceptableSoil && isWater(soilBlockState)) {
+            for (int i=1; i<=maxDepth; i++){
+                final BlockPos down = pos.below(i);
+                final BlockState downState = world.getBlockState(down);
+
+                if (!isWater(downState) && this.isAcceptableSoil(world, down, downState))
+                    return true;
+            }
+            return false;
+        }
+
+        return isAcceptableSoil;
+    }
+
     @Override
     public boolean placeRootyDirtBlock(IWorld world, BlockPos rootPos, int fertility) {
         if (this.isWater(world.getBlockState(rootPos)))
@@ -49,9 +68,15 @@ public class CypressSpecies extends Species {
     public BlockPos preGeneration(IWorld world, BlockPos rootPosition, int radius, Direction facing, SafeChunkBounds safeBounds, JoCode joCode) {
         BlockPos root = rootPosition;
         if (this.isWater(world.getBlockState(rootPosition))){
-            if (this.isWater(world.getBlockState(rootPosition.below()))){
-                root = root.below();
+            int i=1;
+            for (; i<=maxDepth; i++){
+                final BlockPos down = rootPosition.below(i);
+                final BlockState downState = world.getBlockState(down);
+
+                if (!isWater(downState) && this.isAcceptableSoil(world, down, downState))
+                    break;
             }
+            root = root.below(i);
         }
         return super.preGeneration(world, root, radius, facing, safeBounds, joCode);
     }

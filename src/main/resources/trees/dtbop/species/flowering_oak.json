@@ -23,13 +23,6 @@
         "alternative_leaves": "dtbop:flowering_oak_leaves"
       }
     },
-    {
-      "name": "rot_soil",
-      "properties": {
-        "rotten_soil": "podzol"
-      }
-    },
-    "mushroom_rot",
     "bee_nest"
   ]
 }

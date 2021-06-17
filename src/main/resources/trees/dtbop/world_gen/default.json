@@ -16,7 +16,7 @@
     }
   },
   {
-    "__comment": "Special exception for woodland trees for now since they use a vanilla tree feature",
+    "__comment": "Special exception for rainforest biomes",
     "select": { "name": "biomesoplenty:.*rainforest.*", "type": "overworld" },
     "cancellers": {
       "type": "tree",
@@ -135,7 +135,7 @@
     }
   },
   {
-    "select": { "name": "biomesoplenty:praire" },
+    "select": { "name": "biomesoplenty:prairie" },
     "apply": {
       "species" : {
         "random" : {
@@ -144,7 +144,7 @@
         }
       },
       "density": 0.1,
-      "chance": 0.2
+      "chance": 0.05
     }
   },
   {
@@ -217,7 +217,7 @@
         }
       },
       "density": 0.5,
-      "chance": 0.6
+      "chance": 0.4
     }
   },
   {
@@ -231,8 +231,8 @@
           "dtbop:flowering_oak_bush" : 1
         }
       },
-      "density": 1.0,
-      "chance": 1,
+      "density": 0.4,
+      "chance": 0.5,
       "forestness" : 0.5
     }
   },
@@ -320,12 +320,12 @@
       "species" : {
         "random" : {
           "dtbop:sparse_oak" : 1,
-          "dtbop:oak_twiglet" : 2,
-          "dtbop:acacia_twiglet" : 1
+          "dtbop:oak_twiglet" : 4,
+          "dtbop:acacia_twiglet" : 2
         }
       },
       "density": 0.8,
-      "chance": 0.5
+      "chance": 0.4
     }
   },
   {
@@ -349,7 +349,7 @@
       "species" : {
         "random" : {
           "dtbop:flowering_oak" : 5,
-          "dtbop:flowering_apple" : 1
+          "dtbop:flowering_apple_oak" : 1
         }
       },
       "density": 0.6,
@@ -455,10 +455,11 @@
     "apply": {
       "species" : {
         "random" : {
-          "oak" : 1,
-          "dtbop:orange_autumn" : 2,
-          "dtbop:yellow_autumn" : 2,
-          "dtbop:maple" : 2
+          "dtbop:orange_autumn" : 32,
+          "dtbop:yellow_autumn" : 32,
+          "dtbop:maple" : 32,
+          "oak" : 15,
+          "apple_oak" : 1
         }
       },
       "density": 1.0,
@@ -472,8 +473,8 @@
       "species" : {
         "random" : {
           "dtbop:orange_autumn" : 1,
-          "dtbop:oak_bush" : 2,
-          "dtbop:oak_twiglet" : 3
+          "dtbop:oak_bush" : 4,
+          "dtbop:oak_twiglet" : 6
         }
       },
       "density": 0.5,
@@ -525,7 +526,7 @@
     "apply": {
       "species" : {
         "random" : {
-          "dtbop:oak_bush" : 15,
+          "dtbop:oak_bush" : 25,
           "spruce" : 1
         }
       },
@@ -552,13 +553,13 @@
     "apply": {
       "species" : "dtbop:cypress_willow",
       "density": 0.2,
-      "chance": 0.1
+      "chance": 0.5
     }
   },
   {
     "select": { "name": "biomesoplenty:deep_bayou" },
     "apply": {
-      "chance": 0.6
+      "chance": 0.7
     }
   },
   {
@@ -611,7 +612,7 @@
     "apply": {
       "species" : "dtbop:willow",
       "density": 0.5,
-      "chance": 0.9,
+      "chance": 0.75,
       "forestness" : 0.75
     }
   },
@@ -634,7 +635,7 @@
     "apply": {
       "species" : "dtbop:dark_oak_twiglet",
       "density": [ 2.0 ],
-      "chance": 0.75
+      "chance": 0.5
     }
   },
   {
@@ -655,14 +656,14 @@
     "apply": {
       "species" : {
         "random" : {
-          "dtbop:large_magic_poplar" : 4,
-          "dtbop:magic_poplar" : 6,
-          "dtbop:flowering_oak" : 5,
-          "dtbop:jacaranda" : 4,
+          "dtbop:large_magic_poplar" : 3,
+          "dtbop:magic_poplar" : 5,
+          "dtbop:flowering_oak" : 4,
+          "dtbop:jacaranda" : 3,
           "dtbop:mega_dark_oak" : 1
         }
       },
-      "density": 0.4,
+      "density": 1.0,
       "chance": 1.0
     }
   },
