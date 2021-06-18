@@ -3,5 +3,6 @@
   "common_species": "dtbop:burnt",
   "primitive_log": "biomesoplenty:stripped_hellbark_log",
   "generate_stripped_branch": false,
+  "fire_proof": true,
   "max_branch_radius": 8
 }

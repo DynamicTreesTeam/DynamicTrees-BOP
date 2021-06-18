@@ -80,6 +80,24 @@ minecraft {
                 }
             }
         }
+
+        data {
+            workingDirectory project.file('run')
+
+            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+            property 'forge.logging.console.level', 'debug'
+
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${buildDir}/createSrgToMcp/output.srg"
+
+            args '--mod', 'dtbop', '--all', '--output', file('src/generated/resources/')
+
+            mods {
+                dtbop {
+                    source sourceSets.main
+                }
+            }
+        }
     }
 }
 

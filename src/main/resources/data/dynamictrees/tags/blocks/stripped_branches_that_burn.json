@@ -1,0 +1,15 @@
+{
+  "replace": false,
+  "values": [
+    "dtbop:stripped_mahogany_branch",
+    "dtbop:stripped_magic_branch",
+    "dtbop:stripped_dead_branch",
+    "dtbop:stripped_redwood_branch",
+    "dtbop:stripped_fir_branch",
+    "dtbop:stripped_palm_branch",
+    "dtbop:stripped_cherry_branch",
+    "dtbop:stripped_willow_branch",
+    "dtbop:stripped_jacaranda_branch",
+    "dtbop:stripped_umbran_branch"
+  ]
+}

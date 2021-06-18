@@ -1,14 +1,14 @@
 [
   {
     "__comment": "Cancel standard tree features from the BoP overworld.",
-    "select": { "names": [ "biomesoplenty.*", "!biomesoplenty.origin_valley" ], "type": "overworld" },
+    "select": { "names": [ "biomesoplenty.*", "!biomesoplenty.origin_valley" ] },
     "cancellers": {
       "type": "tree",
       "namespace": "biomesoplenty"
     }
   },
   {
-    "__comment": "Special exception for woodland trees for now since they use a vanilla tree feature",
+    "__comment": "Special exception for woodland trees for now since it doesnt work with the biomesoplenty namespace",
     "select": { "name": "biomesoplenty:woodland", "type": "overworld" },
     "cancellers": {
       "type": "tree",
@@ -16,19 +16,11 @@
     }
   },
   {
-    "__comment": "Special exception for rainforest biomes",
+    "__comment": "Special exception for rainforest biomes for now since it doesnt work with the biomesoplenty namespace",
     "select": { "name": "biomesoplenty:.*rainforest.*", "type": "overworld" },
     "cancellers": {
       "type": "tree",
       "namespace": "minecraft"
-    }
-  },
-  {
-    "__comment": "Cancel standard tree features from the BoP nether.",
-    "select": { "name": "biomesoplenty.*", "type": "nether" },
-    "cancellers": {
-      "type": "tree",
-      "namespace": "biomesoplenty"
     }
   },
 
@@ -152,7 +144,7 @@
     "apply": {
       "species" : {
         "random" : {
-          "dtbop:lavender" : 7,
+          "dtbop:jacaranda" : 7,
           "dtbop:flowering_oak" : 1
         }
       },
@@ -165,12 +157,12 @@
     "apply": {
       "species" : {
         "random" : {
-          "dtbop:lavender" : 7,
+          "dtbop:jacaranda" : 7,
           "dtbop:flowering_oak" : 1
         }
       },
       "density": 1.0,
-      "chance": 1.0,
+      "chance": 0.75,
       "forestness" : 1.0
     }
   },
@@ -559,7 +551,7 @@
   {
     "select": { "name": "biomesoplenty:deep_bayou" },
     "apply": {
-      "chance": 0.7
+      "chance": 1.0
     }
   },
   {

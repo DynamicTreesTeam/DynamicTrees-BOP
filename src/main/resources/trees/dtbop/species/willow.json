@@ -16,7 +16,7 @@
     {
       "name": "vines",
       "properties": {
-        "block": "biomesoplenty:willow_vines",
+        "block": "biomesoplenty:willow_vine",
         "max_length": 7,
         "vertical_spread": 30,
         "ray_distance": 6,
