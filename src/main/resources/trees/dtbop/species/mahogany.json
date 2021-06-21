@@ -8,7 +8,7 @@
   "growth_logic_kit": "dtbop:mahogany",
   "leaves_properties": "dtbop:mahogany",
   "environment_factors" : {
-    "coldhot": 0.15,
+    "cold": 0.15,
     "dry": 0.20,
     "hot": 1.1,
     "wet": 1.1
