@@ -14,12 +14,15 @@ import therealeststu.dtbop.cells.cell.*;
 
 public class DTBOPCellKits {
 
-    public static final CellKit SPARSE = new CellKit(new ResourceLocation(DynamicTreesBOP.MOD_ID, "sparse")) {
+    public static class SparseCellKit extends CellKit{
+        protected final ICell sparseBranch = new SparseBranchCell();
+        protected final ICell sparseLeaves = new NormalCell(1);
 
-        private final ICell sparseBranch = new SparseBranchCell();
-        private final ICell sparseLeaves = new NormalCell(1);
+        protected final ICellSolver solver = new com.ferreusveritas.dynamictrees.cells.CellKits.BasicSolver(new short[] {0x0211});
 
-        private final ICellSolver solver = new com.ferreusveritas.dynamictrees.cells.CellKits.BasicSolver(new short[] {0x0211});
+        public SparseCellKit(ResourceLocation registryName) {
+            super(registryName);
+        }
 
         @Override
         public ICell getCellForLeaves(int hydro) {
@@ -44,6 +47,13 @@ public class DTBOPCellKits {
         @Override
         public int getDefaultHydration() {
             return 1;
+        }
+    }
+
+    public static final CellKit SPARSE = new SparseCellKit(new ResourceLocation(DynamicTreesBOP.MOD_ID, "sparse"));
+    public static final CellKit HELLBARK_SPARSE = new SparseCellKit(new ResourceLocation(DynamicTreesBOP.MOD_ID, "hellbark_sparse")) {
+        @Override public ICell getCellForBranch(int radius, int meta) {
+            return radius <= 3 ? sparseBranch : CellNull.NULL_CELL;
         }
     };
 
@@ -293,7 +303,7 @@ public class DTBOPCellKits {
     };
 
     public static void register(final IRegistry<CellKit> registry) {
-        registry.registerAll(SPARSE, POPLAR, MAHOGANY, BRUSH, EUCALYPTUS, HELLBARK);
+        registry.registerAll(SPARSE, POPLAR, MAHOGANY, BRUSH, EUCALYPTUS, HELLBARK, HELLBARK_SPARSE);
     }
 
 }

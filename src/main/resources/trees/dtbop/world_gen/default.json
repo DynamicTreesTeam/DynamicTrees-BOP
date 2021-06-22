@@ -1,26 +1,26 @@
 [
   {
     "__comment": "Cancel standard tree features from the BoP overworld.",
-    "select": { "names": [ "biomesoplenty.*", "!biomesoplenty.origin_valley" ] },
+    "select": { "names": [ "biomesoplenty.*", "!biomesoplenty:origin_valley" ], "type": "overworld" },
     "cancellers": {
       "type": "tree",
-      "namespace": "biomesoplenty"
+      "namespaces": ["biomesoplenty", "minecraft"]
     }
   },
   {
-    "__comment": "Special exception for woodland trees for now since it doesnt work with the biomesoplenty namespace",
-    "select": { "name": "biomesoplenty:woodland", "type": "overworld" },
+    "__comment": "Cancel standard tree features from the BoP overworld.",
+    "select": { "name": "biomesoplenty:undergrowth" },
     "cancellers": {
       "type": "tree",
-      "namespace": "minecraft"
+      "namespaces": ["biomesoplenty", "minecraft"],
+      "stage": "underground_decoration"
     }
   },
   {
-    "__comment": "Special exception for rainforest biomes for now since it doesnt work with the biomesoplenty namespace",
-    "select": { "name": "biomesoplenty:.*rainforest.*", "type": "overworld" },
-    "cancellers": {
-      "type": "tree",
-      "namespace": "minecraft"
+    "__comment": "Flag nether as being subterranean.",
+    "select": { "name": "biomesoplenty:.*", "type": "nether" },
+    "apply": {
+      "subterranean": true
     }
   },
 
@@ -666,7 +666,7 @@
       "species" : {
         "random" : {
           "dtbop:hellbark" : 1,
-          "dtbop:hellbark_bush" : 6
+          "dtbop:hellbark_bush" : 7
         }
       },
       "density": 0.6,

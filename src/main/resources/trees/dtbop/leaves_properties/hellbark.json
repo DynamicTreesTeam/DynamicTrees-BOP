@@ -1,6 +1,6 @@
 {
   "primitive_leaves": "biomesoplenty:hellbark_leaves",
-  "cell_kit": "dtbop:sparse",
+  "cell_kit": "dtbop:hellbark_sparse",
   "light_requirement": 0,
   "fire_spread": 0,
   "flammability": 0

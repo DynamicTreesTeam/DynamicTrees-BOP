@@ -3,7 +3,7 @@
   "common_species": "dtbop:hellbark_bush",
   "primitive_log": "biomesoplenty:hellbark_log",
   "primitive_stripped_log": "biomesoplenty:stripped_hellbark_log",
-  "max_branch_radius": 4,
+  "max_branch_radius": 8,
   "fire_proof": true,
   "primary_thickness": 3,
   "secondary_thickness": 4
