@@ -67,6 +67,7 @@ public class DTBOPRegistries {
         event.registerType(new ResourceLocation(DynamicTreesBOP.MOD_ID, "twiglet"), TwigletSpecies.TYPE);
         event.registerType(new ResourceLocation(DynamicTreesBOP.MOD_ID, "poplar"), PoplarSpecies.TYPE);
         event.registerType(new ResourceLocation(DynamicTreesBOP.MOD_ID, "cypress"), CypressSpecies.TYPE);
+        event.registerType(new ResourceLocation(DynamicTreesBOP.MOD_ID, "maple"), MapleSpecies.TYPE);
     }
 
     @SubscribeEvent

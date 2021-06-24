@@ -1,4 +1,5 @@
 {
+  "type": "dtbop:maple",
   "family": "oak",
   "generate_seed": true,
   "generate_sapling": true,

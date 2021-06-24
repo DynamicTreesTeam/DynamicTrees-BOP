@@ -544,13 +544,19 @@
     "select": { "name": "biomesoplenty:.*bayou" },
     "apply": {
       "species" : "dtbop:cypress_willow",
-      "density": 0.2,
-      "chance": 0.5
+      "density": 1.0,
+      "chance": 0.4
     }
   },
   {
     "select": { "name": "biomesoplenty:deep_bayou" },
     "apply": {
+      "species" : {
+        "random" : {
+          "dtbop:cypress_willow" : 3,
+          "dtbop:oak_bush" : 1
+        }
+      },
       "chance": 1.0
     }
   },

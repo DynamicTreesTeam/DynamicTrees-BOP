@@ -1,7 +1,7 @@
 {
   "type": "dtbop:poplar",
   "family": "birch",
-  "generate_seed": true,
+  "generate_seed": false,
   "generate_sapling": true,
   "tapering": 0.25,
   "signal_energy": 11.0,
