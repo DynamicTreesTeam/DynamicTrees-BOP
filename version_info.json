@@ -1,7 +1,7 @@
 {
   "homepage": "https://www.curseforge.com/minecraft/mc-mods/dtbop/files",
   "1.16.2": {
-    "1.16.5-2.0.0": "New Features:\n+ Updated to work with Minecraft 1.16.5"
+    "1.16.5-2.0.0": "New Features:\n+ Updated to work with Minecraft 1.16.5\n- Updated to include the trees and biomes that Biomes o' Plenty has in 1.16.5"
     },
   "1.12.2": {
     "1.12.2-1.5.1": "New Features:\n+ Added flowering apple species that generates in orchards\nEnhancements:\n- Adjusted fruit tree generation\nBug Fixes:\n+ Fixed tree generator completely replacing generation in swamplands and other biomes instead of adding to them",
