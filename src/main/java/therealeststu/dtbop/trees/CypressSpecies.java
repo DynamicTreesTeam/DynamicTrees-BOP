@@ -57,14 +57,6 @@ public class CypressSpecies extends Species {
     }
 
     @Override
-    public boolean placeRootyDirtBlock(IWorld world, BlockPos rootPos, int fertility) {
-        if (this.isWater(world.getBlockState(rootPos)))
-            return world.setBlock(rootPos, (DTBOPRegistries.largeRootyWater.defaultBlockState().setValue(RootyBlock.FERTILITY, fertility)).setValue(RootyBlock.IS_VARIANT, this.doesRequireTileEntity(world, rootPos)), 3);
-        else
-            return super.placeRootyDirtBlock(world, rootPos, fertility);
-    }
-
-    @Override
     public BlockPos preGeneration(IWorld world, BlockPos rootPosition, int radius, Direction facing, SafeChunkBounds safeBounds, JoCode joCode) {
         BlockPos root = rootPosition;
         if (this.isWater(world.getBlockState(rootPosition))){
@@ -81,22 +73,30 @@ public class CypressSpecies extends Species {
         return super.preGeneration(world, root, radius, facing, safeBounds, joCode);
     }
 
-    @Override
-    public boolean postGrow(World world, BlockPos rootPos, BlockPos treePos, int fertility, boolean natural) {
-        if (world.getBlockState(rootPos).getBlock() == RootyBlockHelper.getRootyBlock(Blocks.WATER)){
-            if (TreeHelper.isBranch(world.getBlockState(rootPos.above()))){
-                int radius = TreeHelper.getRadius(world, rootPos.above());
-                if (radius >= 8){
-                    TileEntity rootTE = world.getBlockEntity(rootPos);
-                    world.setBlockAndUpdate(rootPos, DTBOPRegistries.largeRootyWater.defaultBlockState()
-                            .setValue(RootyBlock.FERTILITY, fertility)
-                            .setValue(RootyBlock.IS_VARIANT, world.getBlockState(rootPos).getValue(RootyBlock.IS_VARIANT)));
-                    if (rootTE != null)
-                        world.setBlockEntity(rootPos, rootTE);
-                }
-            }
-        }
-        return super.postGrow(world, rootPos, treePos, fertility, natural);
-    }
+//    @Override
+//    public boolean placeRootyDirtBlock(IWorld world, BlockPos rootPos, int fertility) {
+//        if (this.isWater(world.getBlockState(rootPos)))
+//            return world.setBlock(rootPos, (DTBOPRegistries.largeRootyWater.defaultBlockState().setValue(RootyBlock.FERTILITY, fertility)).setValue(RootyBlock.IS_VARIANT, this.doesRequireTileEntity(world, rootPos)), 3);
+//        else
+//            return super.placeRootyDirtBlock(world, rootPos, fertility);
+//    }
+
+//    @Override
+//    public boolean postGrow(World world, BlockPos rootPos, BlockPos treePos, int fertility, boolean natural) {
+//        if (world.getBlockState(rootPos).getBlock() == RootyBlockHelper.getRootyBlock(Blocks.WATER)){
+//            if (TreeHelper.isBranch(world.getBlockState(rootPos.above()))){
+//                int radius = TreeHelper.getRadius(world, rootPos.above());
+//                if (radius >= 8){
+//                    TileEntity rootTE = world.getBlockEntity(rootPos);
+//                    world.setBlockAndUpdate(rootPos, DTBOPRegistries.largeRootyWater.defaultBlockState()
+//                            .setValue(RootyBlock.FERTILITY, fertility)
+//                            .setValue(RootyBlock.IS_VARIANT, world.getBlockState(rootPos).getValue(RootyBlock.IS_VARIANT)));
+//                    if (rootTE != null)
+//                        world.setBlockEntity(rootPos, rootTE);
+//                }
+//            }
+//        }
+//        return super.postGrow(world, rootPos, treePos, fertility, natural);
+//    }
 
 }

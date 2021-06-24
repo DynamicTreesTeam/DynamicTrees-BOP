@@ -1,5 +1,6 @@
 package therealeststu.dtbop;
 
+import com.ferreusveritas.dynamictrees.DynamicTrees;
 import com.ferreusveritas.dynamictrees.api.registry.RegistryHandler;
 import com.ferreusveritas.dynamictrees.data.provider.DTBlockTagsProvider;
 import com.ferreusveritas.dynamictrees.data.provider.DTItemTagsProvider;
@@ -7,6 +8,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.color.BlockColors;
 import net.minecraft.data.BlockTagsProvider;
 import net.minecraft.data.ItemTagsProvider;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -24,7 +27,7 @@ public class DynamicTreesBOP
     public DynamicTreesBOP() {
         final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         modEventBus.addListener(this::commonSetup);
-        modEventBus.addListener(this::clientSetup);
+//        modEventBus.addListener(this::clientSetup);
         modEventBus.addListener(this::gatherData);
 
         MinecraftForge.EVENT_BUS.register(this);
@@ -35,21 +38,15 @@ public class DynamicTreesBOP
     private void commonSetup(final FMLCommonSetupEvent event) {
     }
 
-    private void clientSetup(final FMLClientSetupEvent event) {
-        final BlockColors blockColors = Minecraft.getInstance().getBlockColors();
-
-        blockColors.register((state, world, pos, tintIndex) -> DTBOPRegistries.largeRootyWater.colorMultiplier(blockColors, state, world, pos, tintIndex), DTBOPRegistries.largeRootyWater);
-    }
+//    @OnlyIn(Dist.CLIENT)
+//    private void clientSetup(final FMLClientSetupEvent event) {
+//        final BlockColors blockColors = Minecraft.getInstance().getBlockColors();
+//
+//        blockColors.register((state, world, pos, tintIndex) -> DTBOPRegistries.largeRootyWater.colorMultiplier(blockColors, state, world, pos, tintIndex), DTBOPRegistries.largeRootyWater);
+//    }
 
     public void gatherData(final GatherDataEvent event) {
-        gatherTagGenerators(MOD_ID, event);
-    }
-    public static void gatherTagGenerators(final String modId, final GatherDataEvent event) {
-        final BlockTagsProvider blockTagsProvider = new DTBlockTagsProvider(event.getGenerator(), modId, event.getExistingFileHelper());
-        final ItemTagsProvider itemTagsProvider = new DTItemTagsProvider(event.getGenerator(), MOD_ID, blockTagsProvider, event.getExistingFileHelper());
-
-        event.getGenerator().addProvider(blockTagsProvider);
-        event.getGenerator().addProvider(itemTagsProvider);
+        DynamicTrees.gatherTagGenerators(MOD_ID, event);
     }
 
 }

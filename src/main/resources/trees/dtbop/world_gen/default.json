@@ -92,9 +92,16 @@
   {
     "select": { "name": "biomesoplenty:rainbow_hills" },
     "apply": {
-      "species" : "dtbop:rainbow_birch",
-      "density": 1.0,
-      "chance": 0.9
+      "species" : {
+        "random" : {
+          "dtbop:rainbow_birch" : 6,
+          "dtbop:fir" : 3,
+          "dtbop:oak_bush" : 1
+        }
+      },
+      "density": 0.5,
+      "chance": 0.8,
+      "forestness" : 1.0
     }
   },
   {
