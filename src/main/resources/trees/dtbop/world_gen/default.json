@@ -45,7 +45,7 @@
       "species" : {
         "random" : {
           "dtbop:mahogany" : 7,
-          "jungle" : 1
+          "dtbop:short_jungle" : 1
         }
       },
       "density": 2.0,
@@ -90,6 +90,14 @@
     }
   },
   {
+    "select": { "name": "biomesoplenty:rainbow_hills" },
+    "apply": {
+      "species" : "dtbop:rainbow_birch",
+      "density": 1.0,
+      "chance": 0.9
+    }
+  },
+  {
     "select": { "name": "biomesoplenty:alps_foothills" },
     "apply": {
       "species" : "dtbop:alps_spruce",
@@ -114,8 +122,8 @@
     "select": { "name": "biomesoplenty:.*woodland" },
     "apply": {
       "species" : "oak",
-      "density": 1.0,
-      "chance": 0.9,
+      "density": 0.5,
+      "chance": 0.75,
       "forestness" : 1.0
     }
   },
@@ -417,9 +425,9 @@
     "apply": {
       "species" : {
         "random" : {
-          "dtbop:mega_fir" : 3,
-          "dtbop:fir" : 2,
-          "dtbop:maple" : 2
+          "dtbop:mega_fir" : 6,
+          "dtbop:fir" : 4,
+          "dtbop:maple" : 1
         }
       },
       "density": 0.8,
@@ -432,7 +440,6 @@
     "apply": {
       "species" : {
         "random" : {
-          "oak" : 1,
           "dtbop:maple" : 4,
           "dtbop:fir" : 1
         }
@@ -454,8 +461,8 @@
           "apple_oak" : 1
         }
       },
-      "density": 1.0,
-      "chance": 1.0,
+      "density": 0.5,
+      "chance": 0.75,
       "forestness" : 1.0
     }
   },
