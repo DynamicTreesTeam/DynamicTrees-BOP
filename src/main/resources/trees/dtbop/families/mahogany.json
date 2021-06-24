@@ -3,5 +3,5 @@
   "common_species": "dtbop:mahogany",
   "primitive_log": "biomesoplenty:mahogany_log",
   "primitive_stripped_log": "biomesoplenty:stripped_mahogany_log",
-  "max_branch_radius": 24
+  "max_branch_radius": 8
 }

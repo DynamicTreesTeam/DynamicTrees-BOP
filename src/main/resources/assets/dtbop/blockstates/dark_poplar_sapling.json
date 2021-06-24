@@ -1,5 +1,5 @@
 {
     "variants": {
-        "": { "model": "block/saplings/dark_oak" }
+        "": { "model": "dynamictrees:block/saplings/dark_oak" }
     }
 }

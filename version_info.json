@@ -1,6 +1,7 @@
 {
   "homepage": "https://www.curseforge.com/minecraft/mc-mods/dtbop/files",
   "1.16.2": {
+    "1.16.5-2.0.1": "Bug Fixes:\n- Fixed model loading and tag warnings",
     "1.16.5-2.0.0": "New Features:\n+ Updated to work with Minecraft 1.16.5\n- Updated to include the trees and biomes that Biomes o' Plenty has in 1.16.5"
     },
   "1.12.2": {
@@ -9,8 +10,8 @@
     "1.12.2-1.4.4": "New Features:\n-Mangrove world generation\n-Improvements to mangrove and rooty water block model"
   },
   "promos": {
-    "1.16.5-latest": "1.16.5-2.0.0",
-    "1.16.5-recommended": "1.16.5-2.0.0",
+    "1.16.5-latest": "1.16.5-2.0.1",
+    "1.16.5-recommended": "1.16.5-2.0.1",
     "1.12.2-latest": "1.12.2-1.5.1",
     "1.12.2-recommended": "1.12.2-1.5.1"
   }
