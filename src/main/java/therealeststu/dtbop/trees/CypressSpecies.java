@@ -5,6 +5,7 @@ import com.ferreusveritas.dynamictrees.api.registry.TypedRegistry;
 import com.ferreusveritas.dynamictrees.blocks.branches.BranchBlock;
 import com.ferreusveritas.dynamictrees.blocks.leaves.LeavesProperties;
 import com.ferreusveritas.dynamictrees.blocks.rootyblocks.RootyBlock;
+import com.ferreusveritas.dynamictrees.systems.DirtHelper;
 import com.ferreusveritas.dynamictrees.systems.GrowSignal;
 import com.ferreusveritas.dynamictrees.systems.RootyBlockHelper;
 import com.ferreusveritas.dynamictrees.trees.Family;
@@ -47,7 +48,7 @@ public class CypressSpecies extends Species {
                 final BlockPos down = pos.below(i);
                 final BlockState downState = world.getBlockState(down);
 
-                if (!isWater(downState) && this.isAcceptableSoil(world, down, downState))
+                if (!isWater(downState) && isAcceptableSoilUnderWater(downState))
                     return true;
             }
             return false;
@@ -65,7 +66,7 @@ public class CypressSpecies extends Species {
                 final BlockPos down = rootPosition.below(i);
                 final BlockState downState = world.getBlockState(down);
 
-                if (!isWater(downState) && this.isAcceptableSoil(world, down, downState))
+                if (!isWater(downState) && isAcceptableSoilUnderWater(downState))
                     break;
             }
             root = root.below(i);
@@ -73,7 +74,11 @@ public class CypressSpecies extends Species {
         return super.preGeneration(world, root, radius, facing, safeBounds, joCode);
     }
 
-//    @Override
+    public boolean isAcceptableSoilUnderWater(BlockState soilBlockState) {
+        return DirtHelper.isSoilAcceptable(soilBlockState.getBlock(), this.soilTypeFlags | DirtHelper.getSoilFlags("sand_like", "mud_like"));
+    }
+
+    //    @Override
 //    public boolean placeRootyDirtBlock(IWorld world, BlockPos rootPos, int fertility) {
 //        if (this.isWater(world.getBlockState(rootPos)))
 //            return world.setBlock(rootPos, (DTBOPRegistries.largeRootyWater.defaultBlockState().setValue(RootyBlock.FERTILITY, fertility)).setValue(RootyBlock.IS_VARIANT, this.doesRequireTileEntity(world, rootPos)), 3);
