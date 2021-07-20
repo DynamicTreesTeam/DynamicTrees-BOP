@@ -8,8 +8,6 @@
     "wet": 0.75,
     "plains": 1.05
   },
-  "seed_drop_rarity": 1.0,
-  "stick_drop_rarity": 1.0,
   "perfect_biomes": { "types": [ "plains", "overworld" ] },
   "features" : [
     {

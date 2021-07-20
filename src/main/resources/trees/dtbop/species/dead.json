@@ -4,7 +4,9 @@
   "signal_energy": 12.0,
   "growth_rate": 0.0,
   "leaves_properties": "dtbop:dead",
-  "seed_drop_rarity": 0.0,
   "can_bone_meal_tree": false,
-  "acceptable_soils": ["dirt_like", "sand_like"]
+  "acceptable_soils": ["dirt_like", "sand_like"],
+  "drop_creators": [
+    "log"
+  ]
 }

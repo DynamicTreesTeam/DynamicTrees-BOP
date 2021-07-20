@@ -10,8 +10,6 @@
     "cold": 0.5,
     "nether": 1.05
   },
-  "seed_drop_rarity": 1.0,
-  "stick_drop_rarity": 1.0,
   "always_show_on_waila": false,
   "perfect_biomes": { "type": "nether" },
   "acceptable_soils": [ "nether_like", "dirt_like" ]

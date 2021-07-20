@@ -9,7 +9,5 @@
     "spooky": 1.05,
     "dead": 1.05
   },
-  "seed_drop_rarity": 1.0,
-  "stick_drop_rarity": 1.0,
   "primitive_sapling": "biomesoplenty:dead_sapling"
 }

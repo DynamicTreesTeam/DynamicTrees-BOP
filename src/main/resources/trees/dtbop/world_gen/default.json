@@ -8,7 +8,7 @@
     }
   },
   {
-    "__comment": "Cancel standard tree features from the BoP overworld.",
+    "__comment": "Cancel standard tree features from the BoP nether.",
     "select": { "name": "biomesoplenty:undergrowth" },
     "cancellers": {
       "type": "tree",

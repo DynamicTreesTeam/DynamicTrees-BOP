@@ -8,8 +8,6 @@
     "hot": 0.7,
     "dry": 0.5
   },
-  "seed_drop_rarity": 1.0,
-  "stick_drop_rarity": 1.0,
   "perfect_biomes": { "types": [ "swamp", "overworld" ] },
   "primitive_sapling": "biomesoplenty:willow_sapling",
   "features" : [

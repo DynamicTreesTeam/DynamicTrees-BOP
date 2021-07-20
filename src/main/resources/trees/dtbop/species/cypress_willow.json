@@ -14,8 +14,6 @@
     "hot": 0.7,
     "dry": 0.5
   },
-  "seed_drop_rarity": 1.0,
-  "stick_drop_rarity": 1.0,
   "perfect_biomes": { "types": [ "swamp", "overworld" ] },
   "acceptable_soils": [ "water_like", "dirt_like" ],
   "features": [
@@ -30,13 +28,20 @@
       }
     },
     {
-      "name": "dtbop:vines_deep_bayou",
+      "name": "biome_predicate",
       "properties": {
-        "block": "biomesoplenty:willow_vine",
-        "max_length": 7,
-        "vertical_spread": 30,
-        "ray_distance": 6,
-        "quantity": 12
+        "only_world_gen": true,
+        "biome_predicate": { "name": "biomesoplenty:deep_bayou" },
+        "gen_feature": {
+          "name": "vines",
+          "properties": {
+            "block": "biomesoplenty:willow_vine",
+            "max_length": 7,
+            "vertical_spread": 30,
+            "ray_distance": 6,
+            "quantity": 12
+          }
+        }
       }
     },
     "dtbop:extra_bottom_flare",

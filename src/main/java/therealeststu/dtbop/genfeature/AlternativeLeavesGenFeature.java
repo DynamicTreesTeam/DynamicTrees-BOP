@@ -3,11 +3,11 @@ package therealeststu.dtbop.genfeature;
 import com.ferreusveritas.dynamictrees.api.IPostGenFeature;
 import com.ferreusveritas.dynamictrees.api.IPostGrowFeature;
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
+import com.ferreusveritas.dynamictrees.api.configurations.ConfigurationProperty;
 import com.ferreusveritas.dynamictrees.api.network.MapSignal;
 import com.ferreusveritas.dynamictrees.blocks.leaves.DynamicLeavesBlock;
 import com.ferreusveritas.dynamictrees.systems.genfeatures.GenFeature;
 import com.ferreusveritas.dynamictrees.systems.genfeatures.config.ConfiguredGenFeature;
-import com.ferreusveritas.dynamictrees.systems.genfeatures.config.GenFeatureProperty;
 import com.ferreusveritas.dynamictrees.systems.nodemappers.FindEndsNode;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.util.BlockBounds;
@@ -28,10 +28,15 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 public class AlternativeLeavesGenFeature extends GenFeature implements IPostGrowFeature, IPostGenFeature {
 
-    public static final GenFeatureProperty<Block> ALT_LEAVES = GenFeatureProperty.createBlockProperty("alternative_leaves");
+    public static final ConfigurationProperty<Block> ALT_LEAVES = ConfigurationProperty.block("alternative_leaves");
 
     public AlternativeLeavesGenFeature(ResourceLocation registryName) {
-        super(registryName, ALT_LEAVES, PLACE_CHANCE, QUANTITY);
+        super(registryName);
+    }
+
+    @Override
+    protected void registerProperties() {
+        this.register(ALT_LEAVES, PLACE_CHANCE, QUANTITY);
     }
 
     public ConfiguredGenFeature<GenFeature> createDefaultConfiguration() {

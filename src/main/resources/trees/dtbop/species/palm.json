@@ -10,10 +10,17 @@
     "hot": 1.1,
     "dry": 1.1
   },
-  "seed_drop_rarity": 0.0,
-  "stick_drop_rarity": 1.0,
   "transformable": false,
   "perfect_biomes": { "name": "biomesoplenty:tropics" },
   "primitive_sapling": "biomesoplenty:palm_sapling",
-  "acceptable_soils": ["dirt_like", "sand_like"]
+  "acceptable_soils": ["dirt_like", "sand_like"],
+  "drop_creators": [
+    "log",
+    {
+      "name": "seed",
+      "properties": {
+        "rarity": 6.0
+      }
+    }
+  ]
 }

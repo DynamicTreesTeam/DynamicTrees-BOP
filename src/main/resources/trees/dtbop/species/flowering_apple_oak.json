@@ -11,8 +11,6 @@
     "hot": 0.75,
     "dry": 0.25
   },
-  "seed_drop_rarity": 0.0,
-  "stick_drop_rarity": 1.0,
   "use_seed_of_other_species": "dynamictrees:apple_oak",
   "perfect_biomes": { "name": "biomesoplenty:orchard" },
   "features" : [
@@ -23,5 +21,15 @@
       }
     },
     "fruit"
+  ],
+  "drop_creators": [
+    "log",
+    "stick",
+    {
+      "name": "fruit",
+      "properties":{
+        "fruit_item": "apple"
+      }
+    }
   ]
 }

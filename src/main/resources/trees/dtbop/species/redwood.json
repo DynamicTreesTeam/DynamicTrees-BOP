@@ -14,8 +14,6 @@
     "dry": 0.25,
     "forest": 1.05
   },
-  "seed_drop_rarity": 1.0,
-  "stick_drop_rarity": 1.0,
   "always_show_on_waila": false,
   "world_gen_leaf_map_height": 60,
   "perfect_biomes": { "type": "coniferous" },

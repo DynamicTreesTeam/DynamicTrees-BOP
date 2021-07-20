@@ -11,8 +11,6 @@
     "dry": 0.7,
     "forest": 1.05
   },
-  "seed_drop_rarity": 1.0,
-  "stick_drop_rarity": 1.0,
   "perfect_biomes": { "types": [ "lush", "magical", "overworld" ] },
   "primitive_sapling": "biomesoplenty:rainbow_birch_sapling"
 }

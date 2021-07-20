@@ -1,38 +1,27 @@
 package therealeststu.dtbop;
 
 import biomesoplenty.api.biome.BOPBiomes;
-import biomesoplenty.api.block.BOPBlocks;
-import com.ferreusveritas.dynamictrees.DynamicTrees;
 import com.ferreusveritas.dynamictrees.api.cells.CellKit;
 import com.ferreusveritas.dynamictrees.api.registry.TypeRegistryEvent;
-import com.ferreusveritas.dynamictrees.api.worldgen.FeatureCanceller;
 import com.ferreusveritas.dynamictrees.blocks.leaves.LeavesProperties;
-import com.ferreusveritas.dynamictrees.blocks.rootyblocks.RootyBlock;
-import com.ferreusveritas.dynamictrees.blocks.rootyblocks.RootyWaterBlock;
+import com.ferreusveritas.dynamictrees.blocks.rootyblocks.SoilHelper;
 import com.ferreusveritas.dynamictrees.growthlogic.GrowthLogicKit;
-import com.ferreusveritas.dynamictrees.systems.DirtHelper;
-import com.ferreusveritas.dynamictrees.systems.RootyBlockHelper;
-import com.ferreusveritas.dynamictrees.systems.dropcreators.FruitDropCreator;
+import com.ferreusveritas.dynamictrees.systems.dropcreators.DropCreator;
 import com.ferreusveritas.dynamictrees.systems.genfeatures.BeeNestGenFeature;
 import com.ferreusveritas.dynamictrees.systems.genfeatures.GenFeature;
 import com.ferreusveritas.dynamictrees.trees.Species;
-import com.ferreusveritas.dynamictrees.worldgen.cancellers.TreeFeatureCanceller;
-import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.gen.GenerationStage;
-import net.minecraft.world.gen.feature.BaseTreeFeatureConfig;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import therealeststu.dtbop.blocks.leaves.CobwebLeavesProperties;
 import therealeststu.dtbop.cells.DTBOPCellKits;
-import therealeststu.dtbop.dropcreators.StringDropCreator;
+import therealeststu.dtbop.dropcreators.DTBOPDropCreators;
 import therealeststu.dtbop.genfeature.DTBOPGenFeatures;
 import therealeststu.dtbop.growthlogic.DTBOPGrowthLogicKits;
 import therealeststu.dtbop.trees.*;
@@ -41,8 +30,6 @@ import java.util.Objects;
 
 @Mod.EventBusSubscriber(bus=Mod.EventBusSubscriber.Bus.MOD)
 public class DTBOPRegistries {
-
-    public static RootyWaterBlock largeRootyWater;
 
     @SubscribeEvent
     public static void onGenFeatureRegistry (final com.ferreusveritas.dynamictrees.api.registry.RegistryEvent<GenFeature> event) {
@@ -58,6 +45,11 @@ public class DTBOPRegistries {
     }
 
     @SubscribeEvent
+    public static void onDropCreatorRegistry (final com.ferreusveritas.dynamictrees.api.registry.RegistryEvent<DropCreator> event) {
+        DTBOPDropCreators.register(event.getRegistry());
+    }
+
+    @SubscribeEvent
     public static void registerLeavesPropertiesTypes(TypeRegistryEvent<LeavesProperties> event) {
         event.registerType(new ResourceLocation(DynamicTreesBOP.MOD_ID, "cobweb"), CobwebLeavesProperties.TYPE);
     }
@@ -68,6 +60,7 @@ public class DTBOPRegistries {
         event.registerType(new ResourceLocation(DynamicTreesBOP.MOD_ID, "poplar"), PoplarSpecies.TYPE);
         event.registerType(new ResourceLocation(DynamicTreesBOP.MOD_ID, "cypress"), CypressSpecies.TYPE);
         event.registerType(new ResourceLocation(DynamicTreesBOP.MOD_ID, "maple"), MapleSpecies.TYPE);
+        event.registerType(new ResourceLocation(DynamicTreesBOP.MOD_ID, "generates_on_stone"), GenOnStoneSpecies.TYPE);
     }
 
     @SubscribeEvent
@@ -77,7 +70,7 @@ public class DTBOPRegistries {
         event.getRegistry().registerAll(new Bush("oak_bush", new ResourceLocation("oak_log"), new ResourceLocation("oak_leaves")));
         event.getRegistry().registerAll(new Bush("infested_oak_bush", new ResourceLocation("oak_log"), new ResourceLocation("oak_leaves"), new ResourceLocation("cobweb")));
         event.getRegistry().registerAll(new Bush("silk_bush", new ResourceLocation("oak_log"), new ResourceLocation("cobweb")));
-        event.getRegistry().registerAll(new Bush("acacia_bush", new ResourceLocation("acacia_log"), new ResourceLocation("acacia_leaves")).addAcceptableSoils(DirtHelper.SAND_LIKE));
+        event.getRegistry().registerAll(new Bush("acacia_bush", new ResourceLocation("acacia_log"), new ResourceLocation("acacia_leaves")).addAcceptableSoils(SoilHelper.SAND_LIKE));
         event.getRegistry().registerAll(new Bush("spruce_bush", new ResourceLocation("spruce_log"), new ResourceLocation("spruce_leaves")));
 
     }
@@ -89,7 +82,6 @@ public class DTBOPRegistries {
         final Species floweringOak = Species.REGISTRY.get(new ResourceLocation(DynamicTreesBOP.MOD_ID, "flowering_oak"));
         final Species floweringAppleOak = Species.REGISTRY.get(new ResourceLocation(DynamicTreesBOP.MOD_ID, "flowering_apple_oak"));
         final Species infested = Species.REGISTRY.get(new ResourceLocation(DynamicTreesBOP.MOD_ID, "infested"));
-        final Species silk = Species.REGISTRY.get(new ResourceLocation(DynamicTreesBOP.MOD_ID, "silk"));
         final Species rainbow_birch = Species.REGISTRY.get(new ResourceLocation(DynamicTreesBOP.MOD_ID, "rainbow_birch"));
 
         LeavesProperties floweringLeaves = LeavesProperties.REGISTRY.get(new ResourceLocation(DynamicTreesBOP.MOD_ID, "flowering_oak"));
@@ -97,18 +89,14 @@ public class DTBOPRegistries {
             floweringLeaves.setFamily(floweringOak.getFamily());
             floweringOak.addValidLeafBlocks(floweringLeaves);
         }
-        if (floweringAppleOak.isValid()) {
-            floweringAppleOak.addDropCreator(new FruitDropCreator());
+        if (floweringAppleOak.isValid())
             if (floweringLeaves.isValid()) floweringAppleOak.addValidLeafBlocks(floweringLeaves);
-        }
+
         if (infested.isValid()){
             LeavesProperties silkLeaves = LeavesProperties.REGISTRY.get(new ResourceLocation(DynamicTreesBOP.MOD_ID, "silk"));
             infested.addValidLeafBlocks(silkLeaves);
-            infested.addDropCreator(new StringDropCreator(0.3f));
         }
-        if (silk.isValid()){
-            silk.addDropCreator(new StringDropCreator(1f));
-        }
+        //This has to be added in-code as the worldgen chance function cannot be set by the treepack
         if (rainbow_birch.isValid()){
             rainbow_birch.addGenFeature(new BeeNestGenFeature(new ResourceLocation("dynamictrees","bee_nest"))
                     .with(BeeNestGenFeature.WORLD_GEN_CHANCE_FUNCTION, (world,pos)->{
@@ -118,23 +106,6 @@ public class DTBOPRegistries {
                          else return BiomeDictionary.hasType(biomeKey, BiomeDictionary.Type.FOREST) ? 0.0005 : 0.0;
                     }));
         }
-
-        largeRootyWater = new RootyWaterBlock(AbstractBlock.Properties.copy(Blocks.WATER).randomTicks(),
-                "large_rooty_water", Blocks.WATER);
-        event.getRegistry().register(largeRootyWater);
-
-        DirtHelper.registerSoil(BOPBlocks.origin_grass_block, DirtHelper.DIRT_LIKE);
-        DirtHelper.registerSoil(BOPBlocks.white_sand, DirtHelper.SAND_LIKE);
-        DirtHelper.registerSoil(BOPBlocks.orange_sand, DirtHelper.SAND_LIKE);
-        DirtHelper.registerSoil(BOPBlocks.black_sand, DirtHelper.SAND_LIKE);
-        DirtHelper.registerSoil(BOPBlocks.dried_salt, DirtHelper.SAND_LIKE);
-        DirtHelper.registerSoil(BOPBlocks.mud, DirtHelper.MUD_LIKE);
-
-        //this is for spruce alps
-        DirtHelper.registerSoil(Blocks.STONE, DirtHelper.GRAVEL_LIKE, Blocks.GRAVEL);
-
-        for (RootyBlock rooty : RootyBlockHelper.generateListForRegistry(true, DynamicTreesBOP.MOD_ID))
-            event.getRegistry().register(rooty);
     }
 
 }

@@ -1,6 +1,8 @@
 package therealeststu.dtbop.dropcreators;
 
+import com.ferreusveritas.dynamictrees.systems.dropcreators.ConfiguredDropCreator;
 import com.ferreusveritas.dynamictrees.systems.dropcreators.DropCreator;
+import com.ferreusveritas.dynamictrees.systems.dropcreators.context.DropContext;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -13,36 +15,40 @@ import java.util.Random;
 
 public class StringDropCreator extends DropCreator {
 
-    private final float rarity;
-
-    public StringDropCreator(float rarity) {
-        super(new ResourceLocation("dynamictrees", "string_drop"));
-        this.rarity = rarity;
-    }
-
-    public List<ItemStack> getHarvestDrop(World world, Species species, BlockPos leafPos, Random random, List<ItemStack> dropList, int fertility, int fortune) {
-        int chance = (int) (10 * rarity);
-        if (fortune > 0) {
-            chance -= 2 << fortune;
-            if (chance < 10) {
-                chance = (int)(5 * rarity);
-            }
-        }
-
-        if (random.nextInt(chance) == 0) {
-            ItemStack drop = new ItemStack(Items.STRING);
-            dropList.add(drop);
-        }
-
-        return dropList;
+    public StringDropCreator(ResourceLocation name) {
+        super(name);
     }
 
     @Override
-    public List<ItemStack> getLeavesDrop(World access, Species species, BlockPos breakPos, Random random, List<ItemStack> dropList, int fortune) {
-
-        if (access.getRandom().nextFloat() < rarity)
-            dropList.add(new ItemStack(Items.STRING));
-
-        return dropList;
+    protected ConfiguredDropCreator<DropCreator> createDefaultConfiguration() {
+        return super.createDefaultConfiguration().with(RARITY, 1f);
     }
+
+    @Override
+    protected void registerProperties() {
+        this.register(RARITY);
+    }
+
+    @Override
+    public void appendHarvestDrops(ConfiguredDropCreator<DropCreator> configuration, DropContext context) {
+        int chance = (int) (10 * configuration.get(RARITY));
+        if (context.fortune() > 0) {
+            chance -= 2 << context.fortune();
+            if (chance < 10) {
+                chance = (int)(5 * configuration.get(RARITY));
+            }
+        }
+
+        if (context.random().nextInt(chance) == 0) {
+            ItemStack drop = new ItemStack(Items.STRING);
+            context.drops().add(drop);
+        }
+    }
+
+    @Override
+    public void appendLeavesDrops(ConfiguredDropCreator<DropCreator> configuration, DropContext context) {
+        if (context.world().getRandom().nextFloat() < configuration.get(RARITY))
+            context.drops().add(new ItemStack(Items.STRING));
+    }
+
 }

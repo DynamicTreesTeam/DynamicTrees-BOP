@@ -8,7 +8,5 @@
   "growth_rate": 0.85,
   "growth_logic_kit": "dtbop:large_poplar",
   "leaves_properties": "dtbop:magic_poplar",
-  "seed_drop_rarity": 1.0,
-  "stick_drop_rarity": 1.0,
   "perfect_biomes": { "name": "biomesoplenty:mystic.*" }
 }

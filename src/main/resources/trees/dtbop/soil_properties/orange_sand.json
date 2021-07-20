@@ -1,0 +1,4 @@
+{
+  "primitive_soil": "biomesoplenty:orange_sand",
+  "acceptable_soils": [ "sand_like" ]
+}

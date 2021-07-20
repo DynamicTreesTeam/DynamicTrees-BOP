@@ -18,8 +18,6 @@
     "dead": 1.1,
     "magical": 1.1
   },
-  "seed_drop_rarity": 1.0,
-  "stick_drop_rarity": 1.0,
   "perfect_biomes": { "type": "coniferous" },
   "features" : [
     "conifer_topper",

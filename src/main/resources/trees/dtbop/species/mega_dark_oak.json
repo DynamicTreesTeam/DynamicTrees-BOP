@@ -14,8 +14,6 @@
     "magic": 1.1,
     "forest": 1.05
   },
-  "seed_drop_rarity": 0.6,
-  "stick_drop_rarity": 1.0,
   "perfect_biomes": { "type": "biomesoplenty:mystic.*" },
   "features" : [
     {
@@ -34,5 +32,15 @@
     "bottom_flare",
     "mound",
     "roots"
+  ],
+  "drop_creators": [
+    "log",
+    "stick",
+    {
+      "name": "seed",
+      "properties": {
+        "rarity": 0.6
+      }
+    }
   ]
 }

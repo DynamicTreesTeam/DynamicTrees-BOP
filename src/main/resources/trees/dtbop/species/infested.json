@@ -9,8 +9,6 @@
     "spooky": 1.05,
     "dead": 1.05
   },
-  "seed_drop_rarity": 1.0,
-  "stick_drop_rarity": 1.0,
   "primitive_sapling": "biomesoplenty:dead_sapling",
   "perfect_biomes": { "name": "biomesoplenty:silkglade" },
   "features" : [
@@ -19,6 +17,17 @@
       "properties": {
         "alternative_leaves": "dtbop:silk_leaves",
         "place_chance": 0.3
+      }
+    }
+  ],
+  "drop_creators": [
+    "log",
+    "stick",
+    "seed",
+    {
+      "name": "dtbop:leaves_string",
+      "properties": {
+        "rarity": 0.3
       }
     }
   ]

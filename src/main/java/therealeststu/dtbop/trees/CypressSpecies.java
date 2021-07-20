@@ -1,29 +1,20 @@
 package therealeststu.dtbop.trees;
 
-import com.ferreusveritas.dynamictrees.api.TreeHelper;
 import com.ferreusveritas.dynamictrees.api.registry.TypedRegistry;
 import com.ferreusveritas.dynamictrees.blocks.branches.BranchBlock;
 import com.ferreusveritas.dynamictrees.blocks.leaves.LeavesProperties;
-import com.ferreusveritas.dynamictrees.blocks.rootyblocks.RootyBlock;
-import com.ferreusveritas.dynamictrees.systems.DirtHelper;
+import com.ferreusveritas.dynamictrees.blocks.rootyblocks.SoilHelper;
 import com.ferreusveritas.dynamictrees.systems.GrowSignal;
-import com.ferreusveritas.dynamictrees.systems.RootyBlockHelper;
 import com.ferreusveritas.dynamictrees.trees.Family;
 import com.ferreusveritas.dynamictrees.trees.Species;
-import com.ferreusveritas.dynamictrees.util.CoordUtils;
 import com.ferreusveritas.dynamictrees.util.SafeChunkBounds;
 import com.ferreusveritas.dynamictrees.worldgen.JoCode;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
-import therealeststu.dtbop.DTBOPRegistries;
 
 public class CypressSpecies extends Species {
 
@@ -75,7 +66,7 @@ public class CypressSpecies extends Species {
     }
 
     public boolean isAcceptableSoilUnderWater(BlockState soilBlockState) {
-        return DirtHelper.isSoilAcceptable(soilBlockState.getBlock(), this.soilTypeFlags | DirtHelper.getSoilFlags("sand_like", "mud_like"));
+        return SoilHelper.isSoilAcceptable(soilBlockState.getBlock(), this.soilTypeFlags | SoilHelper.getSoilFlags("sand_like", "mud_like"));
     }
 
     //    @Override
