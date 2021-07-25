@@ -41,8 +41,8 @@ public class Bush extends Species {
             Block altLeafBlock = ForgeRegistries.BLOCKS.getValue(altLeaves);
             if (altLeafBlock != Blocks.AIR) altLeavesBlock = altLeafBlock;
         }
-        this.addGenFeature(GenFeatures.BUSH.with(BushGenFeature.LOG_BLOCK, logBlock)
-                .with(BushGenFeature.LEAVES_BLOCK, leavesBlock).with(BushGenFeature.SECONDARY_LEAVES_BLOCK, altLeavesBlock));
+        this.addGenFeature(GenFeatures.BUSH.with(BushGenFeature.LOG, logBlock)
+                .with(BushGenFeature.LEAVES, leavesBlock).with(BushGenFeature.SECONDARY_LEAVES, altLeavesBlock));
     }
 
     @Override
