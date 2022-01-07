@@ -1,6 +1,9 @@
 {
   "homepage": "https://www.curseforge.com/minecraft/mc-mods/dtbop/files",
-  "1.16.2": {
+  "1.16.5": {
+    "1.16.5-2.0.7": "Bug Fixes:\n- Fixed crash with latest DT beta",
+    "1.16.5-2.0.6": "Bug Fixes:\n- Fixed crash with Dynamic Trees Beta 21",
+    "1.16.5-2.0.5": "Enhancements:\n- Updated to work with Dynamic Trees beta18",
     "1.16.5-2.0.4": "Bug Fixes:\n- Fixed rainbow hills having no fir trees",
     "1.16.5-2.0.3": "Bug Fixes:\n- Fixed crash on servers",
     "1.16.5-2.0.2": "Enhancements:\n- Adjusted default densities for woodland and seasonal forest biomes\n- Added short jungle tree in rainforest biomes\nBug Fixes:\n- Fixed rainbow hills having no trees at all\n- Fixed default weights and trees for snowy coniferous forest and snowy maple forest",
@@ -13,8 +16,8 @@
     "1.12.2-1.4.4": "New Features:\n-Mangrove world generation\n-Improvements to mangrove and rooty water block model"
   },
   "promos": {
-    "1.16.5-latest": "1.16.5-2.0.4",
-    "1.16.5-recommended": "1.16.5-2.0.4",
+    "1.16.5-latest": "1.16.5-2.0.7",
+    "1.16.5-recommended": "1.16.5-2.0.7",
     "1.12.2-latest": "1.12.2-1.5.1",
     "1.12.2-recommended": "1.12.2-1.5.1"
   }

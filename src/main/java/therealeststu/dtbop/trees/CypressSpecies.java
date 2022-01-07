@@ -66,7 +66,7 @@ public class CypressSpecies extends Species {
     }
 
     public boolean isAcceptableSoilUnderWater(BlockState soilBlockState) {
-        return SoilHelper.isSoilAcceptable(soilBlockState.getBlock(), this.soilTypeFlags | SoilHelper.getSoilFlags("sand_like", "mud_like"));
+        return SoilHelper.isSoilAcceptable(soilBlockState, this.soilTypeFlags | SoilHelper.getSoilFlags("sand_like", "mud_like"));
     }
 
     //    @Override
