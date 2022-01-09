@@ -15,7 +15,7 @@
     {
       "name": "dtbop:alt_leaves",
       "properties": {
-        "alternative_leaves": "dtbop:silk_leaves",
+        "alternative_leaves": "dtbop:silk_web",
         "place_chance": 0.3
       }
     }
