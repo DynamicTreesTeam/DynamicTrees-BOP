@@ -2,7 +2,6 @@ package therealeststu.dtbop.trees;
 
 import com.ferreusveritas.dynamictrees.api.registry.TypedRegistry;
 import com.ferreusveritas.dynamictrees.blocks.leaves.LeavesProperties;
-import com.ferreusveritas.dynamictrees.blocks.rootyblocks.RootyBlock;
 import com.ferreusveritas.dynamictrees.blocks.rootyblocks.SoilHelper;
 import com.ferreusveritas.dynamictrees.trees.Family;
 import com.ferreusveritas.dynamictrees.trees.Species;
@@ -30,9 +29,9 @@ public class GenOnStoneSpecies extends Species {
     @Override
     public boolean placeRootyDirtBlock(IWorld world, BlockPos rootPos, int fertility) {
         if (world.getBlockState(rootPos).is(Blocks.STONE)) {
-            RootyBlock rootyBlock = SoilHelper.getProperties(Blocks.GRAVEL).getDynamicSoilBlock();
-            if (rootyBlock != null)
+            SoilHelper.getProperties(Blocks.GRAVEL).getBlock().ifPresent(rootyBlock -> {
                 world.setBlock(rootPos, rootyBlock.defaultBlockState(), 3);//the super does the rest of setting up the soil
+            });
         }
         return super.placeRootyDirtBlock(world, rootPos, fertility);
     }

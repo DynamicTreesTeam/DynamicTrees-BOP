@@ -1,20 +1,23 @@
 package therealeststu.dtbop.growthlogic;
 
 import com.ferreusveritas.dynamictrees.growthlogic.GrowthLogicKit;
+import com.ferreusveritas.dynamictrees.growthlogic.GrowthLogicKitConfiguration;
+import com.ferreusveritas.dynamictrees.growthlogic.context.DirectionManipulationContext;
+import com.ferreusveritas.dynamictrees.growthlogic.context.DirectionSelectionContext;
 import com.ferreusveritas.dynamictrees.systems.GrowSignal;
-import com.ferreusveritas.dynamictrees.trees.Species;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 
 public class MahoganyLogic extends GrowthLogicKit {
 
     public MahoganyLogic(ResourceLocation registryName) { super(registryName); }
 
     @Override
-    public int[] directionManipulation(World world, BlockPos pos, Species species, int radius, GrowSignal signal, int[] probMap) {
-        Direction originDir = signal.dir.getOpposite();
+    public int[] populateDirectionProbabilityMap(GrowthLogicKitConfiguration configuration,
+                                                 DirectionManipulationContext context) {
+        final GrowSignal signal = context.signal();
+        final int[] probMap = context.probMap();
+        final Direction originDir = signal.dir.getOpposite();
 
         probMap[0] = 0; // Down is always disallowed for mahogany
 
@@ -40,7 +43,9 @@ public class MahoganyLogic extends GrowthLogicKit {
     }
 
     @Override
-    public Direction newDirectionSelected(Species species, Direction direction, GrowSignal signal) {
+    public Direction selectNewDirection(GrowthLogicKitConfiguration configuration, DirectionSelectionContext context) {
+        final Direction direction = super.selectNewDirection(configuration, context);
+        final GrowSignal signal = context.signal();
         if (direction != Direction.UP) {
             signal.energy += 0.75f;
         }
@@ -50,13 +55,4 @@ public class MahoganyLogic extends GrowthLogicKit {
         return direction;
     }
 
-    @Override
-    public float getEnergy(World world, BlockPos rootPos, Species species, float signalEnergy) {
-        return signalEnergy;
-    }
-
-    @Override
-    public int getLowestBranchHeight(World world, BlockPos pos, Species species, int lowestBranchHeight) {
-        return lowestBranchHeight;
-    }
 }

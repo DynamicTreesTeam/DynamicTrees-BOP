@@ -1,0 +1,7 @@
+{
+  "name": "conifer",
+  "properties": {
+    "energy_divisor": 4.5,
+    "height_variation": 4.5
+  }
+}

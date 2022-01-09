@@ -6,7 +6,12 @@
   "up_probability": 10,
   "lowest_branch_height": 8,
   "growth_rate": 0.85,
-  "growth_logic_kit": "dtbop:large_poplar",
+  "growth_logic_kit": {
+    "name": "dtbop:poplar",
+    "properties": {
+      "large": true
+    }
+  },
   "leaves_properties": "dtbop:magic_poplar",
   "perfect_biomes": { "name": "biomesoplenty:mystic.*" }
 }
