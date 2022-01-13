@@ -1,25 +1,14 @@
 package therealeststu.dtbop;
 
-import com.ferreusveritas.dynamictrees.DynamicTrees;
 import com.ferreusveritas.dynamictrees.api.GatherDataHelper;
 import com.ferreusveritas.dynamictrees.api.registry.RegistryHandler;
 import com.ferreusveritas.dynamictrees.blocks.leaves.LeavesProperties;
 import com.ferreusveritas.dynamictrees.blocks.rootyblocks.SoilProperties;
-import com.ferreusveritas.dynamictrees.data.provider.DTBlockTagsProvider;
-import com.ferreusveritas.dynamictrees.data.provider.DTItemTagsProvider;
-import com.ferreusveritas.dynamictrees.resources.DTResourceRegistries;
 import com.ferreusveritas.dynamictrees.trees.Family;
 import com.ferreusveritas.dynamictrees.trees.Species;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.color.BlockColors;
-import net.minecraft.data.BlockTagsProvider;
-import net.minecraft.data.ItemTagsProvider;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -52,7 +41,6 @@ public class DynamicTreesBOP
 //    }
 
     public void gatherData(final GatherDataEvent event) {
-        DTResourceRegistries.TREES_RESOURCE_MANAGER.gatherData();
         GatherDataHelper.gatherAllData(
                 MOD_ID,
                 event,

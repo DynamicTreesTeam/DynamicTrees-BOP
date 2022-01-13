@@ -1,17 +1,11 @@
 package therealeststu.dtbop.dropcreators;
 
-import com.ferreusveritas.dynamictrees.systems.dropcreators.ConfiguredDropCreator;
 import com.ferreusveritas.dynamictrees.systems.dropcreators.DropCreator;
+import com.ferreusveritas.dynamictrees.systems.dropcreators.DropCreatorConfiguration;
 import com.ferreusveritas.dynamictrees.systems.dropcreators.context.DropContext;
-import com.ferreusveritas.dynamictrees.trees.Species;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-
-import java.util.List;
-import java.util.Random;
 
 public class StringDropCreator extends DropCreator {
 
@@ -20,7 +14,7 @@ public class StringDropCreator extends DropCreator {
     }
 
     @Override
-    protected ConfiguredDropCreator<DropCreator> createDefaultConfiguration() {
+    protected DropCreatorConfiguration createDefaultConfiguration() {
         return super.createDefaultConfiguration().with(RARITY, 1f);
     }
 
@@ -30,7 +24,7 @@ public class StringDropCreator extends DropCreator {
     }
 
     @Override
-    public void appendHarvestDrops(ConfiguredDropCreator<DropCreator> configuration, DropContext context) {
+    public void appendHarvestDrops(DropCreatorConfiguration configuration, DropContext context) {
         int chance = (int) (10 * configuration.get(RARITY));
         if (context.fortune() > 0) {
             chance -= 2 << context.fortune();
@@ -46,7 +40,7 @@ public class StringDropCreator extends DropCreator {
     }
 
     @Override
-    public void appendLeavesDrops(ConfiguredDropCreator<DropCreator> configuration, DropContext context) {
+    public void appendLeavesDrops(DropCreatorConfiguration configuration, DropContext context) {
         if (context.world().getRandom().nextFloat() < configuration.get(RARITY))
             context.drops().add(new ItemStack(Items.STRING));
     }

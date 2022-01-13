@@ -1,10 +1,8 @@
 package therealeststu.dtbop.trees;
 
 import com.ferreusveritas.dynamictrees.api.registry.TypedRegistry;
-import com.ferreusveritas.dynamictrees.blocks.branches.BranchBlock;
 import com.ferreusveritas.dynamictrees.blocks.leaves.LeavesProperties;
 import com.ferreusveritas.dynamictrees.blocks.rootyblocks.SoilHelper;
-import com.ferreusveritas.dynamictrees.systems.GrowSignal;
 import com.ferreusveritas.dynamictrees.trees.Family;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.util.SafeChunkBounds;
@@ -14,7 +12,6 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
-import net.minecraft.world.World;
 
 public class CypressSpecies extends Species {
 
@@ -22,11 +19,6 @@ public class CypressSpecies extends Species {
 
     public CypressSpecies(ResourceLocation name, Family family, LeavesProperties leavesProperties) {
         super(name, family, leavesProperties);
-    }
-
-    @Override
-    public Direction selectNewDirection(World world, BlockPos pos, BranchBlock branch, GrowSignal signal) {
-        return super.selectNewDirection(world, pos, branch, signal);
     }
 
     private static final int maxDepth = 3;

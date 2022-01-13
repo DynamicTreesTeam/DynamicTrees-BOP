@@ -1,9 +1,9 @@
 package therealeststu.dtbop.trees;
 
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
-import com.ferreusveritas.dynamictrees.api.network.INodeInspector;
+import com.ferreusveritas.dynamictrees.api.network.NodeInspector;
 import com.ferreusveritas.dynamictrees.api.registry.TypedRegistry;
-import com.ferreusveritas.dynamictrees.api.treedata.ITreePart;
+import com.ferreusveritas.dynamictrees.api.treedata.TreePart;
 import com.ferreusveritas.dynamictrees.blocks.branches.BranchBlock;
 import com.ferreusveritas.dynamictrees.blocks.leaves.LeavesProperties;
 import com.ferreusveritas.dynamictrees.trees.Family;
@@ -25,11 +25,11 @@ public class PoplarSpecies extends Species {
     }
 
     @Override
-    public INodeInspector getNodeInflator(SimpleVoxmap leafMap) {
+    public NodeInspector getNodeInflator(SimpleVoxmap leafMap) {
         return new NodeInflatorPoplar(this, leafMap);
     }
 
-    public class NodeInflatorPoplar implements INodeInspector {
+    public class NodeInflatorPoplar implements NodeInspector {
 
         private float radius;
         private BlockPos last;
@@ -75,7 +75,7 @@ public class PoplarSpecies extends Species {
                         }
 
                         BlockState deltaBlockState = world.getBlockState(dPos);
-                        ITreePart treepart = TreeHelper.getTreePart(deltaBlockState);
+                        TreePart treepart = TreeHelper.getTreePart(deltaBlockState);
                         if (branch.isSameTree(treepart)) {
                             int branchRadius = treepart.getRadius(deltaBlockState);
                             areaAccum += branchRadius * branchRadius;

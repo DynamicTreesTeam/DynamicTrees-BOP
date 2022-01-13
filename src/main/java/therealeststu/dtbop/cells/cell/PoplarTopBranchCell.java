@@ -1,9 +1,9 @@
 package therealeststu.dtbop.cells.cell;
 
-import com.ferreusveritas.dynamictrees.api.cells.ICell;
+import com.ferreusveritas.dynamictrees.api.cells.Cell;
 import net.minecraft.util.Direction;
 
-public class PoplarTopBranchCell implements ICell {
+public class PoplarTopBranchCell implements Cell {
 
 	@Override
 	public int getValue() {
