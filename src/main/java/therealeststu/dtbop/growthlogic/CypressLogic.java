@@ -8,10 +8,10 @@ import com.ferreusveritas.dynamictrees.growthlogic.context.PositionalSpeciesCont
 import com.ferreusveritas.dynamictrees.systems.GrowSignal;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.util.CoordUtils;
-import net.minecraft.util.Direction;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.Direction;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 
 public class CypressLogic extends GrowthLogicKit {
 
@@ -53,7 +53,7 @@ public class CypressLogic extends GrowthLogicKit {
 
     @Override
     public float getEnergy(GrowthLogicKitConfiguration configuration, PositionalSpeciesContext context) {
-        final World world = context.world();
+        final Level world = context.world();
         final BlockPos rootPos = context.pos();
         final Species species = context.species();
         return species.getSignalEnergy() +
@@ -69,7 +69,7 @@ public class CypressLogic extends GrowthLogicKit {
                         9)); // Vary the minimum branch height by a psuedorandom hash function
     }
 
-    private float getHashedVariation(World world, BlockPos pos, int mod) {
+    private float getHashedVariation(Level world, BlockPos pos, int mod) {
         long day = world.getGameTime() / 24000L;
         int month = (int) day / 30;//Change the hashs every in-game month
         return (CoordUtils.coordHashCode(pos.above(month), 2) %

@@ -7,11 +7,11 @@ import com.ferreusveritas.dynamictrees.trees.Family;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.util.SafeChunkBounds;
 import com.ferreusveritas.dynamictrees.worldgen.JoCode;
-import net.minecraft.block.BlockState;
-import net.minecraft.util.Direction;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IWorld;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.state.BlockState;
 
 public class CypressSpecies extends Species {
 
@@ -22,7 +22,7 @@ public class CypressSpecies extends Species {
     }
 
     private static final int maxDepth = 3;
-    public boolean isAcceptableSoilForWorldgen(IWorld world, BlockPos pos, BlockState soilBlockState) {
+    public boolean isAcceptableSoilForWorldgen(LevelAccessor world, BlockPos pos, BlockState soilBlockState) {
         final boolean isAcceptableSoil = isAcceptableSoil(world, pos, soilBlockState);
 
         // If the block is water, check the block below it is valid soil (and not water).
@@ -41,7 +41,7 @@ public class CypressSpecies extends Species {
     }
 
     @Override
-    public BlockPos preGeneration(IWorld world, BlockPos rootPosition, int radius, Direction facing, SafeChunkBounds safeBounds, JoCode joCode) {
+    public BlockPos preGeneration(LevelAccessor world, BlockPos rootPosition, int radius, Direction facing, SafeChunkBounds safeBounds, JoCode joCode) {
         BlockPos root = rootPosition;
         if (this.isWater(world.getBlockState(rootPosition))){
             int i=1;
@@ -58,7 +58,7 @@ public class CypressSpecies extends Species {
     }
 
     public boolean isAcceptableSoilUnderWater(BlockState soilBlockState) {
-        return SoilHelper.isSoilAcceptable(soilBlockState, this.soilTypeFlags | SoilHelper.getSoilFlags("sand_like", "mud_like"));
+        return SoilHelper.isSoilAcceptable(soilBlockState, this.soilTypeFlags | SoilHelper.getSoilFlags("sand_like", "mud_like"),true);
     }
 
     //    @Override

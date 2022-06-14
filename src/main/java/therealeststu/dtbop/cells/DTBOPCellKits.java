@@ -7,8 +7,8 @@ import com.ferreusveritas.dynamictrees.api.cells.CellSolver;
 import com.ferreusveritas.dynamictrees.api.registry.Registry;
 import com.ferreusveritas.dynamictrees.cells.*;
 import com.ferreusveritas.dynamictrees.util.SimpleVoxmap;
-import net.minecraft.util.Direction;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.core.Direction;
+import net.minecraft.resources.ResourceLocation;
 import therealeststu.dtbop.DynamicTreesBOP;
 import therealeststu.dtbop.cells.cell.*;
 

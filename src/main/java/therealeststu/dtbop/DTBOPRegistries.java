@@ -10,11 +10,11 @@ import com.ferreusveritas.dynamictrees.systems.dropcreators.DropCreator;
 import com.ferreusveritas.dynamictrees.systems.genfeatures.BeeNestGenFeature;
 import com.ferreusveritas.dynamictrees.systems.genfeatures.GenFeature;
 import com.ferreusveritas.dynamictrees.trees.Species;
-import net.minecraft.block.Block;
-import net.minecraft.util.RegistryKey;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.world.biome.Biome;
+import net.minecraft.core.Registry;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -100,8 +100,8 @@ public class DTBOPRegistries {
         if (rainbow_birch.isValid()){
             rainbow_birch.addGenFeature(new BeeNestGenFeature(new ResourceLocation("dynamictrees","bee_nest"))
                     .with(BeeNestGenFeature.WORLD_GEN_CHANCE_FUNCTION, (world,pos)->{
-                        RegistryKey<Biome> biomeKey = RegistryKey.create(Registry.BIOME_REGISTRY, Objects.requireNonNull(world.getUncachedNoiseBiome(pos.getX() >> 2, pos.getY() >> 2, pos.getZ() >> 2).getRegistryName()));
-                        if (biomeKey == BOPBiomes.rainbow_hills)
+                        ResourceKey<Biome> biomeKey = ResourceKey.create(Registry.BIOME_REGISTRY, Objects.requireNonNull(world.getUncachedNoiseBiome(pos.getX() >> 2, pos.getY() >> 2, pos.getZ() >> 2).value().getRegistryName()));
+                        if (biomeKey == BOPBiomes.RAINBOW_HILLS)
                             return 0.02;
                          else return BiomeDictionary.hasType(biomeKey, BiomeDictionary.Type.FOREST) ? 0.0005 : 0.0;
                     }));

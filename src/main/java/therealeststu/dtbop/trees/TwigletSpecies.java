@@ -6,7 +6,9 @@ import com.ferreusveritas.dynamictrees.systems.nodemappers.NetVolumeNode;
 import com.ferreusveritas.dynamictrees.trees.Family;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.trees.species.PalmSpecies;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
+
+import com.ferreusveritas.dynamictrees.trees.Species.LogsAndSticks;
 
 public class TwigletSpecies extends Species {
 

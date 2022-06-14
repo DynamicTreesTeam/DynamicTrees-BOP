@@ -12,14 +12,14 @@ import com.ferreusveritas.dynamictrees.systems.nodemappers.FindEndsNode;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.util.BlockBounds;
 import com.ferreusveritas.dynamictrees.util.SafeChunkBounds;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.LeavesBlock;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.World;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.LeavesBlock;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.Level;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -59,7 +59,7 @@ public class AlternativeLeavesGenFeature extends GenFeature {
             return false;
         }
 
-        final World world = context.world();
+        final Level world = context.world();
         final BlockPos rootPos = context.pos();
         final Species species = context.species();
 
@@ -75,7 +75,7 @@ public class AlternativeLeavesGenFeature extends GenFeature {
         return setAltLeaves(configuration, world, bounds, SafeChunkBounds.ANY, species);
     }
 
-    private boolean setAltLeaves(GenFeatureConfiguration configuration, IWorld world, BlockBounds leafPositions,
+    private boolean setAltLeaves(GenFeatureConfiguration configuration, LevelAccessor world, BlockBounds leafPositions,
                                  SafeChunkBounds safeBounds, Species species) {
         boolean worldGen = safeBounds != SafeChunkBounds.ANY;
 
@@ -110,7 +110,7 @@ public class AlternativeLeavesGenFeature extends GenFeature {
         }
     }
 
-    private BlockState getSwapBlockState(GenFeatureConfiguration configuration, IWorld world, Species species,
+    private BlockState getSwapBlockState(GenFeatureConfiguration configuration, LevelAccessor world, Species species,
                                          BlockState state, boolean worldgen) {
         DynamicLeavesBlock originalLeaves = species.getLeavesBlock().orElse(null);
         Block alt = configuration.get(ALT_LEAVES);

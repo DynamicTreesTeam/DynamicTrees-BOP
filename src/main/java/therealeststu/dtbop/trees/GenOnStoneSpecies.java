@@ -5,11 +5,11 @@ import com.ferreusveritas.dynamictrees.blocks.leaves.LeavesProperties;
 import com.ferreusveritas.dynamictrees.blocks.rootyblocks.SoilHelper;
 import com.ferreusveritas.dynamictrees.trees.Family;
 import com.ferreusveritas.dynamictrees.trees.Species;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IWorld;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.LevelAccessor;
 
 public class GenOnStoneSpecies extends Species {
 
@@ -20,14 +20,14 @@ public class GenOnStoneSpecies extends Species {
     }
 
     @Override
-    public boolean isAcceptableSoilForWorldgen(IWorld world, BlockPos pos, BlockState soilBlockState) {
+    public boolean isAcceptableSoilForWorldgen(LevelAccessor world, BlockPos pos, BlockState soilBlockState) {
         if (soilBlockState.is(Blocks.STONE))
             return true;
         return super.isAcceptableSoilForWorldgen(world, pos, soilBlockState);
     }
 
     @Override
-    public boolean placeRootyDirtBlock(IWorld world, BlockPos rootPos, int fertility) {
+    public boolean placeRootyDirtBlock(LevelAccessor world, BlockPos rootPos, int fertility) {
         if (world.getBlockState(rootPos).is(Blocks.STONE)) {
             SoilHelper.getProperties(Blocks.GRAVEL).getBlock().ifPresent(rootyBlock -> {
                 world.setBlock(rootPos, rootyBlock.defaultBlockState(), 3);//the super does the rest of setting up the soil

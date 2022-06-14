@@ -2,10 +2,10 @@ package therealeststu.dtbop.models;
 
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
-import net.minecraft.client.renderer.texture.MissingTextureSprite;
-import net.minecraft.resources.IResourceManager;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.ResourceLocationException;
+import net.minecraft.client.renderer.texture.MissingTextureAtlasSprite;
+import net.minecraft.server.packs.resources.ResourceManager;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.ResourceLocationException;
 import net.minecraftforge.client.model.IModelLoader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -18,7 +18,7 @@ public class PalmLeavesModelLoader implements IModelLoader<PalmLeavesModelGeomet
     private static final String TEXTURES = "textures";
 
     @Override
-    public void onResourceManagerReload(IResourceManager resourceManager) { }
+    public void onResourceManagerReload(ResourceManager resourceManager) { }
 
     @Override
     public PalmLeavesModelGeometry read(JsonDeserializationContext deserializationContext, JsonObject modelObject) {
@@ -32,7 +32,7 @@ public class PalmLeavesModelLoader implements IModelLoader<PalmLeavesModelGeomet
         } catch (final RuntimeException e) {
             LOGGER.error("{} missing or did not have valid \"{}\" texture location element, using missing " +
                     "texture.", this.getModelTypeName(), textureElement);
-            return MissingTextureSprite.getLocation();
+            return MissingTextureAtlasSprite.getLocation();
         }
     }
 

@@ -11,11 +11,12 @@ import com.ferreusveritas.dynamictrees.systems.GrowSignal;
 import com.ferreusveritas.dynamictrees.trees.Species;
 import com.ferreusveritas.dynamictrees.util.CoordUtils;
 import com.ferreusveritas.dynamictrees.util.MathHelper;
-import net.minecraft.block.BlockState;
-import net.minecraft.util.Direction;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.Vec3i;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.core.Direction;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 
 public class RedwoodLogic extends GrowthLogicKit {
 
@@ -25,7 +26,7 @@ public class RedwoodLogic extends GrowthLogicKit {
 
     @Override
     public Direction selectNewDirection(GrowthLogicKitConfiguration configuration, DirectionSelectionContext context) {
-        final World world = context.world();
+        final Level world = context.world();
         final BlockPos pos = context.pos();
         final Species species = context.species();
         final GrowSignal signal = context.signal();
@@ -124,7 +125,7 @@ public class RedwoodLogic extends GrowthLogicKit {
                 context.species().getUpProbability() : 1;
         probMap[originDir.ordinal()] = 0; // Disable the direction we came from
 
-        if (signal.numTurns == 1 && signal.delta.distSqr(0, signal.delta.getY(), 0, true) == 1.0) {
+        if (signal.numTurns == 1 && signal.delta.distSqr(new Vec3i(0, signal.delta.getY(), 0)) == 1.0) {
             probMap[1] =
                     0; //disable up if we JUST turned out of the trunk, this is to prevent branches from interfering at the tip
         }
@@ -134,7 +135,7 @@ public class RedwoodLogic extends GrowthLogicKit {
 
     @Override
     public float getEnergy(GrowthLogicKitConfiguration configuration, PositionalSpeciesContext context) {
-        final World world = context.world();
+        final Level world = context.world();
         final BlockPos pos = context.pos();
         final Species species = context.species();
         // Vary the height energy by a psuedorandom hash function
@@ -144,20 +145,20 @@ public class RedwoodLogic extends GrowthLogicKit {
 
     @Override
     public int getLowestBranchHeight(GrowthLogicKitConfiguration configuration, PositionalSpeciesContext context) {
-        final World world = context.world();
+        final Level world = context.world();
         final BlockPos pos = context.pos();
         return (int) ((super.getLowestBranchHeight(configuration, context) +
                 getHashedVariation(world, pos, 2, 16) * 0.5f) *
                 context.species().biomeSuitability(world, pos));
     }
 
-    private int getHashedVariation(World world, BlockPos pos, int readyMade) {
+    private int getHashedVariation(Level world, BlockPos pos, int readyMade) {
         long day = world.getGameTime() / 24000L;
         int month = (int) day / 30;//Change the hashs every in-game month
         return CoordUtils.coordHashCode(pos.above(month), readyMade);
     }
 
-    private float getHashedVariation(World world, BlockPos pos, int readyMade, Integer mod) {
+    private float getHashedVariation(Level world, BlockPos pos, int readyMade, Integer mod) {
         return (getHashedVariation(world, pos, readyMade) %
                 mod);//Vary the height energy by a psuedorandom hash function
     }

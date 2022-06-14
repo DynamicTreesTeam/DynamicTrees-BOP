@@ -3,9 +3,9 @@ package therealeststu.dtbop.dropcreators;
 import com.ferreusveritas.dynamictrees.systems.dropcreators.DropCreator;
 import com.ferreusveritas.dynamictrees.systems.dropcreators.DropCreatorConfiguration;
 import com.ferreusveritas.dynamictrees.systems.dropcreators.context.DropContext;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.resources.ResourceLocation;
 
 public class StringDropCreator extends DropCreator {
 

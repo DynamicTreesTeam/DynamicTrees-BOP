@@ -6,11 +6,12 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '4.1.+', changing: true
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
     }
 }
 
 repositories {
+    mavenLocal()
     maven {
         name 'LDTTeam - Modding'
         url 'https://ldtteam.jfrog.io/ldtteam/modding/'
@@ -22,7 +23,7 @@ repositories {
         url "https://www.cursemaven.com"
     }
     maven {
-        url "http://harleyoconnor.com/maven"
+        url "https://harleyoconnor.com/maven"
     }
     flatDir {
         dirs("libs")
@@ -33,6 +34,7 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'maven-publish'
+apply from: 'https://raw.githubusercontent.com/SizableShrimp/Forge-Class-Remapper/main/classremapper.gradle'
 
 ext.configFile = file "gradle.properties"
 configFile.withReader {
@@ -45,7 +47,7 @@ version = "${config.mc_version}-${config.mod_version}"
 group = config.package_group
 archivesBaseName = config.mod_name
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(8)
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 minecraft {
     mappings channel: 'official', version: config.mc_version
@@ -106,27 +108,31 @@ dependencies {
     minecraft "net.minecraftforge:forge:${config.mc_version}-${config.forge_version}"
 
     // Compile Hwyla API, but don't include in runtime.
-    compileOnly fg.deobf("mcp.mobius.waila:Hwyla:${config.hwyla_version}:api")
+//    compileOnly fg.deobf("mcp.mobius.waila:Hwyla:${config.hwyla_version}:api")
     // At runtime, use the full Hwyla mod.
-    runtimeOnly fg.deobf("mcp.mobius.waila:Hwyla:${config.hwyla_version}")
+//    runtimeOnly fg.deobf("mcp.mobius.waila:Hwyla:${config.hwyla_version}")
 
     // Compile JEI API, but don't include in runtime.
-    compileOnly fg.deobf("mezz.jei:jei-1.16.5:${config.jei_version}:api")
+    compileOnly fg.deobf("mezz.jei:jei-1.18.2:${config.jei_version}:api")
     // At runtime, use the full JEI mod.
-    runtimeOnly fg.deobf("mezz.jei:jei-1.16.5:${config.jei_version}")
+    runtimeOnly fg.deobf("mezz.jei:jei-1.18.2:${config.jei_version}")
 
     // Compile Dynamic Trees, of course.
     implementation fg.deobf("com.ferreusveritas.dynamictrees:DynamicTrees-${config.mc_version}:${config.dynamic_trees_version}")
     //implementation fg.deobf("blank:DynamicTrees-1.16.5:0.10.0-Beta17")
     // Compile Dynamic Trees Plus
-    runtimeOnly fg.deobf("com.ferreusveritas.dynamictreesplus:DynamicTreesPlus-${config.mc_version}:${config.dynamic_trees_plus_version}")
+//    runtimeOnly fg.deobf("com.ferreusveritas.dynamictreesplus:DynamicTreesPlus-${config.mc_version}:${config.dynamic_trees_plus_version}")
+    implementation fg.deobf("curse.maven:dynamictrees-252818:3815249")
 
-    implementation fg.deobf("curse.maven:biomes-o-plenty-220318:3544153")
+    implementation fg.deobf("curse.maven:biomes-o-plenty-220318:3759236")
+    runtimeOnly(fg.deobf("curse.maven:terrablender-563928:3816497"))
 
-    runtimeOnly fg.deobf("curse.maven:cc-tweaked-282001:3236650")
+    runtimeOnly fg.deobf("curse.maven:cc-tweaked-282001:3825460")
 
     // At runtime, use suggestion provider fix mod.
-    runtimeOnly fg.deobf("com.harleyoconnor.suggestionproviderfix:SuggestionProviderFix:${config.mc_version}-${config.suggestion_provider_fix_version}")
+//    runtimeOnly fg.deobf("com.harleyoconnor.suggestionproviderfix:SuggestionProviderFix:${config.mc_version}-${config.suggestion_provider_fix_version}")
+    runtimeOnly(fg.deobf("curse.maven:suggestionproviderfix-469647:3623382"))
+
 }
 
 jar {

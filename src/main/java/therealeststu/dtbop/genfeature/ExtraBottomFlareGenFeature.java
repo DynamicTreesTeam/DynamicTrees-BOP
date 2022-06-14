@@ -7,10 +7,10 @@ import com.ferreusveritas.dynamictrees.systems.genfeatures.GenFeatureConfigurati
 import com.ferreusveritas.dynamictrees.systems.genfeatures.context.PostGenerationContext;
 import com.ferreusveritas.dynamictrees.systems.genfeatures.context.PostGrowContext;
 import com.ferreusveritas.dynamictrees.trees.Species;
-import net.minecraft.util.Direction;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IWorld;
+import net.minecraft.core.Direction;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.LevelAccessor;
 
 public class ExtraBottomFlareGenFeature extends GenFeature {
 
@@ -56,7 +56,7 @@ public class ExtraBottomFlareGenFeature extends GenFeature {
 	 * @param world The world
 	 * @param rootPos The position of the rooty dirt block of the tree
 	 */
-	public void flareBottom(GenFeatureConfiguration configuredGenFeature, IWorld world, BlockPos rootPos, Species species) {
+	public void flareBottom(GenFeatureConfiguration configuredGenFeature, LevelAccessor world, BlockPos rootPos, Species species) {
 		species.getFamily().getBranch().ifPresent(branch -> {
 			int radius4 = TreeHelper.getRadius(world, rootPos.above(4));
 			if (radius4 > configuredGenFeature.get(SECONDARY_MIN_RADIUS)) {

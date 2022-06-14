@@ -2,12 +2,6 @@ package therealeststu.dtbop.items;
 
 import com.ferreusveritas.dynamictrees.items.Seed;
 import com.ferreusveritas.dynamictrees.trees.Species;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
-
-import javax.annotation.Nullable;
 
 public class MapleSeed extends Seed {
 

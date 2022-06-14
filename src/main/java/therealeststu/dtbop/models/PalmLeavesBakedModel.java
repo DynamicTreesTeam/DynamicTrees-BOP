@@ -5,11 +5,13 @@ import com.ferreusveritas.dynamictrees.blocks.leaves.PalmLeavesProperties;
 import com.ferreusveritas.dynamictrees.client.ModelUtils;
 import com.ferreusveritas.dynamictrees.util.CoordUtils;
 import com.google.common.primitives.Ints;
-import net.minecraft.block.BlockState;
-import net.minecraft.client.renderer.model.*;
+import net.minecraft.client.renderer.block.model.*;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.util.Direction;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.client.resources.model.BakedModel;
+import net.minecraft.client.resources.model.SimpleBakedModel;
+import net.minecraft.core.Direction;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.client.model.data.IDynamicBakedModel;
 import net.minecraftforge.client.model.data.IModelData;
 
@@ -26,10 +28,10 @@ public class PalmLeavesBakedModel implements IDynamicBakedModel {
     ResourceLocation frondsResLoc;
     TextureAtlasSprite frondsTexture;
 
-    private final IBakedModel[] bakedFronds = new IBakedModel[8]; // 8 = Number of surrounding blocks
+    private final BakedModel[] bakedFronds = new BakedModel[8]; // 8 = Number of surrounding blocks
 
     public PalmLeavesBakedModel (ResourceLocation modelResLoc, ResourceLocation frondsResLoc){
-        this.blockModel = new BlockModel(null, new ArrayList<>(), new HashMap<>(), false, BlockModel.GuiLight.FRONT, ItemCameraTransforms.NO_TRANSFORMS, ItemOverrideList.EMPTY.getOverrides());
+        this.blockModel = new BlockModel(null, new ArrayList<>(), new HashMap<>(), false, BlockModel.GuiLight.FRONT, ItemTransforms.NO_TRANSFORMS, new ArrayList<>());
         this.frondsResLoc = frondsResLoc;
         INSTANCES.add(this);
     }
@@ -39,7 +41,7 @@ public class PalmLeavesBakedModel implements IDynamicBakedModel {
 
         for (CoordUtils.Surround surr : CoordUtils.Surround.values()) {
 
-            SimpleBakedModel.Builder builder = new SimpleBakedModel.Builder(blockModel.customData, ItemOverrideList.EMPTY).particle(frondsTexture);
+            SimpleBakedModel.Builder builder = new SimpleBakedModel.Builder(blockModel.customData, ItemOverrides.EMPTY).particle(frondsTexture);
 
             BlockVertexData[] quadData = {
                     new BlockVertexData(0, 0, 3, 15, 4),
@@ -225,8 +227,8 @@ public class PalmLeavesBakedModel implements IDynamicBakedModel {
     }
 
     @Override
-    public ItemOverrideList getOverrides() {
-        return ItemOverrideList.EMPTY;
+    public ItemOverrides getOverrides() {
+        return ItemOverrides.EMPTY;
     }
 
     @Override

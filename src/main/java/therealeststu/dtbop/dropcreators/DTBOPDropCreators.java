@@ -2,7 +2,7 @@ package therealeststu.dtbop.dropcreators;
 
 import com.ferreusveritas.dynamictrees.api.registry.Registry;
 import com.ferreusveritas.dynamictrees.systems.dropcreators.DropCreator;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import therealeststu.dtbop.DynamicTreesBOP;
 
 public class DTBOPDropCreators {

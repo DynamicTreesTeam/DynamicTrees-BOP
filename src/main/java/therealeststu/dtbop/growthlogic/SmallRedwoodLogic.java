@@ -4,9 +4,9 @@ import com.ferreusveritas.dynamictrees.growthlogic.ConiferLogic;
 import com.ferreusveritas.dynamictrees.growthlogic.GrowthLogicKitConfiguration;
 import com.ferreusveritas.dynamictrees.growthlogic.context.PositionalSpeciesContext;
 import com.ferreusveritas.dynamictrees.util.CoordUtils;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 
 public class SmallRedwoodLogic extends ConiferLogic {
 
@@ -33,7 +33,7 @@ public class SmallRedwoodLogic extends ConiferLogic {
                 getHashedVariation(context.world(), context.pos(), 11));
     }
 
-    private float getHashedVariation(World world, BlockPos pos, int mod) {
+    private float getHashedVariation(Level world, BlockPos pos, int mod) {
         long day = world.getGameTime() / 24000L;
         int month = (int) day / 30;//Change the hashs every in-game month
         return (CoordUtils.coordHashCode(pos.above(month), 2) %
