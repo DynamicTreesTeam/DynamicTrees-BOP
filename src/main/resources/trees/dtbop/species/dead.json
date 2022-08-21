@@ -3,10 +3,7 @@
   "tapering": 0.3,
   "signal_energy": 12.0,
   "growth_rate": 0.0,
-  "leaves_properties": "dtbop:dead",
+  "leaves_properties": "bare",
   "can_bone_meal_tree": false,
-  "acceptable_soils": ["dirt_like", "sand_like"],
-  "drop_creators": [
-    "log"
-  ]
+  "acceptable_soils": ["dirt_like", "sand_like"]
 }

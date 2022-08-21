@@ -13,14 +13,5 @@
   "transformable": false,
   "perfect_biomes": { "name": "biomesoplenty:tropics" },
   "primitive_sapling": "biomesoplenty:palm_sapling",
-  "acceptable_soils": ["dirt_like", "sand_like"],
-  "drop_creators": [
-    "log",
-    {
-      "name": "seed",
-      "properties": {
-        "rarity": 6.0
-      }
-    }
-  ]
+  "acceptable_soils": ["dirt_like", "sand_like"]
 }
