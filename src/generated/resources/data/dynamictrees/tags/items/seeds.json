@@ -1,0 +1,24 @@
+{
+  "replace": false,
+  "values": [
+    "dtbop:hellbark_seed",
+    "dtbop:yellow_autumn_seed",
+    "dtbop:fir_seed",
+    "dtbop:magic_poplar_seed",
+    "dtbop:dark_poplar_seed",
+    "dtbop:pink_cherry_seed",
+    "dtbop:flowering_oak_seed",
+    "dtbop:white_cherry_seed",
+    "dtbop:dying_seed",
+    "dtbop:jacaranda_seed",
+    "dtbop:mahogany_seed",
+    "dtbop:maple_seed",
+    "dtbop:umbran_seed",
+    "dtbop:willow_seed",
+    "dtbop:spruce_poplar_seed",
+    "dtbop:palm_seed",
+    "dtbop:redwood_seed",
+    "dtbop:orange_autumn_seed",
+    "dtbop:rainbow_birch_seed"
+  ]
+}

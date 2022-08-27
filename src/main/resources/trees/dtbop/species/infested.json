@@ -19,16 +19,5 @@
         "place_chance": 0.3
       }
     }
-  ],
-  "drop_creators": [
-    "log",
-    "stick",
-    "seed",
-    {
-      "name": "dtbop:leaves_string",
-      "properties": {
-        "rarity": 0.3
-      }
-    }
   ]
 }

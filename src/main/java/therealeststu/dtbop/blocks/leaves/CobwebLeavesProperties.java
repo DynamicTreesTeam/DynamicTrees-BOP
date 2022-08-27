@@ -24,7 +24,7 @@ public class CobwebLeavesProperties extends LeavesProperties {
         super(registryName);
     }
 
-    protected String getBlockRegistryNameSuffix() {
+    public String getBlockRegistryNameSuffix() {
         return "_web";
     }
 

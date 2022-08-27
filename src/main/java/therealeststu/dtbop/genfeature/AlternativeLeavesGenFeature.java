@@ -59,7 +59,7 @@ public class AlternativeLeavesGenFeature extends GenFeature {
             return false;
         }
 
-        final World world = context.world();
+        final IWorld world = context.world();
         final BlockPos rootPos = context.pos();
         final Species species = context.species();
 

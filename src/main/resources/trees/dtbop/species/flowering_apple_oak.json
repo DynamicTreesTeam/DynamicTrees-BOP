@@ -13,6 +13,9 @@
   },
   "use_seed_of_other_species": "dynamictrees:apple_oak",
   "perfect_biomes": { "name": "biomesoplenty:orchard" },
+  "fruits": [
+    "apple"
+  ],
   "features" : [
     {
       "name": "dtbop:alt_leaves",
@@ -20,15 +23,10 @@
         "alternative_leaves": "dtbop:flowering_oak_leaves"
       }
     },
-    "fruit"
-  ],
-  "drop_creators": [
-    "log",
-    "stick",
     {
       "name": "fruit",
-      "properties":{
-        "fruit_item": "apple"
+      "properties": {
+        "fruit": "apple"
       }
     }
   ]
