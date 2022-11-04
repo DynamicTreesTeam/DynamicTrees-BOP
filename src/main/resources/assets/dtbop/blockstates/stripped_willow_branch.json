@@ -1,5 +1,5 @@
 {
   "variants": {
-    "": { "model": "dtbop:block/willow_branch" }
+    "": { "model": "dtbop:block/stripped_willow_branch" }
   }
 }
