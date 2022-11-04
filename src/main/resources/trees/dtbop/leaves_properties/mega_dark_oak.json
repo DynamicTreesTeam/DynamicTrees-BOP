@@ -1,4 +1,7 @@
 {
   "primitive_leaves": "dark_oak_leaves",
-  "smother": 16
+  "smother": 16,
+
+  "_comment": "Data gen properties",
+  "seed_drop_chances": [ 0.009375, 0.01875, 0.028125, 0.0375 ]
 }

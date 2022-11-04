@@ -10,10 +10,5 @@
     "dead": 1.05
   },
   "primitive_sapling": "biomesoplenty:dead_sapling",
-  "perfect_biomes": { "name": "biomesoplenty:silkglade" },
-  "drop_creators": [
-    "log",
-    "stick",
-    "dtbop:leaves_string"
-  ]
+  "perfect_biomes": { "name": "biomesoplenty:silkglade" }
 }

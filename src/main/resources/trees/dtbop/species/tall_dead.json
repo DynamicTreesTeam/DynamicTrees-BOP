@@ -3,9 +3,6 @@
   "tapering": 0.05,
   "signal_energy": 24.0,
   "growth_rate": 0.0,
-  "leaves_properties": "dtbop:dead",
-  "can_bone_meal_tree": false,
-  "drop_creators": [
-    "log"
-  ]
+  "leaves_properties": "bare",
+  "can_bone_meal_tree": false
 }

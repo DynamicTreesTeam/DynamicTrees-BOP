@@ -1,5 +1,8 @@
 {
   "type": "palm",
   "primitive_leaves": "biomesoplenty:palm_leaves",
-  "cell_kit": "dynamictrees:palm"
+  "cell_kit": "dynamictrees:palm",
+
+  "_comment": "Data gen properties",
+  "seed_drop_chances": [ 0.09375, 0.1875, 0.28125, 0.375 ]
 }

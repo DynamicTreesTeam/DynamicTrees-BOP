@@ -1,7 +1,7 @@
 package therealeststu.dtbop.genfeature;
 
 import com.ferreusveritas.dynamictrees.api.registry.Registry;
-import com.ferreusveritas.dynamictrees.systems.genfeatures.GenFeature;
+import com.ferreusveritas.dynamictrees.systems.genfeature.GenFeature;
 import net.minecraft.resources.ResourceLocation;
 import therealeststu.dtbop.DynamicTreesBOP;
 

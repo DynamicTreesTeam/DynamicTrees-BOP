@@ -1,25 +1,24 @@
 package therealeststu.dtbop.genfeature;
 
 import com.ferreusveritas.dynamictrees.api.TreeHelper;
-import com.ferreusveritas.dynamictrees.api.configurations.ConfigurationProperty;
+import com.ferreusveritas.dynamictrees.api.configuration.ConfigurationProperty;
 import com.ferreusveritas.dynamictrees.api.network.MapSignal;
-import com.ferreusveritas.dynamictrees.blocks.leaves.DynamicLeavesBlock;
-import com.ferreusveritas.dynamictrees.systems.genfeatures.GenFeature;
-import com.ferreusveritas.dynamictrees.systems.genfeatures.GenFeatureConfiguration;
-import com.ferreusveritas.dynamictrees.systems.genfeatures.context.PostGenerationContext;
-import com.ferreusveritas.dynamictrees.systems.genfeatures.context.PostGrowContext;
-import com.ferreusveritas.dynamictrees.systems.nodemappers.FindEndsNode;
-import com.ferreusveritas.dynamictrees.trees.Species;
+import com.ferreusveritas.dynamictrees.block.leaves.DynamicLeavesBlock;
+import com.ferreusveritas.dynamictrees.systems.genfeature.GenFeature;
+import com.ferreusveritas.dynamictrees.systems.genfeature.GenFeatureConfiguration;
+import com.ferreusveritas.dynamictrees.systems.genfeature.context.PostGenerationContext;
+import com.ferreusveritas.dynamictrees.systems.genfeature.context.PostGrowContext;
+import com.ferreusveritas.dynamictrees.systems.nodemapper.FindEndsNode;
+import com.ferreusveritas.dynamictrees.tree.species.Species;
 import com.ferreusveritas.dynamictrees.util.BlockBounds;
 import com.ferreusveritas.dynamictrees.util.SafeChunkBounds;
+import net.minecraft.core.BlockPos;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.LeavesBlock;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -50,7 +49,7 @@ public class AlternativeLeavesGenFeature extends GenFeature {
         BlockBounds bounds =
                 context.species().getFamily().expandLeavesBlockBounds(new BlockBounds(context.endPoints()));
 
-        return setAltLeaves(configuration, context.world(), bounds, context.bounds(), context.species());
+        return setAltLeaves(configuration, context.level(), bounds, context.bounds(), context.species());
     }
 
     @Override
@@ -59,32 +58,32 @@ public class AlternativeLeavesGenFeature extends GenFeature {
             return false;
         }
 
-        final Level world = context.world();
+        final LevelAccessor level = context.level();
         final BlockPos rootPos = context.pos();
         final Species species = context.species();
 
         FindEndsNode endFinder = new FindEndsNode();
-        TreeHelper.startAnalysisFromRoot(world, rootPos, new MapSignal(endFinder));
+        TreeHelper.startAnalysisFromRoot(level, rootPos, new MapSignal(endFinder));
         List<BlockPos> endPoints = endFinder.getEnds();
         if (endPoints.isEmpty()) {
             return false;
         }
-        BlockPos chosenEndPoint = endPoints.get(world.getRandom().nextInt(endPoints.size()));
+        BlockPos chosenEndPoint = endPoints.get(level.getRandom().nextInt(endPoints.size()));
         BlockBounds bounds = species.getFamily().expandLeavesBlockBounds(new BlockBounds(chosenEndPoint));
 
-        return setAltLeaves(configuration, world, bounds, SafeChunkBounds.ANY, species);
+        return setAltLeaves(configuration, level, bounds, SafeChunkBounds.ANY, species);
     }
 
-    private boolean setAltLeaves(GenFeatureConfiguration configuration, LevelAccessor world, BlockBounds leafPositions,
+    private boolean setAltLeaves(GenFeatureConfiguration configuration, LevelAccessor level, BlockBounds leafPositions,
                                  SafeChunkBounds safeBounds, Species species) {
         boolean worldGen = safeBounds != SafeChunkBounds.ANY;
 
         if (worldGen) {
             AtomicBoolean isSet = new AtomicBoolean(false);
             leafPositions.iterator().forEachRemaining((pos) -> {
-                if (safeBounds.inBounds(pos, true) && world.getRandom().nextFloat() < configuration.get(PLACE_CHANCE)) {
-                    if (world.setBlock(pos,
-                            getSwapBlockState(configuration, world, species, world.getBlockState(pos), true), 2)) {
+                if (safeBounds.inBounds(pos, true) && level.getRandom().nextFloat() < configuration.get(PLACE_CHANCE)) {
+                    if (level.setBlock(pos,
+                            getSwapBlockState(configuration, level, species, level.getBlockState(pos), true), 2)) {
                         isSet.set(true);
                     }
                 }
@@ -100,9 +99,9 @@ public class AlternativeLeavesGenFeature extends GenFeature {
                 return false;
             }
             for (int i = 0; i < configuration.get(QUANTITY); i++) {
-                BlockPos pos = posList.get(world.getRandom().nextInt(posList.size()));
-                if (world.setBlock(pos,
-                        getSwapBlockState(configuration, world, species, world.getBlockState(pos), false), 2)) {
+                BlockPos pos = posList.get(level.getRandom().nextInt(posList.size()));
+                if (level.setBlock(pos,
+                        getSwapBlockState(configuration, level, species, level.getBlockState(pos), false), 2)) {
                     isSet = true;
                 }
             }
@@ -110,13 +109,13 @@ public class AlternativeLeavesGenFeature extends GenFeature {
         }
     }
 
-    private BlockState getSwapBlockState(GenFeatureConfiguration configuration, LevelAccessor world, Species species,
+    private BlockState getSwapBlockState(GenFeatureConfiguration configuration, LevelAccessor level, Species species,
                                          BlockState state, boolean worldgen) {
         DynamicLeavesBlock originalLeaves = species.getLeavesBlock().orElse(null);
         Block alt = configuration.get(ALT_LEAVES);
         DynamicLeavesBlock altLeaves = alt instanceof DynamicLeavesBlock ? (DynamicLeavesBlock) alt : null;
         if (originalLeaves != null && altLeaves != null) {
-            if (worldgen || world.getRandom().nextFloat() < configuration.get(PLACE_CHANCE)) {
+            if (worldgen || level.getRandom().nextFloat() < configuration.get(PLACE_CHANCE)) {
                 if (state.getBlock() == originalLeaves) {
                     return altLeaves.properties.getDynamicLeavesState(state.getValue(LeavesBlock.DISTANCE));
                 }
