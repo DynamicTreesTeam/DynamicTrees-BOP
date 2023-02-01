@@ -1,0 +1,19 @@
+[
+  {
+    "__comment": "Cancel standard tree features from the BoP overworld.",
+    "select": { "names": [ "biomesoplenty:.*", "!biomesoplenty:origin_valley" ], "category": [ "!nether" ] },
+    "cancellers": {
+      "type": "tree",
+      "namespaces": ["biomesoplenty", "minecraft"]
+    }
+  },
+  {
+    "__comment": "Cancel standard tree features from the BoP nether.",
+    "select": { "name": "biomesoplenty:undergrowth" },
+    "cancellers": {
+      "type": "tree",
+      "namespaces": ["biomesoplenty", "minecraft"],
+      "stage": "underground_decoration"
+    }
+  }
+]
