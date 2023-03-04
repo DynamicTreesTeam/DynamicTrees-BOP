@@ -37,7 +37,7 @@
     }
   },
   {
-    "select": { "name": "biomesoplenty:rainforest_cliffs" },
+    "select": { "name": "biomesoplenty:rocky_rainforest" },
     "apply": {
       "species" : {
         "random" : {
@@ -52,7 +52,7 @@
     }
   },
   {
-    "select": { "name": "biomesoplenty:rainforest_floodplain" },
+    "select": { "name": "biomesoplenty:floodplain" },
     "apply": {
       "species" : {
         "random" : {
@@ -88,14 +88,6 @@
     }
   },
   {
-    "select": { "name": "biomesoplenty:alps_foothills" },
-    "apply": {
-      "species" : "dtbop:alps_spruce",
-      "density": 0.8,
-      "chance": 0.4
-    }
-  },
-  {
     "select": { "name": "biomesoplenty:jade_cliffs" },
     "apply": {
       "species" : {
@@ -118,7 +110,7 @@
     }
   },
   {
-    "select": { "name": "biomesoplenty:dense_woodland" },
+    "select": { "name": "biomesoplenty:old_growth_woodland" },
     "apply": {
       "density": 1.5,
       "chance": 1.0
@@ -181,7 +173,7 @@
     }
   },
   {
-    "select": { "name": "biomesoplenty:bamboo_blossom_grove" },
+    "select": { "name": "biomesoplenty:bamboo_grove" },
     "apply": {
       "species" : {
         "random" : {
@@ -211,7 +203,7 @@
     }
   },
   {
-    "select": { "name": "biomesoplenty:grove" },
+    "select": { "name": "biomesoplenty:mediterranean_forest" },
     "apply": {
       "species" : {
         "random" : {
@@ -327,10 +319,11 @@
     }
   },
   {
-    "select": { "name": "biomesoplenty:shrubland_hills" },
+    "select": { "name": "biomesoplenty:rocky_shrubland" },
     "apply": {
-      "density": 1.0,
-      "chance": 1.0
+      "species" : "dtbop:oak_bush",
+      "density": 0.01,
+      "chance": 0.1
     }
   },
   {
@@ -457,7 +450,7 @@
     }
   },
   {
-    "select": { "name": "biomesoplenty:seasonal_pumpkin_patch" },
+    "select": { "name": "biomesoplenty:pumpkin_patch" },
     "apply": {
       "species" : {
         "random" : {
@@ -511,7 +504,7 @@
     }
   },
   {
-    "select": { "name": "biomesoplenty:.*meadow" },
+    "select": { "name": "biomesoplenty:.*field" },
     "apply": {
       "species" : {
         "random" : {
@@ -524,7 +517,7 @@
     }
   },
   {
-    "select": { "name": "biomesoplenty:meadow_forest" },
+    "select": { "name": "biomesoplenty:forested_field" },
     "apply": {
       "species" : {
         "random" : {
@@ -589,7 +582,7 @@
     }
   },
   {
-    "select": { "name": "biomesoplenty:tall_dead_forest" },
+    "select": { "name": "biomesoplenty:old_growth_dead_forest" },
     "apply": {
       "species" : {
         "random" : {
