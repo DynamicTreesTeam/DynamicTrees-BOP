@@ -17,7 +17,7 @@ public class TwigletSpecies extends Species {
     }
 
     @Override
-    protected void processVolume(NetVolumeNode.Volume volume) {
+    public void processVolume(NetVolumeNode.Volume volume) {
         volume.addVolume(NetVolumeNode.Volume.VOXELSPERLOG);
         super.processVolume(volume);
     }

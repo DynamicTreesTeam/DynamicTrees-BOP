@@ -15,7 +15,7 @@
     "dry": 0.5
   },
   "perfect_biomes": { "types": [ "swamp", "overworld" ] },
-  "acceptable_soils": [ "water_like", "dirt_like" ],
+  "acceptable_soils": [ "water_like", "dirt_like", "mud_like" ],
   "features": [
     {
       "name": "vines",
