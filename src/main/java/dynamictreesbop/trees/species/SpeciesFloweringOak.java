@@ -52,7 +52,7 @@ public class SpeciesFloweringOak extends Species {
 	}
 
 	public SpeciesFloweringOak(TreeFamily treeFamily) {
-		super(new ResourceLocation(DynamicTreesBOP.MODID, ModContent.FLOWERINGOAK), treeFamily, ModContent.floweringOakLeavesProperties[0]);
+		this(new ResourceLocation(DynamicTreesBOP.MODID, ModContent.FLOWERINGOAK), treeFamily, ModContent.floweringOakLeavesProperties[0]);
 
 		addValidLeavesBlocks(ModContent.floweringOakLeavesProperties);
 		ModContent.floweringOakLeavesProperties[0].setTree(treeFamily);
