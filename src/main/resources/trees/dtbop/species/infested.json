@@ -13,9 +13,9 @@
   "perfect_biomes": { "name": "biomesoplenty:silkglade" },
   "features" : [
     {
-      "name": "dtbop:alt_leaves",
+      "name": "alt_leaves",
       "properties": {
-        "alternative_leaves": "dtbop:silk_web",
+        "alternative_leaves": "dtbop:silk",
         "place_chance": 0.3
       }
     }

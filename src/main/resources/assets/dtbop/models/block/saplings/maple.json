@@ -1,7 +1,0 @@
-{   "parent": "dynamictrees:block/smartmodel/sapling",
-  "textures": {
-    "particle": "biomesoplenty:block/maple_leaves",
-    "log": "block/oak_log",
-    "leaves": "biomesoplenty:block/maple_leaves"
-  }
-}

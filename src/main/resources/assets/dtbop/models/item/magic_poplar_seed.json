@@ -1,6 +1,0 @@
-{
-  "parent":"dynamictrees:item/standard_seed",
-  "textures": {
-    "layer0":"dtbop:item/magic_poplar_seed"
-  }
-}

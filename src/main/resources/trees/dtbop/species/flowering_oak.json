@@ -16,9 +16,9 @@
   "primitive_sapling": "biomesoplenty:flowering_oak_sapling",
   "features" : [
     {
-      "name": "dtbop:alt_leaves",
+      "name": "alt_leaves",
       "properties": {
-        "alternative_leaves": "dtbop:flowering_oak_leaves"
+        "alternative_leaves": "dtbop:flowering_oak"
       }
     },
     "bee_nest"
