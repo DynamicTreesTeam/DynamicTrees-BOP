@@ -16,7 +16,7 @@
   "always_show_on_waila": true,
   "seed_name": "redwood_seed",
   "sapling_name": "redwood_sapling",
-  "perfect_biomes": { "type": "coniferous" },
+  "perfect_biomes": { "name": ".*redwood.*" },
   "primitive_sapling": "biomesoplenty:redwood_sapling",
   "mega_species": "dtbop:redwood",
   "features" : [

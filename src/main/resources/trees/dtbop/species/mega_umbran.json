@@ -5,7 +5,7 @@
   "up_probability": 7,
   "lowest_branch_height": 7,
   "growth_rate": 1.0,
-  "soil_longevity": 14,
+  "soil_longevity": 18,
   "max_branch_radius": 24,
   "growth_logic_kit": "dtbop:fir",
   "leaves_properties": "dtbop:umbran",
@@ -19,6 +19,7 @@
     "magical": 1.1
   },
   "perfect_biomes": { "type": "coniferous" },
+  "common_override": { "name": "biomesoplenty:ominous_woods" },
   "features" : [
     "conifer_topper",
     {

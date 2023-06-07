@@ -12,9 +12,10 @@
     "apply": {
       "species" : {
         "random" : {
-          "dtbop:palm" : 3,
-          "dtbop:flowering_oak_undergrowth" : 1,
-          "dtbop:jungle_twiglet" : 1
+          "dtbop:palm" : 6,
+          "dtbop:flowering_oak_undergrowth" : 2,
+          "dtbop:jungle_twiglet" : 2,
+          "cocoa" : 1
         }
       },
       "density": [ 5.0 ],
@@ -118,8 +119,8 @@
           "oak" : 1
         }
       },
-      "density": 0.1,
-      "chance": 0.05
+      "density": 0.2,
+      "chance": 0.2
     }
   },
   {
@@ -330,8 +331,8 @@
     "apply": {
       "species" : {
         "random" : {
-          "dtbop:flowering_oak" : 5,
-          "dtbop:flowering_apple_oak" : 1
+          "dtbop:flowering_oak" : 1,
+          "dtbop:flowering_apple_oak" : 5
         }
       },
       "density": 0.2,

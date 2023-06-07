@@ -1,0 +1,14 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "biomesoplenty:block/glowing_moss_block"
+      }
+    },
+    {
+      "apply": {
+        "model": "dynamictrees:block/roots"
+      }
+    }
+  ]
+}

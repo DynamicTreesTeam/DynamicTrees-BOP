@@ -16,7 +16,8 @@
   },
   "always_show_on_waila": false,
   "world_gen_leaf_map_height": 60,
-  "perfect_biomes": { "type": "coniferous" },
+  "perfect_biomes": { "name": ".*redwood.*" },
+  "common_override": { "name": ".*redwood.*" },
   "features" : [
     "conifer_topper",
     {
