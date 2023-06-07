@@ -84,7 +84,7 @@ public class DTBOPCellKits {
 
         @Override
         public Cell getCellForBranch(int radius, int meta) {
-            if (meta == MetadataCell.CONIFERTOP) return poplarTopBranch;
+            if (meta == MetadataCell.TOP_BRANCH) return poplarTopBranch;
             if (radius == 1) return poplarBranch;
             if (radius < 4) return poplarUpperTrunk;
             return CellNull.NULL_CELL;
@@ -232,7 +232,7 @@ public class DTBOPCellKits {
 
         @Override
         public Cell getCellForBranch(int radius, int meta) {
-            if (meta == MetadataCell.CONIFERTOP) return eucalyptusTopBranch;
+            if (meta == MetadataCell.TOP_BRANCH) return eucalyptusTopBranch;
             if (radius == 1) return eucalyptusBranch;
             if (radius <= 3) return eucalyptusUpperTrunk;
             return CellNull.NULL_CELL;
