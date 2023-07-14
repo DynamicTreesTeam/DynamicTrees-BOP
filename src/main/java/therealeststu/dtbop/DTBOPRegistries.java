@@ -1,23 +1,18 @@
 package therealeststu.dtbop;
 
-import biomesoplenty.api.biome.BOPBiomes;
 import com.ferreusveritas.dynamictrees.api.cell.CellKit;
 import com.ferreusveritas.dynamictrees.api.registry.TypeRegistryEvent;
 import com.ferreusveritas.dynamictrees.block.leaves.LeavesProperties;
-import com.ferreusveritas.dynamictrees.block.rooty.SoilHelper;
 import com.ferreusveritas.dynamictrees.growthlogic.GrowthLogicKit;
 import com.ferreusveritas.dynamictrees.systems.genfeature.BeeNestGenFeature;
 import com.ferreusveritas.dynamictrees.systems.genfeature.GenFeature;
 import com.ferreusveritas.dynamictrees.tree.species.Species;
-import net.minecraft.core.Registry;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.biome.Biome;
-import net.minecraft.world.level.block.Block;
-import net.minecraftforge.common.BiomeDictionary;
-import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegisterEvent;
 import therealeststu.dtbop.block.CobwebLeavesProperties;
 import therealeststu.dtbop.cell.DTBOPCellKits;
 import therealeststu.dtbop.genfeature.DTBOPGenFeatures;
@@ -71,7 +66,7 @@ public class DTBOPRegistries {
     }
 
     @SubscribeEvent
-    public static void onBlocksRegistry(final RegistryEvent.Register<Block> event) {
+    public static void onBlocksRegistry(final RegisterEvent event) {
         Bush.INSTANCES.forEach(Bush::setup);
 
         final Species floweringOak = Species.REGISTRY.get(new ResourceLocation(DynamicTreesBOP.MOD_ID, "flowering_oak"));
@@ -94,12 +89,8 @@ public class DTBOPRegistries {
         //This has to be added in-code as the worldgen chance function cannot be set by the treepack
         if (rainbow_birch.isValid()) {
             rainbow_birch.addGenFeature(new BeeNestGenFeature(new ResourceLocation("dynamictrees", "bee_nest"))
-                    .with(BeeNestGenFeature.WORLD_GEN_CHANCE_FUNCTION, (world, pos) -> {
-                        ResourceKey<Biome> biomeKey = ResourceKey.create(Registry.BIOME_REGISTRY, Objects.requireNonNull(world.getUncachedNoiseBiome(pos.getX() >> 2, pos.getY() >> 2, pos.getZ() >> 2).value().getRegistryName()));
-                        if (biomeKey == BOPBiomes.RAINBOW_HILLS)
-                            return 0.02;
-                        else return BiomeDictionary.hasType(biomeKey, BiomeDictionary.Type.FOREST) ? 0.0005 : 0.0;
-                    }));
+                    .with(BeeNestGenFeature.WORLD_GEN_CHANCE_FUNCTION, (world, pos) ->
+                            Objects.requireNonNull(ForgeRegistries.BIOMES.tags()).isKnownTagName(Tags.Biomes.IS_LUSH) ? 0.0005 : 0.0));
         }
     }
 

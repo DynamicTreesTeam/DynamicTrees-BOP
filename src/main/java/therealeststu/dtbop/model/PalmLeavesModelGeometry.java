@@ -6,8 +6,8 @@ import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.model.*;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.client.model.IModelConfiguration;
-import net.minecraftforge.client.model.geometry.IModelGeometry;
+import net.minecraftforge.client.model.geometry.IGeometryBakingContext;
+import net.minecraftforge.client.model.geometry.IUnbakedGeometry;
 
 import javax.annotation.Nullable;
 import java.util.Collection;
@@ -16,7 +16,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Function;
 
-public class PalmLeavesModelGeometry implements IModelGeometry<PalmLeavesModelGeometry> {
+public class PalmLeavesModelGeometry implements IUnbakedGeometry<PalmLeavesModelGeometry> {
 
     protected final ResourceLocation frondsResLoc;
 
@@ -25,12 +25,12 @@ public class PalmLeavesModelGeometry implements IModelGeometry<PalmLeavesModelGe
     }
 
     @Override
-    public BakedModel bake(IModelConfiguration owner, ModelBakery bakery, Function<Material, TextureAtlasSprite> spriteGetter, ModelState modelTransform, ItemOverrides overrides, ResourceLocation modelLocation) {
+    public BakedModel bake(IGeometryBakingContext owner, ModelBakery bakery, Function<Material, TextureAtlasSprite> spriteGetter, ModelState modelTransform, ItemOverrides overrides, ResourceLocation modelLocation) {
         return new PalmLeavesBakedModel(modelLocation, frondsResLoc);
     }
 
     @Override
-    public Collection<Material> getTextures(IModelConfiguration owner, Function<ResourceLocation, UnbakedModel> modelGetter, Set<Pair<String, String>> missingTextureErrors) {
+    public Collection<Material> getMaterials(IGeometryBakingContext owner, Function<ResourceLocation, UnbakedModel> modelGetter, Set<Pair<String, String>> missingTextureErrors) {
         if (frondsResLoc == null) return new HashSet<>();
         return Collections.singleton(new Material(TextureAtlas.LOCATION_BLOCKS, frondsResLoc));
     }
