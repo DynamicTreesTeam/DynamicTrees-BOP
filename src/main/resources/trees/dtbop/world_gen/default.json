@@ -67,7 +67,7 @@
     }
   },
   {
-    "select": { "name": "biomesoplenty:rainbow_hills" },
+    "select": { "name": "biomesoplenty:auroral_garden" },
     "apply": {
       "species" : {
         "random" : {
