@@ -7,6 +7,7 @@ import java.time.Instant
 import java.time.format.DateTimeFormatter
 
 fun property(key: String) = project.findProperty(key).toString()
+fun optionalProperty(key: String) = project.findProperty(key)?.toString()
 
 apply(from = "https://gist.githubusercontent.com/Harleyoc1/4d23d4e991e868d98d548ac55832381e/raw/applesiliconfg.gradle")
 
@@ -17,6 +18,7 @@ plugins {
     id("idea")
     id("maven-publish")
     id("com.matthewprenger.cursegradle") version "1.4.0"
+    id("com.harleyoconnor.autoupdatetool") version "1.0.5"
 }
 
 repositories {
@@ -77,6 +79,7 @@ minecraft {
 
 sourceSets.main.get().resources {
     srcDir("src/generated/resources")
+    srcDir("src/localization/resources")
 }
 
 dependencies {
@@ -116,34 +119,49 @@ java {
     }
 }
 
+val changelogFile = file("build/changelog.txt")
 
 curseforge {
-    if (project.hasProperty("curseApiKey") && project.hasProperty("curseFileType")) {
-        apiKey = property("curseApiKey")
+    if (!project.hasProperty("curseApiKey")) {
+        project.logger.warn("API Key for CurseForge not detected; uploading will be disabled.")
+        return@curseforge
+    }
 
-        project {
-            id = "289529"
+    apiKey = property("curseApiKey")
 
-            addGameVersion(mcVersion)
+    project {
+        id = "289529"
 
-            changelog = file("build/changelog.txt")
-            changelogType = "markdown"
-            releaseType = property("curseFileType")
+        addGameVersion(mcVersion)
 
-            addArtifact(tasks.findByName("sourcesJar"))
+        changelog = changelogFile
+        changelogType = "markdown"
+        releaseType = optionalProperty("versionType") ?: "release"
 
-            mainArtifact(tasks.findByName("jar")) {
-                relations {
-                    requiredDependency("dynamictrees")
-                    requiredDependency("biomes-o-plenty")
-                    optionalDependency("dynamictreesplus")
-                    optionalDependency("chunk-saving-fix")
-                }
+        addArtifact(tasks.findByName("sourcesJar"))
+
+        mainArtifact(tasks.findByName("jar")) {
+            relations {
+                requiredDependency("dynamictrees")
+                requiredDependency("biomes-o-plenty")
+                optionalDependency("dynamictreesplus")
             }
         }
-    } else {
-        project.logger.log(LogLevel.WARN, "API Key and file type for CurseForge not detected; uploading will be disabled.")
     }
+}
+
+val minecraftVersion = mcVersion
+
+autoUpdateTool {
+    mcVersion.set(minecraftVersion)
+    version.set(modVersion)
+    versionRecommended.set(property("versionRecommended") == "true")
+    changelogOutputFile.set(changelogFile)
+    updateCheckerFile.set(file(property("dynamictrees.version_info_repo.path") + File.separatorChar + property("updateCheckerPath")))
+}
+
+tasks.autoUpdate {
+    finalizedBy("curseforge")
 }
 
 tasks.withType<GenerateModuleMetadata> {
