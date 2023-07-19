@@ -1,13 +1,5 @@
 [
   {
-    "__comment": "Flag nether as being subterranean.",
-    "select": { "name": "biomesoplenty:.*", "category": "nether" },
-    "apply": {
-      "subterranean": true
-    }
-  },
-
-  {
     "select": { "name": "biomesoplenty:tropics" },
     "apply": {
       "species" : {
@@ -418,7 +410,7 @@
           "apple_oak" : 1
         }
       },
-      "density": 0.5,
+      "density": 0.9,
       "chance": 0.8,
       "forestness" : 1.0
     }
@@ -556,6 +548,14 @@
       },
       "density": 0.6,
       "chance": 0.8
+    }
+  },
+  {
+    "select": { "name": "biomesoplenty:boreal_forest" },
+    "apply": {
+      "species": "dtbop:yellow_autumn",
+      "density": 0.7,
+      "chance": 0.6
     }
   }
 ]
