@@ -393,12 +393,12 @@
     }
   },
   {
-    "select": { "name": "biomesoplenty:snowy_maple_woods" },
+    "select": { "name": "biomesoplenty:.*maple_woods" },
     "apply": {
       "species" : {
         "random" : {
-          "dtbop:maple" : 4,
-          "dtbop:fir" : 1
+          "dtbop:maple" : 9,
+          "spruce" : 1
         }
       },
       "density": 0.8,
