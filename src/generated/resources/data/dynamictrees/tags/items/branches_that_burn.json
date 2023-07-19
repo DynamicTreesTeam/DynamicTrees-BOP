@@ -2,14 +2,14 @@
   "replace": false,
   "values": [
     "dtbop:cherry_branch",
-    "dtbop:dead_branch",
     "dtbop:fir_branch",
-    "dtbop:jacaranda_branch",
     "dtbop:magic_branch",
+    "dtbop:jacaranda_branch",
+    "dtbop:dead_branch",
     "dtbop:mahogany_branch",
-    "dtbop:palm_branch",
-    "dtbop:redwood_branch",
     "dtbop:umbran_branch",
-    "dtbop:willow_branch"
+    "dtbop:redwood_branch",
+    "dtbop:willow_branch",
+    "dtbop:palm_branch"
   ]
 }
