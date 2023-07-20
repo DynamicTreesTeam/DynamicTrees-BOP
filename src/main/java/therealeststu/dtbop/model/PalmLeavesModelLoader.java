@@ -6,11 +6,11 @@ import net.minecraft.client.renderer.texture.MissingTextureAtlasSprite;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.ResourceLocationException;
-import net.minecraftforge.client.model.IModelLoader;
+import net.minecraftforge.client.model.geometry.IGeometryLoader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class PalmLeavesModelLoader implements IModelLoader<PalmLeavesModelGeometry> {
+public class PalmLeavesModelLoader implements IGeometryLoader<PalmLeavesModelGeometry> {
 
     public static final Logger LOGGER = LogManager.getLogger();
 
@@ -18,10 +18,7 @@ public class PalmLeavesModelLoader implements IModelLoader<PalmLeavesModelGeomet
     private static final String TEXTURES = "textures";
 
     @Override
-    public void onResourceManagerReload(ResourceManager resourceManager) { }
-
-    @Override
-    public PalmLeavesModelGeometry read(JsonDeserializationContext deserializationContext, JsonObject modelObject) {
+    public PalmLeavesModelGeometry read(JsonObject modelObject, JsonDeserializationContext deserializationContext) {
         final JsonObject textures = this.getTexturesObject(modelObject);
         return new PalmLeavesModelGeometry(getTextureLocation(textures, FROND));
     }
