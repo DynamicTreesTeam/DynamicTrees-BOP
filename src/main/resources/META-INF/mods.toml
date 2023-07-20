@@ -6,7 +6,7 @@ license="MIT"
 modId="dtbop" #mandatory
 version="${file.jarVersion}" #mandatory
 displayName="Dynamic Trees for Biomes o' Plenty" #mandatory
-updateJSONURL="https://github.com/the-realest-stu/DynamicTrees-BOP/blob/master/version_info.json?raw=true" #optional
+updateJSONURL="https://github.com/DynamicTreesTeam/DynamicTreesVersionInfo/blob/master/Add-ons/BOP.json?raw=true" #optional
 displayURL="https://www.curseforge.com/minecraft/mc-mods/dtbop" #optional
 logoFile="" #optional
 credits="ferreusveritas" #optional
