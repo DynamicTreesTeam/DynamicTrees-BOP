@@ -2,17 +2,18 @@ package therealeststu.dtbop.model;
 
 
 import com.ferreusveritas.dynamictrees.block.leaves.PalmLeavesProperties;
-import com.ferreusveritas.dynamictrees.client.ModelUtils;
 import com.ferreusveritas.dynamictrees.util.CoordUtils;
 import com.google.common.primitives.Ints;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.block.model.*;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.model.BakedModel;
+import net.minecraft.client.resources.model.Material;
 import net.minecraft.client.resources.model.SimpleBakedModel;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.client.model.IDynamicBakedModel;
 import net.minecraftforge.client.model.data.ModelData;
@@ -20,27 +21,23 @@ import net.minecraftforge.client.model.data.ModelData;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.*;
+import java.util.function.Function;
 
 public class PalmLeavesBakedModel implements IDynamicBakedModel {
 
-    public static List<PalmLeavesBakedModel> INSTANCES = new ArrayList<>();
-
     protected final BlockModel blockModel;
 
-    ResourceLocation frondsResLoc;
-    TextureAtlasSprite frondsTexture;
+    protected final TextureAtlasSprite frondsTexture;
 
     private final BakedModel[] bakedFronds = new BakedModel[8]; // 8 = Number of surrounding blocks
 
-    public PalmLeavesBakedModel(ResourceLocation modelResLoc, ResourceLocation frondsResLoc) {
+    public PalmLeavesBakedModel(ResourceLocation frondsTextureLocation, Function<Material, TextureAtlasSprite> spriteGetter) {
         this.blockModel = new BlockModel(null, new ArrayList<>(), new HashMap<>(), false, BlockModel.GuiLight.FRONT, ItemTransforms.NO_TRANSFORMS, new ArrayList<>());
-        this.frondsResLoc = frondsResLoc;
-        INSTANCES.add(this);
+        this.frondsTexture = spriteGetter.apply(new Material(InventoryMenu.BLOCK_ATLAS, frondsTextureLocation));
+        initModels();
     }
 
-    public void setupModels() {
-        frondsTexture = ModelUtils.getTexture(frondsResLoc);
-
+    public void initModels() {
         for (CoordUtils.Surround surr : CoordUtils.Surround.values()) {
 
             SimpleBakedModel.Builder builder = new SimpleBakedModel.Builder(blockModel, ItemOverrides.EMPTY, true).particle(frondsTexture);
@@ -191,17 +188,6 @@ public class PalmLeavesBakedModel implements IDynamicBakedModel {
 
         return quads;
     }
-
-//    @Nonnull
-//    @Override
-//    public IModelData getModelData(@Nonnull IBlockDisplayReader world, @Nonnull BlockPos pos, @Nonnull BlockState state, @Nonnull IModelData tileData) {
-//        final Block block = state.getBlock();
-//
-//        if (!(block instanceof PalmLeavesProperties.DynamicPalmLeavesBlock))
-//            return new ModelPalmSurround();
-//
-//        return new ModelPalmSurround(((PalmLeavesProperties.DynamicPalmLeavesBlock) block).getHydroSurround(state, world, pos), state.getValue(DynamicLeavesBlock.DISTANCE));
-//    }
 
     @Override
     public boolean useAmbientOcclusion() {

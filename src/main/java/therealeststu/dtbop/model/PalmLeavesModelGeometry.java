@@ -18,20 +18,20 @@ import java.util.function.Function;
 
 public class PalmLeavesModelGeometry implements IUnbakedGeometry<PalmLeavesModelGeometry> {
 
-    protected final ResourceLocation frondsResLoc;
+    protected final ResourceLocation frondsTextureLocation;
 
-    public PalmLeavesModelGeometry (@Nullable final ResourceLocation frondsResLoc){
-        this.frondsResLoc = frondsResLoc;
+    public PalmLeavesModelGeometry(@Nullable final ResourceLocation frondsTextureLocation) {
+        this.frondsTextureLocation = frondsTextureLocation;
     }
 
     @Override
     public BakedModel bake(IGeometryBakingContext owner, ModelBakery bakery, Function<Material, TextureAtlasSprite> spriteGetter, ModelState modelTransform, ItemOverrides overrides, ResourceLocation modelLocation) {
-        return new PalmLeavesBakedModel(modelLocation, frondsResLoc);
+        return new PalmLeavesBakedModel(frondsTextureLocation, spriteGetter);
     }
 
     @Override
     public Collection<Material> getMaterials(IGeometryBakingContext owner, Function<ResourceLocation, UnbakedModel> modelGetter, Set<Pair<String, String>> missingTextureErrors) {
-        if (frondsResLoc == null) return new HashSet<>();
-        return Collections.singleton(new Material(TextureAtlas.LOCATION_BLOCKS, frondsResLoc));
+        if (frondsTextureLocation == null) return new HashSet<>();
+        return Collections.singleton(new Material(TextureAtlas.LOCATION_BLOCKS, frondsTextureLocation));
     }
 }
