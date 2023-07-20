@@ -416,6 +416,14 @@
     }
   },
   {
+    "select": { "name": "biomesoplenty:seasonal_orchard" },
+    "apply": {
+      "species": "dtbop:yellow_autumn",
+      "density": 0.7,
+      "chance": 0.6
+    }
+  },
+  {
     "select": { "name": "biomesoplenty:pumpkin_patch" },
     "apply": {
       "species" : {
