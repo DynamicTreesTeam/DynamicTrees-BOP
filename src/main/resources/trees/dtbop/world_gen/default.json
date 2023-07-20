@@ -549,13 +549,5 @@
       "density": 0.6,
       "chance": 0.8
     }
-  },
-  {
-    "select": { "name": "biomesoplenty:boreal_forest" },
-    "apply": {
-      "species": "dtbop:yellow_autumn",
-      "density": 0.7,
-      "chance": 0.6
-    }
   }
 ]
