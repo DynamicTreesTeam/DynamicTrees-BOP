@@ -26,15 +26,15 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 
 public class OldBiomeDataBasePopulator implements IBiomeDataBasePopulator {
-	
+
 	private static final IChanceSelector ok = (rnd, spc, rad) -> EnumChance.OK;
 	private static final IChanceSelector cancel = (rnd, spc, rad) -> EnumChance.CANCEL;
-	
+
 	private static Species swamp, apple, jungle, spruce, birch, oak, acacia, acaciaBrush, oakFloweringVine, oakConifer, megaOakConifer, darkOakConifer, darkOakDyingConifer, oakTwiglet, oakSparse, poplar, darkPoplar, jungleTwiglet, acaciaTwiglet, yellowAutumn, orangeAutumn, magic, floweringOak, umbran, umbranConifer, umbranConiferMega, oakDying, decayed, fir, firSmall, pinkCherry, whiteCherry, maple, dead, jacaranda, redwood, willow, pine, palm, ebony, ebonyTwiglet, mahogany, eucalyptus, bamboo, hellbark;
 	private static Species acaciaBush, oakBush;
 	private static Species cactus;
 	private static Species mushroomRed, mushroomBrown;
-	
+
 	private static void createStaticAliases() {
 		apple =					findVanSpecies("apple");
 		jungle =				findVanSpecies("jungle");
@@ -78,7 +78,7 @@ public class OldBiomeDataBasePopulator implements IBiomeDataBasePopulator {
 		eucalyptus =			findBopSpecies("eucalyptus");
 		bamboo =				findBopSpecies("bamboo");
 		hellbark = 				findBopSpecies("hellbark");
-		floweringOak =			findBopSpecies("floweringoak");
+		floweringOak =			findBopSpecies("flowering_oak");
 		decayed =				findBopSpecies("decayed");
 		palm =					findBopSpecies("palm");
 		cactus =				findVanSpecies("cactus");
@@ -87,13 +87,13 @@ public class OldBiomeDataBasePopulator implements IBiomeDataBasePopulator {
 		mushroomRed = 			findVanSpecies("mushroomred");
 		mushroomBrown = 		findVanSpecies("mushroombrn");
 	}
-	
+
 	public void populate(BiomeDataBase dbase) {
 
 		if(oak == null) {
 			createStaticAliases();
 		}
-		
+
 		//Species Selectors
 		addSpeciesSelector(dbase, BOPBiomes.alps_foothills,				new StaticSpeciesSelector(firSmall));
 		addSpeciesSelector(dbase, BOPBiomes.bamboo_forest,				new RandomSpeciesSelector().add(bamboo, 4));
@@ -141,11 +141,12 @@ public class OldBiomeDataBasePopulator implements IBiomeDataBasePopulator {
 		addSpeciesSelector(dbase, Biomes.BEACH,							new StaticSpeciesSelector(palm));
 		addSpeciesSelector(dbase, Biomes.FOREST,						new RandomSpeciesSelector().add(oak, 8).add(birch, 2).add(floweringOak, 1));
 		addSpeciesSelector(dbase, Biomes.FOREST_HILLS,					new RandomSpeciesSelector().add(oak, 8).add(birch, 2).add(floweringOak, 1));
+		addSpeciesSelector(dbase, Biomes.MUTATED_FOREST,				new RandomSpeciesSelector().add(oak, 4).add(birch, 2).add(floweringOak, 5));
 		addSpeciesSelector(dbase, Biomes.EXTREME_HILLS,					new StaticSpeciesSelector(spruce));
 		addSpeciesSelector(dbase, Biomes.EXTREME_HILLS_WITH_TREES,		new StaticSpeciesSelector(spruce));
 		addSpeciesSelector(dbase, Biomes.SWAMPLAND,						new RandomSpeciesSelector().add(swamp, 5).add(willow, 1));
-		
-		
+
+
 		//Density Selectors
 		addDensitySelector(dbase, BOPBiomes.alps_foothills,				scale(0.05) );
 		addDensitySelector(dbase, BOPBiomes.bamboo_forest,				scale(0.25, 0.75) );
@@ -189,8 +190,8 @@ public class OldBiomeDataBasePopulator implements IBiomeDataBasePopulator {
 		addDensitySelector(dbase, BOPBiomes.wetland,					scale() );
 		addDensitySelector(dbase, BOPBiomes.woodland,					scale() );
 		addDensitySelector(dbase, BOPBiomes.xeric_shrubland,			scale(0.4) );
-		
-		
+
+
 		//Chance Selectors
 		addChanceSelector(dbase, BOPBiomes.alps_foothills,		rand(0.5f));
 		addChanceSelector(dbase, BOPBiomes.bamboo_forest,		ok);
@@ -241,7 +242,7 @@ public class OldBiomeDataBasePopulator implements IBiomeDataBasePopulator {
 		blackList.addAll(BOPBiomes.shrubland.asSet());
 		blackList.addAll(BOPBiomes.tundra.asSet());
 		blackList.addAll(BOPBiomes.mangrove.asSet());
-		
+
 		Biome.REGISTRY.forEach(biome -> {
 			if (biome.getRegistryName().getResourceDomain().equals("biomesoplenty") && !blackList.contains(biome) ) {
 				if (biome != null && biome instanceof BOPBiome) {
@@ -253,30 +254,30 @@ public class OldBiomeDataBasePopulator implements IBiomeDataBasePopulator {
 					}
 				}
 				dbase.setCancelVanillaTreeGen(biome, true);
-				
+
 				//Identify the "forestness" of the biome.  Affects forest spread rate for biome.
 				//dbase.setForestness(biome, identifyForestness(biome));
 			}
 		});
-		
+
 		if (BOPBiomes.tundra.isPresent()) dbase.setCancelVanillaTreeGen(BOPBiomes.tundra.get(), true);
 		if (BOPBiomes.shrubland.isPresent()) dbase.setCancelVanillaTreeGen(BOPBiomes.shrubland.get(), true);
 		if (BOPBiomes.mangrove.isPresent()) dbase.setCancelVanillaTreeGen(BOPBiomes.mangrove.get(), true);
-		
+
 		//Remove generators from extended biomes
 		removeTreeGen(BOPBiomes.forest_extension);
 		removeTreeGen(BOPBiomes.forest_hills_extension);
 		removeTreeGen(BOPBiomes.extreme_hills_extension);
 		removeTreeGen(BOPBiomes.extreme_hills_plus_extension);
 		removeTreeGen(BOPBiomes.swampland_extension);
-		
+
 		dbase.setIsSubterranean(BOPBiomes.undergarden.orNull(), true);
 	}
-	
+
 	private void removeTreeGen(IExtendedBiome extendedBiome) {
-		extendedBiome.getGenerationManager().removeGenerator("trees");	
+		extendedBiome.getGenerationManager().removeGenerator("trees");
 	}
-	
+
 	////////////////////////////////////////////////////////////////
 	// Helper Members
 	////////////////////////////////////////////////////////////////
@@ -288,27 +289,27 @@ public class OldBiomeDataBasePopulator implements IBiomeDataBasePopulator {
 	private static Species findVanSpecies(String name) {
 		return TreeRegistry.findSpecies(new ResourceLocation(ModConstants.MODID, name));
 	}
-	
+
 	private void addSpeciesSelector(BiomeDataBase dbase, Optional<Biome> biome, ISpeciesSelector selector) {
 		if(biome.isPresent()) {
 			addSpeciesSelector(dbase, biome.get(), selector);
 		}
 	}
-	
+
 	private void addSpeciesSelector(BiomeDataBase dbase, Biome biome, ISpeciesSelector selector) {
 		dbase.setSpeciesSelector(biome, selector, Operation.REPLACE);
 	}
-	
+
 	private void addChanceSelector(BiomeDataBase dbase, Optional<Biome> biome, IChanceSelector selector) {
 		if(biome.isPresent()) {
 			dbase.setChanceSelector(biome.get(), selector, Operation.REPLACE);
 		}
 	}
-	
+
 	private IChanceSelector rand(float threshhold) {
 		return (rnd, spc, rad) -> rnd.nextFloat() < threshhold ? EnumChance.OK : EnumChance.CANCEL;
 	}
-	
+
 	private void addDensitySelector(BiomeDataBase dbase, Optional<Biome> biome, IDensitySelector selector) {
 		if(biome.isPresent()) {
 			dbase.setDensitySelector(biome.get(), selector, Operation.REPLACE);
@@ -318,17 +319,17 @@ public class OldBiomeDataBasePopulator implements IBiomeDataBasePopulator {
 	private IDensitySelector scale() {
 		return (rnd, nd) -> nd;
 	}
-	
+
 	private IDensitySelector scale(double factor1) {
 		return (rnd, nd) -> nd * factor1;
 	}
-	
+
 	private IDensitySelector scale(double factor1, double addend) {
 		return (rnd, nd) -> (nd * factor1) + addend;
 	}
-	
+
 	private IDensitySelector scale(double factor1, double addend, double factor2) {
 		return (rnd, nd) -> ((nd * factor1) + addend) * factor2;
 	}
-	
+
 }
