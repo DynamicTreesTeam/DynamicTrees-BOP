@@ -34,34 +34,43 @@ public class SpeciesFloweringOak extends Species {
 	public SpeciesFloweringOak(ResourceLocation name, TreeFamily treeFamily, ILeavesProperties leavesProperties) {
 		super(name, treeFamily, leavesProperties);
 		setDefaultGrowingParameters();
+		setupStandardSeedDropping();
+		generateSeed();
 
-		setRequiresTileEntity(true);
+	}
 
-		treeFamily.addConnectableVanillaLeaves((state) -> state.getBlock() instanceof BlockBOPLeaves && state.getValue(((BlockBOPLeaves) state.getBlock()).variantProperty) == BOPTrees.FLOWERING);
+	public SpeciesFloweringOak(TreeFamily treeFamily) {
+		this(new ResourceLocation(DynamicTreesBOP.MODID, ModContent.FLOWERINGOAK), treeFamily, ModContent.floweringOakLeavesProperties[0]);
+		setDefaultGrowingParameters();
+		setupStandardSeedDropping();
+		generateSeed();
+
+		if (!ModConfigs.enablePeachTrees)
+			addDropCreator(new DropCreatorFruit(BOPItems.peach));
 	}
 
 	protected void setDefaultGrowingParameters (){
 		setBasicGrowingParameters(0.3f, 12.0f, upProbability, lowestBranchHeight, 0.85f);
 
-		setupStandardSeedDropping();
+
 
 		envFactor(Type.COLD, 0.75f);
 		envFactor(Type.HOT, 0.50f);
 		envFactor(Type.DRY, 0.50f);
 		envFactor(Type.FOREST, 1.05f);
-	}
 
-	public SpeciesFloweringOak(TreeFamily treeFamily) {
-		this(new ResourceLocation(DynamicTreesBOP.MODID, ModContent.FLOWERINGOAK), treeFamily, ModContent.floweringOakLeavesProperties[0]);
+
+		setRequiresTileEntity(true);
+
 
 		addValidLeavesBlocks(ModContent.floweringOakLeavesProperties);
 		ModContent.floweringOakLeavesProperties[0].setTree(treeFamily);
 		ModContent.floweringOakLeavesProperties[1].setTree(treeFamily);
 
-		generateSeed();
 
-		if (!ModConfigs.enablePeachTrees)
-			addDropCreator(new DropCreatorFruit(BOPItems.peach));
+
+		treeFamily.addConnectableVanillaLeaves((state) -> state.getBlock() instanceof BlockBOPLeaves && state.getValue(((BlockBOPLeaves) state.getBlock()).variantProperty) == BOPTrees.FLOWERING);
+
 	}
 
 	@Override
@@ -73,12 +82,12 @@ public class SpeciesFloweringOak extends Species {
 	public boolean isBiomePerfect(Biome biome) {
 		return BiomeDictionary.hasType(biome, Type.FOREST);
 	}
-	
+
 	@Override
 	public int maxBranchRadius() {
 		return 8;
 	}
-	
+
 	@Override
 	public boolean rot(World world, BlockPos pos, int neighborCount, int radius, Random random, boolean rapid) {
 		if(super.rot(world, pos, neighborCount, radius, random, rapid)) {
@@ -88,10 +97,10 @@ public class SpeciesFloweringOak extends Species {
 			}
 			return true;
 		}
-		
+
 		return false;
 	}
-	
+
 	@Override
 	public int saplingColorMultiplier(IBlockState state, IBlockAccess access, BlockPos pos, int tintIndex) {
 		return tintIndex != 0 ? 0xffffff : getLeavesProperties().foliageColorMultiplier(state, access, pos);

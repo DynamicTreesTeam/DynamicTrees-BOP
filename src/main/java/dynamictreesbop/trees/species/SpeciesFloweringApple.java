@@ -54,6 +54,7 @@ public class SpeciesFloweringApple extends SpeciesFloweringOak {
 		this.envFactor(BiomeDictionary.Type.COLD, 0.75F);
 		this.envFactor(BiomeDictionary.Type.HOT, 0.75F);
 		this.envFactor(BiomeDictionary.Type.DRY, 0.25F);
+		this.envFactor(BiomeDictionary.Type.FOREST, 1.05f);
 	}
 
 	@Override

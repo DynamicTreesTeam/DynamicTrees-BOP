@@ -27,6 +27,7 @@ public class BiomeDataBasePopulator implements IBiomeDataBasePopulator {
 		//Remove generators from extended biomes(No JSON support for extended biomes)
 		removeTreeGen(BOPBiomes.forest_extension);
 		removeTreeGen(BOPBiomes.forest_hills_extension);
+		removeTreeGen(BOPBiomes.flower_forest_extension);
 		removeTreeGen(BOPBiomes.extreme_hills_extension);
 		removeTreeGen(BOPBiomes.extreme_hills_plus_extension);
 		removeTreeGen(BOPBiomes.swampland_extension);
