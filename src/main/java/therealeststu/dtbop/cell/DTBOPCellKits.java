@@ -71,6 +71,9 @@ public class DTBOPCellKits {
                 new PoplarLeafCell(2),
                 new PoplarLeafCell(3),
                 new PoplarLeafCell(4),
+                new PoplarLeafCell(5),
+                new PoplarLeafCell(6),
+                new PoplarLeafCell(7),
         };
 
         private final CellSolver solver = new CellKits.BasicSolver(new short[]{
@@ -116,7 +119,10 @@ public class DTBOPCellKits {
                 new MahoganyLeafCell(1),
                 new MahoganyLeafCell(2),
                 new MahoganyLeafCell(3),
-                new MahoganyLeafCell(4)
+                new MahoganyLeafCell(4),
+                new MahoganyLeafCell(5),
+                new MahoganyLeafCell(6),
+                new MahoganyLeafCell(7),
         };
 
         private final CellSolver solver = new CellKits.BasicSolver(new short[]{
@@ -173,6 +179,9 @@ public class DTBOPCellKits {
                 new NormalCell(2),
                 new NormalCell(3),
                 new NormalCell(4),
+                new NormalCell(5),
+                new NormalCell(6),
+                new NormalCell(7),
         };
 
         private final CellSolver solver = new CellKits.BasicSolver(new short[]{
@@ -219,6 +228,9 @@ public class DTBOPCellKits {
                 new EucalyptusLeafCell(2),
                 new EucalyptusLeafCell(3),
                 new EucalyptusLeafCell(4),
+                new EucalyptusLeafCell(5),
+                new EucalyptusLeafCell(6),
+                new EucalyptusLeafCell(7),
         };
 
         private final CellSolver solver = new CellKits.BasicSolver(new short[]{
