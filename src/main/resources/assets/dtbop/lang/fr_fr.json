@@ -62,8 +62,8 @@
   "species.dtbop.sparse_acacia":"Acacia clairsemé",
   "species.dtbop.short_jungle":"Petit acajou",
   "species.dtbop.flowering_oak_undergrowth":"Buisson de chêne fleuri",
-  "species.dtbop.infested_oak_undergrowth":"Buisson infesté de chêne",
-  "species.dtbop.silk_undergrowth":"Buisson de recouvert de soie ",
+  "species.dtbop.infested_oak_undergrowth":"Buisson de chêne infesté",
+  "species.dtbop.silk_undergrowth":"Buisson soyeux ",
   "species.dtbop.acacia_undergrowth":"Buisson d'acacia ",
   "species.dtbop.spruce_undergrowth":"Buisson d'épicéa",
   "species.dtbop.snowblossom":"Fleur des neiges",
@@ -85,6 +85,7 @@
   "block.dtbop.redwood_branch":"Séquoia",
   "block.dtbop.umbran_branch":"Arbre sombre",
   "block.dtbop.pine_branch":"Pin",
+  "block.dtbop.maple_branch":"Erable",
 
   "item.dtbop.toadstool_seed":"Chapeau de Champignon Vénéneux",
   "item.dtbop.glowshroom_seed":"Chapeau de ChampiLumineux",

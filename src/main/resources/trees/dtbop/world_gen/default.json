@@ -186,17 +186,16 @@
     }
   },
   {
-    "select": { "name": "biomesoplenty:wooded_scrubland" },
+    "select": { "name": "biomesoplenty:scrubland" },
     "apply": {
       "species" : {
         "random" : {
-          "dtbop:acacia_twiglet" : 2,
           "dtbop:oak_twiglet" : 1,
           "dtbop:spruce_twiglet" : 1
         }
       },
-      "density": [ 4.0 ],
-      "chance": 1.0
+      "density": 0.2,
+      "chance": 0.4
     }
   },
   {
@@ -217,7 +216,7 @@
           "dtbop:spruce_twiglet" : 1
         }
       },
-      "density": 1.0,
+      "density": 0.9,
       "chance": 1.0
     }
   },

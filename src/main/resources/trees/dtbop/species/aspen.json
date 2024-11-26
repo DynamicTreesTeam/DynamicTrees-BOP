@@ -1,5 +1,7 @@
 {
     "family":"birch",
+    "generate_seed": true,
+    "generate_sapling": true,
     "tapering": 0.95,
     "signal_energy": 18.0,
     "up_probability": 3.2,
@@ -12,8 +14,6 @@
         "#forge:is_dry": 0.25,
         "#forge:is_wet": 0.75
     },
-    "primitive_sapling":"biomesoplenty:aspen_sapling",
-    "always_show_on_waila":false,
-    "generate_seed":true,
-    "generate_sapling":true
+    "perfect_biomes": { "type": "biomesoplenty:aspen_glade" },
+    "primitive_sapling":"biomesoplenty:aspen_sapling"
 }

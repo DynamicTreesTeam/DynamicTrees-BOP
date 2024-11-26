@@ -1,6 +1,6 @@
 {
   "type": "dtbop:twiglet",
-  "family": "oak",
+  "family": "dtbop:maple",
   "leaves_properties": "dtbop:maple_twiglet",
   "environment_factors" : {
     "hot": 0.5,

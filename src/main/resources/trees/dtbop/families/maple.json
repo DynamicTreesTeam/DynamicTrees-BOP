@@ -1,0 +1,7 @@
+{
+  "common_leaves": "dtbop:red_maple",
+  "common_species": "dtbop:red_maple",
+  "primitive_log": "biomesoplenty:maple_log",
+  "primitive_stripped_log": "biomesoplenty:stripped_maple_log",
+  "max_branch_radius": 8
+}
