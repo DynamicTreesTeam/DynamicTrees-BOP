@@ -1,5 +1,6 @@
 {
     "primitive_leaves":"biomesoplenty:yellow_maple_leaves",
     "smother": 3,
-    "cell_kit": "dynamictrees:conifer"
+    "cell_kit": "dynamictrees:conifer",
+    "has_tick_particles": true
 }

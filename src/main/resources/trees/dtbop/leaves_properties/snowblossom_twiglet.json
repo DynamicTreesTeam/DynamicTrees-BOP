@@ -1,4 +1,5 @@
 {
   "primitive_leaves": "biomesoplenty:snowblossom_leaves",
-  "cell_kit": "dtbop:sparse"
+  "cell_kit": "dtbop:sparse",
+  "has_tick_particles": true
 }
