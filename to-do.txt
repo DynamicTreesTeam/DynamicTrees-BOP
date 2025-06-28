@@ -1,5 +1,4 @@
 -fix pine generation in hot spings (they spawn sometimes in water lakes), and add 2nd texture for the tree branch(idk how to do it)
 -maybe change jo codes of the pine and aspen (aspen jo code came from Nature's Spirit)(pine is the same as sparse oak)
--(not necessary) add Empyreal tree (they dont generate in 1.20.1)
--Change Yellow & Orange Maple seeds texture
+-add Empyreal tree
 -regenerate data

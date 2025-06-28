@@ -1,0 +1,74 @@
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+    id 'net.neoforged.moddev' version '2.0.75'
+    id 'idea'
+}
+
+version = mod_version
+group = mod_group_id
+
+repositories {
+    mavenLocal()
+    maven { url = "https://cursemaven.com" }
+    maven { url = "https://harleyoconnor.com/maven" }
+}
+
+base {
+    archivesName = mod_id
+}
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+
+neoForge {
+    version = project.neo_version
+
+    parchment {
+        mappingsVersion = project.parchment_mappings_version
+        minecraftVersion = project.minecraft_version
+    }
+    runs {
+        client {
+            client()
+        }
+        server {
+            server()
+            programArgument '--nogui'
+        }
+        data {
+            data()
+        }
+        configureEach {
+            systemProperty('neoforge.enabledGameTestNamespaces', mod_id)
+        }
+    }
+    mods {
+        "${mod_id}" {
+            sourceSet sourceSets.main
+        }
+    }
+}
+
+sourceSets.main.resources { srcDir 'src/generated/resources' }
+
+dependencies {
+    //DynamicTrees
+    implementation "com.dtteam.dynamictrees:dynamictrees-neoforge-" + project.minecraft_version + ":" + project.dynamicTreesVersion
+    implementation "com.dtteam.dynamictreesplus:DynamicTreesPlus:" + project.dynamicTreesPlusVersion
+    //implementation "curse.maven:dynamictrees-252818:6111832"
+
+    //DynmaicTrees Tools/Utilities
+    runtimeOnly "curse.maven:jade-324717:6011258"
+    runtimeOnly "curse.maven:jei-238222:5846880"
+    runtimeOnly "curse.maven:cc-tweaked-282001:5714512"
+    runtimeOnly "curse.maven:suggestion-provider-fix-469647:5598604"
+
+    //Biomes O Plenty
+    implementation "curse.maven:terrablender-940057:6054947"
+    implementation "curse.maven:biomes-o-plenty-220318:5855568"
+    implementation "curse.maven:glitchcore-955399:5660740"
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
