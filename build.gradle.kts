@@ -18,6 +18,7 @@ plugins {
     id("idea")
     id("maven-publish")
     id("com.matthewprenger.cursegradle") version "1.4.0"
+    id("com.modrinth.minotaur") version "2.+"
     id("com.harleyoconnor.autoupdatetool") version "1.0.5"
 }
 
@@ -153,6 +154,26 @@ curseforge {
                 optionalDependency("dynamictreesplus")
             }
         }
+    }
+}
+
+modrinth {
+    if (!project.hasProperty("modrinthToken")) {
+        project.logger.warn("Token for Modrinth not detected; uploading will be disabled.")
+        return@modrinth
+    }
+
+    token.set(property("modrinthToken"))
+    projectId.set("8QHjGuhP")
+    versionNumber.set("$mcVersion-$modVersion")
+    versionName.set("$modName $mcVersion-$modVersion")
+    versionType.set(optionalProperty("versionType") ?: "release")
+    uploadFile.set(tasks.jar.get())
+    gameVersions.add(mcVersion)
+    changelog.set(changelogFile.readText())
+    dependencies {
+        required.project("vdjF5PL5", "HXF82T3G")
+        optional.project("qaO9Dqpu")
     }
 }
 
