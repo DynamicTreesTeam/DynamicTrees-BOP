@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "dtbop:block/saplings/hellbark_sapling"
+      "model": "dtbop:block/saplings/hellbark"
     }
   }
 }

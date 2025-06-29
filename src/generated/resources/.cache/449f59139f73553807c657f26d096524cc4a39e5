@@ -1,4 +1,5 @@
-// 1.20.1	2024-06-20T17:45:28.3924303	Item Models: dtbop
+// 1.20.1	2025-06-28T23:16:28.6529559	Item Models: dtbop
+ade5754df509f6d25d52becd0fa3b13557895d00 assets/dtbop/models/item/aspen_seed.json
 757a773a2e30ec3a56956b78c1aa466d019a57c2 assets/dtbop/models/item/dark_poplar_seed.json
 8387fc1da79a190fe364f0c818e919908add4803 assets/dtbop/models/item/dead_branch.json
 dbff7764e5b9b880e2ed4b8d152285181e37bbc4 assets/dtbop/models/item/dying_seed.json
@@ -14,13 +15,16 @@ a3c9ee6b7916fe29c80e0b5884baeba7994fe0b6 assets/dtbop/models/item/hellbark_seed.
 d1ae1da063054c35887b89179fcf4ed6369f8efd assets/dtbop/models/item/magic_poplar_seed.json
 bbe6a75648f35767f9cc3f26cc34f262de577c53 assets/dtbop/models/item/mahogany_branch.json
 2140ad2fd60535a9489392bf78ad8c220378d1a6 assets/dtbop/models/item/mahogany_seed.json
-f3532090570b7d626b35bd29bed247529d3f005f assets/dtbop/models/item/maple_seed.json
-490cfc27fef0d686ac19c92fc6ea76a578390abe assets/dtbop/models/item/orange_autumn_seed.json
+4229d81021f705a8cfeec2b46cb190f087ea8b89 assets/dtbop/models/item/maple_branch.json
+32da3cff73c6cd04caaa739dfa4a9b367c338fa3 assets/dtbop/models/item/orange_maple_seed.json
 a2059bb15b2ccb41208b7995306abe37e7e11e7b assets/dtbop/models/item/palm_branch.json
 aee61a71cf7db02c7c47c49aab4717a8bd848c94 assets/dtbop/models/item/palm_seed.json
+e949f814f3692f8d95b3488ea36b1244045be09e assets/dtbop/models/item/pine_branch.json
+44824f5d1f7429b2e4593c473648fff7b7f362f9 assets/dtbop/models/item/pine_seed.json
 4cb7ea9bcf6f850538b710b97b00e09c2539586c assets/dtbop/models/item/rainbow_birch_seed.json
 31226fa39fbf28253dd57f35711dd923adec9760 assets/dtbop/models/item/redwood_branch.json
 3056949cf390f772d26a629f2673240a09a6a3bb assets/dtbop/models/item/redwood_seed.json
+56a5dd476967e6c88815814a154ce1fa3c32776b assets/dtbop/models/item/red_maple_seed.json
 4e0c20b80a0bbe2e61dbdfe2ff14a68c910335f9 assets/dtbop/models/item/snowblossom_seed.json
 dedd4155aea04122028381d8015741c8c9b64609 assets/dtbop/models/item/spruce_poplar_seed.json
 a7222f070a679d9141020c8761e77ce3ad22bc8d assets/dtbop/models/item/toadstool_seed.json
@@ -28,4 +32,4 @@ a7222f070a679d9141020c8761e77ce3ad22bc8d assets/dtbop/models/item/toadstool_seed
 d5bed5109869e5263211316c4ff8020b8dafa112 assets/dtbop/models/item/umbran_seed.json
 0d373da7df9af82084f2d79104506d804009c206 assets/dtbop/models/item/willow_branch.json
 63b895f706373f70a095668ae02f94d48566d0c1 assets/dtbop/models/item/willow_seed.json
-4836de71e61815013243df65b91f718b23028ad9 assets/dtbop/models/item/yellow_autumn_seed.json
+ce28805119196121e03d80a6fff3fab1a128da95 assets/dtbop/models/item/yellow_maple_seed.json

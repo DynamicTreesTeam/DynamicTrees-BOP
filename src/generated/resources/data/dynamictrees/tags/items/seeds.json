@@ -1,5 +1,6 @@
 {
   "values": [
+    "dtbop:aspen_seed",
     "dtbop:dark_poplar_seed",
     "dtbop:dying_seed",
     "dtbop:fir_seed",
@@ -10,6 +11,7 @@
     "dtbop:mahogany_seed",
     "dtbop:orange_maple_seed",
     "dtbop:palm_seed",
+    "dtbop:pine_seed",
     "dtbop:rainbow_birch_seed",
     "dtbop:red_maple_seed",
     "dtbop:redwood_seed",
@@ -17,8 +19,6 @@
     "dtbop:spruce_poplar_seed",
     "dtbop:umbran_seed",
     "dtbop:willow_seed",
-    "dtbop:yellow_maple_seed",
-    "dtbop:pine_seed",
-    "dtbop:aspen_seed"
+    "dtbop:yellow_maple_seed"
   ]
 }

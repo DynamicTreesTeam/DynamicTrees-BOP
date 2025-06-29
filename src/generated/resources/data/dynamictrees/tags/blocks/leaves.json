@@ -2,6 +2,8 @@
   "values": [
     "dtbop:acacia_twiglet_leaves",
     "dtbop:acacia_undergrowth_leaves",
+    "dtbop:aspen_leaves",
+    "dtbop:cherry_twiglet_leaves",
     "dtbop:cypress_willow_leaves",
     "dtbop:dark_oak_twiglet_leaves",
     "dtbop:dark_poplar_leaves",
@@ -15,11 +17,13 @@
     "dtbop:jungle_twiglet_leaves",
     "dtbop:magic_poplar_leaves",
     "dtbop:mahogany_leaves",
+    "dtbop:mangrove_twiglet_leaves",
     "dtbop:maple_twiglet_leaves",
     "dtbop:mega_dark_oak_leaves",
     "dtbop:oak_twiglet_leaves",
     "dtbop:orange_maple_leaves",
     "dtbop:palm_leaves",
+    "dtbop:pine_leaves",
     "dtbop:poplar_leaves",
     "dtbop:rainbow_birch_leaves",
     "dtbop:red_maple_leaves",
@@ -27,6 +31,7 @@
     "dtbop:silk_web",
     "dtbop:silk_undergrowth_web",
     "dtbop:snowblossom_leaves",
+    "dtbop:snowblossom_twiglet_leaves",
     "dtbop:sparse_acacia_leaves",
     "dtbop:sparse_oak_leaves",
     "dtbop:spruce_poplar_leaves",
@@ -34,11 +39,6 @@
     "dtbop:spruce_undergrowth_leaves",
     "dtbop:umbran_leaves",
     "dtbop:willow_leaves",
-    "dtbop:yellow_maple_leaves",
-    "dtbop:snowblossom_twiglet_leaves",
-    "dtbop:cherry_twiglet_leaves",
-    "dtbop:mangrove_twiglet_leaves",
-    "dtbop:pine_leaves",
-    "dtbop:aspen_leaves"
+    "dtbop:yellow_maple_leaves"
   ]
 }

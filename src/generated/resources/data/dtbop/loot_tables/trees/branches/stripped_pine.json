@@ -14,7 +14,7 @@
               "function": "minecraft:explosion_decay"
             }
           ],
-          "name": "biomesoplenty:stripped_dead_log"
+          "name": "biomesoplenty:stripped_pine_log"
         }
       ],
       "rolls": 1.0
@@ -32,11 +32,11 @@
               "function": "minecraft:explosion_decay"
             }
           ],
-          "name": "biomesoplenty:dead_branch"
+          "name": "minecraft:stick"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "dtbop:trees/branches/stripped_dead"
+  "random_sequence": "dtbop:trees/branches/stripped_pine"
 }
