@@ -44,9 +44,9 @@ public class DTBOPRegistries {
     public static final VoxelShape GLOWSHROOM_AGE0 = Shapes.create(0, 0, 0, 1, 0.75, 1);
     public static final VoxelShape TOADSTOOL_AGE0 = Shapes.create(2/16f, 0, 2/16f, 14/16f, 1, 14/16f);
     public static final VoxelShape MUSHROOM_CAP_SHORT_ROUND = Block.box(5D, 3D, 5D, 11D, 7D, 11D);
-    public static final VoxelShape ROUND_SHORT_MUSHROOM = Shapes.or(CommonVoxelShapes.MUSHROOM_STEM, MUSHROOM_CAP_SHORT_ROUND);
+    public static final VoxelShape ROUND_SHORT_MUSHROOM = Shapes.or(CommonVoxelShapes.SAPLING_TRUNK, MUSHROOM_CAP_SHORT_ROUND);
     public static final VoxelShape TOADSTOOL_CAP = Block.box(5.5D, 3.0D, 5.5D, 10.5D, 10.0D, 10.5D);
-    public static final VoxelShape TOADSTOOL = Shapes.or(CommonVoxelShapes.MUSHROOM_STEM, TOADSTOOL_CAP);
+    public static final VoxelShape TOADSTOOL = Shapes.or(CommonVoxelShapes.SAPLING_TRUNK, TOADSTOOL_CAP);
 
     public static void setup() {
         CommonVoxelShapes.SHAPES.put(ResourceLocation.fromNamespaceAndPath(DynamicTreesBOP.MOD_ID, "glowshroom_age0").toString(), GLOWSHROOM_AGE0);

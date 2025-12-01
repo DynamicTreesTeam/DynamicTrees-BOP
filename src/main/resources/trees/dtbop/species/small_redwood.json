@@ -13,9 +13,8 @@
     "dry": 0.25,
     "wet": 0.75
   },
-  "always_show_on_waila": true,
-  "seed_name": "redwood_seed",
-  "sapling_name": "redwood_sapling",
+  "generate_seed": false,
+  "generate_sapling": false,
   "perfect_biomes": { "name": ".*redwood.*" },
   "primitive_sapling": "biomesoplenty:redwood_sapling",
   "mega_species": "dtbop:redwood",

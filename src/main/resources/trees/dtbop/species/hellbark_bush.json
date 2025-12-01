@@ -12,8 +12,9 @@
     "nether": 1.05
   },
   "always_show_on_waila": true,
-  "seed_name": "hellbark_seed",
-  "sapling_name": "hellbark_sapling",
+  "generate_seed": false,
+  "generate_sapling": false,
+  "seed": "dtbop:hellbark_seed",
   "perfect_biomes": { "type": "nether" },
   "acceptable_soils": [ "nether_like", "dirt_like" ],
   "primitive_sapling": "biomesoplenty:hellbark_sapling"

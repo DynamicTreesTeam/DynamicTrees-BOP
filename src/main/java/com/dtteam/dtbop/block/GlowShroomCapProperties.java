@@ -15,7 +15,9 @@ public class GlowShroomCapProperties extends CapProperties {
     }
 
     @Override
-    public BlockBehaviour.Properties getDefaultBlockProperties(MapColor mapColor) {
-        return super.getDefaultBlockProperties(mapColor).emissiveRendering((a,b,c)->true).hasPostProcess((a,b,c)->true);
+    public BlockBehaviour.Properties getDefaultBlockProperties() {
+        return super.getDefaultBlockProperties()
+                .emissiveRendering((a,b,c)->true)
+                .hasPostProcess((a,b,c)->true);
     }
 }
