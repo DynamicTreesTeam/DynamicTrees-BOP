@@ -1,7 +1,8 @@
 [
   {
     "__comment": "Cancel standard tree features from the BoP overworld.",
-    "select": { "names": [ "biomesoplenty:.*", "!biomesoplenty:origin_valley" ], "category": [ "!nether" ] },
+    "__comment2": "For now, the Empyreal tree is too complex to be dynamic.",
+    "select": { "names": [ "biomesoplenty:.*", "!biomesoplenty:origin_valley", "!biomesoplenty:end_wilds" ], "category": [ "!nether" ] },
     "cancellers": {
       "type": "tree",
       "namespaces": ["biomesoplenty", "minecraft"]
