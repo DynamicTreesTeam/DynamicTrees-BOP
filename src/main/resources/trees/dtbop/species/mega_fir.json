@@ -27,5 +27,14 @@
     "clear_volume",
     "podzol",
     "bottom_flare"
-  ]
+  ],
+  "generate_seed": true,
+  "generate_sapling": true,
+  "sapling_shape": "fat_sapling",
+  "model_overrides": {
+    "sapling": "dynamictrees:block/smartmodel/large_sapling"
+  },
+  "lang_overrides": {
+    "seed": "Mega Fir Cone"
+  }
 }

@@ -24,5 +24,8 @@
         "fruiting_radius": 6
       }
     }
-  ]
+  ],
+  "lang_overrides": {
+    "seed": "Willow Catkin"
+  }
 }

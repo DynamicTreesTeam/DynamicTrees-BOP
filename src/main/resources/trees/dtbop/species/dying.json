@@ -13,5 +13,8 @@
   },
   "always_show_on_waila": true,
   "primitive_sapling": "biomesoplenty:dead_sapling",
-  "acceptable_soils": ["dirt_like", "sand_like"]
+  "acceptable_soils": ["dirt_like", "sand_like"],
+  "lang_overrides": {
+    "seed": "Dying Acorn"
+  }
 }

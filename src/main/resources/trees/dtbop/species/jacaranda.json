@@ -14,5 +14,8 @@
   "primitive_sapling": "biomesoplenty:jacaranda_sapling",
   "features" : [
     "bee_nest"
-  ]
+  ],
+  "lang_overrides": {
+    "seed": "Jacaranda Pod"
+  }
 }

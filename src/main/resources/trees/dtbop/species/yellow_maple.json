@@ -14,5 +14,8 @@
     "forest": 1.05
   },
   "perfect_biomes": { "type": "biomesoplenty:seasonal.*" },
-  "primitive_sapling": "biomesoplenty:yellow_maple_sapling"
+  "primitive_sapling": "biomesoplenty:yellow_maple_sapling",
+  "lang_overrides": {
+    "seed": "Yellow Maple Samara"
+  }
 }

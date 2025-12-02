@@ -15,5 +15,8 @@
   "primitive_sapling": "biomesoplenty:rainbow_birch_sapling",
   "features" : [
     "bee_nest"
-  ]
+  ],
+  "lang_overrides": {
+    "seed": "Rainbow Birch Catkin"
+  }
 }

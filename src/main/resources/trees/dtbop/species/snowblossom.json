@@ -16,5 +16,8 @@
   "primitive_sapling": "biomesoplenty:snowblossom_sapling",
   "features" : [
     "bee_nest"
-  ]
+  ],
+  "lang_overrides": {
+    "seed": "Snowblossom Pit"
+  }
 }

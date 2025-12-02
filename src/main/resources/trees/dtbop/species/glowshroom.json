@@ -30,5 +30,8 @@
         "alternate_mushroom_chance": 1
       }
     }
-  ]
+  ],
+  "lang_overrides": {
+    "seed": "Glowshroom Cap"
+  }
 }

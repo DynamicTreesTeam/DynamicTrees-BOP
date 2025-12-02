@@ -47,5 +47,8 @@
         "secondary_min_radius": 12
       }
     }
-  ]
+  ],
+  "lang_overrides": {
+    "seed": "Redwood Cone"
+  }
 }

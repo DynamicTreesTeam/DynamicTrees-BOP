@@ -16,5 +16,8 @@
     "wet": 1.1
   },
   "perfect_biomes": { "types": [ "jungle", "overworld" ] },
-  "primitive_sapling": "biomesoplenty:mahogany_sapling"
+  "primitive_sapling": "biomesoplenty:mahogany_sapling",
+  "lang_overrides": {
+    "seed": "Mahogany Pod"
+  }
 }

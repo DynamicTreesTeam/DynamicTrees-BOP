@@ -32,5 +32,8 @@
   "acceptable_soils": ["fungus_like"],
   "features" : [
     "bottom_flare"
-  ]
+  ],
+  "lang_overrides": {
+    "seed": "Toadstool Cap"
+  }
 }

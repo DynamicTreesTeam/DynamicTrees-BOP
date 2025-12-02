@@ -19,5 +19,8 @@
   "mega_species": "dtbop:mega_umbran",
   "features" : [
     "conifer_topper"
-  ]
+  ],
+  "lang_overrides": {
+    "seed": "Umbran Cone"
+  }
 }

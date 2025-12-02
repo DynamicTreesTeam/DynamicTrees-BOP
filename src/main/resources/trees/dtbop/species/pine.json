@@ -11,5 +11,8 @@
     "plains": 1.05
   },
   "perfect_biomes": { "type": "biomesoplenty:hot_springs" },
-  "primitive_sapling": "biomesoplenty:pine_sapling"
+  "primitive_sapling": "biomesoplenty:pine_sapling",
+  "lang_overrides": {
+    "seed": "Pine Cone"
+  }
 }

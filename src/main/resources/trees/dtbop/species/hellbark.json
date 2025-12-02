@@ -14,5 +14,8 @@
   },
   "always_show_on_waila": false,
   "perfect_biomes": { "type": "nether" },
-  "acceptable_soils": [ "nether_like", "dirt_like" ]
+  "acceptable_soils": [ "nether_like", "dirt_like" ],
+  "lang_overrides": {
+    "seed": "Hellbark Seed"
+  }
 }

@@ -30,5 +30,14 @@
     },
     "clear_volume",
     "bottom_flare"
-  ]
+  ],
+  "generate_seed": true,
+  "generate_sapling": true,
+  "sapling_shape": "fat_sapling",
+  "model_overrides": {
+    "sapling": "dynamictrees:block/smartmodel/large_sapling"
+  },
+  "lang_overrides": {
+    "seed": "Mega Umbran Cone"
+  }
 }

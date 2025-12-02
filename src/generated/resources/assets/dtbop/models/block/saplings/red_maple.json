@@ -3,6 +3,6 @@
   "render_type": "minecraft:cutout_mipped",
   "textures": {
     "leaves": "biomesoplenty:block/red_maple_leaves",
-    "log": "minecraft:block/oak_log"
+    "log": "biomesoplenty:block/maple_log"
   }
 }

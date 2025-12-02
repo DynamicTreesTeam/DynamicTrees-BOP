@@ -10,5 +10,8 @@
   "growth_rate": 0.85,
   "growth_logic_kit": "dtbop:poplar",
   "leaves_properties": "dtbop:dark_poplar",
-  "perfect_biomes": { "name": "biomesoplenty:.*grove" }
+  "perfect_biomes": { "name": "biomesoplenty:.*grove" },
+  "lang_overrides": {
+    "seed": "Dark Poplar Catkin"
+  }
 }
