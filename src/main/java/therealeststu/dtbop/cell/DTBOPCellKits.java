@@ -51,15 +51,15 @@ public class DTBOPCellKits {
         }
     }
 
-    public static final CellKit SPARSE = new SparseCellKit(new ResourceLocation(DynamicTreesBOP.MOD_ID, "sparse"));
-    public static final CellKit HELLBARK_SPARSE = new SparseCellKit(new ResourceLocation(DynamicTreesBOP.MOD_ID, "hellbark_sparse")) {
+    public static final CellKit SPARSE = new SparseCellKit(DynamicTreesBOP.location("sparse"));
+    public static final CellKit HELLBARK_SPARSE = new SparseCellKit(DynamicTreesBOP.location("hellbark_sparse")) {
         @Override
         public Cell getCellForBranch(int radius, int meta) {
             return radius <= 3 ? sparseBranch : CellNull.NULL_CELL;
         }
     };
 
-    public static final CellKit POPLAR = new CellKit(new ResourceLocation(DynamicTreesBOP.MOD_ID, "poplar")) {
+    public static final CellKit POPLAR = new CellKit(DynamicTreesBOP.location("poplar")) {
 
         private final Cell poplarBranch = new PoplarBranchCell();
         private final Cell poplarTopBranch = new PoplarTopBranchCell();
@@ -110,7 +110,7 @@ public class DTBOPCellKits {
 
     };
 
-    public static final CellKit MAHOGANY = new CellKit(new ResourceLocation(DynamicTreesBOP.MOD_ID, "mahogany")) {
+    public static final CellKit MAHOGANY = new CellKit(DynamicTreesBOP.location("mahogany")) {
 
         private final Cell mahoganyBranch = new MahoganyBranchCell();
 
@@ -157,7 +157,7 @@ public class DTBOPCellKits {
 
     };
 
-    public static final CellKit BRUSH = new CellKit(new ResourceLocation(DynamicTreesBOP.MOD_ID, "brush")) {
+    public static final CellKit BRUSH = new CellKit(DynamicTreesBOP.location("brush")) {
 
         private final Cell branch = new Cell() {
             @Override
@@ -216,7 +216,7 @@ public class DTBOPCellKits {
 
     };
 
-    public static final CellKit EUCALYPTUS = new CellKit(new ResourceLocation(DynamicTreesBOP.MOD_ID, "eucalyptus")) {
+    public static final CellKit EUCALYPTUS = new CellKit(DynamicTreesBOP.location("eucalyptus")) {
 
         private final Cell eucalyptusTopBranch = new EucalyptusTopBranchCell();
         private final Cell eucalyptusBranch = new NormalCell(2);
@@ -267,7 +267,7 @@ public class DTBOPCellKits {
 
     };
 
-    public static final CellKit HELLBARK = new CellKit(new ResourceLocation(DynamicTreesBOP.MOD_ID, "hellbark")) {
+    public static final CellKit HELLBARK = new CellKit(DynamicTreesBOP.location("hellbark")) {
 
         private final Cell hellbarkBranch = new Cell() {
             @Override

@@ -485,7 +485,12 @@
   {
     "select": { "name": "biomesoplenty:wetland" },
     "apply": {
-      "species" : "dtbop:willow",
+      "species" : {
+        "random" : {
+          "dtbop:willow" : 1,
+          "spruce" : 1
+        }
+      },
       "density": 0.5,
       "chance": 0.75,
       "forestness" : 0.75
@@ -560,11 +565,12 @@
     "apply": {
       "species" : {
         "random" : {
-          "dtbop:aspen" : 3
+          "dtbop:aspen" : 6,
+          "dtbop:yellow_maple" : 1
         }
       },
       "density": 0.5,
-      "chance": 0.75,
+      "chance": 0.6,
       "forestness" : 0.75
     }
   },

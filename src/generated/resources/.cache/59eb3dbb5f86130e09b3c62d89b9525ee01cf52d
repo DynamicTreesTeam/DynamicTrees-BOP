@@ -1,4 +1,4 @@
-// 1.20.1	2025-06-28T23:16:28.6540058	Loot Tables
+// 1.20.1	2026-02-14T17:29:47.006321042	Loot Tables
 2f0b3483b597ecdfe835ae0c85df19f0526ecaa2 data/dtbop/loot_tables/blocks/acacia_twiglet_leaves.json
 8082ec65edb55f4b7f9436f639257f761263125d data/dtbop/loot_tables/blocks/acacia_undergrowth_leaves.json
 31b745d2eff01e9268cc85da5e1d6336255b457f data/dtbop/loot_tables/blocks/aspen_leaves.json
@@ -26,8 +26,8 @@ f5e5e7510297c09c08accd6f8ab726aa22e46dcd data/dtbop/loot_tables/blocks/palm_leav
 1716767118b1882a1e1ff22d9b9dd7adb0e5dd8e data/dtbop/loot_tables/blocks/pine_leaves.json
 155c4f1003e898a3126ac9e1db8173346ef4e493 data/dtbop/loot_tables/blocks/poplar_leaves.json
 c6c19554373820d7a6d5286f5b3e6a502bdfb527 data/dtbop/loot_tables/blocks/rainbow_birch_leaves.json
-83299c9ab39fcada9e596f139aad26da15d75b1f data/dtbop/loot_tables/blocks/redwood_leaves.json
 08ff2feda7097b87fcd8eaaeb12a1d63928b900e data/dtbop/loot_tables/blocks/red_maple_leaves.json
+83299c9ab39fcada9e596f139aad26da15d75b1f data/dtbop/loot_tables/blocks/redwood_leaves.json
 81695a75d58f3b6b538f4d31cab24a6164790987 data/dtbop/loot_tables/blocks/silk_undergrowth_web.json
 88e16d0a68fab1bb09b274e86aed393833038310 data/dtbop/loot_tables/blocks/silk_web.json
 49a9578bc46067ebd4096f6351655615c6ee55df data/dtbop/loot_tables/blocks/snowblossom_leaves.json
@@ -91,8 +91,8 @@ f0f1bfd4d7ae074b60914c1b5b294c8d11f7b276 data/dtbop/loot_tables/trees/leaves/oak
 79a41787a95550f4404c2ff422b6c9a175523bbe data/dtbop/loot_tables/trees/leaves/pine.json
 026988221906a5f680d9df512e5650357f72fa67 data/dtbop/loot_tables/trees/leaves/poplar.json
 6299ab9575e4b33ef7682e400e7d44e33e5c315a data/dtbop/loot_tables/trees/leaves/rainbow_birch.json
-3361a561a3c4278b46dabcf32e8ed8d02c0de968 data/dtbop/loot_tables/trees/leaves/redwood.json
 c48916fc66cd79c6cea5f2abaef3104da8b6dd1f data/dtbop/loot_tables/trees/leaves/red_maple.json
+3361a561a3c4278b46dabcf32e8ed8d02c0de968 data/dtbop/loot_tables/trees/leaves/redwood.json
 60e85eeb9e9c4977bfd4d7557a97dee43e4da447 data/dtbop/loot_tables/trees/leaves/silk.json
 4b1ef9b45bf3030916f10e0302cfe02348bed981 data/dtbop/loot_tables/trees/leaves/silk_undergrowth.json
 0f73f4a3b836d476bc716784302b66b734080d4d data/dtbop/loot_tables/trees/leaves/snowblossom.json

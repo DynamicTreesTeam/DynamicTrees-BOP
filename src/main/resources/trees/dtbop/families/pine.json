@@ -3,5 +3,6 @@
   "common_species": "dtbop:pine",
   "primitive_log": "biomesoplenty:pine_log",
   "primitive_stripped_log": "biomesoplenty:stripped_pine_log",
-  "max_branch_radius": 24
+  "max_branch_radius": 24,
+  "generate_surface_root": true
 }

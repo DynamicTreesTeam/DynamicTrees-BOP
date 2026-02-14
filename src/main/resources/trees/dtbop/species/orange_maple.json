@@ -14,5 +14,15 @@
     "forest": 1.05
   },
   "perfect_biomes": { "type": "biomesoplenty:seasonal.*" },
-  "primitive_sapling": "biomesoplenty:orange_maple_sapling"
+  "primitive_sapling": "biomesoplenty:orange_maple_sapling",
+  "features" : [
+      {
+          "name": "dtbop:fallen_leaves",
+          "properties": {
+              "block": "biomesoplenty:orange_maple_leaf_pile",
+              "quantity": 4,
+              "place_chance": 0.6
+          }
+      }
+  ]
 }

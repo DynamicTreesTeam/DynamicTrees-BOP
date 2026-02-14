@@ -1,4 +1,4 @@
-// 1.20.1	2025-06-28T23:16:28.6590269	Block States: dtbop
+// 1.20.1	2026-02-14T17:29:47.0084208	Block States: dtbop
 2606791521eac27fa77ebbeeea442b8073802a51 assets/dtbop/blockstates/acacia_twiglet_leaves.json
 2606791521eac27fa77ebbeeea442b8073802a51 assets/dtbop/blockstates/acacia_undergrowth_leaves.json
 e65d59cb6b08d2f8698af8da787c5cc3b6a8c59b assets/dtbop/blockstates/aspen_leaves.json
@@ -44,17 +44,18 @@ be6018f760569c794364897846788a136427ab38 assets/dtbop/blockstates/palm_branch.js
 8ee7a30dde4b23b8e35d5293222ba504896fd228 assets/dtbop/blockstates/palm_sapling.json
 17378858bc210bdde3da781db8618301bca6ffff assets/dtbop/blockstates/pine_branch.json
 7ce9145b015a8c10885505b0136f44193617d227 assets/dtbop/blockstates/pine_leaves.json
+b56555777556eff3388e809809342cd799042e7c assets/dtbop/blockstates/pine_root.json
 2d5f572e7b46191a1b9d5e265e9b267296d56641 assets/dtbop/blockstates/pine_sapling.json
 8ef838697c46c00a32d716cdcf4638eed23d1cc0 assets/dtbop/blockstates/poplar_leaves.json
 000679a00cfb3b867c5fe94a3557a844da52bb9e assets/dtbop/blockstates/poplar_sapling.json
 a2d11b00ee54bca18fd29d6537a9a79ccead1508 assets/dtbop/blockstates/rainbow_birch_leaves.json
 e9d90911906c9476fd0b1aae3a0e728c7629d751 assets/dtbop/blockstates/rainbow_birch_sapling.json
+bd55aaa7c9268eb8645517953a9e651bac260450 assets/dtbop/blockstates/red_maple_leaves.json
+b9b1e41b7298c91d36748cca318642f81080c5bb assets/dtbop/blockstates/red_maple_sapling.json
 6db34b1912d2a38a3a611f208fff48ad02a4a3a7 assets/dtbop/blockstates/redwood_branch.json
 c41ed9f68687aeda5ef8ccadab773cdcf5219b90 assets/dtbop/blockstates/redwood_leaves.json
 6d714257eabe725f59417b0e017685a16fde3f4d assets/dtbop/blockstates/redwood_root.json
 398c2204e466c35836c71ec8435b03d3175f6003 assets/dtbop/blockstates/redwood_sapling.json
-bd55aaa7c9268eb8645517953a9e651bac260450 assets/dtbop/blockstates/red_maple_leaves.json
-b9b1e41b7298c91d36748cca318642f81080c5bb assets/dtbop/blockstates/red_maple_sapling.json
 bf15524ff4c692f52a2ebc98e5366c27a27ba5bf assets/dtbop/blockstates/rooty_black_sand.json
 fbbed88cb40b46d6a8f22bf82c1727edd6992896 assets/dtbop/blockstates/rooty_dried_salt.json
 9c9d902a96af508fe7976eb743fd70616de4c5e3 assets/dtbop/blockstates/rooty_glowing_moss_block.json
@@ -106,6 +107,7 @@ b81db0a95717bac6713bc715eaa1a9d1e52812bb assets/dtbop/models/block/maple_branch.
 f5bb6b2fbfe559fbe37d60e76933cbe905de2b6e assets/dtbop/models/block/palm_leaves/palm_core_top.json
 4afdd4e7a31036723f56bcb4056dad558da0d45f assets/dtbop/models/block/palm_leaves/palm_frond.json
 48c0bea6d10eace96996e74a0af0c62c0740074b assets/dtbop/models/block/pine_branch.json
+311bd995a933d340d6b0c2cb6f99fbfd2c142180 assets/dtbop/models/block/pine_root.json
 7944d6792719005ebe2b1f4568f6488d541c4880 assets/dtbop/models/block/redwood_branch.json
 033db798a08ee510f39b21b5afc685cdb22ab2d0 assets/dtbop/models/block/redwood_root.json
 f7d802d69fe0253836c47f573cbdb6a1bfc826ae assets/dtbop/models/block/saplings/aspen.json
@@ -123,8 +125,8 @@ bdde5f537cd72bb72df27b39bd8b292e2b6da6f1 assets/dtbop/models/block/saplings/palm
 011fb26ee9faee526b7c25b847e7129204f2f3a1 assets/dtbop/models/block/saplings/pine.json
 e85b6b5fb75c35a7306993653ed1e0e73cc9d566 assets/dtbop/models/block/saplings/poplar.json
 2006a61f699d405da61a56613e2a393383694d6a assets/dtbop/models/block/saplings/rainbow_birch.json
-c0f36166b4fabe68721c2f2b485834f293e26d33 assets/dtbop/models/block/saplings/redwood_sapling.json
 944caf9fc61f69d06beb0054d6ad835a443c3962 assets/dtbop/models/block/saplings/red_maple.json
+c0f36166b4fabe68721c2f2b485834f293e26d33 assets/dtbop/models/block/saplings/redwood_sapling.json
 b8a345dcc6bb85e88253dcf9d8613f345fc9a474 assets/dtbop/models/block/saplings/snowblossom.json
 82e19945531fbcaf8d88a55bd21673f281be1f2c assets/dtbop/models/block/saplings/spruce_poplar.json
 0ea7a3e7616416b0c5f0311346e0fd89b4d60d81 assets/dtbop/models/block/saplings/toadstool.json

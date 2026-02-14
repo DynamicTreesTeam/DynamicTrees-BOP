@@ -1,0 +1,6 @@
+{
+  "loader": "dynamictrees:surface_root",
+  "textures": {
+    "bark": "biomesoplenty:block/pine_log"
+  }
+}

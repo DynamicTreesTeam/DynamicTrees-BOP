@@ -18,7 +18,7 @@ import therealeststu.dtbop.tree.GlowshroomSpecies;
 
 public class DTBOPPlusRegistries {
 
-    public static final FeatureCanceller MUSHROOM_CANCELLER = new MushroomFeatureCanceller<>(new ResourceLocation(DynamicTreesBOP.MOD_ID,"mushroom"), HugeMushroomFeatureConfiguration.class){
+    public static final FeatureCanceller MUSHROOM_CANCELLER = new MushroomFeatureCanceller<>(DynamicTreesBOP.location("mushroom"), HugeMushroomFeatureConfiguration.class){
         @Override
         public boolean shouldCancel(final ConfiguredFeature<?, ?> configuredFeature, final BiomePropertySelectors.NormalFeatureCancellation featureCancellations) {
             final ResourceLocation featureRegistryName = ForgeRegistries.FEATURES.getKey(configuredFeature.feature());
