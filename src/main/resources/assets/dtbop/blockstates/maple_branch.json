@@ -1,7 +1,13 @@
 {
   "variants": {
     "": {
-      "model": "dtbop:block/maple_branch"
+      "type": "dynamictrees:branch",
+      "fabric:type": "dynamictrees:branch",
+      "family": "dtbop:maple",
+      "textures": {
+        "bark": "biomesoplenty:block/maple_log",
+        "rings": "biomesoplenty:block/maple_log_top"
+      }
     }
   }
 }

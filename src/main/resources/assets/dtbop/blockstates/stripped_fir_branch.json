@@ -1,7 +1,13 @@
 {
   "variants": {
     "": {
-      "model": "dtbop:block/stripped_fir_branch"
+      "type": "dynamictrees:branch",
+      "fabric:type": "dynamictrees:branch",
+      "family": "dtbop:fir",
+      "textures": {
+        "bark": "biomesoplenty:block/stripped_fir_log",
+        "rings": "biomesoplenty:block/stripped_fir_log_top"
+      }
     }
   }
 }

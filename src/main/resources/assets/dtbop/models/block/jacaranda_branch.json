@@ -1,7 +1,0 @@
-{
-  "loader": "dynamictrees:branch",
-  "textures": {
-    "bark": "biomesoplenty:block/jacaranda_log",
-    "rings": "biomesoplenty:block/jacaranda_log_top"
-  }
-}

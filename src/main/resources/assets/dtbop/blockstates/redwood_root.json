@@ -1,7 +1,11 @@
 {
   "variants": {
     "": {
-      "model": "dtbop:block/redwood_root"
+      "type": "dynamictrees:surface_root",
+      "fabric:type": "dynamictrees:surface_root",
+      "textures": {
+        "bark": "biomesoplenty:block/redwood_log"
+      }
     }
   }
 }

@@ -1,7 +1,13 @@
 {
   "variants": {
     "": {
-      "model": "dtbop:block/dead_branch"
+      "type": "dynamictrees:branch",
+      "fabric:type": "dynamictrees:branch",
+      "family": "dtbop:dead",
+      "textures": {
+        "bark": "biomesoplenty:block/dead_log",
+        "rings": "biomesoplenty:block/dead_log_top"
+      }
     }
   }
 }
