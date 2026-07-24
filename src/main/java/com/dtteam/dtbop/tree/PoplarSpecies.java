@@ -68,7 +68,7 @@ public class PoplarSpecies extends Species {
                 for (Direction dir : Direction.values()) {
                     if (!dir.equals(fromDir)) { // Don't count where the signal originated from
 
-                        BlockPos dPos = pos.offset(dir.getNormal());
+                        BlockPos dPos = pos.offset(dir.getUnitVec3i());
 
                         if (dPos.equals(last)) { // or the branch we just came back from
                             isTwig = false; // on the return journey if the block we just came from is a branch we are obviously not the endpoint(twig)

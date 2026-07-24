@@ -66,7 +66,7 @@ public class RedwoodLogic extends GrowthLogicKit {
         // Create probability map for direction change
         for (Direction dir : Direction.values()) {
             if (!dir.equals(originDir)) {
-                BlockPos deltaPos = pos.offset(dir.getNormal());
+                BlockPos deltaPos = pos.offset(dir.getUnitVec3i());
                 // Check probability for surrounding blocks
                 // Typically Air:1, Leaves:2, Branches: 2+r
                 if (signalY >= configuration.getLowestBranchHeight(context)) {

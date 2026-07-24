@@ -31,7 +31,7 @@ public class CypressLogic extends GrowthLogicKit {
             if (signal.energy >= 6) {
                 if (signal.numSteps % 3 == 0) {
                     for (Direction dir : CoordUtils.HORIZONTALS) {
-                        if (TreeHelper.isBranch(context.level().getBlockState(context.pos().offset(dir.getNormal())))) {
+                        if (TreeHelper.isBranch(context.level().getBlockState(context.pos().offset(dir.getUnitVec3i())))) {
                             sideProb = 0;
                             branchSide = dir;
                         }
