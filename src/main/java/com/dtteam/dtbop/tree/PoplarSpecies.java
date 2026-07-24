@@ -11,7 +11,7 @@ import com.dtteam.dynamictrees.tree.species.Species;
 import com.dtteam.dynamictrees.api.voxmap.SimpleVoxmap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import com.dtteam.dtbop.cell.DTBOPLeafClusters;
@@ -20,13 +20,13 @@ public class PoplarSpecies extends Species {
 
     public static final TypedRegistry.EntryType<Species> TYPE = createDefaultType(PoplarSpecies::new);
 
-    public PoplarSpecies(ResourceLocation name, Family family, LeavesProperties leavesProperties) {
+    public PoplarSpecies(Identifier name, Family family, LeavesProperties leavesProperties) {
         super(name, family, leavesProperties);
     }
 
     @Override
-    public NodeInspector getNodeInflator(SimpleVoxmap leafMap) {
-        return new NodeInflatorPoplar(this, leafMap);
+    public NodeInspector getNodeInflator(SimpleVoxmap leafMap, int maxRadius) {
+        return new NodeInflatorPoplar(this, leafMap, maxRadius);
     }
 
     public class NodeInflatorPoplar implements NodeInspector {
@@ -36,10 +36,12 @@ public class PoplarSpecies extends Species {
 
         Species species;
         SimpleVoxmap leafMap;
+        private final int maxRadius;
 
-        public NodeInflatorPoplar(Species species, SimpleVoxmap leafMap) {
+        public NodeInflatorPoplar(Species species, SimpleVoxmap leafMap, int maxRadius) {
             this.species = species;
             this.leafMap = leafMap;
+            this.maxRadius = Math.min(maxRadius, species.getMaxBranchRadius());
             last = BlockPos.ZERO;
         }
 
@@ -98,9 +100,8 @@ public class PoplarSpecies extends Species {
                     radius = (float) Math.sqrt(areaAccum) + (species.getTapering() * species.getWorldGenTaperingFactor());
 
                     //Ensure the branch is never inflated past it's species maximum
-                    int maxRadius = species.getMaxBranchRadius();
-                    if (radius > maxRadius) {
-                        radius = maxRadius;
+                    if (radius > this.maxRadius) {
+                        radius = this.maxRadius;
                     }
 
                     // Make sure that non-twig branches are at least radius 2

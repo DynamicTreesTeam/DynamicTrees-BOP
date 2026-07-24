@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "dtbop",
+  "version": "${mod_version}",
+  "name": "Dynamic Trees for Biomes o' Plenty",
+  "description": "Compatibility Mod between Dynamic Trees and Biomes o' Plenty",
+  "authors": [
+    "mangoose",
+    "Max Hyper"
+  ],
+  "contact": {
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/dtbop",
+    "sources": "https://github.com/DynamicTreesTeam/DynamicTreesBOP"
+  },
+  "license": "MIT",
+  "environment": "*",
+  "entrypoints": {
+    "dynamictrees": [
+      "com.dtteam.dtbop.DynamicTreesBOP"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.19.3",
+    "minecraft": "26.2",
+    "dynamictrees": "*",
+    "biomesoplenty": "*"
+  }
+}

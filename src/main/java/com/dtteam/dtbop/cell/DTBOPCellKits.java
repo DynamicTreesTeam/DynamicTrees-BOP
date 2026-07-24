@@ -10,7 +10,7 @@ import com.dtteam.dynamictrees.systems.cell.MetadataCell;
 import com.dtteam.dynamictrees.systems.cell.NormalCell;
 import com.dtteam.dynamictrees.api.voxmap.SimpleVoxmap;
 import net.minecraft.core.Direction;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import com.dtteam.dtbop.DynamicTreesBOP;
 
 public class DTBOPCellKits {
@@ -21,7 +21,7 @@ public class DTBOPCellKits {
 
         protected final CellSolver solver = new CellKits.BasicSolver(new short[]{0x0211});
 
-        public SparseCellKit(ResourceLocation registryName) {
+        public SparseCellKit(Identifier registryName) {
             super(registryName);
         }
 
@@ -51,15 +51,15 @@ public class DTBOPCellKits {
         }
     }
 
-    public static final CellKit SPARSE = new SparseCellKit(ResourceLocation.fromNamespaceAndPath(DynamicTreesBOP.MOD_ID, "sparse"));
-    public static final CellKit HELLBARK_SPARSE = new SparseCellKit(ResourceLocation.fromNamespaceAndPath(DynamicTreesBOP.MOD_ID, "hellbark_sparse")) {
+    public static final CellKit SPARSE = new SparseCellKit(Identifier.fromNamespaceAndPath(DynamicTreesBOP.MOD_ID, "sparse"));
+    public static final CellKit HELLBARK_SPARSE = new SparseCellKit(Identifier.fromNamespaceAndPath(DynamicTreesBOP.MOD_ID, "hellbark_sparse")) {
         @Override
         public Cell getCellForBranch(int radius, int meta) {
             return radius <= 3 ? sparseBranch : CellNull.NULL_CELL;
         }
     };
 
-    public static final CellKit POPLAR = new CellKit(ResourceLocation.fromNamespaceAndPath(DynamicTreesBOP.MOD_ID, "poplar")) {
+    public static final CellKit POPLAR = new CellKit(Identifier.fromNamespaceAndPath(DynamicTreesBOP.MOD_ID, "poplar")) {
 
         private final Cell poplarBranch = new PoplarBranchCell();
         private final Cell poplarTopBranch = new PoplarTopBranchCell();
@@ -110,7 +110,7 @@ public class DTBOPCellKits {
 
     };
 
-    public static final CellKit MAHOGANY = new CellKit(ResourceLocation.fromNamespaceAndPath(DynamicTreesBOP.MOD_ID, "mahogany")) {
+    public static final CellKit MAHOGANY = new CellKit(Identifier.fromNamespaceAndPath(DynamicTreesBOP.MOD_ID, "mahogany")) {
 
         private final Cell mahoganyBranch = new MahoganyBranchCell();
 
@@ -157,7 +157,7 @@ public class DTBOPCellKits {
 
     };
 
-    public static final CellKit BRUSH = new CellKit(ResourceLocation.fromNamespaceAndPath(DynamicTreesBOP.MOD_ID, "brush")) {
+    public static final CellKit BRUSH = new CellKit(Identifier.fromNamespaceAndPath(DynamicTreesBOP.MOD_ID, "brush")) {
 
         private final Cell branch = new Cell() {
             @Override
@@ -216,7 +216,7 @@ public class DTBOPCellKits {
 
     };
 
-    public static final CellKit EUCALYPTUS = new CellKit(ResourceLocation.fromNamespaceAndPath(DynamicTreesBOP.MOD_ID, "eucalyptus")) {
+    public static final CellKit EUCALYPTUS = new CellKit(Identifier.fromNamespaceAndPath(DynamicTreesBOP.MOD_ID, "eucalyptus")) {
 
         private final Cell eucalyptusTopBranch = new EucalyptusTopBranchCell();
         private final Cell eucalyptusBranch = new NormalCell(2);
@@ -267,7 +267,7 @@ public class DTBOPCellKits {
 
     };
 
-    public static final CellKit HELLBARK = new CellKit(ResourceLocation.fromNamespaceAndPath(DynamicTreesBOP.MOD_ID, "hellbark")) {
+    public static final CellKit HELLBARK = new CellKit(Identifier.fromNamespaceAndPath(DynamicTreesBOP.MOD_ID, "hellbark")) {
 
         private final Cell hellbarkBranch = new Cell() {
             @Override

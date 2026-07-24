@@ -2,33 +2,36 @@
   {
     "__comment": "Cancel standard tree features from the BoP overworld.",
     "__comment2": "For now, the Empyreal tree is too complex to be dynamic.",
-    "select": { "names": [ "biomesoplenty:.*", "!biomesoplenty:origin_valley", "!biomesoplenty:end_wilds" ], "category": [ "!nether" ] },
+    "select": {
+      "names": [
+        "biomesoplenty:.*",
+        "!biomesoplenty:origin_valley",
+        "!biomesoplenty:end_wilds"
+      ],
+      "category": [
+        "!nether"
+      ]
+    },
     "cancellers": {
       "type": "tree",
-      "namespaces": ["biomesoplenty", "minecraft"]
+      "namespaces": [
+        "biomesoplenty",
+        "minecraft"
+      ]
     }
   },
   {
     "__comment": "Cancel standard tree features from the BoP nether.",
-    "select": { "name": "biomesoplenty:undergrowth" },
+    "select": {
+      "name": "biomesoplenty:undergrowth"
+    },
     "cancellers": {
       "type": "tree",
-      "namespaces": ["biomesoplenty", "minecraft"],
+      "namespaces": [
+        "biomesoplenty",
+        "minecraft"
+      ],
       "stage": "underground_decoration"
-    }
-  },
-  {
-    "_comment": "Cancel mushrooms if DT+ is installed",
-    "only_if_loaded": "dynamictreesplus",
-    "select": {"OR": [
-      { "name": "biomesoplenty:mystic_grove" },
-      { "name": "biomesoplenty:fungal_jungle" },
-      { "name": "biomesoplenty:glowing_grotto" },
-      { "name": "biomesoplenty:muskeg" }
-    ]},
-    "cancellers": {
-      "types": ["tree", "mushroom", "dtbop:mushroom"],
-      "namespaces": ["biomesoplenty", "minecraft"]
     }
   }
 ]

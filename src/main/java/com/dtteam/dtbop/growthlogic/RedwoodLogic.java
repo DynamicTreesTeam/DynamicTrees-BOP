@@ -14,13 +14,13 @@ import com.dtteam.dynamictrees.utility.MathUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Vec3i;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class RedwoodLogic extends GrowthLogicKit {
 
-    public RedwoodLogic(ResourceLocation registryName) {
+    public RedwoodLogic(Identifier registryName) {
         super(registryName);
     }
 

@@ -12,7 +12,7 @@ import com.dtteam.dynamictrees.systems.nodemapper.FindEndsNode;
 import com.dtteam.dynamictrees.tree.species.Species;
 import com.dtteam.dynamictrees.api.voxmap.BlockPosBounds;
 import net.minecraft.core.BlockPos;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -28,7 +28,7 @@ public class AlternativeLeavesGenFeature extends GenFeature {
 
     public static final ConfigurationProperty<Block> ALT_LEAVES = ConfigurationProperty.block("alternative_leaves");
 
-    public AlternativeLeavesGenFeature(ResourceLocation registryName) {
+    public AlternativeLeavesGenFeature(Identifier registryName) {
         super(registryName);
     }
 

@@ -5,12 +5,12 @@ import com.dtteam.dynamictrees.systems.growthlogic.GrowthLogicKitConfiguration;
 import com.dtteam.dynamictrees.systems.growthlogic.context.PositionalSpeciesContext;
 import com.dtteam.dynamictrees.utility.CoordUtils;
 import net.minecraft.core.BlockPos;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.Level;
 
 public class SmallRedwoodLogic extends ConiferLogic {
 
-    public SmallRedwoodLogic(ResourceLocation registryName) {
+    public SmallRedwoodLogic(Identifier registryName) {
         super(registryName);
     }
 

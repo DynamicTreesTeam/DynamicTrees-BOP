@@ -6,7 +6,7 @@ import com.dtteam.dynamictrees.block.soil.SoilHelper;
 import com.dtteam.dynamictrees.tree.family.Family;
 import com.dtteam.dynamictrees.tree.species.Species;
 import net.minecraft.core.BlockPos;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
@@ -15,7 +15,7 @@ public class GenOnStoneSpecies extends Species {
 
     public static final TypedRegistry.EntryType<Species> TYPE = createDefaultType(GenOnStoneSpecies::new);
 
-    public GenOnStoneSpecies(ResourceLocation name, Family family, LeavesProperties leavesProperties) {
+    public GenOnStoneSpecies(Identifier name, Family family, LeavesProperties leavesProperties) {
         super(name, family, leavesProperties);
     }
 

@@ -9,7 +9,7 @@ import com.dtteam.dynamictrees.systems.genfeature.context.PostGrowContext;
 import com.dtteam.dynamictrees.tree.species.Species;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.LevelAccessor;
 
 public class ExtraBottomFlareGenFeature extends GenFeature {
@@ -21,7 +21,7 @@ public class ExtraBottomFlareGenFeature extends GenFeature {
     public static final ConfigurationProperty<Integer> SECONDARY_MIN_RADIUS = ConfigurationProperty.integer("secondary_min_radius");
 
 
-    public ExtraBottomFlareGenFeature(ResourceLocation registryName) {
+    public ExtraBottomFlareGenFeature(Identifier registryName) {
         super(registryName);
     }
 
