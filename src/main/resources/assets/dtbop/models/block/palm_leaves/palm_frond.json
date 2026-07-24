@@ -1,6 +1,4 @@
 {
-  "loader": "dynamictrees:large_palm_fronds",
-  "textures": {
-    "frond": "dtbop:block/palm_frond"
-  }
+  "__comment": "TODO 26.2 port: DT core has no 26.2 loader for 'dynamictrees:large_palm_fronds' yet; render regular palm leaves as a placeholder so the model parses cleanly.",
+  "parent": "biomesoplenty:block/palm_leaves"
 }
