@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "biomesoplenty:block/rainbow_birch_leaves"
+      "model": "minecraft:block/birch_leaves"
     }
   }
 }

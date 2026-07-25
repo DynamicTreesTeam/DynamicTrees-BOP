@@ -6,11 +6,7 @@
   "lowest_branch_height": 4,
   "growth_rate": 0.7,
   "leaves_properties": "oak",
-  "environment_factors" : {
-    "cold": 0.75,
-    "hot": 0.75,
-    "dry": 0.25
-  },
+  "preferred_climate": "temperate",
   "use_seed_of_other_species": "dynamictrees:apple_oak",
   "perfect_biomes": { "name": "biomesoplenty:orchard" },
   "fruits": [

@@ -9,11 +9,7 @@
   "max_branch_radius": 24,
   "growth_logic_kit": "dtbop:fir",
   "leaves_properties": "dtbop:fir",
-  "environment_factors" : {
-    "hot": 0.50,
-    "dry": 0.25,
-    "wet": 0.75
-  },
+  "preferred_climate": "temperate",
   "perfect_biomes": { "type": "coniferous" },
   "common_override": { "name": "biomesoplenty:coniferous_forest" },
   "features" : [

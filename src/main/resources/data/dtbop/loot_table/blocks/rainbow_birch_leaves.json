@@ -37,7 +37,7 @@
                   ]
                 }
               ],
-              "name": "biomesoplenty:rainbow_birch_leaves"
+              "name": "minecraft:birch_leaves"
             },
             {
               "type": "dynamictrees:seed_item",

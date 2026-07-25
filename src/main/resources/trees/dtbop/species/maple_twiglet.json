@@ -2,10 +2,6 @@
   "type": "dtbop:twiglet",
   "family": "dtbop:maple",
   "leaves_properties": "dtbop:maple_twiglet",
-  "environment_factors" : {
-    "hot": 0.5,
-    "dry": 0.5,
-    "cold": 1.05
-  },
+  "preferred_climate": "cold",
   "perfect_biomes": { "type": "biomesoplenty:tundra.*" }
 }

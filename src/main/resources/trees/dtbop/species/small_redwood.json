@@ -8,11 +8,7 @@
   "soil_longevity": 2,
   "growth_logic_kit": "dtbop:small_redwood",
   "leaves_properties": "dtbop:redwood",
-  "environment_factors" : {
-    "hot": 0.50,
-    "dry": 0.25,
-    "wet": 0.75
-  },
+  "preferred_climate": "temperate",
   "generate_seed": false,
   "generate_sapling": false,
   "perfect_biomes": { "name": ".*redwood.*" },

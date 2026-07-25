@@ -8,10 +8,7 @@
   "lowest_branch_height": 2,
   "soil_longevity": 1,
   "leaves_properties": "dtbop:hellbark",
-  "environment_factors" : {
-    "cold": 0.5,
-    "nether": 1.05
-  },
+  "preferred_climate": "none",
   "always_show_on_waila": false,
   "perfect_biomes": { "type": "nether" },
   "acceptable_soils": [ "nether_like", "dirt_like" ],

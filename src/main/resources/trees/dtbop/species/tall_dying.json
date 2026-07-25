@@ -4,10 +4,6 @@
   "signal_energy": 24.0,
   "growth_rate": 0.5,
   "leaves_properties": "dtbop:dying",
-  "environment_factors" : {
-    "lush": 0.75,
-    "spooky": 1.05,
-    "dead": 1.05
-  },
+  "preferred_climate": "temperate",
   "primitive_sapling": "biomesoplenty:dead_sapling"
 }

@@ -9,13 +9,8 @@
     "growth_rate": 1.5,
     "growth_logic_kit": "conifer",
     "leaves_properties":"dtbop:aspen",
-    "environment_factors": {
-        "#forge:is_hot": 0.50,
-        "#forge:is_dry": 0.25,
-        "#forge:is_wet": 0.75
-    },
+    "preferred_climate": "temperate",
     "perfect_biomes": { "type": "biomesoplenty:aspen_glade" },
-    "primitive_sapling":"biomesoplenty:aspen_sapling",
     "lang_overrides": {
         "seed": "Aspen Catkin"
     }
