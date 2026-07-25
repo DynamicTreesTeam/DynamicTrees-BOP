@@ -3,18 +3,81 @@ import me.modmuss50.mpp.ReleaseType
 plugins {
     id 'java-library'
     id 'maven-publish'
-    id 'net.neoforged.moddev' version '2.0.75'
+    id 'net.neoforged.moddev' version '2.0.107'
     id 'idea'
+    id 'eclipse'
     id "me.modmuss50.mod-publish-plugin" version "0.8.4"
+}
+
+tasks.named('wrapper', Wrapper).configure {
+    distributionType = Wrapper.DistributionType.BIN
 }
 
 version = mod_version
 group = mod_group_id
 
 repositories {
-    mavenLocal()
-    maven { url = "https://cursemaven.com" }
-    maven { url = "https://harleyoconnor.com/maven" }
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = "Modrinth"
+                url = "https://api.modrinth.com/maven"
+            }
+        }
+        filter {
+            includeGroup "maven.modrinth"
+        }
+    }
+    maven {
+        name "DynamicTrees maven"
+        url "https://harleyoconnor.com/maven"
+    }
+    maven {
+        name "jTDev MavenReleases"
+        url "https://maven.jt-dev.tech/releases"
+    }
+    maven {
+        url "https://maven.squiddev.cc"
+        content {
+            includeGroup("cc.tweaked")
+        }
+    }
+    maven {
+        name "Jared's maven"
+        url "https://maven.blamejared.com/"
+    }
+    maven {
+        name = "jTDev MavenReleases"
+        url = uri("https://maven.jt-dev.tech/releases")
+    }
+    maven {
+        name "Forge maven" //For Terrablender
+        url "https://maven.minecraftforge.net/"
+    }
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = 'GeckoLib'
+                url = 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
+            }
+        }
+        filter { 
+            includeGroup('software.bernie.geckolib')
+        }
+    }
+    exclusiveContent {
+        forRepository {
+            maven {
+                url "https://cursemaven.com"
+            }
+        }
+        filter {
+            includeGroup "curse.maven"
+        }
+    }
+    flatDir {
+        dir 'libs'
+    }
 }
 
 base {
@@ -28,8 +91,9 @@ neoForge {
 
     parchment {
         mappingsVersion = project.parchment_mappings_version
-        minecraftVersion = project.minecraft_version
+        minecraftVersion = project.parchment_minecraft_version
     }
+
     runs {
         client {
             client()
@@ -47,47 +111,77 @@ neoForge {
             systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
         }
 
+
         data {
             data()
+
             programArguments.addAll '--mod', project.mod_id, '--all',
                     '--output', file('src/generated/resources/').getAbsolutePath(),
-                    '--existing', file('src/main/resources').getAbsolutePath(),
-                    "--existing-mod", "dynamictrees",
-                    "--existing-mod", "biomesoplenty"
+                    '--existing', file('src/main/resources/').getAbsolutePath(),
+                    '--existing-mod', 'dynamictrees',
+                    '--existing-mod', 'biomeswevegone'
         }
 
-        // applies to all the run configs above
         configureEach {
             systemProperty 'forge.logging.markers', 'REGISTRIES'
-
             logLevel = org.slf4j.event.Level.DEBUG
         }
     }
+
     mods {
         "${mod_id}" {
-            sourceSet sourceSets.main
+            sourceSet(sourceSets.main)
         }
     }
 }
 
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
+configurations {
+    runtimeClasspath.extendsFrom localRuntime
+}
+
 dependencies {
-    //DynamicTrees
-    implementation "com.dtteam.dynamictrees:dynamictrees-neoforge-" + project.minecraft_version + ":" + project.dynamicTreesVersion
-    implementation "com.dtteam.dynamictreesplus:DynamicTreesPlus:" + project.dynamicTreesPlusVersion
-    //implementation "curse.maven:dynamictrees-252818:6111832"
+    // Dynamic Trees
+    implementation "com.dtteam.dynamictrees:dynamictrees-neoforge-${minecraft_version}:${dynamic_trees_version}"
+    implementation "com.dtteam.dynamictreesplus:DynamicTreesPlus:${dynamic_trees_plus_version}"
 
     //DynmaicTrees Tools/Utilities
-    runtimeOnly "curse.maven:jade-324717:6011258"
-    runtimeOnly "curse.maven:jei-238222:5846880"
-    runtimeOnly "curse.maven:cc-tweaked-282001:5714512"
-    runtimeOnly "curse.maven:suggestion-provider-fix-469647:5598604"
+    runtimeOnly "maven.modrinth:jade:${jade_version}+neoforge"
+    runtimeOnly "mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}"
+    runtimeOnly "cc.tweaked:cc-tweaked-${minecraft_version}-forge:${cc_version}"
+    //runtimeOnly "curse.maven:suggestion-provider-fix-469647:5598604"
 
     //Biomes O Plenty
-    implementation "curse.maven:terrablender-940057:6054947"
-    implementation "curse.maven:biomes-o-plenty-220318:5855568"
-    implementation "curse.maven:glitchcore-955399:5660740"
+    implementation "com.github.glitchfiend:TerraBlender-neoforge:${minecraft_version}-${terrablender_version}"
+    implementation "maven.modrinth:HXF82T3G:${bop_version}"
+    //implementation "curse.maven:glitchcore-955399:5660740"
+}
+
+tasks.withType(ProcessResources).configureEach {
+    var replaceProperties = [
+            minecraft_version           : minecraft_version,
+            minecraft_version_range     : minecraft_version_range,
+            neo_version                 : neo_version,
+            loader_version_range        : loader_version_range,
+            mod_id                      : mod_id,
+            mod_name                    : mod_name,
+            mod_license                 : mod_license,
+            mod_version                 : mod_version,
+            mod_authors                 : mod_authors,
+            mod_credits                 : mod_credits,
+            mod_description             : mod_description,
+            mod_url                     : mod_url,
+            mod_update_url              : mod_update_url,
+            mod_issue_url               : mod_issue_url,
+            dynamic_trees_version       : dynamic_trees_version,
+            dynamic_trees_plus_version  : dynamic_trees_plus_version,
+            bop_version                 : bop_version
+    ]
+    inputs.properties replaceProperties
+    filesMatching(["META-INF/neoforge.mods.toml"]) {
+        expand replaceProperties
+    }
 }
 
 def changelogFile = file("build/changelog.txt")
