@@ -9,12 +9,9 @@
   "growth_rate": 0.9,
   "growth_logic_kit": "dtbop:small_conifer",
   "leaves_properties": "dtbop:umbran",
-  "environment_factors" : {
-    "hot": 0.50,
-    "dry": 0.25,
-    "wet": 0.75
-  },
-  "perfect_biomes": { "type": "coniferous" },
+  "preferred_climate": "temperate",
+  "climate_tolerance": 0.3,
+  "perfect_biomes": { "tag": "#c:is_coniferous" },
   "primitive_sapling": "biomesoplenty:umbran_sapling",
   "mega_species": "dtbop:mega_umbran",
   "features" : [

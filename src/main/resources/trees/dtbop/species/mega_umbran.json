@@ -9,16 +9,9 @@
   "max_branch_radius": 24,
   "growth_logic_kit": "dtbop:fir",
   "leaves_properties": "dtbop:umbran",
-  "environment_factors" : {
-    "cold": 0.75,
-    "hot": 0.50,
-    "dry": 0.50,
-    "forest": 1.05,
-    "spooky": 1.1,
-    "dead": 1.1,
-    "magical": 1.1
-  },
-  "perfect_biomes": { "type": "coniferous" },
+  "preferred_climate": "temperate",
+  "climate_tolerance": 0.7,
+  "perfect_biomes": { "tag": "#c:is_coniferous" },
   "common_override": { "name": "biomesoplenty:ominous_woods" },
   "features" : [
     "conifer_topper",

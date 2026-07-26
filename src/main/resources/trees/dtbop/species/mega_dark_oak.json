@@ -8,13 +8,9 @@
   "max_branch_radius": 24,
   "soil_longevity": 45,
   "leaves_properties": "dtbop:mega_dark_oak",
-  "environment_factors" : {
-    "hot": 0.8,
-    "dry": 0.8,
-    "magic": 1.1,
-    "forest": 1.05
-  },
-  "perfect_biomes": { "type": "biomesoplenty:mystic.*" },
+  "preferred_climate": "temperate",
+  "climate_tolerance": 0.8,
+  "perfect_biomes": { "name": "biomesoplenty:mystic.*" },
   "features" : [
     {
       "name": "rot_soil",
