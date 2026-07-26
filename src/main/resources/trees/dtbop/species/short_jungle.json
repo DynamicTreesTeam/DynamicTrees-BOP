@@ -7,13 +7,9 @@
   "growth_rate": 0.8,
   "growth_logic_kit": "dtbop:mahogany",
   "leaves_properties": "jungle",
-  "environment_factors" : {
-    "cold": 0.15,
-    "dry": 0.2,
-    "hot": 1.1,
-    "wet": 1.1
-  },
-  "perfect_biomes": { "type": "jungle" },
+  "preferred_climate": "tropical",
+  "climate_tolerance": 0.2,
+  "perfect_biomes": { "tag": "#minecraft:is_jungle" },
   "mega_species": "mega_jungle",
   "features" : [
     {

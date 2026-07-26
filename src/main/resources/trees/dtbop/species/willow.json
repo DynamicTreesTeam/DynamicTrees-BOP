@@ -6,11 +6,14 @@
   "signal_energy": 12.0,
   "growth_rate": 0.8,
   "leaves_properties": "dtbop:willow",
-  "environment_factors" : {
-    "hot": 0.7,
-    "dry": 0.5
+  "preferred_climate": "cold",
+  "climate_tolerance": 0.4,
+  "perfect_biomes": {
+    "tags": [
+      "#c:is_swamp",
+      "#minecraft:is_overworld"
+    ]
   },
-  "perfect_biomes": { "types": [ "swamp", "overworld" ] },
   "primitive_sapling": "biomesoplenty:willow_sapling",
   "features" : [
     {

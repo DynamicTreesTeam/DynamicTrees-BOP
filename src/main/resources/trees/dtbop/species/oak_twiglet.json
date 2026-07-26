@@ -2,9 +2,7 @@
   "type": "dtbop:twiglet",
   "family": "oak",
   "leaves_properties": "dtbop:oak_twiglet",
-  "environment_factors" : {
-    "hot": 0.7,
-    "dry": 0.7
-  },
-  "perfect_biomes": { "type": "biomesoplenty:seasonal.*" }
+  "preferred_climate": "temperate",
+  "climate_tolerance": 0.45,
+  "perfect_biomes": { "name": "biomesoplenty:seasonal.*" }
 }

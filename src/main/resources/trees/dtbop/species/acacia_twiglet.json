@@ -2,10 +2,8 @@
   "type": "dtbop:twiglet",
   "family": "acacia",
   "leaves_properties": "dtbop:acacia_twiglet",
-  "environment_factors" : {
-    "cold": 0.5,
-    "dry": 1.05
-  },
+  "preferred_climate": "arid",
+  "climate_tolerance": 0.4,
   "perfect_biomes": { "name": "biomesoplenty:.*scrublands.*" },
   "acceptable_soils": ["dirt_like", "sand_like"]
 }

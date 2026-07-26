@@ -7,10 +7,8 @@
   "lowest_branch_height": 1,
   "growth_rate": 1.0,
   "leaves_properties": "dtbop:hellbark_bush",
-  "environment_factors" : {
-    "cold": 0.5,
-    "nether": 1.05
-  },
+  "preferred_climate": "arid",
+  "climate_tolerance": 0.3,
   "always_show_on_waila": true,
   "generate_seed": false,
   "generate_sapling": false,

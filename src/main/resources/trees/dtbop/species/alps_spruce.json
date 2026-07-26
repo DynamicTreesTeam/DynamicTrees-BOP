@@ -8,12 +8,9 @@
   "growth_rate": 0.9,
   "growth_logic_kit": "conifer",
   "leaves_properties": "spruce",
-  "environment_factors" : {
-    "hot": 0.50,
-    "dry": 0.25,
-    "wet": 0.75
-  },
-  "perfect_biomes": { "type": "coniferous" },
+  "preferred_climate": "cold",
+  "climate_tolerance": 0.3,
+  "perfect_biomes": { "tag": "#c:is_coniferous" },
   "mega_species": "mega_spruce",
   "acceptable_soils": ["dirt_like", "gravel_like"],
   "features" : [

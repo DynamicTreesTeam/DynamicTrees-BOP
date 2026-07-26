@@ -2,11 +2,8 @@
   "type": "dtbop:twiglet",
   "family": "dark_oak",
   "leaves_properties": "dtbop:dark_oak_twiglet",
-  "environment_factors" : {
-    "dry": 0.5,
-    "cold": 0.7,
-    "wet": 1.05
-  },
-  "perfect_biomes": { "types": ["dead", "swamp"] },
+  "preferred_climate": "temperate",
+  "climate_tolerance": 0.4,
+  "perfect_biomes": { "tags": ["#c:is_dead", "#c:is_swamp"] },
   "acceptable_soils": ["dirt_like", "sand_like"]
 }

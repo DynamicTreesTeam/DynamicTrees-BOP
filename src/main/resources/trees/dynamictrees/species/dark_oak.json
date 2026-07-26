@@ -9,12 +9,8 @@
   "max_branch_radius": 24,
   "growth_logic_kit": "dark_oak",
   "leaves_properties": "dark_oak",
-  "environment_factors" : {
-    "#forge:is_cold": 0.75,
-    "#forge:is_hot": 0.5,
-    "#forge:is_dry": 0.25,
-    "mushroom": 1.25
-  },
+  "preferred_climate": "temperate",
+  "climate_tolerance": 0.8,
   "perfect_biomes": { "tag": "#forge:is_spooky", "name": "minecraft:.*" },
   "primitive_sapling": "dark_oak_sapling",
   "features" : [
@@ -29,13 +25,13 @@
       "properties": {
         "only_world_gen": true,
         "gen_feature": {
-          "name": "huge_mushrooms",
+          "name": "random_predicate",
           "properties": {
-            "max_mushrooms": 1,
-            "max_attempts": 3
+            "gen_feature": "huge_mushroom",
+            "place_chance": 0.2
           }
         },
-        "biome_predicate": { "type": "spooky", "name": "minecraft:.*" }
+        "biome_predicate": { "type": "#c:is_spooky", "name": "minecraft:.*" }
       }
     },
     {

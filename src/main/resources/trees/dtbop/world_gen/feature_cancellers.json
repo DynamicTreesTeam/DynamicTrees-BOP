@@ -27,7 +27,7 @@
       { "name": "biomesoplenty:muskeg" }
     ]},
     "cancellers": {
-      "types": ["tree", "mushroom", "dtbop:mushroom"],
+      "types": ["tree", "fungus"],
       "namespaces": ["biomesoplenty", "minecraft"]
     }
   }

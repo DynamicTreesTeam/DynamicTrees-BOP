@@ -10,11 +10,9 @@
   "max_branch_radius": 16,
   "growth_logic_kit": "dtbop:cypress",
   "leaves_properties": "dtbop:cypress_willow",
-  "environment_factors" : {
-    "hot": 0.7,
-    "dry": 0.5
-  },
-  "perfect_biomes": { "types": [ "swamp", "overworld" ] },
+  "preferred_climate": "temperate",
+  "climate_tolerance": 0.35,
+  "perfect_biomes": { "tags": [ "#c:is_swamp", "#minecraft:is_overworld" ] },
   "acceptable_soils": [ "water_like", "dirt_like", "mud_like" ],
   "features": [
     {

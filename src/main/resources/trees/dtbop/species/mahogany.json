@@ -9,13 +9,9 @@
   "growth_rate": 0.9,
   "growth_logic_kit": "dtbop:mahogany",
   "leaves_properties": "dtbop:mahogany",
-  "environment_factors" : {
-    "cold": 0.15,
-    "dry": 0.20,
-    "hot": 1.1,
-    "wet": 1.1
-  },
-  "perfect_biomes": { "types": [ "jungle", "overworld" ] },
+  "preferred_climate": "tropical",
+  "climate_tolerance": 0.15,
+  "perfect_biomes": { "tags": [ "#minecraft:is_jungle", "#minecraft:is_overworld" ] },
   "primitive_sapling": "biomesoplenty:mahogany_sapling",
   "lang_overrides": {
     "seed": "Mahogany Pod"

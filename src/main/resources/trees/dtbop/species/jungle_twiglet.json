@@ -2,10 +2,7 @@
   "type": "dtbop:twiglet",
   "family": "jungle",
   "leaves_properties": "dtbop:jungle_twiglet",
-  "environment_factors" : {
-    "snowy": 0.25,
-    "hot": 1.05,
-    "dry": 0.75
-  },
+  "preferred_climate": "tropical",
+  "climate_tolerance": 0.35,
   "perfect_biomes": { "name": "biomesoplenty:tropics" }
 }

@@ -8,12 +8,9 @@
   "up_probability": 4,
   "growth_rate": 1.05,
   "leaves_properties": "dtbop:orange_maple",
-  "environment_factors" : {
-    "hot": 0.5,
-    "dry": 0.5,
-    "forest": 1.05
-  },
-  "perfect_biomes": { "type": "biomesoplenty:seasonal.*" },
+  "preferred_climate": "temperate",
+  "climate_tolerance": 0.35,
+  "perfect_biomes": { "name": "biomesoplenty:seasonal.*" },
   "primitive_sapling": "biomesoplenty:orange_maple_sapling",
   "lang_overrides": {
     "seed": "Orange Maple Samara"
